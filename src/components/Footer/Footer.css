@@ -1,0 +1,24 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.footer{
+    width: 100%;
+    height: 80px;
+    border-top: solid;
+    position: absolute;
+    bottom: 0;
+}
+.table-footer{
+    display: grid;
+    height: 100%;
+}
+.t-header-footer{
+    display: grid;
+    place-items: center;
+}
+.t-body-footer{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+}
