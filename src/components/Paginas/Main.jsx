@@ -17,6 +17,17 @@ export default function Main() {
       });
   }, []);
 
+  window.addEventListener('scroll', function() {
+    var navbar = document.querySelector('.navbar');
+    var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (scrollTop > 50) {
+      navbar.classList.add('fixed-top');
+    } else {
+      navbar.classList.remove('fixed-top');
+    }
+  });
+
   const data = apidata
   return (
     <div className='main-main'>
@@ -24,7 +35,7 @@ export default function Main() {
             <Header/>
         </div>
         <div>
-                <div className='barraDeDirecionamento'>
+                <div className='navbar'>
                     <div className='itembarraDeDirecionamento'>
                         <GiHamburger/>
                         <label>Lanches</label>
