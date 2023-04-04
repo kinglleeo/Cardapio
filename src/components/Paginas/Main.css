@@ -5,6 +5,7 @@
     grid-template-columns: repeat(5, 1fr);
     place-items: center;
     border-bottom: solid;
+
 }
 .itembarraDeDirecionamento{
     display: grid;
@@ -17,19 +18,65 @@
 }
 .tabela-main{
     width: 100%;
-    height: 70vh;
+    height: auto;
     display: grid;
     place-items: center;
-
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
-.container-main{
+.bloco-listas{
     width: 100%;
     height: auto;
     display: grid;
     place-items: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: ORANGE;
 }
-.bloco-tabela{
-    width: 90%;
-    height: auto;
-    
+.bloco-items{
+    width: 99%;
+    height: 100px;
+    background-color: white;
+    display: flex;
+}
+.bloco-interno{
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.item-name{
+    padding: 4px;
+    font-size: 20px;
+}
+.item-valor{
+    display: flex;
+    flex-direction: row-reverse;
+    place-items: center;
+    padding: 4px;
+}
+.item-descricao{
+    padding: 4px;
+    font-size: 10px;
+}
+.img{
+    width: 20%;
+}
+.item-botao{
+    display: flex;
+    flex-direction: row-reverse;
+    place-items: center;
+}
+.botao-adicionar{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 0 none;
+    background-color: purple;
+}
+.carinho{
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    right: 30px;
+    bottom: 15px;
 }
