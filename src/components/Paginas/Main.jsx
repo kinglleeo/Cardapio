@@ -53,27 +53,31 @@ export default function Main (){
             <div className='container-main'>
                 <div><label>Lanches</label></div>
                 <div className='bloco-tabela'>
-                    <AutoSizer>
-                        {({ height, width })=>{
-                            <Table
-                                height={height}
+                <AutoSizer>
+                            {({ height, width }) => (
+                                <Table
+                                height={500}
                                 width={width}
                                 rowCount={500}
                                 headerHeight={50}
                                 rowHeight={50}
-                                rowGetter={({ index }) => data [index]}
-                            >   
-                                <Column width={width} dataKey='NOMELANCHES' cellRenderer={({ cellData })=>{
+                                rowGetter={({ index }) => data[index]}
+                                >
+                                <Column
+                                    width={width}
+                                    dataKey="NOMELANCHES"
+                                    cellRenderer={({ cellData }) => (
                                     <div>
-                                        <div>{ cellData.DESCRICAOLANCHES }</div>
-                                        <div>{ cellData.VALORLANCHES }</div>
+                                        <div>{cellData.DESCRICAOLANCHES}</div>
+                                        <div>{cellData.VALORLANCHES}</div>
                                     </div>
-                                }}/>
-                            </Table>
-                        }}
-                    </AutoSizer>
+                                    )}
+                                />
+                                </Table>
+                            )}
+                            </AutoSizer>
                 </div>
-            </div>
+                </div>
             <div className='container-main'>
                     <div><label>Pizzas</label></div>
                     <div className='bloco-tabela'>
