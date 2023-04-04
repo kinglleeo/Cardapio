@@ -5,6 +5,7 @@ import Footer from '../Footer/Footer'
 import './Main.css'
 import { GiHamburger, GiFullPizza, GiWineBottle, GiFrenchFries } from 'react-icons/gi'
 import { TiShoppingCart } from 'react-icons/ti'
+import { Link } from 'react-router-dom'
 
 export default function Main() {
   const [apidata, setData] = useState([]);
@@ -17,6 +18,7 @@ export default function Main() {
       });
   }, []);
 
+  //fixar barra de navegação
   window.addEventListener('scroll', function() {
     var navbar = document.querySelector('.navbar');
     var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -28,6 +30,7 @@ export default function Main() {
     }
   });
 
+  
   const data = apidata
   return (
     <div className='main-main'>
@@ -36,11 +39,11 @@ export default function Main() {
         </div>
         <div>
                 <div className='navbar'>
-                    <div className='itembarraDeDirecionamento'>
+                    <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('lista1').scrollIntoView({ behavior: 'smooth' })}>
                         <GiHamburger/>
                         <label>Lanches</label>
                     </div>
-                    <div className='itembarraDeDirecionamento'>
+                    <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('lista2').scrollIntoView({ behavior: 'smooth' })}>
                         <GiFullPizza/>
                         <label>Pizzas</label>
                     </div>
@@ -58,20 +61,20 @@ export default function Main() {
                 </div>
             </div>
                 <div className='tabela-main'>
-                    <div className='bloco-listas'>
+                    <div className='bloco-listas' id='lista1'>
                             <label>LISTA 1</label>
                         <div className='bloco-items'>
                             <div className='bloco-interno'>
                                 <div className='item-name'>{ 'NAME' }</div>
                                 <div className='item-valor'>{ 'R$: 9,50' }</div>
                                 <div className='item-descricao'>{ 'DESCRICAO' }</div>
-                                <div className='item-botao'><button className='botao-adicionar'>Adicionar</button></div>
+                                <div className='item-botao'><button className='botao-adicionar'> adicionar </button></div>
                             </div>
                             <div className='img'>
 
                             </div>
                         </div><br/>
-                        <div className='bloco-items'>
+                        <div className='bloco-items' id='lista2'>
                             <div className='bloco-interno'>
                                 <div className='item-name'>{ 'NAME' }</div>
                                 <div className='item-valor'>{ 'R$: 9,50' }</div>
@@ -140,7 +143,9 @@ export default function Main() {
                     </div>
                 </div>
                 <div className='carinho'>
-                    <TiShoppingCart/>
+                    <Link to='./Carrinho'>
+                        <TiShoppingCart/>
+                    </Link>
                 </div>
          <div>
             <Footer/>
