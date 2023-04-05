@@ -17,6 +17,13 @@ export default function Pizzas(){
             })
     })
 
+    useEffect(()=>{
+        localStorage.getItem('tamanho')
+        localStorage.getItem('descricao')
+        localStorage.getItem('valor')
+    })
+
+
     return(
         <div className='main-pizza'>
             <div>
@@ -25,23 +32,15 @@ export default function Pizzas(){
             <div>
                 <MenuBarPizza/>
             </div>
-            <div className='corpo-pizza'>
-                {pizzas.map((data)=>
-                    <div className='caixa-pizza'>
-                        <div className='caixa-item-pizza'>
-                        <div className='caixa-1'>
-                                <div className='item-nome'>{data.sabor }</div>
-                                <div className='item-descricao'>{data.descricao}</div>
-                            </div>
-                            <div className='caixa-2'>
-                                <div className='item-valor'>{data.valor}</div>
-                            </div>
-                            <div className='caixa-3'>
-                                <div className='item-img'></div>
-                            </div>
-                        </div>
-                    </div>
-                )}
+            <div className=''>
+                <div className=''>
+                    <div>{tamanho}</div>
+                    <div>{descricao}</div>
+                    <div>{valor}</div>
+                </div>
+            </div>
+            <div>
+
             </div>
             <div>
                 <Footer/>
