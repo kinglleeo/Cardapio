@@ -23,9 +23,7 @@ export default function Main() {
                         <TiShoppingCart/>
                     </Link>
                 </div>
-         <div className='main-footer'>
-            <Footer/>
-         </div>
+         
     </div>
   );
 }

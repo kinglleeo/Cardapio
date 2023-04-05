@@ -25,9 +25,9 @@ export default function MenuBar(){
                         <label>Lanches</label>
                     </div>
                     <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('lista2').scrollIntoView({ behavior: 'smooth' })}>
-                        <GiFullPizza/>
-                        <label>Pizzas</label>
-                    </div>
+                        <GiFrenchFries/>
+                        <label>Porções</label>
+                    </div> 
                     <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('lista3').scrollIntoView({ behavior: 'smooth' })}>
                         <GiWineBottle/>
                         <label>Bebidas</label>
@@ -36,9 +36,10 @@ export default function MenuBar(){
                         <label>Pasteis</label>
                     </div>
                     <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('lista5').scrollIntoView({ behavior: 'smooth' })}>
-                        <GiFrenchFries/>
-                        <label>Porções</label>
-                    </div>                
+                        <GiFullPizza/>
+                        <label>Pizzas</label>
+                    </div>
+                                   
                 </div>
             </div>
   )

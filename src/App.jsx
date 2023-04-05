@@ -6,12 +6,15 @@ import {
 } from "react-router-dom";
 import Carrinho from './components/Paginas/Carrinho/Carrinho'
 import ListaProdutos from './components/Paginas/Produtos/ListaProdutos'
+import Pizzas from './components/Paginas/Produtos/Pizzas/Pizzas'
+
 export default function App(){
     return(
         <Routes>
           <Route path='/' element={<Main/>} />
           <Route path='/Carrinho' element={<Carrinho/>}/>
           <Route path='/ListaProdutos' element={<ListaProdutos/>}/>
+          <Route path='/Pizzas' element={<Pizzas/>}/>
         </Routes>
     )
 }
