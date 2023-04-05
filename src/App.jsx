@@ -4,15 +4,14 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
-import Pizzas from './components/Paginas/Pizzas/Pizzas'
 import Carrinho from './components/Paginas/Carrinho/Carrinho'
-
+import ListaProdutos from './components/Paginas/Produtos/ListaProdutos'
 export default function App(){
     return(
         <Routes>
           <Route path='/' element={<Main/>} />
-          <Route path='/Pizzas' element={<Pizzas/>} />
           <Route path='/Carrinho' element={<Carrinho/>}/>
+          <Route path='/ListaProdutos' element={<ListaProdutos/>}/>
         </Routes>
     )
 }

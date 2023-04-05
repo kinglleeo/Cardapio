@@ -1,0 +1,56 @@
+.caixa-lista{
+    display: grid;
+    width: auto;
+    height: auto;
+    padding-top: 10px;
+    place-items: center;
+}
+.titulo-lista{
+    display: grid;
+    place-items: center;
+    font-size: 25px;
+    font-weight: 600;
+}
+.caixa-items{  
+    display: flex;
+    width: 95%;
+    height: 80px;
+    padding-bottom: 15px;
+}
+.caixa-1{
+    width: 60%;
+}
+.caixa-2{
+    width: 20%;
+}
+.caixa-3{
+    width: 20%;
+}
+.item-nome{
+    padding: 5px;
+    font-size: 20px;
+    font-weight: 600;
+}
+.item-descricao{
+    font-size: 12px;
+    padding-left: 20px;
+}
+.item-valor{
+    display: grid;
+    place-items: start center;
+    padding: 10px;
+}
+.item-botao{
+    display: grid;
+    place-items: center;
+    padding: 5px;
+}
+.botao-adicionar{
+    width: 80px;
+    height: 30px;
+    font-size: 12px;
+    border: 0 none;
+    border-radius: 7px;
+    background-color: rgba(139, 2, 2, 0.705);
+    box-shadow: -1px 4px 28px 0px rgba(0,0,0,1);
+}
