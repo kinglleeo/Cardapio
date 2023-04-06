@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from 'react'
 import axios from 'axios'
 import '../../Style.css'
+import { handleSelecionarSabor } from '../navbarpizza/calculopizza'
 
 export default function nobres (){
     const [pizzasnobres, setPizzasNobres] = useState([]);
@@ -25,7 +26,7 @@ export default function nobres (){
                             <div className='item-descricao'>{data.descricao}</div>
                         </div>
                         <div className='caixa-2'>
-                            <div className='item-botao'><button className='botao-adicionar'> adicionar </button></div>
+                        <input type='checkbox' name="selecionar" onChange={handleSelecionarSabor} />
                         </div>
                         <div className='caixa-3'>
                             <div className='item-img'></div>

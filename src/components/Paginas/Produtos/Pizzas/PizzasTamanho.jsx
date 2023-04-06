@@ -17,10 +17,11 @@ export default function PizzasTamanho() {
   }, []);
 
   localStorage.clear();
-  const handleSubmit = (tamanho, tamanhoDescricao, tamanhoValor) => {
+  const handleSubmit = (tamanho, tamanhoDescricao, tamanhoValor, quantidadeSabores) => {
     localStorage.setItem('tamanho', tamanho);
     localStorage.setItem('tamanhoDescricao', tamanhoDescricao);
     localStorage.setItem('tamanhoValor', tamanhoValor);
+    localStorage.setItem('quantidadeSabores', quantidadeSabores)
     navigate('/Pizzas');
   };
   console.log(localStorage)
@@ -30,7 +31,7 @@ export default function PizzasTamanho() {
       <label className='titulo-lista'>PIZZAS</label>
       {tamanho.map((data) => (
         <div className='caixa-css' key={data.id}>
-          <form onClick={()=> handleSubmit(data.tamanho, data.tamanhoDescricao, data.tamanhoValor)}>
+          <form onClick={()=> handleSubmit(data.tamanho, data.tamanhoDescricao, data.tamanhoValor, data.quantidadeSabores)}>
             <div className='caixa-items'>
               <div className='caixa-1'>
                 <div className='item-nome'>{data.tamanho}</div>

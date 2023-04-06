@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from 'react'
 import axios from 'axios'
 import '../../Style.css'
+import { handleSelecionarSabor } from '../navbarpizza/calculopizza'
 
 export default function doces(){
     const [pizzasDoces, setPizzasDoces] = useState([]);
@@ -27,7 +28,7 @@ export default function doces(){
                             <div className='item-descricao'>{data.descricao}</div>
                         </div>
                         <div className='caixa-2'>
-                            <div className='item-botao'><button className='botao-adicionar'> selecionar </button></div>
+                            <input type='checkbox' name="selecionar" onChange={handleSelecionarSabor} />
                         </div>
                         <div className='caixa-3'>
                             <div className='item-img'></div>

@@ -3,25 +3,13 @@ import './menubarpizza.css'
 
 
 
-    
-
-export const handleSelecionarSabor = (event) => {
-    const checkboxValues = Array.from(document.querySelectorAll('input[name="selecionar"]:checked')).map((checkbox) => checkbox.value);
-  
-    if (checkboxValues.length >= 4) {
-      document.querySelectorAll('input[name="selecionar"]').forEach((checkbox) => {
-        checkbox.disabled = true;
-      });
-    }
-  };  
-
 
 export default function MenuBar(){
   const [tamanho, setTamanho] = useState('')
   const [tamanhoDescricao, setTamanhoDescricao] = useState('')
   const [tamanhoValor, setTamanhoValor] = useState('')
-
-    
+  const [quantidadeSabores, setQuantidadeSabores] = useState('')
+  
 
   useEffect(()=>{
       const tamanho = localStorage.getItem('tamanho')
@@ -30,7 +18,10 @@ export default function MenuBar(){
           setTamanhoDescricao(tamanhoDescricao)
       const tamanhoValor = localStorage.getItem('tamanhoValor')
           setTamanhoValor(tamanhoValor)
-  })
+        const quantidadeSabores = localStorage.getItem('quantidadeSabores')
+            setQuantidadeSabores(quantidadeSabores)
+    })
+
 
     //fixar barra de navegação
   window.addEventListener('scroll', function() {
@@ -69,6 +60,7 @@ export default function MenuBar(){
                                 <div className='item-h-descricao'>{tamanhoDescricao}</div>
                             </div>
                             <div className='caixa-h-2'>
+                                <div>{quantidadeSabores}</div>
                                 <div className=''>{'saborEscolhido1'}</div>
                                 <div className=''>{'saborEscolhido2'}</div>
                                 <div className=''>{'saborEscolhido3'}</div>
@@ -87,3 +79,4 @@ export default function MenuBar(){
             </div>
   )
 }
+

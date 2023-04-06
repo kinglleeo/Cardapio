@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react'
 import axios from 'axios'
 import '../../Style.css'
-import { handleSelecionarSabor } from '../navbarpizza/MenuBarPizza';
+import { handleSelecionarSabor } from '../navbarpizza/calculopizza'
 
 export default function salgadas(){
     const [pizzasSalgadas, setPizzasSalgadas] = useState([]);
