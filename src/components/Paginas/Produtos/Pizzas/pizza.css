@@ -6,6 +6,7 @@
     width: 100%;
     height: 100%;
 }
+
 .corpo-pizza{
     display: grid;
     width: auto;
@@ -13,23 +14,52 @@
     padding-top: 10px;
     place-items: center;
 }
-.caixa-pizza{
-    width: 95%;
-    padding-bottom: 15px;
+.header-pizza{
+    width: 99%;
+    height: 70px;
 }
-.caixa-item-pizza{  
-    display: flex;
+.caixa-header{
     width: 100%;
-    height: 100px;
+    height: 100%;
+    display: grid;
     border-radius: 10px;
+    grid-template-columns: repeat(2,1fr);
+    border: solid;
+}
+.item-h-tamanho{
+    width: auto;
+    display: grid;
+    padding: 5px;
+
+}
+.item-h-descricao{
+    width: auto;
+    display: grid;
+    padding: 5px;
+
+}
+.item-h-valor{
+    width: auto;
+    display: grid;
+    place-items: center;
+
+}
+.carrinho{
+    height: 50px;
+    width: 50px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: grid;
+    place-items: center;
+}
+.caixa-carrinho{
+    border: 0 none;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
     box-shadow: inset 0px 11px 8px -10px rgb(0, 0, 0, 1), inset 0px -11px 8px -10px rgba(0,0,0,1);
-}
-.caixa-1{
-    width: 60%;
-}
-.caixa-2{
-    width: 20%;
-}
-.caixa-3{
-    width: 20%;
 }

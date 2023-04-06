@@ -10,12 +10,24 @@
 }
 .main-header{
 }
-.carinho{
+.carrinho{
     height: 50px;
     width: 50px;
     position: fixed;
-    bottom: 0;
-    right: 0;
+    bottom: 20px;
+    right: 20px;
+    display: grid;
+    place-items: center;
+}
+.caixa-carrinho{
+    border: 0 none;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    box-shadow: inset 0px 11px 8px -10px rgb(0, 0, 0, 1), inset 0px -11px 8px -10px rgba(0,0,0,1);
 }
 .main-lista{
     height: 80vh;

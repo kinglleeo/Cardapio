@@ -19,25 +19,25 @@ export default function MenuBar(){
   return(
     <div>
                 <div className='navbar'>
-                    <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('').scrollIntoView({ behavior: 'smooth' })}>
+                    <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('salgadas').scrollIntoView({ behavior: 'smooth' })}>
                         
                         <label>Salgadas</label>
                     </div>
-                    <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('').scrollIntoView({ behavior: 'smooth' })}>
-                        
-                        <label>Doces</label>
-                    </div> 
-                    <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('').scrollIntoView({ behavior: 'smooth' })}>
+                    <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('especiais').scrollIntoView({ behavior: 'smooth' })}>
                         
                         <label>Especiais</label>
                     </div>
-                    <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('').scrollIntoView({ behavior: 'smooth' })}>
+                    <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('nobres').scrollIntoView({ behavior: 'smooth' })}>
                         <label>Nobres</label>
                     </div>
-                    <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('').scrollIntoView({ behavior: 'smooth' })}>
+                    <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('tradicionais').scrollIntoView({ behavior: 'smooth' })}>
                         
                         <label>Tradicionais</label>
                     </div>
+                    <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('doces').scrollIntoView({ behavior: 'smooth' })}>
+                        
+                        <label>Doces</label>
+                    </div> 
                                    
                 </div>
             </div>

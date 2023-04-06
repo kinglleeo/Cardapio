@@ -19,16 +19,16 @@ export default function ListaProdutos(){
                 <Lanches/>
             </div>
             <div>
-                <Bebidas/>
+                <Porcoes/>
             </div>
             <div>
                 <Pasteis/>
             </div>
             <div>
-                <Porcoes/>
+                <PizzasTamanho/>
             </div>
             <div>
-                <PizzasTamanho/>
+                <Bebidas/>
             </div>
             <div>
                 <Footer/>

@@ -15,13 +15,14 @@ export default function PizzasTamanho() {
         setTamanho(getdata.data);
       });
   }, []);
-
-  const handleSubmit = ( tamanho, descricao, valor) => {
+  localStorage.clear();
+  const handleSubmit = (tamanho, descricao, valor) => {
     localStorage.setItem('tamanho', tamanho);
     localStorage.setItem('descricao', descricao);
     localStorage.setItem('valor', valor);
     navigate('/Pizzas');
   };
+  console.log(localStorage)
 
   return (
     <div className='caixa-lista' id='lista5'>
@@ -35,13 +36,12 @@ export default function PizzasTamanho() {
                 <div className='item-descricao'>{data.descricao}</div>
               </div>
               <div className='caixa-2'>
-                <div className='item-valor'>{data.valor}</div>
+                <div className='item-valor'><label>Preço</label>R${data.valor}</div>
               </div>
               <div className='caixa-3'>
                 <div className='item-img'></div>
               </div>
             </div>
-            <button type='submit'>Submit</button>
           </form>
         </div>
       ))}
