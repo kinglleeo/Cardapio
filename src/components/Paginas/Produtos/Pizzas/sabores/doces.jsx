@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from 'react'
 import axios from 'axios'
 import '../../Style.css'
+import { useNavigate } from 'react-router-dom'
 
 export default function doces(){
     const [pizzasDoces, setPizzasDoces] = useState([])
@@ -13,7 +14,9 @@ export default function doces(){
             })
     })
 
+   const handleSelect = () =>{
     
+   }
         
 
     return(
@@ -28,7 +31,7 @@ export default function doces(){
                         </div>
                         <div className='caixa-2'>
                             <div className='item-valor'><label>Preço</label>R${data.valor}</div>
-                            <div className='item-botao'><button className='botao-adicionar'> adicionar</button></div>
+                            <div className='item-botao'><button className='botao-adicionar' onClick={handleSelect}> selecionar </button></div>
                         </div>
                         <div className='caixa-3'>
                             <div className='item-img'></div>
