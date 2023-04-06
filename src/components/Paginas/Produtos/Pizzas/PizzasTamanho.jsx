@@ -15,11 +15,12 @@ export default function PizzasTamanho() {
         setTamanho(getdata.data);
       });
   }, []);
+
   localStorage.clear();
-  const handleSubmit = (tamanho, descricao, valor) => {
+  const handleSubmit = (tamanho, tamanhoDescricao, tamanhoValor) => {
     localStorage.setItem('tamanho', tamanho);
-    localStorage.setItem('descricao', descricao);
-    localStorage.setItem('valor', valor);
+    localStorage.setItem('tamanhoDescricao', tamanhoDescricao);
+    localStorage.setItem('tamanhoValor', tamanhoValor);
     navigate('/Pizzas');
   };
   console.log(localStorage)
@@ -29,14 +30,15 @@ export default function PizzasTamanho() {
       <label className='titulo-lista'>PIZZAS</label>
       {tamanho.map((data) => (
         <div className='caixa-css' key={data.id}>
-          <form onClick={()=> handleSubmit(data.tamanho, data.descricao, data.valor)}>
+          <form onClick={()=> handleSubmit(data.tamanho, data.tamanhoDescricao, data.tamanhoValor)}>
             <div className='caixa-items'>
               <div className='caixa-1'>
                 <div className='item-nome'>{data.tamanho}</div>
-                <div className='item-descricao'>{data.descricao}</div>
+                <div className='item-descricao'>{data.tamanhoDescricao}</div>
               </div>
               <div className='caixa-2'>
-                <div className='item-valor'><label>Preço</label>R${data.valor}</div>
+                <div className='item-valor'><label>Preço</label>R${data.tamanhoValor}</div>
+                <div className='item-valor'>{data.quantidadeSabores} Sabores</div>
               </div>
               <div className='caixa-3'>
                 <div className='item-img'></div>

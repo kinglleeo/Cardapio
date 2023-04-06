@@ -4,15 +4,16 @@ import '../../Style.css'
 
 
 export default function especiais(){
-    const [pizzasEspeciais, setPizzasEspeciais] = useState([])
+    const [pizzasEspeciais, setPizzasEspeciais] = useState([]);
 
     useEffect(()=>{
         axios
             .get('https://642b23b0d7081590f91d081a.mockapi.io/bebidas')
             .then((getdata)=>{
-                setPizzasEspeciais(getdata.data)
-            })
-    })
+                setPizzasEspeciais(getdata.data);
+            });
+    },[]);
+
 
     return(
         <div className='caixa-lista' id='especiais'>
@@ -25,7 +26,7 @@ export default function especiais(){
                             <div className='item-descricao'>{data.descricao}</div>
                         </div>
                         <div className='caixa-2'>
-                            <div className='item-valor'><label>Preço</label>R${data.valor}</div>
+                            <div className='item-botao'><button className='botao-adicionar'> selecionar </button></div>
                         </div>
                         <div className='caixa-3'>
                             <div className='item-img'></div>

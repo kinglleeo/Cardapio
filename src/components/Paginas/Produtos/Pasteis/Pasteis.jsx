@@ -11,9 +11,9 @@ export default function Pasteis(){
             axios
                 .get('https://642b23b0d7081590f91d081a.mockapi.io/cardapio')
                 .then((getdata)=>{
-                    setDataPasteis(getdata.data)
-                })
-        })
+                    setDataPasteis(getdata.data);
+                });
+        }, []);
         localStorage.clear()
 
         const handleAddCart =(sabor, descricao, valor) =>{

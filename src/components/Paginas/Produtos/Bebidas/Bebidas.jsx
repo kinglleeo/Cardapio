@@ -11,9 +11,9 @@ export default function Bebidas(){
             axios
                 .get('https://642b23b0d7081590f91d081a.mockapi.io/cardapio')
                 .then((getdata)=>{
-                    setDataBebidas(getdata.data)
-                })
-        })
+                    setDataBebidas(getdata.data);
+                });
+        }, []);
 
         localStorage.clear()
 

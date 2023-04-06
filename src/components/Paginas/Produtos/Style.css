@@ -51,12 +51,3 @@
     place-items: center;
     padding: 5px;
 }
-.botao-adicionar{
-    width: 80px;
-    height: 30px;
-    font-size: 12px;
-    border: 0 none;
-    border-radius: 7px;
-    background-color: rgba(139, 2, 2, 0.705);
-    box-shadow: -1px 4px 28px 0px rgba(0,0,0,1);
-}

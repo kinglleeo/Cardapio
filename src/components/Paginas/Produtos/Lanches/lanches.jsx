@@ -3,17 +3,17 @@ import axios from 'axios'
 import '../Style.css'
 import { useNavigate } from 'react-router-dom';
 
-export default function Lanhes(){
+export default function Lanches(){
     const [dataLanches, setDataLanches] = useState([]);
     const navigate = useNavigate();
 
     useEffect(()=>{
         axios
-            .get('https://642b23b0d7081590f91d081a.mockapi.io/bebidas')
+            .get('https://642b23b0d7081590f91d081a.mockapi.io/cardapio')
             .then((getdata)=>{
-                setDataLanches(getdata.data)
-            })
-    })
+                setDataLanches(getdata.data);
+            });
+    }, []);
 
     localStorage.clear()
 

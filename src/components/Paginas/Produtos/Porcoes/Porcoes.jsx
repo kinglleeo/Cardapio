@@ -11,9 +11,9 @@ export default function Pasteis(){
             axios
                 .get('https://642b23b0d7081590f91d081a.mockapi.io/cardapio')
                 .then((getdata)=>{
-                    setDataPorcoes(getdata.data)
-                })
-        })
+                    setDataPorcoes(getdata.data);
+                });
+        }, []);
 
         localStorage.clear()
 

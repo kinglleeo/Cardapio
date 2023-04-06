@@ -14,36 +14,6 @@
     padding-top: 10px;
     place-items: center;
 }
-.header-pizza{
-    width: 99%;
-    height: 70px;
-}
-.caixa-header{
-    width: 100%;
-    height: 100%;
-    display: grid;
-    border-radius: 10px;
-    grid-template-columns: repeat(2,1fr);
-    border: solid;
-}
-.item-h-tamanho{
-    width: auto;
-    display: grid;
-    padding: 5px;
-
-}
-.item-h-descricao{
-    width: auto;
-    display: grid;
-    padding: 5px;
-
-}
-.item-h-valor{
-    width: auto;
-    display: grid;
-    place-items: center;
-
-}
 .carrinho{
     height: 50px;
     width: 50px;
@@ -62,4 +32,13 @@
     display: grid;
     place-items: center;
     box-shadow: inset 0px 11px 8px -10px rgb(0, 0, 0, 1), inset 0px -11px 8px -10px rgba(0,0,0,1);
+}
+.botao-adicionar{
+    width: 80px;
+    height: 30px;
+    font-size: 12px;
+    border: 0 none;
+    border-radius: 7px;
+    background-color: rgba(139, 2, 2, 0.705);
+    box-shadow: -1px 4px 28px 0px rgba(0,0,0,1);
 }

@@ -3,15 +3,16 @@ import axios from 'axios'
 import '../../Style.css'
 
 export default function nobres (){
-    const [pizzasnobres, setPizzasNobres] = useState([])
+    const [pizzasnobres, setPizzasNobres] = useState([]);
 
     useEffect(()=>{
         axios
             .get('https://642b23b0d7081590f91d081a.mockapi.io/bebidas')
             .then((getdata)=>{
-                setPizzasNobres(getdata.data)
-            })
-    })
+                setPizzasNobres(getdata.data);
+            });
+    },[]);
+
 
     return(
         <div className='caixa-lista' id='nobres'>
@@ -24,7 +25,6 @@ export default function nobres (){
                             <div className='item-descricao'>{data.descricao}</div>
                         </div>
                         <div className='caixa-2'>
-                            <div className='item-valor'><label>Preço</label>R${data.valor}</div>
                             <div className='item-botao'><button className='botao-adicionar'> adicionar </button></div>
                         </div>
                         <div className='caixa-3'>
