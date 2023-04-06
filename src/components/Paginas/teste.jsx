@@ -1,16 +1,13 @@
-const [mini, setMini] = useState('')
-    const [pequena, setPequena] = useState('')
-    const [media, setMedia] = useState('')
-    const [grande, setGrande] = useState('')
-    const [familia, setFamilia] = useState('')
-
-
-
-    const handleSubmit = ()=>{
-        localstorage.setItem('mini', mini)
-        localstorage.setItem('pequena', pequena)
-        localstorage.setItem('media', media)
-        localstorage.setItem('grande', grande)
-        localstorage.setItem('familia', familia)
-} 
-    
+export const handleSelecionarSabor = () => {
+    const checkboxValues = Array.from(document.querySelectorAll('input[name="selecionar"]:checked')).map((checkbox) => checkbox.value);
+  
+    if (checkboxValues.length >= 4) {
+      document.querySelectorAll('input[name="selecionar"]:not(:checked)').forEach((checkbox) => {
+        checkbox.disabled = true;
+      });
+    } else {
+      document.querySelectorAll('input[name="selecionar"]').forEach((checkbox) => {
+        checkbox.disabled = false;
+      });
+    }
+  };
