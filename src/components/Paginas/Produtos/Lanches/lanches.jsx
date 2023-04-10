@@ -9,20 +9,25 @@ export default function Lanches(){
 
     useEffect(()=>{
         axios
-            .get('https://642b23b0d7081590f91d081a.mockapi.io/cardapio')
+            .get('https://642b23b0d7081590f91d081a.mockapi.io/bebidas')
             .then((getdata)=>{
                 setDataLanches(getdata.data);
             });
     }, []);
 
     localStorage.clear()
-
     const handleAddCart =(sabor, descricao, valor) =>{
         localStorage.setItem('nomeProduto', sabor) 
         localStorage.setItem('descricaoProduto', descricao)  
         localStorage.setItem('valorProduto', valor)
         navigate('/Carrinho')
     }
+    const handleAddAdicionais = (sabor, descricao, valor) =>{
+        localStorage.setItem('nomeProduto', sabor) 
+        localStorage.setItem('descricaoProduto', descricao)  
+        localStorage.setItem('valorProduto', valor)
+        navigate('/adicionaislanches')
+    }    
 
     return(
         <div className='caixa-lista' id='lista1'>
@@ -36,7 +41,9 @@ export default function Lanches(){
                             </div>
                             <div className='caixa-2'>
                                 <div className='item-valor'><label>Preço</label>R${data.valor}</div>
-                                <div className='item-botao'><button className='botao-adicionar' onClick={()=> handleAddCart(data.sabor, data.descricao, data.valor)}> adicionar </button></div>
+                                <div>
+                                   {data.adicionais === false ?(<button onClick={()=>handleAddCart(data.sabor, data.descricao, data.valor)}>adicionar</button>) : (<button onClick={()=>handleAddAdicionais(data.sabor, data.descricao, data.valor)}>botao2</button>)}
+                                </div>        
                             </div>
                             <div className='caixa-3'>
                                 <div className='item-img'></div>

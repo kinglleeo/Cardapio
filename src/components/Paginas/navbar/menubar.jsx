@@ -10,7 +10,7 @@ export default function MenuBar(){
     var navbar = document.querySelector('.navbar');
     var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     
-    if (scrollTop > 50) {
+    if (scrollTop > 0) {
       navbar.classList.add('fixed-top');
     } else {
       navbar.classList.remove('fixed-top');

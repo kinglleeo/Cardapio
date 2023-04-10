@@ -1,34 +1,17 @@
 import { React, useState, useEffect } from 'react'
-import './menubarpizza.css'
-
+import './StyleBarPizza.css'
+import ValorBar from './Valorbar'
 
 
 
 export default function MenuBar(){
-  const [tamanho, setTamanho] = useState('')
-  const [tamanhoDescricao, setTamanhoDescricao] = useState('')
-  const [tamanhoValor, setTamanhoValor] = useState('')
-  const [quantidadeSabores, setQuantidadeSabores] = useState('')
-  
-
-  useEffect(()=>{
-      const tamanho = localStorage.getItem('tamanho')
-          setTamanho(tamanho)
-      const tamanhoDescricao = localStorage.getItem('tamanhoDescricao')
-          setTamanhoDescricao(tamanhoDescricao)
-      const tamanhoValor = localStorage.getItem('tamanhoValor')
-          setTamanhoValor(tamanhoValor)
-        const quantidadeSabores = localStorage.getItem('quantidadeSabores')
-            setQuantidadeSabores(quantidadeSabores)
-    })
-
 
     //fixar barra de navegação
   window.addEventListener('scroll', function() {
     var navbar = document.querySelector('.navbar');
     var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     
-    if (scrollTop > 80) {
+    if (scrollTop > 0) {
       navbar.classList.add('fixed-top');
     } else {
       navbar.classList.remove('fixed-top');
@@ -36,8 +19,11 @@ export default function MenuBar(){
   });
 
   return(
-    <div>
-                <div className='navbar'>
+    <div className='navbar'>
+                <div className='navbar-display'>
+                    <ValorBar/>
+                </div>
+                <div className='navbar-atalhos'>
                     <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('salgadas').scrollIntoView({ behavior: 'smooth' })}>
                         <label>Salgadas</label>
                     </div>
@@ -52,31 +38,9 @@ export default function MenuBar(){
                     </div>
                     <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('doces').scrollIntoView({ behavior: 'smooth' })}>
                         <label>Doces</label>
-                    </div> 
-                    <div className='header-pedido'>
-                        <div className='caixa-header'>
-                            <div className='caixa-h-1'>
-                                <div className='item-h-tamanho'>{tamanho}</div>
-                                <div className='item-h-descricao'>{tamanhoDescricao}</div>
-                            </div>
-                            <div className='caixa-h-2'>
-                                <div>{quantidadeSabores}</div>
-                                <div className=''>{'saborEscolhido1'}</div>
-                                <div className=''>{'saborEscolhido2'}</div>
-                                <div className=''>{'saborEscolhido3'}</div>
-                                <div className=''>{'saborEscolhido4'}</div>
-                            </div>
-                            <div className='caixa-h-3'>
-                                <div className='item-h-valor'><label>Valor Total</label>R${}</div>
-                                <div className='item-h-botao'>
-                                    <button className='botao-comprar'>Finalizar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                                   
+                    </div>                                    
                 </div>
-            </div>
+    </div>
   )
 }
 

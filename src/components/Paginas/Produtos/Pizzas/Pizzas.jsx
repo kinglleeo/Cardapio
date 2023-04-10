@@ -11,6 +11,8 @@ import PizzasSalgadas from './sabores/salgadas'
 import PizzasTradicionais from './sabores/tradicionais'
 import IconCarrinho from '../../Carrinho/Iconcarrinho'
 
+
+
 export default function Pizzas(){
     
 

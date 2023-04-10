@@ -22,6 +22,12 @@ export default function Pasteis(){
             localStorage.setItem('valorProduto', valor)
             navigate('/Carrinho')
         }
+        const handleAddAdicionais =(sabor, descricao, valor) =>{
+            localStorage.setItem('nomeProduto', sabor) 
+            localStorage.setItem('descricaoProduto', descricao)  
+            localStorage.setItem('valorProduto', valor)
+            navigate('/adicionaispasteis')
+        }
 
     return(
         
@@ -36,7 +42,9 @@ export default function Pasteis(){
                             </div>
                             <div className='caixa-2'>
                                 <div className='item-valor'>R${data.valor}</div>
-                                <div className='item-botao'><button className='botao-adicionar' onClick={()=> handleAddCart(data.sabor, data.descricao, data.valor)}> adicionar </button></div>
+                                <div>
+                                    {data.adicionais === false ?(<button onClick={()=> handleAddCart(data.sabor, data.descricao, data.valor)}> adicionar </button>):(<button onClick={()=> handleAddAdicionais(data.sabor, data.descricao, data.valor)}>botao2</button>)}
+                                </div>
                             </div>
                             <div className='caixa-3'>
                                 <div className='item-img'></div>

@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react'
 import axios from 'axios'
 import '../../Style.css'
-import { handleSelecionarSabor } from '../navbarpizza/calculopizza'
+import SelecionarSabores from './selecionarSabores'
 
 export default function salgadas(){
     const [pizzasSalgadas, setPizzasSalgadas] = useState([]);
@@ -15,7 +15,6 @@ export default function salgadas(){
     },[]);
 
     
- 
     
     return(
         <div className='caixa-lista' id='salgadas'>
@@ -29,7 +28,7 @@ export default function salgadas(){
                         </div>
                         <div className='caixa-2'>
                             <div className='item-botao'>
-                                <input type='checkbox' name="selecionar" onChange={handleSelecionarSabor} />
+                                <SelecionarSabores/>
                             </div>
                         </div>
                         <div className='caixa-3'>

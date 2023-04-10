@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function PizzasTamanho() {
   const [tamanho, setTamanho] = useState([]);
+  
   const navigate = useNavigate();
 
   useEffect(() => {
