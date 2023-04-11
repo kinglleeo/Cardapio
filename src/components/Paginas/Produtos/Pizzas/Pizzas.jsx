@@ -3,7 +3,7 @@ import { React, useState, useEffect } from 'react'
 import './pizza.css'
 import Header from '../../../header/Header'
 import Footer from '../../../Footer/Footer'
-import MenuBarPizza from './navbarpizza/MenuBarPizza'
+import PizzaBar from './navbarpizza/PizzaBar'
 import PizzasDoces from './sabores/doces'
 import PizzasEspeciais from './sabores/especiais'
 import PizzasNobres from './sabores/nobres'
@@ -15,7 +15,7 @@ import IconCarrinho from '../../Carrinho/Iconcarrinho'
 
 export default function Pizzas(){
     
-
+ 
    
     return(
         <div className='main-pizza'>
@@ -23,7 +23,7 @@ export default function Pizzas(){
                 <Header/>
             </div>
             <div>
-                <MenuBarPizza/>
+                <PizzaBar/>
             </div>
             <div className='corpo-pizza'>
                 <div className='lista-produtos'>

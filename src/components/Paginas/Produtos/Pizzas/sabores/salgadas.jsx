@@ -15,7 +15,6 @@ export default function salgadas(){
     },[]);
 
     
-    
     return(
         <div className='caixa-lista' id='salgadas'>
             <label className='titulo-lista'>SALGADAS</label>

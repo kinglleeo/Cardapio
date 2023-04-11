@@ -5,21 +5,25 @@ import ValorBar from './Valorbar'
 
 
 export default function MenuBar(){
+    const [navegacao, setStickyClass] = useState('relative')
+
 
     //fixar barra de navegação
-  window.addEventListener('scroll', function() {
-    var navbar = document.querySelector('.navbar');
-    var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
-    if (scrollTop > 0) {
-      navbar.classList.add('fixed-top');
-    } else {
-      navbar.classList.remove('fixed-top');
+    useEffect(()=>{
+        window.addEventListener('scroll', stickNavbar)
+        return()=>{
+            window.removeEventListener('scroll', stickNavbar)
+        }
+    }, [])
+    const stickNavbar = ()=>{
+        if(window !== undefined){
+            let windowHeight = window.scrollY
+            windowHeight > 40? setStickyClass('nav-top') : setStickyClass('relative')
+        }
     }
-  });
 
   return(
-    <div className='navbar'>
+    <div className={`${navegacao}`}>
                 <div className='navbar-display'>
                     <ValorBar/>
                 </div>

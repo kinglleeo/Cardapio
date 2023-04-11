@@ -1,5 +1,6 @@
 import { React, useState, useEffect } from 'react';
 import './StyleBarPizza.css';
+import axios from 'axios';
 
 export default function ValorBar(){
     const [tamanho, setTamanho] = useState('');
@@ -7,6 +8,7 @@ export default function ValorBar(){
     const [tamanhoValor, setTamanhoValor] = useState('');
     const [quantidadeSabores, setQuantidadeSabores] = useState('');       
     const [sabor, setSabor] = useState('')
+    const [adicionais, setAdicionais] = useState('')
     console.log(sabor)
     
     useEffect(()=>{
@@ -22,7 +24,14 @@ export default function ValorBar(){
             setSabor(sabor)
     }, []);
 
-   
+    useEffect(()=>{
+        axios
+            .get('')
+            .then((getdata)=>{
+                setAdicionais(getdata.data)
+            })
+    })
+
 
     return(
         <div className='header-pedido'>
@@ -38,7 +47,7 @@ export default function ValorBar(){
                 <div className='caixa-h-3'>
                     <div className='item-h-valor'><label>Valor Total</label>R${}</div>
                     <div className='item-h-botao'>
-                        <button className='botao-comprar'>Finalizar</button>
+                        {adicionais === "" ? (<button className='botao-comprar'>Finalizar</button>) : (<button> Adicionais </button>)}
                     </div>
                 </div>
                

@@ -24,7 +24,7 @@ export default function SelecionarSabor(){
     return(
       <div>
         <div>
-          <input type='checkbox' name='selecionar' onChange={handleSelecionarSabor}/>
+          <input type='checkbox' name='selecionar' onClick={handleSelecionarSabor}/>
         </div>
       </div>
     )
