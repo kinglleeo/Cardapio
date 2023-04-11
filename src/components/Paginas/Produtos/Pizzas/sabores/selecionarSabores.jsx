@@ -1,11 +1,11 @@
 import { React, useState, useEffect } from 'react'
 
-
-export default function SelecionarSabor(){
+export default function SelecionarSabor(props){
   const [quantidadeSabores, setQuantidadeSabores] = useState('')
 
-  const handleSelecionarSabor =()=>{  
+  const handleSelecionarSabor =(e)=>{  
     const checkboxValues = Array.from(document.querySelectorAll('input[name="selecionar"]:checked')).map((checkbox) => checkbox.value);
+    
     
     if (checkboxValues.length >= quantidadeSabores) {
       document.querySelectorAll('input[name="selecionar"]:not(:checked)').forEach((checkbox) => {
@@ -15,17 +15,18 @@ export default function SelecionarSabor(){
       document.querySelectorAll('input[name="selecionar"]').forEach((checkbox) => {
         checkbox.disabled = false;
       });
-    }}
-    useEffect(()=>{
+    }
+  }
+
+  useEffect(()=>{
       const quantidadeSabores = localStorage.getItem('quantidadeSabores');
             setQuantidadeSabores(quantidadeSabores)
-    })
+  })
 
-    return(
+  return(
+    <div>
       <div>
-        <div>
-          <input type='checkbox' name='selecionar' onClick={handleSelecionarSabor}/>
-        </div>
+        <input type='checkbox' name='selecionar' onClick={handleSelecionarSabor}/>
       </div>
-    )
-}
+    </div>      
+)}

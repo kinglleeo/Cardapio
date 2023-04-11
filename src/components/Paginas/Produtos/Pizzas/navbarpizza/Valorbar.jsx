@@ -1,15 +1,15 @@
 import { React, useState, useEffect } from 'react';
 import './StyleBarPizza.css';
 import axios from 'axios';
+import SaboresEscolhidos from './SaboresEscolhidos'
 
 export default function ValorBar(){
     const [tamanho, setTamanho] = useState('');
     const [tamanhoDescricao, setTamanhoDescricao] = useState('');
     const [tamanhoValor, setTamanhoValor] = useState('');
     const [quantidadeSabores, setQuantidadeSabores] = useState('');       
-    const [sabor, setSabor] = useState('')
     const [adicionais, setAdicionais] = useState('')
-    console.log(sabor)
+   
     
     useEffect(()=>{
         const tamanho = localStorage.getItem('tamanho');
@@ -20,8 +20,6 @@ export default function ValorBar(){
         setTamanhoValor(tamanhoValor);
         const quantidadeSabores = localStorage.getItem('quantidadeSabores');
             setQuantidadeSabores(quantidadeSabores)
-        const sabor = localStorage.getItem('sabor')
-            setSabor(sabor)
     }, []);
 
     useEffect(()=>{
@@ -41,8 +39,7 @@ export default function ValorBar(){
                     <div className='item-h-descricao'>{tamanhoDescricao}</div>
                 </div>
                 <div className='caixa-h-2'>
-                    <div>{sabor}</div>
-                    <div className='q-sabores'>{quantidadeSabores}</div>
+                   <SaboresEscolhidos/>
                 </div>
                 <div className='caixa-h-3'>
                     <div className='item-h-valor'><label>Valor Total</label>R${}</div>

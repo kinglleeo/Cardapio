@@ -1,10 +1,11 @@
 import { React, useState, useEffect } from 'react'
 import axios from 'axios'
 import '../../Style.css'
-import SelecionarSabores from './selecionarSabores'
+import SelecionarSabores from './selecionarSabores';
 
 export default function salgadas(){
     const [pizzasSalgadas, setPizzasSalgadas] = useState([]);
+    const [selectedSabores, setSelectedSabores] = useState([]);
 
     useEffect(()=>{
         axios
@@ -13,7 +14,7 @@ export default function salgadas(){
                 setPizzasSalgadas(getdata.data);
             });
     },[]);
-
+    
     
     return(
         <div className='caixa-lista' id='salgadas'>
@@ -27,7 +28,7 @@ export default function salgadas(){
                         </div>
                         <div className='caixa-2'>
                             <div className='item-botao'>
-                                <SelecionarSabores/>
+                                <SelecionarSabores  />
                             </div>
                         </div>
                         <div className='caixa-3'>
@@ -36,6 +37,7 @@ export default function salgadas(){
                     </div>
                 </div>
             )}
+            
         </div>
     )
 }
