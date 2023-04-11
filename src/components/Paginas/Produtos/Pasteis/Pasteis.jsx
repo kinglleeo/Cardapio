@@ -43,7 +43,7 @@ export default function Pasteis(){
                             <div className='caixa-2'>
                                 <div className='item-valor'>R${data.valor}</div>
                                 <div>
-                                    {data.adicionais === false ?(<button onClick={()=> handleAddCart(data.sabor, data.descricao, data.valor)}> adicionar </button>):(<button onClick={()=> handleAddAdicionais(data.sabor, data.descricao, data.valor)}>botao2</button>)}
+                                    {data.adicionais === false ?(<button onClick={()=> handleAddCart(data.sabor, data.descricao, data.valor)}> adicionar </button>) : (<button onClick={()=> handleAddAdicionais(data.sabor, data.descricao, data.valor)}>botao2</button>)}
                                 </div>
                             </div>
                             <div className='caixa-3'>
