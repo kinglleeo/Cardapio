@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { React, useState, useEffect } from 'react'
 import './pizza.css'
 import Header from '../../../header/Header'
@@ -15,8 +14,7 @@ import IconCarrinho from '../../Carrinho/Iconcarrinho'
 
 export default function Pizzas(){
     
- 
-   
+
     return(
         <div className='main-pizza'>
             <div>
