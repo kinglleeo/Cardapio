@@ -8,7 +8,7 @@ export default function doces(){
 
     useEffect(()=>{
         axios
-            .get('https://642b23b0d7081590f91d081a.mockapi.io/bebidas')
+            .get('')
             .then((getdata)=>{
                 setPizzasDoces(getdata.data);
             });

@@ -10,7 +10,7 @@ export default function salgadas(){
 
     useEffect(()=>{
         axios
-            .get('https://642b23b0d7081590f91d081a.mockapi.io/bebidas')
+            .get('')
             .then((getdata)=>{
                 setPizzasSalgadas(getdata.data);
             });

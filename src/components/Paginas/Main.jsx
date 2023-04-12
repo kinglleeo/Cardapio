@@ -4,7 +4,7 @@ import Header from '../header/Header'
 import Footer from '../Footer/Footer'
 import ListaProdutos from './Produtos/ListaProdutos'
 import './Main.css'
-import IconCarrinho from './Carrinho/Iconcarrinho'
+import IconCarrinho from '../Carrinho/Iconcarrinho'
 
 export default function Main() {
 

@@ -4,19 +4,25 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
-import Carrinho from './components/Paginas/Carrinho/Carrinho'
+import Carrinho from './components/Carrinho/Carrinho'
 import ListaProdutos from './components/Paginas/Produtos/ListaProdutos'
 import Pizzas from './components/Paginas/Produtos/Pizzas/Pizzas'
-import Adicionaislanches from './components/Paginas/Produtos/Lanches/adicionaislanches'
+import AdicionaisLanches from './components/Paginas/Produtos/Lanches/adicionaislanches'
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
+
+
 
 export default function App(){
     return(
+      <Provider store={store}>
         <Routes>
           <Route path='/' element={<Main/>} />
           <Route path='/Carrinho' element={<Carrinho/>}/>
           <Route path='/ListaProdutos' element={<ListaProdutos/>}/>
           <Route path='/Pizzas' element={<Pizzas/>}/>
-          <Route path='/adicionaislanches' element={<Adicionaislanches/>}/>
+          <Route path='/AdicionaisLanches' element={<AdicionaisLanches/>}/>
         </Routes>
+      </Provider>
     )
 }

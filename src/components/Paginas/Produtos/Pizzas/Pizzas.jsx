@@ -8,7 +8,7 @@ import PizzasEspeciais from './sabores/especiais'
 import PizzasNobres from './sabores/nobres'
 import PizzasSalgadas from './sabores/salgadas'
 import PizzasTradicionais from './sabores/tradicionais'
-import IconCarrinho from '../../Carrinho/Iconcarrinho'
+import IconCarrinho from '../../../Carrinho/Iconcarrinho'
 
 
 

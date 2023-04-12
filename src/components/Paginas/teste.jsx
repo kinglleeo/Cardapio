@@ -1,46 +1,30 @@
-import { useState, useEffect } from 'react';
-import { GiHamburger, GiFullPizza, GiWineBottle, GiFrenchFries } from 'react-icons/gi';
-import './menubar.css';
+import './cartItem.css'
+import { incrementQuantity, decrementQuantity, removeItem} from '../redux/cartSlice'
+import { useDispatch } from 'react-redux'
 
-export default function MenuBar() {
-  const [isNavVisible, setIsNavVisible] = useState(true);
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
+function CartItem({id, image, title, price, quantity=0}) {
+  const dispatch = useDispatch()
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollPos = window.pageYOffset;
-      setIsNavVisible(prevScrollPos > currentScrollPos && currentScrollPos > 10);
-      setPrevScrollPos(currentScrollPos);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [prevScrollPos]);
-
-
-
-
-
-  import React, { useState, useEffect } from 'react';
-
-export default function Navbar() {
-  const [stickyClass, setStickyClass] = useState('relative');
-
-  useEffect(() => {
-    window.addEventListener('scroll', stickNavbar);
-
-    return () => {
-      window.removeEventListener('scroll', stickNavbar);
-    };
-  }, []);
-
-  const stickNavbar = () => {
-    if (window !== undefined) {
-      let windowHeight = window.scrollY;
-      windowHeight > 500 ? setStickyClass('fixed top-0 left-0 z-50') : setStickyClass('relative');
-    }
-  };
-
-  return <div className={`h-16 w-full bg-gray-200 ${stickyClass}`}>Navbar</div>;
+  return (
+    <div className="cartItem">
+      <img className="cartItem__image" src={image} alt='item'/>
+      <div className="cartItem__info">
+        <p className="cartItem__title">{title}</p>
+        <p className="cartItem__price">
+          <small>$</small>
+          <strong>{price}</strong>
+        </p>
+        <div className='cartItem__incrDec'>
+          <button onClick={() => dispatch(decrementQuantity(id))}>-</button>
+          <p>{quantity}</p>
+          <button onClick={() => dispatch(incrementQuantity(id))}>+</button>
+        </div>
+        <button
+          className='cartItem__removeButton' 
+          onClick={() => dispatch(removeItem(id))}>
+            Remove
+        </button>
+      </div>
+    </div>
+  )
 }
