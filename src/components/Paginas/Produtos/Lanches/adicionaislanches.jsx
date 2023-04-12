@@ -2,7 +2,9 @@ import { React, useState, useEffect } from 'react'
 import '../Style.css'
 
 
-export default function adicionaislanches(){
+export default function adicionaislanches( item ){
+    console.log(item)
+
     return(
     <div>    
         <div className='corpo-adicionais'>
