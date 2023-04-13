@@ -23,8 +23,7 @@ export default function pizzaSalgada(){
         }else{
             document.querySelectorAll('input[name="selecionar-sabor"]').forEach((checkbox)=>{checkbox.disabled = false});
         }
-    
-    
+        
     }
     
 

@@ -5,11 +5,9 @@ import { useLocation } from 'react-router-dom'
 export default function ComandaPizza(){
     const { state } = useLocation();
     const { tamanhopizza } = state;
-    const { easd } = useLocation();
         
     
     console.log(state)
-    console.log( easd )
 
     return(
         <div className='comanda-pizza'>
