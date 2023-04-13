@@ -22,13 +22,14 @@ export default function adicionaislanches( ){
     },[]);
     console.log(dataAdd)
     
-    const handleAdd=(id, nome, valor)=>{
-        if (id){
-            setSelectedAdd([...selectedAdd, { nome, valor }]);
-        }else{
-            
+    const handleAdd = (id, nome, valor) => {
+        if (selectedAdd.some(add => add.id === id)) {
+            const updatedSelectedAdd = selectedAdd.filter(add => add.id !== id);
+            setSelectedAdd(updatedSelectedAdd);
+        } else {
+          setSelectedAdd([...selectedAdd, { id, nome, valor }]);
         }
-    }
+      }
     const getDescricao =()=>{
         let descricao = item.descricao
         selectedAdd.forEach(add =>{
