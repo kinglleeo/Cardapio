@@ -18,6 +18,8 @@
 .caixa-c-2{
     width: 50%;
     height: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 }
 .caixa-c-3{
     width: 20%;
@@ -28,6 +30,10 @@
 .caixa-c-4{
     width: 10%;
     height: 100%;
+    display: grid;
+    place-items: center;
+}
+.item-caixa-2{
     display: grid;
     place-items: center;
 }
