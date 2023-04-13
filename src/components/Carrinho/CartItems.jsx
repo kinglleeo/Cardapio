@@ -7,7 +7,7 @@ export default function CartItem() {
   const dispatch = useDispatch()
   const cart = useSelector((state) => state.cart)
 
-
+  console.log(cart)
   return (
     <div>
       <div>

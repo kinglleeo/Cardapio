@@ -4,6 +4,8 @@ import Header from '../../../header/Header'
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import {addToCart} from '../../../../redux/cartSlice';
+import IconCarrinho from '../../../Carrinho/Iconcarrinho'
 
 export default function adicionaislanches( ){
     const { state } = useLocation();
@@ -45,7 +47,6 @@ export default function adicionaislanches( ){
         return valortotal;
       };
       
-
     return(
     <div>    
         <div>
@@ -78,10 +79,14 @@ export default function adicionaislanches( ){
                         </div>
                     )}
                 </div>  
+
                 <div>
-                    <button> Adicionar </button>
+                <button onClick={() => dispatch(addToCart({ nome: item.nome, descricao: getDescricao(), valor: getValor()}))}>Adicionar</button>
                 </div>
                   
+        </div>
+        <div>
+            <IconCarrinho/>
         </div>
     </div>
     )
