@@ -7,10 +7,9 @@ import {
 import Carrinho from './components/Carrinho/Carrinho'
 import ListaProdutos from './components/Paginas/Produtos/ListaProdutos'
 import Pizzas from './components/Paginas/Produtos/Pizzas/Pizzas'
-import AdicionaisLanches from './components/Paginas/Produtos/Lanches/AdicionaisLanches'
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
-
+import Adicionais from './components/Paginas/Produtos/Lanches/Adicionais'
 
 
 export default function App(){
@@ -21,7 +20,7 @@ export default function App(){
           <Route path='/Carrinho' element={<Carrinho/>}/>
           <Route path='/ListaProdutos' element={<ListaProdutos/>}/>
           <Route path='/Pizzas' element={<Pizzas/>}/>
-          <Route path='/AdicionaisLanches' element={<AdicionaisLanches/>}/>
+          <Route path='/Adicionais' element={<Adicionais/>}/>
         </Routes>
       </Provider>
     )

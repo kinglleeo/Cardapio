@@ -22,7 +22,7 @@ export default function Lanches(){
     const navigate = useNavigate()
 
     const handleAdicionais = (item) => {
-        navigate('/AdicionaisLanches', { state: { item } });
+        navigate('/Adicionais', { state: { item } });
       };
 
     return(

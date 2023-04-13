@@ -8,7 +8,6 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     place-items: center;
-
 }
 .itemAdd{
     width: 100%;
@@ -18,5 +17,11 @@
     width: 100%;
     height: 60px;
     padding-top: 10px;
+    display: flex;
 }
-
+.itemAdd1{
+    width: 40%;
+}
+.itemAdd2{
+    width: 30%;
+}
