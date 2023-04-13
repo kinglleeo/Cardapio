@@ -9,8 +9,6 @@ export default function Lanches(){
     const [produto, setProduto] = useState([]);
     const dispatch = useDispatch()
 
-    
-
     useEffect(()=>{
         axios
             .get('https://642b23b0d7081590f91d081a.mockapi.io/lanches')
@@ -18,6 +16,8 @@ export default function Lanches(){
                 setProduto(getdata.data);
             });
     }, []);
+
+    
 
     const navigate = useNavigate()
 

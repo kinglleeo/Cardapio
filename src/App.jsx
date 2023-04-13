@@ -7,7 +7,7 @@ import {
 import Carrinho from './components/Carrinho/Carrinho'
 import ListaProdutos from './components/Paginas/Produtos/ListaProdutos'
 import Pizzas from './components/Paginas/Produtos/Pizzas/Pizzas'
-import AdicionaisLanches from './components/Paginas/Produtos/Lanches/adicionaislanches'
+import AdicionaisLanches from './components/Paginas/Produtos/Lanches/AdicionaisLanches'
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 
