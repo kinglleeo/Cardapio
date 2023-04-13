@@ -30,14 +30,14 @@ export default function MenuBar() {
           <GiFrenchFries />
           <label>Porções</label>
         </div>
-        <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('lista4').scrollIntoView({ behavior: 'smooth' })}>
+        <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('lista3').scrollIntoView({ behavior: 'smooth' })}>
           <label>Pasteis</label>
         </div>
-        <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('lista5').scrollIntoView({ behavior: 'smooth' })}>
+        <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('lista4').scrollIntoView({ behavior: 'smooth' })}>
           <GiFullPizza />
           <label>Pizzas</label>
         </div>
-        <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('lista3').scrollIntoView({ behavior: 'smooth' })}>
+        <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('lista5').scrollIntoView({ behavior: 'smooth' })}>
           <GiWineBottle />
           <label>Bebidas</label>
         </div>

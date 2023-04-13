@@ -28,7 +28,7 @@ export default function PizzasTamanho() {
   console.log(localStorage)
 
   return (
-    <div className='caixa-lista' id='lista5'>
+    <div className='caixa-lista' id='lista4'>
       <label className='titulo-lista'>PIZZAS</label>
       {tamanho.map((data) => (
         <div className='caixa-css' key={data.id}>
