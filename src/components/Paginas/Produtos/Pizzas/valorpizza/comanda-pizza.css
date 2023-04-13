@@ -1,0 +1,33 @@
+.comanda-pizza{
+    width: 100%;
+    height: 90px;
+    border-bottom: solid;
+    border-top: solid;
+}
+.comanda-items{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+.caixa-c-1{
+    width: 20%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+}
+.caixa-c-2{
+    width: 50%;
+    height: 100%;
+}
+.caixa-c-3{
+    width: 20%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+}
+.caixa-c-4{
+    width: 10%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+}
