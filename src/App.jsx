@@ -9,7 +9,7 @@ import ListaProdutos from './components/Paginas/Produtos/ListaProdutos'
 import Pizzas from './components/Paginas/Produtos/Pizzas/Pizzas'
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
-import Adicionais from './components/Paginas/Produtos/Lanches/Adicionais'
+import Adicionais from './components/Paginas/Produtos/adicionais/Adicionais'
 
 
 export default function App(){

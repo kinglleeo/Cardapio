@@ -3,11 +3,12 @@ import axios from 'axios'
 import '../Style.css'
 import { useDispatch } from 'react-redux'
 import { addToCart } from '../../../../redux/cartSlice'
-
+import { useNavigate } from 'react-router-dom'
 
 export default function Pasteis(){
     const [produto, setProduto] = useState([]);
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     useEffect(()=>{
         axios
@@ -17,7 +18,9 @@ export default function Pasteis(){
             });
     }, []);
 
-    
+    const handleAdicionais = (item) =>{
+        navigate('/Adicionais', {state: { item }});
+    };
 
     return(
         <div className='caixa-lista' id='lista3'>
@@ -31,7 +34,8 @@ export default function Pasteis(){
                     </div>
                     <div className='caixa-2'>
                         <div className='item-valor'><label>Preço</label>R$ {item.valor}</div>
-                        <button onClick={()=> dispatch(addToCart(item))}> Adicionar</button>
+                        {item.adicionais === ""? (<button onClick={()=> dispatch(addToCart(item))}> Adicionar</button>)
+                        : (<button onClick={(()=> handleAdicionais(item))}>Adicionais</button>)}
                     </div>
                     <div className='caixa-3'>
                         <div className='item-img'></div>

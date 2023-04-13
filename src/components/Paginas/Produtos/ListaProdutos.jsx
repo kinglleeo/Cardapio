@@ -2,6 +2,7 @@ import React from 'react'
 import Lanches from './Lanches/lanches'
 import PizzasTamanho from './Pizzas/PizzasTamanho'
 import Pasteis from './Pasteis/pasteis'
+import Bebidas from './Bebidas/bebidas'
 import './listaProdutos.css'
 import MenuBar from '../../navbar/menubar'
 import Footer from '../../Footer/Footer'
@@ -28,7 +29,7 @@ export default function ListaProdutos(){
                 <PizzasTamanho/>
             </div>
             <div>
-               
+               <Bebidas/>
             </div>
             <div>
                 <Footer/>
