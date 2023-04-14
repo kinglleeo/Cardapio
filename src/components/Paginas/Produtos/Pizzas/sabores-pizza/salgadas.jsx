@@ -15,7 +15,7 @@ export default function pizzaSalgada(){
             });
     }, []);
     
-    const handleAddSabor =(itempizza)=>{
+    const handleAddSabor =()=>{
         const checkboxValues = Array.from(document.querySelectorAll('input[name="selecionar-sabor"]:checked')).map((checkbox) => checkbox.value);
         
         if (checkboxValues.length >= tamanhopizza.quantia){
@@ -23,7 +23,6 @@ export default function pizzaSalgada(){
         }else{
             document.querySelectorAll('input[name="selecionar-sabor"]').forEach((checkbox)=>{checkbox.disabled = false});
         }
-        
     }
     
 
@@ -38,7 +37,7 @@ export default function pizzaSalgada(){
                             <div className='item-descricao'>{itempizza.descricao}</div>
                         </div>
                         <div className='caixa-2'>
-                            <input type='checkbox' name='selecionar-sabor' onClick={(()=> handleAddSabor(itempizza))}></input>
+                            <input type='checkbox' name='selecionar-sabor' onClick={(()=> handleAddSabor, handlesetarvalor(itempizza))}></input>
                         </div> 
                     </div> 
                 </div>

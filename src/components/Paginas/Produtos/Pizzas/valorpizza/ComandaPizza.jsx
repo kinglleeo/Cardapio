@@ -5,10 +5,14 @@ import { useLocation } from 'react-router-dom'
 export default function ComandaPizza(){
     const { state } = useLocation();
     const { tamanhopizza } = state;
-        
-    
-    console.log(state)
 
+
+    const getsabor = ()=>{
+        let sabor= ("")
+
+        return sabor
+    }
+    
     return(
         <div className='comanda-pizza'>
             <div className='comanda-items'>
@@ -16,10 +20,7 @@ export default function ComandaPizza(){
                     <div>{tamanhopizza.tamanho}</div>
                 </div>
                 <div className='caixa-c-2'>
-                     <div className='item-caixa-2'>1</div>
-                     <div className='item-caixa-2'>2</div>
-                     <div className='item-caixa-2'>3</div>
-                     <div className='item-caixa-2'>4</div>
+                     
                 </div>
                 <div className='caixa-c-3'>
                     <div><label>Valor Total</label></div>
