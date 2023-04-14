@@ -6,7 +6,7 @@ import ComandaPizza from './valorpizza/ComandaPizza';
 
 export default function ListPizzas() {
   const [selectedItem, setSelectedItem] = useState('');
-
+ 
   return (
     <div>
       <div>

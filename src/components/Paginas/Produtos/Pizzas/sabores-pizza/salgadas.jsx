@@ -12,7 +12,7 @@ export default function Salgadas({ setSelectedItem }) {
       setProduto(getdata.data);
     });
   }, []);
-
+ 
   const handleAddSabor = (itempizza) => {
     const checkboxValues = Array.from(document.querySelectorAll('input[name="selecionar-sabor"]:checked')).map(
       (checkbox) => checkbox.value
@@ -26,10 +26,10 @@ export default function Salgadas({ setSelectedItem }) {
         checkbox.disabled = false;
       });
     }
+    setSelectedItem(itempizza.nome);
 
-    setSelectedItem(itempizza.nome); // seta o nome do item selecionado no estado
   };
-
+  
   return (
     <div className="caixa-lista" id="pizza1">
       <label className="titulo-lista">Salgadas</label>
