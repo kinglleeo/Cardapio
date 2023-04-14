@@ -1,26 +1,26 @@
-import { React, useState, useEffect } from 'react'
-import Header from '../../../header/Header'
-import Navbarpizza from './navbar-pizza/navbar-pizza'
-import Salgadas from './sabores-pizza/salgadas'
-import ComandaPizza from './valorpizza/ComandaPizza'
+import { React, useState } from 'react';
+import Header from '../../../header/Header';
+import Navbarpizza from './navbar-pizza/navbar-pizza';
+import Salgadas from './sabores-pizza/salgadas';
+import ComandaPizza from './valorpizza/ComandaPizza';
 
-export default function ListPizzas(){
+export default function ListPizzas() {
+  const [selectedItem, setSelectedItem] = useState('');
 
-
-    return(
-        <div>
-            <div>
-                <Header/>
-            </div>
-            <div>
-                <ComandaPizza/>
-            </div>
-            <div>
-                <Navbarpizza/>
-            </div>
-            <div>
-                <Salgadas/>
-            </div>
-        </div>
-    )
+  return (
+    <div>
+      <div>
+        <Header />
+      </div>
+      <div>
+        <ComandaPizza selectedItem={selectedItem} setSelectedItem={setSelectedItem} />
+      </div>
+      <div>
+        <Navbarpizza />
+      </div>
+      <div>
+        <Salgadas setSelectedItem={setSelectedItem} />
+      </div>
+    </div>
+  );
 }

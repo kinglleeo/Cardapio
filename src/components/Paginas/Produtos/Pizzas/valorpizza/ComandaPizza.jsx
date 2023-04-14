@@ -6,13 +6,9 @@ export default function ComandaPizza(){
     const { state } = useLocation();
     const { tamanhopizza } = state;
 
+   
 
-    const getsabor = ()=>{
-        let sabor= ("")
 
-        return sabor
-    }
-    
     return(
         <div className='comanda-pizza'>
             <div className='comanda-items'>
