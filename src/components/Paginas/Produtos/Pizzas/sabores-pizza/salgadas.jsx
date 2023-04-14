@@ -2,10 +2,11 @@ import { React, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
-export default function Salgadas({ setSelectedItem }) {
+export default function Salgadas({ setSelectedItem, setSelectedCheckboxes }) {
   const [produto, setProduto] = useState([]);
   const { state } = useLocation();
   const { tamanhopizza } = state;
+  
 
   useEffect(() => {
     axios.get('https://642b23b0d7081590f91d081a.mockapi.io/lanches').then((getdata) => {
@@ -26,8 +27,9 @@ export default function Salgadas({ setSelectedItem }) {
         checkbox.disabled = false;
       });
     }
-    setSelectedItem(itempizza.nome);
-
+  
+    setSelectedItem(itempizza.nome); // seta o nome do item selecionado no estado
+    setSelectedCheckboxes((prevSelectedCheckboxes) => [...prevSelectedCheckboxes, itempizza.nome]);
   };
   
   return (
@@ -42,6 +44,7 @@ export default function Salgadas({ setSelectedItem }) {
             </div>
             <div className="caixa-2">
               <input type="checkbox" name="selecionar-sabor" onClick={() => handleAddSabor(itempizza)}></input>
+
             </div>
           </div>
         </div>
