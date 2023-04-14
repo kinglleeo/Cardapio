@@ -2,7 +2,7 @@ import { React, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
-export default function Salgadas({ setSelectedItem, setSelectedCheckboxes }) {
+export default function Salgadas({ setSelectedItem }) {
   const [produto, setProduto] = useState([]);
   const { state } = useLocation();
   const { tamanhopizza } = state;
@@ -28,8 +28,7 @@ export default function Salgadas({ setSelectedItem, setSelectedCheckboxes }) {
       });
     }
   
-    setSelectedItem(itempizza); // seta o nome do item selecionado no estado
-    setSelectedCheckboxes((prevSelectedCheckboxes) => [...prevSelectedCheckboxes, itempizza.nome]);
+    setSelectedItem(itempizza); 
   };
   
   return (

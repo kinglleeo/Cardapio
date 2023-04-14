@@ -6,7 +6,6 @@ import ComandaPizza from './valorpizza/ComandaPizza';
 
 export default function ListPizzas() {
   const [selectedItem, setSelectedItem] = useState('');
-  const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
  
   return (
     <div>
@@ -17,15 +16,13 @@ export default function ListPizzas() {
       <ComandaPizza 
   selectedItem={selectedItem} 
   setSelectedItem={setSelectedItem} 
-  selectedCheckboxes={selectedCheckboxes} 
-  setSelectedCheckboxes={setSelectedCheckboxes} 
 />
       </div>
       <div>
         <Navbarpizza />
       </div>
       <div>
-        <Salgadas setSelectedItem={setSelectedItem} setSelectedCheckboxes={setSelectedCheckboxes}/>
+        <Salgadas setSelectedItem={setSelectedItem} />
       </div>
     </div>
   );
