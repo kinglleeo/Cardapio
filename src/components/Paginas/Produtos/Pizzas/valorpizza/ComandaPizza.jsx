@@ -2,10 +2,9 @@ import { React, useEffect, useState } from 'react';
 import './comanda-pizza.css';
 import { useLocation } from 'react-router-dom';
 
-export default function ComandaPizza({ selectedItem, setSelectedItem, selectedCheckboxes, setSelectedCheckboxes }) {
+export default function ComandaPizza({ selectedItem, setSelectedItem }) {
   const { state } = useLocation();
   const { tamanhopizza } = state;
-
   const [selectedItems, setSelectedItems] = useState([]);
 
   useEffect(() => {
@@ -14,13 +13,6 @@ export default function ComandaPizza({ selectedItem, setSelectedItem, selectedCh
       setSelectedItem('');
     }
   }, [selectedItem]);
- 
-
-  const handleRemoveItem = (itemName) => {
-    setSelectedItems((prevSelectedItems) => prevSelectedItems.filter((item) => item !== itemName));
-    setSelectedCheckboxes((prevSelectedCheckboxes) => prevSelectedCheckboxes.filter((checkbox) => checkbox !== itemName))
-  };
-  
 
   return (
     <div className="comanda-pizza">
@@ -29,21 +21,8 @@ export default function ComandaPizza({ selectedItem, setSelectedItem, selectedCh
           <div>{tamanhopizza.tamanho}</div>
         </div>
         <div className="caixa-c-2">
-          {selectedItems.map((item) => (
-            <div key={item} className="selected-item">
-                {item}
-                <input
-                    type="checkbox"
-                    name={item}
-                    checked={selectedCheckboxes.includes(item)}
-                    onChange={(event) => {
-                    const { checked } = event.target;
-                    setSelectedCheckboxes, handleRemoveItem((prevSelectedCheckboxes) =>
-                        checked ? [...prevSelectedCheckboxes, item] : prevSelectedCheckboxes.filter((checkbox) => checkbox !== item)
-                    );
-                    }}
-                />
-          </div>
+          {selectedItems.map((item, index) => (
+            <div key={index}>{item.nome}</div>
           ))}
         </div>
         <div className="caixa-c-3">

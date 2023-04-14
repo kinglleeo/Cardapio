@@ -28,7 +28,7 @@ export default function Salgadas({ setSelectedItem, setSelectedCheckboxes }) {
       });
     }
   
-    setSelectedItem(itempizza.nome); // seta o nome do item selecionado no estado
+    setSelectedItem(itempizza); // seta o nome do item selecionado no estado
     setSelectedCheckboxes((prevSelectedCheckboxes) => [...prevSelectedCheckboxes, itempizza.nome]);
   };
   

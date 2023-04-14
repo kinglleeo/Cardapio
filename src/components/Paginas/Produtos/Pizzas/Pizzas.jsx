@@ -14,7 +14,12 @@ export default function ListPizzas() {
         <Header />
       </div>
       <div>
-        <ComandaPizza selectedItem={selectedItem} setSelectedItem={setSelectedItem} selectedCheckboxes={selectedCheckboxes} setSelectedCheckboxes={setSelectedCheckboxes} />
+      <ComandaPizza 
+  selectedItem={selectedItem} 
+  setSelectedItem={setSelectedItem} 
+  selectedCheckboxes={selectedCheckboxes} 
+  setSelectedCheckboxes={setSelectedCheckboxes} 
+/>
       </div>
       <div>
         <Navbarpizza />
