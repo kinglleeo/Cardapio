@@ -1,8 +1,8 @@
 import { React, useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-
-export function Selecionadores({ itempizza, selectedItems, setSelectedItems, novaquantia }){
+export function Selecionadores({ itempizza, selectedItems, setSelectedItems }){
     const { state } = useLocation()
     const { tamanhopizza } = state
     
@@ -61,7 +61,6 @@ export function MostrarSelecionados ({ index, selectedItem, setSelectedItem, sel
         newSelectedItems.splice(index, 1)
         setSelectedItems(newSelectedItems)
         handleUncheckCheckbox(itemToRemove.id)
-        handleAttCheckbox()
     }
     const handleUncheckCheckbox = (itemId) =>{
         const checkbox = document.getElementById(itemId)
@@ -69,9 +68,7 @@ export function MostrarSelecionados ({ index, selectedItem, setSelectedItem, sel
             checkbox.checked = false
         }
     }
-    const handleAttCheckbox =()=>{
-        
-    }
+   
 
     return(
         <div>
@@ -82,4 +79,42 @@ export function MostrarSelecionados ({ index, selectedItem, setSelectedItem, sel
             />
         </div>
     )
+}
+
+export function Total({ tamanhopizza, selectedItems }){
+    const navigate = useNavigate()
+    
+    console.log(selectedItems)
+    const valorTotal =()=>{
+        let valortotal = tamanhopizza.valor;
+        selectedItems.forEach((add) => {
+          valortotal += add.valor; 
+        });
+        return valortotal;
+    }
+    const saboresSelecionados=()=>{
+        let sabores = ""
+            selectedItems.forEach((add) =>{
+                sabores += `${add.descricao} + `
+            })
+        return sabores
+    }
+
+    const item ={
+        nome: "Pizza" + tamanhopizza.tamanho,
+        sabores: saboresSelecionados(),
+        valor: valorTotal()
+    }
+    const Adicionais=(item)=>{
+        navigate('/AdicionaisPizza', {state: {item}})
+    }
+
+return(
+    <div>
+        <div>
+            {valorTotal()}
+            <button onClick={()=> Adicionais(item)}> Adicionais</button>
+        </div>
+    </div>
+)
 }
