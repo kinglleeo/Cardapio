@@ -2,13 +2,28 @@ import { React, useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 
-export function Selecionadores({ itempizza, selectedItems, setSelectedItems }){
+export function Selecionadores({ itempizza, selectedItems, setSelectedItems, novaquantia }){
     const { state } = useLocation()
     const { tamanhopizza } = state
     
     const handleCheckboxChange = ( event, itempizza ) =>{
+        let maxquantia = tamanhopizza.quantia
+        
         
 
+    const checkboxValues = Array.from(document.querySelectorAll('input[name="selecionar-sabor"]:checked')).map(
+        (checkbox) => checkbox.value
+    )
+    if (checkboxValues.length >= maxquantia){
+        document.querySelectorAll('input[name="selecionar-sabor"]:not(:checked)').forEach((checkbox) =>{
+            checkbox.disabled = true;
+        });
+    } else {
+        document.querySelectorAll('input[name="selecionar-sabor"]').forEach((checkbox) =>{
+            checkbox.disabled = false;
+        });
+    }
+    
     if(event.target.checked){
         setSelectedItems([...selectedItems, itempizza])
     } else {
@@ -20,7 +35,7 @@ export function Selecionadores({ itempizza, selectedItems, setSelectedItems }){
         <div>
                 <input
                     type='checkbox'
-                    name='selecionar-sabor'
+                    name="selecionar-sabor"
                     id={itempizza.id}
                     onChange={(event) => handleCheckboxChange(event, itempizza)}
                     checked={selectedItems.some((item) => item.id === itempizza.id)}
@@ -46,6 +61,7 @@ export function MostrarSelecionados ({ index, selectedItem, setSelectedItem, sel
         newSelectedItems.splice(index, 1)
         setSelectedItems(newSelectedItems)
         handleUncheckCheckbox(itemToRemove.id)
+        handleAttCheckbox()
     }
     const handleUncheckCheckbox = (itemId) =>{
         const checkbox = document.getElementById(itemId)
@@ -53,7 +69,10 @@ export function MostrarSelecionados ({ index, selectedItem, setSelectedItem, sel
             checkbox.checked = false
         }
     }
-    
+    const handleAttCheckbox =()=>{
+        
+    }
+
     return(
         <div>
             <input

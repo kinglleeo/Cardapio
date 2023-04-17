@@ -28,12 +28,8 @@ export default function ListPizzas() {
           setSelectedItems={setSelectedItems} 
         />
       </div>
-      <div>
-        <Doces
-          selectedItems={selectedItems}
-          setSelectedItems={setSelectedItems}
-        />
-      </div>
+      <Doces/>
+      
     </div>
   );
 }

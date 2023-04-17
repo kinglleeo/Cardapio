@@ -9,7 +9,7 @@ export default function Doces({ selectedItems, setSelectedItems}){
 
     useEffect(()=>{
         axios
-            .get('https://642b23b0d7081590f91d081a.mockapi.io/lanches')
+            .get('')
             .then((getdata)=>{
                 setProduto(getdata.data);
             });

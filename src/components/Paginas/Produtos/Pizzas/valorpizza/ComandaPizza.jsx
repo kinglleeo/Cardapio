@@ -3,6 +3,7 @@ import './comanda-pizza.css';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { MostrarSelecionados } from '../sabores-pizza/OperacaoInputs';
+import { Total } from '../sabores-pizza/OperacaoValores';
 
 export default function ComandaPizza({ selectedItem, setSelectedItem, selectedItems, setSelectedItems}) {
   const { state } = useLocation()
@@ -38,7 +39,7 @@ export default function ComandaPizza({ selectedItem, setSelectedItem, selectedIt
           <div>R$ {tamanhopizza.valor}</div>
       </div>
       <div className="caixa-c-4">
-        
+          <Total/>
       </div>
     </div>
   </div>
