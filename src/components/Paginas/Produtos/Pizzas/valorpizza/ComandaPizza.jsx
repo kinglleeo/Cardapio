@@ -22,14 +22,14 @@ export default function ComandaPizza({ selectedItem, setSelectedItem, selectedIt
     newSelectedItems.splice(index, 1);
     setSelectedItems(newSelectedItems);
     handleUncheckCheckbox(itemToRemove.id);
+
   };
   const handleUncheckCheckbox = (itemId) => {
     const checkbox = document.getElementById(itemId);
     if (checkbox) {
       checkbox.checked = false;
     }
-  };
-  
+  };  
   const handleAdicionais = (selectedItems, tamanhopizza)=>{
      navigate('/AdicionaisPizza', {state: { selectedItems, tamanhopizza }});
 };

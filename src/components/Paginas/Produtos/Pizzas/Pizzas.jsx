@@ -3,6 +3,7 @@ import Header from '../../../header/Header';
 import Navbarpizza from './navbar-pizza/navbar-pizza';
 import Salgadas from './sabores-pizza/salgadas';
 import ComandaPizza from './valorpizza/ComandaPizza';
+import Doces from './sabores-pizza/doces'
 
 export default function ListPizzas() {
   const [selectedItems, setSelectedItems] = useState([]);
@@ -19,12 +20,18 @@ export default function ListPizzas() {
         />
       </div>
       <div>
-        <Navbarpizza />
+        <Navbarpizza/>
       </div>
       <div>
         <Salgadas 
           selectedItems={selectedItems} 
           setSelectedItems={setSelectedItems} 
+        />
+      </div>
+      <div>
+        <Doces
+          selectedItems={selectedItems}
+          setSelectedItems={setSelectedItems}
         />
       </div>
     </div>

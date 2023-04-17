@@ -19,14 +19,14 @@ export default function navbarPizza(){
     return(
         <div className={`${bar}`}>
             <div className='navbar-pizza'>
-                <div className='navbar-pizza-item' onClick={() => document.getElementById('pizza1').scrollIntoView({ behavior: 'smooth'})}>
-                    <h1>Pizza 1</h1>
+                <div className='navbar-pizza-item' onClick={() => document.getElementById('salgadas').scrollIntoView({ behavior: 'smooth'})}>
+                    <h1>salgadas</h1>
                 </div>
-                <div className='navbar-pizza-item' onClick={() => document.getElementById('pizza2').scrollIntoView({ behavior: 'smooth'})}>
-                    <h1>Pizza 2</h1>
+                <div className='navbar-pizza-item' onClick={() => document.getElementById('doces').scrollIntoView({ behavior: 'smooth'})}>
+                    <h1>doces</h1>
                 </div>
-                <div className='navbar-pizza-item' onClick={() => document.getElementById('pizza3').scrollIntoView({ behavior: 'smooth'})}>
-                    <h1>Pizza 3</h1>
+                <div className='navbar-pizza-item' onClick={() => document.getElementById('nobres').scrollIntoView({ behavior: 'smooth'})}>
+                    <h1>nobres</h1>
                 </div>
                 <div className='navbar-pizza-item' onClick={() => document.getElementById('pizza4').scrollIntoView({ behavior: 'smooth'})}>
                     <h1>Pizza 4</h1>

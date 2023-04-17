@@ -8,10 +8,11 @@ export default function Adicionais (){
     const { state } = useLocation();
     const { tamanhopizza } = state;
     const { selectedItems } = state;
+    const [adData, setAdData] = useState([]);
     console.log(tamanhopizza)
     console.log(selectedItems)
-    const [adData, setAdData] = useState([]);
-    
+    console.log(adData)
+
     useEffect(()=>{
         axios
             .get('https://642b23b0d7081590f91d081a.mockapi.io/cardapio')
@@ -20,7 +21,10 @@ export default function Adicionais (){
             });
     }, []);
 
+   const valortotal =()=>{
     
+   }
+
     return(
         <div>
             <div>
@@ -48,7 +52,8 @@ export default function Adicionais (){
                     })}
                 </div>
                 <div>
-                    
+                    total {valortotal()}
+                    <button >fazer pedido</button>
                 </div>
             </div>
         </div>

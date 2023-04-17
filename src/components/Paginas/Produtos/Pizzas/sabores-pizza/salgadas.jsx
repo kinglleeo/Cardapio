@@ -8,7 +8,9 @@ export default function Salgadas({  selectedItems, setSelectedItems }) {
   const { tamanhopizza } = state;
 
   useEffect(() => {
-    axios.get('https://642b23b0d7081590f91d081a.mockapi.io/lanches').then((getdata) => {
+    axios
+      .get('https://642b23b0d7081590f91d081a.mockapi.io/lanches')
+      .then((getdata) => {
       setProduto(getdata.data);
     });
   }, []);
@@ -17,7 +19,7 @@ export default function Salgadas({  selectedItems, setSelectedItems }) {
   const handleCheckboxChange = (event, itempizza) => {
   
     const maxquantia =  tamanhopizza.quantia
-
+    console.log(maxquantia)
     const checkboxValues = Array.from(document.querySelectorAll('input[name="selecionar-sabor"]:checked')).map(
       (checkbox) => checkbox.value
     );
@@ -39,7 +41,7 @@ export default function Salgadas({  selectedItems, setSelectedItems }) {
   };
 
   return (
-    <div className="caixa-lista" id="pizza1">
+    <div className="caixa-lista" id="salgadas">
       <label className="titulo-lista">Salgadas</label>
       {produto.map((itempizza) => (
         <div className="caixa-css" key={itempizza.id}>
