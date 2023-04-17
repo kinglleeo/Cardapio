@@ -86,12 +86,13 @@ export function Total({ tamanhopizza, selectedItems }){
     
     console.log(selectedItems)
     const valorTotal =()=>{
-        let valortotal = tamanhopizza.valor;
+        let valortotal = parseFloat(tamanhopizza.valor);
         selectedItems.forEach((add) => {
-          valortotal += add.valor; 
+          valortotal += parseFloat(add.valor); 
         });
         return valortotal;
     }
+
     const saboresSelecionados=()=>{
         let sabores = ""
             selectedItems.forEach((add) =>{
