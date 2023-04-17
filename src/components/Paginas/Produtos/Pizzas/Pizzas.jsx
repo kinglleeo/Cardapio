@@ -5,27 +5,27 @@ import Salgadas from './sabores-pizza/salgadas';
 import ComandaPizza from './valorpizza/ComandaPizza';
 
 export default function ListPizzas() {
-  const [selectedItem, setSelectedItem] = useState('');
-  const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
- 
+  const [selectedItems, setSelectedItems] = useState([]);
+
   return (
     <div>
       <div>
         <Header />
       </div>
       <div>
-      <ComandaPizza 
-  selectedItem={selectedItem} 
-  setSelectedItem={setSelectedItem} 
-  selectedCheckboxes={selectedCheckboxes} 
-  setSelectedCheckboxes={setSelectedCheckboxes} 
-/>
+        <ComandaPizza 
+          selectedItems={selectedItems} 
+          setSelectedItems={setSelectedItems} 
+        />
       </div>
       <div>
         <Navbarpizza />
       </div>
       <div>
-        <Salgadas setSelectedItem={setSelectedItem} setSelectedCheckboxes={setSelectedCheckboxes}/>
+        <Salgadas 
+          selectedItems={selectedItems} 
+          setSelectedItems={setSelectedItems} 
+        />
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import Bebidas from './Bebidas/bebidas'
 import './listaProdutos.css'
 import MenuBar from '../../navbar/menubar'
 import Footer from '../../Footer/Footer'
-
+import TamanhoPizzas from './Pizzas/tamanho-pizza'
 
 
 export default function ListaProdutos(){
@@ -19,7 +19,7 @@ export default function ListaProdutos(){
                 <Lanches/>
             </div>
             <div>
-                
+                <TamanhoPizzas/>
             </div>
             <div>
                 <Pasteis/>

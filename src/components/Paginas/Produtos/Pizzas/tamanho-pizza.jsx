@@ -19,7 +19,7 @@ export default function TamanhoPizaa(){
     };
 
     return(
-        <div className='caixa-lista'>
+        <div className='caixa-lista' id='pizzas'>
             <label className='titulo-lista'>PIZZAS</label>
             {Produto.map((tamanhopizza)=>
                 <div className='caixa-css'>

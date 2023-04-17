@@ -23,7 +23,7 @@ export default function Pasteis(){
     };
 
     return(
-        <div className='caixa-lista' id='lista3'>
+        <div className='caixa-lista' id='pasteis'>
                 <label className='titulo-lista'>PASTEIS</label>
                 {produto.map((item)=>
             <div className='caixa-css'>

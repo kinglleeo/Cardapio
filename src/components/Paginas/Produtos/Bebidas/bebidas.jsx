@@ -23,7 +23,7 @@ export default function Bebidas(){
         };
     
     return(
-        <div className='caixa-lista' id='lista5'>
+        <div className='caixa-lista' id='bebidas'>
             <label className='titulo-lista'>BEBIDAS</label>
             {produto.map((item)=>
                 <div className='caixa-css'>

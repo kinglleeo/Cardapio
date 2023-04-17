@@ -22,22 +22,22 @@ export default function MenuBar() {
   return (
     <div className={`${stickyClass}`}>
       <div className='navbar-menu' >
-        <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('lista1').scrollIntoView({ behavior: 'smooth' })}>
+        <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('lanches').scrollIntoView({ behavior: 'smooth' })}>
           <GiHamburger />
           <label>Lanches</label>
         </div>
-        <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('lista2').scrollIntoView({ behavior: 'smooth' })}>
+        <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('porcoes').scrollIntoView({ behavior: 'smooth' })}>
           <GiFrenchFries />
           <label>Porções</label>
         </div>
-        <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('lista3').scrollIntoView({ behavior: 'smooth' })}>
+        <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('pasteis').scrollIntoView({ behavior: 'smooth' })}>
           <label>Pasteis</label>
         </div>
-        <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('lista4').scrollIntoView({ behavior: 'smooth' })}>
+        <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('pizzas').scrollIntoView({ behavior: 'smooth' })}>
           <GiFullPizza />
           <label>Pizzas</label>
         </div>
-        <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('lista5').scrollIntoView({ behavior: 'smooth' })}>
+        <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('bebidas').scrollIntoView({ behavior: 'smooth' })}>
           <GiWineBottle />
           <label>Bebidas</label>
         </div>

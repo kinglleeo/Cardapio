@@ -26,7 +26,7 @@ export default function Lanches(){
       };
 
     return(
-        <div className='caixa-lista' id='lista1'>
+        <div className='caixa-lista' id='lanches'>
                     <label className='titulo-lista'>LANCHES</label>
                 {produto.map((item)=>
                     <div className='caixa-css'>
