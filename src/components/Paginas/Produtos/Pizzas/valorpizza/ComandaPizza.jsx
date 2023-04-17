@@ -1,10 +1,12 @@
 import { React, useEffect, useState } from 'react';
 import './comanda-pizza.css';
 import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function ComandaPizza({ selectedItem, setSelectedItem, selectedItems, setSelectedItems }) {
   const { state } = useLocation();
   const { tamanhopizza } = state;
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (selectedItem) {
@@ -13,12 +15,6 @@ export default function ComandaPizza({ selectedItem, setSelectedItem, selectedIt
     }
   }, [selectedItem, setSelectedItems, setSelectedItem]);
 
-  const handleUncheckCheckbox = (itemId) => {
-    const checkbox = document.getElementById(itemId);
-    if (checkbox) {
-      checkbox.checked = false;
-    }
-  };
 
   const handleRemoveItem = (index) => {
     const itemToRemove = selectedItems[index];
@@ -27,7 +23,17 @@ export default function ComandaPizza({ selectedItem, setSelectedItem, selectedIt
     setSelectedItems(newSelectedItems);
     handleUncheckCheckbox(itemToRemove.id);
   };
+  const handleUncheckCheckbox = (itemId) => {
+    const checkbox = document.getElementById(itemId);
+    if (checkbox) {
+      checkbox.checked = false;
+    }
+  };
   
+  const handleAdicionais = (selectedItems, tamanhopizza)=>{
+     navigate('/AdicionaisPizza', {state: { selectedItems, tamanhopizza }});
+};
+
   return (
   <div className="comanda-pizza">
     <div className="comanda-items">
@@ -39,7 +45,7 @@ export default function ComandaPizza({ selectedItem, setSelectedItem, selectedIt
           <div key={index}>
             {item.nome}
             <input type="checkbox" checked onChange={() => handleRemoveItem(index)} />
-          </div>
+          </div> 
         ))}
       </div>
       <div className="caixa-c-3">
@@ -49,7 +55,7 @@ export default function ComandaPizza({ selectedItem, setSelectedItem, selectedIt
           <div>R$ {tamanhopizza.valor}</div>
       </div>
       <div className="caixa-c-4">
-        <button>aaaa</button>
+        <button onClick={(()=> handleAdicionais(selectedItems, tamanhopizza))}>Adicionais</button>
       </div>
     </div>
   </div>

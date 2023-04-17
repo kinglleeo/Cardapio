@@ -15,10 +15,13 @@ export default function Salgadas({  selectedItems, setSelectedItems }) {
   
 
   const handleCheckboxChange = (event, itempizza) => {
+  
+    const maxquantia =  tamanhopizza.quantia
+
     const checkboxValues = Array.from(document.querySelectorAll('input[name="selecionar-sabor"]:checked')).map(
       (checkbox) => checkbox.value
     );
-    if (checkboxValues.length >= tamanhopizza.quantia) {
+    if (checkboxValues.length >= maxquantia) {
       document.querySelectorAll('input[name="selecionar-sabor"]:not(:checked)').forEach((checkbox) => {
         checkbox.disabled = true;
       });

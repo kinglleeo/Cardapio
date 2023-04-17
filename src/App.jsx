@@ -11,6 +11,7 @@ import { store } from './redux/store';
 import Adicionais from './components/Paginas/Produtos/adicionais/Adicionais'
 import TamanhoPizzas from './components/Paginas/Produtos/Pizzas/tamanho-pizza'
 import Pizzas from './components/Paginas/Produtos/Pizzas/Pizzas'
+import AdicionaisPizza from './components/Paginas/Produtos/Pizzas/adicionaispizza/Adicionaispizza'
 
 export default function App(){
     return(
@@ -22,6 +23,7 @@ export default function App(){
           <Route path='/Adicionais' element={<Adicionais/>}/>
           <Route path='/TamanhoPizzas' element={<TamanhoPizzas/>}/>
           <Route path='/Pizzas' element={<Pizzas/>}/>
+          <Route path='/AdicionaisPizza' element={<AdicionaisPizza/>}/>
         </Routes>
       </Provider>
     )
