@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import Decimal from 'decimal.js';
 
 export function Selecionadores({ itempizza, selectedItems, setSelectedItems }){
     const { state } = useLocation()
@@ -61,6 +62,13 @@ export function MostrarSelecionados ({ index, selectedItem, setSelectedItem, sel
         newSelectedItems.splice(index, 1)
         setSelectedItems(newSelectedItems)
         handleUncheckCheckbox(itemToRemove.id)
+
+        const checkboxValues = newSelectedItems.map((item) => item.id)
+        document.querySelectorAll('input[name="selecionar-sabor"]').forEach((checkbox) => {
+          if (!checkboxValues.includes(checkbox.value)) {
+            checkbox.disabled = false
+        }
+    })
     }
     const handleUncheckCheckbox = (itemId) =>{
         const checkbox = document.getElementById(itemId)
@@ -83,16 +91,17 @@ export function MostrarSelecionados ({ index, selectedItem, setSelectedItem, sel
 
 export function Total({ tamanhopizza, selectedItems }){
     const navigate = useNavigate()
+   
+    const valorTotal = () => {
+        const tamanhopizzaValor = tamanhopizza.valor || 0;
+        const selectedItemsValor = selectedItems.reduce((total, item) => {
+          return total.plus(item.valor || 0);
+        }, new Decimal(0));
+        const total = new Decimal(tamanhopizzaValor).plus(selectedItemsValor);
+        return total.toFixed(2);
+      };
+      
     
-    console.log(selectedItems)
-    const valorTotal =()=>{
-        let valortotal = parseFloat(tamanhopizza.valor);
-        selectedItems.forEach((add) => {
-          valortotal += parseFloat(add.valor); 
-        });
-        return valortotal;
-    }
-
     const saboresSelecionados=()=>{
         let sabores = ""
             selectedItems.forEach((add) =>{
@@ -113,7 +122,7 @@ export function Total({ tamanhopizza, selectedItems }){
 return(
     <div>
         <div>
-            {valorTotal()}
+            <div>{valorTotal()}</div>
             <button onClick={()=> Adicionais(item)}> Adicionais</button>
         </div>
     </div>
