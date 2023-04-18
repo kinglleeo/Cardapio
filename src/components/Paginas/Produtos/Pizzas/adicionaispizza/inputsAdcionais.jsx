@@ -42,7 +42,7 @@ export function RetirarAdd({ index, selectedAdd, setSelectedAdd, selectedAdds, s
         const newSelectedAdds = [...selectedAdds]
         newSelectedAdds.splice(index, 1)
         setSelectedAdds(newSelectedAdds)
-        handleRemoveCheck(dataToRemove.id)
+        handleRemoveCheck(addToRemove.id)
     }
 
     const handleRemoveCheck = (dataId) =>{
