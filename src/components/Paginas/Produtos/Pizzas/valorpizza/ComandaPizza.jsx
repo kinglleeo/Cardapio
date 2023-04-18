@@ -9,7 +9,7 @@ export default function ComandaPizza({ selectedItem, setSelectedItem, selectedIt
   const { state } = useLocation()
   const { tamanhopizza } = state
   const navigate = useNavigate()
-  
+
 
   return (
   <div className="comanda-pizza">

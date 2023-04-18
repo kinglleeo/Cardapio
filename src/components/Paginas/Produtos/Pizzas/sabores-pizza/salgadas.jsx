@@ -4,7 +4,6 @@ import { Selecionadores } from './OperacaoInputs'
 
 export default function Salgadas({ selectedItems, setSelectedItems }) {
   const [produto, setProduto] = useState([]);
-  
 
   useEffect(() => {
     axios

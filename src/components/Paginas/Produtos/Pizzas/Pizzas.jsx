@@ -15,8 +15,8 @@ export default function ListPizzas() {
       </div>
       <div>
         <ComandaPizza 
-          selectedItems={selectedItems} 
-          setSelectedItems={setSelectedItems} 
+         selectedItems={selectedItems} 
+         setSelectedItems={setSelectedItems} 
         />
       </div>
       <div>

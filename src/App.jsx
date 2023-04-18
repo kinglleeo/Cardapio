@@ -11,7 +11,7 @@ import { store } from './redux/store';
 import Adicionais from './components/Paginas/Produtos/adicionais/Adicionais'
 import TamanhoPizzas from './components/Paginas/Produtos/Pizzas/tamanho-pizza'
 import Pizzas from './components/Paginas/Produtos/Pizzas/Pizzas'
-import AdicionaisPizza from './components/Paginas/Produtos/Pizzas/adicionaispizza/Adicionaispizza'
+import AdicionaisPizza from './components/Paginas/Produtos/Pizzas/adicionaispizza/AdicionaisPizzaList'
 
 export default function App(){
     return(
