@@ -1,10 +1,11 @@
-import { React, useState, useEffect } from 'react'
+import { React, useState } from 'react'
 import Header from '../../../../header/Header'
 import Adicionais from './Adicionais'
 import AddBar from './AddBar'
 
-export default function AdicionaisList(){
+export default function AdicionaisPizzaList(){
     const [selectedAdds, setSelectedAdds] = useState([]);
+    
 
     return(
         <div>
@@ -19,7 +20,7 @@ export default function AdicionaisList(){
             </div>
             <div>
                 <Adicionais
-                    selectedAdds={setSelectedAdds}
+                    selectedAdds={selectedAdds}
                     setSelectedAdds={setSelectedAdds}
                 />
             </div>

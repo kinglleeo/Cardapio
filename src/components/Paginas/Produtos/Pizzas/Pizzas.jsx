@@ -6,7 +6,7 @@ import ComandaPizza from './valorpizza/ComandaPizza';
 import Doces from './sabores-pizza/doces'
 
 export default function ListPizzas() {
-  const [selectedItems, setSelectedItems] = useState([]);
+  const [selectedSabores, setSelectedSabores] = useState([]);
 
   return (
     <div>
@@ -15,8 +15,8 @@ export default function ListPizzas() {
       </div>
       <div>
         <ComandaPizza 
-         selectedItems={selectedItems} 
-         setSelectedItems={setSelectedItems} 
+         selectedSabores={selectedSabores} 
+         setSelectedSabores={setSelectedSabores} 
         />
       </div>
       <div>
@@ -24,8 +24,8 @@ export default function ListPizzas() {
       </div>
       <div>
         <Salgadas 
-          selectedItems={selectedItems} 
-          setSelectedItems={setSelectedItems} 
+          selectedSabores={selectedSabores} 
+          setSelectedSabores={setSelectedSabores} 
         />
       </div>
       <Doces/>

@@ -2,7 +2,7 @@ import { React, useState, useEffect } from 'react';
 import axios from 'axios';
 import { Selecionadores } from './OperacaoInputs'
 
-export default function Salgadas({ selectedItems, setSelectedItems }) {
+export default function Salgadas({ selectedSabores, setSelectedSabores }) {
   const [produto, setProduto] = useState([]);
 
   useEffect(() => {
@@ -12,7 +12,7 @@ export default function Salgadas({ selectedItems, setSelectedItems }) {
       setProduto(getdata.data);
     });
   }, []);
-  
+   
   return (
     <div className="caixa-lista" id="salgadas">
       <label className="titulo-lista">Salgadas</label>
@@ -26,8 +26,8 @@ export default function Salgadas({ selectedItems, setSelectedItems }) {
             <div className="caixa-2">
                 <Selecionadores 
                   itempizza={itempizza}
-                  selectedItems={selectedItems}
-                  setSelectedItems={setSelectedItems}  
+                  selectedSabores={selectedSabores}
+                  setSelectedSabores={setSelectedSabores}  
                 />
             </div>
           </div>

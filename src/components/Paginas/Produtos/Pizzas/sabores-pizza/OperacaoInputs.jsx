@@ -3,32 +3,30 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Decimal from 'decimal.js';
 
-export function Selecionadores({ itempizza, selectedItems, setSelectedItems }){
+export function Selecionadores({ itempizza, selectedSabores, setSelectedSabores }){
     const { state } = useLocation()
     const { tamanhopizza } = state
     
     const handleCheckboxChange = ( event, itempizza ) =>{
-        let maxquantia = tamanhopizza.quantia
-        
-        
-
-    const checkboxValues = Array.from(document.querySelectorAll('input[name="selecionar-sabor"]:checked')).map(
-        (checkbox) => checkbox.value
-    )
-    if (checkboxValues.length >= maxquantia){
-        document.querySelectorAll('input[name="selecionar-sabor"]:not(:checked)').forEach((checkbox) =>{
-            checkbox.disabled = true;
-        });
-    } else {
-        document.querySelectorAll('input[name="selecionar-sabor"]').forEach((checkbox) =>{
-            checkbox.disabled = false;
-        });
-    }
+    
+    let maxquantia = tamanhopizza.quantia
+        const checkboxValues = Array.from(document.querySelectorAll('input[name="selecionar-sabor"]:checked')).map(
+            (checkbox) => checkbox.value
+        )
+            if (checkboxValues.length >= maxquantia){
+                document.querySelectorAll('input[name="selecionar-sabor"]:not(:checked)').forEach((checkbox) =>{
+                    checkbox.disabled = true;
+                });
+            } else {
+                document.querySelectorAll('input[name="selecionar-sabor"]').forEach((checkbox) =>{
+                    checkbox.disabled = false;
+                });
+            }
     
     if(event.target.checked){
-        setSelectedItems([...selectedItems, itempizza])
+        setSelectedSabores([...selectedSabores, itempizza])
     } else {
-        setSelectedItems(selectedItems.filter((item) => item.id !== itempizza.id))
+        setSelectedSabores(selectedSabores.filter((item) => item.id !== itempizza.id))
     }   
     
 }
@@ -39,35 +37,29 @@ export function Selecionadores({ itempizza, selectedItems, setSelectedItems }){
                     name="selecionar-sabor"
                     id={itempizza.id}
                     onChange={(event) => handleCheckboxChange(event, itempizza)}
-                    checked={selectedItems.some((item) => item.id === itempizza.id)}
+                    checked={selectedSabores.some((item) => item.id === itempizza.id)}
                 />
         </div>
     )
 }
 
-export function MostrarSelecionados ({ index, selectedItem, setSelectedItem, selectedItems, setSelectedItems}){
+export function MostrarSelecionados ({ index, selectedSabores, setSelectedSabores}){
     const { state } = useLocation()
     const { tamanhopizza } = state
     
-    useEffect(()=>{
-        if (selectedItem){
-            setSelectedItems((prevSelectedItems) => [...prevSelectedItems, selectedItem])
-            setSelectedItem('')
-        }
-    }, [selectedItem, setSelectedItems, setSelectedItem])
 
     const handleRemoveItem = (index) =>{
-        const itemToRemove = selectedItems[index]
-        const newSelectedItems = [...selectedItems]
-        newSelectedItems.splice(index, 1)
-        setSelectedItems(newSelectedItems)
-        handleUncheckCheckbox(itemToRemove.id)
-
-        const checkboxValues = newSelectedItems.map((item) => item.id)
-        document.querySelectorAll('input[name="selecionar-sabor"]').forEach((checkbox) => {
-          if (!checkboxValues.includes(checkbox.value)) {
-            checkbox.disabled = false
-        }
+        const saborRemove = selectedSabores[index]
+        const newSelectedSabores = [...selectedSabores]
+        newSelectedSabores.splice(index, 1)
+        setSelectedSabores(newSelectedSabores)
+        handleUncheckCheckbox(saborRemove.id)
+       
+            const checkboxValues = newSelectedSabores.map((item) => item.id)
+            document.querySelectorAll('input[name="selecionar-sabor"]').forEach((checkbox) => {
+            if (!checkboxValues.includes(checkbox.value)) {
+                checkbox.disabled = false
+            }
     })
     }
     const handleUncheckCheckbox = (itemId) =>{
@@ -89,22 +81,22 @@ export function MostrarSelecionados ({ index, selectedItem, setSelectedItem, sel
     )
 }
 
-export function Total({ tamanhopizza, selectedItems }){
+export function Total({ tamanhopizza, selectedSabores }){
     const navigate = useNavigate()
    
     const valorTotal = () => {
         const tamanhopizzaValor = tamanhopizza.valor || 0;
-        const selectedItemsValor = selectedItems.reduce((total, item) => {
+        const selectedSaboresValor = selectedSabores.reduce((total, item) => {
           return total.plus(item.valor || 0);
         }, new Decimal(0));
-        const total = new Decimal(tamanhopizzaValor).plus(selectedItemsValor);
+        const total = new Decimal(tamanhopizzaValor).plus(selectedSaboresValor);
         return total.toFixed(2);
       };
       
     
     const saboresSelecionados=()=>{
         let sabores = ""
-            selectedItems.forEach((add) =>{
+            selectedSabores.forEach((add) =>{
                 sabores += `${add.descricao} + `
             })
         return sabores
