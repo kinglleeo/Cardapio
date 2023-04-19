@@ -6,7 +6,6 @@ import { addToCart } from '../../../../../redux/cartSlice'
 
 export function AddAdicionais({ data, selectedAdds, setSelectedAdds}){
 
-
     const handleAddAdicionais =( event, data )=>{
 
         if(event.target.checked){
@@ -14,9 +13,9 @@ export function AddAdicionais({ data, selectedAdds, setSelectedAdds}){
         } else {
             setSelectedAdds(selectedAdds.filter((item) => item.id !== data.id))
         }
-    }
+        }
 
-    return(
+return(
         <div>
             <input
                 type='checkbox'

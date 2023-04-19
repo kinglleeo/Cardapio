@@ -1,8 +1,10 @@
 import CartItem from './CartItems'
 import Header from '../header/Header'
 import { TotalCart } from './total'
+import { useState } from 'react'
 
 export default function Cart(){
+    const [valorTotal, setValorTotal] = useState([]);
 
 return(
  
@@ -11,9 +13,13 @@ return(
           <Header/>
         </div>
         <div>
-          <CartItem />
+          <CartItem 
+              setValorTotal={setValorTotal}        
+          />
         </div>
-          <TotalCart/>
+          <TotalCart
+            valorTotal={valorTotal}
+          />
       </div>
              
   )
