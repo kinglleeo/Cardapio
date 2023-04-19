@@ -4,7 +4,7 @@ import './cart.css'
 import { TotalItem } from './total'
 
 
-export default function CartItem({ setValorTotal }) {
+export default function CartItem() {
   const dispatch = useDispatch()
   const cart = useSelector((state) => state.cart)
   
@@ -20,7 +20,6 @@ export default function CartItem({ setValorTotal }) {
                 itemquantity={item.quantity}
                 itemid={item.id}
                 itemvalor={item.valor}
-                setValorTotal={setValorTotal}
               />
             <button onClick={()=> dispatch(removeItem(item.id))}> Remover </button>
           </div>

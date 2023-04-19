@@ -7,7 +7,6 @@ import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 
 
-
 export function TotalItem({ itemquantity, itemid, itemvalor }){
   const dispatch = useDispatch()
 
@@ -16,10 +15,6 @@ export function TotalItem({ itemquantity, itemid, itemvalor }){
       const totalitem = new Decimal(valoritem)*(itemquantity)
       return totalitem.toFixed(2)
     }
-    
-    
-    
-  
 
   return(
     <div>
