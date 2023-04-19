@@ -2,6 +2,7 @@ import { React, useState } from 'react'
 import Header from '../../../../header/Header'
 import Adicionais from './Adicionais'
 import AddBar from './AddBar'
+import IconCarrinho from '../../../../Carrinho/Iconcarrinho'
 
 export default function AdicionaisPizzaList(){
     const [selectedAdds, setSelectedAdds] = useState([]);
@@ -23,6 +24,9 @@ export default function AdicionaisPizzaList(){
                     selectedAdds={selectedAdds}
                     setSelectedAdds={setSelectedAdds}
                 />
+            </div>
+            <div>
+                <IconCarrinho/> 
             </div>
         </div>
     )

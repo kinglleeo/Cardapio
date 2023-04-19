@@ -4,6 +4,8 @@ import Navbarpizza from './navbar-pizza/navbar-pizza';
 import Salgadas from './sabores-pizza/salgadas';
 import ComandaPizza from './valorpizza/ComandaPizza';
 import Doces from './sabores-pizza/doces'
+import IconCarrinho from '../../../Carrinho/Iconcarrinho'
+
 
 export default function ListPizzas() {
   const [selectedSabores, setSelectedSabores] = useState([]);
@@ -28,8 +30,11 @@ export default function ListPizzas() {
           setSelectedSabores={setSelectedSabores} 
         />
       </div>
-      <Doces/>
-      
+        <Doces/>
+
+        <div>
+          <IconCarrinho/>
+        </div>
     </div>
   );
 }

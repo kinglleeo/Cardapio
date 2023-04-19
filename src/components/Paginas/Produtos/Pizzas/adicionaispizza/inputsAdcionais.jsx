@@ -1,5 +1,8 @@
 import Decimal from 'decimal.js'
 import { React, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { addToCart } from '../../../../../redux/cartSlice'
 
 export function AddAdicionais({ data, selectedAdds, setSelectedAdds}){
 
@@ -54,20 +57,35 @@ export function Escolhidos({ index, selectedAdds, setSelectedAdds }){
     )
 }
 
-export function TotalAdd({ item, selectedAdds}){
+export function TotalAdd({ data, selectedAdds}){
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const valorTotalAdd=()=>{
-        const valorpizza = item.valor || 0;
+        const valorpizza = data.valor || 0;
         const AddsValor = selectedAdds.reduce((total, item)=>{
             return total.plus(item.valor || 0);
         }, new Decimal(0));
         const total = new Decimal(valorpizza).plus(AddsValor);
         return total.toFixed(2);
     }
-
+    const AddSelecte =()=>{
+        let adds = ""
+            selectedAdds.forEach(add => {
+                adds += `${add.nome}`
+            });
+            return adds
+    }
+    const item ={
+        nome: data.nome + data.sabores,
+        descricao: AddSelecte(),
+        valor: valorTotalAdd()
+    }
+    
     return(
         <div>
             <div>{valorTotalAdd()}</div>
+            <button onClick={()=> dispatch(addToCart(item))}>Adicionair</button>
         </div>
     )
 }

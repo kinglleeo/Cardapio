@@ -28,7 +28,7 @@ export default function AddBar({ selectedAdds, setSelectedAdds }){
             </div>
             <div>
                 <TotalAdd
-                    item={item}
+                    data={item}
                     selectedAdds={selectedAdds}
                 />
             </div>
