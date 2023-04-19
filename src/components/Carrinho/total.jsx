@@ -26,12 +26,10 @@ const TotalItem=()=>{
   )
 }
 
-export function TotalCart({ TotalItem }){
+export function TotalCart(w){
  
   const TotalCart=()=>{
-    let totalCart= 0
-    const total = new Decimal(totalCart).plus(TotalItem)
-    return total.toFixed(2);
+    
   }
 
   return(
