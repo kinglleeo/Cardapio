@@ -1,30 +1,44 @@
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
+import Decimal from 'decimal.js';
+import { incrementQuantity } from '../../redux/cartSlice';
+import { decrementQuantity } from '../../redux/cartSlice';
 
-function Total() {
+export function TotalItem({ itemquantity, itemid, itemvalor}){
+  const dispatch = useDispatch()
 
-  const cart = useSelector((state) => state.cart)
+const TotalItem=()=>{
+  let totalItem = itemvalor
+  const total = new Decimal(totalItem)*(itemquantity)
+  return total.toFixed(2)
+}
 
-  const getTotal = () => {
-    let totalQuantity = 0
-    let totalvalor = 0
-    cart.forEach(item => {
-      totalQuantity += item.quantity
-      totalvalor += item.valor * item.quantity
-    })
-    return {totalvalor, totalQuantity}
-  }
- 
-  return (
-    <div className="total">
-      <h2>ORDER SUMMARY</h2>
+  return(
+    <div>
       <div>
-        <p className="total__p">
-          total ({getTotal().totalQuantity} items) 
-          : <strong>${getTotal().totalvalor}</strong>
-        </p>
+        <button onClick={() =>dispatch(decrementQuantity(itemid))}> - </button>
+          <div>{itemquantity}</div>
+        <button onClick={() => dispatch(incrementQuantity(itemid))}> + </button>
+      </div>
+      <div>
+        {TotalItem()}
       </div>
     </div>
   )
 }
 
-export default Total
+export function TotalCart({ TotalItem }){
+ 
+  const TotalCart=()=>{
+    let totalCart= 0
+    const total = new Decimal(totalCart).plus(TotalItem)
+    return total.toFixed(2);
+  }
+
+  return(
+    <div>
+      <div>
+        $ {TotalCart()}
+      </div>
+    </div>
+  )
+}
