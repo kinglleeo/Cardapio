@@ -6,6 +6,8 @@ import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import {addToCart} from '../../../../redux/cartSlice';
 import IconCarrinho from '../../../Carrinho/Iconcarrinho'
+import Decimal from 'decimal.js';
+
 
 export default function adicionaislanches( ){
     const { state } = useLocation();
@@ -40,12 +42,13 @@ export default function adicionaislanches( ){
         return descricao;
     }
     const getValor = () => {
-        let valortotal = parseFloat(item.valor);
-        selectedAdd.forEach((add) => {
-          valortotal += parseFloat(add.valor); 
-        });
-        return valortotal;
-      };
+        const valor = item.valor || 0;
+        const valortotal = selectedAdd.reduce((total, item)=>{
+            return total.plus(item.valor || 0);
+        }, new Decimal(0));
+        const total = new Decimal(valor).plus(valortotal);
+        return total.toFixed(2);
+    };
       
     return(
     <div>    
