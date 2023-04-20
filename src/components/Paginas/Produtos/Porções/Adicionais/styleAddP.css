@@ -1,0 +1,16 @@
+.tamanho-body{
+    width: 100%;
+    height: 100px;
+}
+.tamanho-items{
+    display: flex;
+}
+.tamanho-item{
+    display: flex;
+}
+.tamanho-caixa{
+    display: grid;
+    width: 20%;
+    place-items: center;
+    padding: 5px;
+}

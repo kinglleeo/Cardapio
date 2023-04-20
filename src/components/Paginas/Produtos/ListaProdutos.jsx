@@ -6,6 +6,7 @@ import './listaProdutos.css'
 import MenuBar from '../../navbar/menubar'
 import Footer from '../../Footer/Footer'
 import TamanhoPizzas from './Pizzas/tamanho-pizza'
+import Porcoes from './Porções/Porcoes'
 
 
 export default function ListaProdutos(){
@@ -25,7 +26,7 @@ export default function ListaProdutos(){
                 <Pasteis/>
             </div>
             <div>
-                
+                <Porcoes/>
             </div>
             <div>
                <Bebidas/>

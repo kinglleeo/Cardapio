@@ -49,7 +49,7 @@ export default function adicionaislanches( ){
         const total = new Decimal(valor).plus(valortotal);
         return total.toFixed(2);
     };
-      
+
     return(
     <div>    
         <div>
