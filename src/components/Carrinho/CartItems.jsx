@@ -10,18 +10,22 @@ export default function CartItem() {
   
   
   return (
-    <div>
-      <div>
+    <div className='cart-main'>
+      <div className='cart-items'>
         {cart.map((item)=>
-          <div key={item.key}>
-            <div>{item.nome}</div>
-            <div>{item.descricao}</div>
+          <div key={item.key} className='bloco-cart'>
+            <div className='cart-nome'>{item.nome}</div>
+            <div className='cart-descricao'>{item.descricao}</div>
+            <div className='cart-total'>
               <TotalItem
                 itemquantity={item.quantity}
                 itemid={item.id}
                 itemvalor={item.valor}
               />
-            <button onClick={()=> dispatch(removeItem(item.id))}> Remover </button>
+            </div>
+            <div className='cart-botao'>
+              <button onClick={()=> dispatch(removeItem(item.id))}> Remover </button>
+            </div>
           </div>
         )}
       </div>      

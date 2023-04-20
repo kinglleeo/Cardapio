@@ -19,8 +19,8 @@ export default function ComandaPizza({ selectedSabores, setSelectedSabores}) {
       </div>
       <div className="caixa-c-2">
         {selectedSabores.map((item, index) => (
-          <div key={index}>
-            {item.nome}
+          <div key={index} className='item-s-Select'>
+              {item.nome}
             <MostrarSelecionados
               selectedSabores={selectedSabores}
               setSelectedSabores={setSelectedSabores}
@@ -30,9 +30,6 @@ export default function ComandaPizza({ selectedSabores, setSelectedSabores}) {
         ))}
       </div>
       <div className="caixa-c-3">
-        
-      </div>
-      <div className="caixa-c-4">
         <Total 
           selectedSabores={selectedSabores}
           tamanhopizza={tamanhopizza}

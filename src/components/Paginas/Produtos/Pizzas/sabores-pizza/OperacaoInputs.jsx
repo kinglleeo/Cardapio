@@ -2,6 +2,7 @@ import { React, useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Decimal from 'decimal.js';
+import '../valorpizza/comanda-pizza.css'
 
 export function Selecionadores({ itempizza, selectedSabores, setSelectedSabores }){
     const { state } = useLocation()
@@ -31,7 +32,7 @@ export function Selecionadores({ itempizza, selectedSabores, setSelectedSabores 
     
 }
     return (
-        <div>
+        <div className='selecionar-add-pizza'>
                 <input
                     type='checkbox'
                     name="selecionar-sabor"
@@ -112,11 +113,11 @@ export function Total({ tamanhopizza, selectedSabores }){
     }
 
 return(
-    <div>
-        <div>
-            <div>{valorTotal()}</div>
-            <button onClick={()=> Adicionais(item)}> Adicionais</button>
-        </div>
+    <div className='totalpizza-s'>
+        <label>Valor Total</label>
+            <div>R$ {valorTotal()}</div>
+                <button onClick={()=> Adicionais(item)}> Adicionais</button>
     </div>
+    
 )
 }

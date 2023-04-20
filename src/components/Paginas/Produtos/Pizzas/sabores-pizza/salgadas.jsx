@@ -30,6 +30,9 @@ export default function Salgadas({ selectedSabores, setSelectedSabores }) {
                   setSelectedSabores={setSelectedSabores}  
                 />
             </div>
+            <div className='caixa-3'>
+
+            </div>
           </div>
         </div>
       ))}

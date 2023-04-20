@@ -13,26 +13,26 @@ export default function navbarPizza(){
     const barNavbar =()=>{
         if(window !== undefined){
             let windowheight = window.scrollY
-            windowheight > 40? setBar('nav-pizza-top') : setBar('relative')
+            windowheight > 80? setBar('nav-pizza-top') : setBar('relative')
         }
     }
     return(
         <div className={`${bar}`}>
             <div className='navbar-pizza'>
                 <div className='navbar-pizza-item' onClick={() => document.getElementById('salgadas').scrollIntoView({ behavior: 'smooth'})}>
-                    <h1>salgadas</h1>
+                    <div>Salgadas</div>
                 </div>
                 <div className='navbar-pizza-item' onClick={() => document.getElementById('doces').scrollIntoView({ behavior: 'smooth'})}>
-                    <h1>doces</h1>
+                    <div>doces</div>
                 </div>
                 <div className='navbar-pizza-item' onClick={() => document.getElementById('nobres').scrollIntoView({ behavior: 'smooth'})}>
-                    <h1>nobres</h1>
+                    <div>nobres</div>
                 </div>
                 <div className='navbar-pizza-item' onClick={() => document.getElementById('pizza4').scrollIntoView({ behavior: 'smooth'})}>
-                    <h1>Pizza 4</h1>
+                    <div>Pizza 4</div>
                 </div>
                 <div className='navbar-pizza-item' onClick={() => document.getElementById('pizza5').scrollIntoView({ behavior: 'smooth'})}>
-                    <h1>Pizza 5</h1>
+                    <div>Pizza 5</div>
                 </div>
             </div>
         </div>

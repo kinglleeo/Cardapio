@@ -1,16 +1,16 @@
 .comanda-pizza{
-    width: 100%;
+    width: auto;
     height: 90px;
-    border-bottom: solid;
-    border-top: solid;
+    padding: 5px;
+
+    box-shadow: 0px 7px 25px 12px #4E0000;
 }
 .comanda-items{
-    width: 100%;
-    height: 100%;
     display: flex;
+    height: 100%;
 }
 .caixa-c-1{
-    width: 20%;
+    width: 25%;
     height: 100%;
     display: grid;
     place-items: center;
@@ -20,20 +20,24 @@
     height: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+
 }
 .caixa-c-3{
-    width: 20%;
+    width: 25%;
     height: 100%;
     display: grid;
     place-items: center;
 }
-.caixa-c-4{
-    width: 10%;
-    height: 100%;
+.totalpizza-s{
     display: grid;
     place-items: center;
 }
-.item-caixa-2{
+.item-s-Select{
+    display: grid;
+    place-items: center;
+}
+.selecionar-add-pizza{
+    height: 100%;
     display: grid;
     place-items: center;
 }

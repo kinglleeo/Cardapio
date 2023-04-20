@@ -3,6 +3,7 @@ import { React, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { addToCart } from '../../../../../redux/cartSlice'
+import './adicionaispizza.css'
 
 export function AddAdicionais({ data, selectedAdds, setSelectedAdds}){
 
@@ -44,15 +45,13 @@ export function Escolhidos({ index, selectedAdds, setSelectedAdds }){
         }
     }
     return(
-        <div>
-            <div>
+            <div >
                 <input
                     type='checkbox'
                     checked
                     onChange={()=> handleRemoveAdd(index)}
                 />
             </div>
-        </div>
     )
 }
 
@@ -82,9 +81,12 @@ export function TotalAdd({ data, selectedAdds}){
     }
     
     return(
-        <div>
-            <div>{valorTotalAdd()}</div>
-            <button onClick={()=> dispatch(addToCart(item))}>Adicionair</button>
+        <div className='Total-Add-Pizza'>
+            <div className='item-valor-1'>
+                <div><label>Valor Total</label></div>
+                    <div>R$ {valorTotalAdd()}</div>
+            </div>
+            <div className='item-valor-2'><button onClick={()=> dispatch(addToCart(item))}>Adicionair</button></div>
         </div>
     )
 }
