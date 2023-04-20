@@ -14,6 +14,7 @@ import Pizzas from './components/Paginas/Produtos/Pizzas/Pizzas'
 import AdicionaisPizza from './components/Paginas/Produtos/Pizzas/adicionaispizza/AdicionaisPizzaList'
 import AdicionaisPorcoes from './components/Paginas/Produtos/Porções/Adicionais/AdicionaisPorcoes'
 
+
 export default function App(){
     return(
       <Provider store={store}>

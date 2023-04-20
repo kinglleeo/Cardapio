@@ -1,4 +1,4 @@
-import { TiShoppingCart } from 'react-icons/ti'
+import { ImCart } from 'react-icons/im'
 import { React } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux';
@@ -22,9 +22,11 @@ export default function iconcarrinho(){
         <div className='carrinho'>
             <div className='caixa-carrinho'>
                 <Link to='/Carrinho'>
-                    <TiShoppingCart/>
-                    <p>{getTotalQuantity() || 0}</p>
+                    <ImCart size={30}/>
                 </Link>
+                <div>
+                    {getTotalQuantity() || 0}
+                </div>
             </div>
         </div>
     )

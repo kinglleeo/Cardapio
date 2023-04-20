@@ -3,6 +3,7 @@
     display: grid; 
     grid-template-columns: repeat(5,1fr);
     place-items: center;
+    padding-top: 10px;
 }
 .nav-top{
     position: fixed;
@@ -11,5 +12,8 @@
     z-index: 999;
 }
 .itembarraDeDirecionamento {
-
+    display: grid;
+    place-items: center;
+    font-size: 15px;
+    font-weight: 600;
 }

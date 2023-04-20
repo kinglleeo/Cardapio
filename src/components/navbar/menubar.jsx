@@ -5,7 +5,6 @@ import './menubar.css';
 export default function MenuBar() {
     const [stickyClass, setStickyClass]= useState('relative')
 
-
     useEffect(()=>{
       window.addEventListener('scroll', stickNavbar)
       return()=>{
@@ -15,7 +14,7 @@ export default function MenuBar() {
     const stickNavbar =()=>{
       if(window !== undefined){
         let windowHeight = window.scrollY 
-        windowHeight > 40? setStickyClass('nav-top') : setStickyClass('relative')
+        windowHeight > 150? setStickyClass('nav-top') : setStickyClass('relative')
       }
     }
 

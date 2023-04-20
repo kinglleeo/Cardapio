@@ -18,7 +18,6 @@ export default function Lanches(){
     }, []);
 
     
-
     const navigate = useNavigate()
 
     const handleAdicionais = (item) => {
@@ -37,10 +36,10 @@ export default function Lanches(){
                             </div>
                             <div className='caixa-2'>
                                 <div className='item-valor'><label>Preço</label>R${item.valor}</div>
-                                <div>{item.adicionais === "" ? (<button onClick={()=> dispatch(addToCart(item))}> Adicionar</button>) 
-                                        : (<button onClick={(()=> handleAdicionais(item))}> Adicionais </button>)} </div> 
                                 <div>
-                                </div>       
+                                    {item.adicionais === "" ? (<button onClick={()=> dispatch(addToCart(item))}> Adicionar</button>) 
+                                    : (<button onClick={(()=> handleAdicionais(item))}> Adicionais </button>)} 
+                                </div> 
                             </div>
                             <div className='caixa-3'>
                                 <div className='item-img'></div>

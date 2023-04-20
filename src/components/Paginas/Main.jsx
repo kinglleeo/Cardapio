@@ -8,7 +8,7 @@ import IconCarrinho from '../Carrinho/Iconcarrinho'
 
 export default function Main() {
 
-  return (
+  return ( 
     <div className='main-main'>
         <div className='main-header'>
             <Header/>
@@ -18,8 +18,7 @@ export default function Main() {
         </div>
         <div>
             <IconCarrinho/>
-        </div>   
-         
+        </div> 
     </div>
   );
 }
