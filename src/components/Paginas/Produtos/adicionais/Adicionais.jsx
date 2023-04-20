@@ -57,36 +57,39 @@ export default function adicionaislanches( ){
         </div>
         <div className='corpo-adicionais'>
                 <div className='items-information'>
-                    <div className='item1'>
+                    <div>
                         <div>{item.nome}</div>
+                        <button onClick={() => dispatch(addToCart({ nome: item.nome, descricao: getDescricao(), valor: getValor()}))}>Adicionar</button>
                     </div>
-                    <div className='item2'>
+                    <div>
                         <div>{getDescricao()}</div>
                     </div>
-                    <div className='item3'>
+                    <div>
+                        <label>Valor Total</label>
                         <div>R$ {getValor()}</div>
                     </div>
                 </div>
-                <div className='itemAdd'>
-                    {dataAdd.map((data)=>
-                        <div key={data.id} className='caixa-add'>
-                            <div className='itemAdd1'>
-                                <div>{data.nome}</div>
-                            </div>
-                            <div className='itemAdd2'>
-                                <div>{data.valor}</div>
-                            </div>
-                            <div className='itemAdd3'>
-                                <input type='checkbox' onClick={()=> handleAdd(data.id, data.nome, data.valor)}/>
-                            </div>
-                        </div>
-                    )}
-                </div>  
+                <div className='itemB'>
+                    <div className='itemAdd'>
+                        {dataAdd.map((data)=>
+                            <div key={data.id} className='caixa-add'>
+                                <div className='item1'>
+                                    <div>{data.nome}</div>
+                                </div>
+                                <div className='item2'>
+                                    <label>Valor</label>
+                                    <div>R$ {data.valor}</div>
+                                </div>
+                                <div className='item3'>
+                                    <input type='checkbox' onClick={()=> handleAdd(data.id, data.nome, data.valor)}/>
+                                </div>    
+                                <div className='item4'>
 
-                <div>
-                <button onClick={() => dispatch(addToCart({ nome: item.nome, descricao: getDescricao(), valor: getValor()}))}>Adicionar</button>
-                </div>
-                  
+                                </div>
+                            </div>
+                        )}
+                    </div>  
+                </div> 
         </div>
         <div>
             <IconCarrinho/>
