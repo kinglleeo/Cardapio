@@ -19,7 +19,7 @@ export default function Pasteis(){
     }, []);
 
     const handleAdicionais = (item) =>{
-        navigate('/Adicionais', {state: { item }});
+        navigate('/AdicionaisPorcoes', {state: { item }});
     };
 
     return(
