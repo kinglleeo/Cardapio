@@ -5,6 +5,7 @@ import Salgadas from './sabores-pizza/salgadas';
 import ComandaPizza from './valorpizza/ComandaPizza';
 import Doces from './sabores-pizza/doces'
 import IconCarrinho from '../../../Carrinho/Iconcarrinho'
+import TopoPagina from '../../../AA-utilidades/Topo';
 
 
 export default function ListPizzas() {
@@ -35,6 +36,7 @@ export default function ListPizzas() {
         <div>
           <IconCarrinho/>
         </div>
+        <TopoPagina/>
     </div>
   );
 }

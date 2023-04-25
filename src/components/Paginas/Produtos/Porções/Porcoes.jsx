@@ -16,7 +16,7 @@ export default function Porcoes(){
     }, []);
 
     const handleAdicionais = (item) => {
-        navigate('/AdicionaisPorcoes', { state: { item } });
+        navigate('/AdicionaisComTamanho', { state: { item } });
       };
 
     

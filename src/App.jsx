@@ -12,7 +12,7 @@ import Adicionais from './components/Paginas/Produtos/adicionais/Adicionais'
 import TamanhoPizzas from './components/Paginas/Produtos/Pizzas/tamanho-pizza'
 import Pizzas from './components/Paginas/Produtos/Pizzas/Pizzas'
 import AdicionaisPizza from './components/Paginas/Produtos/Pizzas/adicionaispizza/AdicionaisPizzaList'
-import AdicionaisPorcoes from './components/Paginas/Produtos/Porções/Adicionais/AdicionaisPorcoes'
+import AdicionaisComTamanho from './components/Paginas/Produtos/AdicionaisComTamanho/AdicionaisComTamanho'
 
 
 export default function App(){
@@ -26,7 +26,7 @@ export default function App(){
           <Route path='/TamanhoPizzas' element={<TamanhoPizzas/>}/>
           <Route path='/Pizzas' element={<Pizzas/>}/>
           <Route path='/AdicionaisPizza' element={<AdicionaisPizza/>}/>
-          <Route path='/AdicionaisPorcoes' element={<AdicionaisPorcoes/>}/>
+          <Route path='/AdicionaisComTamanho' element={<AdicionaisComTamanho/>}/>
         </Routes>
       </Provider>
     )

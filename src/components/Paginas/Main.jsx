@@ -5,6 +5,7 @@ import Footer from '../Footer/Footer'
 import ListaProdutos from './Produtos/ListaProdutos'
 import './Main.css'
 import IconCarrinho from '../Carrinho/Iconcarrinho'
+import TopoPagina from '../AA-utilidades/Topo';
 
 export default function Main() {
 
@@ -19,6 +20,9 @@ export default function Main() {
         <div>
             <IconCarrinho/>
         </div> 
+        <div>
+          <TopoPagina/>
+        </div>
     </div>
   );
 }

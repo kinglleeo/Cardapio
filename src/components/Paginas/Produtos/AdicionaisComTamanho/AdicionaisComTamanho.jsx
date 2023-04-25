@@ -1,10 +1,11 @@
 import { React, useState } from 'react'
-import Header from '../../../../header/Header'
+import Header from '../../../header/Header'
 import AdicionaisBar from './AdicionaisBar'
 import AdicionaisList from './AdicionaisList'
 import AdicionaisTamanho from './AdicionaisTamanho'
-import Iconcarrinho from '../../../../Carrinho/Iconcarrinho'
-import Footer from '../../../../Footer/Footer'
+import Iconcarrinho from '../../../Carrinho/Iconcarrinho'
+import Footer from '../../../Footer/Footer'
+import TopoPagina from '../../../AA-utilidades/Topo'
 
 export default function AdicionaisPorcoes(){
     const [selectedAdds, setSelectedAdds] = useState([]);
@@ -40,6 +41,9 @@ export default function AdicionaisPorcoes(){
             </div>
             <div>
                 <Footer/>
+            </div>
+            <div>
+                <TopoPagina/>
             </div>
         </div>
     )

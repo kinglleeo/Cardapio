@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import {addToCart} from '../../../../redux/cartSlice';
 import IconCarrinho from '../../../Carrinho/Iconcarrinho'
 import Decimal from 'decimal.js';
+import TopoPagina from '../../../AA-utilidades/Topo';
 
 
 export default function adicionaislanches( ){
@@ -93,6 +94,9 @@ export default function adicionaislanches( ){
         </div>
         <div>
             <IconCarrinho/>
+        </div>
+        <div>
+            <TopoPagina/>
         </div>
     </div>
     )

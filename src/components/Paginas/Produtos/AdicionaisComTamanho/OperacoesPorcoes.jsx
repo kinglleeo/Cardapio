@@ -2,7 +2,7 @@ import Decimal from 'decimal.js'
 import { React, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { addToCart } from '../../../../../redux/cartSlice'
+import { addToCart } from '../../../../redux/cartSlice'
 import './adicionaisbar.css'
 
 export function AddAdicionais({ data, selectedAdds, setSelectedAdds}){
