@@ -17,11 +17,10 @@ export function TotalItem({ itemquantity, itemid, itemvalor }){
     }
 
   return(
-    <div>
+    <div className='bloco-bt-quan'>
       <div className='botoes-quantity'>
-        <button onClick={() =>dispatch(decrementQuantity(itemid))}> - </button>
-        <button onClick={() => dispatch(incrementQuantity(itemid))}> + </button>
-          <div>Quantidade:</div><div>{itemquantity}</div>
+        <button className='botao-quant' onClick={() =>dispatch(decrementQuantity(itemid))}> - </button>
+        <button className='botao-quant' onClick={() => dispatch(incrementQuantity(itemid))}> + </button>
       </div>
       <div className='total'>
         <div>Valor Total</div>

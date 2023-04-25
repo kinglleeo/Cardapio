@@ -1,33 +1,37 @@
 .cart-main{
     width: auto;
     height: 100%;
-    min-height: 100vh;
+    min-height: 83vh;
 }
 .cart-items{
-    padding: 5px;
+    padding: 7px;
     width: auto;
     height: auto;
 }
 .bloco-cart{
-    width: auto;
-    height: auto;
-    min-height: 80px;
+    height: 100px;
     display: flex;
-    padding: 5px;
+}
+.cart-bloco-1{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
 }
 .cart-nome{
-    width: 20%;
-}
-.cart-descricao{
-    width: 40%;
-}
-.cart-total{
-    width: 20%;
     display: grid;
     place-items: center;
+    height: 20%;
 }
-.cart-botao{
-    width: 10%;
+.cart-descricao{
+    height: 80%;
+    padding-left: 10px;
+}
+.cart-bloco-2{
+    width: 60%;
+    display: grid;
+}
+.cart-bloco-3{
+    width: 15%;
     display: grid;
     place-items: center;
 }
@@ -39,4 +43,13 @@
 .total{
     display: grid;
     place-items: center;
+    padding-left: 5px;
+}
+.botao-quant{
+    width: 30px;
+    height: 20px;
+}
+.bloco-bt-quan{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 }

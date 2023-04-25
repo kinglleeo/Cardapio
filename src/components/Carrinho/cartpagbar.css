@@ -3,4 +3,22 @@
     height: 50px;
     position: absolute;
     bottom: 0;
+    display: flex;
+}
+.cartpagbar-00{
+    width: 100%;
+    height: 100%;
+}
+.cartpagbar-01{
+    width: 100%;
+    height: 100%;
+}
+.botao-000{
+    width: 100%;
+    height: 100%;
+}
+.cartpagbar-02{
+    width: 15%;
+    display: grid;
+    place-items: center;
 }

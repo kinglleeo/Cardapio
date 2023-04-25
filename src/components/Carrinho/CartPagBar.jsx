@@ -9,15 +9,20 @@ export function CartPagBar(){
     const handleCotinuar=()=>{
         navigate('/')
     }
-    return(
+    return( 
         <div>
             <div className='cartpagbar'>
-                <div>
+                <div className='cartpagbar-00'>
+                    <button className='botao-000' onClick={handleCotinuar}>Continuar</button>
+                </div>
+                <div className='cartpagbar-02'>
                     <TotalCart/>
                 </div>
-                <div>
-                    <button onClick={handleCotinuar}>Continuar</button>
+                <div className='cartpagbar-01'>
+                    <button className='botao-000'> Finalizar e Pagar </button>
                 </div>
+                
+                
             </div>
         </div>
     )

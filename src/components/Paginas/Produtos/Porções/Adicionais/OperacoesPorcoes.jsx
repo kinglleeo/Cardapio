@@ -151,16 +151,20 @@ export function TotalAdd({ data, selectedAdds, selectedTamanho}){
     }
     const AddSelecte =()=>{
         let adds = '';
-        selectedTamanho.forEach(add =>{
-            adds += `+ ${add.tamanho}`
-        })
         selectedAdds.forEach(add => {
             adds += ` + ${add.nome}`;
         });
         return adds;
     }
+    const addnome =()=>{
+        let name = data.nome
+            selectedTamanho.forEach(add =>{
+                name += `  ${add.tamanho}`
+            })
+        return name
+    }
     const item ={
-        nome: data.nome,
+        nome: addnome(),
         descricao: AddSelecte(),
         valor: valorTotalAdd()
     }
@@ -169,7 +173,7 @@ export function TotalAdd({ data, selectedAdds, selectedTamanho}){
         <div className='total-00'>
             <div>Valor Total:</div>
             <div>R${valorTotalAdd()}</div>
-            <button onClick={()=> dispatch(addToCart(item))}>Adicionair</button>
+            <button onClick={()=> dispatch(addToCart(item))}>Adicionar</button>
         </div>
     )
 }
