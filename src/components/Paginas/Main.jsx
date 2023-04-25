@@ -7,6 +7,7 @@ import './Main.css'
 import IconCarrinho from '../Carrinho/Iconcarrinho'
 import TopoPagina from '../AA-utilidades/Topo';
 import Promo from '../navbar/NavPromocoes/navPromo';
+import SearchBar from '../navbar/Search/SearchBar';
 
 export default function Main() {
 
@@ -17,6 +18,9 @@ export default function Main() {
         </div>
         <div>
             <Promo/>
+        </div>
+        <div>
+          <SearchBar/>
         </div>
         <div className='main-lista'>
             <ListaProdutos/>
