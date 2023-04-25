@@ -15,7 +15,7 @@ export default function navbarPizza(){
             let windowheight = window.scrollY
             windowheight > 80? setBar('nav-pizza-top') : setBar('relative')
         }
-    }
+    } 
     return(
         <div className={`${bar}`}>
             <div className='navbar-pizza'>
