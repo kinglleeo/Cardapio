@@ -1,43 +1,39 @@
-.comanda-pizza{
-    width: auto;
-    height: 90px;
-    padding: 5px;
-
-    box-shadow: 0px 7px 25px 12px #4E0000;
+.comanda-pizza-top{
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+    padding-top: 25px;
 }
 .comanda-items{
+    width: 100%;
+    height: 100px;
+    padding-top: 10px;
+    background-color: rgb(255, 53, 53);
+}
+.caixa-c{
+    width: 100%;
     display: flex;
-    height: 100%;
 }
-.caixa-c-1{
-    width: 25%;
-    height: 100%;
-    display: grid;
-    place-items: center;
+.item-c{
+    width: 95%;
+    display: flex;
 }
-.caixa-c-2{
+.item-c-1{
     width: 50%;
-    height: 100%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-
+    padding-left: 10px;
 }
-.caixa-c-3{
-    width: 25%;
-    height: 100%;
+.item-c-2{
+    width: 50%;
     display: grid;
     place-items: center;
 }
-.totalpizza-s{
-    display: grid;
-    place-items: center;
+.caixa-d{
+    display: flex;
+    padding-left: 10px;
 }
-.item-s-Select{
-    display: grid;
-    place-items: center;
-}
-.selecionar-add-pizza{
-    height: 100%;
+.caixa-d-items{
+    width: 20%;
     display: grid;
     place-items: center;
 }

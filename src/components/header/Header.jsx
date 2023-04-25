@@ -8,20 +8,16 @@ export default function Header (){
 
 
     return(
-        <div className='header'>
-            <div className='container'>
-                <div className='info-table'>
-                    <div className='theader'>
-                        <div className='item-1'>
-                            <label>Tempo de Espera</label>
-                        </div>
-                        <div className='item-2'>
-                            <label>Formas de Pagamento</label>
-                        </div>
+        <div className='header-body'>
+            <div className='header-caixa'>
+                <div className='caixa-conteudo'>
+                    <div className='header-cardapio'>
+                        <div>Cardapio</div>
                     </div>
-                    <div className='tbody'>
-                        <label>CARDAPIO</label>
-                    </div>
+                        <div className='header-00'>
+                            <div className='header-tempo'>Tempo de Espera: </div>
+                            <div className='header-formas'>Formas de Pagamento: </div>
+                        </div>
                 </div>
             </div>
         </div>

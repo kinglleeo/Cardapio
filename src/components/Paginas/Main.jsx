@@ -6,6 +6,7 @@ import ListaProdutos from './Produtos/ListaProdutos'
 import './Main.css'
 import IconCarrinho from '../Carrinho/Iconcarrinho'
 import TopoPagina from '../AA-utilidades/Topo';
+import Promo from '../navbar/NavPromocoes/navPromo';
 
 export default function Main() {
 
@@ -13,6 +14,9 @@ export default function Main() {
     <div className='main-main'>
         <div className='main-header'>
             <Header/>
+        </div>
+        <div>
+            <Promo/>
         </div>
         <div className='main-lista'>
             <ListaProdutos/>
