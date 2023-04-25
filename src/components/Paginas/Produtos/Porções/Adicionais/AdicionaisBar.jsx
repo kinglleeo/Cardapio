@@ -9,15 +9,24 @@ export default function AdicionaisBar({ selectedAdds, setSelectedAdds, selectedT
 
     return(
         <div className='add-bar-body'>
-            <div>
-                <div>
-                    <div>{item.nome}</div>
-                    <div>{item.descricao}</div>
-                </div>
+            <div className='item-005'>
+                <div>{item.nome}</div>
+                        <div>
+                            {selectedTamanho.map((data3, index)=>
+                                <div key={index} className='item-002'>
+                                    <div>{data3.tamanho}</div>
+                                    <Escolhidos2
+                                        selectedTamanho={selectedTamanho}
+                                        setSelectedTamanho={setSelectedTamanho}
+                                        index2={index}
+                                    />
+                                </div>
+                            )}
+                    </div>
             </div>
-            <div>
+            <div className='adds-1'>
                 {selectedAdds.map((data2, index) =>
-                    (<div key={index}>
+                    (<div key={index} className='items-1'>
                         {data2.nome}
                         <Escolhidos
                             selectedAdds={selectedAdds}
@@ -27,18 +36,6 @@ export default function AdicionaisBar({ selectedAdds, setSelectedAdds, selectedT
                     </div>)
                 )}
             </div> 
-            <div>
-                {selectedTamanho.map((data3, index)=>
-                    <div key={index}>
-                        {data3.tamanho}
-                        <Escolhidos2
-                            selectedTamanho={selectedTamanho}
-                            setSelectedTamanho={setSelectedTamanho}
-                            index2={index}
-                        />
-                    </div>
-                )}
-            </div>
             <div>
                 <TotalAdd
                     data={item}

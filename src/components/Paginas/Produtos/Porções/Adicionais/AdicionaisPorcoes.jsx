@@ -4,6 +4,7 @@ import AdicionaisBar from './AdicionaisBar'
 import AdicionaisList from './AdicionaisList'
 import AdicionaisTamanho from './AdicionaisTamanho'
 import Iconcarrinho from '../../../../Carrinho/Iconcarrinho'
+import Footer from '../../../../Footer/Footer'
 
 export default function AdicionaisPorcoes(){
     const [selectedAdds, setSelectedAdds] = useState([]);
@@ -36,6 +37,9 @@ export default function AdicionaisPorcoes(){
             </div>
             <div>
                 <Iconcarrinho/>
+            </div>
+            <div>
+                <Footer/>
             </div>
         </div>
     )

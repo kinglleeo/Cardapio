@@ -98,13 +98,13 @@ export function Total({ tamanhopizza, selectedSabores }){
     const saboresSelecionados=()=>{
         let sabores = ""
             selectedSabores.forEach((add) =>{
-                sabores += `${add.nome} + `
+                sabores += `${add.nome} / `
             })
         return sabores
     }
 
     const item ={
-        nome: "Pizza" + tamanhopizza.tamanho,
+        nome: "Pizza" + " " + tamanhopizza.tamanho,
         sabores: saboresSelecionados(),
         valor: valorTotal()
     }

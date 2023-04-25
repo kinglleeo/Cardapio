@@ -10,7 +10,8 @@
 }
 .bloco-cart{
     width: auto;
-    height: 50px;
+    height: auto;
+    min-height: 80px;
     display: flex;
     padding: 5px;
 }
@@ -22,7 +23,20 @@
 }
 .cart-total{
     width: 20%;
+    display: grid;
+    place-items: center;
 }
 .cart-botao{
     width: 10%;
+    display: grid;
+    place-items: center;
+}
+.botoes-quantity{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+}
+.total{
+    display: grid;
+    place-items: center;
 }

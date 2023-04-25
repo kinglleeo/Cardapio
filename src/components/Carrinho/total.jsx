@@ -5,7 +5,7 @@ import { decrementQuantity } from '../../redux/cartSlice';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
-
+import './cart.css'
 
 export function TotalItem({ itemquantity, itemid, itemvalor }){
   const dispatch = useDispatch()
@@ -18,13 +18,14 @@ export function TotalItem({ itemquantity, itemid, itemvalor }){
 
   return(
     <div>
-      <div>
+      <div className='botoes-quantity'>
         <button onClick={() =>dispatch(decrementQuantity(itemid))}> - </button>
-          <div>{itemquantity}</div>
         <button onClick={() => dispatch(incrementQuantity(itemid))}> + </button>
+          <div>Quantidade:</div><div>{itemquantity}</div>
       </div>
-      <div>
-        {TotalItem()}
+      <div className='total'>
+        <div>Valor Total</div>
+        R$ {TotalItem()}
       </div>
     </div>
   )

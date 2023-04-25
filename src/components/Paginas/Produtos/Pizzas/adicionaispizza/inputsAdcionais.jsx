@@ -70,23 +70,27 @@ export function TotalAdd({ data, selectedAdds}){
     const AddSelecte =()=>{
         let adds = ""
             selectedAdds.forEach(add => {
-                adds += `${add.nome}`
+                adds += `${add.nome} / `
             });
             return adds
     }
     const item ={
-        nome: data.nome + data.sabores,
-        descricao: AddSelecte(),
+        nome: data.nome + " " + `${data.sabores}`,
+        descricao:  AddSelecte(),
         valor: valorTotalAdd()
     }
-    
+    const handleADd =(item)=>{
+        dispatch(addToCart(item))
+        navigate('/carrinho')
+    }
+
     return(
         <div className='Total-Add-Pizza'>
             <div className='item-valor-1'>
                 <div><label>Valor Total</label></div>
                     <div>R$ {valorTotalAdd()}</div>
             </div>
-            <div className='item-valor-2'><button onClick={()=> dispatch(addToCart(item))}>Adicionair</button></div>
+            <div className='item-valor-2'><button onClick={()=> handleADd(item)}>Adicionar</button></div>
         </div>
     )
 }

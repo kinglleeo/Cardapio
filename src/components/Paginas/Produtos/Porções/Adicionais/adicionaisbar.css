@@ -1,3 +1,41 @@
-.add-bar.body{
+.add-bar-body{
     width: 100%;
+    display: grid;
+    place-items: center;
+    padding-top: 10px;
+}
+.total-00{
+    display: grid;
+    place-items: center;
+    padding: 10px;
+}
+.adds-1{
+    width: 100%;
+    display: flex;
+}
+.items-1{
+    display: grid;
+    place-items: center;
+    width: 15%;
+}
+.item-00{
+    width: 100%;
+    display: flex;
+    place-items: center;
+}
+.item-002{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+}
+.item-005{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+}
+.caixa-2-22{
+    width: 30%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
 }

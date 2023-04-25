@@ -3,6 +3,7 @@ import { React, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { addToCart } from '../../../../../redux/cartSlice'
+import './adicionaisbar.css'
 
 export function AddAdicionais({ data, selectedAdds, setSelectedAdds}){
 
@@ -30,18 +31,34 @@ return(
 export function Tamanho({ data, selectedTamanho, setSelectedTamanho }){
 
     const handleTamanho=( event, data)=>{
+
+        let maxquantia = 1
+        const checkboxValues = Array.from(document.querySelectorAll('input[name="selecionar-tamanho"]:checked')).map(
+            (checkbox) => checkbox.value
+        )
+            if (checkboxValues.length >= maxquantia){
+                document.querySelectorAll('input[name="selecionar-tamanho"]:not(:checked)').forEach((checkbox) =>{
+                    checkbox.disabled = true;
+                });
+            } else {
+                document.querySelectorAll('input[name="selecionar-tamanho"]').forEach((checkbox) =>{
+                    checkbox.disabled = false;
+                });
+            }
+
         if(event.target.checked){
             setSelectedTamanho([...selectedTamanho, data])
         } else {
             setSelectedTamanho(selectedTamanho.filter((item) => item.id !== data.id))
         }
     }
-
+ 
 return(
         <div>
             <input
                 type='checkbox'
                 id={data.id}
+                name='selecionar-tamanho'
                 onChange={(event)=> handleTamanho(event, data)}
                 checked={selectedTamanho.some((item) => item.id === data.id)}
             />
@@ -87,6 +104,13 @@ export function Escolhidos2({ index2, selectedTamanho, setSelectedTamanho }){
         newSelectedAdds.splice(index2, 1)
         setSelectedTamanho(newSelectedAdds)
         handleRemovecheck(addRemove.id)
+
+        const checkboxValues = newSelectedAdds.map((item) => item.id)
+            document.querySelectorAll('input[name="selecionar-tamanho"]').forEach((checkbox) => {
+            if (!checkboxValues.includes(checkbox.value)) {
+                checkbox.disabled = false
+            }
+    })
     }
 
 
@@ -142,8 +166,9 @@ export function TotalAdd({ data, selectedAdds, selectedTamanho}){
     }
 
     return(
-        <div>
-            <div>{valorTotalAdd()}</div>
+        <div className='total-00'>
+            <div>Valor Total:</div>
+            <div>R${valorTotalAdd()}</div>
             <button onClick={()=> dispatch(addToCart(item))}>Adicionair</button>
         </div>
     )

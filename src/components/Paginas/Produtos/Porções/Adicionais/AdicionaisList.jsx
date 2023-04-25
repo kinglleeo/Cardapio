@@ -24,20 +24,18 @@ export default function AdicionaisList({ selectedAdds, setSelectedAdds }){
                                 <div className='item-nome'>{data.nome}</div>
                                 <div className='item-descricao'>{data.descricao}</div>
                             </div>
-                            <div className='caixa-2'>
+                            <div className='caixa-2-22'>
                                 <div className='item-valor'><label>Preço</label>R${data.valor}</div>
                                 <div>
-                                </div>       
+                                    <AddAdicionais
+                                        data={data}
+                                        selectedAdds={selectedAdds}
+                                        setSelectedAdds={setSelectedAdds}
+                                    />
+                                </div>
                             </div>
                             <div className='caixa-3'>
                                 <div className='item-img'></div>
-                            </div>
-                            <div>
-                                <AddAdicionais
-                                    data={data}
-                                    selectedAdds={selectedAdds}
-                                    setSelectedAdds={setSelectedAdds}
-                                />
                             </div>
                         </div>
                     </div>
