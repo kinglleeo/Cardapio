@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import './cart.css'
+import './cartpagbar.css'
 
 export function TotalItem({ itemquantity, itemid, itemvalor }){
   const dispatch = useDispatch()
@@ -18,14 +19,15 @@ export function TotalItem({ itemquantity, itemid, itemvalor }){
 
   return(
     <div className='bloco-bt-quan'>
-      <div className='botoes-quantity'>
-        <button className='botao-quant' onClick={() =>dispatch(decrementQuantity(itemid))}> - </button>
-        <button className='botao-quant' onClick={() => dispatch(incrementQuantity(itemid))}> + </button>
-      </div>
-      <div className='total'>
-        <div>Valor Total</div>
-        R$ {TotalItem()}
-      </div>
+        <div className='bloco-bt-quan-1'>
+          <button className='btn-quant' onClick={() =>dispatch(decrementQuantity(itemid))}> - </button>
+              <div className='quanti-quant'>{itemquantity}</div>
+          <button className='btn-quant' onClick={() => dispatch(incrementQuantity(itemid))}> + </button>
+        </div>
+        <div className='bloco-total'>
+            <div>Valor Total</div>
+            <div>R$ {TotalItem()}</div>
+        </div>
     </div>
   )
 }
@@ -42,11 +44,9 @@ export function TotalCart() {
   }
   
   return (
-    <div>
-      
-      <div>
-        Total: {totalCart()}
-      </div>
+    <div className='totalcart'>
+        <div>Total</div>
+        <div>R$ {totalCart()}</div>
     </div>
   )
 }

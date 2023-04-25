@@ -1,55 +1,52 @@
-.cart-main{
-    width: auto;
-    height: 100%;
-    min-height: 83vh;
+.cart-item-main{
+    width: 100%;
+    height: 100%;   
 }
-.cart-items{
-    padding: 7px;
-    width: auto;
-    height: auto;
-}
-.bloco-cart{
-    height: 100px;
+.cart-item-body{
+    padding: 10px;
     display: flex;
 }
 .cart-bloco-1{
-    width: 40%;
-    display: flex;
-    flex-direction: column;
+    width: 100%;
 }
-.cart-nome{
+.cart-bloco-caixa-1{
+    display: flex;
+}
+.cart-caixa-1{
+    display: grid;
+    width: 60%;
+}
+.cart-caixa-item-1{
     display: grid;
     place-items: center;
-    height: 20%;
 }
-.cart-descricao{
-    height: 80%;
+.cart-caixa-item-2{
     padding-left: 10px;
 }
-.cart-bloco-2{
-    width: 60%;
-    display: grid;
-}
-.cart-bloco-3{
-    width: 15%;
-    display: grid;
-    place-items: center;
-}
-.botoes-quantity{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    place-items: center;
-}
-.total{
-    display: grid;
-    place-items: center;
+.cart-caixa-2{
+    width: 40%;
     padding-left: 5px;
 }
-.botao-quant{
-    width: 30px;
-    height: 20px;
+.btn-remove{
+    display: grid;
+    place-items: center;
+    padding-left: 25px;
 }
 .bloco-bt-quan{
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+}
+.bloco-bt-quan-1{
+    display: flex;
+}
+.btn-quant{
+    width: 40%;
+}
+.quanti-quant{
+    width: 20%;
+    display: grid;
+    place-items: center;
+}
+.bloco-total{
+    display: grid;
+    place-items: center;
 }
