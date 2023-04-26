@@ -5,10 +5,12 @@
     width: auto;
     height: 100%;
 }
+.swiper-wrapper{
+    padding: 5px !important;
+}
 .swiper-slide{
     height: 95% !important;
-    width: 95% !important;
-    padding: 10px;
+    width: 100% !important;
 }
 .card{
     width: 99%;

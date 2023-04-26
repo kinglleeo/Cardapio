@@ -2,8 +2,9 @@ import { React, useState, useEffect } from 'react'
 import './navPromo.css'
 import axios from 'axios'
 import {Swiper, SwiperSlide} from 'swiper/react';
-import { Pagination } from 'swiper';
+import { Autoplay, Navigation, Pagination } from 'swiper';
 import "swiper/css";
+import "swiper/css/pagination";
 
 export default function Teste(){
     const [promo, setPromo ] = useState([])
@@ -21,7 +22,16 @@ export default function Teste(){
             <div className='bloco-promocoes'>
                 <div className='bloco-1365'>
                     <Swiper
-                        modules={[Pagination]}
+                    spaceBetween={30}
+                    centeredSlides={true}
+                        autoplay={{
+                            delay: 3000,
+                      }}
+                      pagination={{
+                        clickable: true,
+                      }}
+                      navigation={true}
+                        modules={[Pagination, Autoplay, Navigation]}
                     >
                         {promo.map((data)=>
                             <SwiperSlide>
