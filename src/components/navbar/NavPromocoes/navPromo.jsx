@@ -1,68 +1,65 @@
 import { React, useState, useEffect } from 'react'
 import './navPromo.css'
-import axios from 'axios';
-import { Autoplay, Pagination, Navigation } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
+import axios from 'axios'
+import {Swiper, SwiperSlide} from 'swiper/react';
+import { Pagination } from 'swiper';
+import "swiper/css";
 
-export default function Promo(){
-    const [promo, setPromo] = useState([]);
-    
+export default function Teste(){
+    const [promo, setPromo ] = useState([])
+
     useEffect(()=>{
         axios
             .get('https://642b23b0d7081590f91d081a.mockapi.io/lanches')
             .then((getdata)=>{
                 setPromo(getdata.data);
-            })
-            .catch((error)=>{
-                console.log(error);
             });
     }, []);
 
     return(
-        <div className='promo-nav-body'>
-            <div className='promo-nav-caixa'>
-                <div className='promo-nav-titulo'>
-                    <div>PROMOÇÕES</div>
-                </div>
-                <div className='promo-nav-carousel'>
+        
+            <div className='bloco-promocoes'>
+                <div className='bloco-1365'>
                     <Swiper
-                        spaceBetween={30}
-                            centeredSlides={true}
-                            autoplay={{
-                            delay: 2500,
-                            disableOnInteraction: false,
-                            }}
-                            pagination={{
-                            clickable: true,
-                            }}
-                            navigation={true}
-                            modules={[Autoplay, Pagination, Navigation]}
+                        modules={[Pagination]}
                     >
-                        
+                        {promo.map((data)=>
                             <SwiperSlide>
-                                <div className='items-slide'>
-                                    <div className='items-nome-box'>
-                                        <div className='item-name'>Nome</div>
-                                    </div>
-                                    <div className='items-descricao-box'>
-                                        <div>Descricao</div>
-                                    </div>
-                                    <div className='items-valor-box'>
-                                        <div>
-                                            <div>Valor</div>
-                                            <div>R$ 0000</div>
+                                <div className='card'>
+                                    <span></span>
+                                    <div className='tabela-card-promo'>
+                                        <div className='img'>
+                                            <div></div>
                                         </div>
-                                        <div>
-                                            <div>Valor Desconto</div>
-                                            <div>R$ 00000</div>
+                                        <div className='descricoes'>
+                                            <div className='descricoes-items'>
+                                                <div className='bloco-1'>
+                                                    <div>X-Salada</div>
+                                                </div>
+                                                <div className='bloco-2'>
+                                                    <div>pão de brioche, salada, queijo, presunto, milho, molho</div>
+                                                </div>
+                                                <div className='bloco-3'>
+                                                    <div className='items-valor'>
+                                                        <div className='valores'>
+                                                            <div>Valor</div>
+                                                            <div>R$ 000,00</div>
+                                                        </div>
+                                                        <div className='valores'>
+                                                            <div>Promoção</div>
+                                                            <div>R$ 000,00</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </SwiperSlide>
-                        
+                        )}
                     </Swiper>
                 </div>
             </div>
-        </div>
+        
     )
 }
