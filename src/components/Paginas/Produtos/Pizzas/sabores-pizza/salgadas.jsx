@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react';
 import axios from 'axios';
 import { Selecionadores } from './OperacaoInputs'
-import '../../Style.css'
+import '../../../../Estilos/Style.css'
 
 export default function Salgadas({ selectedSabores, setSelectedSabores }) {
   const [produto, setProduto] = useState([]);
@@ -23,8 +23,10 @@ export default function Salgadas({ selectedSabores, setSelectedSabores }) {
                             <div className="carde-inner">
                                 <div className='caixa-pro'>
                                     <div className='caixa-pro-1'> 
+                                    <div>
                                         <div className='item-f-nome'>{itempizza.nome}</div>
                                         <div className='item-f-descricao'>{itempizza.descricao}</div>
+                                    </div>
                                     </div>
                                     <div className='caixa-pro-22'>
                                         <Selecionadores 
@@ -33,7 +35,7 @@ export default function Salgadas({ selectedSabores, setSelectedSabores }) {
                                             setSelectedSabores={setSelectedSabores}  
                                         />
                                     </div>
-                                    <div className='caixa-pro-3'>
+                                    <div className='caixa-pro-2'>
                                         <div className='item-f-img'></div>
                                     </div>
                                 </div>

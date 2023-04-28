@@ -8,7 +8,7 @@ import {addToCart} from '../../../../redux/cartSlice';
 import IconCarrinho from '../../../Carrinho/Iconcarrinho'
 import Decimal from 'decimal.js';
 import TopoPagina from '../../../AA-utilidades/Topo';
-import '../Style.css'
+import '../../../Estilos/Style.css'
 
 export default function adicionaislanches( ){
     const { state } = useLocation();

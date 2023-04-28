@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { React, useState, useEffect } from 'react'
 import { AddAdicionais } from './inputsAdcionais';
-import '../../Style.css'
+import '../../../../Estilos/Style.css'
 
 export default function Adicionais({ selectedAdds, setSelectedAdds }){
     const [adicionais, setAdicionais] = useState([]);
