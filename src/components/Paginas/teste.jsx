@@ -8,7 +8,10 @@ export default function teste(){
     }
     return(
         <div className='teste-main'>
-            
+            <button class="icon-btn add-btn">
+    <div class="add-icon"></div>
+    <div class="btn-txt">Add Photo</div>
+</button>
         </div>
     )
 }

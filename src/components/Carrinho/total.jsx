@@ -23,6 +23,7 @@ export function TotalItem({ itemquantity, itemid, itemvalor }){
         <div>Valor:</div>
         <div>R$ {TotalItem()}</div>
       </div>
+      <div>Quantia:</div>
       <div className='cart-caixa-valores'>
         <div className='cart-val1'>
           <button className='arrow left' onClick={() => dispatch(decrementQuantity(itemid))}/>
