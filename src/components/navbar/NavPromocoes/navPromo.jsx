@@ -6,6 +6,7 @@ import { Autoplay, Navigation, Pagination } from 'swiper';
 import "swiper/css";
 import "swiper/css/pagination";
 import { useNavigate } from 'react-router-dom'
+import '../../Estilos/Style.css'
 
 export default function Teste(){
     const [promo, setPromo ] = useState([])
@@ -35,7 +36,7 @@ export default function Teste(){
                             disableOnInteraction: false,
                       }}
                       pagination={{
-                        clickable: true,
+                        dynamicBullets: true,
                       }}
                       navigation={true}
                         modules={[Pagination, Autoplay, Navigation]}
@@ -46,9 +47,10 @@ export default function Teste(){
                                     <span></span>
                                     <div className='tabela-card-promo'>
                                         <div className='img'>
-                                            <button className='botao-promo' onClick={(()=> handleAdicionais(item))}> Adicionais </button>
-                                            <div></div>
-                                        </div>
+                                            <div className='item-f-img'>
+                                                <button onClick={(()=> handleAdicionais(item))} class="btn-azul-estiloso"> Adicionais </button>
+                                            </div>
+                                    </div>
                                         <div className='descricoes'>
                                             <div className='descricoes-items'>
                                                 <div className='bloco-1'>

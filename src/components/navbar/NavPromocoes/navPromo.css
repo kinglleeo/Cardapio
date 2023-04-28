@@ -68,6 +68,9 @@
     background-size: 100% 100%;
     border-radius: 15px 0 0 15px;
 }
+.botao-para-promo-nav{
+    height: 100%;
+}
 .descricoes{
     width: 45%;
     height: 100%;

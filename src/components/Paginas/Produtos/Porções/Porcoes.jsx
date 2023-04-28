@@ -23,7 +23,7 @@ export default function Porcoes(){
 
     return(
         <div className='lista-items' id='porcoes'>
-                    <label className='titulo-lista'>LANCHES</label>
+                    <label className='titulo-lista'>PORÇÕES</label>
             {produto.map((item)=>  
                 <div className="carde">
                     <div className="circle"></div>
@@ -43,7 +43,7 @@ export default function Porcoes(){
                                     </div>
                                     <div className='caixa-pro-2'>
                                     <div className='item-f-img'>
-                                        <button onClick={(()=> handleAdicionais(item))} class="btn-azul-estiloso"> Adicionais </button>
+                                        <button onClick={(()=> handleAdicionais(item))} class="btn-azul-estiloso"> Tamanho </button>
                                     </div>
                                     </div>
                                 </div>
