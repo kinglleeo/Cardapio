@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './searchbar.css'
 import axios from 'axios';
-
+import { CgSearchLoading } from 'react-icons/cg'
 export default function SearchBar(){
     const [produtos, setProdutos] = useState([]);
     const [searchQuery, setSearchQuery] = useState('')
@@ -14,15 +14,14 @@ export default function SearchBar(){
             });
     }, []);
 
-    const handleSearch =(e)=>{
-        setSearchQuery(e.target.value)
-    }
-
 
  return(
     <div className='search-bar'>
         <div className='search-box'>
-            <input type='text' className='input-search' placeholder='busca...' value={searchQuery} onChange={handleSearch}/>
+            <input type='text' className='input' />
+            <div className='btn-box'>
+                <button className='btn-search'><CgSearchLoading/></button>
+            </div>
         </div>
     </div>
  )  

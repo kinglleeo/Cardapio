@@ -16,22 +16,28 @@ export default function AdicionaisTamanho({ selectedTamanho, setSelectedTamanho 
 
     return(
         <div className='tamanho-body'>
-            <div className='tamanh-items'>
-                <div className='tamanho-item'>
-                    {produto.map((data)=>
-                        <div className='tamanho-caixa'>
+            <label className='titulo-tamanhos'>Tamanhos</label>
+            <div className='caixa-00'>
+                {produto.map((data)=>
+                <div className='caixa-1111'>
+                    <div className='bloco-items-tamanho'>
+                        <div className='item-tamanho-1'>
                             <div>{data.tamanho}</div>
-                            <div>{data.valor}</div>
-                            <div>
-                                <Tamanho
-                                    data={data}
-                                    selectedTamanho={selectedTamanho}
-                                    setSelectedTamanho={setSelectedTamanho}
-                                />
-                            </div>
                         </div>
-                    )}
+                        <div className='item-tamanho-2'>
+                            <div>Valor</div>
+                            <div> R$ {data.valor}</div>
+                        </div>
+                        <div className='item-tamanho-3'>
+                            <Tamanho
+                                data={data}
+                                selectedTamanho={selectedTamanho}
+                                setSelectedTamanho={setSelectedTamanho}
+                            />
+                        </div>
+                    </div>
                 </div>
+                )}
             </div>
         </div>
     )

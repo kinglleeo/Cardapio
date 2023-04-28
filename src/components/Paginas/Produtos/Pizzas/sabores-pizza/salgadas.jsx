@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from 'react';
 import axios from 'axios';
 import { Selecionadores } from './OperacaoInputs'
+import '../../Style.css'
 
 export default function Salgadas({ selectedSabores, setSelectedSabores }) {
   const [produto, setProduto] = useState([]);
@@ -14,28 +15,31 @@ export default function Salgadas({ selectedSabores, setSelectedSabores }) {
   }, []);
    
   return (
-    <div className="caixa-lista" id="salgadas">
-      <label className="titulo-lista">Salgadas</label>
-      {produto.map((itempizza) => (
-        <div className="caixa-css" key={itempizza.id}>
-          <div className="caixa-items">
-            <div className="caixa-1">
-              <div className="item-nome">{itempizza.nome}</div>
-              <div className="item-descricao">{itempizza.descricao}</div>
+    <div className='lista-items' id='salgadas'>
+                    <label className='titulo-lista'>SALGADAS</label>
+            {produto.map((itempizza)=>  
+                <div className="carde">
+                    <div className="circle"></div>
+                            <div className="carde-inner">
+                                <div className='caixa-pro'>
+                                    <div className='caixa-pro-1'> 
+                                        <div className='item-f-nome'>{itempizza.nome}</div>
+                                        <div className='item-f-descricao'>{itempizza.descricao}</div>
+                                    </div>
+                                    <div className='caixa-pro-22'>
+                                        <Selecionadores 
+                                            itempizza={itempizza}
+                                            selectedSabores={selectedSabores}
+                                            setSelectedSabores={setSelectedSabores}  
+                                        />
+                                    </div>
+                                    <div className='caixa-pro-3'>
+                                        <div className='item-f-img'></div>
+                                    </div>
+                                </div>
+                            </div>
             </div>
-            <div className="caixa-2">
-                <Selecionadores 
-                  itempizza={itempizza}
-                  selectedSabores={selectedSabores}
-                  setSelectedSabores={setSelectedSabores}  
-                />
-            </div>
-            <div className='caixa-3'>
-
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
+            )}    
+        </div> 
   );
 }

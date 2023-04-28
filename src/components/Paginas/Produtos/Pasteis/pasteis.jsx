@@ -23,26 +23,34 @@ export default function Pasteis(){
     };
 
     return(
-        <div className='caixa-lista' id='pasteis'>
-                <label className='titulo-lista'>PASTEIS</label>
-                {produto.map((item)=>
-            <div className='caixa-css'>
-                <div className='caixa-items' key={item.id}>
-                    <div className='caixa-1'>   
-                        <div className='item-nome'>{item.nome}</div>
-                        <div className='item-descricao'>{item.descricao}</div>
-                    </div>
-                    <div className='caixa-2'>
-                        <div className='item-valor'><label>Preço</label>R$ {item.valor}</div>
-                        {item.adicionais === ""? (<button onClick={()=> dispatch(addToCart(item))}> Adicionar</button>)
-                        : (<button onClick={(()=> handleAdicionais(item))}>Adicionais</button>)}
-                    </div>
-                    <div className='caixa-3'>
-                        <div className='item-img'></div>
-                    </div>
-                </div>
+        <div className='lista-items' id='pasteis'>
+                    <label className='titulo-lista'>PASTEIS</label>
+            {produto.map((item)=>  
+                <div className="carde">
+                    <div className="circle"></div>
+                            <div className="carde-inner">
+                                <div className='caixa-pro'>
+                                    <div className='caixa-pro-1'> 
+                                        <div className='item-f-nome'>{item.nome}</div>
+                                        <div className='item-f-descricao'>{item.descricao}</div>
+                                    </div>
+                                    <div className='caixa-pro-2'>
+                                        <div className='item-f-valor'>
+                                            <div>Valor</div>
+                                            <div>R$ {item.valor}</div>
+                                        </div>
+                                        <div className='item-f-btn'>
+                                        {item.adicionais === ""? (<button onClick={()=> dispatch(addToCart(item))}> Adicionar</button>)
+                                            : (<button onClick={(()=> handleAdicionais(item))}>Adicionais</button>)}
+                                        </div>
+                                    </div>
+                                    <div className='caixa-pro-3'>
+                                        <div className='item-f-img'></div>
+                                    </div>
+                                </div>
+                            </div>
             </div>
-            )}
-        </div>
+            )}    
+        </div> 
     )
 }

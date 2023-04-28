@@ -9,11 +9,13 @@ export default function AdicionaisBar({ selectedAdds, setSelectedAdds, selectedT
 
     return(
         <div className='add-bar-body'>
-            <div className='item-005'>
-                <div>{item.nome}</div>
+            <div className='cont-bar-body'>
+                <div className='caixa-bar-body'>
+                    <div className='caixa-bar-body-1'>
+                        <div className='bar-add-t-name'>{item.nome}</div>
                         <div>
                             {selectedTamanho.map((data3, index)=>
-                                <div key={index} className='item-002'>
+                                <div key={index} className='bar-add-t-tamanho'>
                                     <div>{data3.tamanho}</div>
                                     <Escolhidos2
                                         selectedTamanho={selectedTamanho}
@@ -22,27 +24,35 @@ export default function AdicionaisBar({ selectedAdds, setSelectedAdds, selectedT
                                     />
                                 </div>
                             )}
+                        </div>
                     </div>
+                    <div className='caixa-bar-body-2'>
+                        <div className='bar-escolhidos-add'>
+                            {selectedAdds.map((data2, index)=>
+                                <div className='bar-escolhidos-add-00'>
+                                <div key={index} className='bar-escolhidos-add-11'>
+                                    <div>{data2.nome}</div>
+                                    <Escolhidos
+                                        selectedAdds={selectedAdds}
+                                        setSelectedAdds={setSelectedAdds}
+                                        index={index}
+                                    />
+                                </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                    <div className='caixa-bar-body-3'>
+                        <div className='caixa-add-total'>
+                            <TotalAdd
+                                data={item}
+                                selectedAdds={selectedAdds}
+                                selectedTamanho={selectedTamanho}
+                            />
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div className='adds-1'>
-                {selectedAdds.map((data2, index) =>
-                    (<div key={index} className='items-1'>
-                        {data2.nome}
-                        <Escolhidos
-                            selectedAdds={selectedAdds}
-                            setSelectedAdds={setSelectedAdds}
-                            index={index}
-                        />
-                    </div>)
-                )}
-            </div> 
-            <div>
-                <TotalAdd
-                    data={item}
-                    selectedAdds={selectedAdds}
-                    selectedTamanho={selectedTamanho}
-                />
-            </div>       
         </div>
     )
 }

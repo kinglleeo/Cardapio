@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Decimal from 'decimal.js';
 import '../valorpizza/comanda-pizza.css'
+import './Style.css'
+import '../../estilos/Style.css'
 
 export function Selecionadores({ itempizza, selectedSabores, setSelectedSabores }){
     const { state } = useLocation()
@@ -32,7 +34,8 @@ export function Selecionadores({ itempizza, selectedSabores, setSelectedSabores 
     
 }
     return (
-        <div className='selecionar-add-pizza'>
+        <div className='selecionar-add-pizza-0'>
+            <label className='container'>
                 <input
                     type='checkbox'
                     name="selecionar-sabor"
@@ -40,6 +43,8 @@ export function Selecionadores({ itempizza, selectedSabores, setSelectedSabores 
                     onChange={(event) => handleCheckboxChange(event, itempizza)}
                     checked={selectedSabores.some((item) => item.id === itempizza.id)}
                 />
+                <div className='checkmark'></div>
+            </label>
         </div>
     )
 }
@@ -73,11 +78,13 @@ export function MostrarSelecionados ({ index, selectedSabores, setSelectedSabore
 
     return(
         <div>
-            <input
-                type='checkbox'
-                checked
-                onChange={() => handleRemoveItem(index)}
-            />
+            <label>
+                <input
+                    type='checkbox'
+                    checked
+                    onChange={() => handleRemoveItem(index)}
+                />
+            </label>
         </div>
     )
 }

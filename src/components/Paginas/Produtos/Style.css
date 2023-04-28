@@ -1,15 +1,9 @@
-@font-face {
-    font-family: "edosz.ttf";
-    src: local("edosz.ttf"),
-     url("../../../fonts//edosz.ttf") ;
-    }
-.caixa-lista{
+.lista-items{
+    padding-top: 40px;
     display: grid;
     width: auto;
     height: auto;
-    padding-top: 40px;
     place-items: center;
-    font-family: "edosz.ttf";
 }
 .titulo-lista{
     display: grid;
@@ -17,51 +11,92 @@
     font-size: 30px;
     font-weight: 600;
 }
-.caixa-css{
-    width: 95%;
+.carde{
+    padding-top: 5px;
+    padding-left: 5px;
     padding-bottom: 5px;
+    width: 98%;
+    height: 130px;
+    transition: all 0.2s;
+    position: relative;
+} 
+.carde-inner {
+    width: inherit;
+    height: inherit;
+    background: rgba(255,255,255,.05);
+    box-shadow: 0 0 10px rgba(0,0,0,0.25);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+} 
+.carde:hover {
+    //transform: scale(1.04) rotate(1deg);
+} 
+.circle {
+    height: 50px;
+    width: 50px;
+    background: radial-gradient(#b0e633, #53ef7d);
+    border-radius: 50%;
+    position: absolute;
+    animation: move-up6 2s ease-in infinite alternate-reverse;
+} 
+.circle:nth-child(1) {
+   top: -10px;
+   left: -15px;
+}  
+.circle:nth-child(2) {
+   bottom: -5px;
+   right: -2px;
+   animation-name: move-down1;
+}  
+@keyframes move-up6 {
+   to {
+     transform: translateY(-10px);
+  }
+} 
+@keyframes move-down1 {
+   to {
+    transform: translateY(10px);
+   }
+}
+.caixa-pro{
+    width: 100%;
+    height: 100%;  
+    display: flex;
+}
+.caixa-pro-1{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+.item-f-nome{
+    height: 30%;
+    display: grid;
+    place-items: center;
+}
+.item-f-descricao{
+    height: 70%;
+    padding-left: 7px;
+}
+.caixa-pro-2{
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+}
+.item-f-valor{
+    height: 30%;
+    display: grid;
+    place-items: center;
     padding-top: 5px;
 }
-.caixa-items{  
-    display: flex;
-    width: 100%;
-    height: 120px;
-    border-radius: 10px;
-    box-shadow: inset 0px 11px 8px -10px rgb(0, 0, 0, 1), inset 0px -11px 8px -10px rgba(0,0,0,1);
+.item-f-btn{
+    height: 70%;
+    display: grid;
+    place-items: center;
 }
-.caixa-1{
-    width: 40%;
-}
-.caixa-2{
-    width: 25%;
-}
-.caixa-3{
-    width: 35%;
+.caixa-pro-3{
+    width: 45%;
     background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEtjamTtz6OXfHkGE_XwfZx1fdNPZFlTh9BA&usqp=CAU");
     background-position: center;
     background-size: 100% 100%;
     border-radius: 10px;
-}
-.item-nome{
-    padding: 10px;
-    font-size: 20px;
-    font-weight: 600;
-}
-.item-descricao{
-    font-size: 12px;
-    padding-left: 20px;
-}
-.item-valor{
-    display: grid;
-    place-items: start center;
-    padding: 8px;
-}
-.item-botao{
-    display: grid;
-    place-items: center;
-    padding: 5px;
-}
-.corpo-adicionais{
-    width: 100%;
-    height: auto;
 }

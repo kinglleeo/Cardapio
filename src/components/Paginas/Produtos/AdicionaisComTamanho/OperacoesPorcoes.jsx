@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { addToCart } from '../../../../redux/cartSlice'
 import './adicionaisbar.css'
+import '../estilos/Style.css'
 
 export function AddAdicionais({ data, selectedAdds, setSelectedAdds}){
 
@@ -18,12 +19,15 @@ export function AddAdicionais({ data, selectedAdds, setSelectedAdds}){
 
 return(
         <div>
-            <input
-                type='checkbox'
-                id={data.id}
-                onChange={(event)=> handleAddAdicionais(event, data)}
-                checked={selectedAdds.some((item) => item.id === data.id)}
-            />
+            <label className='container'>
+                <input
+                    type='checkbox'
+                    id={data.id}
+                    onChange={(event)=> handleAddAdicionais(event, data)}
+                    checked={selectedAdds.some((item) => item.id === data.id)}
+                /> 
+                <div className='checkmark'></div>
+            </label>            
         </div>
     )
 }
@@ -55,13 +59,16 @@ export function Tamanho({ data, selectedTamanho, setSelectedTamanho }){
  
 return(
         <div>
-            <input
-                type='checkbox'
-                id={data.id}
-                name='selecionar-tamanho'
-                onChange={(event)=> handleTamanho(event, data)}
-                checked={selectedTamanho.some((item) => item.id === data.id)}
-            />
+            <label className='container'>
+                <input
+                    type='checkbox'
+                    id={data.id}
+                    name='selecionar-tamanho'
+                    onChange={(event)=> handleTamanho(event, data)}
+                    checked={selectedTamanho.some((item) => item.id === data.id)}
+                />
+                <div className='checkmark'></div>
+            </label>
         </div>
     )
 }  
@@ -86,13 +93,9 @@ export function Escolhidos({ index, selectedAdds, setSelectedAdds }){
 
     return(
         <div>
-            <div>
-                <input
-                    type='checkbox'
+                <input type='checkbox'
                     checked
-                    onChange={()=> handleRemoveAdd(index)}
-                />
-            </div>
+                    onChange={()=> handleRemoveAdd(index)}/>
         </div>
     )
 }
@@ -124,11 +127,6 @@ export function Escolhidos2({ index2, selectedTamanho, setSelectedTamanho }){
     return(
         <div>
             <div>
-                <input
-                    type='checkbox'
-                    checked
-                    onChange={()=> handleRemoveAdd(index2)}
-                />
             </div>
         </div>
     )

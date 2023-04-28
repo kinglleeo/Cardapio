@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { React, useState, useEffect } from 'react'
 import { AddAdicionais } from './inputsAdcionais';
-
-
+import '../../Style.css'
 
 export default function Adicionais({ selectedAdds, setSelectedAdds }){
     const [adicionais, setAdicionais] = useState([]);
@@ -17,29 +16,34 @@ export default function Adicionais({ selectedAdds, setSelectedAdds }){
 
 
     return(
-        <div className='caixa-lista'>
-            <label className='titulo-lista'>ADICIONAIS</label>
-            {adicionais.map((data)=>
-                <div className='caixa-css' key={data.id}>
-                    <div className='caixa-items'>
-                        <div className='caixa-1'>
-                            <div className='item-nome'>{data.nome}</div>
-                            <div className='item-descricao'>{data.descricao}</div>
-                        </div>
-                        <div className='caixa-2'>
-                            <div className='item-valor'>{data.valor}</div>
-                        </div>
-                        <div>
-                            <AddAdicionais
-                                data={data}
-                                selectedAdds={selectedAdds}
-                                setSelectedAdds={setSelectedAdds}
-                            />
-                        </div>
-                    </div>
-                </div>
-            )}
-            
-        </div>
+        <div className='lista-items' id='salgadas'>
+                    <label className='titulo-lista'>SALGADAS</label>
+            {adicionais.map((data)=>  
+                <div className="carde">
+                    <div className="circle"></div>
+                            <div className="carde-inner">
+                                <div className='caixa-pro'>
+                                    <div className='caixa-pro-1'> 
+                                        <div className='item-f-nome'>{data.nome}</div>
+                                        <div className='item-f-descricao'>{data.descricao}</div>
+                                    </div>
+                                    <div className='caixa-pro-2'>
+                                        <AddAdicionais
+                                            data={data}
+                                            selectedAdds={selectedAdds}
+                                            setSelectedAdds={setSelectedAdds}
+                                        />
+                                    <div className='item-f-btn'>
+                                        
+                                    </div>
+                                    </div>
+                                    <div className='caixa-pro-3'>
+                                        <div className='item-f-img'></div>
+                                    </div>
+                                </div>
+                            </div>
+            </div>
+            )}    
+        </div> 
     )
 }

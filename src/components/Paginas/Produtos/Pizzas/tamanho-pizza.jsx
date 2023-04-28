@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export default function TamanhoPizaa(){
-    const [Produto, setProduto] = useState([]);
+    const [produto, setProduto] = useState([]);
     const navigate = useNavigate();
 
     useEffect(()=>{
@@ -19,26 +19,33 @@ export default function TamanhoPizaa(){
     };
 
     return(
-        <div className='caixa-lista' id='pizzas'>
-            <label className='titulo-lista'>PIZZAS</label>
-            {Produto.map((tamanhopizza)=>
-                <div className='caixa-css'>
-                    <div className='caixa-items' key={tamanhopizza.id}>
-                        <div className='caixa-1'>
-                            <div className='item-nome'>{tamanhopizza.tamanho}</div>
-                            <div className='item-descricao'>{tamanhopizza.quantia}</div>
-                        </div>
-                        <div className='caixa-2'>
-                            <div className='item-valor'>{tamanhopizza.valor}</div>
-                            <div><button onClick={(()=> handleSetTamanho(tamanhopizza))}> Tamanho </button></div>
-                        </div>
-                        <div className='caixa-3'>
-                            <div className='item-img'></div>
-                        </div>
-                        
-                    </div>
-                </div>
-            )}
+        <div className='lista-items' id='pizzas'>
+                    <label className='titulo-lista'>Pizzas</label>
+            {produto.map((tamanhopizza)=>  
+                <div className="carde">
+                    <div className="circle"></div>
+                            <div className="carde-inner">
+                                <div className='caixa-pro'>
+                                    <div className='caixa-pro-1'> 
+                                        <div className='item-f-nome'>{tamanhopizza.tamanho}</div>
+                                        <div className='item-f-descricao'>{tamanhopizza.descricao}</div>
+                                    </div>
+                                    <div className='caixa-pro-2'>
+                                        <div className='item-f-valor'>
+                                            <div>Valor</div>
+                                            <div>R$ {tamanhopizza.valor}</div>
+                                        </div>
+                                        <div className='item-f-btn'>
+                                            <button onClick={(()=> handleSetTamanho(tamanhopizza))}> Tamanho </button>
+                                        </div>
+                                    </div>
+                                    <div className='caixa-pro-3'>
+                                        <div className='item-f-img'></div>
+                                    </div>
+                                </div>
+                            </div>
+            </div>
+            )}    
         </div>
     )
 }

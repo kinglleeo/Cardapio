@@ -15,32 +15,38 @@ export default function AdicionaisList({ selectedAdds, setSelectedAdds }){
 
 
     return(
-        <div className='caixa-lista' id='lanches'>
-                    <label className='titulo-lista'>LANCHES</label>
-                {produto.map((data)=>
-                    <div className='caixa-css'>
-                        <div className='caixa-items' key={data.id}>
-                            <div className='caixa-1'>
-                                <div className='item-nome'>{data.nome}</div>
-                                <div className='item-descricao'>{data.descricao}</div>
+        <div className='lista-items'>
+        <label className='titulo-lista'>ADICIONAIS</label>
+        {produto.map((data)=>
+            <div className="carde">
+                <div className="circle"></div>
+                <div className="carde-inner">
+                    <div className='caixa-pro'>
+                        <div className='caixa-pro-1'> 
+                            <div className='item-f-nome'>{data.nome}</div>
+                            <div className='item-f-descricao'>{data.descricao}</div>
+                        </div>
+                        <div className='caixa-pro-2'>
+                            <div className='item-f-valor'>
+                                <div>Valor</div>
+                                <div>R$ {data.valor}</div>
                             </div>
-                            <div className='caixa-2-22'>
-                                <div className='item-valor'><label>Preço</label>R${data.valor}</div>
-                                <div>
-                                    <AddAdicionais
-                                        data={data}
-                                        selectedAdds={selectedAdds}
-                                        setSelectedAdds={setSelectedAdds}
-                                    />
-                                </div>
-                            </div>
-                            <div className='caixa-3'>
-                                <div className='item-img'></div>
+                            <div className='item-f-btn'>
+                                <AddAdicionais
+                                    data={data}
+                                    selectedAdds={selectedAdds}
+                                    setSelectedAdds={setSelectedAdds}
+                                />
                             </div>
                         </div>
+                        <div className='caixa-pro-3'>
+                            <div className='item-f-img'></div>
+                        </div>
                     </div>
-                 )}
-        </div>   
+                </div>
+            </div>
+        )}
+    </div>  
         
     )
 }

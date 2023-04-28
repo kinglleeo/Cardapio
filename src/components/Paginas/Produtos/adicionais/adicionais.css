@@ -9,14 +9,29 @@
     padding-top: 15px;
 }
 .items-information{
-    width: 99%;
-    min-height: 50px;
+    width: auto;
     height: auto;
+    padding: 10px;
+}
+.barra-items-information{
+    display: flex;
+    min-height: 70px;
+    border-radius: 10px;
+    background: linear-gradient(145deg, #cacaca, #f0f0f0);
+}
+.item-000{
+    width: 30%;
+    padding: 10px;
+}
+.item-222{
+    width: 30%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
     place-items: center;
-    box-shadow: 0px 7px 25px 12px #4E0000;
-    border: none;
+}
+.item-333{
+    width: 40%;
+    display: grid;
+    place-items: center;
 }
 .itemB{
     width: 100%;
@@ -53,4 +68,25 @@
     width: 30%;
     background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8MwG_nQ3MmtNO62z7jCb3xi-oHJDBJe38aA&usqp=CAU");
     background-size: 100% 100%;
+}
+.container input {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+    cursor: pointer;
+    
+}
+.caixa-D-items{
+    width: auto;
+    height: auto;
+    padding-top: 10px;
+}
+.item-111{
+    border-radius: 10px;
+    min-height: 60px;
+    background: linear-gradient(145deg, #cacaca, #f0f0f0);
+}
+.descricao-item-d{
+    padding: 5px;
 }

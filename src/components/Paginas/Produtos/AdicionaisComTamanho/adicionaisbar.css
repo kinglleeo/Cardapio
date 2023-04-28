@@ -1,9 +1,3 @@
-.add-bar-body{
-    width: 100%;
-    display: grid;
-    place-items: center;
-    padding-top: 10px;
-}
 .total-00{
     display: grid;
     place-items: center;
@@ -38,4 +32,76 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     place-items: center;
+}
+.container input {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+    cursor: pointer;
+    
+}
+.add-bar-body{
+    width: 100%;
+    display: grid;
+    place-items: center;
+    padding-top: 10px;
+}
+.cont-bar-body{
+    width: 97%;
+    height: auto;
+    display: grid;
+}
+.caixa-bar-body{
+}
+.caixa-bar-body-1{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-radius: 10px;
+    width: auto;
+    height: 35px;
+    background: linear-gradient(145deg, #dbdbdb, #f0f0f0);
+}
+.bar-add-t-name{
+    display: grid;
+    place-items: center;
+}
+.bar-add-t-tamanho{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    height: 100%;
+    place-items: center start;
+}
+.caixa-bar-body-2{
+    display: grid;
+    place-items: center;
+}
+.caixa-bar-body-3{
+    display: grid;
+    place-items: center;
+    padding-top: 10px;
+}
+.bar-escolhidos-add{
+    display: flex;
+    flex-wrap: wrap;
+}
+.bar-escolhidos-add-00{
+    padding: 5px;
+}
+.bar-escolhidos-add-11{
+    padding: 7px;
+    width: auto;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    border-radius: 15px;
+    background: #ffffff;
+    box-shadow: inset 19px 19px 29px #dbdbdb,
+            inset -19px -19px 29px #ffffff;
+}
+.caixa-add-total{
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: inset 19px 19px 29px #dbdbdb,
+            inset -19px -19px 29px #ffffff;
 }

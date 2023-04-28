@@ -5,9 +5,11 @@ import {Swiper, SwiperSlide} from 'swiper/react';
 import { Autoplay, Navigation, Pagination } from 'swiper';
 import "swiper/css";
 import "swiper/css/pagination";
+import { useNavigate } from 'react-router-dom'
 
 export default function Teste(){
     const [promo, setPromo ] = useState([])
+    const navigate = useNavigate()
 
     useEffect(()=>{
         axios
@@ -16,6 +18,10 @@ export default function Teste(){
                 setPromo(getdata.data);
             });
     }, []);
+    
+    const handleAdicionais = (item) => {
+        navigate('/Adicionais', { state: { item } });
+      };
 
     return(
         
@@ -26,6 +32,7 @@ export default function Teste(){
                     centeredSlides={true}
                         autoplay={{
                             delay: 3000,
+                            disableOnInteraction: false,
                       }}
                       pagination={{
                         clickable: true,
@@ -33,27 +40,28 @@ export default function Teste(){
                       navigation={true}
                         modules={[Pagination, Autoplay, Navigation]}
                     >
-                        {promo.map((data)=>
+                        {promo.map((item)=>
                             <SwiperSlide>
-                                <div className='card'>
+                                <div className='card' key={item.id}>
                                     <span></span>
                                     <div className='tabela-card-promo'>
                                         <div className='img'>
+                                            <button className='botao-promo' onClick={(()=> handleAdicionais(item))}> Adicionais </button>
                                             <div></div>
                                         </div>
                                         <div className='descricoes'>
                                             <div className='descricoes-items'>
                                                 <div className='bloco-1'>
-                                                    <div>X-Salada</div>
+                                                    <div>{item.nome}</div>
                                                 </div>
                                                 <div className='bloco-2'>
-                                                    <div>pão de brioche, salada, queijo, presunto, milho, molho</div>
+                                                    <div>{item.descricao}</div>
                                                 </div>
                                                 <div className='bloco-3'>
                                                     <div className='items-valor'>
                                                         <div className='valores'>
                                                             <div>Valor</div>
-                                                            <div>R$ 000,00</div>
+                                                            <div>R$ {item.valor}</div>
                                                         </div>
                                                         <div className='valores'>
                                                             <div>Promoção</div>
