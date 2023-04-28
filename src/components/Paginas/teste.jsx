@@ -10,7 +10,7 @@ export default function teste(){
         <div className='teste-main'>
             <div className='carde'>
                 <div className='carde-inner'>
-                        
+                
                 </div>
             </div>
         </div>
