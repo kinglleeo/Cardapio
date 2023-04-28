@@ -18,12 +18,15 @@ export function AddAdicionais({ data, selectedAdds, setSelectedAdds}){
 
 return(
         <div>
-            <input
-                type='checkbox'
-                id={data.id}
-                onChange={(event)=> handleAddAdicionais(event, data)}
-                checked={selectedAdds.some((item) => item.id === data.id)}
-            />
+            <label className='container'>
+                <input
+                    type='checkbox'
+                    id={data.id}
+                    onChange={(event)=> handleAddAdicionais(event, data)}
+                    checked={selectedAdds.some((item) => item.id === data.id)}
+                />
+                <div className='checkmark'></div>
+            </label>
         </div>
     )
 }

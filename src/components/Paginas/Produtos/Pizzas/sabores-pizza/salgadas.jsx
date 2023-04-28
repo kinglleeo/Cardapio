@@ -21,24 +21,29 @@ export default function Salgadas({ selectedSabores, setSelectedSabores }) {
                 <div className="carde">
                     <div className="circle"></div>
                             <div className="carde-inner">
-                                <div className='caixa-pro'>
-                                    <div className='caixa-pro-1'> 
-                                    <div>
-                                        <div className='item-f-nome'>{itempizza.nome}</div>
-                                        <div className='item-f-descricao'>{itempizza.descricao}</div>
-                                    </div>
-                                    </div>
-                                    <div className='caixa-pro-22'>
-                                        <Selecionadores 
-                                            itempizza={itempizza}
-                                            selectedSabores={selectedSabores}
-                                            setSelectedSabores={setSelectedSabores}  
-                                        />
-                                    </div>
-                                    <div className='caixa-pro-2'>
-                                        <div className='item-f-img'></div>
-                                    </div>
+                            <div className='caixa-pro'>
+                        <div className='caixa-pro-1'>
+                            <div className='bloco-caixa-pro-1'>
+                                <div className='bloco-pro-name'>
+                                    <div className='item-f-nome'>{itempizza.nome}</div>
                                 </div>
+                                <div className='item-f-valor'>
+                                    <div>Valor</div>
+                                    <div>R$ {itempizza.valor}</div>
+                                </div>
+                            </div> 
+                            <div className='item-f-descricao'>Lagosta, Geladeira, navio, mussarela, queijo, avião, cobra, onomatopeia, jaguatirica, lambari, amendoim, figado, jundia, abacate, asiajsahudhsuhda, suah uhsuhd s, sau hduhs a, ushad uhas{itempizza.descricao}</div>
+                        </div>
+                        <div className='caixa-pro-2'>
+                            <div className='item-f-img'>
+                                <Selecionadores
+                                    itempizza={itempizza}
+                                    selectedSabores={selectedSabores}
+                                    setSelectedSabores={setSelectedSabores}
+                                />
+                            </div>
+                        </div>
+                    </div>
                             </div>
             </div>
             )}    

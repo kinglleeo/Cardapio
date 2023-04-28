@@ -22,25 +22,26 @@ export default function AdicionaisList({ selectedAdds, setSelectedAdds }){
                 <div className="circle"></div>
                 <div className="carde-inner">
                     <div className='caixa-pro'>
-                        <div className='caixa-pro-1'> 
-                            <div className='item-f-nome'>{data.nome}</div>
-                            <div className='item-f-descricao'>{data.descricao}</div>
+                        <div className='caixa-pro-1'>
+                            <div className='bloco-caixa-pro-1'>
+                                <div className='bloco-pro-name'>
+                                    <div className='item-f-nome'>{data.nome}</div>
+                                </div>
+                                <div className='item-f-valor'>
+                                    <div>Valor</div>
+                                    <div>R$ {data.valor}</div>
+                                </div>
+                            </div> 
+                            <div className='item-f-descricao'>Lagosta, Geladeira, navio, mussarela, queijo, avião, cobra, onomatopeia, jaguatirica, lambari, amendoim, figado, jundia, abacate, asiajsahudhsuhda, suah uhsuhd s, sau hduhs a, ushad uhas{data.descricao}</div>
                         </div>
                         <div className='caixa-pro-2'>
-                            <div className='item-f-valor'>
-                                <div>Valor</div>
-                                <div>R$ {data.valor}</div>
-                            </div>
-                            <div className='item-f-btn'>
+                            <div className='item-f-img'>
                                 <AddAdicionais
                                     data={data}
                                     selectedAdds={selectedAdds}
                                     setSelectedAdds={setSelectedAdds}
                                 />
                             </div>
-                        </div>
-                        <div className='caixa-pro-3'>
-                            <div className='item-f-img'></div>
                         </div>
                     </div>
                 </div>

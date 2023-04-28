@@ -2,3 +2,38 @@
     width: auto;
     height: 100vh;
 }
+.caxinha-do-teste{
+    padding: 20px;
+}
+.comanda{
+    width: auto;
+    height: 200px;
+    border-radius: 20px;
+    background: #e0e0e0;
+}
+.caixa-c{
+    width: 100%;
+    display: flex;
+}
+.item-c{
+    width: 95%;
+    display: flex;
+}
+.item-c-1{
+    width: 50%;
+    padding-left: 10px;
+}
+.item-c-2{
+    width: 50%;
+    display: grid;
+    place-items: center;
+}
+.caixa-d{
+    display: flex;
+    padding-left: 10px;
+}
+.caixa-d-items{
+    width: 20%;
+    display: grid;
+    place-items: center;
+}

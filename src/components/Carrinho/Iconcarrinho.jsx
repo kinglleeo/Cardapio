@@ -22,7 +22,7 @@ export default function iconcarrinho(){
         <div className='carrinho'>
             <div className='caixa-carrinho'>
                 <Link to='/Carrinho'>
-                    <ImCart size={30}/>
+                    <ImCart size={35} color='rgba(31, 215, 232, 0.873)'/>
                 </Link>
                 <div>
                     {getTotalQuantity() || 0}

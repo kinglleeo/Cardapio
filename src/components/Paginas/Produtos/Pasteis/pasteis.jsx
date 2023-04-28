@@ -46,7 +46,7 @@ export default function Pasteis(){
                                         <div className='item-f-img'>
                                             {item.adicionais === "" ? 
                                                 (<button onClick={()=> dispatch(addToCart(item))} class="btn-azul-estiloso"> Adicionar </button>) 
-                                                : (<button onClick={(()=> handleAdicionais(item))} class="btn-azul-estiloso"> Adicionais </button>)}
+                                                : (<button onClick={(()=> handleAdicionais(item))} class="btn-azul-estiloso"> Tamanho </button>)}
                                         </div>
                                         </div>
                                     </div>

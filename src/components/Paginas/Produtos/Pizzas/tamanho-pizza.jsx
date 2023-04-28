@@ -40,7 +40,7 @@ export default function TamanhoPizaa(){
                                     </div>
                                     <div className='caixa-pro-2'>
                                     <div className='item-f-img'>
-                                        <button onClick={(()=> handleSetTamanho(tamanhopizza))} class="btn-azul-estiloso"> Adicionar </button>
+                                        <button onClick={(()=> handleSetTamanho(tamanhopizza))} class="btn-azul-estiloso"> Selecionar </button>
                                     </div>
                                     </div>
                                 </div>

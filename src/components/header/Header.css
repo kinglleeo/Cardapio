@@ -39,4 +39,7 @@
     font-family: "edosz.ttf";
     color: red;
     padding-left: 10px;
+    background: rgb(2,29,78);
+    background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 3%, rgba(31, 215, 232, 0.873) 95%);
+
 }
