@@ -18,17 +18,21 @@ export function TotalItem({ itemquantity, itemid, itemvalor }){
     }
 
   return(
-    <div className='bloco-bt-quan'>
-        <div className='bloco-bt-quan-1'>
-          <button className='btn-quant' onClick={() =>dispatch(decrementQuantity(itemid))}> - </button>
-              <div className='quanti-quant'>{itemquantity}</div>
-          <button className='btn-quant' onClick={() => dispatch(incrementQuantity(itemid))}> + </button>
+    <div className='cart-item-valor'>
+      <div className='cart-valor-valor'>
+        <div>Valor:</div>
+        <div>R$ {TotalItem()}</div>
+      </div>
+      <div className='cart-caixa-valores'>
+        <div className='cart-val1'>
+          <button className='arrow left' onClick={() => dispatch(decrementQuantity(itemid))}/>
         </div>
-        <div className='bloco-total'>
-            <div>Valor Total</div>
-            <div>R$ {TotalItem()}</div>
+        <div className='cart-q'>{itemquantity}</div>
+        <div className='cart-val2'>
+          <button className='arrow right' onClick={() => dispatch(incrementQuantity(itemid))}/>
         </div>
-    </div>
+      </div>
+  </div>
   )
 }
 

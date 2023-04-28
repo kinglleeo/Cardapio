@@ -2,6 +2,7 @@ import { incrementQuantity, decrementQuantity, removeItem} from '../../redux/car
 import { useDispatch, useSelector } from 'react-redux'
 import './cart.css'
 import { TotalItem } from './total'
+import './Styles-cart/styles.css'
 
 export default function CartItem() {
   const dispatch = useDispatch()
@@ -9,30 +10,37 @@ export default function CartItem() {
   
   
   return (
-    <div className='cart-item-main'>
-      <div className='cart-item-body'>
-        <div className='cart-bloco-1'>
-          {cart.map((item)=>
-          <div className='cart-bloco-caixa-1'>
-            <div className='cart-caixa-1' key={item.key}> 
-                <div className='cart-caixa-item-1'>{item.nome}</div>
-                <div className='cart-caixa-item-2'>{item.descricao}</div>
+    <div>
+      {cart.map((item) =>
+    <div className='carde'>
+                <div className='carde-inner'>
+                    <div className='caixa-cart-items'>
+                        <div className='cart-item1'>   
+                            <button class="noselect" onClick={()=> dispatch(removeItem(item.id))}>
+                                <span class="text">Delete</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path>
+                                </svg>
+                                </span>
+                            </button>
+                        </div>
+                        <div className='cart-item2'>
+                                <div className='cart-item-2'>
+                                    <div className='cart-item-2-name'>{item.nome}</div>
+                                    <div className='cart-item-2-dsc'>{item.descricao}</div>
+                                </div>
+                        </div>
+                        <div className='cart-item3'>
+                                <TotalItem
+                                    itemquantity={item.quantity}
+                                    itemid={item.id}
+                                    itemvalor={item.valor}
+                                />
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div className='cart-caixa-2'>
-              <TotalItem
-                itemquantity={item.quantity}
-                itemid={item.id}
-                itemvalor={item.valor}
-              />
-            </div>
-            <div className='btn-remove'>
-              <button onClick={()=> dispatch(removeItem(item.id))}> Remover </button>
-            </div> 
-          </div>
-          )}
-        </div>
-      </div>     
-    </div>
+      )}
+      </div>
   )
 }
 

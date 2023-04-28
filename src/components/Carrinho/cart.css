@@ -38,7 +38,11 @@
 .bloco-bt-quan-1{
     display: flex;
 }
-.btn-quant{
+.btn-quant1{
+    width: 40%;
+
+}
+.btn-quant2{
     width: 40%;
 }
 .quanti-quant{
