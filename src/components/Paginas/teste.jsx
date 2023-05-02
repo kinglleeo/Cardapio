@@ -9,26 +9,35 @@ export default function teste(){
     return(
         <div className='teste-main'>
             <div className='caxinha-do-teste'>
-            <div class="main">
-  <div class="up">
-    <button class="card1">
-      a
-    </button>
-    <button class="card2">
-    b
-    </button>
+            <div class="radio-input">
+  <div class="glass">
+    <div class="glass-inner">
+    </div>
   </div>
-  <div class="down">
-    <button class="card3">
-      c
-    </button>
-    <button class="card4">
-    d
-    </button>
+  <div class="selector">
+    <div class="choice">
+      <div>
+        <input type="radio" id="one" name="number-selector" value="one" checked="true" class="choice-circle"/>
+        <div class="ball"></div>
+      </div>
+      <label class="choice-name" for="one">1</label>
+    </div>
+    <div class="choice">
+      <div>
+        <input type="radio" id="two" name="number-selector" value="two" class="choice-circle"/>
+        <div class="ball"></div>
+      </div>
+      <label class="choice-name">2</label>
+    </div>
+    <div class="choice">
+      <div>
+        <input type="radio" id="three" name="number-selector" value="three" class="choice-circle"/>
+        <div class="ball"></div>
+      </div>
+      <label class="choice-name" for="three">3</label>
+    </div>
   </div>
 </div>
-            
-            
             </div>
         </div>
     )
