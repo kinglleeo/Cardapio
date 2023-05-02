@@ -34,9 +34,7 @@
 }
 .item-tamanho-3{
     height: 50%;
-    display: grid;
-    place-items: center;
-    padding: 5px;
+    min-height: 50px;
 }
 .titulo-tamanhos{
     display: grid;

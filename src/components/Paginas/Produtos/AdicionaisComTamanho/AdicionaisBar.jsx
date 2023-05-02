@@ -1,9 +1,9 @@
 import { React, useState, useEffect } from 'react'
 import './adicionaisbar.css'
 import { useLocation } from 'react-router-dom'
-import { Escolhidos, Escolhidos2, TotalAdd } from './OperacoesPorcoes'
+import { Escolhidos, TotalAdd } from './OperacoesPorcoes'
 
-export default function AdicionaisBar({ selectedAdds, setSelectedAdds, selectedTamanho, setSelectedTamanho }){
+export default function AdicionaisBar({ selectedAdds, setSelectedAdds, selectedTamanho, setSelectedTamanho  }){
     const { state } = useLocation()
     const { item } = state
 
@@ -14,16 +14,7 @@ export default function AdicionaisBar({ selectedAdds, setSelectedAdds, selectedT
                     <div className='caixa-bar-body-1'>
                         <div className='bar-add-t-name'>{item.nome}</div>
                         <div>
-                            {selectedTamanho.map((data3, index)=>
-                                <div key={index} className='bar-add-t-tamanho'>
-                                    <div>{data3.tamanho}</div>
-                                    <Escolhidos2
-                                        selectedTamanho={selectedTamanho}
-                                        setSelectedTamanho={setSelectedTamanho}
-                                        index2={index}
-                                    />
-                                </div>
-                            )}
+                           {selectedTamanho.tamanho}
                         </div>
                     </div>
                     <div className='caixa-bar-body-2'>

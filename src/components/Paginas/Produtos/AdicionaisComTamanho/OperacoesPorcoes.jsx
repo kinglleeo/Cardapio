@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { addToCart } from '../../../../redux/cartSlice'
 import './adicionaisbar.css'
 import '../estilos/Style.css'
+import '../../teste.css'
 
 export function AddAdicionais({ data, selectedAdds, setSelectedAdds}){
 
@@ -33,45 +34,29 @@ return(
 }
 
 export function Tamanho({ data, selectedTamanho, setSelectedTamanho }){
+    
 
-    const handleTamanho=( event, data)=>{
-
-        let maxquantia = 1
-        const checkboxValues = Array.from(document.querySelectorAll('input[name="selecionar-tamanho"]:checked')).map(
-            (checkbox) => checkbox.value
-        )
-            if (checkboxValues.length >= maxquantia){
-                document.querySelectorAll('input[name="selecionar-tamanho"]:not(:checked)').forEach((checkbox) =>{
-                    checkbox.disabled = true;
-                });
-            } else {
-                document.querySelectorAll('input[name="selecionar-tamanho"]').forEach((checkbox) =>{
-                    checkbox.disabled = false;
-                });
-            }
-
-        if(event.target.checked){
-            setSelectedTamanho([...selectedTamanho, data])
-        } else {
-            setSelectedTamanho(selectedTamanho.filter((item) => item.id !== data.id))
-        }
-    }
+    const handleTamanho = (data) => {
+       setSelectedTamanho(data)
+      };
+      
  
 return(
-        <div>
-            <label className='container'>
+        
+            <div className='input-selected-tamanho'>
+              
                 <input
-                    type='checkbox'
-                    id={data.id}
-                    name='selecionar-tamanho'
-                    onChange={(event)=> handleTamanho(event, data)}
-                    checked={selectedTamanho.some((item) => item.id === data.id)}
+                    type='radio'
+                    name='radio'
+                    onChange={()=> handleTamanho(data)}
+                    className="choice-circle"
                 />
-                <div className='checkmark'></div>
-            </label>
-        </div>
+                           
+            </div>
+       
     )
 }  
+
 
 export function Escolhidos({ index, selectedAdds, setSelectedAdds }){
     
@@ -99,52 +84,18 @@ export function Escolhidos({ index, selectedAdds, setSelectedAdds }){
         </div>
     )
 }
-export function Escolhidos2({ index2, selectedTamanho, setSelectedTamanho }){
-    
-    const handleRemoveAdd =(index2)=>{
-        const addRemove = selectedTamanho[index2]
-        const newSelectedAdds = [...selectedTamanho]
-        newSelectedAdds.splice(index2, 1)
-        setSelectedTamanho(newSelectedAdds)
-        handleRemovecheck(addRemove.id)
 
-        const checkboxValues = newSelectedAdds.map((item) => item.id)
-            document.querySelectorAll('input[name="selecionar-tamanho"]').forEach((checkbox) => {
-            if (!checkboxValues.includes(checkbox.value)) {
-                checkbox.disabled = false
-            }
-    })
-    }
-
-
-    const handleRemovecheck =(itemId)=>{
-        const checkbox = document.getElementById(itemId)
-        if(checkbox){
-            checkbox.checked = false
-        }
-    }
-
-    return(
-        <div>
-            <div>
-            </div>
-        </div>
-    )
-}
-
-export function TotalAdd({ data, selectedAdds, selectedTamanho}){
+export function TotalAdd({ data, selectedAdds, selectedTamanho }){
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    console.log(selectedTamanho)
+
     const valorTotalAdd=()=>{
         const valorpizza = data.valor || 0;
-        const tamanhovalor = selectedTamanho.reduce((total, item)=>{
-            return total.plus(item.valor || 0);
-        }, new Decimal(0));
+        const valortamanho = new Decimal(selectedTamanho?.valor || 0);
         const AddsValor = selectedAdds.reduce((total, item)=>{
             return total.plus(item.valor || 0);
         }, new Decimal(0));
-        const total = new Decimal(valorpizza).plus(AddsValor).plus(tamanhovalor);
+        const total = new Decimal(valorpizza).plus(AddsValor).plus(valortamanho);
         return total.toFixed(2);
     }
     const AddSelecte =()=>{
@@ -154,19 +105,19 @@ export function TotalAdd({ data, selectedAdds, selectedTamanho}){
         });
         return adds;
     }
-    const addnome =()=>{
-        let name = data.nome
-            selectedTamanho.forEach(add =>{
-                name += `  ${add.tamanho}`
-            })
-        return name
-    }
+    const addnome = () => {
+        let name = data.nome;
+        let tamanho = selectedTamanho.tamanho
+            name += "  " + tamanho
+        return name;
+      };
     const item ={
         nome: addnome(),
         descricao: AddSelecte(),
         valor: valorTotalAdd()
     }
 
+    console.log(valorTotalAdd())
     return(
         <div className='total-00'>
             <div>Valor Total:</div>

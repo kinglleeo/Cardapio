@@ -9,6 +9,7 @@ import IconCarrinho from '../../../Carrinho/Iconcarrinho'
 import Decimal from 'decimal.js';
 import TopoPagina from '../../../AA-utilidades/Topo';
 import '../../../Estilos/Style.css'
+import { useNavigate } from 'react-router-dom';
 
 export default function adicionaislanches( ){
     const { state } = useLocation();
@@ -16,7 +17,8 @@ export default function adicionaislanches( ){
     const [dataAdd, setDataAdd] = useState([]);
     const dispatch = useDispatch()
     const [selectedAdd, setSelectedAdd] = useState([]);
- 
+    const navigate = useNavigate();
+
     console.log(selectedAdd)
     useEffect(()=>{
         axios
@@ -25,7 +27,6 @@ export default function adicionaislanches( ){
                 setDataAdd(getdata.data);
             });
     },[]);
-    console.log(dataAdd)
     
     const handleAdd = (id, nome, valor) => {
         if (selectedAdd.some(add => add.id === id)) {
@@ -51,6 +52,11 @@ export default function adicionaislanches( ){
         return total.toFixed(2);
     };
 
+    const handlecarrinho =()=>{
+        dispatch(addToCart({ nome: item.nome, descricao: getDescricao(), valor: getValor()}))
+        navigate('/Carrinho')
+    }
+
     return(
         <div>    
             <div>
@@ -67,7 +73,7 @@ export default function adicionaislanches( ){
                                 <div>R$ {getValor()}</div>
                             </div>
                             <div className='item-333'>
-                                <button onClick={() => dispatch(addToCart({ nome: item.nome, descricao: getDescricao(), valor: getValor()}))}>Adicionar</button>
+                                <button onClick={() => handlecarrinho()}>Adicionar</button>
                             </div>
                         </div>
                         <div className='caixa-D-items'>

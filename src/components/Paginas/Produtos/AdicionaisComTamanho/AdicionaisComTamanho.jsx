@@ -9,7 +9,7 @@ import TopoPagina from '../../../AA-utilidades/Topo'
 
 export default function AdicionaisPorcoes(){
     const [selectedAdds, setSelectedAdds] = useState([]);
-    const [selectedTamanho, setSelectedTamanho] = useState([]);
+    const [selectedTamanho, setSelectedTamanho] = useState([])
 
     return(
         <div>
@@ -21,7 +21,6 @@ export default function AdicionaisPorcoes(){
                     selectedAdds={selectedAdds}
                     setSelectedAdds={setSelectedAdds}
                     selectedTamanho={selectedTamanho}
-                    setSelectedTamanho={setSelectedTamanho}
                 />
             </div>
             <div>
