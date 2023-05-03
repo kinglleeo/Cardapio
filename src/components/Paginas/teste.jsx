@@ -6,38 +6,15 @@ export default function teste(){
     const handlechange =()=>{
 
     }
+
     return(
         <div className='teste-main'>
             <div className='caxinha-do-teste'>
-            <div class="radio-input">
-  <div class="glass">
-    <div class="glass-inner">
-    </div>
-  </div>
-  <div class="selector">
-    <div class="choice">
-      <div>
-        <input type="radio" id="one" name="number-selector" value="one" checked="true" class="choice-circle"/>
-        <div class="ball"></div>
-      </div>
-      <label class="choice-name" for="one">1</label>
-    </div>
-    <div class="choice">
-      <div>
-        <input type="radio" id="two" name="number-selector" value="two" class="choice-circle"/>
-        <div class="ball"></div>
-      </div>
-      <label class="choice-name">2</label>
-    </div>
-    <div class="choice">
-      <div>
-        <input type="radio" id="three" name="number-selector" value="three" class="choice-circle"/>
-        <div class="ball"></div>
-      </div>
-      <label class="choice-name" for="three">3</label>
-    </div>
-  </div>
-</div>
+                <figure class="snip1566">
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sq-sample20.jpg" alt="sq-sample20" />
+                    <figcaption><i class="ion-android-restaurant"></i></figcaption>
+                    <a href="#"></a>
+                </figure>                  
             </div>
         </div>
     )
