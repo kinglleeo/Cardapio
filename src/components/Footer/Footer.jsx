@@ -5,13 +5,7 @@ import axios from 'axios'
 export default function Footer(){
     const [dados, setDados] = useState('')
 
-    useEffect(()=>{
-        axios  
-            .get('')
-            .then((getData) =>{
-                setDados(getData.data)
-            })
-    })
+    
 
     return(
         <div className='footer'>

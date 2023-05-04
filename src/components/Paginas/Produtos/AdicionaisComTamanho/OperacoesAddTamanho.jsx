@@ -64,7 +64,6 @@ export function Escolhidos({ index, selectedAdds, setSelectedAdds }){
 
 export function TotalAdd({ data, selectedAdds, selectedTamanho }){
     const dispatch = useDispatch()
-    const navigate = useNavigate()
 
     const valorTotalAdd=()=>{
         const valorpizza = data.valor || 0;
@@ -93,8 +92,6 @@ export function TotalAdd({ data, selectedAdds, selectedTamanho }){
         descricao: AddSelecte(),
         valor: valorTotalAdd()
     }
-
-    console.log(valorTotalAdd())
     return(
         <div className='total-00'>
             <div>Valor Total:</div>

@@ -1,12 +1,7 @@
 import axios from 'axios';
 import { React, useState, useEffect } from 'react'
 import './styleAddP.css'
-import {api} from '../../../../conecções/api'
 import {BiDish} from 'react-icons/bi'
-import { Pagination } from "swiper";
-import "swiper/css";
-import "swiper/css/pagination";
-import {Swiper, SwiperSlide} from 'swiper/react';
 
 
 export default function AdicionaisTamanho({ selectedTamanho, setSelectedTamanho }){
