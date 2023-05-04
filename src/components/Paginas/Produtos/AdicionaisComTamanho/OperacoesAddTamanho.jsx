@@ -8,7 +8,7 @@ import '../estilos/Style.css'
 import './styleAddP.css'
 import '../../teste.css'
 import {BiDish} from 'react-icons/bi'
-
+ 
 export function AddAdicionais({ data, selectedAdds, setSelectedAdds}){
 
     const handleAddAdicionais =( event, data )=>{
