@@ -2,13 +2,19 @@ import axios from 'axios';
 import { React, useState, useEffect } from 'react'
 import './styleAddP.css'
 import {api} from '../../../../conecções/api'
+import {BiDish} from 'react-icons/bi'
+import { Pagination } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
+import {Swiper, SwiperSlide} from 'swiper/react';
+
 
 export default function AdicionaisTamanho({ selectedTamanho, setSelectedTamanho }){
     const [produto, setProduto] = useState([]);
 
     useEffect(()=>{
-        api
-            .get('/cardapio')
+        axios
+            .get('https://642b23b0d7081590f91d081a.mockapi.io/cardapio')
             .then((getdata)=>{
                 setProduto(getdata.data);
             });
@@ -21,29 +27,28 @@ export default function AdicionaisTamanho({ selectedTamanho, setSelectedTamanho 
     return(
         <div className='tamanho-body'>
             <label className='titulo-tamanhos'>Tamanhos</label>
-            <div className='caixa-00'>
-                {produto.map((data)=>
-                    <div className='caixa-1111'>
-                        <div className='bloco-items-tamanho'>
-                            <div className='item-tamanho-1'>
-                                <div>{data.tamanho}</div>
-                            </div>
-                            <div className='item-tamanho-2'>
-                                <div>Valor</div>
-                                <div> R$ {data.valor}</div>
-                            </div>
-                            <div className='item-tamanho-3'>
-                                <div className=''>
-                                    <input type='radio'
-                                        name='input-t'
-                                        onClick={()=> handletamanho(data)}
-                                    />
-                                </div>
-                            </div>
+                <div className='list-tamanhos'>
+                        {produto.map((data)=>
+                        <div className='card-tamanhos'>
+                                <form className='card-i-tamanhos'>
+                                        <input type='radio' className='input-t' name='radio-input-t' onChange={()=> handletamanho(data)}/>
+                                    <div className='card-info-tamanhos'>
+                                        <div className='card-tamanho-name'>
+                                            <div className=''>{data.tamanho}</div>
+                                        </div>
+                                        <div className='card-tamanho-valor'>
+                                            <div className=''>Valor</div>
+                                            <div className=''>R$ {data.valor}</div>
+                                        </div>
+                                        <div>
+                                            <div className='iconeprato'><BiDish size={50} /></div>
+                                        </div>
+                                    </div>
+                                </form>
                         </div>
+                        )}
+                    
                 </div>
-                )}
-            </div>
         </div>
     )
 }
