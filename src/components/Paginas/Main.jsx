@@ -14,19 +14,19 @@ export default function Main() {
   return ( 
     <div className='main-main'>
         <div className='main-header'>
-            <Header/>
+          <Header/>
         </div>
         <div>
-            <Promo/>
+          <Promo/>
         </div>
         <div>
           <SearchBar/>
         </div>
         <div className='main-lista'>
-            <ListaProdutos/>
+          <ListaProdutos/>
         </div>
         <div>
-            <IconCarrinho/>
+          <IconCarrinho/>
         </div> 
         <div>
           <TopoPagina/>

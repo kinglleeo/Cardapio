@@ -5,7 +5,9 @@ import { useNavigate } from 'react-router-dom'
 import { addToCart } from '../../../../redux/cartSlice'
 import './adicionaisbar.css'
 import '../estilos/Style.css'
+import './styleAddP.css'
 import '../../teste.css'
+import {BiDish} from 'react-icons/bi'
 
 export function AddAdicionais({ data, selectedAdds, setSelectedAdds}){
 
@@ -32,31 +34,6 @@ return(
         </div>
     )
 }
-
-export function Tamanho({ data, selectedTamanho, setSelectedTamanho }){
-    
-
-    const handleTamanho = (data) => {
-       setSelectedTamanho(data)
-      };
-      
- 
-return(
-        
-            <div className='input-selected-tamanho'>
-              
-                <input
-                    type='radio'
-                    name='radio'
-                    onChange={()=> handleTamanho(data)}
-                    className="choice-circle"
-                />
-                           
-            </div>
-       
-    )
-}  
-
 
 export function Escolhidos({ index, selectedAdds, setSelectedAdds }){
     

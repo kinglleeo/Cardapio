@@ -11,26 +11,25 @@
     width: 20%;
     height: auto;
     display: grid;
-    padding-left: 2px;
-    padding-right: 2px;
+    padding: 1px;
 }
 .bloco-items-tamanho{
     display: flex;
     flex-direction: column;
-    border-radius: 10px;
-    background: #ffffff;
-    box-shadow: inset 19px 19px 29px #dbdbdb,
-            inset -19px -19px 29px #ffffff;
+    background-image: url('https://i.pinimg.com/originals/3c/65/0a/3c650a149986773eb80c4a91a4139c48.jpg');
+    background-size: 100% 100%;
 }
 .item-tamanho-1{
-    height: 20%;
+    height: 25%;
     display: grid;
     place-items: center;
+    padding: 5px;
 }
 .item-tamanho-2{
-    height: 30%;
+    height: 40%;
     display: grid;
     place-items: center;
+    padding: 5px;
 }
 .item-tamanho-3{
     height: 50%;

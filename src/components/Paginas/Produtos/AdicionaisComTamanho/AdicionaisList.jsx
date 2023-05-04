@@ -1,13 +1,14 @@
 import axios from 'axios'
 import { React, useState, useEffect } from 'react'
-import { AddAdicionais } from './OperacoesPorcoes';
+import { AddAdicionais } from './OperacoesAddTamanho';
+import {api} from '../../../../conecções/api'
 
 export default function AdicionaisList({ selectedAdds, setSelectedAdds }){
     const [produto, setProduto] = useState([]);
 
     useEffect(()=>{
-        axios
-            .get('https://642b23b0d7081590f91d081a.mockapi.io/lanches')
+        api
+            .get('/lanches')
             .then((getdata)=>{
                 setProduto(getdata.data);
             });
@@ -19,7 +20,6 @@ export default function AdicionaisList({ selectedAdds, setSelectedAdds }){
         <label className='titulo-lista'>ADICIONAIS</label>
         {produto.map((data)=>
             <div className="carde">
-                <div className="circle"></div>
                 <div className="carde-inner">
                     <div className='caixa-pro'>
                         <div className='caixa-pro-1'>

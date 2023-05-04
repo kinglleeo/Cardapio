@@ -10,6 +10,7 @@ import Decimal from 'decimal.js';
 import TopoPagina from '../../../AA-utilidades/Topo';
 import '../../../Estilos/Style.css'
 import { useNavigate } from 'react-router-dom';
+import {api} from '../../../../conecções/api'
 
 export default function adicionaislanches( ){
     const { state } = useLocation();
@@ -21,8 +22,8 @@ export default function adicionaislanches( ){
 
     console.log(selectedAdd)
     useEffect(()=>{
-        axios
-            .get('https://642b23b0d7081590f91d081a.mockapi.io/lanches')
+        api
+            .get('/lanches')
             .then((getdata)=>{
                 setDataAdd(getdata.data);
             });

@@ -4,14 +4,16 @@ import '../../../Estilos/Style.css'
 import { useDispatch } from 'react-redux';
 import {addToCart} from '../../../../redux/cartSlice';
 import { useNavigate } from 'react-router-dom'
+import {api} from '../../../../conecções/api'
+
 
 export default function Lanches(){
     const [produto, setProduto] = useState([]);
     const dispatch = useDispatch()
 
     useEffect(()=>{
-        axios
-            .get('https://642b23b0d7081590f91d081a.mockapi.io/lanches')
+        api
+            .get('/lanches')
             .then((getdata)=>{
                 setProduto(getdata.data);
             });
@@ -29,7 +31,6 @@ export default function Lanches(){
                     <label className='titulo-lista'>LANCHES</label>
             {produto.map((item)=>  
                 <div className="carde">
-                    <div className="circle"></div>
                             <div className="carde-inner">
                                 <div className='caixa-pro'>
                                     <div className='caixa-pro-1'> 
