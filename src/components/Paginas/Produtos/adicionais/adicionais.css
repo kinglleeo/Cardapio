@@ -1,14 +1,14 @@
 .corpo-adicionais{
-    width: 100%;
+    width: auto;
     height: auto;
     padding-top: 15px;
 }
-.items-information{
+.selected-adds-information{
     width: auto;
     height: auto;
     padding: 10px;
 }
-.barra-items-information{
+.box-adds-view-1{
     display: flex;
     min-height: 70px;
     border-radius: 10px;
@@ -18,16 +18,26 @@
     backdrop-filter: blur(10px);
     border-radius: 8px;
 }
-.item-000{
+.adds-name{
     width: 30%;
     padding: 10px;
 }
-.item-222{
+.adds-valor-total{
     width: 30%;
     display: grid;
     place-items: center;
 }
-.item-111{
+.adds-btn{
+    width: 40%;
+    display: grid;
+    place-items: center;
+}
+.box-adds-view-2{
+    width: auto;
+    height: auto;
+    padding-top: 10px;
+}
+.box-descricao-items-add{
     border-radius: 10px;
     min-height: 60px;
     background: rgba(255,255,255,.05);
@@ -36,59 +46,6 @@
     backdrop-filter: blur(10px);
     border-radius: 8px;
 }
-.item-333{
-    width: 40%;
-    display: grid;
-    place-items: center;
-}
-.itemB{
-    width: 100%;
-    height: auto;
-}
-.itemAdd{
-    width: auto;
-    padding: 5px;
-}
-.caixa-add{
-    width: 99%;
-    height: 50px;
-    padding-top: 10px;
-    display: flex;
-}
-.item1{
-    width: 40%;
-    display: grid;
-    place-items: center;
-    font-family: "edosz.ttf";
-    font-size: 20px;
-}
-.item2{
-    width: 20%;
-    display: grid;
-    place-items: center;
-}
-.item3{
-    width: 10%;
-    display: grid;
-    place-items: center;
-}
-.item4{
-    width: 30%;
-    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8MwG_nQ3MmtNO62z7jCb3xi-oHJDBJe38aA&usqp=CAU");
-    background-size: 100% 100%;
-}
-.container input {
-    position: absolute;
-    opacity: 0;
-    height: 0;
-    width: 0;
-    cursor: pointer;
-}
-.caixa-D-items{
-    width: auto;
-    height: auto;
-    padding-top: 10px;
-}
-.descricao-item-d{
+.descricao-items-add{
     padding: 5px;
 }

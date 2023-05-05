@@ -1,13 +1,9 @@
 import {useDispatch, useSelector} from 'react-redux'
+import { incrementQuantity, decrementQuantity } from '../../redux/cartSlice';
 import Decimal from 'decimal.js';
-import { incrementQuantity } from '../../redux/cartSlice';
-import { decrementQuantity } from '../../redux/cartSlice';
-import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
-import './cart.css'
-import './cartpagbar.css'
 import { formCurrency } from '../AA-utilidades/numeros';
+import './cartpagbar.css'
+import './Styles-cart/styleTotalCartItem.css'
 
 export function TotalItem({ itemquantity, itemid, itemvalor }){
   const dispatch = useDispatch()
@@ -19,18 +15,18 @@ export function TotalItem({ itemquantity, itemid, itemvalor }){
     }
 
   return(
-    <div className='cart-item-valor'>
-      <div className='cart-valor-valor'>
+    <div className='cart-item-valor-total'>
+      <div className='cart-total-valor'>
           <div>Valor:</div>
           <div>{formCurrency.format(TotalItem())}</div>
       </div>
       <div className='cart-quantia'>Quantia:</div>
-      <div className='cart-caixa-valores'>
-        <div className='cart-val1'>
+      <div className='box-itemquantia'>
+        <div className='cart-btn-quantia'>
           <button className='arrow left' onClick={() => dispatch(decrementQuantity(itemid))}/>
         </div>
-        <div className='cart-q'>{itemquantity}</div>
-        <div className='cart-val2'>
+        <div className='cart-item-quantia'>{itemquantity}</div>
+        <div className='cart-btn-quantia'>
           <button className='arrow right' onClick={() => dispatch(incrementQuantity(itemid))}/>
         </div>
       </div>

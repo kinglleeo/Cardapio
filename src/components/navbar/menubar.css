@@ -4,6 +4,7 @@
     grid-template-columns: repeat(5,1fr);
     place-items: center;
     padding-top: 10px;
+    background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 3%, rgba(31, 215, 232, 0.873) 95%);
 }
 .nav-top{
     position: fixed;
@@ -14,7 +15,6 @@
 .itembarraDeDirecionamento {
     display: grid;
     place-items: center;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 400;
-    color: red;
 }

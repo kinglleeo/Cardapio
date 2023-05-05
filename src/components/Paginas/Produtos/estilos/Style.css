@@ -9,6 +9,13 @@
     display: grid;
     place-items: center;
 }
+.container input {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+    cursor: pointer;
+}
 .checkmark {
     position: relative;
     top: 0;

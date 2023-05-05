@@ -3,8 +3,8 @@ import { React, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { addToCart } from '../../../../../redux/cartSlice'
-import './adicionaispizza.css'
 import { formCurrency } from '../../../../AA-utilidades/numeros'
+import './styleInputsAdds.css'
 
 export function AddAdicionais({ data, selectedAdds, setSelectedAdds}){
 
@@ -94,7 +94,7 @@ export function TotalAdd({ data, selectedAdds}){
                 <div><label>Valor Total</label></div>
                     <div>{formCurrency.format(valorTotalAdd())}</div>
             </div>
-            <div className='item-valor-2'><button onClick={()=> handleADd(item)}>Adicionar</button></div>
+            <div className='total-add-btn'><button onClick={()=> handleADd(item)}>Adicionar</button></div>
         </div>
     )
 }

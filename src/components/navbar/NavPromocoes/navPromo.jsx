@@ -1,20 +1,19 @@
 import { React, useState, useEffect } from 'react'
-import './navPromo.css'
-import axios from 'axios'
 import {Swiper, SwiperSlide} from 'swiper/react';
 import { Autoplay, Navigation, Pagination } from 'swiper';
+import { useNavigate } from 'react-router-dom'
+import { api } from '../../../conecções/api'
 import "swiper/css";
 import "swiper/css/pagination";
-import { useNavigate } from 'react-router-dom'
-import '../../Estilos/Style.css'
+import './navPromo.css'
 
 export default function Teste(){
     const [promo, setPromo ] = useState([])
     const navigate = useNavigate()
 
     useEffect(()=>{
-        axios
-            .get('https://642b23b0d7081590f91d081a.mockapi.io/lanches')
+        api
+            .get('/lanches')
             .then((getdata)=>{
                 setPromo(getdata.data);
             });
@@ -48,7 +47,7 @@ export default function Teste(){
                                     <div className='tabela-card-promo'>
                                         <div className='img'>
                                             <div className='item-f-img'>
-                                                <button onClick={(()=> handleAdicionais(item))} class="btn-azul-estiloso"> Adicionais </button>
+                                                <button onClick={(()=> handleAdicionais(item))} className="btn-azul-estiloso"> Adicionais </button>
                                             </div>
                                     </div>
                                         <div className='descricoes'>

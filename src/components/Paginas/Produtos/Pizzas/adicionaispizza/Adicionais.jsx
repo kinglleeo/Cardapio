@@ -1,15 +1,15 @@
-import axios from 'axios';
 import { React, useState, useEffect } from 'react'
 import { AddAdicionais } from './inputsAdcionais';
-import '../../../../Estilos/Style.css'
 import { formCurrency } from '../../../../AA-utilidades/numeros';
+import '../../../../Estilos/styleForList.css'
+import { api } from '../../../../../conecções/api'
 
 export default function Adicionais({ selectedAdds, setSelectedAdds }){
     const [adicionais, setAdicionais] = useState([]);
 
     useEffect(()=>{
-        axios
-            .get('https://642b23b0d7081590f91d081a.mockapi.io/lanches')
+        api
+            .get('/lanches')
             .then((getdata) =>{
                 setAdicionais(getdata.data);
             });
@@ -17,36 +17,36 @@ export default function Adicionais({ selectedAdds, setSelectedAdds }){
 
 
     return(
-        <div className='lista-items'>
+        <div className='lista'>
                     <label className='titulo-lista'>ADICIONAIS</label>
             {adicionais.map((data)=>  
                 <div className="carde">
-                            <div className="carde-inner">
-                            <div className='caixa-pro'>
-                                <div className='caixa-pro-1'>
-                                    <div className='bloco-caixa-pro-1'>
-                                        <div className='bloco-pro-name'>
-                                            <div className='item-f-nome'>{data.nome}</div>
-                                        </div>
-                                        <div className='item-f-valor'>
-                                            <div>Valor</div>
-                                            <div>{formCurrency.format(data.valor)}</div>
-                                        </div>
-                                    </div> 
-                                    <div className='item-f-descricao'>Lagosta, Geladeira, navio, mussarela, queijo, avião, cobra, onomatopeia, jaguatirica, lambari, amendoim, figado, jundia, abacate, asiajsahudhsuhda, suah uhsuhd s, sau hduhs a, ushad uhas{data.descricao}</div>
-                                </div>
-                                <div className='caixa-pro-2'>
-                                    <div className='item-f-img'>
-                                        <AddAdicionais
-                                            data={data}
-                                            selectedAdds={selectedAdds}
-                                            setSelectedAdds={setSelectedAdds}
-                                        />
+                    <div className="carde-inner">
+                        <div className='box-item-List'>
+                            <div className='item-List-info'>
+                                <div className='bloco-item-info'>
+                                    <div className='box-name'>
+                                        <div className='item-info-name'>{data.nome}</div>
                                     </div>
+                                    <div className='item-info-valor'>
+                                        <div>Valor</div>
+                                        <div>{formCurrency.format(data.valor)}</div>
+                                    </div>
+                                </div> 
+                                    <div className='item-info-descricao'>Lagosta, Geladeira, navio, mussarela, queijo, avião, cobra, onomatopeia, jaguatirica, lambari, amendoim, figado, jundia, abacate, asiajsahudhsuhda, suah uhsuhd s, sau hduhs a, ushad uhas{data.descricao}</div>
                                 </div>
-                            </div>
-                            </div>
-            </div>
+                                    <div className='box-List-img'>
+                                        <div className='item-img'>
+                                            <AddAdicionais
+                                                data={data}
+                                                selectedAdds={selectedAdds}
+                                                setSelectedAdds={setSelectedAdds}
+                                            />
+                                        </div>
+                                    </div>
+                        </div>
+                    </div>
+                </div>
             )}    
         </div> 
     )

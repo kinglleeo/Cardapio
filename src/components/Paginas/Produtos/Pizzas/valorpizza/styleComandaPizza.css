@@ -1,19 +1,12 @@
-.caixa-d-top{
-    position: fixed;
-    top: 0;
-    z-index: 999;
-    width: 100%;
-    padding-top: 35px;  
-}
-.comanda-items{
+.comanda-main{
     width: 100%;
     padding-top: 10px;
 }
-.caixa-c{
+.bloco-info-comanda{
     width: 100%;
     display: flex;
 }
-.item-c{
+.box-info-comanda{
     width: 100%;
     display: flex;
     background: rgba(255,255,255,.05);
@@ -22,30 +15,38 @@
     backdrop-filter: blur(10px);
     border-radius: 8px;
 }
-.item-c-1{
+.comanda-tamanho{
     width: 30%;
     padding-left: 10px;
    
 }
-.item-c-2{
+.comanda-total{
     width: 70%;
     display: grid;
     place-items: center;
 }
-.caixa-d{
+
+.comanda-bar-selecionados{
     padding-top: 15px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-content: space-around;
 }
-.caixa-d-items{
+.comanda-selecionados{
     width: 50%;
     padding-bottom: 5px;
     display: grid;
     place-items: center;
 }
-.caixa-d-interna{
+.comanda-bar-selecionados-top{
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+    padding-top: 35px;  
+}
+.box-selecionados{
     width: 90%;
     height: 45px;
     display: grid;

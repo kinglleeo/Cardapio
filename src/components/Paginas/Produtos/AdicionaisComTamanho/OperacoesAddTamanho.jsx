@@ -1,25 +1,22 @@
 import Decimal from 'decimal.js'
-import { React, useEffect } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { addToCart } from '../../../../redux/cartSlice'
-import './adicionaisbar.css'
+import { formCurrency } from '../../../AA-utilidades/numeros'
 import '../estilos/Style.css'
-import './styleAddP.css'
-import '../../teste.css'
-import {BiDish} from 'react-icons/bi'
-import { formCurrency } from '../../../AA-utilidades/numeros' 
+import './styleOperacoesTamanhos.css'
 
 export function AddAdicionais({ data, selectedAdds, setSelectedAdds}){
 
     const handleAddAdicionais =( event, data )=>{
-
+        
         if(event.target.checked){
             setSelectedAdds([...selectedAdds, data])
         } else {
             setSelectedAdds(selectedAdds.filter((item) => item.id !== data.id))
         }
-        }
+    }
 
 return(
         <div>
@@ -99,7 +96,7 @@ export function TotalAdd({ data, selectedAdds, selectedTamanho }){
         navigate('/Carrinho')
     }
     return(
-        <div className='total-00'>
+        <div className='totalAdd-tamanho'>
             <div className='total-valor'>
                 <div>Valor Total:</div>
                 <div>{formCurrency.format(valorTotalAdd())}</div>

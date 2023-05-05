@@ -1,19 +1,14 @@
-.caixa-pro-22{
-    width: 25%;
-    display: grid;
-    place-items: center;
-}
-.totalpizza-s{
+.Totalpizza-box{
     width: 100%;
     display: flex;
 }
-.totalpizza-s-1{
+.totalpizza{
     width: 60%;
     display: grid;
     place-items: center;
     
 }
-.totalpizza-s-2{
+.totalpizza-btn{
     width: 40%;
     display: grid;
     place-items: center;

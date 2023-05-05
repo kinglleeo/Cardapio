@@ -1,10 +1,10 @@
 import { React, useState, useEffect } from 'react'
-import axios from 'axios'
-import '../../../Estilos/Style.css'
 import { useDispatch } from 'react-redux'
 import { addToCart } from '../../../../redux/cartSlice'
 import { useNavigate } from 'react-router-dom'
 import { formCurrency } from '../../../AA-utilidades/numeros'
+import { api } from '../../../../conecções/api'
+import '../../../Estilos/styleForList.css'
 
 export default function Pasteis(){
     const [produto, setProduto] = useState([]);
@@ -12,46 +12,46 @@ export default function Pasteis(){
     const navigate = useNavigate()
 
     useEffect(()=>{
-        axios
-            .get('https://642b23b0d7081590f91d081a.mockapi.io/lanches')
+        api
+            .get('/lanches')
             .then((getdata)=>{
                 setProduto(getdata.data);
             });
     }, []);
-
+    //ir para os adicionais passando o item selecionado
     const handleAdicionais = (item) =>{
         navigate('/AdicionaisComTamanho', {state: { item }});
     };
 
     return(
-        <div className='lista-items' id='pasteis'>
+        <div className='lista' id='pasteis'>
                     <label className='titulo-lista'>PASTEIS</label>
             {produto.map((item)=>  
                 <div className="carde">
-                            <div className="carde-inner">
-                                <div className='caixa-pro'>
-                                        <div className='caixa-pro-1'> 
-                                            <div className='bloco-caixa-pro-1'>
-                                                <div className='bloco-pro-name'>
-                                                    <div className='item-f-nome'>{item.nome}</div>
-                                                </div>
-                                                <div className='item-f-valor'>
-                                                    <div>Valor</div>
-                                                    <div>{formCurrency.format(item.valor)}</div>
-                                                </div>
-                                            </div>
-                                            <div className='item-f-descricao'>Lagosta, Geladeira, navio, mussarela, queijo, avião, cobra, onomatopeia, jaguatirica, lambari, amendoim, figado, jundia, abacate, asiajsahudhsuhda, suah uhsuhd s, sau hduhs a, ushad uhas{item.descricao}</div>
-                                        </div>
-                                        <div className='caixa-pro-2'>
-                                        <div className='item-f-img'>
-                                            {item.adicionais === "" ? 
-                                                (<button onClick={()=> dispatch(addToCart(item))} class="btn-azul-estiloso"> Adicionar </button>) 
-                                                : (<button onClick={(()=> handleAdicionais(item))} class="btn-azul-estiloso"> Tamanho </button>)}
-                                        </div>
-                                        </div>
+                    <div className="carde-inner">
+                        <div className='box-item-List'>
+                            <div className='item-List-info'> 
+                                <div className='bloco-item-info'>
+                                    <div className='box-name'>
+                                        <div className='item-info-name'>{item.nome}</div>
                                     </div>
+                                    <div className='item-info-valor'>
+                                        <div>Valor</div>
+                                        <div>{formCurrency.format(item.valor)}</div>
+                                    </div>
+                                </div>
+                                    <div className='item-info-descricao'>Lagosta, Geladeira, navio, mussarela, queijo, avião, cobra, onomatopeia, jaguatirica, lambari, amendoim, figado, jundia, abacate, asiajsahudhsuhda, suah uhsuhd s, sau hduhs a, ushad uhas{item.descricao}</div>
                             </div>
-            </div>
+                                <div className='box-List-img'>
+                                    <div className='item-img'>
+                                        {item.adicionais === "" ? 
+                                            (<button onClick={()=> dispatch(addToCart(item))} className="btn-azul-estiloso"> Adicionar </button>) 
+                                            : (<button onClick={(()=> handleAdicionais(item))} className="btn-azul-estiloso"> Tamanho </button>)}
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
             )}    
         </div> 
     )
