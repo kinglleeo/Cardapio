@@ -4,6 +4,7 @@ import '../../../Estilos/Style.css'
 import { useDispatch } from 'react-redux'
 import { addToCart } from '../../../../redux/cartSlice'
 import { useNavigate } from 'react-router-dom'
+import { formCurrency } from '../../../AA-utilidades/numeros'
 
 export default function Bebidas(){
     const [produto, setProduto] = useState([]);
@@ -27,7 +28,6 @@ export default function Bebidas(){
                     <label className='titulo-lista'>BEBIDAS</label>
             {produto.map((item)=>  
                 <div className="carde">
-                    <div className="circle"></div>
                             <div className="carde-inner">
                             <div className='caixa-pro'>
                                     <div className='caixa-pro-1'> 
@@ -37,7 +37,7 @@ export default function Bebidas(){
                                             </div>
                                             <div className='item-f-valor'>
                                                 <div>Valor</div>
-                                                <div>R$ {item.valor}</div>
+                                                <div>{formCurrency.format(item.valor)}</div>
                                             </div>
                                         </div>
                                         <div className='item-f-descricao'>Lagosta, Geladeira, navio, mussarela, queijo, avião, cobra, onomatopeia, jaguatirica, lambari, amendoim, figado, jundia, abacate, asiajsahudhsuhda, suah uhsuhd s, sau hduhs a, ushad uhas{item.descricao}</div>

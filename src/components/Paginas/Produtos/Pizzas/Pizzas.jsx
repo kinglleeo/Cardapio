@@ -17,13 +17,13 @@ export default function ListPizzas() {
         <Header />
       </div>
       <div>
+        <Navbarpizza/>
+      </div>
+      <div>
         <ComandaPizza 
          selectedSabores={selectedSabores} 
          setSelectedSabores={setSelectedSabores} 
         />
-      </div>
-      <div>
-        <Navbarpizza/>
       </div>
       <div>
         <Salgadas 

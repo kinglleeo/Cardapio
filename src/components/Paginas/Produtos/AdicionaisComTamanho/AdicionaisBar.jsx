@@ -13,7 +13,7 @@ export default function AdicionaisBar({ selectedAdds, setSelectedAdds, selectedT
                 <div className='caixa-bar-body'>
                     <div className='caixa-bar-body-1'>
                         <div className='bar-add-t-name'>{item.nome}</div>
-                        <div>
+                        <div className='bar-add-t-tamanho'>
                            {selectedTamanho.tamanho}
                         </div>
                     </div>

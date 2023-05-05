@@ -2,6 +2,7 @@ import { React, useState, useEffect } from 'react'
 import axios from 'axios'
 import '../../../Estilos/Style.css'
 import { useNavigate } from 'react-router-dom'
+import { formCurrency } from '../../../AA-utilidades/numeros';
 
 export default function Porcoes(){
     const [produto, setProduto] = useState([]);
@@ -26,7 +27,6 @@ export default function Porcoes(){
                     <label className='titulo-lista'>PORÇÕES</label>
             {produto.map((item)=>  
                 <div className="carde">
-                    <div className="circle"></div>
                             <div className="carde-inner">
                             <div className='caixa-pro'>
                                     <div className='caixa-pro-1'> 
@@ -36,7 +36,7 @@ export default function Porcoes(){
                                             </div>
                                             <div className='item-f-valor'>
                                                 <div>Valor</div>
-                                                <div>R$ {item.valor}</div>
+                                                <div>{formCurrency.format(item.valor)}</div>
                                             </div>
                                         </div>
                                         <div className='item-f-descricao'>Lagosta, Geladeira, navio, mussarela, queijo, avião, cobra, onomatopeia, jaguatirica, lambari, amendoim, figado, jundia, abacate, asiajsahudhsuhda, suah uhsuhd s, sau hduhs a, ushad uhas{item.descricao}</div>

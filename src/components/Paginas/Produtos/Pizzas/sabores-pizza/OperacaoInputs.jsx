@@ -5,6 +5,7 @@ import Decimal from 'decimal.js';
 import '../valorpizza/comanda-pizza.css'
 import './Style.css'
 import '../../estilos/Style.css'
+import { formCurrency } from '../../../../AA-utilidades/numeros';
 
 export function Selecionadores({ itempizza, selectedSabores, setSelectedSabores }){
     const { state } = useLocation()
@@ -121,9 +122,13 @@ export function Total({ tamanhopizza, selectedSabores }){
 
 return(
     <div className='totalpizza-s'>
-        <label>Valor Total</label>
-            <div>R$ {valorTotal()}</div>
-                <button onClick={()=> Adicionais(item)}> Adicionais</button>
+        <div className='totalpizza-s-1'>
+            <label>Valor Total</label>
+                <div>{formCurrency.format(valorTotal())}</div>
+        </div>
+        <div className='totalpizza-s-2'>
+            <button onClick={()=> Adicionais(item)}> Adicionais</button>
+        </div>        
     </div>
     
 )

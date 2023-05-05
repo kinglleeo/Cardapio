@@ -3,6 +3,19 @@
     display: grid;
     place-items: center;
 }
-.selecionar-add-pizza-0{
+.totalpizza-s{
+    width: 100%;
+    display: flex;
+}
+.totalpizza-s-1{
+    width: 60%;
+    display: grid;
+    place-items: center;
     
+}
+.totalpizza-s-2{
+    width: 40%;
+    display: grid;
+    place-items: center;
+   
 }

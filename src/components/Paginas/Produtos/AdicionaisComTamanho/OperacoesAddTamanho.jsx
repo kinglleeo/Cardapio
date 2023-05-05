@@ -8,7 +8,8 @@ import '../estilos/Style.css'
 import './styleAddP.css'
 import '../../teste.css'
 import {BiDish} from 'react-icons/bi'
- 
+import { formCurrency } from '../../../AA-utilidades/numeros' 
+
 export function AddAdicionais({ data, selectedAdds, setSelectedAdds}){
 
     const handleAddAdicionais =( event, data )=>{
@@ -64,7 +65,7 @@ export function Escolhidos({ index, selectedAdds, setSelectedAdds }){
 
 export function TotalAdd({ data, selectedAdds, selectedTamanho }){
     const dispatch = useDispatch()
-
+    const navigate = useNavigate()
     const valorTotalAdd=()=>{
         const valorpizza = data.valor || 0;
         const valortamanho = new Decimal(selectedTamanho?.valor || 0);
@@ -92,11 +93,20 @@ export function TotalAdd({ data, selectedAdds, selectedTamanho }){
         descricao: AddSelecte(),
         valor: valorTotalAdd()
     }
+
+    const handleCart=(item)=>{
+        dispatch(addToCart(item))
+        navigate('/Carrinho')
+    }
     return(
         <div className='total-00'>
-            <div>Valor Total:</div>
-            <div>R${valorTotalAdd()}</div>
-            <button onClick={()=> dispatch(addToCart(item))}>Adicionar</button>
+            <div className='total-valor'>
+                <div>Valor Total:</div>
+                <div>{formCurrency.format(valorTotalAdd())}</div>
+            </div>
+            <div className='total-button'>
+                <button onClick={()=> handleCart(item)}>Adicionar</button>
+            </div>
         </div>
     )
 }

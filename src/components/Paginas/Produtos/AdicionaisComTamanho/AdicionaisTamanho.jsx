@@ -2,6 +2,7 @@ import axios from 'axios';
 import { React, useState, useEffect } from 'react'
 import './styleAddP.css'
 import {BiDish} from 'react-icons/bi'
+import { formCurrency } from '../../../AA-utilidades/numeros';
 
 
 export default function AdicionaisTamanho({ selectedTamanho, setSelectedTamanho }){
@@ -25,21 +26,21 @@ export default function AdicionaisTamanho({ selectedTamanho, setSelectedTamanho 
                 <div className='list-tamanhos'>
                         {produto.map((data)=>
                         <div className='card-tamanhos'>
-                                <form className='card-i-tamanhos'>
-                                        <input type='radio' className='input-t' name='radio-input-t' onChange={()=> handletamanho(data)}/>
+                                <div className='card-i-tamanhos'>
+                                        <input type='radio' name='radio-input-t' className='input-t' onClick={()=> handletamanho(data)} />
                                     <div className='card-info-tamanhos'>
                                         <div className='card-tamanho-name'>
                                             <div className=''>{data.tamanho}</div>
                                         </div>
                                         <div className='card-tamanho-valor'>
-                                            <div className=''>Valor</div>
-                                            <div className=''>R$ {data.valor}</div>
+                                            <div className=''>Valor: </div>
+                                            <div className=''>{formCurrency.format(data.valor)}</div>
                                         </div>
                                         <div>
                                             <div className='iconeprato'><BiDish size={50} /></div>
                                         </div>
                                     </div>
-                                </form>
+                                </div>
                         </div>
                         )}
                     

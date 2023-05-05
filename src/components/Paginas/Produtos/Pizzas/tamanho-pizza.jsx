@@ -2,6 +2,7 @@ import { React, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../../../Estilos/Style.css'
+import { formCurrency } from '../../../AA-utilidades/numeros';
 export default function TamanhoPizaa(){
     const [produto, setProduto] = useState([]);
     const navigate = useNavigate();
@@ -23,7 +24,6 @@ export default function TamanhoPizaa(){
                     <label className='titulo-lista'>Pizzas</label>
             {produto.map((tamanhopizza)=>  
                 <div className="carde">
-                    <div className="circle"></div>
                             <div className="carde-inner">
                             <div className='caixa-pro'>
                                     <div className='caixa-pro-1'> 
@@ -33,7 +33,7 @@ export default function TamanhoPizaa(){
                                             </div>
                                             <div className='item-f-valor'>
                                                 <div>Valor</div>
-                                                <div>R$ {tamanhopizza.valor}</div>
+                                                <div>{formCurrency.format(tamanhopizza.valor)}</div>
                                             </div>
                                         </div>
                                         <div className='item-f-descricao'>Lagosta, Geladeira, navio, mussarela, queijo, avião, cobra, onomatopeia, jaguatirica, lambari, amendoim, figado, jundia, abacate, asiajsahudhsuhda, suah uhsuhd s, sau hduhs a, ushad uhas{tamanhopizza.descricao}</div>

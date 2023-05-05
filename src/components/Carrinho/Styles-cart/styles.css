@@ -1,24 +1,24 @@
 .caixa-cart-items{
     width: auto;
-    height: 100%;
-    display: flex;
-}
-.cart-item1{
-    width: 30%;
-    display: grid;
-    place-items: center;
-}
-.cart-item2{
-    width: 40%;
-}
-.cart-item3{
-    width: 30%;
-    display: grid;
-}
-.cart-item-2{
-    padding: 5px;
     display: flex;
     flex-direction: column;
+}
+.carde-cart{
+    height: 180px;
+}
+.cart-item1{
+    display: flex;
+    flex-direction: column;
+    height: 30%;
+}
+.cart-item2{
+    height: 70%;
+}
+.cart-itemname-card{
+    display: flex;
+}
+.cart-item1-column-1{
+    height: 30%;
 }
 .cart-item-2-name{
     height: 25%;
@@ -26,17 +26,50 @@
     place-items: center;
 }
 .cart-item-2-dsc{
-    
-}
-.cart-item-valor{
-    display: grid;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
     height: 100%;
 }
-.cart-valor-valor{
+.descricao-descricao{
+    padding-left: 5px;
+    display: block;
+    max-height: 100%;
+    scroll-behavior: auto;
+    overflow-y: scroll;
+}
+.cart-itemname-card-1{
+    width: 80%;
+    height: 100%;
+    padding-left: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.cart-itemname-card-2{
+    width: 20%;
+}
+
+.cart-item-valor{
+    display: flex;
+    height: 50px;
+}
+.titulo-descricao{
     display: grid;
     place-items: center;
 }
+.cart-valor-valor{
+    width: 40%;
+    display: flex;
+    padding: 5px;
+}
+.cart-quantia{
+    width: 30%;
+    display: grid;
+    place-items: center;
+    padding-left: 10px;
+}
 .cart-caixa-valores{
+    width: 30%;
     display: flex;
 }
 .cart-val1{

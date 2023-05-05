@@ -2,6 +2,7 @@ import axios from 'axios';
 import { React, useState, useEffect } from 'react'
 import { AddAdicionais } from './inputsAdcionais';
 import '../../../../Estilos/Style.css'
+import { formCurrency } from '../../../../AA-utilidades/numeros';
 
 export default function Adicionais({ selectedAdds, setSelectedAdds }){
     const [adicionais, setAdicionais] = useState([]);
@@ -20,7 +21,6 @@ export default function Adicionais({ selectedAdds, setSelectedAdds }){
                     <label className='titulo-lista'>ADICIONAIS</label>
             {adicionais.map((data)=>  
                 <div className="carde">
-                    <div className="circle"></div>
                             <div className="carde-inner">
                             <div className='caixa-pro'>
                                 <div className='caixa-pro-1'>
@@ -30,7 +30,7 @@ export default function Adicionais({ selectedAdds, setSelectedAdds }){
                                         </div>
                                         <div className='item-f-valor'>
                                             <div>Valor</div>
-                                            <div>R$ {data.valor}</div>
+                                            <div>{formCurrency.format(data.valor)}</div>
                                         </div>
                                     </div> 
                                     <div className='item-f-descricao'>Lagosta, Geladeira, navio, mussarela, queijo, avião, cobra, onomatopeia, jaguatirica, lambari, amendoim, figado, jundia, abacate, asiajsahudhsuhda, suah uhsuhd s, sau hduhs a, ushad uhas{data.descricao}</div>

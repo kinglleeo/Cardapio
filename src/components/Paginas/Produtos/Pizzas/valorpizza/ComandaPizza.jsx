@@ -20,12 +20,12 @@ export default function ComandaPizza({ selectedSabores, setSelectedSabores}) {
     const navbarComanda =()=>{
         if(window !== undefined){
             let windowheight = window.scrollY
-            windowheight > 80? setComandabar('comanda-pizza-top') : setComandabar('relative')
+            windowheight > 80? setComandabar('caixa-d-top') : setComandabar('relative')
         }
     }  
 
   return (
-  <div className={`${comandabar}`}>
+  <div>
     <div className='comanda-items'>
         <div className='caixa-c'>
           <div className='item-c'>
@@ -40,17 +40,21 @@ export default function ComandaPizza({ selectedSabores, setSelectedSabores}) {
             </div>
           </div>
         </div>
-        <div className='caixa-d'>
-          {selectedSabores.map((item, index) => (
-            <div key={index} className='caixa-d-items'>
-                <div>{item.nome}</div>
-              <MostrarSelecionados
-                selectedSabores={selectedSabores}
-                setSelectedSabores={setSelectedSabores}
-                index={index}
-              />
-            </div> 
-          ))}
+        <div className={`${comandabar}`}>
+          <div className='caixa-d'>
+              {selectedSabores.map((item, index) => (
+                <div className='caixa-d-items'>
+                  <div key={index} className='caixa-d-interna'>
+                      <div>{item.nome}</div>
+                    <MostrarSelecionados
+                      selectedSabores={selectedSabores}
+                      setSelectedSabores={setSelectedSabores}
+                      index={index}
+                    />
+                  </div> 
+                </div>
+              ))}
+          </div>
         </div>
     </div>
   </div>

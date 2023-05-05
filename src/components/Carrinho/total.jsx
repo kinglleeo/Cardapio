@@ -7,6 +7,7 @@ import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import './cart.css'
 import './cartpagbar.css'
+import { formCurrency } from '../AA-utilidades/numeros';
 
 export function TotalItem({ itemquantity, itemid, itemvalor }){
   const dispatch = useDispatch()
@@ -20,10 +21,10 @@ export function TotalItem({ itemquantity, itemid, itemvalor }){
   return(
     <div className='cart-item-valor'>
       <div className='cart-valor-valor'>
-        <div>Valor:</div>
-        <div>R$ {TotalItem()}</div>
+          <div>Valor:</div>
+          <div>{formCurrency.format(TotalItem())}</div>
       </div>
-      <div>Quantia:</div>
+      <div className='cart-quantia'>Quantia:</div>
       <div className='cart-caixa-valores'>
         <div className='cart-val1'>
           <button className='arrow left' onClick={() => dispatch(decrementQuantity(itemid))}/>
@@ -50,8 +51,8 @@ export function TotalCart() {
   
   return (
     <div className='totalcart'>
-        <div>Total</div>
-        <div>R$ {totalCart()}</div>
+        <div>Total:</div>
+        <div>{formCurrency.format(totalCart())}</div>
     </div>
   )
 }

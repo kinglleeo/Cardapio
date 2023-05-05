@@ -11,6 +11,7 @@ import TopoPagina from '../../../AA-utilidades/Topo';
 import '../../../Estilos/Style.css'
 import { useNavigate } from 'react-router-dom';
 import {api} from '../../../../conecções/api'
+import { formCurrency } from '../../../AA-utilidades/numeros';
 
 export default function adicionaislanches( ){
     const { state } = useLocation();
@@ -20,7 +21,6 @@ export default function adicionaislanches( ){
     const [selectedAdd, setSelectedAdd] = useState([]);
     const navigate = useNavigate();
 
-    console.log(selectedAdd)
     useEffect(()=>{
         api
             .get('/lanches')
@@ -50,13 +50,13 @@ export default function adicionaislanches( ){
             return total.plus(item.valor || 0);
         }, new Decimal(0));
         const total = new Decimal(valor).plus(valortotal);
-        return total.toFixed(2);
+        return total;
     };
 
     const handlecarrinho =()=>{
         dispatch(addToCart({ nome: item.nome, descricao: getDescricao(), valor: getValor()}))
         navigate('/Carrinho')
-    }
+    } 
 
     return(
         <div>    
@@ -70,8 +70,8 @@ export default function adicionaislanches( ){
                                 <div>{item.nome}</div>
                             </div>
                             <div className='item-222'>
-                                <label>Valor Total</label>
-                                <div>R$ {getValor()}</div>
+                                <label>Valor Total:</label>
+                                <div>{formCurrency.format(getValor())}</div>
                             </div>
                             <div className='item-333'>
                                 <button onClick={() => handlecarrinho()}>Adicionar</button>
@@ -87,7 +87,6 @@ export default function adicionaislanches( ){
                         <div className='lista-items'>
                             {dataAdd.map((data)=>
                                 <div className="carde">
-                                <div className="circle"></div>
                                 <div className="carde-inner">
                                 <div className='caixa-pro'>
                                     <div className='caixa-pro-1'> 
@@ -96,8 +95,8 @@ export default function adicionaislanches( ){
                                                 <div className='item-f-nome'>{data.nome}</div>
                                             </div>
                                             <div className='item-f-valor'>
-                                                <div>Valor</div>
-                                                <div>R$ {data.valor}</div>
+                                                <div>Valor: </div>
+                                                <div>{formCurrency.format(data.valor)}</div>
                                             </div>
                                         </div>
                                         <div className='item-f-descricao'>Lagosta, Geladeira, navio, mussarela, queijo, avião, cobra, onomatopeia, jaguatirica, lambari, amendoim, figado, jundia, abacate, asiajsahudhsuhda, suah uhsuhd s, sau hduhs a, ushad uhas{data.descricao}</div>
