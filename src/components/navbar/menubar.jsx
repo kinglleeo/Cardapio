@@ -14,7 +14,7 @@ export default function MenuBar() {
     const stickNavbar =()=>{
       if(window !== undefined){
         let windowHeight = window.scrollY 
-        windowHeight > 150? setStickyClass('nav-top') : setStickyClass('relative')
+        windowHeight > 400? setStickyClass('nav-top') : setStickyClass('relative')
       }
     }
 
@@ -25,16 +25,16 @@ export default function MenuBar() {
           <GiHamburger />
           <label>Lanches</label>
         </div>
-        <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('porcoes').scrollIntoView({ behavior: 'smooth' })}>
-          <GiFrenchFries />
-          <label>Porções</label>
+        <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('pizzas').scrollIntoView({ behavior: 'smooth' })}>
+          <GiFullPizza />
+          <label>Pizzas</label>
         </div>
         <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('pasteis').scrollIntoView({ behavior: 'smooth' })}>
           <label>Pasteis</label>
         </div>
-        <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('pizzas').scrollIntoView({ behavior: 'smooth' })}>
-          <GiFullPizza />
-          <label>Pizzas</label>
+        <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('porcoes').scrollIntoView({ behavior: 'smooth' })}>
+          <GiFrenchFries />
+          <label>Porções</label>
         </div>
         <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('bebidas').scrollIntoView({ behavior: 'smooth' })}>
           <GiWineBottle />

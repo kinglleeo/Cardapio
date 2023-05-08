@@ -18,3 +18,9 @@
     font-size: 16px;
     font-weight: 400;
 }
+@media(min-width: 850px){
+    .itembarraDeDirecionamento{
+        font-size: 20px;
+        font-weight: 600;
+    }
+}

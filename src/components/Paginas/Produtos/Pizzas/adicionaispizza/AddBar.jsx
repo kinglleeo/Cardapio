@@ -1,6 +1,6 @@
-import { React, useState, useEffect } from 'react'
+import { React, lazy} from 'react'
 import { useLocation } from 'react-router-dom'
-import { Escolhidos, TotalAdd } from './inputsAdcionais'
+import { Escolhidos, TotalAdd } from './inputsAdcionais';
 import './adicionaispizza.css'
 
 export default function AddBar({ selectedAdds, setSelectedAdds }){

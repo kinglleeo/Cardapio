@@ -1,8 +1,8 @@
 import { React, useState, useEffect } from 'react';
-import { Selecionadores } from './OperacaoInputs'
+import { Selecionadores } from './OperacaoInputs';
 import { formCurrency } from '../../../../AA-utilidades/numeros';
+import { api } from '../../../../../conecções/api';
 import '../../../../Estilos/styleForList.css'
-import { api } from '../../../../../conecções/api'
 
 export default function Salgadas({ selectedSabores, setSelectedSabores }) {
   const [produto, setProduto] = useState([]);

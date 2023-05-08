@@ -1,9 +1,9 @@
 import Decimal from 'decimal.js'
-import { React, useEffect } from 'react'
+import { React, lazy } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { addToCart } from '../../../../../redux/cartSlice'
-import { formCurrency } from '../../../../AA-utilidades/numeros'
+import { addToCart } from '../../../../../redux/cartSlice';
+import { formCurrency } from '../../../../AA-utilidades/numeros';
 import './styleInputsAdds.css'
 
 export function AddAdicionais({ data, selectedAdds, setSelectedAdds}){

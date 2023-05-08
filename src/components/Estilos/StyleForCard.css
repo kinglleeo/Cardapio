@@ -15,3 +15,11 @@
     backdrop-filter: blur(10px);
     border-radius: 8px;
 } 
+@media(min-width: 1024px){
+    .carde{
+        width: 32%;
+    }
+    .carde-inner{
+        width: 98%;
+    }
+}

@@ -11,6 +11,12 @@
     font-size: 30px;
     font-weight: 600;
 }
+.todos-items-lista{
+    width: auto;
+    height: auto;
+    display: grid;
+    place-items: center;
+}
 .box-item-List{
     display: flex;
     max-height: 130px;
@@ -41,7 +47,7 @@
     display: block;
     max-height: 100%;
     scroll-behavior: auto;
-    overflow-y: scroll;
+    overflow: scroll;
 }
 .box-List-img{
     width: 40%;
@@ -80,4 +86,22 @@
     font-weight: 600;
     background: rgb(2,29,78);
     background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 3%, rgba(31, 215, 232, 0.873) 95%);
+}
+
+@media(min-width: 700px){
+    .todos-items-lista{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .box-item-List{
+        max-height: 180px;
+    }
+}
+@media(min-width: 1024px){
+    .todos-items-lista{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .box-item-List{
+        max-height: 350px;
+    }
 }

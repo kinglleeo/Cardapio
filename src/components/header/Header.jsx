@@ -1,15 +1,9 @@
-import { React, useState, useEffect } from 'react'
+import { React } from 'react'
 import './Header.css'
-import axios from 'axios'
-
-
 export default function Header (){
-
-
-
     return(
         <div className='header-body'>
-            <div className='header-caixa'>
+            <div className='header-caixa' >
                 <div className='caixa-conteudo'>
                     <div className='header-cardapio'>
                         <div>Cardapio</div>

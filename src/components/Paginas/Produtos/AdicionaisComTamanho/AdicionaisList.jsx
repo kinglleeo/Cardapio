@@ -1,7 +1,6 @@
-import axios from 'axios'
 import { React, useState, useEffect } from 'react'
 import { AddAdicionais } from './OperacoesAddTamanho';
-import {api} from '../../../../conecções/api'
+import {api} from '../../../../conecções/api';
 import '../../../Estilos/styleForList.css'
 
 export default function AdicionaisList({ selectedAdds, setSelectedAdds }){

@@ -29,10 +29,10 @@
 }
 .container input:checked ~ .checkmark {
     background: #fff;
-    box-shadow: -10px -10px var(--spread) 0px #0aff02, 0 -10px var(--spread) 
-    0px #0aff02, 10px -10px var(--spread) 0px #0aff02, 10px 0 var(--spread) 
-    0px #0aff02, 10px 10px var(--spread) 0px #0aff02, 0 10px var(--spread) 
-    0px #0aff02, -10px 10px var(--spread) 0px #0aff02;
+    box-shadow: -10px -10px var(--spread) 0px #1fd7e8df, 0 -10px var(--spread) 
+    0px #1fd7e8df, 10px -10px var(--spread) 0px #1fd7e8df, 10px 0 var(--spread) 
+    0px #1fd7e8df, 10px 10px var(--spread) 0px #1fd7e8df, 0 10px var(--spread) 
+    0px #1fd7e8df, -10px 10px var(--spread) 0px #1fd7e8df;
 }
 .checkmark:after {
     content: "";
@@ -44,13 +44,7 @@
     animation: checkmark 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 .container .checkmark:after {
-    left: 0.45em;
-    top: 0.25em;
-    width: 0.25em;
-    height: 0.5em;
-    border: solid #0aff02;
-    border-width: 0 0.15em 0.15em 0;
-    transform: rotate(45deg);
+
 }
 @keyframes checkmark {
     from {

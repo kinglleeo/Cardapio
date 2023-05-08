@@ -68,8 +68,10 @@
     background-size: 100% 100%;
     border-radius: 15px 0 0 15px;
 }
-.botao-para-promo-nav{
+.btn-adicionais-promo{
     height: 100%;
+    display: grid;
+    place-items: end;
 }
 .descricoes{
     width: 45%;
@@ -108,9 +110,3 @@
     font-size: 15px;
     padding-left: 5px;
 }
-.botao-promo{
-    position: absolute;
-    left: 80px;
-    bottom: 20px;
-}
-

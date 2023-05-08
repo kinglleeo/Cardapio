@@ -1,8 +1,7 @@
-import axios from 'axios';
 import { React, useState, useEffect } from 'react'
 import {BiDish} from 'react-icons/bi'
 import { formCurrency } from '../../../AA-utilidades/numeros';
-import { api } from '../../../../conecções/api'
+import { api } from '../../../../conecções/api';
 import './styleTamanho.css'
 
 export default function AdicionaisTamanho({ selectedTamanho, setSelectedTamanho }){

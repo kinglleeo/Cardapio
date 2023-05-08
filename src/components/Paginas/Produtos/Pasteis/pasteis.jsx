@@ -1,9 +1,9 @@
-import { React, useState, useEffect } from 'react'
+import { React, useState, useEffect, lazy } from 'react'
 import { useDispatch } from 'react-redux'
-import { addToCart } from '../../../../redux/cartSlice'
 import { useNavigate } from 'react-router-dom'
-import { formCurrency } from '../../../AA-utilidades/numeros'
-import { api } from '../../../../conecções/api'
+import { addToCart } from '../../../../redux/cartSlice';
+import { formCurrency } from '../../../AA-utilidades/numeros';
+import { api } from '../../../../conecções/api';
 import '../../../Estilos/styleForList.css'
 
 export default function Pasteis(){
@@ -26,6 +26,7 @@ export default function Pasteis(){
     return(
         <div className='lista' id='pasteis'>
                     <label className='titulo-lista'>PASTEIS</label>
+            <div className='todos-items-lista'>       
             {produto.map((item)=>  
                 <div className="carde">
                     <div className="carde-inner">
@@ -53,6 +54,7 @@ export default function Pasteis(){
                     </div>
                 </div>
             )}    
+            </div> 
         </div> 
     )
 }

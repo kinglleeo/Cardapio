@@ -1,8 +1,6 @@
-import { React, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-import { MostrarSelecionados } from '../sabores-pizza/OperacaoInputs';
-import { Total } from '../sabores-pizza/OperacaoInputs';
+import { React, useEffect, useState, lazy } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { MostrarSelecionados, Total } from '../sabores-pizza/OperacaoInputs';
 import './styleComandaPizza.css';
 
 export default function ComandaPizza({ selectedSabores, setSelectedSabores}) {

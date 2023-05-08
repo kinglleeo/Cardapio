@@ -1,7 +1,7 @@
 import {useDispatch, useSelector} from 'react-redux'
-import { incrementQuantity, decrementQuantity } from '../../redux/cartSlice';
 import Decimal from 'decimal.js';
 import { formCurrency } from '../AA-utilidades/numeros';
+import { incrementQuantity, decrementQuantity } from '../../redux/cartSlice';
 import './cartpagbar.css'
 import './Styles-cart/styleTotalCartItem.css'
 

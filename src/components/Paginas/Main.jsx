@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Header from '../header/Header'
-import Footer from '../Footer/Footer'
-import ListaProdutos from './Produtos/ListaProdutos'
-import './Main.css'
-import IconCarrinho from '../Carrinho/Iconcarrinho'
+import Header from '../header/Header';
+import SearchBar from '../navbar/Search/SearchBar';
+import ListaProdutos from './Produtos/ListaProdutos';
+import IconCarrinho from '../Carrinho/Iconcarrinho';
 import TopoPagina from '../AA-utilidades/Topo';
 import Promo from '../navbar/NavPromocoes/navPromo';
-import SearchBar from '../navbar/Search/SearchBar';
+import './Main.css'
 
 export default function Main() {
+
 
   return ( 
     <div className='main-main'>

@@ -1,9 +1,9 @@
-import { React, useState, useEffect } from 'react'
+import { React, useState, useEffect, lazy } from 'react'
 import { useDispatch } from 'react-redux'
-import { addToCart } from '../../../../redux/cartSlice'
 import { useNavigate } from 'react-router-dom'
-import { formCurrency } from '../../../AA-utilidades/numeros'
-import { api } from '../../../../conecções/api'
+import {addToCart} from '../../../../redux/cartSlice';
+import {api} from '../../../../conecções/api';
+import { formCurrency } from '../../../AA-utilidades/numeros';
 import '../../../Estilos/styleForList.css'
 
 export default function Bebidas(){
@@ -26,6 +26,7 @@ export default function Bebidas(){
     return(
         <div className='lista' id='bebidas'>
                     <label className='titulo-lista'>BEBIDAS</label>
+            <div className='todos-items-lista'>
             {produto.map((item)=>  
                 <div className="carde">
                     <div className="carde-inner">
@@ -52,7 +53,8 @@ export default function Bebidas(){
                         </div>
                     </div>
                 </div>
-            )}    
+            )}   
+            </div>  
         </div>  
     )
     

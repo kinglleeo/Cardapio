@@ -1,8 +1,8 @@
-import { React, useState, useEffect } from 'react'
-import {Swiper, SwiperSlide} from 'swiper/react';
+import { React, useState, useEffect } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination } from 'swiper';
-import { useNavigate } from 'react-router-dom'
-import { api } from '../../../conecções/api'
+import { useNavigate } from 'react-router-dom';
+import { api } from '../../../conecções/api';
 import "swiper/css";
 import "swiper/css/pagination";
 import './navPromo.css'
@@ -24,7 +24,6 @@ export default function Teste(){
       };
 
     return(
-        
             <div className='bloco-promocoes'>
                 <div className='bloco-1365'>
                     <Swiper
@@ -46,7 +45,7 @@ export default function Teste(){
                                     <span></span>
                                     <div className='tabela-card-promo'>
                                         <div className='img'>
-                                            <div className='item-f-img'>
+                                            <div className='btn-adicionais-promo'>
                                                 <button onClick={(()=> handleAdicionais(item))} className="btn-azul-estiloso"> Adicionais </button>
                                             </div>
                                     </div>

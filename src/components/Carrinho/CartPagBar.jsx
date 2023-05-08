@@ -1,5 +1,5 @@
-import { React, useState, useEffect } from 'react'
-import { TotalCart } from './total'
+import { React } from 'react'
+import { TotalCart } from './total';
 import './cartpagbar.css'
 import { useNavigate } from 'react-router-dom'
 

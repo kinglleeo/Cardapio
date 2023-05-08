@@ -2,16 +2,15 @@ import { React, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { formCurrency } from '../../../AA-utilidades/numeros';
 import '../../../Estilos/styleForList.css'
-import axios from 'axios';
-
+import { api } from '../../../../conecções/api'
 
 export default function TamanhoPizaa(){
     const [produto, setProduto] = useState([]);
     const navigate = useNavigate();
 
     useEffect(()=>{
-        axios
-            .get('https://642b23b0d7081590f91d081a.mockapi.io/cardapio')
+        api
+            .get('/cardapio')
             .then((getdata)=>{
                 setProduto(getdata.data);
             });
@@ -24,6 +23,7 @@ export default function TamanhoPizaa(){
     return(
         <div className='lista' id='pizzas'>
                     <label className='titulo-lista'>Pizzas</label>
+            <div className='todos-items-lista'>
             {produto.map((tamanhopizza)=>  
                 <div className="carde">
                     <div className="carde-inner">
@@ -48,7 +48,8 @@ export default function TamanhoPizaa(){
                         </div>
                     </div>
                 </div>
-            )}    
+            )} 
+            </div>   
         </div>
     )
 }

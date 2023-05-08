@@ -1,10 +1,9 @@
-import { React, useState, useEffect } from 'react'
+import { React } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 import Decimal from 'decimal.js';
 import { formCurrency } from '../../../../AA-utilidades/numeros';
 import './StyleInputsSabores.css'
-import '../../estilos/Style.css'
+import '../../../../Estilos/StyleForInput.css'
 
 export function Selecionadores({ itempizza, selectedSabores, setSelectedSabores }){
     const { state } = useLocation()

@@ -1,11 +1,11 @@
 import Decimal from 'decimal.js'
-import React from 'react'
+import { React } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { addToCart } from '../../../../redux/cartSlice'
-import { formCurrency } from '../../../AA-utilidades/numeros'
-import '../estilos/Style.css'
+import { addToCart } from '../../../../redux/cartSlice';
+import { formCurrency } from '../../../AA-utilidades/numeros';
 import './styleOperacoesTamanhos.css'
+import '../../../Estilos/StyleForInput.css'
 
 export function AddAdicionais({ data, selectedAdds, setSelectedAdds}){
 

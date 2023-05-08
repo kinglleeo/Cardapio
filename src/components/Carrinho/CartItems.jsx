@@ -1,8 +1,9 @@
-import { incrementQuantity, decrementQuantity, removeItem} from '../../redux/cartSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { TotalItem } from './total'
+import { TotalItem } from './total';
+import { removeItem} from '../../redux/cartSlice';
 import './Styles-cart/styleCartItem.css'
 import '../Estilos/StyleForCard.css'
+import { TbTrashXFilled } from 'react-icons/tb'
 
 export default function CartItem() {
   const dispatch = useDispatch()
@@ -33,7 +34,9 @@ export default function CartItem() {
                                     </div>
                                 </div >
                                 <div className='cart-box-item-2'>
-                                    <button className="noselect" onClick={()=> dispatch(removeItem(item.id))}></button>
+                                    <button className="btn-delete" onClick={()=> dispatch(removeItem(item.id))}>
+                                        <TbTrashXFilled className='icon-trash'/>
+                                    </button>
                                 </div>
                             </div>
                         </div>

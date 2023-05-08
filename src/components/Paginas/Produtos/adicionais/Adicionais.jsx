@@ -1,8 +1,8 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState, useEffect, lazy } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {addToCart} from '../../../../redux/cartSlice';
-import IconCarrinho from '../../../Carrinho/Iconcarrinho';
 import { formCurrency } from '../../../AA-utilidades/numeros';
+import IconCarrinho from '../../../Carrinho/Iconcarrinho';
 import TopoPagina from '../../../AA-utilidades/Topo';
 import Header from '../../../header/Header';
 import {api} from '../../../../conecções/api';
@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import Decimal from 'decimal.js';
 import './adicionais.css';
 import '../../../Estilos/styleForList.css';
+import '../../../Estilos/StyleForInput.css'
 
 export default function adicionaislanches( ){
     const [selectedAdd, setSelectedAdd] = useState([]);

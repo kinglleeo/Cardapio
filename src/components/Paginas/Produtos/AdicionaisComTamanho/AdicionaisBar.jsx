@@ -1,7 +1,7 @@
-import { React, useState, useEffect } from 'react'
-import './adicionaisbar.css'
+import { React, lazy } from 'react'
 import { useLocation } from 'react-router-dom'
-import { Escolhidos, TotalAdd } from './OperacoesAddTamanho'
+import { Escolhidos, TotalAdd } from './OperacoesAddTamanho';
+import './adicionaisbar.css'
 
 export default function AdicionaisBar({ selectedAdds, setSelectedAdds, selectedTamanho, setSelectedTamanho  }){
     const { state } = useLocation()

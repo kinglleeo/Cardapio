@@ -1,14 +1,13 @@
-import { React, useState, useEffect } from 'react'
+import { React, useState, useEffect, lazy } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { formCurrency } from '../../../AA-utilidades/numeros';
+import { api } from '../../../../conecções/api';
 import '../../../Estilos/styleForList.css'
-import { api } from '../../../../conecções/api'
-
-
+import { AutoSizer, List } from 'react-virtualized';
+import './porcoes.css'
 export default function Porcoes(){
     const [produto, setProduto] = useState([]);
     const navigate = useNavigate()
-
     useEffect(()=>{
         api
             .get('/lanches')
@@ -20,10 +19,10 @@ export default function Porcoes(){
     const handleAdicionais = (item) => {
         navigate('/AdicionaisComTamanho', { state: { item } });
       };
-
     return(
         <div className='lista' id='porcoes'>
-                    <label className='titulo-lista'>PORÇÕES</label>
+            <label className='titulo-lista'>PORÇÕES</label>
+            <div className='todos-items-lista'>
             {produto.map((item)=>  
                 <div className="carde">
                     <div className="carde-inner">
@@ -48,7 +47,8 @@ export default function Porcoes(){
                         </div>
                     </div>
                 </div>
-            )}    
-        </div>  
-    )
+            )}  
+            </div>  
+            </div>
+    );
 }

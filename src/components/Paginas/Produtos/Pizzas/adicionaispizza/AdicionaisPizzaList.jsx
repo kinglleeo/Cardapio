@@ -1,9 +1,9 @@
-import { React, useState } from 'react'
-import Header from '../../../../header/Header'
-import Adicionais from './Adicionais'
-import AddBar from './AddBar'
-import IconCarrinho from '../../../../Carrinho/Iconcarrinho'
-import TopoPagina from '../../../../AA-utilidades/Topo'
+import { React, useState, lazy } from 'react'
+import Header from '../../../../header/Header';
+import AddBar from './AddBar';
+import IconCarrinho from '../../../../Carrinho/Iconcarrinho';
+import TopoPagina from '../../../../AA-utilidades/Topo';
+import Adicionais from './Adicionais';
 
 export default function AdicionaisPizzaList(){
     const [selectedAdds, setSelectedAdds] = useState([]);
