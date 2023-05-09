@@ -2,11 +2,11 @@
     padding-top: 5px;
     padding-left: 5px;
     padding-bottom: 5px;
-    width: 98%;
     height: auto;
+    width: auto;
     transition: all 0.2s;
     position: relative;
-} 
+}  
 .carde-inner {
     width: inherit;
     height: inherit;

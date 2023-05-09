@@ -21,18 +21,6 @@ export default function ListaProdutos(){
                 <Lanches/>
             </div>
             <div>
-                <TamanhoPizzas/>
-            </div>
-            <div>
-                <Pasteis/>
-            </div>
-            <div>
-                <Porcoes/>
-            </div>
-            <div>
-               <Bebidas/>
-            </div>
-            <div>
                 <Footer/>
             </div>
         </div>
