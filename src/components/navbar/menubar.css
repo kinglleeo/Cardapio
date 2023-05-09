@@ -4,7 +4,7 @@
     grid-template-columns: repeat(5,1fr);
     place-items: center;
     padding-top: 10px;
-    background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 3%, rgba(31, 215, 232, 0.873) 95%);
+    background:  rgb(17, 184, 199, 1);
 }
 .nav-top{
     position: fixed;
