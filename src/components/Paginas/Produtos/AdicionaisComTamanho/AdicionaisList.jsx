@@ -18,6 +18,7 @@ export default function AdicionaisList({ selectedAdds, setSelectedAdds }){
     return(
         <div className='lista'>
             <label className='titulo-lista'>ADICIONAIS</label>
+        <div className='todos-items-lista'>
         {produto.map((data)=>
             <div className="carde">
                 <div className="carde-inner">
@@ -47,6 +48,7 @@ export default function AdicionaisList({ selectedAdds, setSelectedAdds }){
                 </div>
             </div>
         )}
+        </div>
     </div>  
         
     )

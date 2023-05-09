@@ -11,6 +11,7 @@ export default function CartItem() {
   
   return (
     <div> 
+        <div className='todos-items-lista'>
       {cart.map((item) =>
     <div className='carde carde-cart'>
                 <div className='carde-inner '>
@@ -44,6 +45,7 @@ export default function CartItem() {
                 </div>
             </div>
       )}
+      </div>
       </div>
   )
 }

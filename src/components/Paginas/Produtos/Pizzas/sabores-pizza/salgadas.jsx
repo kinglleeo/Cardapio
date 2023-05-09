@@ -18,6 +18,7 @@ export default function Salgadas({ selectedSabores, setSelectedSabores }) {
   return (
     <div className='lista' id='salgadas'>
                     <label className='titulo-lista'>SALGADAS</label>
+                <div className='todos-items-lista'>
             {produto.map((itempizza)=>  
                 <div className="carde">
                     <div className="carde-inner">
@@ -47,6 +48,7 @@ export default function Salgadas({ selectedSabores, setSelectedSabores }) {
                     </div>
                 </div>
             )}    
+            </div>
         </div> 
   );
 }

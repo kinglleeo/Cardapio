@@ -87,6 +87,7 @@ export default function adicionaislanches( ){
                     </div>
                     <div className='lista'>
                         <label className='titulo-lista'>Adicionais</label>
+                        <div className='todos-items-lista'>
                             {dataAdd.map((data)=>
                             <div className="carde">
                                 <div className="carde-inner">
@@ -115,6 +116,7 @@ export default function adicionaislanches( ){
                                 </div>
                             </div>
                             )}
+                        </div>
                         </div>  
                     
             </div>

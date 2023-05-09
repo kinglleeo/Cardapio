@@ -27,11 +27,11 @@ export default function Teste(){
             <div className='bloco-promocoes'>
                 <div className='bloco-1365'>
                     <Swiper
+                    slidesPerView={"auto"}
                     spaceBetween={30}
-                    centeredSlides={true}
                         autoplay={{
-                            delay: 3000,
-                            disableOnInteraction: false,
+                           delay: 4500,
+                           disableOnInteraction: false,
                       }}
                       pagination={{
                         dynamicBullets: true,
@@ -46,7 +46,7 @@ export default function Teste(){
                                     <div className='tabela-card-promo'>
                                         <div className='img'>
                                             <div className='btn-adicionais-promo'>
-                                                <button onClick={(()=> handleAdicionais(item))} className="btn-azul-estiloso"> Adicionais </button>
+                                                <button onClick={(()=> handleAdicionais(item))} className="btn-azul-estiloso btn-promo"> Adicionais </button>
                                             </div>
                                     </div>
                                         <div className='descricoes'>

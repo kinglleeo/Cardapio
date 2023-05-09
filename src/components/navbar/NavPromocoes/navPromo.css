@@ -110,3 +110,17 @@
     font-size: 15px;
     padding-left: 5px;
 }
+@media(min-width: 1024px){
+    .btn-promo{
+        position: relative;
+        bottom: 20px;
+    }
+    .swiper-slide{
+        width: 48% !important;
+    }
+}
+@media(min-width: 2000px){
+    .swiper-slide{
+        width: 19% !important;
+    }
+}

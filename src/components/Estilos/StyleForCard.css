@@ -22,5 +22,14 @@
     .carde-inner{
         width: 98%;
     }
-    
+}
+@media(min-width: 1440px){
+    .carde{
+        width: 24%;
+    }
+}
+@media(min-width: 2000px){
+    .carde{
+        width: 19%;
+    }
 }
