@@ -88,7 +88,6 @@
     background: rgb(2,29,78);
     background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 3%, rgba(31, 215, 232, 0.873) 95%);
 }
-
 @media(min-width: 700px){
     .todos-items-lista{
         grid-template-columns: repeat(2, 1fr);
@@ -169,3 +168,4 @@
         padding-left: 50px;
     }
 }
+

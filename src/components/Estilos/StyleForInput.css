@@ -1,62 +1,18 @@
-.container {
-    position: relative;
-    cursor: pointer;
-    font-size: 25px;
-    height: 40px;
-    width: 40px;
-    border-radius: 20px;
-    background: linear-gradient(145deg, #e6e6e6, #ffffff);
+.container{
+    position: absolute;
+    bottom: 8px;
+    right: 0;
+    background-color: red;
+    height: 25px;
+    width: 27%;
+    border-radius: 10px 0 0 10px;
     display: grid;
     place-items: center;
 }
-.container input {
-    position: absolute;
-    opacity: 0;
-    height: 0;
-    width: 0;
-    cursor: pointer;
+input[type="checkbox" i]{
+    appearance: none;
 }
-.checkmark {
-    position: relative;
-    top: 0;
-    left: 0;
-    height: 30px;
-    width: 30px;
-    background: rgb(255, 255, 255);
-    border-radius: 50px;
-    transition: all 0.7s;
-    --spread: 15px;
-}
-.container input:checked ~ .checkmark {
-    background: #fff;
-    box-shadow: -10px -10px var(--spread) 0px #1fd7e8df, 0 -10px var(--spread) 
-    0px #1fd7e8df, 10px -10px var(--spread) 0px #1fd7e8df, 10px 0 var(--spread) 
-    0px #1fd7e8df, 10px 10px var(--spread) 0px #1fd7e8df, 0 10px var(--spread) 
-    0px #1fd7e8df, -10px 10px var(--spread) 0px #1fd7e8df;
-}
-.checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-.container input:checked ~ .checkmark:after {
-    display: block;
-    animation: checkmark 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
-}
-.container .checkmark:after {
 
-}
-@keyframes checkmark {
-    from {
-      transform: rotate(-45deg) scale(0);
-    }
-  
-    to {
-      transform: rotate(45deg) scale(1);
-    }
-}
-.container span {
-    margin-left: 2em;
-    color: black;
-    font-weight: bold;
+.Container-ComandaPizza{
+
 }

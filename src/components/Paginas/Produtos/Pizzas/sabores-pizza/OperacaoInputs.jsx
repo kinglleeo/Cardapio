@@ -35,6 +35,7 @@ export function Selecionadores({ itempizza, selectedSabores, setSelectedSabores 
     return (
         <div className='selecionar-add-pizza-0'>
             <label className='container'>
+                Adicionar
                 <input
                     type='checkbox'
                     name="selecionar-sabor"
@@ -76,8 +77,8 @@ export function MostrarSelecionados ({ index, selectedSabores, setSelectedSabore
    
 
     return(
-        <div>
-            <label>
+        <div className='Container-ComandaPizza'>
+            <label className='RemoverComandaPizza'>
                 <input
                     type='checkbox'
                     checked

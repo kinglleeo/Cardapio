@@ -21,6 +21,7 @@ export function AddAdicionais({ data, selectedAdds, setSelectedAdds}){
 return(
         <div>
             <label className='container'>
+            Adicionar
                 <input
                     type='checkbox'
                     id={data.id}

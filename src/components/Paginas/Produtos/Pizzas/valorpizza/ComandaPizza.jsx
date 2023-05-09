@@ -43,7 +43,7 @@ export default function ComandaPizza({ selectedSabores, setSelectedSabores}) {
               {selectedSabores.map((item, index) => (
                 <div className='comanda-selecionados'>
                   <div key={index} className='box-selecionados'>
-                      <div>{item.nome}</div>
+                      <div className='comandaNomeSabor'>{item.nome}</div>
                     <MostrarSelecionados
                       selectedSabores={selectedSabores}
                       setSelectedSabores={setSelectedSabores}

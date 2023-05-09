@@ -49,11 +49,16 @@
 .box-selecionados{
     width: 90%;
     height: 45px;
-    display: grid;
+    display: flex;
     place-items: center;
     background: rgba(255,255,255,.05);
     box-shadow: 0 0 10px rgba(0,0,0,0.25);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border-radius: 8px;
+}
+.comandaNomeSabor{
+    width: 70%;
+    display: grid;
+    place-items: center;
 }

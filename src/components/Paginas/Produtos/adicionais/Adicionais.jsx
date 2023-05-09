@@ -108,7 +108,8 @@ export default function adicionaislanches( ){
                                         <div className='box-List-img'>
                                         <div className='item-img'>
                                             <label className="container">
-                                                <input type='checkbox' onClick={()=> handleAdd(data.id, data.nome, data.valor)}/>
+                                                Adicionar
+                                                <input type='checkbox' name='ssl' className='input-sele' onClick={()=> handleAdd(data.id, data.nome, data.valor)}/>
                                                 <div className="checkmark"></div>
                                             </label>
                                         </div>
