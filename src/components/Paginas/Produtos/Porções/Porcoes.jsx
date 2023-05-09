@@ -27,6 +27,7 @@ export default function Porcoes(){
                 <div className="carde">
                     <div className="carde-inner">
                         <div className='box-item-List'>
+                        <span/>
                             <div className='item-List-info'> 
                                 <div className='bloco-item-info'>
                                     <div className='box-name'>
