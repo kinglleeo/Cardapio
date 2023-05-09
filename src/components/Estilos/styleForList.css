@@ -102,6 +102,15 @@
         flex-wrap: wrap;
     }
     .box-item-List{
-        max-height: 350px;
+        max-height: 400px;
+        flex-direction: column-reverse;
+    }
+    .box-List-img{
+        width: 100%;
+        height: 170px;
+    }
+    .item-List-info{
+        width: 100%;
+        height: 100%;
     }
 }
