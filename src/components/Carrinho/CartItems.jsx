@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { TotalItem } from './total';
 import { removeItem} from '../../redux/cartSlice';
 import './Styles-cart/styleCartItem.css'
-import '../Estilos/StyleForCard.css'
 import { TbTrashXFilled } from 'react-icons/tb'
 
 export default function CartItem() {
