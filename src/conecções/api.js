@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const api = axios.create({
-  baseURL: 'https://642b23b0d7081590f91d081a.mockapi.io',
+  baseURL: 'http://192.168.0.100:9865',
   headers: {'Access-Control-Allow-Origin': '*'}
 });
+

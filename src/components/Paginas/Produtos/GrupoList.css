@@ -1,0 +1,10 @@
+.GrupoList{
+    display: flex;
+    flex-direction: column;
+}
+.Grupo-Titulo{
+    display: grid;
+    place-items: center;
+    font-size: 16px;
+    margin: 10px;
+}

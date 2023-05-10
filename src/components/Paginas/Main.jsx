@@ -1,10 +1,11 @@
 import Header from '../header/Header';
 import SearchBar from '../navbar/Search/SearchBar';
-import ListaProdutos from './Produtos/ListaProdutos';
+import GrupoList from './Produtos/GrupoList';
 import IconCarrinho from '../Carrinho/Iconcarrinho';
 import TopoPagina from '../AA-utilidades/Topo';
 import Promo from '../navbar/NavPromocoes/navPromo';
 import './Main.css'
+import MenuBar from '../navbar/menubar';
 
 export default function Main() {
 
@@ -18,10 +19,13 @@ export default function Main() {
           <Promo/>
         </div>
         <div>
+          <MenuBar/>
+        </div>
+        <div>
           <SearchBar/>
         </div>
         <div className='main-lista'>
-          <ListaProdutos/>
+          <GrupoList/>
         </div>
         <div>
           <IconCarrinho/>

@@ -11,13 +11,7 @@ export default function Teste(){
     const [promo, setPromo ] = useState([])
     const navigate = useNavigate()
 
-    useEffect(()=>{
-        api
-            .get('/lanches')
-            .then((getdata)=>{
-                setPromo(getdata.data);
-            });
-    }, []);
+    
     
     const handleAdicionais = (item) => {
         navigate('/Adicionais', { state: { item } });

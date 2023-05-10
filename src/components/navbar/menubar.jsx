@@ -1,9 +1,20 @@
 import { useState, useEffect } from 'react';
-import { GiHamburger, GiFullPizza, GiWineBottle, GiFrenchFries } from 'react-icons/gi';
 import './menubar.css';
+import { api } from '../../conecções/api';
 
 export default function MenuBar() {
-    const [stickyClass, setStickyClass]= useState('relative')
+  const [barradenavegacao, setStickyClass]= useState('barradenavegacao')
+  const [grupos, setGrupos] = useState([]);
+  console.log(grupos)
+
+//  useEffect(()=>{
+//    api
+//      .get('/listaGrupos')
+//      .then((getdata)=>{
+//        setGrupos(getdata.data);
+//      });
+//  }, []);
+
 
     useEffect(()=>{
       window.addEventListener('scroll', stickNavbar)
@@ -11,6 +22,7 @@ export default function MenuBar() {
         window.removeEventListener('scroll', stickNavbar)
       }
     },[])
+
     const stickNavbar =()=>{
       if(window !== undefined){
         let windowHeight = window.scrollY 
@@ -19,28 +31,10 @@ export default function MenuBar() {
     }
 
   return (
-    <div className={`${stickyClass}`}>
-      <div className='navbar-menu' >
-        <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('lanches').scrollIntoView({ behavior: 'smooth' })}>
-          <GiHamburger />
-          <label>Lanches</label>
-        </div>
-        <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('pizzas').scrollIntoView({ behavior: 'smooth' })}>
-          <GiFullPizza />
-          <label>Pizzas</label>
-        </div>
-        <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('pasteis').scrollIntoView({ behavior: 'smooth' })}>
-          <label>Pasteis</label>
-        </div>
-        <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('porcoes').scrollIntoView({ behavior: 'smooth' })}>
-          <GiFrenchFries />
-          <label>Porções</label>
-        </div>
-        <div className='itembarraDeDirecionamento' onClick={() => document.getElementById('bebidas').scrollIntoView({ behavior: 'smooth' })}>
-          <GiWineBottle />
-          <label>Bebidas</label>
-        </div>
-      </div>
+    <div className={`${barradenavegacao}`}>
+      {grupos.map((item)=>
+        <div className='barra-nav-items' onClick={() => document.getElementById(item.ID_GRUPO).scrollIntoView({ behavior: 'smooth' })}>{item.GRUPO}</div>
+      )}  
     </div>
   );
 }

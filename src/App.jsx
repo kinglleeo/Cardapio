@@ -5,14 +5,9 @@ import {
   Routes,
 } from "react-router-dom";
 import Carrinho from './components/Carrinho/Carrinho'
-import ListaProdutos from './components/Paginas/Produtos/ListaProdutos'
+import GrupoList from './components/Paginas/Produtos/GrupoList'
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
-import Adicionais from './components/Paginas/Produtos/adicionais/Adicionais'
-import TamanhoPizzas from './components/Paginas/Produtos/Pizzas/tamanho-pizza'
-import Pizzas from './components/Paginas/Produtos/Pizzas/Pizzas'
-import AdicionaisPizza from './components/Paginas/Produtos/Pizzas/adicionaispizza/AdicionaisPizzaList'
-import AdicionaisComTamanho from './components/Paginas/Produtos/AdicionaisComTamanho/AdicionaisComTamanho'
 import Teste from './components/Paginas/teste'
 
 export default function App(){
@@ -21,12 +16,7 @@ export default function App(){
         <Routes>
           <Route path='/' element={<Main/>} />
           <Route path='/Carrinho' element={<Carrinho/>}/>
-          <Route path='/ListaProdutos' element={<ListaProdutos/>}/>
-          <Route path='/Adicionais' element={<Adicionais/>}/>
-          <Route path='/TamanhoPizzas' element={<TamanhoPizzas/>}/>
-          <Route path='/Pizzas' element={<Pizzas/>}/>
-          <Route path='/AdicionaisPizza' element={<AdicionaisPizza/>}/>
-          <Route path='/AdicionaisComTamanho' element={<AdicionaisComTamanho/>}/>
+          <Route path='/GrupoList' element={<GrupoList/>}/>
           <Route path='/Teste' element={<Teste/>}/>
         </Routes>
       </Provider>

@@ -1,10 +1,9 @@
-
-.navbar-menu {
-    display: grid; 
-    grid-template-columns: repeat(5,1fr);
+.barradenavegacao{
+    display: flex;
     place-items: center;
-    padding-top: 10px;
-    background:  rgb(17, 184, 199, 1);
+    height: 50px;
+    width: 100%;
+    overflow-x: auto;
 }
 .nav-top{
     position: fixed;
@@ -12,15 +11,10 @@
     width: 100%;
     z-index: 999;
 }
-.itembarraDeDirecionamento {
+.barra-nav-items{
+    width: 30%;
+    padding: 20px;
     display: grid;
     place-items: center;
     font-size: 16px;
-    font-weight: 400;
-}
-@media(min-width: 850px){
-    .itembarraDeDirecionamento{
-        font-size: 20px;
-        font-weight: 600;
-    }
 }
