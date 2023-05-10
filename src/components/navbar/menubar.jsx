@@ -5,15 +5,15 @@ import { api } from '../../conecções/api';
 export default function MenuBar() {
   const [barradenavegacao, setStickyClass]= useState('barradenavegacao')
   const [grupos, setGrupos] = useState([]);
-  console.log(grupos)
 
-//  useEffect(()=>{
-//    api
-//      .get('/listaGrupos')
-//      .then((getdata)=>{
-//        setGrupos(getdata.data);
-//      });
-//  }, []);
+
+  useEffect(()=>{
+    api
+      .get('/listaGrupos')
+      .then((getdata)=>{
+        setGrupos(getdata.data);
+      });
+  }, []);
 
 
     useEffect(()=>{

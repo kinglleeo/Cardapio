@@ -15,7 +15,6 @@ export default function SubGrupoList({ ID_GRUPO }){
             });
     }, []);
 
-
     return(
         <div>
             {subGrupo.map((item)=>
