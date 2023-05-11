@@ -6,9 +6,10 @@ import TopoPagina from '../AA-utilidades/Topo';
 import Promo from '../navbar/NavPromocoes/navPromo';
 import './Main.css'
 import MenuBar from '../navbar/menubar';
+import { useState } from 'react';
 
 export default function Main() {
-
+ const [grupos, setGrupoList] = useState([]);
 
   return ( 
     <div className='main-main'>
@@ -19,13 +20,17 @@ export default function Main() {
           <Promo/>
         </div>
         <div>
-          <MenuBar/>
+          <MenuBar
+            setGrupoList={setGrupoList}
+          />
         </div>
         <div>
           <SearchBar/>
         </div>
-        <div className='main-lista'>
-          <GrupoList/>
+        <div>
+          <GrupoList
+            grupos={grupos}
+          />
         </div>
         <div>
           <IconCarrinho/>

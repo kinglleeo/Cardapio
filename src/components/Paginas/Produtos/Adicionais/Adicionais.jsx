@@ -1,0 +1,24 @@
+import { React } from 'react';
+import './Adicionais.css'
+import Header from '../../../header/Header';
+import AdicionaisList from './AdicionaisList'
+import AdicionaisInfo from './AdicionaisInfo'
+import AdicionaisCarBar from './AdicionaisCarBar'
+
+export default function Adicionais() {
+
+  return (
+    <div>
+        <div>
+          <Header/>
+        </div>
+          <AdicionaisInfo/>
+        <div>
+          <AdicionaisList/>
+        </div>
+        <div>
+          <AdicionaisCarBar/>
+        </div>
+    </div>
+  );
+}

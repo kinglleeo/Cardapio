@@ -1,24 +1,15 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState, useEffect, lazy } from 'react';
 import { api } from '../../../conecções/api';
 import './GrupoList.css'
-import SubGrupoList from './SubGrupoList';
+import './subGrupoList.css'
+const SubGrupoList = lazy(() => import('./SubGrupoList'));
 
-export default function Grupo(){
-    const [grupoList, setGrupoList] = useState([]);
-       
-
-    useEffect(()=>{
-        api 
-            .get('/listaGrupos')
-            .then((getdata)=>{
-                setGrupoList(getdata.data);
-            });
-    }, [])
+export default function Grupo(grupos){
 
 
     return(
     <div>
-        {grupoList.map((item)=>
+        {Array.isArray(grupos) ? grupos.map((item)=>
             <div className='GrupoList' id={item.ID_GRUPO}>
                 <div className='Grupo-Titulo'>{item.GRUPO}</div>
                 <div>
@@ -27,7 +18,7 @@ export default function Grupo(){
                     />
                 </div>
             </div>
-        )}        
+        ) : null}        
    </div>
 )
 }

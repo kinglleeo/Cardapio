@@ -1,9 +1,24 @@
 .subgrupo{
     display: flex;
+    flex-direction: column;
+}
+.box-subgrupo{
+    margin-top: 5px;
+    box-shadow: 0px 0px 4px 2px #5FCDE6 inset;
+    display: flex;
 }
 .subgrupo-titulo{
+    width: 80%;
+    height: 35px;
+    margin-left: 10px;
+    font-size: 16px;
+    display: grid;
+    place-items: center start;
+}
+.subgrupo-icon{
+    width: 20%;
     display: grid;
     place-items: center;
-    font-size: 16px;
-    height: 25px;
+}
+.subgrupolist-produto{
 }
