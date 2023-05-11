@@ -1,17 +1,14 @@
-.subgrupo{
+.box-subgrupo{
     display: flex;
     flex-direction: column;
 }
-.box-subgrupo{
-    margin-top: 5px;
-    box-shadow: 0px 0px 4px 2px #5FCDE6 inset;
+.subgrupos{
+    height: 35px;
     display: flex;
 }
 .subgrupo-titulo{
     width: 80%;
-    height: 35px;
-    margin-left: 10px;
-    font-size: 16px;
+    margin: 5px;
     display: grid;
     place-items: center start;
 }
@@ -20,5 +17,7 @@
     display: grid;
     place-items: center;
 }
-.subgrupolist-produto{
+.listProdutos-subgrupos{
+    width: auto;
+    height: auto;
 }

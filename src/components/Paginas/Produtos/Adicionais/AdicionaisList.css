@@ -1,0 +1,25 @@
+.AdicionaisList{
+    height: auto;
+    width: auto;
+}
+.Card-Adicionais{
+    margin: 3px;
+}
+.Card-Adicionais-inner{
+    display: flex;
+}
+.Card-Adicionais-Descricao{
+    width: 70%;
+    display: flex;
+}
+.box-descricao-1{
+    width: 60%;
+    display: grid;
+}
+.box-descricao-2{
+    width: 40%;
+}
+.Card-Adicionais-Botoes{
+    width: 30%;
+}
+
