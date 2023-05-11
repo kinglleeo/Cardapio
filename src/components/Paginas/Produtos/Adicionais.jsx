@@ -34,9 +34,9 @@ export default function AdicionaisList() {
 
   return (
     <div>
-      <TopoPagina valor={valorTotal} /> {/* Display initial item.valor and updated total value */}
+      <TopoPagina valor={valorTotal} />
       {adicionais.map((adicional) => (
-        <div key={adicional.id}>
+        <div className="adicional" key={adicional.id}> {/* Aplicando a classe CSS */}
           <h3>{adicional.nome}</h3>
           <p>{adicional.descricao}</p>
           <p>{formCurrency(adicional.valor)}</p>
