@@ -43,6 +43,14 @@ useEffect(() => {
 </div>
 )}
 
+{formCurrency.format(item.VALOR_MINIMO) === 0 && (
+    <div>
+        <div>Valor</div>
+        <div>{formCurrency.format(item.VALOR_VENDA)}</div>
+    </div>
+)}
+
+
 
 
 <div>
@@ -58,3 +66,18 @@ useEffect(() => {
         </div>
       ))}
     </div>
+
+
+
+<div className="subgrupo" key={item.ID_SUBGRUPO}>
+                            <div className='subgrupo-titulo'>{item.SUBGRUPO}</div>
+                    
+                    <div className='subgrupo-icon'>{subGrupoAtivo === item.ID_SUBGRUPO ? '-' : '+'}</div>
+                        {subGrupoAtivo === item.ID_SUBGRUPO && (
+                            <div className="subgrupolist-produto">
+                                <ProdutoList
+                                    ID_SUBGRUPO={item.ID_SUBGRUPO}
+                                />
+                            </div>
+                        )}
+                    </div>
