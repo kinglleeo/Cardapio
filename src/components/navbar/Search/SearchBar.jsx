@@ -1,28 +1,41 @@
-import React, { useEffect, useState } from 'react'
-import './searchbar.css'
-import axios from 'axios';
-import { CgSearchLoading } from 'react-icons/cg'
-export default function SearchBar(){
-    const [produtos, setProdutos] = useState([]);
-    const [searchQuery, setSearchQuery] = useState('')
+import { useState, useEffect } from 'react';
 
-    useEffect(()=>{
-        axios
-            .get('https://642b23b0d7081590f91d081a.mockapi.io/lanches')
-            .then((getdata)=>{
-                setProdutos(getdata.data);
-            });
-    }, []);
+function SearchBar() {
+  const [produto, setProduto] = useState([]);
+  const [searchValue, setSearchValue] = useState('');
 
+  useEffect(() => {
+    api.get('/listaProdutos')
+      .then((getdata) => {
+        setProduto(getdata.data);
+      });
+  }, []);
 
- return(
-    <div className='search-bar'>
-        <div className='search-box'>
-            <input type='text' className='input' />
-            <div className='btn-box'>
-                <button className='btn-search'><CgSearchLoading/></button>
-            </div>
-        </div>
+  const handleSearchChange = (event) => {
+    setSearchValue(event.target.value);
+  };
+
+  const filteredProdutos = produto.filter((produto) => {
+    // Faz a filtragem com base no valor de pesquisa
+    return produto.nome.toLowerCase().includes(searchValue.toLowerCase());
+  });
+
+  return (
+    <div>
+      <input
+        type="text"
+        value={searchValue}
+        onChange={handleSearchChange}
+        placeholder="Pesquisar produtos..."
+      />
+
+      <ul>
+        {filteredProdutos.map((produto) => (
+          <li key={produto.id}>{produto.nome}</li>
+        ))}
+      </ul>
     </div>
- )  
+  );
 }
+
+export default SearchBar;
