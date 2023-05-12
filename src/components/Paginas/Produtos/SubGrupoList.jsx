@@ -41,10 +41,10 @@ export default function SubGrupoList({ ID_GRUPO }){
     <div>
         {Array.isArray(subGrupo) ? (
             subGrupo.map((item) => (
-                <div className='box-subgrupos' key={item.ID_SUBGRUPO} onClick={() => toggleLista(item.ID_SUBGRUPO)}>   
+                <div className='box-subgrupos' key={item.ID_SUBGRUPO} id={item.ID_SUBGRUPO}>   
                     <div className='subgrupos'>
                         <div className='subgrupo-titulo'>{item.SUBGRUPO}</div>
-                        <div className='subgrupo-icon'> 
+                        <div className='subgrupo-icon' onClick={() => toggleLista(item.ID_SUBGRUPO)}> 
                             {subGrupoAtivo === item.ID_SUBGRUPO ? '-' : '+'}
                         </div>
                     </div>

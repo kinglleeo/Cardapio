@@ -1,9 +1,8 @@
 .barradenavegacao{
     display: flex;
-    place-items: center;
-    height: 50px;
-    width: 100%;
     overflow-x: auto;
+    flex-direction: column;
+    background-color: grey;
 }
 .nav-top{
     position: fixed;
@@ -12,14 +11,33 @@
     z-index: 999;
     display: flex;
     place-items: center;
-    height: 50px;
+    height: 90px;
     width: 100%;
     overflow-x: auto;
+    
+    background-color: grey;
 }
-.barra-nav-items{
-    width: 30%;
+.barra-nav{
+    padding: 10px;
+    display: flex;
+}
+.nav-grupos{
+    width: auto;
+    display: flex;
+    margin-right: 10px;
+}
+.nav-item-grupo-name{
+    padding-right: 5px;
+}
+.nav-item-icon{
+    width: 20px;
+}
+.nav-subgrupos{
+    display: flex;
+    overflow-x: auto;
+}
+.subgrupo-name{
     display: grid;
     place-items: center;
-    font-size: 16px;
-    margin: 15px;
+    margin: 5px;
 }

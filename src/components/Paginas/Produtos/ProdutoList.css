@@ -1,14 +1,14 @@
 .lista-produtos{
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     margin-top: 15px;
-    
 }
 .card-produtos{
     height: 25%;
     overflow: hidden;
     margin: 5px;
-
 }
 .box-produtos{
     display: flex;
@@ -18,6 +18,13 @@
     width: 70%;
     display: flex;
     flex-direction: column;
+    background-color: rgba(231, 127, 30, 0.712);
+    -webkit-animation: slide-in-left 0.5s both;
+	        animation: slide-in-left 0.5s both;
+
+    --mask: conic-gradient(from -135deg at right,#0000,#000 1deg 89deg,#0000 90deg) 50%/100% 10.00px;
+    -webkit-mask: var(--mask);
+        mask: var(--mask);
 }
 .produto-nome{
     height: 60%;
@@ -41,9 +48,59 @@
     background-image: url('https://media.gettyimages.com/id/1295796231/pt/foto/cheese-burger-with-bacon-on-black-dark-background.jpg?s=170667a&w=gi&k=20&c=Cwd1wP8q9UIyJ560nuuGh-8sfPy6JH1N7g5wXzKGqIw=');
     background-size: 100% 100%;
     border-radius: 0 8px 8px 0;
-    --mask: 
-    linear-gradient(#000 0 0) 50%/calc(100% - 0.74rem) calc(100% - 0.74rem) no-repeat,
-    radial-gradient(farthest-side,#000 98%,#0000) 0 0/0.8rem 0.8rem round;
-  -webkit-mask: var(--mask);
-          mask: var(--mask);
+    -webkit-animation: slide-in-right 0.5s both;
+        animation: slide-in-right 0.5s both;
+
+    --mask: conic-gradient(from 45deg at left,#0000,#000 1deg 89deg,#0000 90deg) 50%/100% 10.00px;
+    -webkit-mask: var(--mask);
+        mask: var(--mask);
 }
+@-webkit-keyframes slide-in-left {
+    0% {
+      -webkit-transform: translateX(-1000px);
+              transform: translateX(-1000px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  @keyframes slide-in-left {
+    0% {
+      -webkit-transform: translateX(-1000px);
+              transform: translateX(-1000px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  @-webkit-keyframes slide-in-right {
+    0% {
+      -webkit-transform: translateX(1000px);
+              transform: translateX(1000px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  @keyframes slide-in-right {
+    0% {
+      -webkit-transform: translateX(1000px);
+              transform: translateX(1000px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  

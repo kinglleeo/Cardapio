@@ -20,7 +20,5 @@
 .listProdutos-subgrupos{
     width: auto;
     height: auto;
-}
-.subgrupolist-produto{
-    
+    display: flex;
 }

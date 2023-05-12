@@ -3,7 +3,7 @@ import './GrupoList.css'
 import './subGrupoList.css'
 const SubGrupoList = lazy(() => import('./SubGrupoList'));
 
-export default function Grupo({ grupos }){
+export default function Grupo({ grupos, setSubGrupoList }){
 
     return(
         <div>
@@ -13,6 +13,7 @@ export default function Grupo({ grupos }){
                 <div>
                     <SubGrupoList
                         ID_GRUPO={item.ID_GRUPO}
+                        setSubGrupoList={setSubGrupoList}
                     />
                 </div>
             </div>

@@ -5,13 +5,15 @@ import { api } from '../../conecções/api';
 export default function MenuBar({ setGrupoList }) {
   const [stickyClass, setStickyClass]= useState('barradenavegacao')
   const [grupos, setGrupos] = useState([]);
-  
+  const [subGrupoList, setSubGrupoList] = useState([]);
+  const [subGrupoAtivo, setSubGrupoAtivo] = useState(null);
+ 
   useEffect(()=>{
     api
       .get('/listaGrupos')
       .then((getdata)=>{
         setGrupos(getdata.data);
-        setGrupoList(getdata.data)
+        setGrupoList(getdata.data);
       });
   }, []);
 
@@ -28,11 +30,45 @@ export default function MenuBar({ setGrupoList }) {
     }
   }
 
+  const toggleLista = (idGrupo) => {
+    if (subGrupoAtivo === idGrupo) {
+      setSubGrupoAtivo(null); 
+    } else {
+      setSubGrupoAtivo(idGrupo);
+      selecionarSubGrupos(idGrupo);
+    }
+  };
+  const selecionarSubGrupos=(idGrupo)=>{
+    api
+      .get(`/listaSubGrupos/${idGrupo}`)
+      .then((getdata)=>{
+        setSubGrupoList(getdata.data);
+      });
+  }
+
   return (
     <div className={`${stickyClass}`}>
-      {Array.isArray(grupos)? (grupos.map((item)=>
-        <div className='barra-nav-items' key={item.ID_GRUPO} onClick={() => document.getElementById(item.ID_GRUPO).scrollIntoView({ behavior: 'smooth' })}>{item.GRUPO}</div>
-      )) :null}  
+      <div className='barra-nav'>
+        {Array.isArray(grupos)? (grupos.map((item)=>
+          <div>
+            <div className='nav-grupos'>
+              <div className='nav-item-grupo-name' onClick={() => document.getElementById(item.ID_GRUPO).scrollIntoView({ behavior: 'smooth' })}>{item.GRUPO}</div>
+              <div className='nav-item-icon' onClick={() => toggleLista(item.ID_GRUPO)}>
+                {subGrupoAtivo === item.ID_GRUPO ? '-' : '+'}
+              </div>
+            </div>
+            <div>
+            {subGrupoAtivo === item.ID_GRUPO && (
+              <div className='nav-subgrupos'>
+                {Array.isArray(subGrupoList) ? subGrupoList.map((item)=>
+                  <div className='subgrupo-name' onClick={() => document.getElementById(item.ID_SUBGRUPO).scrollIntoView({ behavior: 'smooth' })}>{item.SUBGRUPO}</div>
+                ) : null}
+              </div>
+            )}
+          </div>
+          </div>
+        )) :null}  
+      </div>
     </div>
-  );
+    )
 }
