@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import { formCurrency } from '../../../AA-utilidades/numeros'
 import './AdicionaisInfo.css'
 
-export default function AdicionaisInfo({ valorText  }){
+export default function AdicionaisInfo(){
     const { state } = useLocation()
     const { item } = state
 
