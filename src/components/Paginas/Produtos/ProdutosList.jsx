@@ -4,17 +4,10 @@ import { formCurrency } from '../../AA-utilidades/numeros';
 import './ProdutoList.css'
 import { useNavigate } from 'react-router-dom';
 
-export default function ProdutoList({ ID_SUBGRUPO }){
-    const [produto, setProduto] = useState([]);
+
+
+export default function ProdutoList({ produto }){
     const navigate = useNavigate();
-    
-    useEffect(()=>{
-        api
-            .get(`/listaProdutos/${ID_SUBGRUPO}`)
-            .then((getdata)=>{
-                setProduto(getdata.data);
-            });
-    }, []);
 
     const Adicionais = (item) => {
         navigate('/Adicionais', { state: { item } });
@@ -26,9 +19,11 @@ export default function ProdutoList({ ID_SUBGRUPO }){
                 {Array.isArray(produto) ? (
                     produto.map((item)=>
                         <div className='card-produtos' key={item.ID_PRODUTO}>
-                            <div className='box-produtos' onClick={()=> Adicionais(item)}>
+                            <div className='box-produtos' >
                                 <div className='produtos-info'>
-                                    <div className='produto-nome'>{item.PRODUTO}</div>
+                                    <div className='produto-nome'>
+                                        <div className='item-nome'>{item.PRODUTO}</div>
+                                    </div>
                                     <div className='produto-valor'>
                                         <div>
                                             {item.VALOR_MINIMO < 0 ? (

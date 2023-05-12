@@ -2,21 +2,22 @@
     display: flex;
     flex-direction: column;
     margin-top: 15px;
+    
 }
 .card-produtos{
     height: 25%;
     overflow: hidden;
+    margin: 5px;
+
+    --mask: 
+    linear-gradient(#000 0 0) 50%/calc(100% - 0.74rem) calc(100% - 0.74rem) no-repeat,
+    radial-gradient(farthest-side,#000 98%,#0000) 0 0/0.8rem 0.8rem round;
+  -webkit-mask: var(--mask);
+          mask: var(--mask);
 }
 .box-produtos{
     display: flex;
     min-height: 120px;
-    margin: 5px;
-    width: inherit;
-    height: inherit;
-    background: rgba(255,255,255,.05);
-    box-shadow: 0 0 10px rgba(0,0,0,0.25);
-    backdrop-filter: blur(10px);
-    border-radius: 8px;
 }
 .produtos-info{
     width: 70%;
@@ -24,12 +25,19 @@
     flex-direction: column;
 }
 .produto-nome{
-    height: 50%;
+    height: 60%;
+    display: grid;
+    place-items: center;
+    font-size: 15px;
+    word-break: normal;
+}
+.item-nome{
+    width: 80%;
     display: grid;
     place-items: center;
 }
 .produto-valor{
-    height: 50%;
+    height: 40%;
     display: grid;
     place-items: center;
 }

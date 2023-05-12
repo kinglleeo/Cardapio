@@ -31,7 +31,7 @@ export default function MenuBar({ setGrupoList }) {
   return (
     <div className={`${stickyClass}`}>
       {Array.isArray(grupos)? (grupos.map((item)=>
-        <div className='barra-nav-items' onClick={() => document.getElementById(item.ID_GRUPO).scrollIntoView({ behavior: 'smooth' })}>{item.GRUPO}</div>
+        <div className='barra-nav-items' key={item.ID_GRUPO} onClick={() => document.getElementById(item.ID_GRUPO).scrollIntoView({ behavior: 'smooth' })}>{item.GRUPO}</div>
       )) :null}  
     </div>
   );
