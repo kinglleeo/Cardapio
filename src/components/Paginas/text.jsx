@@ -1,25 +1,3 @@
-useEffect(()=>{
-    api
-        .get(`/listaProdutos/${ID_SUBGRUPO}`)
-         .then((getdata)=>{
-             setProduto(getdata.data);
-         });
-  }, []);
-  <ProdutoList
-  ID_SUBGRUPO={item.ID_SUBGRUPO}
-/>
-
-
-/${ID_GRUPO}
-
-
-useEffect(() => {
-    api
-        .get('/Adicionais')
-        .then((getdata) => {
-            setAdicionais(getdata.data);
-    });
-  }, []);
 
 
   {produto.map((item)=>
@@ -43,41 +21,5 @@ useEffect(() => {
 </div>
 )}
 
-{formCurrency.format(item.VALOR_MINIMO) === 0 && (
-    <div>
-        <div>Valor</div>
-        <div>{formCurrency.format(item.VALOR_VENDA)}</div>
-    </div>
-)}
 
 
-
-
-<div>
-      <TopoPagina valor={valorTotal} />
-      {adicionais.map((adicional) => (
-        <div className="adicional" key={adicional.id}> 
-          <h3>{adicional.nome}</h3>
-            <p>{adicional.descricao}</p>
-            <p>{formCurrency(adicional.valor)}</p>
-          <button onClick={handleIncreaseQuantidade}>+</button>
-            <span>{quantidade}</span>
-          <button onClick={handleDecreaseQuantidade}>-</button>
-        </div>
-      ))}
-    </div>
-
-
-
-<div className="subgrupo" key={item.ID_SUBGRUPO}>
-                            <div className='subgrupo-titulo'>{item.SUBGRUPO}</div>
-                    
-                    <div className='subgrupo-icon'>{subGrupoAtivo === item.ID_SUBGRUPO ? '-' : '+'}</div>
-                        {subGrupoAtivo === item.ID_SUBGRUPO && (
-                            <div className="subgrupolist-produto">
-                                <ProdutoList
-                                    ID_SUBGRUPO={item.ID_SUBGRUPO}
-                                />
-                            </div>
-                        )}
-                    </div>
