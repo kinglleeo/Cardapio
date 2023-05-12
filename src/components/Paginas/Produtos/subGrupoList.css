@@ -1,10 +1,10 @@
-.box-subgrupo{
-    display: flex;
-    flex-direction: column;
+.box-subgrupos{
+    margin-bottom: 5px;
 }
 .subgrupos{
     height: 35px;
     display: flex;
+    background-color: rgb(228, 67, 67);
 }
 .subgrupo-titulo{
     width: 80%;
@@ -20,5 +20,4 @@
 .listProdutos-subgrupos{
     width: auto;
     height: auto;
-    display: flex;
 }
