@@ -19,7 +19,7 @@ export default function ProdutoList({ produto }){
                 {Array.isArray(produto) ? (
                     produto.map((item)=>
                         <div className='card-produtos' key={item.ID_PRODUTO}>
-                            <div className='box-produtos' >
+                            <div className='box-produtos' onClick={() => Adicionais(item)}>
                                 <div className='produtos-info'>
                                     <div className='produto-nome'>
                                         <div className='item-nome'>{item.PRODUTO}</div>

@@ -6,18 +6,40 @@ import { formCurrency } from '../../../AA-utilidades/numeros';
 export default function AdicionaisList(){
     const [adicionais, setAdicionais] = useState([]);
 
-    useEffect(()=>{
+    useEffect(() => {
         axios
-            .get('https://642b23b0d7081590f91d081a.mockapi.io/adicionais')
-            .then((getdata)=>{
-                setAdicionais(getdata.data);
-            });
-    }, []);
+          .get('https://642b23b0d7081590f91d081a.mockapi.io/adicionais')
+          .then((getdata) => {
+            const data = getdata.data.map((item) => ({
+              ...item,
+              quantidade: 0,
+            }));
+            setAdicionais(data);
+          });
+      }, []);
+
+      const increaseQuantity = (index) => {
+        setAdicionais((prevState) => {
+          const updatedAdicionais = [...prevState];
+          updatedAdicionais[index].quantidade += 1;
+          return updatedAdicionais;
+        });
+      };
+    
+      const decreaseQuantity = (index) => {
+        setAdicionais((prevState) => {
+          const updatedAdicionais = [...prevState];
+          if (updatedAdicionais[index].quantidade > 0) {
+            updatedAdicionais[index].quantidade -= 1;
+          }
+          return updatedAdicionais;
+        });
+      };
 
     return(
         <div>
             <div className='AdicionaisList'>
-                {Array.isArray(adicionais) ? adicionais.map((item)=>
+                {Array.isArray(adicionais) ? adicionais.map((item, index)=>
                     <div className='Card-Adicionais'>
                         <div className='Card-Adicionais-inner'>
                             <div className='Card-Adicionais-Descricao'>
@@ -29,7 +51,11 @@ export default function AdicionaisList(){
                                     <div className='adicional-valor'>{formCurrency.format(item.valor)}</div>
                                 </div>
                             </div>
-                            <div className='Card-Adicionais-Botoes'></div>
+                            <div className='Card-Adicionais-Botoes'>
+                                <button onClick={() => decreaseQuantity(index)}>-</button>
+                                    <span>{item.quantidade}</span>
+                                <button onClick={() => increaseQuantity(index)}>+</button>
+                            </div>
                         </div>
                     </div>
                 ) : null}   

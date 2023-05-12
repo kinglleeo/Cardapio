@@ -7,15 +7,15 @@ import AdicionaisCarBar from './AdicionaisCarBar'
 import { useLocation } from 'react-router-dom';
 
 export default function Adicionais() {
-  
+
   return (
     <div>
         <div>
           <Header/>
         </div>
-          <AdicionaisInfo/>
+        <AdicionaisInfo />
         <div>
-          <AdicionaisList/>
+        <AdicionaisList />
         </div>
         <div>
           <AdicionaisCarBar/>
