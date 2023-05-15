@@ -4,12 +4,13 @@ import GrupoList from './Produtos/GrupoList';
 import IconCarrinho from '../Carrinho/Iconcarrinho';
 import TopoPagina from '../AA-utilidades/Topo';
 import Promo from '../navbar/NavPromocoes/navPromo';
-import './Main.css'
-import MenuBar from '../navbar/menubar';
 import { useState } from 'react';
+import Footer from '../Footer/Footer';
+import MenuBar from '../navbar/menubar';
 
 export default function Main() {
- const [grupos, setGrupoList] = useState([]);
+  const [grupos, setGrupos] = useState([]);
+  const [subGrupoList, setSubGrupoList] = useState([]);
 
   return ( 
     <div className='main-main'>
@@ -21,7 +22,10 @@ export default function Main() {
         </div>
         <div>
           <MenuBar
-            setGrupoList={setGrupoList}
+            grupos={grupos}
+            setGrupos={setGrupos}
+            subGrupoList={subGrupoList}
+            setSubGrupoList={setSubGrupoList}
           />
         </div>
         <div>
@@ -30,6 +34,7 @@ export default function Main() {
         <div>
           <GrupoList
             grupos={grupos}
+            subGrupoList={subGrupoList}
           />
         </div>
         <div>
@@ -37,6 +42,9 @@ export default function Main() {
         </div> 
         <div>
           <TopoPagina/>
+        </div>
+        <div>
+          <Footer/>
         </div>
     </div>
   );

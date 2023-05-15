@@ -1,7 +1,7 @@
 import { React, lazy } from 'react';
-import './GrupoList.css'
-import './subGrupoList.css'
 const SubGrupoList = lazy(() => import('./SubGrupoList'));
+
+import '../../../Styles/Styles.css'
 
 export default function Grupo({ grupos, setSubGrupoList }){
 

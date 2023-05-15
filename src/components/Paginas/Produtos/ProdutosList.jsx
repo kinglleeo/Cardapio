@@ -1,10 +1,8 @@
-import { React, useState, useEffect } from 'react'
-import { api } from '../../../conecções/api'
+import { React } from 'react'
 import { formCurrency } from '../../AA-utilidades/numeros';
-import './ProdutoList.css'
 import { useNavigate } from 'react-router-dom';
 
-
+import '../../../Styles/Styles.css'
 
 export default function ProdutoList({ produto }){
     const navigate = useNavigate();
@@ -12,7 +10,6 @@ export default function ProdutoList({ produto }){
     const Adicionais = (item) => {
         navigate('/Adicionais', { state: { item } });
       };
-
     return(
         <div>
            <div className='lista-produtos'>
@@ -25,18 +22,20 @@ export default function ProdutoList({ produto }){
                                         <div className='item-nome'>{item.PRODUTO}</div>
                                     </div>
                                     <div className='produto-valor'>
-                                        <div>
-                                            {item.VALOR_MINIMO < 0 ? (
-                                                <div>
-                                                    <div>Valor Apartir de:</div>
-                                                    <div>{formCurrency.format(item.VALOR_MINIMO)}</div>
-                                                </div>
-                                            ) : (
-                                                <div>
-                                                    <div>valor</div>
-                                                    <div>{formCurrency.format(item.VALOR_VENDA)}</div>
-                                                </div>
-                                            )}
+                                        <div className='card-valor'>
+                                            <div className='box-valor'>
+                                                {item.VALOR_MINIMO < 0 ? (
+                                                    <div>
+                                                        <div>Valor Apartir de</div>
+                                                        <div>{formCurrency.format(item.VALOR_MINIMO)}</div>
+                                                    </div>
+                                                ) : (
+                                                    <div>
+                                                        <div>valor </div>
+                                                        <div> {formCurrency.format(item.VALOR_VENDA)}</div>
+                                                    </div>
+                                                )}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

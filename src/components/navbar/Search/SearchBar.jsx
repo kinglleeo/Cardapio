@@ -15,12 +15,9 @@ export default function SearchBar() {
   return (
     <div className='search-bar'>
       <div className='search-box'>
-        <input
-          type='text'
-          className='input'
-        />
+        
         <div className='btn-box'>
-          <button className='btn-search' ></button>
+          
         </div>
       </div>
     </div>

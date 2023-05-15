@@ -1,8 +1,4 @@
-@font-face {
-    font-family: "edosz.ttf";
-    src: local("edosz.ttf"),
-     url("../../fonts//edosz.ttf") ;
-    }
+
 *{
     padding: 0;
     margin: 0;
@@ -28,7 +24,6 @@
     display: grid;
     place-items: end center;
     font-size: 40px;
-    font-family: "edosz.ttf";
     color: rgba(31, 215, 232, 0.873);
     font-weight: 600;
 }

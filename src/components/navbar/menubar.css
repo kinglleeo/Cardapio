@@ -1,8 +1,8 @@
 .barradenavegacao{
     display: flex;
     overflow-x: auto;
-    flex-direction: column;
-    background-color: grey;
+    background-color: rgb(113, 255, 108);
+    min-height: 50px;
 }
 .nav-top{
     position: fixed;
@@ -11,33 +11,59 @@
     z-index: 999;
     display: flex;
     place-items: center;
-    height: 90px;
-    width: 100%;
+    min-height: 60px;
     overflow-x: auto;
-    
-    background-color: grey;
+    background-color: rgb(113, 255, 108);
 }
-.barra-nav{
+.barra-nav{ 
     padding: 10px;
     display: flex;
 }
 .nav-grupos{
-    width: auto;
     display: flex;
     margin-right: 10px;
+    padding-left: 5px;
+    --mask: radial-gradient(2px at 0 75%,#0000 98%,#000) 2px 50%/51% 8px repeat-y, radial-gradient(2px at 50% 25%,#000 99%,#0000 101%) left/4px 8px repeat-y, radial-gradient(2px at 100% 25%,#0000 98%,#000) calc(100% - 2px) 50%/51% 8px repeat-y, radial-gradient(2px at 50% 75%,#000 99%,#0000 101%) right/4px 8px repeat-y;
+    -webkit-mask: var(--mask);
+    mask: var(--mask);
+    background-color: #ffb56b;
+}
+.item-nav-grupo{
+    display: flex;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
 .nav-item-grupo-name{
-    padding-right: 5px;
+    width: auto;
+    display: grid;
+    place-items: center;
 }
 .nav-item-icon{
+    display: grid;
+    place-items: center;
     width: 20px;
 }
+
 .nav-subgrupos{
+    position: relative;
     display: flex;
     overflow-x: auto;
 }
+.nav-subgrupos-box{
+    margin: 5px;
+    display: flex;
+}
+.subgrupo-box{
+    margin: 5px;
+    --mask: radial-gradient(2px at 0 75%,#0000 98%,#000) 2px 50%/51% 8px repeat-y, radial-gradient(2px at 50% 25%,#000 99%,#0000 101%) left/4px 8px repeat-y, radial-gradient(2px at 100% 25%,#0000 98%,#000) calc(100% - 2px) 50%/51% 8px repeat-y, radial-gradient(2px at 50% 75%,#000 99%,#0000 101%) right/4px 8px repeat-y;
+    -webkit-mask: var(--mask);
+    mask: var(--mask);
+    background-color: #ff706b;
+}
 .subgrupo-name{
+    padding: 5px 10px 5px 10px;
     display: grid;
     place-items: center;
-    margin: 5px;
 }

@@ -1,12 +1,78 @@
+.box-Adicionais{
+    margin: 5px;
+    font-size: 18px;
+}
+.Adicionais{
+    display: flex;
+    min-height: 40px;
+    --mask: radial-gradient(2px at 0 75%,#0000 98%,#000) 2px 50%/51% 8px repeat-y, radial-gradient(2px at 50% 25%,#000 99%,#0000 101%) left/4px 8px repeat-y, radial-gradient(2px at 100% 25%,#0000 98%,#000) calc(100% - 2px) 50%/51% 8px repeat-y, radial-gradient(2px at 50% 75%,#000 99%,#0000 101%) right/4px 8px repeat-y;
+    -webkit-mask: var(--mask);
+    mask: var(--mask);
+    background-color: #ffb56b;
+}
+.box-adicionais-descricao{
+    width: 80%;
+    padding-left: 15px;
+}
+.Adicionais-titulo{
+    display: grid;
+    place-items: center start;
+}
+.adicionais-quantidadeMax{
+    display: grid;
+    place-items: center start;
+    padding-left: 20px;
+}
+.Adicionais-icon{
+    width: 20%;
+    display: grid;
+    place-items: center;
+    --mask: radial-gradient(2px at 0 75%,#0000 98%,#000) 2px 50%/51% 8px repeat-y, radial-gradient(2px at 50% 25%,#000 99%,#0000 101%) left/4px 8px repeat-y, radial-gradient(2px at 100% 25%,#0000 98%,#000) calc(100% - 2px) 50%/51% 8px repeat-y, radial-gradient(2px at 50% 75%,#000 99%,#0000 101%) right/4px 8px repeat-y;
+    -webkit-mask: var(--mask);
+    mask: var(--mask);
+    background-color: #ff706b;
+}
 .AdicionaisList{
     height: auto;
     width: auto;
+}
+.box-quantidadeMaxima{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    min-height: 50px;
+    background-color: #ffb56b;
+}
+.quantidadeMax{
+    display: flex;
+    flex-direction: column;
+}
+.quantidadeMax-text{
+    height: 60%;
+    display: grid;
+    text-align: center;
+}
+.quantidadeMax-value-box{
+    height: 40%;
+    display: grid;
+    place-items: center;
+}
+.quantidadeMax-value{
+    width: 50px;
+    height: 20px;
+    display: grid;
+    place-items: center;
+    --mask: radial-gradient(2px at 0 75%,#0000 98%,#000) 2px 50%/51% 8px repeat-y, radial-gradient(2px at 50% 25%,#000 99%,#0000 101%) left/4px 8px repeat-y, radial-gradient(2px at 100% 25%,#0000 98%,#000) calc(100% - 2px) 50%/51% 8px repeat-y, radial-gradient(2px at 50% 75%,#000 99%,#0000 101%) right/4px 8px repeat-y;
+    -webkit-mask: var(--mask);
+    mask: var(--mask);
+    background-color: #ff706b;
 }
 .Card-Adicionais{
     margin: 3px;
 }
 .Card-Adicionais-inner{
     display: flex;
+    background-color: #ffb56b;
+    min-height: 50px;
 }
 .Card-Adicionais-Descricao{
     width: 70%;
@@ -16,10 +82,50 @@
     width: 60%;
     display: grid;
 }
+.Adicional-nome{
+    padding-left: 5px;
+    display: grid;
+    place-content: center start;
+}
 .box-descricao-2{
     width: 40%;
+    display: grid;
+    place-content: center start;
+}
+.adicional-valor{
+    --mask: radial-gradient(2px at 0 75%,#0000 98%,#000) 2px 50%/51% 8px repeat-y, radial-gradient(2px at 50% 25%,#000 99%,#0000 101%) left/4px 8px repeat-y, radial-gradient(2px at 100% 25%,#0000 98%,#000) calc(100% - 2px) 50%/51% 8px repeat-y, radial-gradient(2px at 50% 75%,#000 99%,#0000 101%) right/4px 8px repeat-y;
+    -webkit-mask: var(--mask);
+    mask: var(--mask);
+    background-color: #ff706b;
+    padding: 5px;
 }
 .Card-Adicionais-Botoes{
     width: 30%;
+    display: flex;
+    place-items: center;
 }
-
+.btn-quantia-adicionais{
+    width: 40%;
+    display: grid;
+    place-items: center;
+}
+.quantia-adicionais{
+    width: 20%;
+    display: grid;
+    place-items: center;
+}
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    background-color: transparent;
+}
+.right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+.left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+}

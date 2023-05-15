@@ -4,19 +4,24 @@ import Header from '../../../header/Header';
 import AdicionaisList from './AdicionaisList';
 import AdicionaisInfo from './AdicionaisInfo';
 import AdicionaisCarBar from './AdicionaisCarBar';
-import { useLocation } from 'react-router-dom';
+import Decimal from 'decimal.js';
 
 export default function Adicionais() {
+  const [totalItem, setTotalItem] = useState(new Decimal(0));
   
-
   return (
     <div>
       <div>
         <Header />
       </div>
-      <AdicionaisInfo/>
+      <AdicionaisInfo
+      totalItem={totalItem}
+      />
       <div>
-        <AdicionaisList />
+        <AdicionaisList 
+        totalItem={totalItem}
+        setTotalItem={setTotalItem}
+        />
       </div>
       <div>
         <AdicionaisCarBar />
