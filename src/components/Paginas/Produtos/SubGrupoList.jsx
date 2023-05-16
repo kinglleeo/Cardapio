@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState, useEffect, lazy } from 'react';
 import { api } from '../../../conecções/api';
 import ProdutoList from './ProdutosList';
 
@@ -8,9 +8,11 @@ export default function SubGrupoList({ ID_GRUPO }) {
   const [subGrupo, setSubGrupo] = useState([]);
   const [subGrupoAtivo, setSubGrupoAtivo] = useState(null);
   const [produto, setProduto] = useState({});
-
+  
   useEffect(() => {
-    api.get(`/listaSubGrupos/${ID_GRUPO}`).then((getdata) => {
+    api
+      .get(`/listaSubGrupos/${ID_GRUPO}`)
+      .then((getdata) => {
       setSubGrupo(getdata.data);
     });
   }, []);
@@ -26,10 +28,12 @@ export default function SubGrupoList({ ID_GRUPO }) {
 
   const selecionarProdutos = (idSubGrupo) => {
     if (!produto[idSubGrupo]) { 
-      api.get(`/listaProdutos/${idSubGrupo}`).then((getdata) => {
-        setProduto((prevProduto) => ({
-          ...prevProduto,
-          [idSubGrupo]: getdata.data,
+      api
+        .get(`/listaProdutos/${idSubGrupo}`)
+        .then((getdata) => {
+          setProduto((prevProduto) => ({
+            ...prevProduto,
+            [idSubGrupo]: getdata.data,
         }));
       });
     }

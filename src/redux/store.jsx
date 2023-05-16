@@ -11,14 +11,11 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist'
-
 const persistConfig = {
   key: 'root',
   storage,
 }
-
 const persistedReducer = persistReducer(persistConfig, cartReducer)
-
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
@@ -28,5 +25,4 @@ export const store = configureStore({
       },
     }),
 })
-
 export const persistor = persistStore(store)

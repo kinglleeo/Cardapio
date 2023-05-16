@@ -7,12 +7,13 @@ import { formCurrency } from '../../../AA-utilidades/numeros';
 export default function AdicionaisList({ totalItem, setTotalItem }) {
   const [adicionais, setAdicionais] = useState([]);
   const [listaAdicionaisAtivo, setListaAdicionaisAtivo] = useState(false);
-  
+  console.log(adicionais)
+
   useEffect(() => {
     axios.get('https://642b23b0d7081590f91d081a.mockapi.io/adicionais').then((getdata) => {
       const data = getdata.data.map((item) => ({
         ...item,
-        quantidade: new Decimal(0),
+        quantidade: 0,
       }));
       setAdicionais(data);
     });
@@ -31,7 +32,7 @@ export default function AdicionaisList({ totalItem, setTotalItem }) {
   const increaseQuantity = (index) => {
     setAdicionais((prevState) => {
       const updatedAdicionais = [...prevState];
-      updatedAdicionais[index].quantidade = updatedAdicionais[index].quantidade.plus(1);
+      updatedAdicionais[index].quantidade = updatedAdicionais[index].quantidade+1;
       return updatedAdicionais;
     });
   };
@@ -39,8 +40,8 @@ export default function AdicionaisList({ totalItem, setTotalItem }) {
   const decreaseQuantity = (index) => {
     setAdicionais((prevState) => {
       const updatedAdicionais = [...prevState];
-      if (updatedAdicionais[index].quantidade.greaterThan(0)) {
-        updatedAdicionais[index].quantidade = updatedAdicionais[index].quantidade.minus(1);
+      if (updatedAdicionais[index].quantidade) {
+        updatedAdicionais[index].quantidade = updatedAdicionais[index].quantidade-1;
       }
       return updatedAdicionais;
     });

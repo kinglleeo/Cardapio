@@ -1,22 +1,28 @@
 import axios from 'axios';
 import { React, useState, useEffect } from 'react';
 import Decimal from 'decimal.js';
-import { formCurrency } from '../../../AA-utilidades/numeros';
 import './AdicionaisList.css';
 
 export default function GruposAdicionais({ totalItem, setTotalItem }){
     const [gruposAdicionais, setGruposAdicionais] = useState([]);
-    const [adicionais, setAdicionais] = useState([]);
+    const [listaAdicionais, setListaAdicionais] = useState([]);
     const [listaAdicionaisAtivo, setListaAdicionaisAtivo] = useState(false);
 
+    useEffect(()=>{
+        axios 
+            .get('')
+            .then((getdata)=>{
+                setGruposAdicionais(getdata.data);
+            });
+    }, []);
 
     useEffect(() => {
         axios.get('https://642b23b0d7081590f91d081a.mockapi.io/adicionais').then((getdata) => {
           const data = getdata.data.map((item) => ({
             ...item,
-            quantidade: new Decimal(0),
+            quantidade: 0,
           }));
-          setAdicionais(data);
+          setListaAdicionais(data);
         });
       }, []);
 
@@ -38,21 +44,24 @@ export default function GruposAdicionais({ totalItem, setTotalItem }){
                                 <div className='box-adicionais-descricao'>
                                     <div className='Adicionais-titulo'> Adicionais </div>
                                         <div className='adicionais-quantidadeMax'> 
-                                            <div>Até 3 itens</div>
+                                            <div>Até {item.quantidadeMaxima} itens</div>
+                                        </div>
+                            </div>
+                                <div className='Adicionais-icon' onClick={() => toggleLista()}>
+                                    {listaAdicionaisAtivo === true ? '-' : '+'}
                                 </div>
-                            </div>
-                            <div className='Adicionais-icon' onClick={() => toggleLista()}>
-                                {listaAdicionaisAtivo === true ? '-' : '+'}
-                            </div>
                             </div>
                         </div>
                         <div>
-                            <ListaProdutosAdicionais
-                            adicionais={adicionais}
-                            gruposAdicionais={gruposAdicionais}
-                            setTotalItem={setTotalItem}
-                            setAdicionais={setAdicionais}
-                            />
+                            {listaAdicionaisAtivo === true && ( 
+                                <ListaProdutosAdicionais
+                                    listaAdicionais={listaAdicionais}
+                                    setListaAdicionais={setListaAdicionais}
+                                    quantidademaxima={item.quantidadeMaxima}
+                                    setTotalItem={setTotalItem}
+                                    totalItem={totalItem}
+                                />
+                            )}
                         </div>
                     </div>
             )) : null}

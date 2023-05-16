@@ -7,11 +7,9 @@ import Promo from '../navbar/NavPromocoes/navPromo';
 import { useState } from 'react';
 import Footer from '../Footer/Footer';
 import MenuBar from '../navbar/menubar';
-
 export default function Main() {
   const [grupos, setGrupos] = useState([]);
   const [subGrupoList, setSubGrupoList] = useState([]);
-
   return ( 
     <div className='main-main'>
         <div className='main-header'>

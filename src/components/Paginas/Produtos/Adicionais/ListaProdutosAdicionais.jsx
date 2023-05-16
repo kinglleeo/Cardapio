@@ -3,28 +3,32 @@ import { formCurrency } from '../../../AA-utilidades/numeros';
 
 import './AdicionaisList.css';
 
-export default function ListaProdutosAdicionais({ adicionais, gruposAdicionais, setTotalItem, setAdicionais }){
+export default function ListaProdutosAdicionais({ listaAdicionais, setListaAdicionais, quantidademaxima, setTotalItem, totalItem }){
     
     const quantidadeEscolhidos=()=>{
-
+        const escolhidos = listaAdicionais.quantidade
+        
+        return escolhidos
     }
     const quantidadeFaltante=()=>{
-
+      const faltantes = quantidademaxima 
+          faltantes =- listaAdicionais.quantidade
+        return faltantes
     }
 
     const increaseQuantity = (index) => {
-      setAdicionais((prevState) => {
+      setListaAdicionais((prevState) => {
         const updatedAdicionais = [...prevState];
-        updatedAdicionais[index].quantidade = updatedAdicionais[index].quantidade.plus(1);
+        updatedAdicionais[index].quantidade = updatedAdicionais[index].quantidade+1;
         return updatedAdicionais;
       });
     };
   
     const decreaseQuantity = (index) => {
-      setAdicionais((prevState) => {
+      setListaAdicionais((prevState) => {
         const updatedAdicionais = [...prevState];
-        if (updatedAdicionais[index].quantidade.greaterThan(0)) {
-          updatedAdicionais[index].quantidade = updatedAdicionais[index].quantidade.minus(1);
+        if (updatedAdicionais[index].quantidade) {
+          updatedAdicionais[index].quantidade = updatedAdicionais[index].quantidade-1;
         }
         return updatedAdicionais;
       });
@@ -48,24 +52,24 @@ export default function ListaProdutosAdicionais({ adicionais, gruposAdicionais, 
                 <div className='quantidadeMax'>
                   <div className='quantidadeMax-text'>Quantidade Maxima</div>
                   <div className='quantidadeMax-value-box'>
-                      <div className='quantidadeMax-value'>{gruposAdicionais.maximo}</div>
+                      <div className='quantidadeMax-value'>{quantidademaxima}</div>
                   </div>
                 </div>
                 <div className='quantidadeMax'>
                   <div className='quantidadeMax-text'>Escolhidos</div>
                   <div className='quantidadeMax-value-box'>
-                      <div className='quantidadeMax-value'>{formCurrency.format(quantidadeEscolhidos())}</div>
+                      <div className='quantidadeMax-value'>{(quantidadeEscolhidos())}</div>
                   </div>
                 </div>
                 <div className='quantidadeMax'>
                   <div className='quantidadeMax-text'>Faltam</div>
                   <div className='quantidadeMax-value-box'>
-                      <div className='quantidadeMax-value'>{formCurrency.format(quantidadeFaltante())}</div>
+                      <div className='quantidadeMax-value'>{(quantidadeFaltante())}</div>
                   </div>
                 </div>
               </div>
-              {Array.isArray(adicionais)
-                ? adicionais.map((item, index) => (
+              {Array.isArray(listaAdicionais)
+                ? listaAdicionais.map((item, index) => (
                     <div className='Card-Adicionais' key={item.id}>
                       <div className='Card-Adicionais-inner'>
                         <div className='Card-Adicionais-Descricao'>
@@ -80,7 +84,7 @@ export default function ListaProdutosAdicionais({ adicionais, gruposAdicionais, 
                           <div className='btn-quantia-adicionais'>
                             <button className='arrow left' onClick={() => decreaseQuantity(index)}></button>
                           </div>
-                          <div className='quantia-adicionais'>{item.quantidade.toString()}</div>
+                          <div className='quantia-adicionais'>{item.quantidade}</div>
                           <div className='btn-quantia-adicionais'>
                             <button className='arrow right'onClick={() => increaseQuantity(index)}></button>
                           </div>
