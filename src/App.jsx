@@ -1,15 +1,12 @@
-import React from 'react'
+import { Route, Routes } from "react-router-dom";
 import Main from './components/Paginas/Main'
-import {
-  Route,
-  Routes,
-} from "react-router-dom";
 import Carrinho from './components/Carrinho/Carrinho'
 import GrupoList from './components/Paginas/Produtos/GrupoList'
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import Teste from './components/Paginas/teste';
 import Adicionais from './components/Paginas/Produtos/Adicionais/Adicionais'
+
 export default function App(){
     return(
       <Provider store={store}>

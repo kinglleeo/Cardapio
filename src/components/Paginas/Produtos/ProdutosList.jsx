@@ -10,6 +10,7 @@ export default function ProdutoList({ produto }){
     const Adicionais = (item) => {
         navigate('/Adicionais', { state: { item } });
       };
+      
     return(
         <div>
            <div className='lista-produtos'>

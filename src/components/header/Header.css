@@ -1,4 +1,3 @@
-
 *{
     padding: 0;
     margin: 0;
@@ -11,7 +10,7 @@
     width: 100%;
     height: 180px;
     display: grid;
-    background-image: url("https://static.vecteezy.com/system/resources/previews/014/533/873/original/food-background-food-menu-backround-photo.jpg");
+    //background-image: url("https://static.vecteezy.com/system/resources/previews/014/533/873/original/food-background-food-menu-backround-photo.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
