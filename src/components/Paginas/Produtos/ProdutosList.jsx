@@ -1,8 +1,7 @@
 import { React } from 'react'
+import '../../../Styles/Styles.css'
 import { formCurrency } from '../../AA-utilidades/numeros';
 import { useNavigate } from 'react-router-dom';
-
-import '../../../Styles/Styles.css'
 
 export default function ProdutoList({ produto }){
     const navigate = useNavigate();

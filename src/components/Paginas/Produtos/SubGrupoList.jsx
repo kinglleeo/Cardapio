@@ -1,8 +1,7 @@
-import { React, useState, useEffect, lazy} from 'react';
+import { React, useState, useEffect} from 'react';
+import '../../../Styles/Styles.css'
 import { api } from '../../../conecções/api';
 import ProdutoList from './ProdutosList';
-
-import '../../../Styles/Styles.css'
 
 export default function SubGrupoList({ ID_GRUPO }) {
   const [subGrupo, setSubGrupo] = useState([]);
@@ -43,8 +42,7 @@ export default function SubGrupoList({ ID_GRUPO }) {
 
   return (
     <div>
-      {Array.isArray(subGrupo) ? (
-        subGrupo.map((item) => (
+      {subGrupo.map((item) => 
           <div className='box-subgrupos' key={item.ID_SUBGRUPO} id={item.ID_SUBGRUPO}>
             <div className='subgrupos'>
               <div className='subgrupo-titulo'>{item.SUBGRUPO}</div>
@@ -62,8 +60,7 @@ export default function SubGrupoList({ ID_GRUPO }) {
               )}
             </div>
           </div>
-        ))
-      ) : null}
+      )}
     </div>
   );
 }

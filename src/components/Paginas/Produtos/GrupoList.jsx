@@ -1,20 +1,21 @@
-import SubGrupoList from './SubGrupoList';
 import '../../../Styles/Styles.css'
+import { useState, useEffect } from 'react'
 import { api } from '../../../conecções/api';
 import MenuBar from '../../navbar/menubar';
-import { lazy, useState, useEffect } from 'react'
-const Footer = lazy(() => import('../../Footer/Footer'));
+import SubGrupoList from './SubGrupoList';
 
 export default function Grupo(){
     const [grupos, setGrupos] = useState([]);
-
-    useEffect(()=>{
-        api
-          .get('/listaGrupos')
-          .then((getdata)=>{ 
-            setGrupos(getdata.data);
+      
+    useEffect(() => {
+        api.get(`/listaGrupos`)
+          .then((getdata) => {
+            if (Array.isArray(getdata.data)) {
+              const sortedData = getdata.data.sort((a, b) => a.numeration - b.numeration);
+              setGrupos(sortedData);
+            }
           });
-      }, []);
+    }, []);
 
     return(
     <div>
@@ -23,18 +24,15 @@ export default function Grupo(){
                 grupos={grupos}
             />
         </div>
-        {Array.isArray(grupos) ? grupos.map((item)=>
-            <div className='GrupoList' id={item.ID_GRUPO} key={item.ID_GRUPO}>
-                <div className='Grupo-Titulo'>{item.GRUPO}</div>
-                    <div>
-                        <SubGrupoList
-                            ID_GRUPO={item.ID_GRUPO}
-                        />
-                    </div>
-            </div>
-        ) : null}    
-        <div>
-            <Footer/>
-        </div>    
+            {grupos.map((item)=>
+                <div className='GrupoList' id={item.ID_GRUPO} key={item.ID_GRUPO}>
+                    <div className='Grupo-Titulo'>{item.GRUPO}</div>
+                        <div>
+                            <SubGrupoList
+                                ID_GRUPO={item.ID_GRUPO}
+                            />
+                        </div>
+                </div>
+            )}       
    </div>
 )}
