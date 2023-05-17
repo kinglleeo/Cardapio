@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
 import './menubar.css';
 import { api } from '../../conecções/api';
-import axios from 'axios';
+import SubMenuBar from './subMenuBar';
 
 export default function MenuBar({ grupos }) {
   const [stickyClass, setStickyClass]= useState('barradenavegacao')
   const [subGrupoAtivo, setSubGrupoAtivo] = useState(null);
-  const [subGruposList, setSubGruposList] = useState([]);
-
 
   useEffect(()=>{
     window.addEventListener('scroll', stickNavbar)
@@ -22,28 +20,6 @@ export default function MenuBar({ grupos }) {
       windowHeight > 200? setStickyClass('nav-top') : setStickyClass('barradenavegacao')
     }
   }
-
-  const toggleLista = (idGrupo) => {
-    if (subGrupoAtivo === idGrupo) {
-      setSubGrupoAtivo(null); 
-    } else {
-      setSubGrupoAtivo(idGrupo);
-      selecionarSubGrupos(idGrupo);
-    }
-  };
-  
-  const selecionarSubGrupos = (idGrupo) => {
-    if (subGrupoAtivo === idGrupo) {
-      setSubGrupoAtivo(null);
-    } else {
-      setSubGrupoAtivo(idGrupo);
-        api
-          .get(`/listaSubGrupos/${idGrupo}`)
-          .then((getdata)=>{
-              setSubGruposList(getdata.data);
-          },[]);
-    }
-  };
 
   return (
     <div className={`${stickyClass}`}>
@@ -61,13 +37,9 @@ export default function MenuBar({ grupos }) {
 
             <div className='nav-subgrupos'>
               {subGrupoAtivo === item.ID_GRUPO && (
-                <div className='nav-subgrupos-box'>
-                  {Array.isArray(subGruposList) ? subGruposList.map((item)=>
-                    <div className='subgrupo-box' key={item.ID_SUBGRUPO} >
-                      <div className='subgrupo-name' onClick={() => document.getElementById(item.ID_SUBGRUPO).scrollIntoView({ behavior: 'smooth' })}> {item.SUBGRUPO} </div>
-                    </div>
-                  ) : null}
-                </div>
+                <SubMenuBar
+                  
+                />
               )}
           </div>
           </div>
