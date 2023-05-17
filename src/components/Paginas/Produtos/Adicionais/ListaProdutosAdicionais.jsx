@@ -1,28 +1,26 @@
-import { React, useEffect, useState } from 'react'
+import { React, useEffect, useState, useRef } from 'react'
 import './AdicionaisList.css';
 import Decimal from 'decimal.js';
 import { formCurrency } from '../../../AA-utilidades/numeros';
 
-export default function ListaProdutosAdicionais({ Maximo, listaAdicionais, setListaAdicionais, setTotalItem }){
-    const [quantidadeTotal, setQuantidadeTotal] = useState(0);  
-  
+export default function ListaProdutosAdicionais({ Maximo, listaAdicionais, setListaAdicionais, setTotalItem }) {
+  const [quantidadeTotal, setQuantidadeTotal] = useState(0);
+  const listaAdicionaisRef = useRef(null); // Referência para armazenar os dados da lista
 
   const increaseQuantity = (index) => {
     setListaAdicionais((prevState) => {
       const updatedAdicionais = [...prevState];
-      updatedAdicionais[index].quantidade = updatedAdicionais[index].quantidade+1;
+      updatedAdicionais[index].quantidade = updatedAdicionais[index].quantidade + 1;
       return updatedAdicionais;
     });
-    setQuantidadeTotal(
-      quantidadeTotal+1
-    )
+    setQuantidadeTotal(quantidadeTotal + 1);
   };
 
   const decreaseQuantity = (index) => {
     setListaAdicionais((prevState) => {
       const updatedAdicionais = [...prevState];
       if (updatedAdicionais[index].quantidade) {
-        updatedAdicionais[index].quantidade = updatedAdicionais[index].quantidade-1;
+        updatedAdicionais[index].quantidade = updatedAdicionais[index].quantidade - 1;
       }
       return updatedAdicionais;
     });
@@ -41,16 +39,34 @@ export default function ListaProdutosAdicionais({ Maximo, listaAdicionais, setLi
     setTotalItem(total);
   }, [listaAdicionais]);
 
-  const Escolhidos=()=>{
-    let escolhidos = quantidadeTotal
-    return escolhidos
-  }
-  const Faltam=()=>{
-    let faltam = Maximo 
-      const total = faltam - quantidadeTotal
-    return total
-  }
+  const Escolhidos = () => {
+    let escolhidos = quantidadeTotal;
+    return escolhidos;
+  };
 
+  const Faltam = () => {
+    let faltam = Maximo;
+    const total = faltam - quantidadeTotal;
+    return total;
+  };
+
+  useEffect(() => {
+    // Atualiza a referência com os dados da lista quando ela for alterada
+    listaAdicionaisRef.current = listaAdicionais;
+  }, [listaAdicionais]);
+
+  const carregarDadosArmazenados = () => {
+    // Carrega os dados armazenados da lista quando necessário
+    if (listaAdicionaisRef.current !== null) {
+      setListaAdicionais(listaAdicionaisRef.current);
+    }
+  };
+
+  useEffect(() => {
+    carregarDadosArmazenados();
+  }, []);
+
+  
     return(
         <div>
             <div className='AdicionaisList'>
