@@ -6,6 +6,7 @@ import SubMenuBar from './subMenuBar';
 export default function MenuBar({ grupos }) {
   const [stickyClass, setStickyClass]= useState('barradenavegacao')
   const [subGrupoAtivo, setSubGrupoAtivo] = useState(null);
+  const [subGruposList, setSubGruposList] = useState([]);
 
   useEffect(()=>{
     window.addEventListener('scroll', stickNavbar)
@@ -20,6 +21,28 @@ export default function MenuBar({ grupos }) {
       windowHeight > 200? setStickyClass('nav-top') : setStickyClass('barradenavegacao')
     }
   }
+
+  const toggleLista = (idGrupo) => {
+    if (subGrupoAtivo === idGrupo) {
+      setSubGrupoAtivo(null); 
+    } else {
+      setSubGrupoAtivo(idGrupo);
+    selecionarSubGrupos(idGrupo);
+    }
+  };
+
+  const selecionarSubGrupos = (idGrupo) => {
+      if (subGrupoAtivo === idGrupo) {
+      setSubGrupoAtivo(null);
+      } else {
+      setSubGrupoAtivo(idGrupo);
+          api
+          .get(`/listaSubGrupos/${idGrupo}`)
+          .then((getdata)=>{
+              setSubGruposList(getdata.data);
+          },[]);
+      }
+  };
 
   return (
     <div className={`${stickyClass}`}>
@@ -38,7 +61,7 @@ export default function MenuBar({ grupos }) {
             <div className='nav-subgrupos'>
               {subGrupoAtivo === item.ID_GRUPO && (
                 <SubMenuBar
-                  
+                  subGruposList={subGruposList}
                 />
               )}
           </div>

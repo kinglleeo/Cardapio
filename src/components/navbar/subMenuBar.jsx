@@ -1,30 +1,9 @@
 import { useState, useEffect } from 'react';
 import { api } from '../../conecções/api';
 
-export default function SubMenuBar(){
-    const [subGruposList, setSubGruposList] = useState([]);
+export default function SubMenuBar({ subGruposList }){
+   
 
-    const toggleLista = (idGrupo) => {
-      if (subGrupoAtivo === idGrupo) {
-        setSubGrupoAtivo(null); 
-      } else {
-        setSubGrupoAtivo(idGrupo);
-      selecionarSubGrupos(idGrupo);
-      }
-    };
-    
-    const selecionarSubGrupos = (idGrupo) => {
-        if (subGrupoAtivo === idGrupo) {
-        setSubGrupoAtivo(null);
-        } else {
-        setSubGrupoAtivo(idGrupo);
-            api
-            .get(`/listaSubGrupos/${idGrupo}`)
-            .then((getdata)=>{
-                setSubGruposList(getdata.data);
-            },[]);
-        }
-    };
  
     return(
         <div className='nav-subgrupos-box'>
