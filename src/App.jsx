@@ -6,6 +6,7 @@ import { store } from './redux/store';
 import Carrinho from './components/Carrinho/Carrinho'
 import Adicionais from './components/Paginas/Produtos/Adicionais/Adicionais'
 
+
 export default function App(){
     return(
       <Provider store={store}>

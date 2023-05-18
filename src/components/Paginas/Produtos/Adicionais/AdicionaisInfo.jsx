@@ -4,17 +4,12 @@ import { formCurrency } from '../../../AA-utilidades/numeros';
 import './AdicionaisInfo.css';
 import Decimal from 'decimal.js';
 
-export default function AdicionaisInfo({ totalItem }) {
+export default function AdicionaisInfo() {
   const { state } = useLocation();
   const { item } = state;
-
   const [valorToShow, setValorToShow] = useState(new Decimal(item.VALOR_MINIMO > 0 ? item.VALOR_MINIMO : item.VALOR_VENDA));
 
-  useEffect(() => {
-    const updatedValorToShow = new Decimal(item.VALOR_MINIMO > 0 ? item.VALOR_MINIMO : item.VALOR_VENDA)
-      .plus(totalItem);
-    setValorToShow(updatedValorToShow);
-  }, [totalItem, item]);
+  
 
   return (
     <div className='adicionais-info'>

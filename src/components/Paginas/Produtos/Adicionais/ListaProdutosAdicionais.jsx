@@ -3,9 +3,8 @@ import './AdicionaisList.css';
 import Decimal from 'decimal.js';
 import { formCurrency } from '../../../AA-utilidades/numeros';
 
-export default function ListaProdutosAdicionais({ Maximo, listaAdicionais, setListaAdicionais, setTotalItem }) {
+export default function ListaProdutosAdicionais({ Maximo, listaAdicionais, setListaAdicionais}) {
   const [quantidadeTotal, setQuantidadeTotal] = useState(0);
-  const listaAdicionaisRef = useRef(null); // Referência para armazenar os dados da lista
 
   const increaseQuantity = (index) => {
     setListaAdicionais((prevState) => {
@@ -29,16 +28,6 @@ export default function ListaProdutosAdicionais({ Maximo, listaAdicionais, setLi
     }
   };
 
-  useEffect(() => {
-    let total = new Decimal(0);
-    listaAdicionais.forEach((item) => {
-      const valor = new Decimal(item.VALOR_VENDA);
-      const quantidade = new Decimal(item.quantidade);
-      total = total.plus(valor.times(quantidade));
-    });
-    setTotalItem(total);
-  }, [listaAdicionais]);
-
   const Escolhidos = () => {
     let escolhidos = quantidadeTotal;
     return escolhidos;
@@ -50,23 +39,6 @@ export default function ListaProdutosAdicionais({ Maximo, listaAdicionais, setLi
     return total;
   };
 
-  useEffect(() => {
-    // Atualiza a referência com os dados da lista quando ela for alterada
-    listaAdicionaisRef.current = listaAdicionais;
-  }, [listaAdicionais]);
-
-  const carregarDadosArmazenados = () => {
-    // Carrega os dados armazenados da lista quando necessário
-    if (listaAdicionaisRef.current !== null) {
-      setListaAdicionais(listaAdicionaisRef.current);
-    }
-  };
-
-  useEffect(() => {
-    carregarDadosArmazenados();
-  }, []);
-
-  
     return(
         <div>
             <div className='AdicionaisList'>

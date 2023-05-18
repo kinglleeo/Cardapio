@@ -1,4 +1,4 @@
-import { React, useState, useEffect} from 'react';
+import { React, useState, useEffect, useMemo } from 'react';
 import '../../../Styles/Styles.css'
 import { api } from '../../../conecções/api';
 import ProdutoList from './ProdutosList';
@@ -6,8 +6,8 @@ import ProdutoList from './ProdutosList';
 export default function SubGrupoList({ ID_GRUPO }) {
   const [subGrupo, setSubGrupo] = useState([]);
   const [subGrupoAtivo, setSubGrupoAtivo] = useState(null);
-  const [produto, setProduto] = useState({});
-  
+  const [produtoCache, setProdutoCache] = useState({});
+
   useEffect(() => {
     api.get(`/listaSubGrupos/${ID_GRUPO}`)
       .then((getdata) => {
@@ -28,17 +28,19 @@ export default function SubGrupoList({ ID_GRUPO }) {
   };
 
   const selecionarProdutos = (idSubGrupo) => {
-    if (!produto[idSubGrupo]) { 
+    if (!produtoCache[idSubGrupo]) { 
       api
         .get(`/listaProdutos/${idSubGrupo}`)
         .then((getdata) => {
-          setProduto((prevProduto) => ({
-            ...prevProduto,
+          setProdutoCache((prevProdutoCache) => ({
+            ...prevProdutoCache,
             [idSubGrupo]: getdata.data,
         }));
       });
     }
   };
+
+  const produtos = useMemo(() => produtoCache[subGrupoAtivo] || [], [produtoCache, subGrupoAtivo]);
 
   return (
     <div>
@@ -55,7 +57,7 @@ export default function SubGrupoList({ ID_GRUPO }) {
             <div className='listProdutos-subgrupos'>
               {subGrupoAtivo === item.ID_SUBGRUPO && (
                 <div className='subgrupolist-produto'>
-                  <ProdutoList produto={produto[item.ID_SUBGRUPO] || []} />
+                  <ProdutoList produto={produtos} />
                 </div>
               )}
             </div>
