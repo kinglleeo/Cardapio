@@ -1,9 +1,16 @@
-import { React, useState } from 'react'
+import { React, useEffect, useState } from 'react'
 import './AdicionaisList.css';
 import { formCurrency } from '../../../AA-utilidades/numeros';
 
-export default function ListaProdutosAdicionais({ Maximo, listaAdicionais, setListaAdicionais}) {
+export default function ListaProdutosAdicionais({ Maximo, listasAdicionais, setListaAdicionais }) {
   const [quantidadeTotal, setQuantidadeTotal] = useState(0);
+  
+  useEffect(() => {
+    if (Array.isArray(listasAdicionais)) {
+      const total = listasAdicionais.reduce((accumulator, item) => accumulator + item.quantidade, 0);
+      setQuantidadeTotal(total);
+    }
+  }, [listasAdicionais]);
 
   const increaseQuantity = (index) => {
     setListaAdicionais((prevState) => {
@@ -28,18 +35,23 @@ export default function ListaProdutosAdicionais({ Maximo, listaAdicionais, setLi
   };
 
   const Escolhidos = () => {
-    let escolhidos = quantidadeTotal;
+    let escolhidos = listasAdicionais.reduce((accumulator, item) => accumulator + item.quantidade, 0);
     return escolhidos;
   };
 
   const Faltam = () => {
     let faltam = Maximo;
-    const total = faltam - quantidadeTotal;
+      const total = faltam - quantidadeTotal;
     return total;
   };
 
+  useEffect(() => {
+    if (Array.isArray(listasAdicionais)) {
+      const total = listasAdicionais.reduce((accumulator, item) => accumulator + item.quantidade, 0);
+      setQuantidadeTotal(total);
+    }
+  }, [listasAdicionais]);
   
-
     return(
         <div>
             <div className='AdicionaisList'>
@@ -63,8 +75,8 @@ export default function ListaProdutosAdicionais({ Maximo, listaAdicionais, setLi
                   </div>
                 </div>
               </div>
-              {Array.isArray(listaAdicionais)
-                ? listaAdicionais.map((item, index) => (
+              {Array.isArray(listasAdicionais)
+                ? listasAdicionais.map((item, index) => (
                     <div className='Card-Adicionais' key={item.ID}>
                       <div className='Card-Adicionais-inner'>
                         <div className='Card-Adicionais-Descricao'>
