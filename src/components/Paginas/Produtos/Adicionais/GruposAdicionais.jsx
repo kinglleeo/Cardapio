@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { api } from '../../../../conecções/api';
 import './AdicionaisList.css';
 import ListaProdutosAdicionais from './ListaProdutosAdicionais';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
 
 export default function GruposAdicionais() {
   const [gruposAdicionais, setGruposAdicionais] = useState([]);
@@ -13,7 +13,8 @@ export default function GruposAdicionais() {
   const { item } = state;
   let idProduto = item.ID_PRODUTO;
   const queryClient = useQueryClient();
-  
+  console.log(queryClient)
+
   const toggleListaAdicionais = (ID_GRUPO_OPCOES, idProduto) => {
         if (listaAdicionaisAtivo === ID_GRUPO_OPCOES) {
             setListaAdicionaisAtivo(null);

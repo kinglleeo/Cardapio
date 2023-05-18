@@ -2,19 +2,19 @@ import { React, useState, useEffect, useMemo } from 'react';
 import '../../../Styles/Styles.css'
 import { api } from '../../../conecções/api';
 import ProdutoList from './ProdutosList';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 export default function SubGrupoList({ ID_GRUPO }) {
   const [subGrupo, setSubGrupo] = useState([]);
   const [subGrupoAtivo, setSubGrupoAtivo] = useState(null);
   const [produtoCache, setProdutoCache] = useState({});
+  const queryClient = useQueryClient();
 
-  useEffect(() => {
-    api.get(`/listaSubGrupos/${ID_GRUPO}`)
-      .then((getdata) => {
-        if (Array.isArray(getdata.data)) {
-          const sortedData = getdata.data.sort((a, b) => a.numeration - b.numeration);
-          setSubGrupo(sortedData);
-        }
+  useEffect(()=>{
+    api
+      .get(`/listaSubGrupos/${ID_GRUPO}`)
+      .then((getdata)=>{
+        setSubGrupo(getdata.data);
       });
   }, []);
 
@@ -44,7 +44,8 @@ export default function SubGrupoList({ ID_GRUPO }) {
 
   return (
     <div>
-      {subGrupo.map((item) => 
+      {Array.isArray(subGrupo) ? (
+        subGrupo.map((item) => 
           <div className='box-subgrupos' key={item.ID_SUBGRUPO} id={item.ID_SUBGRUPO}>
             <div className='subgrupos'>
               <div className='subgrupo-titulo'>{item.SUBGRUPO}</div>
@@ -62,7 +63,7 @@ export default function SubGrupoList({ ID_GRUPO }) {
               )}
             </div>
           </div>
-      )}
+      )) : null}
     </div>
   );
 }

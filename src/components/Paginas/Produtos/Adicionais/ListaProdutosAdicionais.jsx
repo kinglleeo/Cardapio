@@ -1,6 +1,5 @@
-import { React, useEffect, useState, useRef } from 'react'
+import { React, useState } from 'react'
 import './AdicionaisList.css';
-import Decimal from 'decimal.js';
 import { formCurrency } from '../../../AA-utilidades/numeros';
 
 export default function ListaProdutosAdicionais({ Maximo, listaAdicionais, setListaAdicionais}) {
@@ -38,6 +37,8 @@ export default function ListaProdutosAdicionais({ Maximo, listaAdicionais, setLi
     const total = faltam - quantidadeTotal;
     return total;
   };
+
+  
 
     return(
         <div>
