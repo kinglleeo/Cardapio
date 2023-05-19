@@ -1,5 +1,5 @@
+import { React, useState, useEffect } from 'react';
 import { api } from '../../../../conecções/api';
-import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import './AdicionaisList.css';
@@ -15,11 +15,21 @@ export default function GruposAdicionais({ setIdGrupoOpcoes }) {
   let idProduto = item.ID_PRODUTO;
 
   useEffect(()=>{
-    api
-        .get(`/listaGrupoOpcionais/${idProduto}`)
-        .then((getdata)=>{
-            setGruposAdicionais(getdata.data);
+    const cacheGrupos = queryClient.getQueryData(['listaGrupoOpcionais', idProduto]);
+        if (cacheGrupos) {
+            setGruposAdicionais(cacheGrupos);
+        } else {
+            api
+                .get(`/listaGrupoOpcionais/${idProduto}`)
+                .then((getdata) => {
+            const data = getdata.data.map((item) => ({
+                ...item,
+                totalDaLista: 0,
+        }));
+            setGruposAdicionais(data);
+                queryClient.setQueryData(['listaGrupoOpcionais', idProduto], data);
         });
+        }
     }, []);
    
 
@@ -81,6 +91,7 @@ return(
                                 Maximo={item.MAXIMO}
                                 listasAdicionais={listasAdicionais}
                                 setListaAdicionais={setListaAdicionais}
+                                idGrupoOpcoes={item.ID_GRUPO_OPCOES}
                           />
                         )}
                     </div>

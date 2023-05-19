@@ -4,12 +4,10 @@ import { formCurrency } from '../../../AA-utilidades/numeros';
 import { useQueryClient } from '@tanstack/react-query';
 import Decimal from 'decimal.js';
 
-export default function ListaProdutosAdicionais({ Maximo, listasAdicionais, setListaAdicionais }) {
+export default function ListaProdutosAdicionais({ idGrupoOpcoes, Maximo, listasAdicionais, setListaAdicionais }) {
   const [quantidadeTotal, setQuantidadeTotal] = useState(0);
   const queryClient = useQueryClient();
-  const [totalGrupo, setTotalGrupo] = useState(0);
-
-  console.log(totalGrupo)
+  
 
   useEffect(() => {
     if (Array.isArray(listasAdicionais)) {
@@ -58,24 +56,7 @@ export default function ListaProdutosAdicionais({ Maximo, listasAdicionais, setL
     }
   }, [listasAdicionais]);
 
-  useEffect(() => {
-    const calcularTotal = () => {
-      let valorTotal = new Decimal(0);
-      listasAdicionais.forEach((item) => {
-        const quantidade = item.quantidade;
-        const valor = new Decimal(item.VALOR_VENDA || 0);
-        const subtotal = valor.times(quantidade);
-        valorTotal = valorTotal.plus(subtotal);
-      });
-      return valorTotal;
-    };
-
-    const totalGrupoCalculado = calcularTotal(); // Calcula o valor total do grupo
-    setTotalGrupo(totalGrupoCalculado);
-  }, [listasAdicionais]);
-
-
-    return(
+  return(
         <div>
             <div className='AdicionaisList'>
               <div className='box-quantidadeMaxima'>
