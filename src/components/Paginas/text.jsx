@@ -16,3 +16,10 @@ useEffect(() => {
   }, [listasAdicionais]);
 
 
+  return useQuery(['ListaDeProdutosAdicionais', idGrupoOpcoes], () =>
+  api.get(`/listaOpcionais/${idGrupoOpcoes}/${idProduto}`).then((getdata) => {
+    const data = getdata.data.map((item) => ({
+      ...item,
+      quantidade: 0,
+    }));
+    return data;
