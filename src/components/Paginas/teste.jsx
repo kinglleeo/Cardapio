@@ -39,17 +39,12 @@ const increaseQuantity = (index) => {
     }
   };
   
-  GruposAdicionais 
-  const updateQuantitiesMutation = useMutation((data) => {
-    queryClient.setQueryData(['listaOpcionais', data.ID_GRUPO_OPCOES, data.idProduto], data.listaAdicionais);
-  
-    setGruposAdicionais((prevGruposAdicionais) => {
-      const updatedGruposAdicionais = [...prevGruposAdicionais];
-      const item = updatedGruposAdicionais.find((item) => item.ID_GRUPO_OPCOES === data.ID_GRUPO_OPCOES);
-      const totalDaLista = data.listaAdicionais.reduce((total, adicional) => {
-        return new Decimal(total).plus(adicional.VALOR_VENDA * adicional.quantidade).toNumber();
-      }, 0);
-      item.totalDaLista = totalDaLista;
-      return updatedGruposAdicionais;
-    });
-  });
+  useEffect(()=>{
+    let descricao = ""
+        listaOpcionaisCache.forEach((listaOpcionais) =>{
+            listaOpcionais.forEach((item) =>{
+                descricao +=  item.quantidade + " X " + item.DESCRICAO + " / "
+            })
+            setDescricao(descricao)
+        })
+}, [listaOpcionaisCache]);
