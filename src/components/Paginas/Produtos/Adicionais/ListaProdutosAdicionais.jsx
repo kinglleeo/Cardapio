@@ -1,60 +1,33 @@
 import { React, useEffect, useState } from 'react'
 import './AdicionaisList.css';
 import { formCurrency } from '../../../AA-utilidades/numeros';
-import { useQueryClient } from '@tanstack/react-query';
 import Decimal from 'decimal.js';
 
-export default function ListaProdutosAdicionais({ idGrupoOpcoes, Maximo, listasAdicionais, setListaAdicionais }) {
-  const [quantidadeTotal, setQuantidadeTotal] = useState(0);
-  const queryClient = useQueryClient();
+export default function ListaProdutosAdicionais({ Maximo, listaOpcionais, setListaOpcionais }) {
   
 
-  useEffect(() => {
-    if (Array.isArray(listasAdicionais)) {
-      const total = listasAdicionais.reduce((accumulator, item) => accumulator + item.quantidade, 0);
-        setQuantidadeTotal(total);
-    }
-  }, [listasAdicionais]);
-
-  const increaseQuantity = (index) => {
-    setListaAdicionais((prevState) => {
-      const updatedAdicionais = [...prevState];
-        updatedAdicionais[index].quantidade = updatedAdicionais[index].quantidade + 1;
-          return updatedAdicionais;
-    });
-      setQuantidadeTotal(quantidadeTotal + 1);
+  const aumentarQuantidade = (index) => {
+    const updatedListaOpcionais = [...listaOpcionais];
+    updatedListaOpcionais[index].quantidade += 1;
+    updatedListaOpcionais[index].valorTotalProduto = updatedListaOpcionais[index].quantidade * updatedListaOpcionais[index].VALOR_VENDA;
+    setListaOpcionais(updatedListaOpcionais);
   };
-
-  const decreaseQuantity = (index) => {
-    setListaAdicionais((prevState) => {
-      const updatedAdicionais = [...prevState];
-      if (updatedAdicionais[index].quantidade) {
-        updatedAdicionais[index].quantidade = updatedAdicionais[index].quantidade - 1;
-      }
-      return updatedAdicionais;
-    });
-    if (quantidadeTotal > 0) {
-      setQuantidadeTotal(quantidadeTotal - 1);
+  const diminuirQuantidade = (index) => {
+    const updatedListaOpcionais = [...listaOpcionais];
+    if (updatedListaOpcionais[index].quantidade > 0) {
+      updatedListaOpcionais[index].quantidade -= 1;
+      updatedListaOpcionais[index].valorTotalProduto = updatedListaOpcionais[index].quantidade * updatedListaOpcionais[index].VALOR_VENDA;
+      setListaOpcionais(updatedListaOpcionais);
     }
   };
 
   const Escolhidos = () => {
-    let escolhidos = listasAdicionais.reduce((accumulator, item) => accumulator + item.quantidade, 0);
-      return escolhidos;
+    
   };
 
   const Faltam = () => {
-    let faltam = Maximo;
-      const total = faltam - quantidadeTotal;
-        return total;
+    
   };
-
-  useEffect(() => {
-    if (Array.isArray(listasAdicionais)) {
-      const totalQuantidade = listasAdicionais.reduce((accumulator, item) => accumulator + item.quantidade, 0);
-      setQuantidadeTotal(totalQuantidade);
-    }
-  }, [listasAdicionais]);
 
   return(
         <div>
@@ -79,8 +52,8 @@ export default function ListaProdutosAdicionais({ idGrupoOpcoes, Maximo, listasA
                   </div>
                 </div>
               </div>
-              {Array.isArray(listasAdicionais)
-                ? listasAdicionais.map((item, index) => (
+              {Array.isArray(listaOpcionais)
+                ? listaOpcionais.map((item, index) => (
                     <div className='Card-Adicionais' key={item.ID}>
                       <div className='Card-Adicionais-inner'>
                         <div className='Card-Adicionais-Descricao'>
@@ -93,11 +66,11 @@ export default function ListaProdutosAdicionais({ idGrupoOpcoes, Maximo, listasA
                         </div>
                         <div className='Card-Adicionais-Botoes'>
                           <div className='btn-quantia-adicionais'>
-                            <button className='arrow left' onClick={() => decreaseQuantity(index)}></button>
+                            <button className='arrow left' onClick={() => diminuirQuantidade(index)}></button>
                           </div>
                           <div className='quantia-adicionais'>{item.quantidade}</div>
                           <div className='btn-quantia-adicionais'>
-                            <button className='arrow right'onClick={() => increaseQuantity(index)}
+                            <button className='arrow right'onClick={() => aumentarQuantidade(index)}
                               disabled={Faltam() === 0}
                             ></button>
                           </div>
