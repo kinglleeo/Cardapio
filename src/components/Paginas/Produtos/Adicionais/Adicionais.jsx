@@ -5,7 +5,7 @@ import AdicionaisInfo from './AdicionaisInfo';
 import GruposAdicionais from './GruposAdicionais';
 
 export default function Adicionais() {
-   const [idGrupoOpcoes, setIdGrupoOpcoes] = useState('');
+  const [totalValue, setTotalValue] = useState(0);
 
   return (
     <div>
@@ -13,11 +13,11 @@ export default function Adicionais() {
         <Header />
       </div>
         <AdicionaisInfo
-          idGrupoOpcoes={idGrupoOpcoes}
+        totalValue={totalValue}
         />
       <div>
         <GruposAdicionais
-          setIdGrupoOpcoes={setIdGrupoOpcoes}
+        setTotalValue={setTotalValue}
         />
       </div>
     </div>

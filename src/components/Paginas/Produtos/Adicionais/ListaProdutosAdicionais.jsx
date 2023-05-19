@@ -4,7 +4,15 @@ import { formCurrency } from '../../../AA-utilidades/numeros';
 import Decimal from 'decimal.js';
 
 export default function ListaProdutosAdicionais({ Maximo, listaOpcionais, setListaOpcionais }) {
-  
+  const [quantidadeTotal, setQuantidadeTotal] = useState(0);
+
+  useEffect(() => {
+    if (Array.isArray(listaOpcionais)) {
+      const total = listaOpcionais.reduce((accumulator, item) => accumulator + item.quantidade, 0);
+      setQuantidadeTotal(total);
+    }
+  }, [listaOpcionais]);
+
   const aumentarQuantidade = (index) => {
     const updatedListaOpcionais = [...listaOpcionais];
     const quantidade = new Decimal(updatedListaOpcionais[index].quantidade);
@@ -13,6 +21,7 @@ export default function ListaProdutosAdicionais({ Maximo, listaOpcionais, setLis
     updatedListaOpcionais[index].valorTotalProduto = quantidade.plus(1).times(valorVenda).toNumber();
     setListaOpcionais(updatedListaOpcionais);
   };
+
   const diminuirQuantidade = (index) => {
     const updatedListaOpcionais = [...listaOpcionais];
     const quantidade = new Decimal(updatedListaOpcionais[index].quantidade);
@@ -27,11 +36,14 @@ export default function ListaProdutosAdicionais({ Maximo, listaOpcionais, setLis
   
 
   const Escolhidos = () => {
-    
+    let escolhidos = quantidadeTotal
+    return escolhidos
   };
 
   const Faltam = () => {
-    
+    let faltam = Maximo;
+    const total = faltam - quantidadeTotal;
+    return total;
   };
 
   return(
@@ -76,7 +88,7 @@ export default function ListaProdutosAdicionais({ Maximo, listaOpcionais, setLis
                           <div className='quantia-adicionais'>{item.quantidade}</div>
                           <div className='btn-quantia-adicionais'>
                             <button className='arrow right'onClick={() => aumentarQuantidade(index)}
-                              disabled={Faltam() === 0}
+                                disabled={Faltam() === 0}
                             ></button>
                           </div>
                         </div>
