@@ -9,25 +9,20 @@ export default function ListaProdutosAdicionais({ Maximo, listaOpcionais, setLis
     const updatedListaOpcionais = [...listaOpcionais];
     const quantidade = new Decimal(updatedListaOpcionais[index].quantidade);
     const valorVenda = new Decimal(updatedListaOpcionais[index].VALOR_VENDA);
-    
     updatedListaOpcionais[index].quantidade = quantidade.plus(1).toNumber();
     updatedListaOpcionais[index].valorTotalProduto = quantidade.plus(1).times(valorVenda).toNumber();
-    
     setListaOpcionais(updatedListaOpcionais);
   };
   const diminuirQuantidade = (index) => {
     const updatedListaOpcionais = [...listaOpcionais];
     const quantidade = new Decimal(updatedListaOpcionais[index].quantidade);
     const valorVenda = new Decimal(updatedListaOpcionais[index].VALOR_VENDA);
-  
     if (quantidade.gt(0)) {
       updatedListaOpcionais[index].quantidade = quantidade.minus(1).toNumber();
       updatedListaOpcionais[index].valorTotalProduto = quantidade.minus(1).times(valorVenda).toNumber();
       setListaOpcionais(updatedListaOpcionais);
     }
   };
-  
-  
   
   
 

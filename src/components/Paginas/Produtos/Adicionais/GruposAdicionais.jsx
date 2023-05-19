@@ -2,7 +2,6 @@ import { React, useState, useEffect } from 'react';
 import { api } from '../../../../conecções/api';
 import { useLocation } from 'react-router-dom';
 import './AdicionaisList.css';
-import Decimal from 'decimal.js';
 import ListaProdutosAdicionais from './ListaProdutosAdicionais';
 
 export default function GruposAdicionais({ setIdGrupoOpcoes }) {
@@ -13,7 +12,6 @@ export default function GruposAdicionais({ setIdGrupoOpcoes }) {
   const { item } = state;
   let idProduto = item.ID_PRODUTO;
     console.log(listaOpcionais)
-    
 
     useEffect(() => {
         api.get(`/listaGrupoOpcionais/${idProduto}`).then((getdata) => {
@@ -47,6 +45,8 @@ export default function GruposAdicionais({ setIdGrupoOpcoes }) {
             });
    }
     
+
+
 return(
     <div>
         {Array.isArray(listaGrupoOpcionais) ? (
