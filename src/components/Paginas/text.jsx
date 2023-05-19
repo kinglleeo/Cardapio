@@ -14,3 +14,5 @@ useEffect(() => {
     };
   console.log(calcularTotal())
   }, [listasAdicionais]);
+
+
