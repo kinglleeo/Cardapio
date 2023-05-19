@@ -6,7 +6,7 @@ import ListaProdutosAdicionais from './ListaProdutosAdicionais';
 import { useQueryClient } from '@tanstack/react-query';
 
 
-export default function GruposAdicionais({ setTotalValue }) {
+export default function GruposAdicionais({ setTotalValue, setDescricao }) {
   const [listaGrupoOpcionais, setGruposAdicionais] = useState([]);
   const [listaOpcionais, setListaOpcionais] = useState([]);
   const [listaAdicionaisAtivo, setListaAdicionaisAtivo] = useState(null);
@@ -14,7 +14,8 @@ export default function GruposAdicionais({ setTotalValue }) {
   const { item } = state;
   let idProduto = item.ID_PRODUTO;
   const queryClient = useQueryClient();
-
+  
+  
   
     useEffect(() => {
         api.get(`/listaGrupoOpcionais/${idProduto}`).then((getdata) => {
@@ -61,6 +62,18 @@ export default function GruposAdicionais({ setTotalValue }) {
           const data = query.state.data;
               return data;
       });
+      useEffect(() => {
+        let descricao = "";
+        listaOpcionaisCache.forEach((listaOpcionais) => {
+          listaOpcionais.forEach((item) => {
+            if (item.quantidade > 0) {
+              descricao += item.quantidade + " X " + item.DESCRICAO + " / ";
+            }
+          });
+          setDescricao(descricao);
+        });
+      }, [listaOpcionaisCache]);
+
     useEffect(()=>{
         let total = 0;
                 listaOpcionaisCache.forEach((listaOpcionais) => {

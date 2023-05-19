@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { formCurrency } from '../../../AA-utilidades/numeros';
 import './AdicionaisInfo.css';
 import Decimal from 'decimal.js';
+import BotaoEnviarCarrinho from './BotaoEnviarCarrinho';
 
 export default function AdicionaisInfo({ totalValue }) {
   const { state } = useLocation();
@@ -26,6 +27,12 @@ export default function AdicionaisInfo({ totalValue }) {
       <div className='box-info-2'>
         <div className='valor-info-titulo'>Valor:</div>
         <div className='valor-info'>{formCurrency.format(valortotal)}</div>
+      </div>
+      <div>
+        <BotaoEnviarCarrinho
+          info={item.PRODUTO}
+          valortotal={valortotal}
+        />
       </div>
     </div>
   );

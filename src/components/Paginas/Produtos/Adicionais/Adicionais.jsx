@@ -6,6 +6,9 @@ import GruposAdicionais from './GruposAdicionais';
 
 export default function Adicionais() {
   const [totalValue, setTotalValue] = useState(0);
+  const [descricao, setDescricao] = useState([]);
+
+  console.log(descricao)
 
   return (
     <div>
@@ -13,11 +16,12 @@ export default function Adicionais() {
         <Header />
       </div>
         <AdicionaisInfo
-        totalValue={totalValue}
+          totalValue={totalValue}
         />
       <div>
         <GruposAdicionais
-        setTotalValue={setTotalValue}
+          setTotalValue={setTotalValue}
+          setDescricao={setDescricao}
         />
       </div>
     </div>
