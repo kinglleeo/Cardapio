@@ -6,15 +6,24 @@ import './AdicionaisList.css';
 import ListaProdutosAdicionais from './ListaProdutosAdicionais';
 import { useQueryClient } from '@tanstack/react-query';
 
-export default function GruposAdicionais() {
+export default function GruposAdicionais({ setIdGrupoOpcoes }) {
   const [gruposAdicionais, setGruposAdicionais] = useState([]);
   const [listasAdicionais, setListaAdicionais] = useState([]);
   const [listaAdicionaisAtivo, setListaAdicionaisAtivo] = useState(null);
   const { state } = useLocation();
   const { item } = state;
   let idProduto = item.ID_PRODUTO;
-  
-  const toggleListaAdicionais = (ID_GRUPO_OPCOES, idProduto) => {
+
+  useEffect(()=>{
+    api
+        .get(`/listaGrupoOpcionais/${idProduto}`)
+        .then((getdata)=>{
+            setGruposAdicionais(getdata.data);
+        });
+    }, []);
+   
+
+   const toggleListaAdicionais = (ID_GRUPO_OPCOES, idProduto) => {
         if (listaAdicionaisAtivo === ID_GRUPO_OPCOES) {
             setListaAdicionaisAtivo(null);
         } else {
@@ -23,23 +32,11 @@ export default function GruposAdicionais() {
         }
     }   
        
-    useEffect(()=>{
-        api
-            .get(`/listaGrupoOpcionais/${idProduto}`)
-            .then((getdata)=>{
-                setGruposAdicionais(getdata.data);
-            });
-        }, []);
-    
-    const queryClient = useQueryClient();
-        const updateQuantitiesMutation = useMutation((data) =>
-          queryClient.setQueryData(['listaOpcionais', data.ID_GRUPO_OPCOES, data.idProduto], data.listaAdicionais)
-        );
-
     const selecionarListaProdutosAdicionais = (ID_GRUPO_OPCOES, idProduto) => {
         const cachedData = queryClient.getQueryData(['listaOpcionais', ID_GRUPO_OPCOES, idProduto]);
             if (cachedData) {
                 setListaAdicionais(cachedData);
+                setIdGrupoOpcoes(ID_GRUPO_OPCOES);
             } else {
                 api.get(`/listaOpcionais/${ID_GRUPO_OPCOES}/${idProduto}`).then((getdata) => {
                 const data = getdata.data.map((item) => ({
@@ -47,14 +44,19 @@ export default function GruposAdicionais() {
                     quantidade: 0,
             }));
                 setListaAdicionais(data);
+                setIdGrupoOpcoes(ID_GRUPO_OPCOES);
                     queryClient.setQueryData(['listaOpcionais', ID_GRUPO_OPCOES, idProduto], data);
             updateQuantitiesMutation.mutate({ ID_GRUPO_OPCOES, idProduto, listaAdicionais: data });
         });
         }
     };
-        
     
+    const queryClient = useQueryClient();
+        const updateQuantitiesMutation = useMutation((data) =>
+          queryClient.setQueryData(['listaOpcionais', data.ID_GRUPO_OPCOES, data.idProduto], data.listaAdicionais)
+        );
 
+    
 return(
     <div>
         {Array.isArray(gruposAdicionais) ? (
