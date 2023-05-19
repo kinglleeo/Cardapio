@@ -15,21 +15,11 @@ export default function GruposAdicionais({ setIdGrupoOpcoes }) {
   let idProduto = item.ID_PRODUTO;
   const queryClient = useQueryClient();
 
-  const queryCache = queryClient.getQueryCache();
-  const cachedQueries = queryCache.findAll('listaOpcionais');
   
-  
-    const listaOpcionaisCache = cachedQueries.map((query) => {
-      const data = query.state.data;
-        return data;
-    });
-    console.log(listaOpcionaisCache);
-
     useEffect(() => {
         api.get(`/listaGrupoOpcionais/${idProduto}`).then((getdata) => {
           const grupos = getdata.data.map((grupo) => ({
             ...grupo,
-            totalGrupo: 0,
           }));
           setGruposAdicionais(grupos);
         });
@@ -56,6 +46,7 @@ export default function GruposAdicionais({ setIdGrupoOpcoes }) {
                     const data = getdata.data.map((item)=>({
                         ...item,
                         quantidade: 0,
+                        valorTotalProduto: 0,
                     }))
                     setListaOpcionais(data);
                     queryClient.setQueryData(['listaOpcionais', ID_GRUPO_OPCOES, idProduto], data);

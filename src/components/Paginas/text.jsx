@@ -15,4 +15,31 @@ useEffect(() => {
   console.log(calcularTotal())
   }, [listasAdicionais]);
 
- 
+  const queryCache = queryClient.getQueryCache();
+  const cachedQueries = queryCache.findAll('listaOpcionais');
+  
+  
+    const listaOpcionaisCache = cachedQueries.map((query) => {
+      const data = query.state.data;
+        return data;
+    });
+    console.log(listaOpcionaisCache);,
+
+
+
+    const queryCache = queryClient.getQueryCache();
+    const cachedQueries = queryCache.findAll('listaOpcionais');
+
+    const listaOpcionaisCache = cachedQueries.map((query) => {
+        const data = query.state.data;
+            return data;
+    });
+        let total = 0;
+
+        listaOpcionaisCache.forEach((listaOpcionais) => {
+        listaOpcionais.forEach((item) => {
+            total += item.valorTotalProduto;
+        });
+        });
+
+console.log(total);

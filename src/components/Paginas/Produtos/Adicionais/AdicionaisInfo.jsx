@@ -12,13 +12,25 @@ export default function AdicionaisInfo() {
   const queryClient = useQueryClient();
   const [valorToShow, setValorToShow] = useState(new Decimal(item.VALOR_MINIMO > 0 ? item.VALOR_MINIMO : item.VALOR_VENDA));
   
-
+  const queryCache = queryClient.getQueryCache();
+  const cachedQueries = queryCache.findAll('listaOpcionais');
   
- 
+  const listaOpcionaisCache = cachedQueries.map((query) => {
+    const data = query.state.data;
+    return data;
+  });
   
+  let total = 0;
   
-
+  listaOpcionaisCache.forEach((lista) => {
+    lista.forEach((item) => {
+      total += item.valorTotalProduto;
+    });
+  });
   
+  console.log(total);
+    
+          
   return (
     <div className='adicionais-info'>
       <div className='box-info-1'>
