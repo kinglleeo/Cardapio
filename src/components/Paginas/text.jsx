@@ -43,3 +43,16 @@ useEffect(() => {
         });
 
 console.log(total);
+
+useEffect(() => {
+    // ... existing code ...
+  
+    let total = 0;
+    listaOpcionaisCache.forEach((listaOpcionais) => {
+      listaOpcionais.forEach((item) => {
+        total += item.valorTotalProduto;
+      });
+    });
+  
+    setTotalValue(total);
+  }, [listaOpcionaisCache]);
