@@ -7,6 +7,9 @@ import Decimal from 'decimal.js';
 export default function ListaProdutosAdicionais({ Maximo, listasAdicionais, setListaAdicionais }) {
   const [quantidadeTotal, setQuantidadeTotal] = useState(0);
   const queryClient = useQueryClient();
+  const [totalGrupo, setTotalGrupo] = useState(0);
+
+  console.log(totalGrupo)
 
   useEffect(() => {
     if (Array.isArray(listasAdicionais)) {
@@ -49,22 +52,28 @@ export default function ListaProdutosAdicionais({ Maximo, listasAdicionais, setL
   };
 
   useEffect(() => {
-    const calcularTotal = () => {  
-      let valorTotal = new Decimal(0);
-        listasAdicionais.forEach((item) => {
-          const quantidade = item.quantidade;
-          const valor = new Decimal(item.VALOR_VENDA || 0);
-          const subtotal = valor.times(quantidade);
-            valorTotal = valorTotal.plus(subtotal);
-        });
-      return formCurrency.format(valorTotal)
-    };
-  console.log(calcularTotal())
+    if (Array.isArray(listasAdicionais)) {
+      const totalQuantidade = listasAdicionais.reduce((accumulator, item) => accumulator + item.quantidade, 0);
+      setQuantidadeTotal(totalQuantidade);
+    }
   }, [listasAdicionais]);
 
+  useEffect(() => {
+    const calcularTotal = () => {
+      let valorTotal = new Decimal(0);
+      listasAdicionais.forEach((item) => {
+        const quantidade = item.quantidade;
+        const valor = new Decimal(item.VALOR_VENDA || 0);
+        const subtotal = valor.times(quantidade);
+        valorTotal = valorTotal.plus(subtotal);
+      });
+      return valorTotal;
+    };
 
- 
-  
+    const totalGrupoCalculado = calcularTotal(); // Calcula o valor total do grupo
+    setTotalGrupo(totalGrupoCalculado);
+  }, [listasAdicionais]);
+
 
     return(
         <div>
