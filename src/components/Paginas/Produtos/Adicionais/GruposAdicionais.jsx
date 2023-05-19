@@ -3,6 +3,8 @@ import { api } from '../../../../conecções/api';
 import { useLocation } from 'react-router-dom';
 import './AdicionaisList.css';
 import ListaProdutosAdicionais from './ListaProdutosAdicionais';
+import { useQueryClient } from '@tanstack/react-query';
+
 
 export default function GruposAdicionais({ setIdGrupoOpcoes }) {
   const [listaGrupoOpcionais, setGruposAdicionais] = useState([]);
@@ -11,6 +13,7 @@ export default function GruposAdicionais({ setIdGrupoOpcoes }) {
   const { state } = useLocation();
   const { item } = state;
   let idProduto = item.ID_PRODUTO;
+  const queryClient = useQueryClient();
     console.log(listaOpcionais)
 
     useEffect(() => {
@@ -32,18 +35,24 @@ export default function GruposAdicionais({ setIdGrupoOpcoes }) {
         }
     }   
        
-   const selecionarListaOpcionais=(ID_GRUPO_OPCOES, idProduto)=>{
-        api
-            .get(`/listaOpcionais/${ID_GRUPO_OPCOES}/${idProduto}`)
-            .then((getdata)=>{
-                const novalistaopcionais = getdata.data.map((item) =>({
-                    ...item,
-                    quantidade: 0,
-                    valorTotalProduto: 0,
-                }))
-                    setListaOpcionais(novalistaopcionais);
-            });
-   }
+    const selecionarListaOpcionais = (ID_GRUPO_OPCOES, idProduto) => {
+        const cachedData = queryClient.getQueryData(['listaOpcionais', ID_GRUPO_OPCOES, idProduto]);
+        if(cachedData){
+            setListaOpcionais(cachedData)
+        } else {
+            api
+                .get(`/listaOpcionais/${ID_GRUPO_OPCOES}/${idProduto}`)
+                .then((getdata)=>{
+                    const data = getdata.data.map((item)=>({
+                        ...item,
+                        quantidade: 0,
+                    }))
+                    setListaOpcionais(data);
+                    queryClient.setQueryData(['listaOpcionais', ID_GRUPO_OPCOES, idProduto], data);
+                })
+        }
+      };
+      
     
 
 
