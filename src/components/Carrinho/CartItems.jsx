@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { TotalItem } from './total';
 import { removeItem} from '../../redux/cartSlice';
 import './Styles-cart/styleCartItem.css'
+import { CartPagBar } from './CartPagBar';
+
 
 export default function CartItem() {
   const dispatch = useDispatch()
@@ -11,7 +13,7 @@ export default function CartItem() {
     <div> 
         <div className='todos-items-lista'>
       {cart.map((item) =>
-    <div className='carde carde-cart'>
+            <div className='carde carde-cart' key={item.idCart}>
                 <div className='carde-inner '>
                     <div className='cart-box'>
                         <div className='cart-item1'>
@@ -44,6 +46,9 @@ export default function CartItem() {
             </div>
       )}
       </div>
+        <div>
+          <CartPagBar/>
+        </div>
       </div>
   )
 }

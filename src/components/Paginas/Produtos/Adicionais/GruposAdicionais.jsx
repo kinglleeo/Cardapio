@@ -3,11 +3,11 @@ import { api } from '../../../../conecções/api';
 import { useLocation } from 'react-router-dom';
 import './AdicionaisList.css';
 import ListaProdutosAdicionais from './ListaProdutosAdicionais';
-import { useQueryClient } from '@tanstack/react-query';
+import { useQueryClient, MutationCache  } from '@tanstack/react-query';
 import Decimal from 'decimal.js';
 
 
-export default function GruposAdicionais({ setTotalValue, setDescricao }) {
+export default function GruposAdicionais({ setTotalValue, setDescricao, setIdGrupo }) {
   const [listaGrupoOpcionais, setGruposAdicionais] = useState([]);
   const [listaOpcionais, setListaOpcionais] = useState([]);
   const [listaAdicionaisAtivo, setListaAdicionaisAtivo] = useState(null);
@@ -16,11 +16,14 @@ export default function GruposAdicionais({ setTotalValue, setDescricao }) {
   let idProduto = data.ID_PRODUTO;
   const queryClient = useQueryClient();
   
+  
+
     useEffect(()=>{
         api
             .get(`/listaGrupoOpcionais/${idProduto}`)
             .then((getdata) =>{
                 setGruposAdicionais(getdata.data);
+                setIdGrupo(getdata.ID_GRUPO_OPCOES)
             });
     }, []);
 
@@ -65,7 +68,7 @@ export default function GruposAdicionais({ setTotalValue, setDescricao }) {
         listaOpcionaisCache.forEach((listaOpcionais) => {
           listaOpcionais.forEach((item) => {
             if (item.quantidade > 0) {
-              descricao += item.quantidade + " X " + item.DESCRICAO;
+              descricao += item.quantidade + " X " + item.DESCRICAO + " / ";
             }
           });
           setDescricao(descricao);

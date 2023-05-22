@@ -3,21 +3,25 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addToCart } from '../../../../redux/cartSlice';
 import './BotaoEnviarCarrinho.css'
+import { useQueryClient } from '@tanstack/react-query';
 
-export default function BotaoEnviarCarrinho({ id, nome, info, valortotal }){
+export default function BotaoEnviarCarrinho({ id, nome, info, valortotal, idGrupo }){
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const Descricao = info
-    const Valor = (valortotal)
+    const Valor = valortotal
     
-    
+  const queryClient = useQueryClient();
+
     const itemComprado = {
         id: id,
         nome: nome,
         descricao: info,
         valor: valortotal
     }
+
     const AdicionarCart=(itemComprado)=>{
+        const cachedData = queryClient.clear(['listaOpcionais', idGrupo, id])
         dispatch(addToCart(itemComprado))
         navigate('/Carrinho')
     }

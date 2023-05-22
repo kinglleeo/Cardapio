@@ -5,17 +5,16 @@ import './AdicionaisInfo.css';
 import Decimal from 'decimal.js';
 import BotaoEnviarCarrinho from './BotaoEnviarCarrinho';
 
-export default function AdicionaisInfo({ totalValue, descricao }) {
+export default function AdicionaisInfo({ totalValue, descricao, idGrupo }) {
   const { state } = useLocation();
   const { data } = state;
   const [valortotal, setValorTotal] = useState('');
-  console.log(valortotal)
 
   useEffect(()=>{
       let valorTotal = new Decimal(data.VALOR_MINIMO > 0 ? data.VALOR_MINIMO : data.VALOR_VENDA)
           const totalAdicionais = new Decimal(totalValue)
         const SomaTotais = (valorTotal).plus(totalAdicionais)
-          setValorTotal(SomaTotais)
+          setValorTotal(SomaTotais.toNumber())
   }, [totalValue])
 
  
@@ -30,7 +29,7 @@ export default function AdicionaisInfo({ totalValue, descricao }) {
       </div>
       <div>
         <BotaoEnviarCarrinho
-          id={data.id}
+          id={data.ID_PRODUTO}
           nome={data.PRODUTO}
           info={descricao}
           valortotal={valortotal}
