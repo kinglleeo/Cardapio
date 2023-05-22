@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import './AdicionaisList.css';
 import ListaProdutosAdicionais from './ListaProdutosAdicionais';
 import { useQueryClient } from '@tanstack/react-query';
+import Decimal from 'decimal.js';
 
 
 export default function GruposAdicionais({ setTotalValue, setDescricao }) {
@@ -11,20 +12,17 @@ export default function GruposAdicionais({ setTotalValue, setDescricao }) {
   const [listaOpcionais, setListaOpcionais] = useState([]);
   const [listaAdicionaisAtivo, setListaAdicionaisAtivo] = useState(null);
   const { state } = useLocation();
-  const { item } = state;
-  let idProduto = item.ID_PRODUTO;
+  const { data } = state;
+  let idProduto = data.ID_PRODUTO;
   const queryClient = useQueryClient();
   
-  
-  
-    useEffect(() => {
-        api.get(`/listaGrupoOpcionais/${idProduto}`).then((getdata) => {
-          const grupos = getdata.data.map((grupo) => ({
-            ...grupo,
-          }));
-          setGruposAdicionais(grupos);
-        });
-      }, []);
+    useEffect(()=>{
+        api
+            .get(`/listaGrupoOpcionais/${idProduto}`)
+            .then((getdata) =>{
+                setGruposAdicionais(getdata.data);
+            });
+    }, []);
 
    const toggleListaAdicionais = (ID_GRUPO_OPCOES, idProduto) => {
         if (listaAdicionaisAtivo === ID_GRUPO_OPCOES) {
@@ -67,7 +65,7 @@ export default function GruposAdicionais({ setTotalValue, setDescricao }) {
         listaOpcionaisCache.forEach((listaOpcionais) => {
           listaOpcionais.forEach((item) => {
             if (item.quantidade > 0) {
-              descricao += item.quantidade + " X " + item.DESCRICAO + " / ";
+              descricao += item.quantidade + " X " + item.DESCRICAO;
             }
           });
           setDescricao(descricao);
@@ -76,11 +74,11 @@ export default function GruposAdicionais({ setTotalValue, setDescricao }) {
 
     useEffect(()=>{
         let total = 0;
-                listaOpcionaisCache.forEach((listaOpcionais) => {
+            listaOpcionaisCache.forEach((listaOpcionais) => {
                 listaOpcionais.forEach((item) => {
                     total += item.valorTotalProduto;
                 });
-                });
+            });
         setTotalValue(total);
     }, [listaOpcionaisCache]);
      

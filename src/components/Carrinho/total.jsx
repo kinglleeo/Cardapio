@@ -9,8 +9,8 @@ export function TotalItem({ itemquantity, itemid, itemvalor }){
   const dispatch = useDispatch()
 
     const TotalItem=()=>{
-      let valoritem = itemvalor
-      const totalitem = new Decimal(valoritem)*(itemquantity)
+      let valoritem = itemvalor || 0 
+        const totalitem = new Decimal(valoritem)*(itemquantity) || 0 
       return totalitem.toFixed(2)
     }
 
@@ -38,9 +38,9 @@ export function TotalCart() {
   const cart = useSelector(state => state.cart)
   
   const totalCart = () => {
-    let total = new Decimal(0)
+    let total = new Decimal(0) || 0
     cart.forEach(item => {
-      total = total.plus(new Decimal(item.quantity).times(item.valor))
+      total = total.plus(new Decimal(item.quantity || 0).times(item.valor || 0)) 
     })
     return total.toFixed(2)
   }

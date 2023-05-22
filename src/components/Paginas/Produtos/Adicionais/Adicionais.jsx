@@ -8,7 +8,6 @@ export default function Adicionais() {
   const [totalValue, setTotalValue] = useState(0);
   const [descricao, setDescricao] = useState([]);
 
-  console.log(descricao)
 
   return (
     <div>
@@ -17,6 +16,7 @@ export default function Adicionais() {
       </div>
         <AdicionaisInfo
           totalValue={totalValue}
+          descricao={descricao}
         />
       <div>
         <GruposAdicionais

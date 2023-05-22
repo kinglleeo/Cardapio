@@ -6,7 +6,7 @@ import './Styles-cart/styleCartItem.css'
 export default function CartItem() {
   const dispatch = useDispatch()
   const cart = useSelector((state) => state.cart)
-  
+  console.log(cart)
   return (
     <div> 
         <div className='todos-items-lista'>
