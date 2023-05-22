@@ -14,7 +14,7 @@ export default function BotaoEnviarCarrinho({ id, nome, info, valortotal, idGrup
   const queryClient = useQueryClient();
 
     const itemComprado = {
-        id: id,
+        idProduto: id,
         nome: nome,
         descricao: info,
         valor: valortotal

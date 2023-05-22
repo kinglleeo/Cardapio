@@ -6,7 +6,10 @@ const cartSlice = createSlice({
   },
   reducers: {
     addToCart: (state, action) => {
-      state.cart.push({ ...action.payload, idCart: state.cart.length + 1, quantity: 1 });
+      state.cart.push({ 
+        id: state.cart.length +1, 
+        quantity: 1,
+        ...action.payload});
     },
     incrementQuantity: (state, action) => {
       const item = state.cart.find((item) => item.id === action.payload);
