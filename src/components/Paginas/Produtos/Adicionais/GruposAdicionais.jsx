@@ -4,10 +4,9 @@ import { useLocation } from 'react-router-dom';
 import './AdicionaisList.css';
 import ListaProdutosAdicionais from './ListaProdutosAdicionais';
 import { useQueryClient, MutationCache  } from '@tanstack/react-query';
-import Decimal from 'decimal.js';
+import ObservacoesAdicionais from './ObservacoesAdicionais'
 
-
-export default function GruposAdicionais({ setTotalValue, setDescricao, setIdGrupo }) {
+export default function GruposAdicionais({ setTotalValue, setDescricao, setIdGrupo, setObservacao }) {
   const [listaGrupoOpcionais, setGruposAdicionais] = useState([]);
   const [listaOpcionais, setListaOpcionais] = useState([]);
   const [listaAdicionaisAtivo, setListaAdicionaisAtivo] = useState(null);
@@ -115,6 +114,11 @@ return(
                     </div>
                 </div>
         )) : null}
+                <div>
+                    <ObservacoesAdicionais
+                        setObservacao={setObservacao}
+                    />
+                </div>
     </div>
 )
 }

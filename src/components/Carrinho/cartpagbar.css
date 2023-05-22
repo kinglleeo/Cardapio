@@ -1,28 +1,45 @@
-.cartpagbar{
-    width: 100%;
+.card-btn-continuar{
+    position: fixed;
+    bottom: 50px;
+    left: 0;
     height: 50px;
-    padding-bottom: 5px;
-    border-top: solid;
-    background-color: red;
-}
-.pagbar{
-    display: flex;
-    height: 100%;
-    place-items: center;
-}
-.btn-pagbar{
-    width: 40%;
+    width: 100px;
+    background-color: rgb(245, 98, 98);
+    border-radius: 0 50px 50px 0;
     display: grid;
     place-items: center;
 }
-.total-pagbar{
-    width: 25%;
+.btn-continuar{
+    border: none;
+    background-color: transparent;
+    font-size: 15px;
+}
+.card-total-pagar{
     display: grid;
     place-items: center;
+    position: fixed;
+    bottom: 110px;
+    right: 0;
+    height: 50px;
+    width: 100px;
+    background-color: rgb(245, 98, 98);
+    border-radius: 50px 0 0 50px;
 }
-.btn-pagbar-btn{
-    width: 90%;
-    height: 40px;
+.card-btn-pagar{
+    display: grid;
+    place-items: center;
+    position: fixed;
+    bottom: 50px;
+    right: 0;
+    height: 50px;
+    width: 100px;
+    background-color: rgb(245, 98, 98);
+    border-radius: 50px 0 0 50px;
+}
+.btn-pagar{
+    border: none;
+    background-color: transparent;
+    font-size: 15px;
 }
 .totalcart{
     display: grid;

@@ -47,7 +47,7 @@ export function TotalCart() {
   
   return (
     <div className='totalcart'>
-        <div>Total:</div>
+        <div>Total</div>
         <div>{formCurrency.format(totalCart())}</div>
     </div>
   )

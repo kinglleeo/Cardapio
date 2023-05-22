@@ -8,6 +8,7 @@ export default function Adicionais() {
   const [totalValue, setTotalValue] = useState(0);
   const [descricao, setDescricao] = useState([]);
   const [idGrupo, setIdGrupo] = useState('');
+  const [observacao, setObservacao] = useState([]);
 
   return (
     <div>
@@ -18,12 +19,14 @@ export default function Adicionais() {
           totalValue={totalValue}
           descricao={descricao}
           idGrupo={idGrupo}
+          observacao={observacao}
         />
       <div>
         <GruposAdicionais
           setTotalValue={setTotalValue}
           setDescricao={setDescricao}
           setIdGrupo={setIdGrupo}
+          setObservacao={setObservacao}
         />
       </div>
     </div>

@@ -5,7 +5,7 @@ import './AdicionaisInfo.css';
 import Decimal from 'decimal.js';
 import BotaoEnviarCarrinho from './BotaoEnviarCarrinho';
 
-export default function AdicionaisInfo({ totalValue, descricao, idGrupo }) {
+export default function AdicionaisInfo({ totalValue, descricao, observacao }) {
   const { state } = useLocation();
   const { data } = state;
   const [valortotal, setValorTotal] = useState('');
@@ -29,10 +29,11 @@ export default function AdicionaisInfo({ totalValue, descricao, idGrupo }) {
       </div>
       <div>
         <BotaoEnviarCarrinho
-          id={data.ID_PRODUTO}
+          idProduto={data.ID_PRODUTO}
           nome={data.PRODUTO}
           info={descricao}
           valortotal={valortotal}
+          observacao={observacao}
         />
       </div>
     </div>

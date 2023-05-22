@@ -10,17 +10,15 @@ export function CartPagBar(){
         navigate('/')
     }
     return( 
-        <div className='cartpagbar'>
-            <div className='pagbar'>
-                <div className='btn-pagbar'>
-                    <button className='btn-pagbar-btn' onClick={handleCotinuar}>Continuar</button>
-                </div>
-                <div className='total-pagbar'>
-                    <TotalCart/>
-                </div>
-                <div className='btn-pagbar'>
-                    <button className='btn-pagbar-btn'> Finalizar e Pagar </button>
-                </div>
+        <div>
+            <div className='card-btn-continuar'>
+                <button className='btn-continuar' onClick={handleCotinuar}>Continuar Comprando</button>
+            </div>
+            <div className='card-total-pagar'>
+                <TotalCart/>
+            </div>
+            <div className='card-btn-pagar'>
+                <button className='btn-pagar'> Pagar </button>
             </div>
         </div>
     )
