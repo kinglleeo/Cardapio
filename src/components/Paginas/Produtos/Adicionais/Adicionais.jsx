@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './Adicionais.css';
 import Header from '../../../header/Header';
 import AdicionaisInfo from './AdicionaisInfo';
 import GruposAdicionais from './GruposAdicionais';

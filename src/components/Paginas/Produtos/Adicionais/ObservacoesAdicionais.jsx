@@ -1,4 +1,4 @@
-import './ObservacoesAdicionais.css'
+import '../../../../Styles/StyleForAdicionais.css'
 
 
 export default function ObservacoesAdicionais({ setObservacao }){

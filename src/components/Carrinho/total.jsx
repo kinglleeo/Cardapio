@@ -2,8 +2,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import Decimal from 'decimal.js';
 import { formCurrency } from '../AA-utilidades/numeros';
 import { incrementQuantity, decrementQuantity } from '../../redux/cartSlice';
-import './cartpagbar.css'
-import './Styles-cart/styleTotalCartItem.css'
+import '../../Styles/StylesCart.css'
 
 export function TotalItem({ itemquantity, itemid, itemvalor }){
   const dispatch = useDispatch()

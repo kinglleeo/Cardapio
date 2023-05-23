@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react';
 import { api } from '../../../../conecções/api';
 import { useLocation } from 'react-router-dom';
-import './AdicionaisList.css';
+import '../../../../Styles/StyleForAdicionais.css'
 import ListaProdutosAdicionais from './ListaProdutosAdicionais';
 import { useQueryClient, MutationCache  } from '@tanstack/react-query';
 import ObservacoesAdicionais from './ObservacoesAdicionais'

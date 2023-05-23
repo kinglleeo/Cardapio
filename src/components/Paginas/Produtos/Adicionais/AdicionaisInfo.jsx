@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { formCurrency } from '../../../AA-utilidades/numeros';
-import './AdicionaisInfo.css';
+import '../../../../Styles/StyleForAdicionais.css'
 import Decimal from 'decimal.js';
 import BotaoEnviarCarrinho from './BotaoEnviarCarrinho';
 

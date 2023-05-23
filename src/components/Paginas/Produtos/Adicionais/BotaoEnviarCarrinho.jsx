@@ -2,7 +2,7 @@ import { React, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addToCart } from '../../../../redux/cartSlice';
-import './BotaoEnviarCarrinho.css'
+import '../../../../Styles/StyleForAdicionais.css'
 import { useQueryClient } from '@tanstack/react-query';
 
 export default function BotaoEnviarCarrinho({ idProduto, nome, info, valortotal, idGrupo, observacao }){

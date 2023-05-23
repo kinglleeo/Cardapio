@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from 'react'
-import './AdicionaisList.css';
+import '../../../../Styles/StyleForAdicionais.css'
 import { formCurrency } from '../../../AA-utilidades/numeros';
 import Decimal from 'decimal.js';
 
