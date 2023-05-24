@@ -14,6 +14,9 @@ body {
     font-size: 25px;
     font-weight: 900;
 }
+.cadastro{
+    font-size: 18px;
+}
 .card-dados{
     display: flex;
     flex-direction: column;

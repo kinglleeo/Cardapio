@@ -7,7 +7,7 @@ import Carrinho from './components/Carrinho/Carrinho'
 import Adicionais from './components/Paginas/Produtos/Adicionais/Adicionais'
 import Pagamentos from "./components/Carrinho/Pagamentos";
 import Login from "./components/Usuarios/Login";
-
+import CriarConta from './components/Usuarios/CriarConta'
 
 export default function App(){
     return(
@@ -19,6 +19,7 @@ export default function App(){
           <Route path='/Adicionais' element={<Adicionais/>}/>
           <Route path='/Pagamentos' element={<Pagamentos/>}></Route>
           <Route path='/Login' element={<Login/>}></Route>
+          <Route path='/CriarConta' element={<CriarConta/>}></Route>
         </Routes>
       </Provider>
     )
