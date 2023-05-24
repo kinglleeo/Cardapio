@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { getAuth, GoogleAuthProvider, signInWithPopup, } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut  } from 'firebase/auth';
 
 import firebase from 'firebase/compat/app';
 
@@ -43,5 +43,22 @@ export default function Usuarios() {
     }
   }, []);
 
-  return <div></div>;
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const uid = user.uid;
+      console.log(user)
+    } else {
+    }
+  })
+
+  function logOut() {
+    return signOut(auth);
+  }
+  
+
+  return (
+    <div>
+      <button onClick={logOut}> sair </button>
+    </div>
+  )
 }
