@@ -2,11 +2,13 @@ import { React, useState } from 'react'
 import './login.css'
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from './firebaseConfig';
+import { useNavigate } from 'react-router-dom';
 
 export default function CriarConta(){
     const [email, setEmail] = useState('');
     const [password, setSenha] = useState('');
-    
+    const navigate = useNavigate();
+
     const adicionarEmail=(event)=>{
         setEmail(event.target.value)
     }
@@ -19,7 +21,6 @@ export default function CriarConta(){
 
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            console.log('criado')
           })
           .catch((error) => {
             alert(error.message)

@@ -8,19 +8,23 @@ import Adicionais from './components/Paginas/Produtos/Adicionais/Adicionais'
 import Pagamentos from "./components/Carrinho/Pagamentos";
 import Login from "./components/Usuarios/Login";
 import CriarConta from './components/Usuarios/CriarConta'
+import ProtectedRoute from "./components/Usuarios/ProtectRoute";
+import { UserAuthContextProvider } from "./components/Usuarios/base"
 
 export default function App(){
     return(
-      <Provider store={store}>
-        <Routes>
-          <Route path='/' element={<Main/>} />
-          <Route path='/Carrinho' element={<Carrinho/>}/>
-          <Route path='/GrupoList' element={<GrupoList/>}/>
-          <Route path='/Adicionais' element={<Adicionais/>}/>
-          <Route path='/Pagamentos' element={<Pagamentos/>}></Route>
-          <Route path='/Login' element={<Login/>}></Route>
-          <Route path='/CriarConta' element={<CriarConta/>}></Route>
-        </Routes>
-      </Provider>
+      <UserAuthContextProvider>
+          <Provider store={store}>
+            <Routes>
+              <Route path='/' element={ <ProtectedRoute> <Main/> </ProtectedRoute> } />
+              <Route path='/Carrinho' element={ <ProtectedRoute> <Carrinho/> </ProtectedRoute> }/>
+              <Route path='/GrupoList' element={ <ProtectedRoute> <GrupoList/> </ProtectedRoute> }/>
+              <Route path='/Adicionais' element={ <ProtectedRoute> <Adicionais/> </ProtectedRoute> }/>
+              <Route path='/Pagamentos' element={ <Pagamentos> <Pagamentos/> </Pagamentos> }></Route>
+              <Route path='/Login' element={<Login/>}></Route>
+              <Route path='/CriarConta' element={<CriarConta/>}></Route>
+            </Routes>
+          </Provider>
+        </UserAuthContextProvider>
     )
 }
