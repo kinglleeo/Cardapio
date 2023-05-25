@@ -127,6 +127,12 @@ body {
     display: grid;
     place-items: center;
 }
+
+.btn-loginGoogle{
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
 @media(max-width: 380px) {
     .wrapper {
         margin: 30px 20px;
