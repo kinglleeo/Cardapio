@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useUserAuth } from "../Usuarios/base";
+import { useUserAuth } from "./base";
 
 export default function deslogar(){
 
@@ -8,7 +8,6 @@ export default function deslogar(){
     const handleLogout = async () => {
       try {
         await logOut();
-        redirect("/");;
       } catch (error) {
         console.log('error');
       }

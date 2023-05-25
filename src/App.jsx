@@ -21,7 +21,7 @@ export default function App(){
               <Route path='/GrupoList' element={ <ProtectedRoute> <GrupoList/> </ProtectedRoute> }/>
               <Route path='/Adicionais' element={ <ProtectedRoute> <Adicionais/> </ProtectedRoute> }/>
               <Route path='/Pagamentos' element={ <Pagamentos> <Pagamentos/> </Pagamentos> }></Route>
-              <Route path='/Login' element={<Login/>}></Route>
+              <Route path='/login' element={<Login/>}></Route>
               <Route path='/CriarConta' element={<CriarConta/>}></Route>
             </Routes>
           </Provider>
