@@ -11,6 +11,7 @@ import CriarConta from './components/Usuarios/CriarConta'
 import ProtectedRoute from "./components/Usuarios/ProtectRoute";
 import { UserAuthContextProvider } from "./components/Usuarios/base"
 
+
 export default function App(){
     return(
       <UserAuthContextProvider>

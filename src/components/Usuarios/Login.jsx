@@ -3,16 +3,12 @@ import './login.css'
 import { Link } from 'react-router-dom';
 import LoginGoogle from './LoginGoogle';
 import LoginEmailSenha from './LoginEmailSenha';
-import { getAuth, signInWithCredential, GoogleAuthProvider,  } from "firebase/auth";
-
+import { getAuth, signInWithCredential, GoogleAuthProvider } from "firebase/auth";
 import { auth } from './firebaseConfig';
 
-export function handleCredentialResponse(credential) {
-    signInWithCredential(auth, credential)
-    .then((credential)=>{
-        console.log(credential)
-    })
- }
+
+    
+
 
 export default function Login(){
     const isAndroid = /Android/i.test(navigator.userAgent);
