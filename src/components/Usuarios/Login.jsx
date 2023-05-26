@@ -3,11 +3,18 @@ import './login.css'
 import { Link } from 'react-router-dom';
 import LoginGoogle from './LoginGoogle';
 import LoginEmailSenha from './LoginEmailSenha';
-import { getAuth, signInWithCredential, GoogleAuthProvider } from "firebase/auth";
+import axios from 'axios';
+import { GoogleAuthProvider, signInWithCredential } from 'firebase/auth';
 import { auth } from './firebaseConfig';
 
 
-    
+const url = require('url');
+    axios
+    .get('/oauth2callback', (req, res) => {
+
+  let { tokens } = oauth2Client.getToken(q.code);
+  oauth2Client.setCredentials(tokens);    
+    })
 
 
 export default function Login(){
@@ -15,9 +22,7 @@ export default function Login(){
     const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
     const isPC = !isAndroid && !isIOS;
     
-
     
-
     return(
         <div>
             <div className="wrapper">
@@ -45,8 +50,7 @@ export default function Login(){
                 )}
 
                 <div className='btn-loginGoogle'>
-                    <LoginGoogle 
-                    />
+                    <LoginGoogle/>
                 </div>
 
             </div>

@@ -3,6 +3,7 @@ import GrupoList from './Produtos/GrupoList';
 import IconeCarrinho from '../Carrinho/Iconcarrinho'
 import Deslogar from '../Usuarios/deslogar'
 
+
 export default function Main() {
   return ( 
     <div>
