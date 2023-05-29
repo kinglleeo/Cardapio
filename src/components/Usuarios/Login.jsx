@@ -3,19 +3,20 @@ import './login.css'
 import { Link, useNavigate } from 'react-router-dom';
 import LoginGoogle from './LoginGoogle';
 import LoginEmailSenha from './LoginEmailSenha';
-import { auth } from './firebaseConfig';
-import { onAuthStateChanged, getAuthResponse } from 'firebase/auth'
+import { auth } from './firebaseConfig'
+import { onAuthStateChanged, GoogleAuthProvider, getRedirectResult } from 'firebase/auth'
 import LoginGoogle2 from './loginGoogle2'
 import LoginGoogle3 from './LoginGoogle3'
-
-
 
 export default function Login(){
     const isAndroid = /Android/i.test(navigator.userAgent);
     const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
     const isPC = !isAndroid && !isIOS;
-    
     const navigate = useNavigate();
+    
+
+    
+
 
     useEffect(() => {
       const unsubscribe = onAuthStateChanged(auth, (user) => {
