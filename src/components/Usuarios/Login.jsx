@@ -66,6 +66,9 @@ export default function Login(){
                 <div>
                     <LoginGoogle3/>
                 </div>
+                <div>
+                <button id="login-with-google">Login com o Google</button>
+                </div>
             </div>
         </div>
     )
