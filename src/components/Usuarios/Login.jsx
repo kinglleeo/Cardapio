@@ -4,8 +4,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import LoginGoogle from './LoginGoogle';
 import LoginEmailSenha from './LoginEmailSenha';
 import { auth } from './firebaseConfig';
-import { onAuthStateChanged } from 'firebase/auth'
+import { onAuthStateChanged, getAuthResponse } from 'firebase/auth'
 import LoginGoogle2 from './loginGoogle2'
+import LoginGoogle3 from './LoginGoogle3'
+
+
 
 export default function Login(){
     const isAndroid = /Android/i.test(navigator.userAgent);
@@ -57,7 +60,10 @@ export default function Login(){
                     <LoginGoogle/>
                 </div>
                 <div>
-                    <LoginGoogle2/>
+                   
+                </div>
+                <div>
+                    <LoginGoogle3/>
                 </div>
             </div>
         </div>

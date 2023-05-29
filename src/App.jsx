@@ -10,7 +10,7 @@ import Login from "./components/Usuarios/Login";
 import CriarConta from './components/Usuarios/CriarConta'
 import ProtectedRoute from "./components/Usuarios/ProtectRoute";
 import { UserAuthContextProvider } from "./components/Usuarios/base"
-
+import Auth from './components/Usuarios/auth'
 
 export default function App(){
     return(
@@ -24,6 +24,7 @@ export default function App(){
               <Route path='/Pagamentos' element={ <Pagamentos> <Pagamentos/> </Pagamentos> }></Route>
               <Route path='/login' element={<Login/>}></Route>
               <Route path='/CriarConta' element={<CriarConta/>}></Route>
+              <Route path='/Auth' element={<Auth/>}></Route>
             </Routes>
           </Provider>
         </UserAuthContextProvider>
