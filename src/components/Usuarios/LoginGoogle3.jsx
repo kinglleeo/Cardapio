@@ -4,14 +4,14 @@ import { signInWithCredential, GoogleAuthProvider } from 'firebase/auth';
 
 
 export default function LoginGoogle3(){
-    
+        const token = ""
+
       window.onload = function () {
         google.accounts.id.initialize({
             client_id: "977256094975-3dk0e1a6mo06bl19n89k9750lkh8jdfp.apps.googleusercontent.com",
             ux_mode: "redirect",
             //login_uri: "https://cardapio-7f6f7.firebaseapp.com",
-            login_uri: "https://accounts.google.com/o/oauth2/v2/auth",
-            response_type: "token"
+            login_uri: "https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/drive.metadata.readonly&include_granted_scopes=true&response_type=token&state=state_parameter_passthrough_value&redirect_uri=http://localhost:3000"
           });
           
         google.accounts.id.renderButton(
