@@ -1,20 +1,28 @@
-import React, { useEffect } from 'react'
+import { React, useState, useEffect } from 'react'
 import './paginausuario.css'
 import Deslogar from '../LoginPage/LoginMetodos/deslogar'
 import { Link } from 'react-router-dom'
+import { onAuthStateChanged } from 'firebase/auth'
+import { auth } from '../LoginPage/Firebase/firebaseConfig';
 
 export default function UsuarioBar(){
+    const [user, setUser] = useState('');
+    console.log(user)
 
-    const username=()=>{
-        
-    }
+    useEffect(()=>{
+        const usuario = onAuthStateChanged(auth, (user)=>{
+            setUser(user)
+        })
+    }, []);
+
+   
     return(
         <div className='UserBar'>
             <div className='userbar-deslogar'>
                 <Deslogar/>
             </div>
             <div className='userbar-name'>
-                <div> {username()} </div>
+                <div> {user.displayName} </div>
             </div>
             <div className='userbar-icon'>
                 <Link to='/PaginaUsuario'>

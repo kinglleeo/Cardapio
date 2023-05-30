@@ -4,9 +4,13 @@ import '../../Styles/StylesCart.css';
 import { useNavigate } from 'react-router-dom';
 import { collection, addDoc, serverTimestamp, doc  } from "firebase/firestore";
 import { db, auth } from '../Usuarios/LoginPage/Firebase/firebaseConfig'
+import { useDispatch } from 'react-redux';
+import { clearCart } from '../../redux/cartSlice'
+ 
 
 export function CartPagBar({ Pedido }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleCotinuar = () => {
     navigate('/');
@@ -28,8 +32,8 @@ export function CartPagBar({ Pedido }) {
           date: serverTimestamp(),
           items: Pedido 
         });
-        
-        // navigate('/Pagamentos');
+        dispatch(clearCart());
+        navigate('/');
       } catch (error) {
         console.error("Error saving order: ", error);
       }

@@ -1,7 +1,6 @@
 import Header from '../header/Header';
 import GrupoList from './Produtos/GrupoList';
 import IconeCarrinho from '../Carrinho/Iconcarrinho'
-import Deslogar from '../Usuarios/LoginPage/LoginMetodos/deslogar'
 
 
 export default function Main() {
@@ -15,9 +14,6 @@ export default function Main() {
         </div>
         <div>
           <IconeCarrinho/>
-        </div>
-        <div>
-          <Deslogar/>
         </div>
     </div>
   );

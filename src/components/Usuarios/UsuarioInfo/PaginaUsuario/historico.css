@@ -1,0 +1,13 @@
+.lista-historico{
+
+}
+.historicoItem-box{
+    display: flex;
+    flex-direction: column;
+}
+.historico-date{
+    display: grid;
+    place-items: center;
+    margin: 10px;
+    background-color: aqua;
+}
