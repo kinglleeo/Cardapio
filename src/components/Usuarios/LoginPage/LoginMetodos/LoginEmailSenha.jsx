@@ -1,8 +1,8 @@
 import { React, useState } from 'react';
-import './login.css'
+import '../login.css'
 import { signInWithEmailAndPassword} from 'firebase/auth'
-import { Link, useNavigate } from 'react-router-dom';
-import { auth } from './firebaseConfig';
+import { useNavigate } from 'react-router-dom';
+import { auth } from '../Firebase/firebaseConfig';
 
 
 export default function LoginEmailSenha(){

@@ -6,11 +6,12 @@ import { store } from './redux/store';
 import Carrinho from './components/Carrinho/Carrinho'
 import Adicionais from './components/Paginas/Produtos/Adicionais/Adicionais'
 import Pagamentos from "./components/Carrinho/Pagamentos";
-import Login from "./components/Usuarios/Login";
-import CriarConta from './components/Usuarios/CriarConta'
-import ProtectedRoute from "./components/Usuarios/ProtectRoute";
-import { UserAuthContextProvider } from "./components/Usuarios/base"
-import Auth from './components/Usuarios/auth'
+import LoginPage from "./components/Usuarios/LoginPage/LoginPage";
+import CriarConta from './components/Usuarios/LoginPage/CriarConta/CriarConta'
+import ProtectedRoute from "./components/Usuarios/LoginPage/Firebase/ProtectRoute";
+import { UserAuthContextProvider } from "./components/Usuarios/LoginPage/Firebase/base"
+import PaginaUsuario from './components/Usuarios/UsuarioInfo/PaginaUsuario/PaginaUsuario'
+import RedirectLogin from './components/Usuarios/LoginPage/RedirectLogin'
 
 export default function App(){
     return(
@@ -21,10 +22,11 @@ export default function App(){
               <Route path='/Carrinho' element={ <ProtectedRoute> <Carrinho/> </ProtectedRoute> }/>
               <Route path='/GrupoList' element={ <ProtectedRoute> <GrupoList/> </ProtectedRoute> }/>
               <Route path='/Adicionais' element={ <ProtectedRoute> <Adicionais/> </ProtectedRoute> }/>
-              <Route path='/Pagamentos' element={ <Pagamentos> <Pagamentos/> </Pagamentos> }></Route>
-              <Route path='/login' element={<Login/>}></Route>
+              <Route path='/Pagamentos' element={ <ProtectedRoute> <Pagamentos/> </ProtectedRoute> }/>
+              <Route path='/PaginaUsuario' element={<ProtectedRoute> <PaginaUsuario/> </ProtectedRoute>}/>
+              <Route path='/login' element={<LoginPage/>}></Route>
               <Route path='/CriarConta' element={<CriarConta/>}></Route>
-              <Route path='/Auth' element={<Auth/>}></Route>
+              <Route path='/RedirectLogin' element={<RedirectLogin/>}/>
             </Routes>
           </Provider>
         </UserAuthContextProvider>

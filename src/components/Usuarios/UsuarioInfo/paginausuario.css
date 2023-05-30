@@ -1,0 +1,24 @@
+.UserBar{
+    margin: 0;
+    height: 60px;
+    background-color: aqua;
+    display: flex;
+}
+.userbar-deslogar{
+    width: 40%;
+    display: grid;
+    place-items: center;
+}
+.userbar-name{
+    width: 30%;
+    display: grid;
+    place-items: center end;
+}
+.userbar-icon{
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+    align-items: center;
+    padding-right: 20px;
+}

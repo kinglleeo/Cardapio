@@ -3,12 +3,13 @@ import { TotalItem } from './total';
 import { removeItem} from '../../redux/cartSlice';
 import '../../Styles/StylesCart.css'
 import { CartPagBar } from './CartPagBar';
-
+import Footer from '../Footer/Footer'
 
 export default function CartItem() {
   const dispatch = useDispatch()
   const cart = useSelector((state) => state.cart)
-  
+
+
   return (
     <div> 
         <div className='todos-items-lista'>
@@ -30,7 +31,7 @@ export default function CartItem() {
                                         <div>{item.nome}</div>
                                     </div>
                                     <div className='cart-box-item-descricao'>
-                                        <div className='cart-item-titulo-descricao'>Descrição:</div>
+                                        <div className='cart-item-titulo-descricao'>{item.descricao === "" ? (<div></div>) : (<div> Descrição </div>)}</div>
                                         <div className='cart-item-descricao'>{item.descricao}</div>
                                     </div>
                                 </div >
@@ -52,6 +53,9 @@ export default function CartItem() {
                 </div>
             </div>
       )}
+      </div>
+      <div>
+        <Footer/>
       </div>
         <div>
           <CartPagBar/>

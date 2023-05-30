@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useUserAuth } from "./base";
+import { useUserAuth } from "../Firebase/base";
 
 export default function deslogar(){
 

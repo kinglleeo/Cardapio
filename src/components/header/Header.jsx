@@ -1,8 +1,13 @@
 import { React } from 'react'
 import './Header.css'
+import UsuarioBar from '../Usuarios/UsuarioInfo/UsuarioBar'
+
 export default function Header (){
     return(
         <div className='header-body'>
+            <div> 
+                <UsuarioBar/>
+            </div>
             <div className='header-caixa' >
                 <div className='caixa-conteudo'>
                     <div className='header-cardapio'>

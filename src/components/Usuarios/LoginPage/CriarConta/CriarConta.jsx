@@ -1,7 +1,7 @@
 import { React, useState } from 'react'
-import './login.css'
+import '../login.css'
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from './firebaseConfig';
+import { auth } from '../Firebase/firebaseConfig';
 import { useNavigate } from 'react-router-dom';
 
 export default function CriarConta(){
