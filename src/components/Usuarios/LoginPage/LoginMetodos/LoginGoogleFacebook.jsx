@@ -3,8 +3,8 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
-import { auth } from '../Firebase/firebaseConfig'
-import { GoogleAuthProvider } from 'firebase/auth'
+import { db } from '../Firebase/firebaseConfig'
+import { collection, addDoc } from "firebase/firestore";
 
 export default function LoginSociais () {
   useEffect(() => {
@@ -37,24 +37,32 @@ export default function LoginSociais () {
           },
         },
       ],
-      callbacks: {
-        signInFailure: function(error) {
-          if (error.code != 'firebaseui/anonymous-upgrade-merge-conflict') {
-            return Promise.resolve();
-          }
-          var cred = error.credential;
-          return firebase.auth().signInWithCredential(cred);
-        }
-      }
     
     };
 
     // Inicializa o FirebaseUI
-    const ui = firebaseui.auth.AuthUI.getInstance() 
-    || new firebaseui.auth.AuthUI(firebase.auth());
+    const ui = 
+      firebaseui.auth.AuthUI.getInstance() 
+          || new firebaseui.auth.AuthUI(firebase.auth());
     ui.start('#firebaseui-auth-container', uiConfig);
+    
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user){
+        addNewUserDocument(user.email);
+      }
+    })
   }, []);
 
+  const addNewUserDocument = async (email) =>{
+    try {
+      const userRed = addDoc (collection(db, 'usuario'),{
+        email: email
+      })
+    }
+    catch (error) {
+      console.error(error)
+    }
+  }
   return (
     <div>
       <div id="firebaseui-auth-container"></div>

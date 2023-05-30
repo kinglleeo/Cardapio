@@ -58,7 +58,9 @@ export default function CartItem() {
         <Footer/>
       </div>
         <div>
-          <CartPagBar/>
+          <CartPagBar
+            Pedido={cart}
+          />
         </div>
       </div>
   )
