@@ -3,6 +3,7 @@ import { api } from '../../../../../conecções/api';
 import { useLocation } from 'react-router-dom';
 import './pizzas.css'
 import { formCurrency } from '../../../../AA-utilidades/numeros';
+import Decimal from 'decimal.js';
 
 
 export default function Pizzas(){
@@ -10,7 +11,7 @@ export default function Pizzas(){
     const { state } = useLocation();
     const { itemPizza } = state;
     
-    console.log(itemPizza)
+   
 
     useEffect(()=>{
         api
@@ -20,11 +21,11 @@ export default function Pizzas(){
             });
     }, []);
 
-    const handleCheckPizza = ( QTD_MAXIMO ) => {
+    const handleCheckPizza = ( itemPizza, item ) => {
         const checkboxValues = Array.from(document.querySelectorAll('input[name="input-pizza"]:checked')).map(
           (checkbox) => checkbox.value
         );
-        if (checkboxValues.length >= QTD_MAXIMO) {
+        if (checkboxValues.length >= itemPizza.QTD_MAXIMO) {
           document.querySelectorAll('input[name="input-pizza"]:not(:checked)').forEach((checkbox) => {
             checkbox.disabled = true;
           });
@@ -33,6 +34,15 @@ export default function Pizzas(){
             checkbox.disabled = false;
           });
         }
+        MatematicaTotalSabores(itemPizza, checkboxValues, item)
+    }
+
+    const MatematicaTotalSabores=(itemPizza, checkboxValues, item)=>{
+        let Total = new Decimal(0)
+            const quantidadeSelecionados = checkboxValues.length
+            const ValorItem = new Decimal (item.VALOR_VENDA) / (quantidadeSelecionados)
+                const SomaTotais = (Total).plus(ValorItem)
+                console.log(SomaTotais)
     }
 
     return(
@@ -42,7 +52,7 @@ export default function Pizzas(){
                 <div>Max {itemPizza.QTD_MAXIMO}</div>
             </div>
             <div className='pizza-List-Main'>
-                {saboresPizzas.map((item)=>
+                {saboresPizzas.map((item, index)=>
                     <div className='pizza-List'>
                         <div className='pizza-Card'>
                             <div className='pizza-card-interno'>
@@ -57,7 +67,7 @@ export default function Pizzas(){
                                 </div>
                                 <div className='pizza-input'>   
                                     <div>
-                                        <input type='checkbox' name='input-pizza' onClick={() => handleCheckPizza(itemPizza.QTD_MAXIMO)}/>
+                                        <input type='checkbox' name='input-pizza' onClick={() => handleCheckPizza(itemPizza, item)}/>
                                     </div>
                                 </div>
                             </div>
