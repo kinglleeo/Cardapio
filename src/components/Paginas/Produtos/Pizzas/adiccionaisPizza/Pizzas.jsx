@@ -40,8 +40,9 @@ export default function Pizzas(){
     const MatematicaTotalSabores=(itemPizza, checkboxValues, item)=>{
         let Total = new Decimal(0)
             const quantidadeSelecionados = checkboxValues.length
-            const ValorItem = new Decimal (item.VALOR_VENDA) / (quantidadeSelecionados)
-                const SomaTotais = (Total).plus(ValorItem)
+            const ValorItem = new Decimal (item.VALOR_VENDA)
+            const NovoValorItem = new Decimal (ValorItem) / (quantidadeSelecionados)
+                const SomaTotais = (Total).plus(NovoValorItem)
                 console.log(SomaTotais)
     }
 
