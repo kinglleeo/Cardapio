@@ -11,3 +11,11 @@
     margin: 10px;
     background-color: aqua;
 }
+.AddToCar-Historico{
+    display: grid;
+    place-items: center end;
+}
+.btn-historico{
+    border: none;
+    display: grid;
+}

@@ -7,7 +7,7 @@ import { auth } from '../LoginPage/Firebase/firebaseConfig';
 
 export default function UsuarioBar(){
     const [user, setUser] = useState('');
-    console.log(user)
+   
 
     useEffect(()=>{
         const usuario = onAuthStateChanged(auth, (user)=>{

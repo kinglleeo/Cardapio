@@ -21,7 +21,7 @@ export default function Historico(){
       const date = new Date(milliseconds);
   
       const day = date.getDate();
-      const month = date.getMonth() + 1; // Months are zero-based
+      const month = date.getMonth() + 1; 
       const year = date.getFullYear();
   
       return `${day}/${month}/${year}`;
@@ -37,6 +37,10 @@ export default function Historico(){
           fetchHistorico();
         }
       }, [user]);
+
+      const addCar=()=>{
+
+      }
 
     return(
         <div className='lista-historico'>
@@ -66,6 +70,9 @@ export default function Historico(){
                            <div className='cartbox-observacoes-text'> Observações </div>
                            <div className='cartbox-observacoes-box'><div>{item.Observacao}</div></div>
                        </div>
+                      <div className='AddToCar-Historico' >
+                        <button onClick={addCar} className='btn-historico' > Adicionar ao carrinho </button>
+                      </div>
                    </div>
                </div>
                 )}

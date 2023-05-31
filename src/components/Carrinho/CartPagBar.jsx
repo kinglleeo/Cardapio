@@ -25,8 +25,8 @@ export function CartPagBar({ Pedido }) {
           return;
         }
   
-        const userDocRef = doc(db, "usuario", user.uid); // Referência ao documento do usuário
-        const orderCollectionRef = collection(userDocRef, "pedidos"); // Referência à coleção de pedidos dentro do documento do usuário
+        const userDocRef = doc(db, "usuario", user.uid); 
+        const orderCollectionRef = collection(userDocRef, "pedidos"); 
   
         const newOrderDocRef = await addDoc(orderCollectionRef, {
           date: serverTimestamp(),
