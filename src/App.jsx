@@ -12,6 +12,7 @@ import ProtectedRoute from "./components/Usuarios/LoginPage/Firebase/ProtectRout
 import { UserAuthContextProvider } from "./components/Usuarios/LoginPage/Firebase/base"
 import PaginaUsuario from './components/Usuarios/UsuarioInfo/PaginaUsuario/PaginaUsuario'
 import RedirectLogin from './components/Usuarios/LoginPage/RedirectLogin'
+import MainPizzas from './components/Paginas/Produtos/Pizzas/MainPizzas'
 
 export default function App(){
     return(
@@ -24,6 +25,7 @@ export default function App(){
               <Route path='/Adicionais' element={ <ProtectedRoute> <Adicionais/> </ProtectedRoute> }/>
               <Route path='/Pagamentos' element={ <ProtectedRoute> <Pagamentos/> </ProtectedRoute> }/>
               <Route path='/PaginaUsuario' element={<ProtectedRoute> <PaginaUsuario/> </ProtectedRoute>}/>
+              <Route path='/Pizzas' element={<ProtectedRoute> <MainPizzas/> </ProtectedRoute>}/>
               <Route path='/login' element={<LoginPage/>}></Route>
               <Route path='/CriarConta' element={<CriarConta/>}></Route>
               <Route path='/RedirectLogin' element={<RedirectLogin/>}/>

@@ -3,19 +3,29 @@ import { api } from '../../../../conecções/api';
 import { useLocation } from 'react-router-dom';
 import '../../../../Styles/StyleForAdicionais.css'
 import ListaProdutosAdicionais from './ListaProdutosAdicionais';
-import { useQueryClient, MutationCache  } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import ObservacoesAdicionais from './ObservacoesAdicionais'
+import { formCurrency } from '../../../AA-utilidades/numeros';
+import AdicionaisTamanho from './AdicionaisTamanho'
 
 export default function GruposAdicionais({ setTotalValue, setDescricao, setIdGrupo, setObservacao }) {
   const [listaGrupoOpcionais, setGruposAdicionais] = useState([]);
   const [listaOpcionais, setListaOpcionais] = useState([]);
   const [listaAdicionaisAtivo, setListaAdicionaisAtivo] = useState(null);
+  const [grupoTamanho, setGrupoTamanho] = useState([]);
   const { state } = useLocation();
   const { data } = state;
   let idProduto = data.ID_PRODUTO;
   const queryClient = useQueryClient();
   
-  
+  console.log(grupoTamanho)
+  useEffect(()=>{
+    api
+        .get(`/listaTamanhos/${idProduto}`)
+        .then((getdata)=>{
+            setGrupoTamanho(getdata.data);
+        });
+  }, []);
 
     useEffect(()=>{
         api
@@ -87,6 +97,11 @@ export default function GruposAdicionais({ setTotalValue, setDescricao, setIdGru
 
 return(
     <div>
+        <div>
+            <AdicionaisTamanho
+                grupoTamanho={grupoTamanho}
+            />
+        </div>
         {Array.isArray(listaGrupoOpcionais) ? (
             listaGrupoOpcionais.map((item) => 
                 <div key={item.ID_GRUPO_OPCOES}>

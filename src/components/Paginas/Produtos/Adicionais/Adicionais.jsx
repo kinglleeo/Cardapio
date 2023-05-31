@@ -8,7 +8,8 @@ export default function Adicionais() {
   const [descricao, setDescricao] = useState([]);
   const [idGrupo, setIdGrupo] = useState('');
   const [observacao, setObservacao] = useState([]);
-
+  
+  
   return (
     <div>
       <div>

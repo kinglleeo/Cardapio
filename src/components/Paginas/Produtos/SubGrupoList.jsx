@@ -9,7 +9,7 @@ export default function SubGrupoList({ ID_GRUPO }) {
   const [subGrupoAtivo, setSubGrupoAtivo] = useState(null);
   const [produtoCache, setProdutoCache] = useState({});
   const queryClient = useQueryClient();
-
+ 
   useEffect(()=>{
     api
       .get(`/listaSubGrupos/${ID_GRUPO}`)
@@ -41,7 +41,7 @@ export default function SubGrupoList({ ID_GRUPO }) {
   };
 
   const produtos = useMemo(() => produtoCache[subGrupoAtivo] || [], [produtoCache, subGrupoAtivo]);
-
+  
   return (
     <div>
       {Array.isArray(subGrupo) ? (

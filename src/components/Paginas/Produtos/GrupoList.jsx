@@ -5,11 +5,12 @@ import MenuBar from '../../navbar/menubar';
 import SubGrupoList from './SubGrupoList';
 import { useNavigate } from 'react-router-dom';
 
+
 export default function Grupo(){
     const [grupos, setGrupos] = useState([]);
     const [tamanhosPizza, setTamanhosPizza] = useState([]);
     const navigate = useNavigate();
-    console.log(tamanhosPizza)
+    
     useEffect(() => {
         api
             .get(`/listaGrupos`)
