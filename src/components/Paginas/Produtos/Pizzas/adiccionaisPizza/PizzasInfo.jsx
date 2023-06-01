@@ -10,7 +10,7 @@ export default function PizzasInfo(){
 
     return(
         <div className='pizzas-info'>
-
+            <div> Pizza {itemPizza.TAMANHO} </div>
         </div>
     )
 }

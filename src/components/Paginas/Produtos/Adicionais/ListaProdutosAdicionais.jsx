@@ -6,8 +6,6 @@ import Decimal from 'decimal.js';
 export default function ListaProdutosAdicionais({ Maximo, listaOpcionais, setListaOpcionais }) {
   const [quantidadeTotal, setQuantidadeTotal] = useState(0);
 
-  
-
   useEffect(() => {
     if (Array.isArray(listaOpcionais)) {
       const total = listaOpcionais.reduce((accumulator, item) => accumulator + item.quantidade, 0);
