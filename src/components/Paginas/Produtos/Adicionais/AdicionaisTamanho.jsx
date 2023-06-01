@@ -1,7 +1,8 @@
 import { React } from 'react'
 import { formCurrency } from '../../../AA-utilidades/numeros';
+import { SelecionarTamanho } from './MetodosAdicionaisTamanhos'
 
-export default function GrupoTamanho({ grupoTamanho }){
+export default function GrupoTamanho({ grupoTamanho, setTamanhoEscolhido }){
 
  
     return(
@@ -17,6 +18,12 @@ export default function GrupoTamanho({ grupoTamanho }){
                           <div className='box-descricao-2'>
                             <div className='adicional-valor'>{formCurrency.format(item.VALOR_VENDA)}</div>
                           </div>
+                        </div>
+                        <div>
+                            <SelecionarTamanho
+                              item={item}
+                              setTamanhoEscolhido={setTamanhoEscolhido}
+                            />
                         </div>
                       </div>
                     </div>

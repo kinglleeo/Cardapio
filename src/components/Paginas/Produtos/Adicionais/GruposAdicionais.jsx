@@ -8,7 +8,7 @@ import ObservacoesAdicionais from './ObservacoesAdicionais'
 import { formCurrency } from '../../../AA-utilidades/numeros';
 import AdicionaisTamanho from './AdicionaisTamanho'
 
-export default function GruposAdicionais({ setTotalValue, setDescricao, setIdGrupo, setObservacao }) {
+export default function GruposAdicionais({ setTotalValue, setDescricao, setIdGrupo, setObservacao, setTamanhoEscolhido }) {
   const [listaGrupoOpcionais, setGruposAdicionais] = useState([]);
   const [listaOpcionais, setListaOpcionais] = useState([]);
   const [listaAdicionaisAtivo, setListaAdicionaisAtivo] = useState(null);
@@ -100,6 +100,7 @@ return(
         <div>
             <AdicionaisTamanho
                 grupoTamanho={grupoTamanho}
+                setTamanhoEscolhido={setTamanhoEscolhido}
             />
         </div>
         {Array.isArray(listaGrupoOpcionais) ? (

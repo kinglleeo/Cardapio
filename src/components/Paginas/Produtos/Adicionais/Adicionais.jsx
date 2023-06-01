@@ -8,6 +8,7 @@ export default function Adicionais() {
   const [descricao, setDescricao] = useState([]);
   const [idGrupo, setIdGrupo] = useState('');
   const [observacao, setObservacao] = useState([]);
+  const [tamanhoEscolhido, setTamanhoEscolhido] = useState('')
   
   
   return (
@@ -20,6 +21,7 @@ export default function Adicionais() {
           descricao={descricao}
           idGrupo={idGrupo}
           observacao={observacao}
+          tamanhoEscolhido={tamanhoEscolhido}
         />
       <div>
         <GruposAdicionais
@@ -27,6 +29,7 @@ export default function Adicionais() {
           setDescricao={setDescricao}
           setIdGrupo={setIdGrupo}
           setObservacao={setObservacao}
+          setTamanhoEscolhido={setTamanhoEscolhido}
         />
       </div>
     </div>

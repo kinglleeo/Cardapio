@@ -1,15 +1,13 @@
-import { React } from 'react'
+import { React, useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import Decimal from 'decimal.js';
 import { formCurrency } from '../../../../AA-utilidades/numeros';
 
-export function Selecionadores({ Sabor, selectedSabores, setSelectedSabores }){
+export function Selecionadores({ Sabor, selectedSabores, setSelectedSabores, }){
     const { state } = useLocation()
     const { itemPizza } = state
-        
-  
+
     const handleCheckboxChange = ( event, Sabor ) =>{
-   
         const checkboxValues = Array.from(document.querySelectorAll('input[name="selecionar-sabor"]:checked')).map(
             (checkbox) => checkbox.value
         )
@@ -22,13 +20,17 @@ export function Selecionadores({ Sabor, selectedSabores, setSelectedSabores }){
                     checkbox.disabled = false;
                 });
             }
+        
     if(event.target.checked){
         setSelectedSabores([...selectedSabores, Sabor])
     } else {
         setSelectedSabores(selectedSabores.filter((item) => item.ID !== Sabor.ID))
-    }   
-    
-}
+    }    
+        
+}  
+        
+
+
     return (
         <div className='selecionar-add-pizza-0'>
             <label className='container'>

@@ -5,12 +5,11 @@ import './pizzas.css'
 import { formCurrency } from '../../../../AA-utilidades/numeros';
 import { Selecionadores } from './metodosPizzas';
 
-export default function Pizzas(){
+export default function Pizzas({ selectedSabores, setSelectedSabores }){
     const [saboresPizzas, setSaboresPizzas] = useState([]);
     const { state } = useLocation();
     const { itemPizza } = state;
-    const [selectedSabores, setSelectedSabores] = useState([]);
-    console.log(selectedSabores)
+    
 
     useEffect(()=>{
         api
@@ -48,8 +47,10 @@ export default function Pizzas(){
                                     <div>
                                         <Selecionadores
                                             Sabor={Sabor}
+                                            saboresPizzas={saboresPizzas}
                                             selectedSabores={selectedSabores}
                                             setSelectedSabores={setSelectedSabores}
+                                            index={index}
                                         />
                                     </div>
                                 </div>

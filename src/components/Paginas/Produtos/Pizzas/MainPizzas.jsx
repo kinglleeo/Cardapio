@@ -1,21 +1,28 @@
-import { React } from 'react'
+import { React, useState } from 'react'
 import Pizzas from './adiccionaisPizza/Pizzas'
 import Header from '../../../header/Header'
 import PizzasInfo from './adiccionaisPizza/PizzasInfo'
 
 
 export default function MainPizza(){
-
+    const [selectedSabores, setSelectedSabores] = useState([]);
+    
     return(
         <div>
             <div>
                 <Header/>
             </div>
             <div>
-                <PizzasInfo/>
+                <PizzasInfo
+                    selectedSabores={selectedSabores}
+                    setSelectedSabores={setSelectedSabores}
+                />
             </div>
             <div>
-                <Pizzas/>
+                <Pizzas
+                    selectedSabores={selectedSabores}
+                    setSelectedSabores={setSelectedSabores}
+                />
             </div>
         </div>
     )
