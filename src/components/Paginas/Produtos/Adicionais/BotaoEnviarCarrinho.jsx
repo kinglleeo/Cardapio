@@ -5,7 +5,7 @@ import { addToCart } from '../../../../redux/cartSlice';
 import '../../../../Styles/StyleForAdicionais.css'
 import { useQueryClient } from '@tanstack/react-query';
 
-export default function BotaoEnviarCarrinho({ idProduto, nome, info, valortotal, idGrupo, observacao }){
+export default function BotaoEnviarCarrinho({ idProduto, nome, info, valortotal, idGrupo, observacao, tamanhoEscolhido }){
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const queryClient = useQueryClient();

@@ -24,7 +24,7 @@ export function Selecionadores({ Sabor, selectedSabores, setSelectedSabores, }){
     if(event.target.checked){
         setSelectedSabores([...selectedSabores, Sabor])
     } else {
-        setSelectedSabores(selectedSabores.filter((item) => item.ID !== Sabor.ID))
+        setSelectedSabores(selectedSabores.filter((item) => item.ID_GRADE !== Sabor.ID_GRADE))
     }    
         
 }  
@@ -37,9 +37,9 @@ export function Selecionadores({ Sabor, selectedSabores, setSelectedSabores, }){
                 <input
                     type='checkbox'
                     name="selecionar-sabor"
-                    id={Sabor.ID}
+                    id={Sabor.ID_GRADE}
                     onChange={(event) => handleCheckboxChange(event, Sabor)}
-                    checked={selectedSabores.some((item) =>  item.ID === Sabor.ID)}
+                    checked={selectedSabores.some((item) =>  item.ID_GRADE === Sabor.ID_GRADE)}
                 />
                 <div className='checkmark'></div>
             </label>

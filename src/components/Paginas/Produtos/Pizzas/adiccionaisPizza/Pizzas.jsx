@@ -9,17 +9,12 @@ export default function Pizzas({ selectedSabores, setSelectedSabores }){
     const [saboresPizzas, setSaboresPizzas] = useState([]);
     const { state } = useLocation();
     const { itemPizza } = state;
-    
 
     useEffect(()=>{
         api
             .get(`/listaSaboresPizza/${itemPizza.ID}`)
             .then((getdata)=>{
-                const data = getdata.data.map((item, index)=>({
-                    ...item,
-                    ID: index + 1,
-                }))
-                    setSaboresPizzas(data);               
+                setSaboresPizzas(getdata.data);               
             });
     }, []);
     
@@ -30,8 +25,9 @@ export default function Pizzas({ selectedSabores, setSelectedSabores }){
                 <div>Max {itemPizza.QTD_MAXIMO}</div>
             </div>
             <div className='pizza-List-Main'>
-                {saboresPizzas.map((Sabor, index)=>
-                    <div className='pizza-List'>
+            {Array.isArray(saboresPizzas) ? (
+                saboresPizzas.map((Sabor, index)=>
+                    <div className='pizza-List' key={Sabor.ID_GRADE}>
                         <div className='pizza-Card'>
                             <div className='pizza-card-interno'>
                                 <div className='pizza-info'>
@@ -57,8 +53,9 @@ export default function Pizzas({ selectedSabores, setSelectedSabores }){
                             </div>
                         </div>
                     </div>
-                )}
+                )) : null}
             </div>
+            
         </div>
     )
 

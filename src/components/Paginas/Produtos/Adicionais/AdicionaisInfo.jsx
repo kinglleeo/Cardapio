@@ -19,11 +19,14 @@ export default function AdicionaisInfo({ totalValue, descricao, observacao, tama
         setValorTotal(novoValorTotal.toNumber())
   }, [totalValue, tamanhoEscolhido])
 
- 
+  console.log(tamanhoEscolhido)
   return (
     <div className='adicionais-info'>
       <div className='box-info-1'>
-        <div className='info-nome'>{data.PRODUTO}</div>
+        <div className='info-nome'>
+          {data.PRODUTO}
+            <div> {tamanhoEscolhido.TAMANHO} </div> 
+          </div>
       </div>
       <div className='box-info-2'>
         <div className='valor-info-titulo'>Valor:</div>
@@ -36,6 +39,7 @@ export default function AdicionaisInfo({ totalValue, descricao, observacao, tama
           info={descricao}
           valortotal={valortotal}
           observacao={observacao}
+          tamanhoEscolhido={tamanhoEscolhido}
         />
       </div>
     </div>

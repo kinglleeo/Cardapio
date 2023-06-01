@@ -1,13 +1,10 @@
 import { React, useState, useEffect } from 'react'
 
-
-
 export function SelecionarTamanho({ item, setTamanhoEscolhido }){
 
     const RadioTamanhos =( item )=>{
         setTamanhoEscolhido(item)
     }
-
 
     return(
         <div>
@@ -16,7 +13,6 @@ export function SelecionarTamanho({ item, setTamanhoEscolhido }){
                 type='radio'
                 onChange={()=> RadioTamanhos (item)}
                 name='tamanhos'
-                checked='checked'
             /> 
             <div className='checkmark'></div>
         </label>            

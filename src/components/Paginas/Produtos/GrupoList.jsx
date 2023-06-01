@@ -40,7 +40,8 @@ export default function Grupo(){
                 grupos={grupos}
             />
         </div>
-        {grupos.map((item)=>
+        {Array.isArray(grupos) ? (
+            grupos.map((item)=>
             <div className='GrupoList' id={item.ID_GRUPO} key={item.ID_GRUPO}>
                 <div className='Grupo-Titulo'>{item.GRUPO}</div>
                     {item.PIZZA_MISTA === "SIM" ? (
@@ -68,6 +69,6 @@ export default function Grupo(){
                         </div>
                 )}
             </div>
-        )}  
+        )) : null} 
    </div>
 )}
