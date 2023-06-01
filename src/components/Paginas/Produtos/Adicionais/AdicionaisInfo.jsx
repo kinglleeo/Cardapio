@@ -22,7 +22,6 @@ export default function AdicionaisInfo({ totalValue, descricao, observacao, tama
         setValorTotal(novoValorTotal.toNumber())
   }, [totalValue, tamanhoEscolhido])
 
-  console.log(tamanhoEscolhido)
   return (
     <div className='adicionais-info'>
       <div className='box-info-1'>

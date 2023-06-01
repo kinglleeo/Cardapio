@@ -9,7 +9,7 @@ export default function CartItem() {
   const dispatch = useDispatch()
   const cart = useSelector((state) => state.cart)
 
-
+ 
   return (
     <div> 
         <div className='todos-items-lista'>
@@ -28,7 +28,7 @@ export default function CartItem() {
                             <div className='box-item-cart'>
                                 <div className='cart-box-item-1'>
                                     <div className='cart-box-item-name'>
-                                        <div>{item.nome}</div>
+                                    <div>{item.nome} </div>
                                     </div>
                                     <div className='cart-box-item-descricao'>
                                         <div className='cart-item-titulo-descricao'>{item.descricao === "" ? (<div></div>) : (<div> Descrição </div>)}</div>

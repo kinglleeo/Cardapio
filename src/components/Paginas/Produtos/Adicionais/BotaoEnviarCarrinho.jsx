@@ -15,7 +15,8 @@ export default function BotaoEnviarCarrinho({ idProduto, nome, info, valortotal,
         nome: nome,
         descricao: info,
         valor: valortotal,
-        Observacao: observacao
+        Observacao: observacao,
+        tamanhoEscolhido: tamanhoEscolhido
     }
 
     const AdicionarCart=(itemComprado)=>{
