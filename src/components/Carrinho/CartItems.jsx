@@ -8,8 +8,9 @@ import Footer from '../Footer/Footer'
 export default function CartItem() {
   const dispatch = useDispatch()
   const cart = useSelector((state) => state.cart)
-
+// cart - tamanhoEscolhido - TAMANHO
  
+console.log(cart)
   return (
     <div> 
         <div className='todos-items-lista'>
