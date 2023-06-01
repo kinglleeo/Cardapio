@@ -8,7 +8,10 @@ import BotaoEnviarCarrinho from './BotaoEnviarCarrinho';
 export default function AdicionaisInfo({ totalValue, descricao, observacao, tamanhoEscolhido }) {
   const { state } = useLocation();
   const { data } = state;
+  const { grupoName } = state;
+  const { subGrupoName } = state;
   const [valortotal, setValorTotal] = useState('');
+  
 
   useEffect(()=>{
       let valorTotal = new Decimal(data.VALOR_MINIMO > 0 ? data.VALOR_MINIMO : data.VALOR_VENDA)
@@ -24,8 +27,10 @@ export default function AdicionaisInfo({ totalValue, descricao, observacao, tama
     <div className='adicionais-info'>
       <div className='box-info-1'>
         <div className='info-nome'>
-          {data.PRODUTO}
-            <div> {tamanhoEscolhido.TAMANHO} </div> 
+          <div> {grupoName} </div>
+          <div> {subGrupoName} </div>
+          <div> {data.PRODUTO} </div>           
+         <div> {tamanhoEscolhido.TAMANHO} </div> 
           </div>
       </div>
       <div className='box-info-2'>

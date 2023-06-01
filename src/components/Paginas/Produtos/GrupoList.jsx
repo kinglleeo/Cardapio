@@ -65,6 +65,7 @@ export default function Grupo(){
                         <div>
                             <SubGrupoList
                                 ID_GRUPO={item.ID_GRUPO}
+                                grupoName={item.GRUPO}
                             />
                         </div>
                 )}
