@@ -5,13 +5,13 @@ import { formCurrency } from '../../../../AA-utilidades/numeros';
 
 export function Selecionadores({ Sabor, selectedSabores, setSelectedSabores, }){
     const { state } = useLocation()
-    const { itemPizza } = state
+    const { data } = state
 
     const handleCheckboxChange = ( event, Sabor ) =>{
         const checkboxValues = Array.from(document.querySelectorAll('input[name="selecionar-sabor"]:checked')).map(
             (checkbox) => checkbox.value
         )
-            if (checkboxValues.length >= itemPizza.QTD_MAXIMO){
+            if (checkboxValues.length >= data.QTD_MAXIMO){
                 document.querySelectorAll('input[name="selecionar-sabor"]:not(:checked)').forEach((checkbox) =>{
                     checkbox.disabled = true;
                 });

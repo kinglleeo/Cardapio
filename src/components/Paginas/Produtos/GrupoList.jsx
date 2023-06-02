@@ -29,8 +29,8 @@ export default function Grupo(){
             });
     }, []);
     
-    const handlePizzas=(itemPizza)=>{
-        navigate('/Pizzas', { state: { itemPizza } });
+    const handlePizzas=(data)=>{
+        navigate('/Pizzas', { state: { data } });
     }
 
     return(
@@ -46,13 +46,13 @@ export default function Grupo(){
                 <div className='Grupo-Titulo'>{item.GRUPO}</div>
                     {item.PIZZA_MISTA === "SIM" ? (
                         <div>
-                            {tamanhosPizza.map((itemPizza)=>
-                                <div className='card-produtos' key={itemPizza.ID}>
-                                    <div className='box-produtos' onClick={()=> handlePizzas(itemPizza)}>
+                            {tamanhosPizza.map((data)=>
+                                <div className='card-produtos' key={data.ID}>
+                                    <div className='box-produtos' onClick={()=> handlePizzas(data)}>
                                         <div className='produtos-info'>
-                                            <div className='item-nome'> {itemPizza.TAMANHO} </div>
+                                            <div className='item-nome'> {data.TAMANHO} </div>
                                         <div className='produtos-valor'>
-                                            <div className='box-valor'>Até {itemPizza.QTD_MAXIMO === 1 ? (itemPizza.QTD_MAXIMO + " " + "Sabor"):(itemPizza.QTD_MAXIMO + " " + "Sabores")} </div>
+                                            <div className='box-valor'>Até {data.QTD_MAXIMO === 1 ? (data.QTD_MAXIMO + " " + "Sabor"):(data.QTD_MAXIMO + " " + "Sabores")} </div>
                                         </div>
                                         </div>
                                         <div className='produtos-img'>

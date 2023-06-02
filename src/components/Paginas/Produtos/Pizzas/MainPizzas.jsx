@@ -3,9 +3,9 @@ import Pizzas from './adiccionaisPizza/Pizzas'
 import Header from '../../../header/Header'
 import PizzasInfo from './adiccionaisPizza/PizzasInfo'
 
-
 export default function MainPizza(){
     const [selectedSabores, setSelectedSabores] = useState([]);
+    const [observacao, setObservacao] = useState('');
     
     return(
         <div>
@@ -16,13 +16,18 @@ export default function MainPizza(){
                 <PizzasInfo
                     selectedSabores={selectedSabores}
                     setSelectedSabores={setSelectedSabores}
+                    observacao={observacao}
                 />
             </div>
             <div>
                 <Pizzas
                     selectedSabores={selectedSabores}
                     setSelectedSabores={setSelectedSabores}
+                    setObservacao={setObservacao}
                 />
+            </div>
+            <div>
+                
             </div>
         </div>
     )

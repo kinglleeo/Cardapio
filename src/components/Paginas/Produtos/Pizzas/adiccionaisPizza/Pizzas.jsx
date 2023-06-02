@@ -4,15 +4,16 @@ import { useLocation } from 'react-router-dom';
 import './pizzas.css'
 import { formCurrency } from '../../../../AA-utilidades/numeros';
 import { Selecionadores } from './metodosPizzas';
+import ObservacoesPizza from './ObservacoesPizza'
 
-export default function Pizzas({ selectedSabores, setSelectedSabores }){
+export default function Pizzas({ selectedSabores, setSelectedSabores, setObservacao }){
     const [saboresPizzas, setSaboresPizzas] = useState([]);
     const { state } = useLocation();
-    const { itemPizza } = state;
+    const { data } = state;
 
     useEffect(()=>{
         api
-            .get(`/listaSaboresPizza/${itemPizza.ID}`)
+            .get(`/listaSaboresPizza/${data.ID}`)
             .then((getdata)=>{
                 setSaboresPizzas(getdata.data);               
             });
@@ -21,8 +22,8 @@ export default function Pizzas({ selectedSabores, setSelectedSabores }){
     return(
         <div>
             <div className='pizza-List-Top'>
-                <div>Min {itemPizza.QTD_MININO}</div>
-                <div>Max {itemPizza.QTD_MAXIMO}</div>
+                <div>Min {data.QTD_MININO}</div>
+                <div>Max {data.QTD_MAXIMO}</div>
             </div>
             <div className='pizza-List-Main'>
             {Array.isArray(saboresPizzas) ? (
@@ -54,6 +55,11 @@ export default function Pizzas({ selectedSabores, setSelectedSabores }){
                         </div>
                     </div>
                 )) : null}
+            </div>
+            <div>
+                <ObservacoesPizza
+                    setObservacao={setObservacao}
+                />
             </div>
             
         </div>

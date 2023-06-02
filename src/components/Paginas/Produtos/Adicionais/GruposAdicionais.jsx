@@ -18,7 +18,6 @@ export default function GruposAdicionais({ setTotalValue, setDescricao, setIdGru
   let idProduto = data.ID_PRODUTO;
   const queryClient = useQueryClient();
   
-  console.log(grupoTamanho)
   useEffect(()=>{
     api
         .get(`/listaTamanhos/${idProduto}`)

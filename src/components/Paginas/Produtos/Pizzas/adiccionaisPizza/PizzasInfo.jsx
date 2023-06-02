@@ -3,12 +3,13 @@ import { useLocation } from 'react-router-dom';
 import './pizzas.css'
 import Decimal from 'decimal.js';
 import { formCurrency } from '../../../../AA-utilidades/numeros';
+import BtnPizzaAddCar from './btnPizzaAddCar'
 
-export default function PizzasInfo({ selectedSabores, setSelectedSabores }){
+export default function PizzasInfo({ selectedSabores, setSelectedSabores, observacao }){
     const { state } = useLocation();
-    const { itemPizza } = state;
+    const { data } = state;
     const [valorTotal, setValorTotal] = useState();
-    
+    console.log(data)
 
     const checkboxValues = Array.from(document.querySelectorAll('input[name="selecionar-sabor"]:checked')).map(
         (checkbox) => checkbox.value
@@ -28,7 +29,6 @@ export default function PizzasInfo({ selectedSabores, setSelectedSabores }){
             const itemToRemove = selectedSabores[index]
             const newSelectedItems = [...selectedSabores]
             newSelectedItems.splice(index, 1)
-            console.log(itemToRemove)
             setSelectedSabores(newSelectedItems)
             handleUncheckCheckbox(itemToRemove.ID_GRADE)
         }
@@ -38,15 +38,24 @@ export default function PizzasInfo({ selectedSabores, setSelectedSabores }){
                 checkbox.checked = false
             }
         }
+
+        
     return(
         <div className='pizzas-info'>
-            <div> Pizza {itemPizza.TAMANHO} </div>
+            <div> Pizza {data.TAMANHO} </div>
             <div>{formCurrency.format(valorTotal)}</div>
             <div>
                 {selectedSabores.map((item, index)=>
                     <div> <div>{item.PRODUTO}</div> <div> <input id={selectedSabores.ID_GRADE} type='checkbox' onChange={()=> handleRemoveItem(index)} checked='checked' ></input> </div>
                     </div>
                 )}
+            </div>
+            <div>
+                <BtnPizzaAddCar
+                    selectedSabores={selectedSabores}
+                    valorTotal={valorTotal}
+                    observacao={observacao}
+                />
             </div>
         </div>
     )
