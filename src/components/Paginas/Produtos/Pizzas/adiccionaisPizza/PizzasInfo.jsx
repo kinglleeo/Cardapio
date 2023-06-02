@@ -9,6 +9,7 @@ export default function PizzasInfo({ selectedSabores, setSelectedSabores }){
     const { itemPizza } = state;
     const [valorTotal, setValorTotal] = useState();
     
+
     const checkboxValues = Array.from(document.querySelectorAll('input[name="selecionar-sabor"]:checked')).map(
         (checkbox) => checkbox.value
     )
@@ -21,12 +22,32 @@ export default function PizzasInfo({ selectedSabores, setSelectedSabores }){
             }, new Decimal(0));
                 setValorTotal(totaItem.toNumber().toFixed(2))
           }, [selectedSabores, check]);
-   
-
+          
+         
+          const handleRemoveItem = (index) =>{
+            const itemToRemove = selectedSabores[index]
+            const newSelectedItems = [...selectedSabores]
+            newSelectedItems.splice(index, 1)
+            console.log(itemToRemove)
+            setSelectedSabores(newSelectedItems)
+            handleUncheckCheckbox(itemToRemove.ID_GRADE)
+        }
+        const handleUncheckCheckbox = (ID_GRADE) =>{
+            const checkbox = document.getElementById(ID_GRADE)
+            if (checkbox){
+                checkbox.checked = false
+            }
+        }
     return(
         <div className='pizzas-info'>
             <div> Pizza {itemPizza.TAMANHO} </div>
             <div>{formCurrency.format(valorTotal)}</div>
+            <div>
+                {selectedSabores.map((item, index)=>
+                    <div> <div>{item.PRODUTO}</div> <div> <input id={selectedSabores.ID_GRADE} type='checkbox' onChange={()=> handleRemoveItem(index)} checked='checked' ></input> </div>
+                    </div>
+                )}
+            </div>
         </div>
     )
 }

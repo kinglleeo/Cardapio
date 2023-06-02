@@ -28,9 +28,7 @@ export function Selecionadores({ Sabor, selectedSabores, setSelectedSabores, }){
     }    
         
 }  
-        
-
-
+      
     return (
         <div className='selecionar-add-pizza-0'>
             <label className='container'>
