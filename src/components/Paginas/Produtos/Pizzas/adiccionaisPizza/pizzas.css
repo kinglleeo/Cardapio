@@ -49,6 +49,4 @@
 .pizza-input{
     background-color: white;
     width: 20%;
-    display: grid;
-    place-items: center;
 }

@@ -9,7 +9,6 @@ export default function BtnPizzaAddCar({ selectedSabores, valorTotal, observacao
     const { state } = useLocation();
     const { data } = state;
     
-    console.log(selectedSabores)
 
     const Descricao = selectedSabores.PRODUTO
     

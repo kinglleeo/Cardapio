@@ -11,7 +11,7 @@ export default function ListaProdutosAdicionais({ Maximo, listaOpcionais, setLis
       const total = listaOpcionais.reduce((accumulator, item) => accumulator + item.quantidade, 0);
       setQuantidadeTotal(total);
     }
-  }, [listaOpcionais]);
+  }, [listaOpcionais]);  
 
   const aumentarQuantidade = (index) => {
     const updatedListaOpcionais = [...listaOpcionais];
