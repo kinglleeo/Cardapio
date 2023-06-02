@@ -17,6 +17,7 @@ export default function GruposAdicionais({ setTotalValue, setDescricao, setIdGru
   const { data } = state;
   let idProduto = data.ID_PRODUTO;
   const queryClient = useQueryClient();
+  console.log(listaGrupoOpcionais)
   
   useEffect(()=>{
     api
@@ -45,13 +46,13 @@ export default function GruposAdicionais({ setTotalValue, setDescricao, setIdGru
     }   
        
     
-    const selecionarListaOpcionais = (ID_GRUPO_OPCOES, idProduto) => {
-        const cachedData = queryClient.getQueryData(['listaOpcionais', ID_GRUPO_OPCOES, idProduto]);
+    const selecionarListaOpcionais = (ID_GRUPO_OPCOES) => {
+        const cachedData = queryClient.getQueryData(['listaOpcionais', ID_GRUPO_OPCOES]);
         if(cachedData){
             setListaOpcionais(cachedData)
         } else {
             api
-                .get(`/listaOpcionais/${ID_GRUPO_OPCOES}/${idProduto}`)
+                .get(`/listaOpcionais/${ID_GRUPO_OPCOES}`)
                 .then((getdata)=>{
                     const data = getdata.data.map((item)=>({
                         ...item,
@@ -59,7 +60,7 @@ export default function GruposAdicionais({ setTotalValue, setDescricao, setIdGru
                         valorTotalProduto: 0,
                     }))
                     setListaOpcionais(data);
-                    queryClient.setQueryData(['listaOpcionais', ID_GRUPO_OPCOES, idProduto], data);
+                    queryClient.setQueryData(['listaOpcionais', ID_GRUPO_OPCOES], data);
                 })
         }
       };
