@@ -33,7 +33,7 @@ export default function ListaProdutosAdicionais({ Maximo, listaOpcionais, setLis
     }
   };
   
-  
+   
 
   const Escolhidos = () => {
     let escolhidos = quantidadeTotal
