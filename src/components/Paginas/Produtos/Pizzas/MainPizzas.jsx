@@ -1,6 +1,7 @@
 import { React, useState } from 'react'
 import Header from '../../../header/Header'
 import PizzasSabores from './SaboresPizza/PizzasSabores'
+import AdicionaisPizza from './AdicionaisPizza/AdicionaisPizza'
 
 export default function MainPizza(){
     
@@ -13,7 +14,7 @@ export default function MainPizza(){
                 <PizzasSabores/>
             </div>
             <div>
-                
+                <AdicionaisPizza/>
             </div>
             <div>
                 

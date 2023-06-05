@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from 'react'
 import { formCurrency } from '../../../../AA-utilidades/numeros';
-import '../adiccionaisPizza/pizzas.css'
+import './pizzas.css'
 import Decimal from 'decimal.js';
 import { useQueryClient } from '@tanstack/react-query';
 import './cssParaPizzas.css'

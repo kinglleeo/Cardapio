@@ -7,7 +7,7 @@ export default function ProdutoList({ produto, grupoName, subGrupoName }){
     const navigate = useNavigate();
     
     const Adicionais = (data, grupoName, subGrupoName) => {
-        navigate('/Adicionais', { state: { data, grupoName, subGrupoName } });
+        navigate('/AdicionaisMain', { state: { data, grupoName, subGrupoName } });
       };
       
     return(
