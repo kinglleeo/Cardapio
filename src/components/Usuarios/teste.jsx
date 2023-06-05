@@ -1,5 +1,4 @@
 
-
   useEffect(() => {
     listaSaboresPizzas.forEach((item) => {
       if (item.quantidade > 0) {

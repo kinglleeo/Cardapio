@@ -14,8 +14,8 @@ export default function ListaProdutosAdicionais({ listaSaboresPizzas, setListaSa
   const [listaDocesAtiva, setListaDocesAtiva] = useState(null);
   const Idsalgadas = '1'
   const IdDoces = '2'
+  const [valorTotal, setValorTotal] = useState('');
 
-  console.log(selecionados)
 
   const AbrirListaSalgadas = (Idsalgadas) => {
     if (listaSalgadasAtiva === Idsalgadas) {
@@ -71,22 +71,43 @@ export default function ListaProdutosAdicionais({ listaSaboresPizzas, setListaSa
     });
   }, [listaSaboresPizzas]);
   
-  
+  useEffect(() => {
+    const totalQuantity = selecionados.reduce((accumulator, item) => accumulator + item.quantidade, 0);
+      setQuantidadeTotal(totalQuantity)
+  }, [selecionados]);
 
-  useEffect(()=>{
-    
-  }, []);
+  const NumeroSelecionados =()=>{
+    const NumeroSelecionados = quantidadeTotal
+    return NumeroSelecionados
+  }
+  const Faltam =()=>{
+    const Faltam = Max - quantidadeTotal
+    return Faltam
+  }
+
+  useEffect(() => {
+    const totalItem = selecionados.reduce((acc, item) => {
+      const multipliedValue = new Decimal(item.VALOR_VENDA).times(item.quantidade);
+      const dividedValue = multipliedValue.dividedBy(quantidadeTotal);
+      return acc.plus(dividedValue);
+    }, new Decimal(0));
+      setValorTotal(totalItem.toNumber().toFixed(2));
+  }, [selecionados, quantidadeTotal]);
+  
   
   return(
         <div>
+          <div>
+            {formCurrency.format(valorTotal)}
+          </div>
           <div>
               <div className='titulo-SaboresPizza'> Sabores </div>
           </div>
           <div className='Sabores-Quantidades'>
             <div className='QTD'> Minimo {Min} Sabor </div>
             <div className='QTD'> Até {Max} Sabores </div>
-            <div className='QTD'> Selecionados </div>
-            <div className='QTD'> Faltam </div>
+            <div className='QTD'> Selecionados {NumeroSelecionados()} </div>
+            <div className='QTD'> Faltam {Faltam()} </div>
           </div>
           <div>
               <div className='grupo-Sabores'> 
@@ -121,7 +142,7 @@ export default function ListaProdutosAdicionais({ listaSaboresPizzas, setListaSa
                                                     <div className='quantia-adicionais'>{itemSabor.quantidade}</div>
                                                     <div className='btn-quantia-adicionais'>
                                                         <button className='arrow right'onClick={() => aumentarQuantidade(index, itemSabor)}
-                                                            
+                                                            disabled={quantidadeTotal === Max}
                                                         ></button>
                                                     </div>
                                                 </div>
@@ -170,7 +191,7 @@ export default function ListaProdutosAdicionais({ listaSaboresPizzas, setListaSa
                                                 <div className='quantia-adicionais'>{itemSabor.quantidade}</div>
                                                 <div className='btn-quantia-adicionais'>
                                                     <button className='arrow right'onClick={() => aumentarQuantidade(index, itemSabor)}
-                                                        
+                                                        disabled={quantidadeTotal === Max}
                                                     ></button>
                                                 </div>
                                             </div>
