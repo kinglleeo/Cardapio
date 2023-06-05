@@ -3,25 +3,36 @@ import { formCurrency } from '../../../../AA-utilidades/numeros';
 import '../adiccionaisPizza/pizzas.css'
 import Decimal from 'decimal.js';
 import { useQueryClient } from '@tanstack/react-query';
+import './cssParaPizzas.css'
 
 
-export default function ListaProdutosAdicionais({ listaSaboresPizzas, setListaSaboresPizzas }) {
+export default function ListaProdutosAdicionais({ listaSaboresPizzas, setListaSaboresPizzas, Min, Max }) {
   const queryClient = useQueryClient();
   const [quantidadeTotal, setQuantidadeTotal] = useState(0);
-  const [saboresSelecionados, setSaboresSelecionados] = useState([]);
+  const [selecionados, setSelecionados] = useState([]);
+  const [listaSalgadasAtiva, setListaSalgadasAtiva] = useState(null);
+  const [listaDocesAtiva, setListaDocesAtiva] = useState(null);
+  const Idsalgadas = '1'
+  const IdDoces = '2'
 
-  
-  useEffect(()=>{
-    const queryCache = queryClient.getQueryCache();
-    const cachedQueries = queryCache.findAll('listaSaboresPizzas');
-    const filtro = cachedQueries.map((query)=>{
-      const data = query.state.data;
-      return data;
-    })
-    const esse = filtro.map((item)=>{
-      return item
-    })   
-  });
+  console.log(selecionados)
+
+  const AbrirListaSalgadas = (Idsalgadas) => {
+    if (listaSalgadasAtiva === Idsalgadas) {
+        setListaSalgadasAtiva(null);
+    } else {
+        setListaSalgadasAtiva(Idsalgadas);
+        //selecionarListaSabores(Idsalgadas)
+    }
+  }  
+  const AbrirListaDoces = (IdDoces) => {
+    if (listaDocesAtiva === IdDoces) {
+        setListaDocesAtiva(null);
+    } else {
+        setListaDocesAtiva(IdDoces);
+        //selecionarListaSabores(IdDoces)
+    }
+  } 
 
   const aumentarQuantidade = (index) => {
     const updatedListaOpcionais = [...listaSaboresPizzas];
@@ -38,45 +49,143 @@ export default function ListaProdutosAdicionais({ listaSaboresPizzas, setListaSa
       setListaSaboresPizzas(updatedListaOpcionais);
     }
   }
+
+  useEffect(() => {
+    listaSaboresPizzas.forEach((item) => {
+      if (item.quantidade > 0) {
+        const itemIndex = selecionados.findIndex((selecionado) => selecionado.ID_GRADE === item.ID_GRADE);
+        if (itemIndex === -1) {
+          setSelecionados((prevSelecionados) => [...prevSelecionados, { ...item }]);
+        } else {
+          setSelecionados((prevSelecionados) => {
+            const updatedSelecionados = [...prevSelecionados];
+            if (updatedSelecionados[itemIndex]) {
+              updatedSelecionados[itemIndex].quantidade = item.quantidade;
+            }
+            return updatedSelecionados;
+          });
+        }
+      } else {
+        setSelecionados((prevSelecionados) => prevSelecionados.filter((selecionado) => selecionado.ID_GRADE !== item.ID_GRADE));
+      }
+    });
+  }, [listaSaboresPizzas]);
   
+  
+
+  useEffect(()=>{
+    
+  }, []);
   
   return(
         <div>
-          <div className='pizza-List-Main'>
-            {Array.isArray(listaSaboresPizzas) ? (
-                listaSaboresPizzas.map((itemSabor, index)=>
-                    <div className='pizza-List' key={itemSabor.ID_GRADE}>
-                        <div className='pizza-Card'>
-                            <div className='pizza-card-interno'>
-                                <div className='pizza-info'>
-                                    <div className='pizza-nome'>
-                                        <div className='pizza-nome-titulo'> Pizza Sabor </div>
-                                            <div className='pizza-nome-sabor'> {itemSabor.PRODUTO} </div>
-                                    </div>
-                                    <div className='pizza-valor'>
-                                        <div> Valor {formCurrency.format(itemSabor.VALOR_VENDA)} </div>
+          <div>
+              <div className='titulo-SaboresPizza'> Sabores </div>
+          </div>
+          <div className='Sabores-Quantidades'>
+            <div className='QTD'> Minimo {Min} Sabor </div>
+            <div className='QTD'> Até {Max} Sabores </div>
+            <div className='QTD'> Selecionados </div>
+            <div className='QTD'> Faltam </div>
+          </div>
+          <div>
+              <div className='grupo-Sabores'> 
+                <div className='text-Sabores'> Salgadas </div>
+                <div className='icon-Sabores' onClick={() => AbrirListaSalgadas(Idsalgadas)}>
+                  {listaSalgadasAtiva === Idsalgadas ? '-' : '+'}
+                </div>
+              </div>
+              <div className='pizza-List-Main'>
+                  {Array.isArray(listaSaboresPizzas) ? (
+                    listaSaboresPizzas.map((itemSabor, index) => {
+                      if (listaSalgadasAtiva === Idsalgadas && itemSabor.SUBGRUPOS === "PIZZA SALGADA") {
+                        return (
+                          <div className='pizza-List' key={itemSabor.ID_GRADE}>
+                            <div className='pizza-Card'>
+                                    <div className='pizza-card-interno'>
+                                        <div className='pizza-info'>
+                                            <div className='pizza-nome'>
+                                                <div className='pizza-nome-titulo'> Pizza Sabor </div>
+                                                    <div className='pizza-nome-sabor'> {itemSabor.PRODUTO} </div>
+                                            </div>
+                                            <div className='pizza-valor'>
+                                                <div> Valor {formCurrency.format(itemSabor.VALOR_VENDA)} </div>
+                                            </div>
+                                        </div>
+                                        <div className='pizza-input'>   
+                                            <div>
+                                                <div className='Card-Adicionais-Botoes'>
+                                                    <div className='btn-quantia-adicionais'>
+                                                        <button className='arrow left' onClick={() => diminuirQuantidade(index, itemSabor)}></button>
+                                                    </div>
+                                                    <div className='quantia-adicionais'>{itemSabor.quantidade}</div>
+                                                    <div className='btn-quantia-adicionais'>
+                                                        <button className='arrow right'onClick={() => aumentarQuantidade(index, itemSabor)}
+                                                            
+                                                        ></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div className='pizza-input'>   
-                                    <div>
-                                        <div className='Card-Adicionais-Botoes'>
-                                            <div className='btn-quantia-adicionais'>
-                                                <button className='arrow left' onClick={() => diminuirQuantidade(index, itemSabor)}></button>
-                                            </div>
-                                            <div className='quantia-adicionais'>{itemSabor.quantidade}</div>
-                                            <div className='btn-quantia-adicionais'>
-                                                <button className='arrow right'onClick={() => aumentarQuantidade(index, itemSabor)}
-                                                    
-                                                ></button>
+                          </div>
+                        );
+                      }
+                      return null;
+                    })
+                  ) : null}
+          </div>
+          </div>
+          <div>
+            <div className='grupo-Sabores'> 
+              <div className='text-Sabores'> Doces </div>
+              <div className='icon-Sabores' onClick={() => AbrirListaDoces(IdDoces)}>
+                  {listaDocesAtiva === IdDoces ? '-' : '+'}
+              </div>
+            </div>
+            <div className='pizza-List-Main'>
+              {Array.isArray(listaSaboresPizzas) ? (
+                listaSaboresPizzas.map((itemSabor, index) => {
+                  if (listaDocesAtiva === IdDoces && itemSabor.SUBGRUPOS === "PIZZA DOCE") {
+                    return (
+                      <div className='pizza-List' key={itemSabor.ID_GRADE}>
+                        <div className='pizza-Card'>
+                                <div className='pizza-card-interno'>
+                                    <div className='pizza-info'>
+                                        <div className='pizza-nome'>
+                                            <div className='pizza-nome-titulo'> Pizza Sabor </div>
+                                                <div className='pizza-nome-sabor'> {itemSabor.PRODUTO} </div>
+                                        </div>
+                                        <div className='pizza-valor'>
+                                            <div> Valor {formCurrency.format(itemSabor.VALOR_VENDA)} </div>
+                                        </div>
+                                    </div>
+                                    <div className='pizza-input'>   
+                                        <div>
+                                            <div className='Card-Adicionais-Botoes'>
+                                                <div className='btn-quantia-adicionais'>
+                                                    <button className='arrow left' onClick={() => diminuirQuantidade(index, itemSabor)}></button>
+                                                </div>
+                                                <div className='quantia-adicionais'>{itemSabor.quantidade}</div>
+                                                <div className='btn-quantia-adicionais'>
+                                                    <button className='arrow right'onClick={() => aumentarQuantidade(index, itemSabor)}
+                                                        
+                                                    ></button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                )) : null}
-            </div>   
+                      </div>
+                    );
+                  }
+                  return null;
+                })
+              ) : null}
+          </div>
+          </div>          
         </div>
     )
 }

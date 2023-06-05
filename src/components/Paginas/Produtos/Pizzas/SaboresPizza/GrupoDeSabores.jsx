@@ -12,17 +12,8 @@ export default function GruposAdicionais(){
     const queryClient = useQueryClient();
     const IdTamanho = data.ID;
     const [listaSaboresPizzas, setListaSaboresPizzas] = useState([]);
-    const [listaSaboresPizzasAtiva, setListaSaboresPizzasAtiva] = useState(null);
-
-        const AbrirListaSabores = (IdTamanho) => {
-            if (listaSaboresPizzasAtiva === IdTamanho) {
-                setListaSaboresPizzasAtiva(null);
-            } else {
-                setListaSaboresPizzasAtiva(IdTamanho);
-                selecionarListaSabores(IdTamanho)
-            }
-        }  
-        const selecionarListaSabores = (IdTamanho) => {
+ 
+        useEffect(()=>{
             const cachedData = queryClient.getQueryData(['listaSaboresPizza', data]);
                 if(cachedData){
                     setListaSaboresPizzas(cachedData)
@@ -38,24 +29,16 @@ export default function GruposAdicionais(){
                                 queryClient.setQueryData(['listaSaboresPizza'], data);
                         })
                     }
-            };    
+            }, []);    
     
-
 return(
     <div>
-        <div>
-            <div> MINIMO {data.QTD_MINIMO}</div>
-            <div> MAXIMO {data.QTD_MAXIMO}</div>
-            <div className='Adicionais-icon' onClick={() => AbrirListaSabores(IdTamanho)}>
-                {listaSaboresPizzasAtiva === IdTamanho ? '-' : '+'}
-            </div>
-        </div>
-        {listaSaboresPizzasAtiva === IdTamanho && (
-            <ListaSaboresPizzas
-                listaSaboresPizzas={listaSaboresPizzas}
-                setListaSaboresPizzas={setListaSaboresPizzas}
-            />
-        )}
+        <ListaSaboresPizzas
+            listaSaboresPizzas={listaSaboresPizzas}
+            setListaSaboresPizzas={setListaSaboresPizzas}
+            Min={data.QTD_MINIMO}
+            Max={data.QTD_MAXIMO}
+        />
     </div>
 )
 }
