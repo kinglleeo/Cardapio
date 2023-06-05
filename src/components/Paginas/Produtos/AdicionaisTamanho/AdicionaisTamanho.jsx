@@ -1,34 +1,57 @@
-import { React } from 'react'
+import { React, useEffect, useState } from 'react'
 import { formCurrency } from '../../../AA-utilidades/numeros';
-import { SelecionarTamanho } from './MetodosAdicionaisTamanhos'
+import { SelecionarTamanho } from './SelecionarTamanho'
+import { api } from '../../../../conecções/api'
+import { useLocation } from 'react-router-dom';
+import './adicionaistamanho.css'
 
-export default function GrupoTamanho({ grupoTamanho, setTamanhoEscolhido }){
+export default function GrupoTamanho(){
+  const [grupoTamanho, setGrupoTamanho] = useState([]);
+  const [tamanhoEscolhido, setTamanhoEscolhido] = useState([]);
+  const { state } = useLocation();
+  const { data } = state;
 
+
+  useEffect(()=>{
+    api
+        .get(`/listaTamanhos/${data.ID_PRODUTO}`)
+        .then((getdata)=>{
+            setGrupoTamanho(getdata.data);
+        });
+  }, []);
  
     return(
-        <div className=''>
+        <div>
+          <div>{Array.isArray(grupoTamanho) ? (
+              <div className='titulo-Tamanhos'> TAMANHOS </div>
+            ) : (
+              <div></div>
+            )}
+          </div>    
+          <div className='lista-tamanhos'> 
             {Array.isArray(grupoTamanho)
-                ? grupoTamanho.map((item, index) => (
-                    <div className='Card-Adicionais' key={item.ID}>
-                      <div className='Card-Adicionais-inner'>
-                        <div className='Card-Adicionais-Descricao'>
-                          <div className='box-descricao-1'>
-                            <div className='Adicional-nome'>{item.TAMANHO}</div>
-                          </div>
-                          <div className='box-descricao-2'>
-                            <div className='adicional-valor'>{formCurrency.format(item.VALOR_VENDA)}</div>
-                          </div>
+              ? grupoTamanho.map((item, index) => (
+                  <div className='Card-tamanhos' key={item.ID}>
+                    <div className='Card-tamanhos-inner'>
+                      <div className='Card-tamanhos-Descricao'>
+                        <div className='box-tamanhos-1'>
+                          <div className='tamanhos-nome'>{item.TAMANHO}</div>
                         </div>
-                        <div>
-                            <SelecionarTamanho
-                              item={item}
-                              setTamanhoEscolhido={setTamanhoEscolhido}
-                            />
+                        <div className='box-tamanhos-2'>
+                          <div className='tamanhos-valor'>{formCurrency.format(item.VALOR_VENDA)}</div>
                         </div>
                       </div>
+                      <div className='Card-Icon'>
+                          <SelecionarTamanho
+                            item={item}
+                            setTamanhoEscolhido={setTamanhoEscolhido}
+                          />
+                      </div>
                     </div>
-                  ))
-                : null}  
+                  </div>
+                ))
+              : null}
+            </div> 
         </div>
     )
 
