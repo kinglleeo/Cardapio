@@ -6,23 +6,19 @@ import { useQueryClient } from '@tanstack/react-query';
 import './cssParaPizzas.css'
 
 
-export default function ListaProdutosAdicionais({ listaSaboresPizzas, setListaSaboresPizzas, Min, Max }) {
+export default function ListaProdutosAdicionais({ listaSaboresPizzas, setListaSaboresPizzas, Min, Max, setValorTotalSabores, setSelecionados, selecionados }) {
   const queryClient = useQueryClient();
   const [quantidadeTotal, setQuantidadeTotal] = useState(0);
-  const [selecionados, setSelecionados] = useState([]);
   const [listaSalgadasAtiva, setListaSalgadasAtiva] = useState(null);
   const [listaDocesAtiva, setListaDocesAtiva] = useState(null);
   const Idsalgadas = '1'
   const IdDoces = '2'
-  const [valorTotal, setValorTotal] = useState('');
-
 
   const AbrirListaSalgadas = (Idsalgadas) => {
     if (listaSalgadasAtiva === Idsalgadas) {
         setListaSalgadasAtiva(null);
     } else {
         setListaSalgadasAtiva(Idsalgadas);
-        //selecionarListaSabores(Idsalgadas)
     }
   }  
   const AbrirListaDoces = (IdDoces) => {
@@ -30,7 +26,6 @@ export default function ListaProdutosAdicionais({ listaSaboresPizzas, setListaSa
         setListaDocesAtiva(null);
     } else {
         setListaDocesAtiva(IdDoces);
-        //selecionarListaSabores(IdDoces)
     }
   } 
 
@@ -91,15 +86,12 @@ export default function ListaProdutosAdicionais({ listaSaboresPizzas, setListaSa
       const dividedValue = multipliedValue.dividedBy(quantidadeTotal);
       return acc.plus(dividedValue);
     }, new Decimal(0));
-      setValorTotal(totalItem.toNumber().toFixed(2));
+      setValorTotalSabores(totalItem.toNumber().toFixed(2));
   }, [selecionados, quantidadeTotal]);
   
   
   return(
         <div>
-          <div>
-            {formCurrency.format(valorTotal)}
-          </div>
           <div>
               <div className='titulo-SaboresPizza'> Sabores </div>
           </div>

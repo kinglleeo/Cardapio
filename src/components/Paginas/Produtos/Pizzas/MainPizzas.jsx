@@ -4,11 +4,16 @@ import PizzasSabores from './SaboresPizza/PizzasSabores'
 import AdicionaisPizza from './AdicionaisPizza/AdicionaisPizza'
 import GrupoAdicionais from '../Adicionais/GrupoAdicionais'
 import Observacoes from '../Adicionais/Observacoes'
+import PizzasInfo from './PizzasInfo'
 
 export default function MainPizza(){
     const [descricao, setDescricao] = useState('');
     const [totalValue, setTotalValue] = useState('');
     const [observacoes, setObservacao] = useState('');
+
+    const [valorTotalSabores, setValorTotalSabores] = useState('');
+    const [selecionados, setSelecionados] = useState([]);
+    
 
     return(
         <div>
@@ -16,7 +21,14 @@ export default function MainPizza(){
                 <Header />
             </div>
             <div>
-                <PizzasSabores/>
+                <PizzasInfo/>
+            </div>
+            <div>
+                <PizzasSabores
+                    setValorTotalSabores={setValorTotalSabores}
+                    setSelecionados={setSelecionados}
+                    selecionados={selecionados}
+                />
             </div>
             <div>
                 <AdicionaisPizza/>

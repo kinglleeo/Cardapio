@@ -6,7 +6,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import ListaSaboresPizzas from './ListaSaboresPizzas'
 
 
-export default function GruposAdicionais(){
+export default function GruposAdicionais({ setValorTotalSabores, setSelecionados, selecionados }){
     const { state } = useLocation();
     const { data } = state;
     const queryClient = useQueryClient();
@@ -38,6 +38,10 @@ return(
             setListaSaboresPizzas={setListaSaboresPizzas}
             Min={data.QTD_MINIMO}
             Max={data.QTD_MAXIMO}
+
+            setValorTotalSabores={setValorTotalSabores}
+            setSelecionados={setSelecionados}
+            selecionados={selecionados}
         />
     </div>
 )
