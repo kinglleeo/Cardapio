@@ -57,12 +57,17 @@ export default function MenuBar({ grupos }) {
                 </div>
               </div>
             </div>
-
             <div className='nav-subgrupos'>
               {subGrupoAtivo === item.ID_GRUPO && (
-                <SubMenuBar
-                  subGruposList={subGruposList}
-                />
+                <div>
+                  {item.PIZZA_MISTA === "SIM" ? (
+                    <div></div>
+                  ) : (
+                    <SubMenuBar
+                      subGruposList={subGruposList}
+                    />
+                  )}
+                </div>                
               )}
           </div>
           </div>
