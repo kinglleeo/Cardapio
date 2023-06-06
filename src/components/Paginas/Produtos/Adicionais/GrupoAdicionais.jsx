@@ -5,7 +5,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import ListaAdicionais from './ListaAdicionais';
 import Decimal from 'decimal.js';
 
-export default function GrupoAdicionais({ setDescricao, setTotalValue }){
+export default function GrupoAdicionais({ setAdicionalSelecionado, setTotalValue, setID_GRUPO_OPCOES }){
     const [listaGrupoOpcionais, setGruposAdicionais] = useState([]);
     const [listaAdicionais, setListaAdicionais] = useState([])
     const [listaAdicionaisAtivo, setListaAdicionaisAtivo] = useState(null);
@@ -31,10 +31,11 @@ export default function GrupoAdicionais({ setDescricao, setTotalValue }){
         }
     }   
 
-    const selecionarListaOpcionais = (ID_GRUPO_OPCOES, idProduto) => {
+    const selecionarListaOpcionais = (ID_GRUPO_OPCOES) => {
         const cachedData = queryClient.getQueryData(['listaAdicionais', ID_GRUPO_OPCOES]);
         if(cachedData){
             setListaAdicionais(cachedData)
+            setID_GRUPO_OPCOES(ID_GRUPO_OPCOES)
         } else {
             api
                 .get(`/listaOpcionais/${ID_GRUPO_OPCOES}`)
@@ -46,6 +47,7 @@ export default function GrupoAdicionais({ setDescricao, setTotalValue }){
                     }))
                     setListaAdicionais(data);
                     queryClient.setQueryData(['listaAdicionais', ID_GRUPO_OPCOES], data);
+                    setID_GRUPO_OPCOES(ID_GRUPO_OPCOES)
                 })
         }
       };
@@ -62,16 +64,14 @@ export default function GrupoAdicionais({ setDescricao, setTotalValue }){
         listaOpcionaisCache.forEach((listaAdicionais) => {
             listaAdicionais.forEach((item) => {
             if (item.quantidade > 0) {
-              descricao += item.quantidade + " X " + item.DESCRICAO + " / ";
+              setAdicionalSelecionado(item)
             }
           });
-          setDescricao(descricao);
         });
       }, [listaOpcionaisCache]);
 
       useEffect(() => {
         let total = new Decimal(0);
-      
         listaOpcionaisCache?.forEach((listaAdicionais) => {
           listaAdicionais.forEach((item) => {
             if (item.valorTotalProduto) {

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Header from '../../../../header/Header';
 import GruposDeSabores from './GrupoDeSabores';
 
-export default function Adicionais({ setValorTotalSabores, setSelecionados, selecionados  }) {
+export default function Adicionais({ setValorTotalSabores, setSaboresSelecionados, SaboresSelecionados  }) {
   
   
   return (
@@ -10,8 +10,8 @@ export default function Adicionais({ setValorTotalSabores, setSelecionados, sele
       <div>
         <GruposDeSabores
             setValorTotalSabores={setValorTotalSabores}
-            setSelecionados={setSelecionados}
-            selecionados={selecionados}
+            setSaboresSelecionados={setSaboresSelecionados}
+            SaboresSelecionados={SaboresSelecionados}
         />
       </div>
     </div>

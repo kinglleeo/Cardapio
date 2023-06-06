@@ -5,14 +5,22 @@ import AdicionaisPizza from './AdicionaisPizza/AdicionaisPizza'
 import GrupoAdicionais from '../Adicionais/GrupoAdicionais'
 import Observacoes from '../Adicionais/Observacoes'
 import PizzasInfo from './PizzasInfo'
+import { useLocation } from 'react-router-dom';
 
 export default function MainPizza(){
-    const [descricao, setDescricao] = useState('');
+    //tamanhoPizza
+    const { state } = useLocation();
+    const { data } = state;
+    //saboresPizza
+    const [valorTotalSabores, setValorTotalSabores] = useState('');
+    const [SaboresSelecionados, setSaboresSelecionados] = useState([]);
+    //Adicionais
+    const [adicionalSelecionado, setAdicionalSelecionado] = useState('');
     const [totalValue, setTotalValue] = useState('');
+    //observaçoes
     const [observacoes, setObservacao] = useState('');
 
-    const [valorTotalSabores, setValorTotalSabores] = useState('');
-    const [selecionados, setSelecionados] = useState([]);
+    const [ID_GRUPO_OPCOES, setID_GRUPO_OPCOES] = useState('');
     
 
     return(
@@ -21,13 +29,21 @@ export default function MainPizza(){
                 <Header />
             </div>
             <div>
-                <PizzasInfo/>
+                <PizzasInfo
+                    Produto={data}
+                    valorTotalSabores={valorTotalSabores}
+                    SaboresSelecionados={SaboresSelecionados}
+                    adicionalSelecionado={adicionalSelecionado}
+                    totalValue={totalValue}
+                    observacoes={observacoes}
+                    ID_GRUPO_OPCOES={ID_GRUPO_OPCOES}
+                />
             </div>
             <div>
                 <PizzasSabores
                     setValorTotalSabores={setValorTotalSabores}
-                    setSelecionados={setSelecionados}
-                    selecionados={selecionados}
+                    setSaboresSelecionados={setSaboresSelecionados}
+                    SaboresSelecionados={SaboresSelecionados}
                 />
             </div>
             <div>
@@ -35,8 +51,9 @@ export default function MainPizza(){
             </div>
             <div>
                 <GrupoAdicionais
-                    setDescricao={setDescricao}
+                    setAdicionalSelecionado={setAdicionalSelecionado}
                     setTotalValue={setTotalValue}
+                    setID_GRUPO_OPCOES={setID_GRUPO_OPCOES}
                 />
             </div>
             <div>

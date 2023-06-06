@@ -5,9 +5,8 @@ import { api } from '../../../../conecções/api'
 import { useLocation } from 'react-router-dom';
 import './adicionaistamanho.css'
 
-export default function GrupoTamanho(){
+export default function GrupoTamanho({ setTamanhoEscolhido }){
   const [grupoTamanho, setGrupoTamanho] = useState([]);
-  const [tamanhoEscolhido, setTamanhoEscolhido] = useState([]);
   const { state } = useLocation();
   const { data } = state;
 

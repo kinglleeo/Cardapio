@@ -6,7 +6,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import './cssParaPizzas.css'
 
 
-export default function ListaProdutosAdicionais({ listaSaboresPizzas, setListaSaboresPizzas, Min, Max, setValorTotalSabores, setSelecionados, selecionados }) {
+export default function ListaProdutosAdicionais({ listaSaboresPizzas, setListaSaboresPizzas, Min, Max, setValorTotalSabores, setSaboresSelecionados, SaboresSelecionados }) {
   const queryClient = useQueryClient();
   const [quantidadeTotal, setQuantidadeTotal] = useState(0);
   const [listaSalgadasAtiva, setListaSalgadasAtiva] = useState(null);
@@ -48,11 +48,11 @@ export default function ListaProdutosAdicionais({ listaSaboresPizzas, setListaSa
   useEffect(() => {
     listaSaboresPizzas.forEach((item) => {
       if (item.quantidade > 0) {
-        const itemIndex = selecionados.findIndex((selecionado) => selecionado.ID_GRADE === item.ID_GRADE);
+        const itemIndex = SaboresSelecionados.findIndex((SaboresSelecionados) => SaboresSelecionados.ID_GRADE === item.ID_GRADE);
         if (itemIndex === -1) {
-          setSelecionados((prevSelecionados) => [...prevSelecionados, { ...item }]);
+          setSaboresSelecionados((prevSelecionados) => [...prevSelecionados, { ...item }]);
         } else {
-          setSelecionados((prevSelecionados) => {
+          setSaboresSelecionados((prevSelecionados) => {
             const updatedSelecionados = [...prevSelecionados];
             if (updatedSelecionados[itemIndex]) {
               updatedSelecionados[itemIndex].quantidade = item.quantidade;
@@ -61,15 +61,15 @@ export default function ListaProdutosAdicionais({ listaSaboresPizzas, setListaSa
           });
         }
       } else {
-        setSelecionados((prevSelecionados) => prevSelecionados.filter((selecionado) => selecionado.ID_GRADE !== item.ID_GRADE));
+        setSaboresSelecionados((prevSelecionados) => prevSelecionados.filter((SaboresSelecionados) => SaboresSelecionados.ID_GRADE !== item.ID_GRADE));
       }
     });
   }, [listaSaboresPizzas]);
   
   useEffect(() => {
-    const totalQuantity = selecionados.reduce((accumulator, item) => accumulator + item.quantidade, 0);
+    const totalQuantity = SaboresSelecionados.reduce((accumulator, item) => accumulator + item.quantidade, 0);
       setQuantidadeTotal(totalQuantity)
-  }, [selecionados]);
+  }, [SaboresSelecionados]);
 
   const NumeroSelecionados =()=>{
     const NumeroSelecionados = quantidadeTotal
@@ -81,13 +81,13 @@ export default function ListaProdutosAdicionais({ listaSaboresPizzas, setListaSa
   }
 
   useEffect(() => {
-    const totalItem = selecionados.reduce((acc, item) => {
+    const totalItem = SaboresSelecionados.reduce((acc, item) => {
       const multipliedValue = new Decimal(item.VALOR_VENDA).times(item.quantidade);
       const dividedValue = multipliedValue.dividedBy(quantidadeTotal);
       return acc.plus(dividedValue);
     }, new Decimal(0));
       setValorTotalSabores(totalItem.toNumber().toFixed(2));
-  }, [selecionados, quantidadeTotal]);
+  }, [SaboresSelecionados, quantidadeTotal]);
   
   
   return(

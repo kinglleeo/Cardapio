@@ -39,7 +39,7 @@ export function TotalCart() {
   const totalCart = () => {
     let total = new Decimal(0) || 0
     cart.forEach(item => {
-      total = total.plus(new Decimal(item.quantity || 0).times(item.valor || 0)) 
+      total = total.plus(new Decimal(item.quantity || 0).times(item.totalCompra || 0)) 
     })
     return total.toFixed(2)
   }

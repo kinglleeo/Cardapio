@@ -10,6 +10,7 @@ export default function Grupo(){
     const [grupos, setGrupos] = useState([]);
     const [tamanhosPizza, setTamanhosPizza] = useState([]);
     const navigate = useNavigate();
+
     
     useEffect(() => {
         api
