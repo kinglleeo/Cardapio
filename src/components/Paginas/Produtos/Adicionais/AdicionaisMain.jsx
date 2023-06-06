@@ -7,9 +7,10 @@ import Observacoes from './Observacoes'
 import { useLocation } from 'react-router-dom';
 
 export default function AdicionaisMain(){
-
-    //produto 
     const { state } = useLocation();
+    //tipo
+    const { tipo } = state;
+    //produto 
     const { data } = state;
     //adicionais
     const [adicionalSelecionado, setAdicionalSelecionado] = useState('');
@@ -34,6 +35,7 @@ export default function AdicionaisMain(){
                     tamanhoEscolhido={tamanhoEscolhido}
                     observacoes={observacoes}
                     ID_GRUPO_OPCOES={ID_GRUPO_OPCOES}
+                    tipo={tipo}
                 />
             </div>
             <div>

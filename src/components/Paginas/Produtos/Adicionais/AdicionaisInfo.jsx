@@ -6,7 +6,7 @@ import BtnCarrinho from './BtnCarrinho';
 
 
 
-export default function AdicionaisInfo({ Produto, adicionalSelecionado, totalValue, tamanhoEscolhido, observacoes, ID_GRUPO_OPCOES }){
+export default function AdicionaisInfo({ tipo, Produto, adicionalSelecionado, totalValue, tamanhoEscolhido, observacoes, ID_GRUPO_OPCOES }){
     const [add, setAdd] = useState('');
     const [totalCompra, setTotalCompra] = useState('');
     
@@ -33,6 +33,7 @@ export default function AdicionaisInfo({ Produto, adicionalSelecionado, totalVal
                         tamanhoEscolhido={tamanhoEscolhido}
                         observacoes={observacoes}
                         ID_GRUPO_OPCOES={ID_GRUPO_OPCOES}
+                        tipo={tipo}
                     />
                 </div>
         </div>

@@ -30,8 +30,8 @@ export default function Grupo(){
             });
     }, []);
     
-    const handlePizzas=(data)=>{
-        navigate('/Pizzas', { state: { data } });
+    const handlePizzas=(data, tipo)=>{
+        navigate('/Pizzas', { state: { data, tipo } });
     }
 
     return(
@@ -49,7 +49,7 @@ export default function Grupo(){
                         <div>
                             {tamanhosPizza.map((data)=>
                                 <div className='card-produtos' key={data.ID}>
-                                    <div className='box-produtos' onClick={()=> handlePizzas(data)}>
+                                    <div className='box-produtos' onClick={()=> handlePizzas(data, item.PIZZA_MISTA)}>
                                         <div className='produtos-info'>
                                             <div className='item-nome'> {data.TAMANHO} </div>
                                         <div className='produtos-valor'>
@@ -67,6 +67,7 @@ export default function Grupo(){
                             <SubGrupoList
                                 ID_GRUPO={item.ID_GRUPO}
                                 grupoName={item.GRUPO}
+                                tipo={item.PIZZA_MISTA}
                             />
                         </div>
                 )}

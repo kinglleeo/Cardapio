@@ -8,8 +8,10 @@ import PizzasInfo from './PizzasInfo'
 import { useLocation } from 'react-router-dom';
 
 export default function MainPizza(){
-    //tamanhoPizza
     const { state } = useLocation();
+    //grupos
+    const { tipo } = state;
+    //tamanhoPizza
     const { data } = state;
     //saboresPizza
     const [valorTotalSabores, setValorTotalSabores] = useState('');
@@ -22,7 +24,6 @@ export default function MainPizza(){
 
     const [ID_GRUPO_OPCOES, setID_GRUPO_OPCOES] = useState('');
     
-    console.log(adicionalSelecionado)
     return(
         <div>
             <div>
@@ -37,6 +38,7 @@ export default function MainPizza(){
                     totalValue={totalValue}
                     observacoes={observacoes}
                     ID_GRUPO_OPCOES={ID_GRUPO_OPCOES}
+                    tipo={tipo}
                 />
             </div>
             <div>

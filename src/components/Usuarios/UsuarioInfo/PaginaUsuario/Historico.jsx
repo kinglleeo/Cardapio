@@ -9,6 +9,8 @@ export default function Historico(){
     const [historico, sethistorico] = useState([]);
     const [user, setUser] = useState('');
 
+
+    console.log(historico)
     useEffect(()=>{
         const usuario = onAuthStateChanged(auth, (user)=>{
             setUser(user.uid)

@@ -4,7 +4,7 @@ import { api } from '../../../conecções/api';
 import ProdutoList from './ProdutosList';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 
-export default function SubGrupoList({ ID_GRUPO, grupoName }) {
+export default function SubGrupoList({ ID_GRUPO, grupoName, tipo }) {
   const [subGrupo, setSubGrupo] = useState([]);
   const [subGrupoAtivo, setSubGrupoAtivo] = useState(null);
   const [produtoCache, setProdutoCache] = useState({});
@@ -62,6 +62,7 @@ export default function SubGrupoList({ ID_GRUPO, grupoName }) {
                     produto={produtos} 
                     grupoName={grupoName}
                     subGrupoName={item.SUBGRUPO}
+                    tipo={tipo}
                   />
                 </div>
               )}

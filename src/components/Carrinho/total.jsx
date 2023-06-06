@@ -3,6 +3,7 @@ import Decimal from 'decimal.js';
 import { formCurrency } from '../AA-utilidades/numeros';
 import { incrementQuantity, decrementQuantity } from '../../redux/cartSlice';
 import '../../Styles/StylesCart.css'
+import { useEffect, useState } from 'react';
 
 export function TotalItem({ itemquantity, itemid, itemvalor }){
   const dispatch = useDispatch()
@@ -33,21 +34,22 @@ export function TotalItem({ itemquantity, itemid, itemvalor }){
   )
 }
 
-export function TotalCart() {
+export function TotalCart({ setTotalCart, totalCart }) {
   const cart = useSelector(state => state.cart)
+
+  useEffect(()=>{
+      let total = new Decimal(0) || 0
+      cart.forEach(item => {
+        total = total.plus(new Decimal(item.quantity || 0).times(item.totalCompra || 0)) 
+      })
+      setTotalCart(total.toFixed(2))
+  }); 
   
-  const totalCart = () => {
-    let total = new Decimal(0) || 0
-    cart.forEach(item => {
-      total = total.plus(new Decimal(item.quantity || 0).times(item.totalCompra || 0)) 
-    })
-    return total.toFixed(2)
-  }
   
   return (
     <div className='totalcart'>
         <div>Total</div>
-        <div>{formCurrency.format(totalCart())}</div>
+        <div>{formCurrency.format(totalCart)}</div>
     </div>
   )
 }
