@@ -13,25 +13,17 @@ export default function GruposAdicionais({ setValorTotalSabores, setSaboresSelec
     const IdTamanho = data.ID;
     const [listaSaboresPizzas, setListaSaboresPizzas] = useState([]);
 
-
- 
-        useEffect(()=>{
-            const cachedData = queryClient.getQueryData(['listaSaboresPizza', data]);
-                if(cachedData){
-                    setListaSaboresPizzas(cachedData)
-                } else {
-                    api
-                        .get(`/listaSaboresPizza/${IdTamanho}`)
-                        .then((getdata)=>{
-                            const data = getdata.data.map((item)=>({
-                                ...item,
-                                quantidade: 0,
-                            }))
-                                setListaSaboresPizzas(data);
-                                queryClient.setQueryData(['listaSaboresPizza'], data);
-                        })
-                    }
-            }, []);    
+      useEffect(()=>{
+        api
+            .get(`/listaSaboresPizza/${IdTamanho}`)
+            .then((getdata) => {
+              const data = getdata.data.map((item) => ({
+                ...item,
+                quantidade: 0,
+              }));
+                setListaSaboresPizzas(data);
+            });
+      }, [])      
     
 return(
     <div>

@@ -11,28 +11,30 @@ import { clearCart } from '../../redux/cartSlice'
 export function CartPagBar({ Pedido }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [ compra, setCompra ] = useState('')
-
+  const [compra, setCompra] = useState([]);
   console.log(Pedido)
-  const sabores={
-    cod_produto: saborselecionado.ID,
-    quantidade: saborselecionado.quantidade,
-    valor: saborselecionado.VALOR_VENDA
-  }
-
-  const opcionais={
-    cod_opcional: adicionalSelecionado.ID,
-    quantidade: adicionalSelecionado.quantidade,
-    valor: adicionalSelecionado.VALOR_VENDA
-  }
-  const items_pedido={
-    cod_produto: Pedido.produto.ID_PRODUTO,
-    cod_grade: Pedido.tamanhoEscolhido.ID_GRADE,
-    cod_tamanho: Pedido.tamanhoEscolhido.TAMANHO,
-    quantidade: Pedido.quantity,
-    observacao: observacoes,
-    opcionais: opcionais
-  }
+  
+  useEffect(() => {
+    Pedido.forEach((item) => {
+      const itemExistente = compra.find((compraItem) => compraItem.id === item.id);
+      if (!itemExistente) {
+        const novoItemPedido = {
+          id: item.id,
+          cod_produto: item.produto.ID_PRODUTO,
+          cod_grade: item.tamanhoEscolhido.ID_GRADE,
+          cod_tamanho: item.tamanhoEscolhido.ID,
+          quantidade: item.quantity,
+          observacao: item.observacoes,
+          opcional: item.adicionalSelecionado,
+        };
+  
+        setCompra((prevCompra) => [...prevCompra, novoItemPedido]);
+      }
+    });
+  }, [Pedido, setCompra]);
+  
+  
+  
 
   const handlePagar = (Pedido) => {
 

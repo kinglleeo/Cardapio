@@ -22,7 +22,7 @@ export default function MainPizza(){
 
     const [ID_GRUPO_OPCOES, setID_GRUPO_OPCOES] = useState('');
     
-
+    console.log(adicionalSelecionado)
     return(
         <div>
             <div>

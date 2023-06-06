@@ -12,7 +12,7 @@ export default function GrupoAdicionais({ setAdicionalSelecionado, setTotalValue
     const { state } = useLocation();
     const { data } = state;
     const queryClient = useQueryClient();
-
+    const ID_GRUPO_OPCOES= data.ID_GRUPO_OPCOES
     
     useEffect(()=>{
         api
@@ -33,46 +33,43 @@ export default function GrupoAdicionais({ setAdicionalSelecionado, setTotalValue
 
     const selecionarListaOpcionais = (ID_GRUPO_OPCOES) => {
         const cachedData = queryClient.getQueryData(['listaAdicionais', ID_GRUPO_OPCOES]);
-        if(cachedData){
-            setListaAdicionais(cachedData)
-            setID_GRUPO_OPCOES(ID_GRUPO_OPCOES)
+        if (cachedData) {
+          setListaAdicionais(cachedData);
+          setID_GRUPO_OPCOES(ID_GRUPO_OPCOES);
         } else {
-            api
-                .get(`/listaOpcionais/${ID_GRUPO_OPCOES}`)
-                .then((getdata)=>{
-                    const data = getdata.data.map((item)=>({
-                        ...item,
-                        quantidade: 0,
-                        valorTotalProduto: 0,
-                    }))
-                    setListaAdicionais(data);
+          api
+            .get(`/listaOpcionais/${ID_GRUPO_OPCOES}`)
+            .then((getdata) => {
+              const data = getdata.data.map((item) => ({
+                ...item,
+                quantidade: 0,
+                valorTotalProduto: 0,
+              }));
+                setListaAdicionais(data);
                     queryClient.setQueryData(['listaAdicionais', ID_GRUPO_OPCOES], data);
-                    setID_GRUPO_OPCOES(ID_GRUPO_OPCOES)
-                })
+                        setID_GRUPO_OPCOES(ID_GRUPO_OPCOES);
+            });
         }
       };
+      
+        const queryCache = queryClient.getQueryCache();
+        const listaAdicionaisCache = queryCache.findAll('listaAdicionais').map((query) => query.state.data);
 
-
-      const queryCache = queryClient.getQueryCache();
-      const cachedQueries = queryCache.findAll('listaAdicionais');
-      const listaOpcionaisCache = cachedQueries.map((query) => {
-          const data = query.state.data;
-              return data;
-      });
+      console.log(listaAdicionaisCache)
+      
       useEffect(() => {
-        let descricao = "";
-        listaOpcionaisCache.forEach((listaAdicionais) => {
-            listaAdicionais.forEach((item) => {
+        listaAdicionaisCache.forEach((listaAdicionais) => {
+          listaAdicionais.forEach((item) => {
             if (item.quantidade > 0) {
-              setAdicionalSelecionado(item)
+              setAdicionalSelecionado(item);
             }
           });
         });
-      }, [listaOpcionaisCache]);
+      }, [listaAdicionaisCache]);
 
       useEffect(() => {
         let total = new Decimal(0);
-        listaOpcionaisCache?.forEach((listaAdicionais) => {
+        listaAdicionaisCache?.forEach((listaAdicionais) => {
           listaAdicionais.forEach((item) => {
             if (item.valorTotalProduto) {
               total = total.plus(item.valorTotalProduto);
@@ -81,7 +78,7 @@ export default function GrupoAdicionais({ setAdicionalSelecionado, setTotalValue
         });
       
         setTotalValue(total.toNumber());
-      }, [listaOpcionaisCache]);
+      }, [listaAdicionaisCache]);
 
     return(
     <div>
