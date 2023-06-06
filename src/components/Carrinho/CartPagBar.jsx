@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TotalCart } from './total';
 import '../../Styles/StylesCart.css';
 import { useNavigate } from 'react-router-dom';
@@ -11,12 +11,35 @@ import { clearCart } from '../../redux/cartSlice'
 export function CartPagBar({ Pedido }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [ compra, setCompra ] = useState('')
 
-  const handleCotinuar = () => {
-    navigate('/');
-  };
+  console.log(Pedido)
+  const sabores={
+    cod_produto: saborselecionado.ID,
+    quantidade: saborselecionado.quantidade,
+    valor: saborselecionado.VALOR_VENDA
+  }
+
+  const opcionais={
+    cod_opcional: adicionalSelecionado.ID,
+    quantidade: adicionalSelecionado.quantidade,
+    valor: adicionalSelecionado.VALOR_VENDA
+  }
+  const items_pedido={
+    cod_produto: Pedido.produto.ID_PRODUTO,
+    cod_grade: Pedido.tamanhoEscolhido.ID_GRADE,
+    cod_tamanho: Pedido.tamanhoEscolhido.TAMANHO,
+    quantidade: Pedido.quantity,
+    observacao: observacoes,
+    opcionais: opcionais
+  }
 
   const handlePagar = (Pedido) => {
+
+    BancodePedidos(Pedido)
+  };
+  
+  const BancodePedidos=()=>{
     const saveBd = async () => {
       try {
         const user = auth.currentUser;
@@ -38,10 +61,13 @@ export function CartPagBar({ Pedido }) {
         console.error("Error saving order: ", error);
       }
     };
-  
     saveBd();
+  }
+
+  const handleCotinuar = () => {
+    navigate('/');
   };
-  
+
   return (
     <div>
       <div className='card-btn-continuar'>
