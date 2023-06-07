@@ -16,6 +16,7 @@ export function CartPagBar({ Pedido }) {
   const [compra, setCompra] = useState([]);
   const [totalCart, setTotalCart] = useState('');
 
+  console.log(Pedido)
 
   useEffect(() => {
     Pedido.forEach((item) => {
@@ -23,9 +24,9 @@ export function CartPagBar({ Pedido }) {
       if (!itemExistente) {
         let novoItemPedido = {
           id: item.id,
-          cod_produto: '',
-          cod_grade: '',
-          cod_tamanho: '',
+          cod_produto: "",
+          cod_grade: "",
+          cod_tamanho: "",
           quantidade: item.quantity,
           observacao: item.observacoes,
           opcional: item.adicionalSelecionados,
@@ -42,14 +43,12 @@ export function CartPagBar({ Pedido }) {
           novoItemPedido = {
             ...novoItemPedido,
             cod_produto: item.produto.ID,
-            cod_grade: item.SaboresSelecionados.ID_GRADE,
+            cod_grade: item.SaboresSelecionados.map(item => item.ID_GRADE),
             cod_tamanho: item.produto.ID,
             Sabores: item.SaboresSelecionados
           };
         }
-  
-        setCompra((prevCompra) => [...prevCompra, novoItemPedido]);
-        console.log(Pedido)
+          setCompra((prevCompra) => [...prevCompra, novoItemPedido]);
       }
     });
   }, [Pedido, setCompra, Pedido.tipo]);
@@ -61,7 +60,7 @@ export function CartPagBar({ Pedido }) {
     total: totalCart,
     items_pedido: compra
   }
-
+  console.log(PedidoFinalizado)
 
   const handlePagar = (Pedido, PedidoFinalizado) => {
     EnviarPedidoAPI(PedidoFinalizado)

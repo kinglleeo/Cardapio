@@ -34,4 +34,3 @@ useEffect(() => {
     });
   }, [Pedido, setCompra, tipo]);
   
-
