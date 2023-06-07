@@ -1,50 +1,33 @@
-
-ListaProdutosAdicionais 
-const increaseQuantity = (index) => {
-    setListaAdicionais((prevState) => {
-      const updatedAdicionais = [...prevState];
-      updatedAdicionais[index].quantidade = updatedAdicionais[index].quantidade + 1;
-      return updatedAdicionais;
-    });
-    setQuantidadeTotal(quantidadeTotal + 1);
-  
-    setGruposAdicionais((prevGruposAdicionais) => {
-      const updatedGruposAdicionais = [...prevGruposAdicionais];
-      const item = updatedGruposAdicionais.find((item) => item.ID_GRUPO_OPCOES === idGrupoOpcoes);
-      const adicional = listasAdicionais[index];
-      item.totalDaLista = new Decimal(item.totalDaLista).plus(adicional.VALOR_VENDA).toNumber();
-      return updatedGruposAdicionais;
-    });
-  };
-  
-  const decreaseQuantity = (index) => {
-    setListaAdicionais((prevState) => {
-      const updatedAdicionais = [...prevState];
-      if (updatedAdicionais[index].quantidade) {
-        updatedAdicionais[index].quantidade = updatedAdicionais[index].quantidade - 1;
-  
-        setGruposAdicionais((prevGruposAdicionais) => {
-          const updatedGruposAdicionais = [...prevGruposAdicionais];
-          const item = updatedGruposAdicionais.find((item) => item.ID_GRUPO_OPCOES === idGrupoOpcoes);
-          const adicional = listasAdicionais[index];
-          item.totalDaLista = new Decimal(item.totalDaLista).minus(adicional.VALOR_VENDA).toNumber();
-          return updatedGruposAdicionais;
-        });
-      }
-      return updatedAdicionais;
-    });
-  
-    if (quantidadeTotal > 0) {
-      setQuantidadeTotal(quantidadeTotal - 1);
-    }
-  };
-  
-  useEffect(()=>{
-    let descricao = ""
-        listaOpcionaisCache.forEach((listaOpcionais) =>{
-            listaOpcionais.forEach((item) =>{
-                descricao +=  item.quantidade + " X " + item.DESCRICAO + " / "
-            })
-            setDescricao(descricao)
-        })
-}, [listaOpcionaisCache]);
+<div className='historicoItem-box'>
+              <div className='historico-date'> Dia {formatDate(item.date)} </div>
+              <div>
+                {item.items.map((item)=>
+                   <div className='carde carde-cart' key={item.idCart}>
+                   <div className='carde-inner '>
+                       <div className='cart-box'>
+                           <div className='cart-item2'>
+                               <div className='box-item-cart'>
+                                   <div className='cart-box-item-1'>
+                                       <div className='cart-box-item-name'>
+                                           <div>{item.nome}</div>
+                                       </div>
+                                       <div className='cart-box-item-descricao'>
+                                           <div className='cart-item-titulo-descricao'>{item.descricao === "" ? (<div></div>) : (<div> Descrição </div>)}</div>
+                                           <div className='cart-item-descricao'>{item.descricao}</div>
+                                       </div>
+                                   </div >
+                               </div>
+                           </div>
+                       </div>
+                       <div className='cart-box-observacoes'>
+                           <div className='cartbox-observacoes-text'> Observações </div>
+                           <div className='cartbox-observacoes-box'><div>{item.Observacao}</div></div>
+                       </div>
+                      <div className='AddToCar-Historico' >
+                        <button onClick={addCar} className='btn-historico' > Adicionar ao carrinho </button>
+                      </div>
+                   </div>
+               </div>
+                )}
+              </div>
+            </div>
