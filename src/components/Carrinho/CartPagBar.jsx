@@ -28,13 +28,13 @@ export function CartPagBar({ Pedido }) {
           cod_tamanho: "",
           quantidade: item.quantity,
           observacao: item.observacoes,
-          opcional: [
+          opcional: item.adicionalSelecionado ? [
             {
               Id: item.adicionalSelecionado.ID,
               valorVenda: item.adicionalSelecionado.VALOR_VENDA,
-              quantidade: item.adicionalSelecionado.quantidade
+              quantidade: item.adicionalSelecionado.quantidade 
             }
-          ],
+          ] : "",
           PIZZA_MISTA: item.tipo,
           Sabores: ""
         };
@@ -70,7 +70,7 @@ export function CartPagBar({ Pedido }) {
   console.log(PedidoFinalizado)
 
   const handlePagar = (Pedido, PedidoFinalizado) => {
-    EnviarPedidoAPI(PedidoFinalizado)
+    //EnviarPedidoAPI(PedidoFinalizado)
     BancodePedidos(Pedido)
   };
   
@@ -102,8 +102,7 @@ export function CartPagBar({ Pedido }) {
   const EnviarPedidoAPI =(PedidoFinalizado)=>{
     const pedidoString = JSON.stringify(PedidoFinalizado);
     axios
-      .post(`http://192.168.0.100:9865/inserirPedido/${pedidoString}`)
-    
+      .post(`http://192.168.0.100:9865/inserirPedido`, {PedidoFinalizado}) 
   }
 
   const handleCotinuar = () => {
