@@ -16,31 +16,9 @@
     });
   }, [listaSaboresPizzas]);
   
-  const EnviarPedidoAPI = (PedidoFinalizado) => {
-    const pedidoString = JSON.stringify(PedidoFinalizado);
-  
-    api
-      .post(`/inserirPedido/${pedidoString}`)
-      .then(response => {
-        console.log('Pedido finalizado enviado com sucesso!');
-        // Faça algo com a resposta, se necessário
-      })
-      .catch(error => {
-        console.error('Erro ao enviar o pedido finalizado:', error);
-      });
-  }
-  
-  const handleContinuar = () => {
-    navigate('/');
-  };
-  
-  const PedidoFinalizado = {
-    cnpj: '',
-    mesa: '2',
-    pagamento: 'balcão',
-    total: totalCart,
-    items_pedido: compra
-  };
-  
-  EnviarPedidoAPI(PedidoFinalizado);
-  
+.then(response => {
+      console.log('Pedido finalizado enviado com sucesso!');
+    })
+  .catch(error => {
+    console.error('Erro ao enviar o pedido finalizado:', error);
+  });

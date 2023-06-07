@@ -15,51 +15,53 @@ export function CartPagBar({ Pedido }) {
   const dispatch = useDispatch();
   const [compra, setCompra] = useState([]);
   const [totalCart, setTotalCart] = useState('');
-  
+
+
   useEffect(() => {
     Pedido.forEach((item) => {
       const itemExistente = compra.find((compraItem) => compraItem.id === item.id);
       if (!itemExistente) {
-        let items_pedido = {
+        let novoItemPedido = {
           id: item.id,
           cod_produto: '',
           cod_grade: '',
           cod_tamanho: '',
           quantidade: item.quantity,
           observacao: item.observacoes,
-          opcional: item.adicionalSelecionados
+          opcional: item.adicionalSelecionados,
+          Sabores: ""
         };
-  
-        if (Pedido.tipo === 'NÃO') {
-          items_pedido = {
-            ...items_pedido,
+        if (item.tipo === "NAO") {
+          novoItemPedido = {
+            ...novoItemPedido,
             cod_produto: item.produto.ID_PRODUTO,
             cod_grade: item.tamanhoEscolhido.ID_GRADE,
-            cod_tamanho: item.tamanhoEscolhido.ID,
+            cod_tamanho: item.tamanhoEscolhido.ID
           };
-        } else if (Pedido.tipo === 'SIM') {
-          items_pedido = {
-            ...items_pedido,
+        } else if (item.tipo === "SIM") {
+          novoItemPedido = {
+            ...novoItemPedido,
             cod_produto: item.produto.ID,
             cod_grade: item.SaboresSelecionados.ID_GRADE,
-            cod_tamanho: '',
+            cod_tamanho: item.produto.ID,
+            Sabores: item.SaboresSelecionados
           };
         }
   
-        setCompra((prevCompra) => [...prevCompra, items_pedido]);
+        setCompra((prevCompra) => [...prevCompra, novoItemPedido]);
+        console.log(Pedido)
       }
     });
-  }, [Pedido, setCompra]);
-  
+  }, [Pedido, setCompra, Pedido.tipo]);
+    
   const PedidoFinalizado = {
     cnpj: '',
     mesa: '2',
     pagamento: 'balcão',
     total: totalCart,
-    items_pedido:compra
+    items_pedido: compra
   }
 
-  
 
   const handlePagar = (Pedido, PedidoFinalizado) => {
     EnviarPedidoAPI(PedidoFinalizado)
@@ -93,15 +95,9 @@ export function CartPagBar({ Pedido }) {
 
   const EnviarPedidoAPI =(PedidoFinalizado)=>{
     const pedidoString = JSON.stringify(PedidoFinalizado);
-    api
-    .post(`/inserirPedido/${pedidoString}`)
-    .then(response => {
-      console.log('Pedido finalizado enviado com sucesso!');
-      // Faça algo com a resposta, se necessário
-    })
-  .catch(error => {
-    console.error('Erro ao enviar o pedido finalizado:', error);
-  });
+    axios
+      .post(`http://192.168.0.100:9865/inserirPedido/${pedidoString}`)
+    
   }
 
   const handleCotinuar = () => {
