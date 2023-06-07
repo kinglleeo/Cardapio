@@ -34,3 +34,16 @@ useEffect(() => {
     });
   }, [Pedido, setCompra, tipo]);
   
+  opcional: Array.isArray(item.adicionalSelecionado)
+  ? item.adicionalSelecionado.map(add => ({
+      Id: add.ID,
+      valorVenda: add.VALOR_VENDA,
+      quantidade: add.quantidade
+    }))
+  : [], 
+
+  opcional: item.adicionalSelecionado.map(add => ({
+    Id: add.ID,
+    valorVenda: add.VALOR_VENDA,
+    quantidade: add.quantidade
+  })),
