@@ -42,6 +42,8 @@ export default function SubGrupoList({ ID_GRUPO, grupoName, tipo }) {
 
   const produtos = useMemo(() => produtoCache[subGrupoAtivo] || [], [produtoCache, subGrupoAtivo]);
   
+  
+
   return (
     <div>
       {Array.isArray(subGrupo) ? (

@@ -4,12 +4,13 @@ import { removeItem} from '../../redux/cartSlice';
 import '../../Styles/StylesCart.css'
 import { CartPagBar } from './CartPagBar';
 import Footer from '../Footer/Footer'
+import { useLocation } from 'react-router-dom';
 
 export default function CartItem() {
   const dispatch = useDispatch()
   const cart = useSelector((state) => state.cart)
+  
 
- 
   return (
     <div> 
         <div className='todos-items-lista'>

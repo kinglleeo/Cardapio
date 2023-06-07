@@ -6,7 +6,6 @@ import { collection, addDoc, serverTimestamp, doc  } from "firebase/firestore";
 import { db, auth } from '../Usuarios/LoginPage/Firebase/firebaseConfig'
 import { useDispatch } from 'react-redux';
 import { clearCart } from '../../redux/cartSlice'
-import { api } from '../../conecções/api';
 import axios from 'axios';
  
 
@@ -15,7 +14,7 @@ export function CartPagBar({ Pedido }) {
   const dispatch = useDispatch();
   const [compra, setCompra] = useState([]);
   const [totalCart, setTotalCart] = useState('');
-  console.log(Pedido)
+  
 
   useEffect(() => {
     Pedido.forEach((item) => {
@@ -42,8 +41,8 @@ export function CartPagBar({ Pedido }) {
           novoItemPedido = {
             ...novoItemPedido,
             cod_produto: item.produto.ID_PRODUTO,
-            cod_grade: item.tamanhoEscolhido.ID_GRADE,
-            cod_tamanho: item.tamanhoEscolhido.ID
+            cod_grade: item.tamanhoEscolhido.ID_GRADE ? (item.tamanhoEscolhido.ID_GRADE) : (""),
+            cod_tamanho: item.tamanhoEscolhido.ID ? (item.tamanhoEscolhido.ID) : ("")
           };
         } else if (item.tipo === "SIM") {
           novoItemPedido = {
@@ -60,18 +59,11 @@ export function CartPagBar({ Pedido }) {
     });
   }, [Pedido, setCompra, Pedido.tipo]);
     
-  const PedidoFinalizado = {
-    cnpj: '',
-    mesa: '2',
-    pagamento: 'balcão',
-    total: totalCart,
-    items_pedido: compra
-  }
-  console.log(PedidoFinalizado)
 
-  const handlePagar = (Pedido, PedidoFinalizado) => {
-    //EnviarPedidoAPI(PedidoFinalizado)
-    BancodePedidos(Pedido)
+
+  const handlePagar = (totalCart, compra) => {
+    EnviarPedidoAPI(totalCart, compra)
+    //BancodePedidos(compra)
   };
   
   const BancodePedidos=()=>{
@@ -88,7 +80,7 @@ export function CartPagBar({ Pedido }) {
   
         const newOrderDocRef = await addDoc(orderCollectionRef, {
           date: serverTimestamp(),
-          items: Pedido 
+          items: compra 
         });
         dispatch(clearCart());
         navigate('/');
@@ -99,10 +91,16 @@ export function CartPagBar({ Pedido }) {
     saveBd();
   }
 
-  const EnviarPedidoAPI =(PedidoFinalizado)=>{
-    const pedidoString = JSON.stringify(PedidoFinalizado);
+  const EnviarPedidoAPI =(totalCart, compra)=>{
+    const pedidoString = JSON.stringify();
     axios
-      .post(`http://192.168.0.100:9865/inserirPedido`, {PedidoFinalizado}) 
+      .post(`http://192.168.0.100:9865/inserirPedido`, {
+        cnpj: '',
+        mesa: '2',
+        pagamento: 'balcão',
+        total: totalCart,
+        items_pedido: compra
+      }) 
   }
 
   const handleCotinuar = () => {

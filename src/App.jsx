@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Main from './components/Paginas/Main'
 import GrupoList from './components/Paginas/Produtos/GrupoList'
@@ -13,8 +14,26 @@ import PaginaUsuario from './components/Usuarios/UsuarioInfo/PaginaUsuario/Pagin
 import RedirectLogin from './components/Usuarios/LoginPage/RedirectLogin'
 import MainPizzas from './components/Paginas/Produtos/Pizzas/MainPizzas'
 import AdicionaisMain from './components/Paginas/Produtos/Adicionais/AdicionaisMain'
+import { useParams } from "react-router-dom";
 
 export default function App(){
+  const [mesa, setMesa] = useState('');
+  const [cnpj, setCnpj] = useState('');
+
+  console.log(mesa)
+  console.log(cnpj)
+  
+  //formato da ult: http://192.168.0.93:3000?mesa=2&cnpj=000000000000
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const mesaValue = urlParams.get('mesa');
+    const cnpjValue = urlParams.get('cnpj');
+    setMesa(mesaValue || '');
+    setCnpj(cnpjValue || '');
+  }, []);
+  
+  
+
     return(
       <UserAuthContextProvider>
           <Provider store={store}>
@@ -34,3 +53,6 @@ export default function App(){
         </UserAuthContextProvider>
     )
 }
+
+
+
