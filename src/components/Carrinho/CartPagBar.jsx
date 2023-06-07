@@ -15,7 +15,6 @@ export function CartPagBar({ Pedido }) {
   const dispatch = useDispatch();
   const [compra, setCompra] = useState([]);
   const [totalCart, setTotalCart] = useState('');
-
   console.log(Pedido)
 
   useEffect(() => {
@@ -29,7 +28,14 @@ export function CartPagBar({ Pedido }) {
           cod_tamanho: "",
           quantidade: item.quantity,
           observacao: item.observacoes,
-          opcional: item.adicionalSelecionados,
+          opcional: [
+            {
+              Id: item.adicionalSelecionado.ID,
+              valorVenda: item.adicionalSelecionado.VALOR_VENDA,
+              quantidade: item.adicionalSelecionado.quantidade
+            }
+          ],
+          PIZZA_MISTA: item.tipo,
           Sabores: ""
         };
         if (item.tipo === "NAO") {
@@ -42,10 +48,11 @@ export function CartPagBar({ Pedido }) {
         } else if (item.tipo === "SIM") {
           novoItemPedido = {
             ...novoItemPedido,
-            cod_produto: item.produto.ID,
-            cod_grade: item.SaboresSelecionados.map(item => item.ID_GRADE),
-            cod_tamanho: item.produto.ID,
-            Sabores: item.SaboresSelecionados
+            Sabores: item.SaboresSelecionados.map(sabor => ({
+              cod_Grade: sabor.ID_GRADE,
+              valorVenda: sabor.VALOR_VENDA,
+              quantidade: sabor.quantidade
+            }))            
           };
         }
           setCompra((prevCompra) => [...prevCompra, novoItemPedido]);
