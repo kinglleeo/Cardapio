@@ -35,5 +35,3 @@ useEffect(() => {
   }, [Pedido, setCompra, tipo]);
   
 
-
-
