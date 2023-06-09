@@ -10,7 +10,6 @@ export default function Historico(){
     const [user, setUser] = useState('');
 
 
-    console.log(historico)
     useEffect(()=>{
         const usuario = onAuthStateChanged(auth, (user)=>{
             setUser(user.uid)
@@ -30,19 +29,16 @@ export default function Historico(){
     };
 
     useEffect(() => {
-        if (user) {
-          const fetchHistorico = async () => {
-            const querySnapshot = await getDocs(collection(db, "usuario", user, "pedidos"));
-            const historicoData = querySnapshot.docs.map((doc) => doc.data());
-            sethistorico(historicoData);
-          };
-          fetchHistorico();
-        }
-      }, [user]);
-
-      const addCar=()=>{
-
+      if (user) {
+        const fetchHistorico = async () => {
+          const querySnapshot = await getDocs(collection(db, "usuario", user, "pedidos"));
+          const historicoData = querySnapshot.docs.map((doc) => doc.data());
+          sethistorico(historicoData);
+        };
+        fetchHistorico();
       }
+    }, [user]);
+
 
     return(
         <div className='lista-historico'>
@@ -82,7 +78,7 @@ export default function Historico(){
                             <div className='cart-item2'>
                               <div className='box-item-cart'>
                                 <div className='cart-box-item-name'>
-                                  <div> Pizza  {item.produto.TAMANHO}</div>
+                                  <div> Pizza  </div>
                                 </div>
                                 <div className='cart-box-item-descricao'>
                                   <div></div>

@@ -1,13 +1,11 @@
 import { React, useState, useEffect } from 'react'
 import './Adicionais.css'
 import Decimal from 'decimal.js';
-import { formCurrency } from '../../../AA-utilidades/numeros';
 import BtnCarrinho from './BtnCarrinho';
 
 
 
 export default function AdicionaisInfo({ tipo, Produto, adicionalSelecionado, totalValue, tamanhoEscolhido, observacoes, ID_GRUPO_OPCOES }){
-    const [add, setAdd] = useState('');
     const [totalCompra, setTotalCompra] = useState('');
     
 

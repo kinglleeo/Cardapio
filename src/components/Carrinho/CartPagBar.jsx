@@ -62,8 +62,8 @@ export function CartPagBar({ Pedido }) {
 
 
   const handlePagar = (totalCart, compra) => {
-    EnviarPedidoAPI(totalCart, compra)
-    //BancodePedidos(compra)
+    //EnviarPedidoAPI(totalCart, compra)
+    BancodePedidos(compra)
   };
   
   const BancodePedidos=()=>{
@@ -121,7 +121,7 @@ export function CartPagBar({ Pedido }) {
         />
       </div>
       <div className='card-btn-pagar'>
-        <button className='btn-pagar' onClick={()=> handlePagar(Pedido, PedidoFinalizado)}> Finalizar </button>
+        <button className='btn-pagar' onClick={()=> handlePagar(Pedido, compra)}> Finalizar </button>
       </div>       
     </div>
   );
