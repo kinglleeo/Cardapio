@@ -9,7 +9,7 @@ export default function SubGrupoList({ ID_GRUPO, grupoName, tipo }) {
   const [subGrupoAtivo, setSubGrupoAtivo] = useState(null);
   const [produtoCache, setProdutoCache] = useState({});
   const queryClient = useQueryClient();
- 
+
   useEffect(()=>{
     api
       .get(`/listaSubGrupos/${ID_GRUPO}`)

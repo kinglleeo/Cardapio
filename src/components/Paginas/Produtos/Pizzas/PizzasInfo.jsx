@@ -5,7 +5,7 @@ import BtnCarrinho from './BtnCarrinho-Pizza';
 
 export default function PizzasInfo({ data, tipo, Produto, valorTotalSabores, SaboresSelecionados, adicionalSelecionado, totalValue, observacoes, ID_GRUPO_OPCOES }){
     const [totalCompra, setTotalCompra] = useState('');
-
+    
     useEffect(() => {
         const ValorItem = new Decimal(Produto.VALOR_VENDA || 0)
         const ValorTamanho = new Decimal(totalValue || 0)
@@ -26,6 +26,7 @@ export default function PizzasInfo({ data, tipo, Produto, valorTotalSabores, Sab
                 ID_GRUPO_OPCOES={ID_GRUPO_OPCOES}
                 tipo={tipo}
                 IDPizzaMista={data.ID_PRODUTO}
+                ID_UNIDADE={data.ID_UNIDADE}
             />
         </div>
     )

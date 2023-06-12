@@ -42,6 +42,9 @@ export default function Login(){
                 <div className='btn-loginGoogle'>
                     <LoginGoogleFacebook/>
                 </div>
+                <div>
+                
+                </div>
             </div>
         </div>
     )

@@ -9,7 +9,6 @@ export default function BtnCarrinho({ tipo, Produto, adicionalSelecionado, taman
     const navigate = useNavigate()
     const queryClient = useQueryClient();
 
-
     const item ={
         produto: Produto,
         adicionalSelecionado: adicionalSelecionado,

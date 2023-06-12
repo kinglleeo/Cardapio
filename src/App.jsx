@@ -15,6 +15,7 @@ import RedirectLogin from './components/Usuarios/LoginPage/RedirectLogin'
 import MainPizzas from './components/Paginas/Produtos/Pizzas/MainPizzas'
 import AdicionaisMain from './components/Paginas/Produtos/Adicionais/AdicionaisMain'
 import { useParams } from "react-router-dom";
+import PaginaLoadLogin from './components/Usuarios/LoginPage/LoginMetodos/PaginaLoadLogin'
 
 export default function App(){
   const [mesa, setMesa] = useState('');
@@ -48,6 +49,7 @@ export default function App(){
               <Route path='/login' element={<LoginPage/>}></Route>
               <Route path='/CriarConta' element={<CriarConta/>}></Route>
               <Route path='/RedirectLogin' element={<RedirectLogin/>}/>
+              <Route path='/PaginaLoadLogin' element={<PaginaLoadLogin/>}/>
             </Routes>
           </Provider>
         </UserAuthContextProvider>

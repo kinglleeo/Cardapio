@@ -2,11 +2,10 @@ import React, { useEffect } from 'react';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import * as firebaseui from 'firebaseui';
-import 'firebaseui/dist/firebaseui.css';
-import { db } from '../Firebase/firebaseConfig'
-import { collection, addDoc } from "firebase/firestore";
+import 'firebaseui/dist/firebaseui.css'
 
 export default function LoginSociais () {
+  
   useEffect(() => {
     const firebaseConfig = {
       apiKey: "AIzaSyBDEDA0OOXbRvb_oYARfYB2y9d7k0azFd0",
@@ -37,32 +36,28 @@ export default function LoginSociais () {
           },
         },
       ],
-    
     };
 
     // Inicializa o FirebaseUI
-    const ui = 
-      firebaseui.auth.AuthUI.getInstance() 
+    const ui = firebaseui.auth.AuthUI.getInstance() 
           || new firebaseui.auth.AuthUI(firebase.auth());
     ui.start('#firebaseui-auth-container', uiConfig);
     
     firebase.auth().onAuthStateChanged((user) => {
       if (user){
-        addNewUserDocument(user);
+          try {
+              const userRed = addDoc (collection(db, "usuario"),{
+                email: user.email
+              })
+          }
+          catch (error) {
+              console.error(error)
+          }
       }
-    })
+    })    
+    
   }, []);
 
-  const addNewUserDocument = async (user) =>{
-    try {
-      const userRed = addDoc (collection(db, 'usuario'),{
-        email: user.email
-      })
-    }
-    catch (error) {
-      console.error(error)
-    }
-  }
   return (
     <div>
       <div id="firebaseui-auth-container"></div>

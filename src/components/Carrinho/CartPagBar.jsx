@@ -15,6 +15,7 @@ export function CartPagBar({ Pedido }) {
   const [compra, setCompra] = useState([]);
   const [totalCart, setTotalCart] = useState('');
 
+console.log(Pedido)
 
   useEffect(() => {
     Pedido.forEach((item) => {
@@ -25,6 +26,7 @@ export function CartPagBar({ Pedido }) {
           cod_produto: "",
           cod_grade: "",
           cod_tamanho: "",
+          ID_UNIDADE: item.produto.ID_UNIDADE,
           PIZZA_MISTA: item.tipo,
           quantidade: item.quantity,
           observacao: item.observacoes,
@@ -61,7 +63,7 @@ export function CartPagBar({ Pedido }) {
     });
   }, [Pedido, setCompra, Pedido.tipo]);
     
-  
+console.log(compra)  
 
   const handlePagar = (totalCart, compra, Pedido) => {
     EnviarPedidoAPI(totalCart, compra)
