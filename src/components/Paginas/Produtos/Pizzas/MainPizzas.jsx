@@ -1,7 +1,6 @@
 import { React, useState } from 'react'
 import Header from '../../../header/Header'
 import PizzasSabores from './SaboresPizza/PizzasSabores'
-import AdicionaisPizza from './AdicionaisPizza/AdicionaisPizza'
 import GrupoAdicionais from '../Adicionais/GrupoAdicionais'
 import Observacoes from '../Adicionais/Observacoes'
 import PizzasInfo from './PizzasInfo'
@@ -24,6 +23,7 @@ export default function MainPizza(){
 
     const [ID_GRUPO_OPCOES, setID_GRUPO_OPCOES] = useState('');
     
+
     return(
         <div>
             <div>
@@ -39,6 +39,7 @@ export default function MainPizza(){
                     observacoes={observacoes}
                     ID_GRUPO_OPCOES={ID_GRUPO_OPCOES}
                     tipo={tipo}
+                    data={data}
                 />
             </div>
             <div>
@@ -47,9 +48,6 @@ export default function MainPizza(){
                     setSaboresSelecionados={setSaboresSelecionados}
                     SaboresSelecionados={SaboresSelecionados}
                 />
-            </div>
-            <div>
-                <AdicionaisPizza/>
             </div>
             <div>
                 <GrupoAdicionais

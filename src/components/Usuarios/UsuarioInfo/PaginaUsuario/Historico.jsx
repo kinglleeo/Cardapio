@@ -4,11 +4,19 @@ import { onAuthStateChanged } from 'firebase/auth'
 import { auth, db } from '../../LoginPage/Firebase/firebaseConfig';
 import '../../../../Styles/StylesCart.css'
 import './historico.css'
+import { formCurrency } from '../../../AA-utilidades/numeros';
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import Iconcarrinho from '../../../Carrinho/Iconcarrinho'
+import { addToCart } from '../../../../redux/cartSlice'
 
 export default function Historico(){
     const [historico, sethistorico] = useState([]);
     const [user, setUser] = useState('');
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
+    console.log(historico)
 
     useEffect(()=>{
         const usuario = onAuthStateChanged(auth, (user)=>{
@@ -39,6 +47,10 @@ export default function Historico(){
       }
     }, [user]);
 
+    const AddCart=(item)=>{
+      dispatch(addToCart(item))
+    }
+
 
     return(
         <div className='lista-historico'>
@@ -56,16 +68,19 @@ export default function Historico(){
                             <div className='cart-item2'>
                               <div className='box-item-cart'>
                                 <div className='cart-box-item-name'>
-                                  <div>{item.produto.PRODUTO}</div>
+                                  <div> {item.produto.PRODUTO} </div><div> {item.quantity} </div>
                                 </div>
                                 <div className='cart-box-item-descricao'>
-                                  <div>{item.adicionalSelecionado.PRODUTO}</div>
+                                  <div></div>
                                 </div>
                               </div>
                             </div>
                           </div>
                           <div className='cart-box-observacoes'>
-                            <div> {item.totalCompra} </div>
+                            <div> {formCurrency.format(item.totalCompra)} </div>
+                          </div>
+                          <div>
+                            <button onClick={()=> AddCart(item)}> Add Carrinho </button>
                           </div>
                         </div>
                       </div>
@@ -78,7 +93,7 @@ export default function Historico(){
                             <div className='cart-item2'>
                               <div className='box-item-cart'>
                                 <div className='cart-box-item-name'>
-                                  <div> Pizza  </div>
+                                  <div> Pizza {item.produto.TAMANHO} </div><div> {item.quantity} </div>
                                 </div>
                                 <div className='cart-box-item-descricao'>
                                   <div></div>
@@ -87,7 +102,13 @@ export default function Historico(){
                             </div>
                           </div>
                           <div className='cart-box-observacoes'>
-                            <div> {item.totalCompra} </div>
+                            <div> {item.SaboresSelecionados.map(item => item.PRODUTO)} </div>
+                          </div>
+                          <div>
+                            <div> {formCurrency.format(item.totalCompra)} </div>
+                          </div>
+                          <div>
+                            <button onClick={()=> AddCart(item)}> Add Carrinho </button>
                           </div>
                         </div>
                       </div>
@@ -98,7 +119,9 @@ export default function Historico(){
               </div>
             </div>
           )}
-           
+          <div>
+            <Iconcarrinho/>
+          </div>
         </div>
     )
 }

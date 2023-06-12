@@ -14,7 +14,7 @@ export function CartPagBar({ Pedido }) {
   const dispatch = useDispatch();
   const [compra, setCompra] = useState([]);
   const [totalCart, setTotalCart] = useState('');
-  
+
 
   useEffect(() => {
     Pedido.forEach((item) => {
@@ -25,17 +25,17 @@ export function CartPagBar({ Pedido }) {
           cod_produto: "",
           cod_grade: "",
           cod_tamanho: "",
+          PIZZA_MISTA: item.tipo,
           quantidade: item.quantity,
           observacao: item.observacoes,
-          opcional: item.adicionalSelecionado ? [
-            {
+          opcional: item.adicionalSelecionado ? 
+            [{
               Id: item.adicionalSelecionado.ID,
               valorVenda: item.adicionalSelecionado.VALOR_VENDA,
               quantidade: item.adicionalSelecionado.quantidade 
-            }
-          ] : "",
-          PIZZA_MISTA: item.tipo,
-          Sabores: ""
+            }]
+           : [{}],
+          Sabores: [{}]
         };
         if (item.tipo === "NAO") {
           novoItemPedido = {
@@ -47,7 +47,9 @@ export function CartPagBar({ Pedido }) {
         } else if (item.tipo === "SIM") {
           novoItemPedido = {
             ...novoItemPedido,
+            cod_produto: item.IDPizzaMista,
             Sabores: item.SaboresSelecionados.map(sabor => ({
+              sabor: sabor.PRODUTO,
               cod_Grade: sabor.ID_GRADE,
               valorVenda: sabor.VALOR_VENDA,
               quantidade: sabor.quantidade
@@ -59,11 +61,11 @@ export function CartPagBar({ Pedido }) {
     });
   }, [Pedido, setCompra, Pedido.tipo]);
     
+  
 
-
-  const handlePagar = (totalCart, compra) => {
+  const handlePagar = (totalCart, compra, Pedido) => {
     //EnviarPedidoAPI(totalCart, compra)
-    BancodePedidos(compra)
+    BancodePedidos(Pedido)
   };
   
   const BancodePedidos=()=>{
@@ -80,7 +82,7 @@ export function CartPagBar({ Pedido }) {
   
         const newOrderDocRef = await addDoc(orderCollectionRef, {
           date: serverTimestamp(),
-          items: compra 
+          items: Pedido
         });
         dispatch(clearCart());
         navigate('/');
@@ -91,15 +93,17 @@ export function CartPagBar({ Pedido }) {
     saveBd();
   }
 
-  const EnviarPedidoAPI =(totalCart, compra)=>{
+  const items_pedido = compra
+
+  const EnviarPedidoAPI =(totalCart, items_pedido)=>{
     const pedidoString = JSON.stringify();
     axios
       .post(`http://192.168.0.100:9865/inserirPedido`, {
         cnpj: '',
         mesa: '2',
         pagamento: 'balcão',
-        total: totalCart,
-        items_pedido: compra
+        items_pedido: items_pedido, 
+        total: totalCart
       }) 
   }
 
@@ -121,7 +125,7 @@ export function CartPagBar({ Pedido }) {
         />
       </div>
       <div className='card-btn-pagar'>
-        <button className='btn-pagar' onClick={()=> handlePagar(Pedido, compra)}> Finalizar </button>
+        <button className='btn-pagar' onClick={()=> handlePagar(totalCart, items_pedido, Pedido)}> Finalizar </button>
       </div>       
     </div>
   );
