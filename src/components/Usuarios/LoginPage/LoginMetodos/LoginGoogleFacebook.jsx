@@ -48,15 +48,15 @@ export default function LoginSociais () {
     
     firebase.auth().onAuthStateChanged((user) => {
       if (user){
-        addNewUserDocument(user.email);
+        addNewUserDocument(user);
       }
     })
   }, []);
 
-  const addNewUserDocument = async (email) =>{
+  const addNewUserDocument = async (user) =>{
     try {
       const userRed = addDoc (collection(db, 'usuario'),{
-        email: email
+        email: user.email
       })
     }
     catch (error) {

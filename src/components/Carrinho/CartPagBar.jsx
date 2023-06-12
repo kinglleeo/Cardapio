@@ -30,12 +30,12 @@ export function CartPagBar({ Pedido }) {
           observacao: item.observacoes,
           opcional: item.adicionalSelecionado ? 
             [{
-              Id: item.adicionalSelecionado.ID,
+              id: item.adicionalSelecionado.ID,
               valorVenda: item.adicionalSelecionado.VALOR_VENDA,
               quantidade: item.adicionalSelecionado.quantidade 
             }]
            : [{}],
-          Sabores: [{}]
+          sabores: [{}]
         };
         if (item.tipo === "NAO") {
           novoItemPedido = {
@@ -48,7 +48,7 @@ export function CartPagBar({ Pedido }) {
           novoItemPedido = {
             ...novoItemPedido,
             cod_produto: item.IDPizzaMista,
-            Sabores: item.SaboresSelecionados.map(sabor => ({
+            sabores: item.SaboresSelecionados.map(sabor => ({
               sabor: sabor.PRODUTO,
               cod_Grade: sabor.ID_GRADE,
               valorVenda: sabor.VALOR_VENDA,
@@ -64,8 +64,8 @@ export function CartPagBar({ Pedido }) {
   
 
   const handlePagar = (totalCart, compra, Pedido) => {
-    //EnviarPedidoAPI(totalCart, compra)
-    BancodePedidos(Pedido)
+    EnviarPedidoAPI(totalCart, compra)
+    //BancodePedidos(Pedido)
   };
   
   const BancodePedidos=()=>{
@@ -77,7 +77,7 @@ export function CartPagBar({ Pedido }) {
           return;
         }
   
-        const userDocRef = doc(db, "usuario", user.uid); 
+        const userDocRef = doc(db, "usuario", user.email); 
         const orderCollectionRef = collection(userDocRef, "pedidos"); 
   
         const newOrderDocRef = await addDoc(orderCollectionRef, {
