@@ -5,8 +5,7 @@ import Decimal from 'decimal.js';
 
 
 export default function ListaAdicionais({ setQuantidadeTotal, quantidadeTotal, Maximo, listaAdicionais, setListaAdicionais }){
-    
- 
+
     useEffect(() => {
         if (Array.isArray(listaAdicionais)) {
         const total = listaAdicionais.reduce((accumulator, item) => accumulator + item.quantidade, 0);
@@ -17,42 +16,17 @@ export default function ListaAdicionais({ setQuantidadeTotal, quantidadeTotal, M
     const aumentarQuantidade = (index) => {
       const updatedListaOpcionais = [...listaAdicionais];
       const quantidade = new Decimal(updatedListaOpcionais[index].quantidade);
-      const valorVenda = new Decimal(updatedListaOpcionais[index].VALOR_VENDA);
-      const valorCusto = new Decimal(updatedListaOpcionais[index].VALOR_CUSTO);
-      const quantidadeTotal = new Decimal(updatedListaOpcionais[index].quantidadeTotal);
       updatedListaOpcionais[index].quantidade = quantidade.plus(1).toNumber();
-    
-      if (updatedListaOpcionais[index].DIVIDIR === "SIM") {
-        updatedListaOpcionais[index].totalCusto = valorCusto.times(quantidade).dividedBy(quantidadeTotal).toNumber();
-        updatedListaOpcionais[index].valorTotalProduto = valorVenda.times(quantidade).dividedBy(quantidadeTotal).toNumber();
-      } else {
-        updatedListaOpcionais[index].totalCusto = valorCusto.times(quantidade).toNumber();
-        updatedListaOpcionais[index].valorTotalProduto = valorVenda.times(quantidade).toNumber();
-      }
-    
-      setListaAdicionais(updatedListaOpcionais);
-    };
-    
-    const diminuirQuantidade = (index) => {
+          setListaAdicionais(updatedListaOpcionais);
+  };
+  const diminuirQuantidade = (index) => {
       const updatedListaOpcionais = [...listaAdicionais];
       const quantidade = new Decimal(updatedListaOpcionais[index].quantidade);
-      const valorVenda = new Decimal(updatedListaOpcionais[index].VALOR_VENDA);
-      const valorCusto = new Decimal(updatedListaOpcionais[index].VALOR_CUSTO);
-      const quantidadeTotal = new Decimal(updatedListaOpcionais[index].quantidadeTotal);
-    
       if (quantidade.gt(0)) {
-        updatedListaOpcionais[index].quantidade = quantidade.minus(1).toNumber();
-        updatedListaOpcionais[index].valorTotalProduto = quantidade.minus(1).times(valorVenda).toNumber();
-    
-        if (updatedListaOpcionais[index].DIVIDIR === "SIM") {
-          updatedListaOpcionais[index].totalCusto = valorCusto.times(quantidade).dividedBy(quantidadeTotal).toNumber();
-        } else {
-          updatedListaOpcionais[index].totalCusto = valorCusto.times(quantidade).toNumber();
-        }
-    
-        setListaAdicionais(updatedListaOpcionais);
+      updatedListaOpcionais[index].quantidade = quantidade.minus(1).toNumber();
+          setListaAdicionais(updatedListaOpcionais);
       }
-    };
+  };
   
     const Escolhidos = () => {
         let escolhidos = quantidadeTotal

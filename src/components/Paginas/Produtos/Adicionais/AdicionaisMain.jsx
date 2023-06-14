@@ -22,10 +22,10 @@ export default function AdicionaisMain(){
     
     const [ID_GRUPO_OPCOES, setID_GRUPO_OPCOES] = useState('');
 
-    const [adicionaisTotais, setAdicionaisTotais] = useState('');
 
-    const [totalCustoAdicionais, setTotalCusto] = useState('');
+    const [quantidadeTotal, setQuantidadeTotal] = useState(0);
 
+    
     return(
         <div>
             <div>
@@ -40,8 +40,6 @@ export default function AdicionaisMain(){
                     observacoes={observacoes}
                     ID_GRUPO_OPCOES={ID_GRUPO_OPCOES}
                     tipo={tipo}
-                    adicionaisTotais={adicionaisTotais}
-                    totalCustoAdicionais={totalCustoAdicionais}
                 />
             </div>
             <div>
@@ -55,8 +53,7 @@ export default function AdicionaisMain(){
                     setAdicionalSelecionado={setAdicionalSelecionado}
                     setTotalValue={setTotalValue}
                     setID_GRUPO_OPCOES={setID_GRUPO_OPCOES}
-                    setAdicionaisTotais={setAdicionaisTotais}
-                    setTotalCusto={setTotalCusto}
+                    setQuantidadeTotal={setQuantidadeTotal}
                 />
             </div>
             <div>
