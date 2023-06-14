@@ -21,9 +21,6 @@ export default function UsuarioBar(){
             <div className='userbar-deslogar'>
                 <Deslogar/>
             </div>
-            <div className='userbar-name'>
-                <div> {user.displayName} </div>
-            </div>
             <div className='userbar-icon'>
                 <Link to='/PaginaUsuario'>
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-person-circle" viewBox="0 0 16 16">

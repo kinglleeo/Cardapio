@@ -9,6 +9,7 @@ export default function ProdutoList({ produto, grupoName, subGrupoName, tipo }){
     const Adicionais = (data, grupoName, subGrupoName, tipo) => {
         navigate('/AdicionaisMain', { state: { data, grupoName, subGrupoName, tipo } });
       };
+    
     return(
         <div>
            <div className='lista-produtos'>

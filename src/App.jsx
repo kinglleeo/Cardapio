@@ -14,8 +14,8 @@ import PaginaUsuario from './components/Usuarios/UsuarioInfo/PaginaUsuario/Pagin
 import RedirectLogin from './components/Usuarios/LoginPage/RedirectLogin'
 import MainPizzas from './components/Paginas/Produtos/Pizzas/MainPizzas'
 import AdicionaisMain from './components/Paginas/Produtos/Adicionais/AdicionaisMain'
-import { useParams } from "react-router-dom";
 import PaginaLoadLogin from './components/Usuarios/LoginPage/LoginMetodos/PaginaLoadLogin'
+import TelaInicialCardapio from './TelaInicialCardapio'
 
 export default function App(){
   const [mesa, setMesa] = useState('');
@@ -39,13 +39,14 @@ export default function App(){
       <UserAuthContextProvider>
           <Provider store={store}>
             <Routes>
-              <Route path='/' element={ <ProtectedRoute> <Main/> </ProtectedRoute> } />
-              <Route path='/Carrinho' element={ <ProtectedRoute> <Carrinho/> </ProtectedRoute> }/>
-              <Route path='/GrupoList' element={ <ProtectedRoute> <GrupoList/> </ProtectedRoute> }/>
-              <Route path='/Pagamentos' element={ <ProtectedRoute> <Pagamentos/> </ProtectedRoute> }/>
-              <Route path='/PaginaUsuario' element={<ProtectedRoute> <PaginaUsuario/> </ProtectedRoute>}/>
-              <Route path='/AdicionaisMain' element={<ProtectedRoute> <AdicionaisMain/> </ProtectedRoute>}/>
-              <Route path='/Pizzas' element={<ProtectedRoute> <MainPizzas/> </ProtectedRoute>}/>
+              <Route path='/' element={<TelaInicialCardapio/>}/>
+              <Route path='/Main' element={ <Main/> } />
+              <Route path='/Carrinho' element={ <Carrinho/>  }/>
+              <Route path='/GrupoList' element={ <GrupoList/> }/>
+              <Route path='/Pagamentos' element={ <Pagamentos/> }/>
+              <Route path='/PaginaUsuario' element={ <PaginaUsuario/> }/>
+              <Route path='/AdicionaisMain' element={ <AdicionaisMain/> }/>
+              <Route path='/Pizzas' element={ <MainPizzas/> }/>
               <Route path='/login' element={<LoginPage/>}></Route>
               <Route path='/CriarConta' element={<CriarConta/>}></Route>
               <Route path='/RedirectLogin' element={<RedirectLogin/>}/>

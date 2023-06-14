@@ -3,9 +3,9 @@ import { useLocation } from 'react-router-dom';
 import { api } from '../../../../conecções/api';
 import { useQueryClient } from '@tanstack/react-query';
 import ListaAdicionais from './ListaAdicionais';
-import Decimal from 'decimal.js';
+import Decimal from 'decimal.js'; 
 
-export default function GrupoAdicionais({ setAdicionalSelecionado, setTotalValue, setID_GRUPO_OPCOES }){
+export default function GrupoAdicionais({ setAdicionaisTotais, setAdicionalSelecionado, setTotalValue, setID_GRUPO_OPCOES }){
     const [listaGrupoOpcionais, setGruposAdicionais] = useState([]);
     const [listaAdicionais, setListaAdicionais] = useState([])
     const [listaAdicionaisAtivo, setListaAdicionaisAtivo] = useState(null);
@@ -55,7 +55,7 @@ export default function GrupoAdicionais({ setAdicionalSelecionado, setTotalValue
         const queryCache = queryClient.getQueryCache();
         const listaAdicionaisCache = queryCache.findAll('listaAdicionais').map((query) => query.state.data);
 
-      console.log(listaAdicionaisCache)
+      
       
       useEffect(() => {
         listaAdicionaisCache.forEach((listaAdicionais) => {
@@ -111,6 +111,7 @@ export default function GrupoAdicionais({ setAdicionalSelecionado, setTotalValue
                                 Maximo={item.MAXIMO}
                                 listaAdicionais={listaAdicionais}
                                 setListaAdicionais={setListaAdicionais}
+                                setAdicionaisTotais={setAdicionaisTotais}
                             />
                         )}
                     </div>

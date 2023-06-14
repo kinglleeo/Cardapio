@@ -22,6 +22,8 @@ export default function AdicionaisMain(){
     
     const [ID_GRUPO_OPCOES, setID_GRUPO_OPCOES] = useState('');
 
+    const [adicionaisTotais, setAdicionaisTotais] = useState('');
+
     return(
         <div>
             <div>
@@ -36,6 +38,7 @@ export default function AdicionaisMain(){
                     observacoes={observacoes}
                     ID_GRUPO_OPCOES={ID_GRUPO_OPCOES}
                     tipo={tipo}
+                    adicionaisTotais={adicionaisTotais}
                 />
             </div>
             <div>
@@ -48,6 +51,7 @@ export default function AdicionaisMain(){
                     setAdicionalSelecionado={setAdicionalSelecionado}
                     setTotalValue={setTotalValue}
                     setID_GRUPO_OPCOES={setID_GRUPO_OPCOES}
+                    setAdicionaisTotais={setAdicionaisTotais}
                 />
             </div>
             <div>

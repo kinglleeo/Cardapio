@@ -21,7 +21,7 @@ export default function LoginSociais () {
     
     // Configuração do FirebaseUI
     const uiConfig = {
-      signInSuccessUrl: '/',
+      //signInSuccessUrl: '/PaginaLoadLogin',
       signInOptions: [
         {
           provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -55,7 +55,6 @@ export default function LoginSociais () {
           }
       }
     })    
-    
   }, []);
 
   return (
@@ -64,4 +63,3 @@ export default function LoginSociais () {
     </div>
   )
 };
-

@@ -15,45 +15,48 @@ export function CartPagBar({ Pedido }) {
   const [compra, setCompra] = useState([]);
   const [totalCart, setTotalCart] = useState('');
 
-console.log(Pedido)
-
   useEffect(() => {
     Pedido.forEach((item) => {
       const itemExistente = compra.find((compraItem) => compraItem.id === item.id);
       if (!itemExistente) {
         let novoItemPedido = {
           id: item.id,
-          cod_produto: "",
-          cod_grade: "",
-          cod_tamanho: "",
-          ID_UNIDADE: item.produto.ID_UNIDADE,
-          PIZZA_MISTA: item.tipo,
+          id_produto: "",
+          id_grade: "",
+          id_tamanho: "",
+          id_unidade: "",
+          valor_custo: 0,
+          valor_venda: "",
+          pizza_mista: item.tipo,
           quantidade: item.quantity,
           observacao: item.observacoes,
           opcional: item.adicionalSelecionado ? 
             [{
               id: item.adicionalSelecionado.ID,
-              valorVenda: item.adicionalSelecionado.VALOR_VENDA,
-              quantidade: item.adicionalSelecionado.quantidade 
+              valor_venda: item.adicionalSelecionado.VALOR_VENDA,
+              quantidade: item.adicionalSelecionado.quantidade
             }]
-           : [{}],
-          sabores: [{}]
+           : [],
+          sabores: []
         };
         if (item.tipo === "NAO") {
           novoItemPedido = {
             ...novoItemPedido,
-            cod_produto: item.produto.ID_PRODUTO,
-            cod_grade: item.tamanhoEscolhido.ID_GRADE ? (item.tamanhoEscolhido.ID_GRADE) : (""),
-            cod_tamanho: item.tamanhoEscolhido.ID ? (item.tamanhoEscolhido.ID) : ("")
+            id_unidade: item.produto.ID_UNIDADE,
+            id_produto: item.produto.ID_PRODUTO,
+            valor_venda: item.totalCompra,
+            id_grade: item.tamanhoEscolhido.ID_GRADE ? (item.tamanhoEscolhido.ID_GRADE) : (""),
+            id_tamanho: item.tamanhoEscolhido.ID ? (item.tamanhoEscolhido.ID) : (""),
           };
         } else if (item.tipo === "SIM") {
           novoItemPedido = {
             ...novoItemPedido,
-            cod_produto: item.IDPizzaMista,
+            id_produto: item.IDPizzaMista,
+            valor_venda: item.totalCompra,
             sabores: item.SaboresSelecionados.map(sabor => ({
               sabor: sabor.PRODUTO,
-              cod_Grade: sabor.ID_GRADE,
-              valorVenda: sabor.VALOR_VENDA,
+              id_grade: sabor.ID_GRADE,
+              valor_venda: sabor.VALOR_VENDA,
               quantidade: sabor.quantidade
             }))            
           };
@@ -62,8 +65,7 @@ console.log(Pedido)
       }
     });
   }, [Pedido, setCompra, Pedido.tipo]);
-    
-console.log(compra)  
+
 
   const handlePagar = (totalCart, compra, Pedido) => {
     EnviarPedidoAPI(totalCart, compra)
@@ -103,14 +105,18 @@ console.log(compra)
       .post(`http://192.168.0.100:9865/inserirPedido`, {
         cnpj: '',
         mesa: '2',
+        total: totalCart,
         pagamento: 'balcão',
         items_pedido: items_pedido, 
-        total: totalCart
-      }) 
+      })
+      .then((response)=>{
+          console.log(response)
+          alert('Pedido Feito')
+      })
   }
 
   const handleCotinuar = () => {
-    navigate('/');
+    navigate('/Main');
   };
 
   return (

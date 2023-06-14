@@ -15,8 +15,6 @@ export default function Infos(){
 
     return(
         <div className='infos'>
-            <div>{user.displayName}</div>
-            <div>{user.email}</div>
         </div>
     )
 }

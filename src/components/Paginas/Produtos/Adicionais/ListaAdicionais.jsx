@@ -4,13 +4,16 @@ import { formCurrency } from '../../../AA-utilidades/numeros';
 import Decimal from 'decimal.js';
 
 
-export default function ListaAdicionais({ Maximo, listaAdicionais, setListaAdicionais }){
+export default function ListaAdicionais({ setAdicionaisTotais, Maximo, listaAdicionais, setListaAdicionais }){
     const [quantidadeTotal, setQuantidadeTotal] = useState(0);
-
+    const [valorCustoAdicionais, setValorCustoAdicionais] = useState('');
+ 
+    
     useEffect(() => {
         if (Array.isArray(listaAdicionais)) {
         const total = listaAdicionais.reduce((accumulator, item) => accumulator + item.quantidade, 0);
             setQuantidadeTotal(total);
+            setAdicionaisTotais(total)
         }
     }, [listaAdicionais]);
 
@@ -32,7 +35,6 @@ export default function ListaAdicionais({ Maximo, listaAdicionais, setListaAdici
             setListaAdicionais(updatedListaOpcionais);
         }
     };
-  
   
     const Escolhidos = () => {
         let escolhidos = quantidadeTotal

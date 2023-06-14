@@ -5,8 +5,6 @@ import IconeCarrinho from '../Carrinho/Iconcarrinho'
 export default function Main() {
 
   
-
-
   return ( 
     <div>
         <div>

@@ -6,9 +6,8 @@ import { useQueryClient } from '@tanstack/react-query';
 import './cssParaPizzas.css'
 
 
-export default function ListaProdutosAdicionais({ listaSaboresPizzas, setListaSaboresPizzas, Min, Max, setValorTotalSabores, setSaboresSelecionados, SaboresSelecionados }) {
+export default function ListaProdutosAdicionais({ quantidadeTotal, setQuantidadeTotal, listaSaboresPizzas, setListaSaboresPizzas, Min, Max, setValorTotalSabores, setSaboresSelecionados, SaboresSelecionados }) {
   const queryClient = useQueryClient();
-  const [quantidadeTotal, setQuantidadeTotal] = useState(0);
   const [listaSalgadasAtiva, setListaSalgadasAtiva] = useState(null);
   const [listaDocesAtiva, setListaDocesAtiva] = useState(null);
   const Idsalgadas = '1'
