@@ -13,7 +13,7 @@ export default function AdicionaisMain(){
     //produto 
     const { data } = state;
     //adicionais
-    const [adicionalSelecionado, setAdicionalSelecionado] = useState('');
+    const [adicionalSelecionado, setAdicionalSelecionado] = useState([]);
     const [totalValue, setTotalValue] = useState('');
     //AdicionaisTamanho
     const [tamanhoEscolhido, setTamanhoEscolhido] = useState([]);
@@ -23,6 +23,8 @@ export default function AdicionaisMain(){
     const [ID_GRUPO_OPCOES, setID_GRUPO_OPCOES] = useState('');
 
     const [adicionaisTotais, setAdicionaisTotais] = useState('');
+
+    const [totalCusto, setTotalCusto] = useState('');
 
     return(
         <div>
@@ -39,6 +41,7 @@ export default function AdicionaisMain(){
                     ID_GRUPO_OPCOES={ID_GRUPO_OPCOES}
                     tipo={tipo}
                     adicionaisTotais={adicionaisTotais}
+                    totalCusto={totalCusto}
                 />
             </div>
             <div>
@@ -48,10 +51,12 @@ export default function AdicionaisMain(){
             </div>
             <div>
                 <GrupoAdicionais
+                    adicionalSelecionado={adicionalSelecionado}
                     setAdicionalSelecionado={setAdicionalSelecionado}
                     setTotalValue={setTotalValue}
                     setID_GRUPO_OPCOES={setID_GRUPO_OPCOES}
                     setAdicionaisTotais={setAdicionaisTotais}
+                    setTotalCusto={setTotalCusto}
                 />
             </div>
             <div>

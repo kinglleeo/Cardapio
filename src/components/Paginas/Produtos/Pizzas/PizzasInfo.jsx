@@ -3,10 +3,9 @@ import './PizzasInfo.css'
 import Decimal from 'decimal.js';
 import BtnCarrinho from './BtnCarrinho-Pizza';
 
-export default function PizzasInfo({ quantidadeTotal, data, tipo, Produto, valorTotalSabores, SaboresSelecionados, adicionalSelecionado, totalValue, observacoes, ID_GRUPO_OPCOES }){
+export default function PizzasInfo({ totalCusto, data, tipo, Produto, valorTotalSabores, SaboresSelecionados, adicionalSelecionado, totalValue, observacoes, ID_GRUPO_OPCOES }){
     const [totalCompra, setTotalCompra] = useState('');
-    const [custoTotal, setCustoTotal] = useState('');
-    console.log(adicionalSelecionado)
+   
 
     useEffect(() => {
         const ValorItem = new Decimal(Produto.VALOR_VENDA || 0)
@@ -16,13 +15,7 @@ export default function PizzasInfo({ quantidadeTotal, data, tipo, Produto, valor
             setTotalCompra(Total.toNumber().toFixed(2));
       }, [totalValue, Produto, valorTotalSabores]);
 
-    useEffect(()=>{
-        const valorCusto = new Decimal(SaboresSelecionados.VALOR_CUSTO || 0)
-            const dividedValue = valorCusto.dividedBy(quantidadeTotal);    
-        const custoTotal = (dividedValue).plus(adicionalSelecionado.VALOR_CUSTO || 0)
-            setCustoTotal(custoTotal.toNumber().toFixed(2))
-    }, [Produto, quantidadeTotal])
-
+      
 
     return(
         <div className='PizzasInfo'>
@@ -36,7 +29,7 @@ export default function PizzasInfo({ quantidadeTotal, data, tipo, Produto, valor
                 tipo={tipo}
                 IDPizzaMista={data.ID_PRODUTO}
                 ID_UNIDADE={data.ID_UNIDADE}
-                custoTotal={custoTotal}
+                custoTotal={totalCusto}
             />
         </div>
     )

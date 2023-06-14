@@ -24,8 +24,8 @@ export default function MainPizza(){
     const [ID_GRUPO_OPCOES, setID_GRUPO_OPCOES] = useState('');
     
     const [quantidadeTotal, setQuantidadeTotal] = useState(0);
+    const [totalCusto, setTotalCusto] = useState('');
 
-    const [adicionaisTotais, setAdicionaisTotais] = useState('');
 
     return(
         <div>
@@ -44,6 +44,7 @@ export default function MainPizza(){
                     tipo={tipo}
                     data={data}
                     quantidadeTotal={quantidadeTotal}
+                    totalCusto={totalCusto}
                 />
             </div>
             <div>
@@ -61,7 +62,8 @@ export default function MainPizza(){
                     setAdicionalSelecionado={setAdicionalSelecionado}
                     setTotalValue={setTotalValue}
                     setID_GRUPO_OPCOES={setID_GRUPO_OPCOES}
-                    setAdicionaisTotais={setAdicionaisTotais}
+                    adicionalSelecionado={adicionalSelecionado}
+                    setTotalCusto={setTotalCusto}
                 />
             </div>
             <div>

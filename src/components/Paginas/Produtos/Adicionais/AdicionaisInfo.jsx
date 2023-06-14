@@ -18,12 +18,8 @@ export default function AdicionaisInfo({ adicionaisTotais, tipo, Produto, adicio
             setTotalCompra(Total.toNumber().toFixed(2));
       }, [totalValue, Produto, tamanhoEscolhido]);
 
-    useEffect(()=>{
-        const valorCusto = new Decimal(Produto.VALOR_CUSTO || 0)
-        const valorCustoAdicional = new Decimal(adicionalSelecionado.VALOR_CUSTO || 0).dividedBy(adicionaisTotais || 0)
-        const custoTotal = (valorCusto).plus(valorCustoAdicional)
-            setCustoTotal(custoTotal.toNumber().toFixed(2));
-    }, [Produto, adicionalSelecionado, adicionaisTotais])
+
+
 
     return(
         <div className='adicionaisInfo'>
@@ -39,7 +35,6 @@ export default function AdicionaisInfo({ adicionaisTotais, tipo, Produto, adicio
                         observacoes={observacoes}
                         ID_GRUPO_OPCOES={ID_GRUPO_OPCOES}
                         tipo={tipo}
-                        custoTotal={custoTotal}
                     />
                 </div>
         </div>
