@@ -5,7 +5,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import ListaAdicionais from './ListaAdicionais';
 import Decimal from 'decimal.js'; 
 
-export default function GrupoAdicionais({ adicionalSelecionado, setAdicionalSelecionado, setTotalCusto, setTotalValue, setID_GRUPO_OPCOES }){
+export default function GrupoAdicionais({ adicionalSelecionado, setAdicionalSelecionado, setTotalValue, setTotalCusto, setID_GRUPO_OPCOES }){
     const [listaGrupoOpcionais, setGruposAdicionais] = useState([]);
     const [listaAdicionais, setListaAdicionais] = useState([])
     const [listaAdicionaisAtivo, setListaAdicionaisAtivo] = useState(null);
@@ -14,7 +14,7 @@ export default function GrupoAdicionais({ adicionalSelecionado, setAdicionalSele
     const { data } = state;
     const queryClient = useQueryClient();
     const ID_GRUPO_OPCOES= data.ID_GRUPO_OPCOES   
-
+        console.log(adicionalSelecionado)
 
     useEffect(()=>{
         api
@@ -46,6 +46,7 @@ export default function GrupoAdicionais({ adicionalSelecionado, setAdicionalSele
                 ...item,
                 quantidade: 0,
                 valorTotalProduto: 0,
+                totaCusto: 0
               }));
                 setListaAdicionais(data);
                     queryClient.setQueryData(['listaAdicionais', ID_GRUPO_OPCOES], data);
@@ -57,7 +58,6 @@ export default function GrupoAdicionais({ adicionalSelecionado, setAdicionalSele
     const queryCache = queryClient.getQueryCache();
     const listaAdicionaisCache = queryCache.findAll('listaAdicionais').map((query) => query.state.data);
     
-  
     useEffect(() => {
       listaAdicionaisCache.forEach((listaAdicionais)=>{
         listaAdicionais.forEach((item) => {
@@ -81,39 +81,9 @@ export default function GrupoAdicionais({ adicionalSelecionado, setAdicionalSele
         });
     }, [listaAdicionais]);
 
-    useEffect(()=>{
-      adicionalSelecionado.forEach((item)=>{
-        if(item.DIVIDIR === "NAO"){
-          const total = new Decimal(0)
-          const custo = new  Decimal ((item.VALOR_CUSTO)*(item.quantidade) || 0)
-          const totalCusto = total.plus(custo)
-          setTotalCusto(totalCusto)
-        } else {
-          const total = new Decimal(0)
-          const custo = new  Decimal ((item.VALOR_CUSTO)*(item.quantidade) || 0)
-          const totalCusto = total.plus(custo)
-            const newTotal = totalCusto.dividedBy(quantidadeTotal)
-          setTotalCusto(newTotal)
-        }
-      })
-    }, [adicionalSelecionado])
 
-    useEffect(()=>{
-      adicionalSelecionado.forEach((item)=>{
-        if(item.DIVIDIR === "NAO"){
-          const total = new Decimal(0)
-          const custo = new  Decimal ((item.VALOR_VENDA)*(item.quantidade) || 0)
-          const totalCusto = total.plus(custo)
-            setTotalValue(totalCusto)
-        } else {
-          const total = new Decimal(0)
-          const custo = new  Decimal ((item.VALOR_VENDA)*(item.quantidade) || 0)
-          const totalCusto = total.plus(custo)
-            const newTotal = totalCusto.dividedBy(quantidadeTotal)
-            setTotalValue(newTotal)
-        }
-      })
-    }, [adicionalSelecionado])
+
+    
 
 
     return(

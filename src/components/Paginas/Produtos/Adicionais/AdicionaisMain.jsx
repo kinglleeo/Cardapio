@@ -24,7 +24,7 @@ export default function AdicionaisMain(){
 
     const [adicionaisTotais, setAdicionaisTotais] = useState('');
 
-    const [totalCusto, setTotalCusto] = useState('');
+    const [totalCustoAdicionais, setTotalCusto] = useState('');
 
     return(
         <div>
@@ -41,7 +41,7 @@ export default function AdicionaisMain(){
                     ID_GRUPO_OPCOES={ID_GRUPO_OPCOES}
                     tipo={tipo}
                     adicionaisTotais={adicionaisTotais}
-                    totalCusto={totalCusto}
+                    totalCustoAdicionais={totalCustoAdicionais}
                 />
             </div>
             <div>

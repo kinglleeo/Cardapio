@@ -47,3 +47,81 @@ useEffect(() => {
     valorVenda: add.VALOR_VENDA,
     quantidade: add.quantidade
   })),
+
+
+
+  const aumentarQuantidade = (index) => {
+    const updatedListaOpcionais = [...listaAdicionais];
+    const quantidade = new Decimal(updatedListaOpcionais[index].quantidade);
+    const valorVenda = new Decimal(updatedListaOpcionais[index].VALOR_VENDA);
+    const valorCusto = new Decimal(updatedListaOpcionais[index].VALOR_CUSTO);
+    const quantidadeTotal = new Decimal(updatedListaOpcionais[index].quantidadeTotal);
+    updatedListaOpcionais[index].quantidade = quantidade.plus(1).toNumber();
+    updatedListaOpcionais[index].valorTotalProduto = quantidade.plus(1).times(valorVenda).toNumber();
+  
+    if (updatedListaOpcionais[index].DIVIDIR === "SIM") {
+      updatedListaOpcionais[index].totalCusto = valorCusto.times(quantidade).dividedBy(quantidadeTotal).toNumber();
+    } else {
+      updatedListaOpcionais[index].totalCusto = valorCusto.times(quantidade).toNumber();
+    }
+  
+    setListaAdicionais(updatedListaOpcionais);
+  };
+  
+  const diminuirQuantidade = (index) => {
+    const updatedListaOpcionais = [...listaAdicionais];
+    const quantidade = new Decimal(updatedListaOpcionais[index].quantidade);
+    const valorVenda = new Decimal(updatedListaOpcionais[index].VALOR_VENDA);
+    const valorCusto = new Decimal(updatedListaOpcionais[index].VALOR_CUSTO);
+    const quantidadeTotal = new Decimal(updatedListaOpcionais[index].quantidadeTotal);
+  
+    if (quantidade.gt(0)) {
+      updatedListaOpcionais[index].quantidade = quantidade.minus(1).toNumber();
+      updatedListaOpcionais[index].valorTotalProduto = quantidade.minus(1).times(valorVenda).toNumber();
+  
+      if (updatedListaOpcionais[index].DIVIDIR === "SIM") {
+        updatedListaOpcionais[index].totalCusto = valorCusto.times(quantidade).dividedBy(quantidadeTotal).toNumber();
+      } else {
+        updatedListaOpcionais[index].totalCusto = valorCusto.times(quantidade).toNumber();
+      }
+  
+      setListaAdicionais(updatedListaOpcionais);
+    }
+  };
+
+
+
+  const aumentarQuantidade = (index) => {
+    const updatedListaOpcionais = [...listaAdicionais];
+    const quantidade = new Decimal(updatedListaOpcionais[index].quantidade);
+    const valorVenda = new Decimal(updatedListaOpcionais[index].VALOR_VENDA);
+    const quantidadeTotal = new Decimal(updatedListaOpcionais[index].quantidadeTotal);
+    updatedListaOpcionais[index].quantidade = quantidade.plus(1).toNumber();
+  
+    if (updatedListaOpcionais[index].DIVIDIR === "SIM") {
+      updatedListaOpcionais[index].valorTotalProduto = valorVenda.times(quantidade).dividedBy(quantidadeTotal).toNumber();
+    } else {
+      updatedListaOpcionais[index].valorTotalProduto = valorVenda.times(quantidade).toNumber();
+    }
+  
+      setListaAdicionais(updatedListaOpcionais);
+  };
+  
+  const diminuirQuantidade = (index) => {
+    const updatedListaOpcionais = [...listaAdicionais];
+    const quantidade = new Decimal(updatedListaOpcionais[index].quantidade);
+    const valorVenda = new Decimal(updatedListaOpcionais[index].VALOR_VENDA);
+    const quantidadeTotal = new Decimal(updatedListaOpcionais[index].quantidadeTotal);
+  
+    if (quantidade.gt(0)) {
+      updatedListaOpcionais[index].quantidade = quantidade.minus(1).toNumber();
+  
+      if (updatedListaOpcionais[index].DIVIDIR === "SIM") {
+        updatedListaOpcionais[index].valorTotalProduto = valorVenda.times(quantidade).dividedBy(quantidadeTotal).toNumber();
+      } else {
+        updatedListaOpcionais[index].valorTotalProduto = valorVenda.times(quantidade).toNumber();
+      }
+  
+      setListaAdicionais(updatedListaOpcionais);
+    }
+  };

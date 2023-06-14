@@ -3,9 +3,10 @@ import './PizzasInfo.css'
 import Decimal from 'decimal.js';
 import BtnCarrinho from './BtnCarrinho-Pizza';
 
-export default function PizzasInfo({ totalCusto, data, tipo, Produto, valorTotalSabores, SaboresSelecionados, adicionalSelecionado, totalValue, observacoes, ID_GRUPO_OPCOES }){
+export default function PizzasInfo({ data, tipo, Produto, valorTotalSabores, totalValue, SaboresSelecionados, adicionalSelecionado, observacoes, ID_GRUPO_OPCOES }){
     const [totalCompra, setTotalCompra] = useState('');
    
+    console.log(totalValue)
 
     useEffect(() => {
         const ValorItem = new Decimal(Produto.VALOR_VENDA || 0)
@@ -15,7 +16,6 @@ export default function PizzasInfo({ totalCusto, data, tipo, Produto, valorTotal
             setTotalCompra(Total.toNumber().toFixed(2));
       }, [totalValue, Produto, valorTotalSabores]);
 
-      
 
     return(
         <div className='PizzasInfo'>
@@ -29,7 +29,6 @@ export default function PizzasInfo({ totalCusto, data, tipo, Produto, valorTotal
                 tipo={tipo}
                 IDPizzaMista={data.ID_PRODUTO}
                 ID_UNIDADE={data.ID_UNIDADE}
-                custoTotal={totalCusto}
             />
         </div>
     )
