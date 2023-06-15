@@ -18,6 +18,7 @@ export default function AdicionaisMain(){
     const [valorTotalCusto, setValorTotalCusto] = useState(0);
     //AdicionaisTamanho
     const [tamanhoEscolhido, setTamanhoEscolhido] = useState([]);
+    const [existeTamanho, setExisteTamanho] = useState(false);
     //observaçoes
     const [observacoes, setObservacao] = useState('');
     
@@ -42,11 +43,13 @@ export default function AdicionaisMain(){
                     tipo={tipo}
                     valorTotalItem={valorTotalItem}
                     valorTotalCusto={valorTotalCusto}
+                    existeTamanho={existeTamanho}
                 />
             </div>
             <div>
                 <AdicionaisTamanho
                     setTamanhoEscolhido={setTamanhoEscolhido}
+                    setExisteTamanho={setExisteTamanho}
                 />
             </div>
             <div>

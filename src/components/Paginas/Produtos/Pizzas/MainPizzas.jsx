@@ -15,19 +15,16 @@ export default function MainPizza(){
     //saboresPizza
     const [valorTotalSabores, setValorTotalSabores] = useState('');
     const [SaboresSelecionados, setSaboresSelecionados] = useState([]);
+    const [valorTotalCustoPizza, setValorTotalCustoPizza] = useState(0)
+    const [quantidadeTotal, setQuantidadeTotal] = useState(0)
     //Adicionais
     const [adicionalSelecionado, setAdicionalSelecionado] = useState([]);
     const [valorTotalItem, setValorTotalItem] = useState(0);
     const [valorTotalCusto, setValorTotalCusto] = useState(0);
-    const [valorTotalCustoPizza, setValorTotalCustoPizza] = useState(0)
     //observaçoes
     const [observacoes, setObservacao] = useState('');
 
     const [ID_GRUPO_OPCOES, setID_GRUPO_OPCOES] = useState('');
-
-    const [quantidadeTotal, setQuantidadeTotal] = useState(0)
-
-
 
     return(
         <div>
@@ -47,6 +44,7 @@ export default function MainPizza(){
                     valorTotalItem={valorTotalItem}
                     valorTotalCusto={valorTotalCusto}
                     valorTotalCustoPizza={valorTotalCustoPizza}
+                    quantidadeTotal={quantidadeTotal}
                 />
             </div>
             <div>

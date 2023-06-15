@@ -5,12 +5,9 @@ import BtnCarrinho from './BtnCarrinho';
 
 
 
-export default function AdicionaisInfo({ valorTotalItem, valorTotalCusto, tipo, Produto, adicionalSelecionado, tamanhoEscolhido, observacoes, ID_GRUPO_OPCOES }){
+export default function AdicionaisInfo({ valorTotalItem, valorTotalCusto, tipo, Produto, adicionalSelecionado, tamanhoEscolhido, observacoes, ID_GRUPO_OPCOES, existeTamanho }){
     const [totalCompra, setTotalCompra] = useState('');
     const [custoCompra, setCustoCompra] = useState('');
-
-    console.log(totalCompra)
-    console.log(custoCompra)
 
     useEffect(() => {
         const valorVenda = new Decimal(tamanhoEscolhido.VALOR_VENDA > 0 ? (tamanhoEscolhido.VALOR_VENDA) : (Produto.VALOR_VENDA));
@@ -39,6 +36,7 @@ export default function AdicionaisInfo({ valorTotalItem, valorTotalCusto, tipo, 
                         ID_GRUPO_OPCOES={ID_GRUPO_OPCOES}
                         tipo={tipo}
                         totalCusto={custoCompra}
+                        existeTamanho={existeTamanho}
                     />
                 </div>
         </div>

@@ -5,10 +5,16 @@ import { api } from '../../../../conecções/api'
 import { useLocation } from 'react-router-dom';
 import './adicionaistamanho.css'
 
-export default function GrupoTamanho({ setTamanhoEscolhido }){
+export default function GrupoTamanho({ setExisteTamanho, setTamanhoEscolhido }){
   const [grupoTamanho, setGrupoTamanho] = useState([]);
   const { state } = useLocation();
   const { data } = state;
+
+  useEffect(()=>{
+    if(Array.isArray(grupoTamanho)){
+      setExisteTamanho(true)
+    }
+  }, [grupoTamanho])
 
   useEffect(()=>{
     api
