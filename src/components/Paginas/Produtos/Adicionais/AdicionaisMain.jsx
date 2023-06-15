@@ -8,8 +8,10 @@ import { useLocation } from 'react-router-dom';
 
 export default function AdicionaisMain(){
     const { state } = useLocation();
-    //tipo
-    const { tipo } = state;
+    //grupos
+    const { grupo } = state;
+    //subgrupos
+    const {subGrupo} = state;
     //produto 
     const { data } = state;
     //adicionais
@@ -35,15 +37,19 @@ export default function AdicionaisMain(){
             </div>
             <div>
                 <AdicionaisInfo
-                    Produto={data}
-                    adicionalSelecionado={adicionalSelecionado}
-                    tamanhoEscolhido={tamanhoEscolhido}
-                    observacoes={observacoes}
-                    ID_GRUPO_OPCOES={ID_GRUPO_OPCOES}
-                    tipo={tipo}
-                    valorTotalItem={valorTotalItem}
-                    valorTotalCusto={valorTotalCusto}
-                    existeTamanho={existeTamanho}
+                    //Info Produtos
+                        Produto={data}
+                        grupo={grupo}
+                    //Info Adicionais
+                        ID_GRUPO_OPCOES={ID_GRUPO_OPCOES}
+                        adicionalSelecionado={adicionalSelecionado}
+                        valorTotalItem={valorTotalItem}
+                        valorTotalCusto={valorTotalCusto}
+                    //Info Adicionais Tamanho
+                        existeTamanho={existeTamanho}
+                        tamanhoEscolhido={tamanhoEscolhido}
+                    //Observacoes
+                        observacoes={observacoes}
                 />
             </div>
             <div>

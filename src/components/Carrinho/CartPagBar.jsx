@@ -45,8 +45,8 @@ export function CartPagBar({ Pedido }) {
         } else if (item.tipo === "SIM") {
           novoItemPedido = {
             ...novoItemPedido,
-            id_produto: item.IDPizzaMista,
-            id_unidade: item.ID_UNIDADE,
+            id_produto: item.produto.ID_PRODUTO,
+            id_unidade: item.produto.ID_UNIDADE,
             valor_venda: item.totalCompra,
             sabores: item.SaboresSelecionados.map((sabor) => ({
               sabor: sabor.PRODUTO,

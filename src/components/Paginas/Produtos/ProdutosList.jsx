@@ -3,11 +3,11 @@ import '../../../Styles/Styles.css'
 import { formCurrency } from '../../AA-utilidades/numeros';
 import { useNavigate } from 'react-router-dom';
 
-export default function ProdutoList({ produto, grupoName, subGrupoName, tipo }){
+export default function ProdutoList({ produto, subGrupo, grupo }){
     const navigate = useNavigate();
     
-    const Adicionais = (data, grupoName, subGrupoName, tipo) => {
-        navigate('/AdicionaisMain', { state: { data, grupoName, subGrupoName, tipo } });
+    const Adicionais = (data, subGrupo, grupo) => {
+        navigate('/AdicionaisMain', { state: { data, subGrupo, grupo } });
       };
     
     return(
@@ -16,7 +16,7 @@ export default function ProdutoList({ produto, grupoName, subGrupoName, tipo }){
                 {Array.isArray(produto) ? (
                     produto.map((data)=>
                         <div className='card-produtos' key={data.ID_PRODUTO}>
-                            <div className='box-produtos' onClick={() => Adicionais(data, grupoName, subGrupoName, tipo)}>
+                            <div className='box-produtos' onClick={() => Adicionais(data, subGrupo, grupo)}>
                                 <div className='produtos-info'>
                                     <div className='produto-nome'>
                                         <div className='item-nome'>{data.PRODUTO}</div>

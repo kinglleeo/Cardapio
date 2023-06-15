@@ -10,8 +10,6 @@ export default function GrupoTamanho({ setExisteTamanho, setTamanhoEscolhido }){
   const { state } = useLocation();
   const { data } = state;
 
-  console.log(grupoTamanho)
-
   useEffect(()=>{
     if(Array.isArray(grupoTamanho)){
       setExisteTamanho(true)

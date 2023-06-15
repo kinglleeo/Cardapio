@@ -10,8 +10,6 @@ export default function Grupo(){
     const [grupos, setGrupos] = useState([]);
     const [tamanhosPizza, setTamanhosPizza] = useState([]);
     const navigate = useNavigate();
-
-    console.log(tamanhosPizza)
     
     useEffect(() => {
         api
@@ -23,6 +21,7 @@ export default function Grupo(){
             }
           });
     }, []);
+
     useEffect(()=>{
         api
             .get('/listaTamanhosPizza')
@@ -31,8 +30,8 @@ export default function Grupo(){
             });
     }, []);
     
-    const handlePizzas=(data, tipo)=>{
-        navigate('/Pizzas', { state: { data, tipo } });
+    const handlePizzas=(data, PIZZA_MISTA)=>{
+        navigate('/Pizzas', { state: { data, PIZZA_MISTA } });
     }
 
     return(
@@ -68,9 +67,7 @@ export default function Grupo(){
                     ) : (
                         <div>
                             <SubGrupoList
-                                ID_GRUPO={item.ID_GRUPO}
-                                grupoName={item.GRUPO}
-                                tipo={item.PIZZA_MISTA}
+                                grupo={item}
                             />
                         </div>
                 )}

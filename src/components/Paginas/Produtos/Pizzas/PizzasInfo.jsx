@@ -3,7 +3,7 @@ import './PizzasInfo.css'
 import Decimal from 'decimal.js';
 import BtnCarrinho from './BtnCarrinho-Pizza';
 
-export default function PizzasInfo({ valorTotalItem, valorTotalCusto, valorTotalCustoPizza, data, tipo, Produto, valorTotalSabores, SaboresSelecionados, adicionalSelecionado, observacoes, ID_GRUPO_OPCOES, quantidadeTotal }){
+export default function PizzasInfo({ valorTotalItem, valorTotalCusto, valorTotalCustoPizza, PIZZA_MISTA, Produto, valorTotalSabores, SaboresSelecionados, adicionalSelecionado, observacoes, ID_GRUPO_OPCOES, quantidadeTotal }){
     const [totalCompra, setTotalCompra] = useState('');
     const [custoCompra, setCustoCompra] = useState('');
 
@@ -18,7 +18,7 @@ export default function PizzasInfo({ valorTotalItem, valorTotalCusto, valorTotal
         setCustoCompra(newCustoCompra.toNumber().toFixed(2));
       }, [valorTotalItem, valorTotalCusto, valorTotalSabores, valorTotalCustoPizza]);
 
-
+    
     return(
         <div className='PizzasInfo'>
             <BtnCarrinho
@@ -28,11 +28,9 @@ export default function PizzasInfo({ valorTotalItem, valorTotalCusto, valorTotal
                 observacoes={observacoes}
                 totalCompra={totalCompra}
                 totalCusto={custoCompra}
-                ID_GRUPO_OPCOES={ID_GRUPO_OPCOES}
-                tipo={tipo}
-                IDPizzaMista={data.ID_PRODUTO}
-                ID_UNIDADE={data.ID_UNIDADE}
+                PIZZA_MISTA={PIZZA_MISTA}
                 quantidadeTotal={quantidadeTotal}
+                ID_GRUPO_OPCOES={ID_GRUPO_OPCOES}
             />
         </div>
     )

@@ -8,23 +8,23 @@ import { useLocation } from 'react-router-dom';
 
 export default function MainPizza(){
     const { state } = useLocation();
-    //grupos
-    const { tipo } = state;
-    //tamanhoPizza
+    //Info Pizza
+    const { PIZZA_MISTA } = state;
     const { data } = state;
     //saboresPizza
-    const [valorTotalSabores, setValorTotalSabores] = useState('');
     const [SaboresSelecionados, setSaboresSelecionados] = useState([]);
+    const [valorTotalSabores, setValorTotalSabores] = useState('');
     const [valorTotalCustoPizza, setValorTotalCustoPizza] = useState(0)
     const [quantidadeTotal, setQuantidadeTotal] = useState(0)
     //Adicionais
     const [adicionalSelecionado, setAdicionalSelecionado] = useState([]);
     const [valorTotalItem, setValorTotalItem] = useState(0);
     const [valorTotalCusto, setValorTotalCusto] = useState(0);
+    const [ID_GRUPO_OPCOES, setID_GRUPO_OPCOES] = useState('');
     //observaçoes
     const [observacoes, setObservacao] = useState('');
 
-    const [ID_GRUPO_OPCOES, setID_GRUPO_OPCOES] = useState('');
+
 
     return(
         <div>
@@ -33,18 +33,22 @@ export default function MainPizza(){
             </div>
             <div>
                 <PizzasInfo
-                    Produto={data}
-                    valorTotalSabores={valorTotalSabores}
-                    SaboresSelecionados={SaboresSelecionados}
-                    adicionalSelecionado={adicionalSelecionado}
-                    observacoes={observacoes}
-                    ID_GRUPO_OPCOES={ID_GRUPO_OPCOES}
-                    tipo={tipo}
-                    data={data}
-                    valorTotalItem={valorTotalItem}
-                    valorTotalCusto={valorTotalCusto}
-                    valorTotalCustoPizza={valorTotalCustoPizza}
-                    quantidadeTotal={quantidadeTotal}
+                    //Info Pizzas
+                        Produto={data}
+                        data={data}
+                        PIZZA_MISTA={PIZZA_MISTA}
+                    //info Sabores
+                        SaboresSelecionados={SaboresSelecionados}
+                        valorTotalSabores={valorTotalSabores}
+                        valorTotalCustoPizza={valorTotalCustoPizza}
+                        quantidadeTotal={quantidadeTotal}
+                    //Info Adicionais
+                        ID_GRUPO_OPCOES={ID_GRUPO_OPCOES}
+                        adicionalSelecionado={adicionalSelecionado}
+                        valorTotalItem={valorTotalItem}
+                        valorTotalCusto={valorTotalCusto}
+                    //info observacoes
+                        observacoes={observacoes}
                 />
             </div>
             <div>

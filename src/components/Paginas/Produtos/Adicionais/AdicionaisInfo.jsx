@@ -3,9 +3,7 @@ import './Adicionais.css'
 import Decimal from 'decimal.js';
 import BtnCarrinho from './BtnCarrinho';
 
-
-
-export default function AdicionaisInfo({ valorTotalItem, valorTotalCusto, tipo, Produto, adicionalSelecionado, tamanhoEscolhido, observacoes, ID_GRUPO_OPCOES, existeTamanho }){
+export default function AdicionaisInfo({ valorTotalItem, valorTotalCusto, grupo, Produto, adicionalSelecionado, tamanhoEscolhido, observacoes, ID_GRUPO_OPCOES, existeTamanho }){
     const [totalCompra, setTotalCompra] = useState('');
     const [custoCompra, setCustoCompra] = useState('');
 
@@ -29,12 +27,12 @@ export default function AdicionaisInfo({ valorTotalItem, valorTotalCusto, tipo, 
                 <div>
                     <BtnCarrinho
                         Produto={Produto}
+                        PIZZA_MISTA={grupo.PIZZA_MISTA}
                         adicionalSelecionado={adicionalSelecionado}
                         totalCompra={totalCompra}
                         tamanhoEscolhido={tamanhoEscolhido}
                         observacoes={observacoes}
                         ID_GRUPO_OPCOES={ID_GRUPO_OPCOES}
-                        tipo={tipo}
                         totalCusto={custoCompra}
                         existeTamanho={existeTamanho}
                     />

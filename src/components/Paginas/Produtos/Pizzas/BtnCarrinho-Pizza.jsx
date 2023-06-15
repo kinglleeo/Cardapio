@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom'
 import { addToCart } from '../../../../redux/cartSlice'
 import { useQueryClient } from '@tanstack/react-query';
 
-export default function BtnCarrinho({ totalCusto, ID_UNIDADE, IDPizzaMista, tipo, Produto, SaboresSelecionados, adicionalSelecionado, observacoes, totalCompra, ID_GRUPO_OPCOES, quantidadeTotal }){
+export default function BtnCarrinho({ totalCusto, PIZZA_MISTA, Produto, SaboresSelecionados, adicionalSelecionado, observacoes, totalCompra, quantidadeTotal, ID_GRUPO_OPCOES }){
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const queryClient = useQueryClient();
 
-    console.log(quantidadeTotal)
+    console.log(Produto)
        
     const item ={
         produto: Produto,
@@ -17,9 +17,7 @@ export default function BtnCarrinho({ totalCusto, ID_UNIDADE, IDPizzaMista, tipo
         SaboresSelecionados:SaboresSelecionados,
         observacoes: observacoes,
         totalCompra: totalCompra,
-        tipo: tipo,
-        IDPizzaMista: IDPizzaMista,
-        ID_UNIDADE: ID_UNIDADE,
+        tipo: PIZZA_MISTA,
         custoTotal: totalCusto
     }
 
