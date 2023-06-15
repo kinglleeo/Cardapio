@@ -6,7 +6,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import './cssParaPizzas.css'
 
 
-export default function ListaProdutosAdicionais({ quantidadeTotal, setQuantidadeTotal, listaSaboresPizzas, setListaSaboresPizzas, Min, Max, setValorTotalSabores, setSaboresSelecionados, SaboresSelecionados }) {
+export default function ListaProdutosAdicionais({ quantidadeTotal, setQuantidadeTotal, listaSaboresPizzas, setListaSaboresPizzas, Min, Max, setSaboresSelecionados, SaboresSelecionados }) {
   const queryClient = useQueryClient();
   const [listaSalgadasAtiva, setListaSalgadasAtiva] = useState(null);
   const [listaDocesAtiva, setListaDocesAtiva] = useState(null);
@@ -79,16 +79,7 @@ export default function ListaProdutosAdicionais({ quantidadeTotal, setQuantidade
     return Faltam
   }
 
-  useEffect(() => {
-    const totalItem = SaboresSelecionados.reduce((acc, item) => {
-      const multipliedValue = new Decimal(item.VALOR_VENDA).times(item.quantidade);
-      const dividedValue = multipliedValue.dividedBy(quantidadeTotal);
-      return acc.plus(dividedValue);
-    }, new Decimal(0));
-      setValorTotalSabores(totalItem);
-  }, [SaboresSelecionados, quantidadeTotal]);
-  
-  
+
   return(
         <div>
           <div>

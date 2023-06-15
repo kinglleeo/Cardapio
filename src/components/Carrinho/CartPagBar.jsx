@@ -15,10 +15,8 @@ export function CartPagBar({ Pedido }) {
   const [compra, setCompra] = useState([]);
   const [totalCart, setTotalCart] = useState('');
 
-  console.log(compra)
-
   useEffect(() => {
-    Pedido.forEach((item) => {
+    const updatedCompra = Pedido.map((item) => {
       const itemExistente = compra.find((compraItem) => compraItem.id === item.id);
       if (!itemExistente) {
         let novoItemPedido = {
@@ -41,8 +39,8 @@ export function CartPagBar({ Pedido }) {
             id_unidade: item.produto.ID_UNIDADE,
             id_produto: item.produto.ID_PRODUTO,
             valor_venda: item.totalCompra,
-            id_grade: item.tamanhoEscolhido.ID_GRADE ? (item.tamanhoEscolhido.ID_GRADE) : (""),
-            id_tamanho: item.tamanhoEscolhido.ID ? (item.tamanhoEscolhido.ID) : (""),
+            id_grade: item.tamanhoEscolhido.ID_GRADE ? item.tamanhoEscolhido.ID_GRADE : "",
+            id_tamanho: item.tamanhoEscolhido.ID ? item.tamanhoEscolhido.ID : "",
           };
         } else if (item.tipo === "SIM") {
           novoItemPedido = {
@@ -50,19 +48,30 @@ export function CartPagBar({ Pedido }) {
             id_produto: item.IDPizzaMista,
             id_unidade: item.ID_UNIDADE,
             valor_venda: item.totalCompra,
-            sabores: item.SaboresSelecionados.map(sabor => ({
+            sabores: item.SaboresSelecionados.map((sabor) => ({
               sabor: sabor.PRODUTO,
               id_grade: sabor.ID_GRADE,
               valor_venda: sabor.VALOR_VENDA,
               quantidade: sabor.quantidade
-            }))            
+            }))
           };
         }
-          setCompra((prevCompra) => [...prevCompra, novoItemPedido]);
+        return novoItemPedido;
+      } else {
+        // Item already exists in compra, update the quantity
+        return {
+          ...itemExistente,
+          quantidade: item.quantity
+        };
       }
     });
-  }, [Pedido, setCompra, Pedido.tipo]);
+  
+    setCompra(updatedCompra);
+  }, [Pedido, setCompra]);
+  
 
+
+  console.log(compra)
 
   const handlePagar = (totalCart, compra, Pedido) => {
     EnviarPedidoAPI(totalCart, compra)

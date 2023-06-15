@@ -37,6 +37,26 @@ export default function GruposAdicionais({ quantidadeTotal, setQuantidadeTotal, 
         });
         setValorTotalCustoPizza(totalCusto);
       }, [SaboresSelecionados, quantidadeTotal]);
+
+
+      useEffect(() => {
+        if(data.VALOR_MAIOR_MISTA === "NAO"){
+          const totalItem = SaboresSelecionados.reduce((acc, item) => {
+            const multipliedValue = new Decimal(item.VALOR_VENDA).times(item.quantidade);
+            const dividedValue = multipliedValue.dividedBy(quantidadeTotal);
+            return acc.plus(dividedValue);
+          }, new Decimal(0));
+            setValorTotalSabores(totalItem);
+        } else if (data.VALOR_MAIOR_MISTA === "SIM"){
+          const totalItem = SaboresSelecionados.reduce((acc, item) => {
+            const multipliedValue = new Decimal(item.VALOR_VENDA).times(item.quantidade);
+            return acc.plus(multipliedValue);
+          }, new Decimal(0));
+            setValorTotalSabores(totalItem);
+        }
+      }, [SaboresSelecionados, quantidadeTotal, data]);
+        
+        
       
 return(
     <div>
@@ -46,7 +66,6 @@ return(
             Min={data.QTD_MINIMO}
             Max={data.QTD_MAXIMO}
 
-            setValorTotalSabores={setValorTotalSabores}
             setSaboresSelecionados={setSaboresSelecionados}
             SaboresSelecionados={SaboresSelecionados}
 

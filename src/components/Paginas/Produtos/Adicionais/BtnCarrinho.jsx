@@ -10,7 +10,7 @@ export default function BtnCarrinho({ totalCusto, tipo, Produto, adicionalSeleci
     const queryClient = useQueryClient();
     const [btnDesabilitado, setBtnDesabilitado] = useState(false)
 
-    console.log(existeTamanho)
+    //console.log(existeTamanho)
     //console.log(btnDesabilitado)
 
     const item ={

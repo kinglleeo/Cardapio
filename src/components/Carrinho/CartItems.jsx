@@ -9,7 +9,7 @@ import { useLocation } from 'react-router-dom';
 export default function CartItem() {
   const dispatch = useDispatch()
   const cart = useSelector((state) => state.cart)
-  console.log(cart)
+  
   return (
     <div> 
         <div className='todos-items-lista'>
