@@ -67,10 +67,7 @@ export function CartPagBar({ Pedido }) {
   
     setCompra(updatedCompra);
   }, [Pedido, setCompra]);
-  
 
-
-  console.log(compra)
 
   const handlePagar = (totalCart, compra, Pedido) => {
     EnviarPedidoAPI(totalCart, compra)

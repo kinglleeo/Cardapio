@@ -3,7 +3,7 @@ import './PizzasInfo.css'
 import Decimal from 'decimal.js';
 import BtnCarrinho from './BtnCarrinho-Pizza';
 
-export default function PizzasInfo({ valorTotalItem, valorTotalCusto, valorTotalCustoPizza, PIZZA_MISTA, Produto, valorTotalSabores, SaboresSelecionados, adicionalSelecionado, observacoes, ID_GRUPO_OPCOES, quantidadeTotal }){
+export default function PizzasInfo({ Produto, PIZZA_MISTA, valorTotalItem, valorTotalCusto, valorTotalCustoPizza, valorTotalSabores, SaboresSelecionados, adicionalSelecionado, observacoes, ID_GRUPO_OPCOES, quantidadeTotal }){
     const [totalCompra, setTotalCompra] = useState('');
     const [custoCompra, setCustoCompra] = useState('');
 

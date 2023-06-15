@@ -26,9 +26,6 @@ export default function AdicionaisMain(){
     
     const [ID_GRUPO_OPCOES, setID_GRUPO_OPCOES] = useState('');
 
-
-    const [quantidadeTotal, setQuantidadeTotal] = useState(0);
-
     
     return(
         <div>
@@ -63,7 +60,6 @@ export default function AdicionaisMain(){
                     adicionalSelecionado={adicionalSelecionado}
                     setAdicionalSelecionado={setAdicionalSelecionado}
                     setID_GRUPO_OPCOES={setID_GRUPO_OPCOES}
-                    setQuantidadeTotal={setQuantidadeTotal}
                     setValorTotalCusto={setValorTotalCusto}
                     setValorTotalItem={setValorTotalItem}
                 />
