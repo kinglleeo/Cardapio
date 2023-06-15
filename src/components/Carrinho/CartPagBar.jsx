@@ -58,7 +58,6 @@ export function CartPagBar({ Pedido }) {
         }
         return novoItemPedido;
       } else {
-        // Item already exists in compra, update the quantity
         return {
           ...itemExistente,
           quantidade: item.quantity
