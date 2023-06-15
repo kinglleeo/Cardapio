@@ -48,7 +48,8 @@ export default function Grupo(){
                 <div className='Grupo-Titulo'>{item.GRUPO}</div>
                     {item.PIZZA_MISTA === "SIM" ? (
                         <div>
-                            {tamanhosPizza.map((data)=>
+                            {Array.isArray(tamanhosPizza) ? (
+                                tamanhosPizza.map((data)=>
                                 <div className='card-produtos' key={data.ID}>
                                     <div className='box-produtos' onClick={()=> handlePizzas(data, item.PIZZA_MISTA)}>
                                         <div className='produtos-info'>
@@ -61,7 +62,8 @@ export default function Grupo(){
                                         </div>
                                     </div>
                                 </div>
-                            )}
+                                )    
+                            ) : null }
                         </div>
                     ) : (
                         <div>

@@ -13,7 +13,7 @@ export default function GrupoAdicionais({ setValorTotalItem, setValorTotalCusto,
     const { state } = useLocation();
     const { data } = state;
     const queryClient = useQueryClient();
-    const ID_GRUPO_OPCOES= data.ID_GRUPO_OPCOES   
+    const ID_GRUPO_OPCOES= data.ID_GRUPO_OPCOES    
 
     useEffect(()=>{
         api
@@ -54,7 +54,8 @@ export default function GrupoAdicionais({ setValorTotalItem, setValorTotalCusto,
       
     const queryCache = queryClient.getQueryCache();
     const listaAdicionaisCache = queryCache.findAll('listaAdicionais').map((query) => query.state.data);
-    
+
+
     useEffect(() => {
         listaAdicionais.forEach((item) => {
             if (item.quantidade > 0) {

@@ -10,8 +10,8 @@ export default function BtnCarrinho({ totalCusto, tipo, Produto, adicionalSeleci
     const queryClient = useQueryClient();
     const [btnDesabilitado, setBtnDesabilitado] = useState(false)
 
-    console.log(tamanhoEscolhido)
-    console.log(btnDesabilitado)
+    console.log(existeTamanho)
+    //console.log(btnDesabilitado)
 
     const item ={
         produto: Produto,
@@ -29,7 +29,7 @@ export default function BtnCarrinho({ totalCusto, tipo, Produto, adicionalSeleci
     }
 
     useEffect(() => {
-        if (existeTamanho === false) {
+        if (existeTamanho !== true) {
           setBtnDesabilitado(false);
         } else if (existeTamanho === true) {
           if (Array.isArray(tamanhoEscolhido)) {

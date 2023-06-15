@@ -32,7 +32,7 @@ export function CartPagBar({ Pedido }) {
           pizza_mista: item.tipo,
           quantidade: item.quantity,
           observacao: item.observacoes,
-          opcional: [],
+          opcional: item.adicionalSelecionado,
           sabores: []
         };
         if (item.tipo === "NAO") {
