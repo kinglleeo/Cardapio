@@ -15,7 +15,7 @@ export function CartPagBar({ Pedido }) {
   const [compra, setCompra] = useState([]);
   const [totalCart, setTotalCart] = useState('');
 
-  console.log(Pedido)
+  console.log(compra)
 
   useEffect(() => {
     Pedido.forEach((item) => {
@@ -27,7 +27,7 @@ export function CartPagBar({ Pedido }) {
           id_grade: "",
           id_tamanho: "",
           id_unidade: "",
-          valor_custo: 0,
+          valor_custo: item.custoTotal,
           valor_venda: "",
           pizza_mista: item.tipo,
           quantidade: item.quantity,

@@ -85,7 +85,7 @@ export default function ListaProdutosAdicionais({ quantidadeTotal, setQuantidade
       const dividedValue = multipliedValue.dividedBy(quantidadeTotal);
       return acc.plus(dividedValue);
     }, new Decimal(0));
-      setValorTotalSabores(totalItem.toNumber().toFixed(2));
+      setValorTotalSabores(totalItem);
   }, [SaboresSelecionados, quantidadeTotal]);
   
   

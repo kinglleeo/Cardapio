@@ -3,18 +3,20 @@ import './PizzasInfo.css'
 import Decimal from 'decimal.js';
 import BtnCarrinho from './BtnCarrinho-Pizza';
 
-export default function PizzasInfo({ data, tipo, Produto, valorTotalSabores, totalValue, SaboresSelecionados, adicionalSelecionado, observacoes, ID_GRUPO_OPCOES }){
+export default function PizzasInfo({ valorTotalItem, valorTotalCusto, valorTotalCustoPizza, data, tipo, Produto, valorTotalSabores, SaboresSelecionados, adicionalSelecionado, observacoes, ID_GRUPO_OPCOES }){
     const [totalCompra, setTotalCompra] = useState('');
-   
-    console.log(totalValue)
+    const [custoCompra, setCustoCompra] = useState('');
 
     useEffect(() => {
-        const ValorItem = new Decimal(Produto.VALOR_VENDA || 0)
-        const ValorTamanho = new Decimal(totalValue || 0)
-        const TotalSabores = new Decimal(valorTotalSabores || 0)
-          const Total = (ValorItem).plus(ValorTamanho).plus(TotalSabores);
-            setTotalCompra(Total.toNumber().toFixed(2));
-      }, [totalValue, Produto, valorTotalSabores]);
+        const valorVenda = new Decimal(valorTotalSabores || 0);
+        const valorCusto = new Decimal(valorTotalCustoPizza || 0);
+    
+        const newTotalCompra = valorVenda.plus(valorTotalItem);
+        const newCustoCompra = valorCusto.plus(valorTotalCusto);
+    
+        setTotalCompra(newTotalCompra.toNumber().toFixed(2));
+        setCustoCompra(newCustoCompra.toNumber().toFixed(2));
+      }, [valorTotalItem, valorTotalCusto, valorTotalSabores, valorTotalCustoPizza]);
 
 
     return(
@@ -25,6 +27,7 @@ export default function PizzasInfo({ data, tipo, Produto, valorTotalSabores, tot
                 adicionalSelecionado={adicionalSelecionado}
                 observacoes={observacoes}
                 totalCompra={totalCompra}
+                totalCusto={custoCompra}
                 ID_GRUPO_OPCOES={ID_GRUPO_OPCOES}
                 tipo={tipo}
                 IDPizzaMista={data.ID_PRODUTO}

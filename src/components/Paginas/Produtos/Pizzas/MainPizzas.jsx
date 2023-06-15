@@ -17,13 +17,16 @@ export default function MainPizza(){
     const [SaboresSelecionados, setSaboresSelecionados] = useState([]);
     //Adicionais
     const [adicionalSelecionado, setAdicionalSelecionado] = useState([]);
-    const [totalValue, setTotalValue] = useState('');
+    const [valorTotalItem, setValorTotalItem] = useState(0);
+    const [valorTotalCusto, setValorTotalCusto] = useState(0);
+    const [valorTotalCustoPizza, setValorTotalCustoPizza] = useState(0)
     //observaçoes
     const [observacoes, setObservacao] = useState('');
 
     const [ID_GRUPO_OPCOES, setID_GRUPO_OPCOES] = useState('');
 
-    const [quantidadeTotal, setQuantidadeTotal] = useState(0);
+    const [quantidadeTotal, setQuantidadeTotal] = useState(0)
+
 
 
     return(
@@ -37,11 +40,13 @@ export default function MainPizza(){
                     valorTotalSabores={valorTotalSabores}
                     SaboresSelecionados={SaboresSelecionados}
                     adicionalSelecionado={adicionalSelecionado}
-                    totalValue={totalValue}
                     observacoes={observacoes}
                     ID_GRUPO_OPCOES={ID_GRUPO_OPCOES}
                     tipo={tipo}
                     data={data}
+                    valorTotalItem={valorTotalItem}
+                    valorTotalCusto={valorTotalCusto}
+                    valorTotalCustoPizza={valorTotalCustoPizza}
                 />
             </div>
             <div>
@@ -52,15 +57,16 @@ export default function MainPizza(){
                     
                     quantidadeTotal={quantidadeTotal}
                     setQuantidadeTotal={setQuantidadeTotal}
+                    setValorTotalCustoPizza={setValorTotalCustoPizza}
                 />
             </div>
             <div>
                 <GrupoAdicionais
                     adicionalSelecionado={adicionalSelecionado}
                     setAdicionalSelecionado={setAdicionalSelecionado}
-                    setTotalValue={setTotalValue}
                     setID_GRUPO_OPCOES={setID_GRUPO_OPCOES}
-                    setQuantidadeTotal={setQuantidadeTotal}
+                    setValorTotalCusto={setValorTotalCusto}
+                    setValorTotalItem={setValorTotalItem}
                 />
             </div>
             <div>

@@ -10,7 +10,6 @@ export default function GrupoTamanho({ setTamanhoEscolhido }){
   const { state } = useLocation();
   const { data } = state;
 
-
   useEffect(()=>{
     api
         .get(`/listaTamanhos/${data.ID_PRODUTO}`)

@@ -5,7 +5,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import ListaAdicionais from './ListaAdicionais';
 import Decimal from 'decimal.js'; 
 
-export default function GrupoAdicionais({ adicionalSelecionado, setAdicionalSelecionado,  setID_GRUPO_OPCOES }){
+export default function GrupoAdicionais({ setValorTotalItem, setValorTotalCusto, adicionalSelecionado, setAdicionalSelecionado,  setID_GRUPO_OPCOES }){
     const [listaGrupoOpcionais, setGruposAdicionais] = useState([]);
     const [listaAdicionais, setListaAdicionais] = useState([])
     const [listaAdicionaisAtivo, setListaAdicionaisAtivo] = useState(null);
@@ -56,7 +56,6 @@ export default function GrupoAdicionais({ adicionalSelecionado, setAdicionalSele
     const listaAdicionaisCache = queryCache.findAll('listaAdicionais').map((query) => query.state.data);
     
     useEffect(() => {
-      listaAdicionaisCache.forEach((listaAdicionais)=>{
         listaAdicionais.forEach((item) => {
             if (item.quantidade > 0) {
               const itemIndex = adicionalSelecionado.findIndex((adicionalSelecionado) => adicionalSelecionado.ID === item.ID);
@@ -75,11 +74,26 @@ export default function GrupoAdicionais({ adicionalSelecionado, setAdicionalSele
               setAdicionalSelecionado((prevSelecionados) => prevSelecionados.filter((adicionalSelecionado) => adicionalSelecionado.ID !== item.ID));
             }
           })
-        });
     }, [listaAdicionais]);
 
     
+useEffect(() => {
+  let totalItem = new Decimal(0);
+  let totalCusto = new Decimal(0);
 
+  adicionalSelecionado.forEach(item => {
+    if (item.DIVIDIR === "NAO") {
+      totalItem = totalItem.plus(new Decimal(item.VALOR_VENDA).times(item.quantidade));
+      totalCusto = totalCusto.plus(new Decimal(item.VALOR_CUSTO).times(item.quantidade));
+    } else if (item.DIVIDIR === "SIM") {
+      totalItem = totalItem.plus(new Decimal(item.VALOR_VENDA).times(item.quantidade).dividedBy(quantidadeTotal));
+      totalCusto = totalCusto.plus(new Decimal(item.VALOR_CUSTO).times(item.quantidade).dividedBy(quantidadeTotal));
+    }
+  });
+
+  setValorTotalItem(totalItem.toNumber().toFixed(2));
+  setValorTotalCusto(totalCusto.toNumber().toFixed(2));
+}, [adicionalSelecionado, quantidadeTotal]);
 
     return(
     <div>
