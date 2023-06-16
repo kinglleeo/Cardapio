@@ -7,7 +7,7 @@ import './cssParaPizzas.css'
 
 
 export default function ListaProdutosAdicionais({ quantidadeTotal, setQuantidadeTotal, listaSaboresPizzas, setListaSaboresPizzas, Min, Max, setSaboresSelecionados, SaboresSelecionados }) {
-  const queryClient = useQueryClient();
+  //const queryClient = useQueryClient();
   const [listaSalgadasAtiva, setListaSalgadasAtiva] = useState(null);
   const [listaDocesAtiva, setListaDocesAtiva] = useState(null);
   const Idsalgadas = '1'

@@ -3,9 +3,10 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css'
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginSociais () {
-  
+  const navigate = useNavigate()  
   useEffect(() => {
     const firebaseConfig = {
       apiKey: "AIzaSyBDEDA0OOXbRvb_oYARfYB2y9d7k0azFd0",
@@ -21,18 +22,11 @@ export default function LoginSociais () {
     
     // Configuração do FirebaseUI
     const uiConfig = {
-      //signInSuccessUrl: '/PaginaLoadLogin',
       signInOptions: [
         {
           provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
           customParameters: {
             prompt: 'select_account', // Exibe a tela de seleção de conta
-          },
-        },
-        {
-          provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-          customParameters: {
-            prompt: 'select_account',
           },
         },
       ],
@@ -41,20 +35,9 @@ export default function LoginSociais () {
     // Inicializa o FirebaseUI
     const ui = firebaseui.auth.AuthUI.getInstance() 
           || new firebaseui.auth.AuthUI(firebase.auth());
+    
     ui.start('#firebaseui-auth-container', uiConfig);
     
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user){
-          try {
-              const userRed = addDoc (collection(db, "usuario"),{
-                email: user.email
-              })
-          }
-          catch (error) {
-              console.error(error)
-          }
-      }
-    })    
   }, []);
 
   return (

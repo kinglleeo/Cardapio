@@ -9,7 +9,7 @@ import { collection, addDoc } from "firebase/firestore";
 export default function CriarConta(){
     const [email, setEmail] = useState('');
     const [password, setSenha] = useState('');
-    const [cpf, setCpf] = useState('');
+    const [nomeDoUsuario, setNomeDoUsuario] = useState('');
     const navigate = useNavigate();
 
     const adicionarEmail=(event)=>{
@@ -18,28 +18,29 @@ export default function CriarConta(){
     const adicionarSenha=((event)=>{
         setSenha(event.target.value)
     })
-    const adicionarCpf=(event)=>{
-        setCpf(event.target.value)
-    }
+    const adicionarNomeDoUsuario=((event)=>{
+        setNomeDoUsuario(event.target.value)
+    })
 
     const Cadastrar=(e)=>{
         e.preventDefault();
 
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
+            const user = userCredential.user;
             try {
-                const docRef = addDoc(collection(db, "usuario"), {
+                const docRef = addDoc(collection(db, "usuario",  user.uid), {
+                  nome: nomeDoUsuario,
                   email: email,
-                  cpf: cpf
                 });
               } catch (e) {
                 console.error("Error adding document: ", e);
               }
-            navigate('/')
+            navigate('/Main')
           })
-          .catch((error) => {
+        .catch((error) => {
             alert(error.message)
-          })
+        })  
     }
     
     return(
@@ -57,7 +58,7 @@ export default function CriarConta(){
                         <input type="password" name="senha" id="senha" placeholder="Senha / minimo 6 caracteres" onChange={adicionarSenha}/>
                     </div>
                     <div className="form-field d-flex align-items-center">
-                        <input type='text' name='cpf' id='cpf' placeholder='Opcional/ CPF' onChange={adicionarCpf}/>
+                        <input type="text" name="NomeDoUsiario" id="NomeDoUsiario" placeholder="Digite seu Nome" onChange={adicionarNomeDoUsuario}/>
                     </div>
                         <button className="btn mt-3" onClick={Cadastrar}> Cadastrar </button>
                 </div>

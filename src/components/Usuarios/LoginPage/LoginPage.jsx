@@ -1,25 +1,11 @@
-import { React, useEffect} from 'react';
+import { React } from 'react';
 import './login.css'
-import { Link, useNavigate } from 'react-router-dom';
-import { auth } from './Firebase/firebaseConfig'
-import { onAuthStateChanged } from 'firebase/auth'
+import { Link } from 'react-router-dom';
 import LoginGoogleFacebook from './LoginMetodos/LoginGoogleFacebook';
 import LoginEmailSenha from './LoginMetodos/LoginEmailSenha';
 
 
 export default function Login(){
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-          if (user) {
-            navigate('/');
-          }
-        });
-        return () => {
-          unsubscribe();
-        };
-      }, [navigate]);
   
     return(
         <div>
@@ -39,9 +25,11 @@ export default function Login(){
                 </div>
                     <div className='ou'> OU </div>
                 </div>
-                <div className='btn-loginGoogle'>
-                    <LoginGoogleFacebook/>
-                </div>
+                {
+                //<div className='btn-loginGoogle'>
+                  //  <LoginGoogleFacebook/>
+                //</div>
+                }
                 <div>
                 
                 </div>

@@ -79,19 +79,20 @@ export function CartPagBar({ Pedido }) {
       try {
         const user = auth.currentUser;
         if (!user) {
-          console.error("User is not authenticated.");
+            console.error("Usuario não Autenticado");
           return;
         }
   
-        const userDocRef = doc(db, "usuario", user.email); 
+        const userDocRef = doc(db, "usuario"); 
         const orderCollectionRef = collection(userDocRef, "pedidos"); 
-  
         const newOrderDocRef = await addDoc(orderCollectionRef, {
           date: serverTimestamp(),
           items: Pedido
         });
-        dispatch(clearCart());
-        navigate('/');
+
+
+        //dispatch(clearCart());
+        //navigate('/');
       } catch (error) {
         console.error("Error saving order: ", error);
       }
