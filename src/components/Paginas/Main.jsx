@@ -8,7 +8,6 @@ import { useEffect, useState } from 'react';
 export default function Main() {
   const [user, setUser] = useState('');
 
-  console.log(user)
   
   useEffect(()=>{
     const usuario = onAuthStateChanged(auth, (user)=>{

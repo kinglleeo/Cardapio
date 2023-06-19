@@ -17,6 +17,7 @@ export default function TelaInicialCardapio(){
         const cnpjValue = urlParams.get('cnpj');
             setMesa(mesaValue || '');
             setCnpj(cnpjValue || '');
+                localStorage.setItem('mesaValue', mesaValue);
     }, []);
          
     useEffect(()=>{
@@ -36,6 +37,7 @@ export default function TelaInicialCardapio(){
             const rotaBase = parts[1].trim();
             const RotaFinal = `${rotalink}:${rotaBase}`;
                 iniciarRota(RotaFinal)
+                console.log(RotaFinal)
           }
         }
     }, [resposta]);

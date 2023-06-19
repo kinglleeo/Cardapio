@@ -14,7 +14,12 @@ export function CartPagBar({ Pedido }) {
   const dispatch = useDispatch();
   const [compra, setCompra] = useState([]);
   const [totalCart, setTotalCart] = useState('');
+  const [mesa, setMesa] = useState('');
 
+  useEffect(()=>{
+    const newMesa = localStorage.getItem('mesaValue');
+      setMesa(newMesa)
+  })
   useEffect(() => {
     const updatedCompra = Pedido.map((item) => {
       const itemExistente = compra.find((compraItem) => compraItem.id === item.id);
@@ -107,7 +112,7 @@ export function CartPagBar({ Pedido }) {
     axios
       .post(`http://192.168.0.100:9865/inserirPedido`, {
         cnpj: '',
-        mesa: '2',
+        mesa: mesa,
         total: totalCart,
         pagamento: 'balcão',
         items_pedido: items_pedido, 

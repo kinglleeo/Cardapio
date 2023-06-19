@@ -123,6 +123,13 @@
     -webkit-mask: var(--mask);
         mask: var(--mask);
 }
+.icon-grupoTamanho{
+    position: relative;
+    top: -35px;
+    left: 90%;
+    width: 20px;
+    height: auto;
+}
   @keyframes slide-in-left {
     0% {
       transform: translateX(-1000px);

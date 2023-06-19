@@ -10,7 +10,9 @@ export default function Grupo(){
     const [grupos, setGrupos] = useState([]);
     const [tamanhosPizza, setTamanhosPizza] = useState([]);
     const navigate = useNavigate();
-    
+    const [listaTamanhosAtivos, setListaTamanhosAtivos] = useState(null);
+    const IdTamanho ="1"
+
     useEffect(() => {
         api
             .get(`/listaGrupos`)
@@ -34,6 +36,14 @@ export default function Grupo(){
         navigate('/Pizzas', { state: { data, PIZZA_MISTA } });
     }
 
+    const toggleListaTamanhos = (IdGrupo) => {
+        if (listaTamanhosAtivos === IdGrupo) {
+            setListaTamanhosAtivos(null);
+        } else {
+            setListaTamanhosAtivos(IdGrupo);
+        }
+    } 
+
     return(
     <div>
         <div>
@@ -47,22 +57,29 @@ export default function Grupo(){
                 <div className='Grupo-Titulo'>{item.GRUPO}</div>
                     {item.PIZZA_MISTA === "SIM" ? (
                         <div>
-                            {Array.isArray(tamanhosPizza) ? (
-                                tamanhosPizza.map((data)=>
-                                <div className='card-produtos' key={data.ID}>
-                                    <div className='box-produtos' onClick={()=> handlePizzas(data, item.PIZZA_MISTA)}>
-                                        <div className='produtos-info'>
-                                            <div className='item-nome'> {data.TAMANHO} </div>
-                                        <div className='produtos-valor'>
-                                            <div className='box-valor'>Até {data.QTD_MAXIMO === 1 ? (data.QTD_MAXIMO + " " + "Sabor"):(data.QTD_MAXIMO + " " + "Sabores")} </div>
-                                        </div>
-                                        </div>
-                                        <div className='produtos-img'>
+                            <div className='icon-grupoTamanho' onClick={() => toggleListaTamanhos(IdTamanho)}>
+                                {listaTamanhosAtivos === IdTamanho ? '-' : '+'}
+                            </div>
+                        {listaTamanhosAtivos === "1" ? (
+                            <div>
+                                {Array.isArray(tamanhosPizza) ? (
+                                    tamanhosPizza.map((data)=>
+                                    <div className='card-produtos' key={data.ID}>
+                                        <div className='box-produtos' onClick={()=> handlePizzas(data, item.PIZZA_MISTA)}>
+                                            <div className='produtos-info'>
+                                                <div className='item-nome'> {data.TAMANHO} </div>
+                                            <div className='produtos-valor'>
+                                                <div className='box-valor'>Até {data.QTD_MAXIMO === 1 ? (data.QTD_MAXIMO + " " + "Sabor"):(data.QTD_MAXIMO + " " + "Sabores")} </div>
+                                            </div>
+                                            </div>
+                                            <div className='produtos-img'>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                )    
-                            ) : null }
+                                    )    
+                                ) : null }
+                            </div>
+                        ):(<div></div>)}
                         </div>
                     ) : (
                         <div>
