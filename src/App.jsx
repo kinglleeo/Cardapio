@@ -11,28 +11,12 @@ import CriarConta from './components/Usuarios/LoginPage/CriarConta/CriarConta'
 import ProtectedRoute from "./components/Usuarios/LoginPage/Firebase/ProtectRoute";
 import { UserAuthContextProvider } from "./components/Usuarios/LoginPage/Firebase/base"
 import PaginaUsuario from './components/Usuarios/UsuarioInfo/PaginaUsuario/PaginaUsuario'
-import RedirectLogin from './components/Usuarios/LoginPage/RedirectLogin'
 import MainPizzas from './components/Paginas/Produtos/Pizzas/MainPizzas'
 import AdicionaisMain from './components/Paginas/Produtos/Adicionais/AdicionaisMain'
 import PaginaLoadLogin from './components/Usuarios/LoginPage/LoginMetodos/PaginaLoadLogin'
 import TelaInicialCardapio from './TelaInicialCardapio'
 
 export default function App(){
-  const [mesa, setMesa] = useState('');
-  const [cnpj, setCnpj] = useState('');
-
-  console.log(mesa)
-  console.log(cnpj)
-  
-  //formato da ult: http://192.168.0.93:3000?mesa=2&cnpj=000000000000
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const mesaValue = urlParams.get('mesa');
-    const cnpjValue = urlParams.get('cnpj');
-    setMesa(mesaValue || '');
-    setCnpj(cnpjValue || '');
-  }, []);
-  
   
 
     return(
@@ -49,7 +33,6 @@ export default function App(){
               <Route path='/Pizzas' element={ <MainPizzas/> }/>
               <Route path='/login' element={<LoginPage/>}></Route>
               <Route path='/CriarConta' element={<CriarConta/>}></Route>
-              <Route path='/RedirectLogin' element={<RedirectLogin/>}/>
               <Route path='/PaginaLoadLogin' element={<PaginaLoadLogin/>}/>
             </Routes>
           </Provider>

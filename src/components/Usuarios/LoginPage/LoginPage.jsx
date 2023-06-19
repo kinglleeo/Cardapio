@@ -1,9 +1,9 @@
 import { React } from 'react';
 import './login.css'
 import { Link } from 'react-router-dom';
-import LoginGoogleFacebook from './LoginMetodos/LoginGoogleFacebook';
 import LoginEmailSenha from './LoginMetodos/LoginEmailSenha';
-
+import LoginTeste from './LoginMetodos/LoginTeste'
+import LoginGoogleFacebook from './LoginMetodos/LoginGoogleFacebook'
 
 export default function Login(){
   
@@ -30,9 +30,11 @@ export default function Login(){
                   //  <LoginGoogleFacebook/>
                 //</div>
                 }
-                <div>
-                
-                </div>
+                {
+                   <div>
+                   <LoginTeste/>
+                   </div>
+                }
             </div>
         </div>
     )

@@ -3,8 +3,6 @@ import '../login.css'
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../Firebase/firebaseConfig';
 import { useNavigate } from 'react-router-dom';
-import { db } from '../Firebase/firebaseConfig';
-import { collection, addDoc } from "firebase/firestore";
 
 export default function CriarConta(){
     const [email, setEmail] = useState('');
@@ -28,15 +26,7 @@ export default function CriarConta(){
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
-            try {
-                const docRef = addDoc(collection(db, "usuario",  user.uid), {
-                  nome: nomeDoUsuario,
-                  email: email,
-                });
-              } catch (e) {
-                console.error("Error adding document: ", e);
-              }
-            navigate('/Main')
+            navigate('/PaginaLoadLogin')
           })
         .catch((error) => {
             alert(error.message)

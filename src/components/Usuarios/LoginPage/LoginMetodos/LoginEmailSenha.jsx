@@ -20,7 +20,7 @@ export default function LoginEmailSenha(){
         e.preventDefault();
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                navigate('/Main')
+                navigate('/PaginaLoadLogin')
             })
             .catch((error) => {
                 alert('Usuario não encontrado');

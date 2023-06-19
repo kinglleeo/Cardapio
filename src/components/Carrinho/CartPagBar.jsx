@@ -70,8 +70,8 @@ export function CartPagBar({ Pedido }) {
 
 
   const handlePagar = (totalCart, compra, Pedido) => {
-    EnviarPedidoAPI(totalCart, compra)
-    //BancodePedidos(Pedido)
+    //EnviarPedidoAPI(totalCart, compra)
+    BancodePedidos(Pedido)
   };
   
   const BancodePedidos=()=>{
@@ -83,7 +83,7 @@ export function CartPagBar({ Pedido }) {
           return;
         }
   
-        const userDocRef = doc(db, "usuario"); 
+        const userDocRef = doc(db, "usuarios", user.uid); 
         const orderCollectionRef = collection(userDocRef, "pedidos"); 
         const newOrderDocRef = await addDoc(orderCollectionRef, {
           date: serverTimestamp(),
