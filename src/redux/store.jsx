@@ -13,6 +13,7 @@ import {
 } from 'redux-persist'
 const persistConfig = {
   key: 'root',
+  version: 1,
   storage,
 }
 const persistedReducer = persistReducer(persistConfig, cartReducer)

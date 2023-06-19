@@ -9,9 +9,6 @@ export const iniciarRota = (RotaFinal) => {
 };
 
 
-// Recuperar a baseURL ao carregar a página
-
-
 const savedBaseURL = sessionStorage.getItem('apiBaseURL');
 if (savedBaseURL) {
   api.defaults.baseURL = savedBaseURL;
