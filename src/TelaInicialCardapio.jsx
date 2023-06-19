@@ -17,7 +17,8 @@ export default function TelaInicialCardapio(){
         const cnpjValue = urlParams.get('cnpj');
             setMesa(mesaValue || '');
             setCnpj(cnpjValue || '');
-                localStorage.setItem('mesaValue', mesaValue);
+                sessionStorage.setItem('mesaValue', mesaValue);
+                sessionStorage.setItem('sesaoAtiva', "sim");
     }, []);
          
     useEffect(()=>{

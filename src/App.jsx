@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Main from './components/Paginas/Main'
 import GrupoList from './components/Paginas/Produtos/GrupoList'
 import { Provider } from 'react-redux';
-import { store } from './redux/store';
+import { store, persistor } from './redux/store';
 import Carrinho from './components/Carrinho/Carrinho'
 import Pagamentos from "./components/Carrinho/Pagamentos";
 import LoginPage from "./components/Usuarios/LoginPage/LoginPage";
@@ -18,7 +18,6 @@ import TelaInicialCardapio from './TelaInicialCardapio'
 
 export default function App(){
   
-
     return(
       <UserAuthContextProvider>
           <Provider store={store}>

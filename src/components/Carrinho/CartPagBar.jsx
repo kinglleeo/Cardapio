@@ -17,7 +17,7 @@ export function CartPagBar({ Pedido }) {
   const [mesa, setMesa] = useState('');
 
   useEffect(()=>{
-    const newMesa = localStorage.getItem('mesaValue');
+    const newMesa = sessionStorage.getItem('mesaValue');
       setMesa(newMesa)
   })
   useEffect(() => {
