@@ -247,12 +247,14 @@
     width: 30px;
 }
 .img-cartCheio{
+    height: 100%;
+    width: 100%;
     background-image: url('../imagens/icons8-carrinho-de-compras-carregado-30.png');
-    background-size: 100% 100%;
 }
 .img-cartVazio{
+    height: 100%;
+    width: 100%;
     background-image: url('../imagens/icons8-carrinho-de-compras-30.png');
-    background-size: 100% 100%;
 }
 .text-cart{
     width: 60%;

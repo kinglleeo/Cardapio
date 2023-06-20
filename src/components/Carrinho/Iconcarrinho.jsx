@@ -2,11 +2,9 @@ import { React } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import '../../Styles/StylesCart.css'
-import { TotalCart } from './total';
 
 export default function iconcarrinho(){
     const cart = useSelector((state) => state.cart)
-
 
     const getTotalQuantity = () => {
         let total = 0
