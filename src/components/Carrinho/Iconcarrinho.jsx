@@ -1,10 +1,12 @@
-import { React } from 'react'
+import { React, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import '../../Styles/StylesCart.css'
+import { formCurrency } from '../AA-utilidades/numeros';
 
 export default function iconcarrinho(){
     const cart = useSelector((state) => state.cart)
+    const [totalCart, setTotalCart] = useState('');
 
     const getTotalQuantity = () => {
         let total = 0
@@ -13,6 +15,10 @@ export default function iconcarrinho(){
         })
         return total
       }
+    useEffect(()=>{
+        const newtotalCart = sessionStorage.getItem('totalCart');
+        setTotalCart(newtotalCart)
+    })
 
     return(
         <div className='carrinho'>
@@ -33,7 +39,7 @@ export default function iconcarrinho(){
                         <div> VER MEU CARRINHO </div>
                     </div>
                     <div className='quantidade-cart'>
-                        <div>R$ 0,00</div>
+                        <div>{formCurrency.format(totalCart)}</div>
                     </div>
             </div>
         </div>
