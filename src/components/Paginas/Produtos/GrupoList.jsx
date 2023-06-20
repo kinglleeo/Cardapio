@@ -4,7 +4,7 @@ import { api } from '../../../conecções/api';
 import MenuBar from '../../navbar/menubar';
 import SubGrupoList from './SubGrupoList';
 import { useNavigate } from 'react-router-dom';
-
+import './grupolist.css'
 
 export default function Grupo(){
     const [grupos, setGrupos] = useState([]);
@@ -51,44 +51,49 @@ export default function Grupo(){
                 grupos={grupos}
             />
         </div>
-        {Array.isArray(grupos) ? (
-            grupos.map((item)=>
-            <div className='GrupoList' id={item.ID_GRUPO} key={item.ID_GRUPO}>
-                <div className='Grupo-Titulo'>{item.GRUPO}</div>
-                    {item.PIZZA_MISTA === "SIM" ? (
-                        <div>
-                            <div className='icon-grupoTamanho' onClick={() => toggleListaTamanhos(IdTamanho)}>
-                                {listaTamanhosAtivos === IdTamanho ? '-' : '+'}
-                            </div>
-                        {listaTamanhosAtivos === "1" ? (
-                            <div>
-                                {Array.isArray(tamanhosPizza) ? (
-                                    tamanhosPizza.map((data)=>
-                                    <div className='card-produtos' key={data.ID}>
-                                        <div className='box-produtos' onClick={()=> handlePizzas(data, item.PIZZA_MISTA)}>
-                                            <div className='produtos-info'>
-                                                <div className='item-nome'> {data.TAMANHO} </div>
-                                            <div className='produtos-valor'>
-                                                <div className='box-valor'>Até {data.QTD_MAXIMO === 1 ? (data.QTD_MAXIMO + " " + "Sabor"):(data.QTD_MAXIMO + " " + "Sabores")} </div>
-                                            </div>
-                                            </div>
-                                            <div className='produtos-img'>
+        <div className='Main-Cardapio'>
+            {Array.isArray(grupos) ? (
+                grupos.map((item)=>
+                    <div className='GrupoList' id={item.ID_GRUPO} key={item.ID_GRUPO}>
+                        <div className='Grupo-Titulo'>{item.GRUPO}</div>
+                            {item.PIZZA_MISTA === "SIM" ? (
+                                <div>
+                                <div className='icon-grupoTamanho' onClick={() => toggleListaTamanhos(IdTamanho)}>
+                                    {listaTamanhosAtivos === IdTamanho ? <div className='icone-setaUp'></div> : <div className='icone-setaDown'></div>}
+                                </div>
+                            {listaTamanhosAtivos === "1" ? (
+                                <div>
+                                    {Array.isArray(tamanhosPizza) ? (
+                                        tamanhosPizza.map((data)=>
+                                        <div className='card-produtos' key={data.ID}>
+                                            <div className='box-produtos' onClick={()=> handlePizzas(data, item.PIZZA_MISTA)}>
+                                                <div className='produtos-info'>
+                                                    <div className='produto-nome'>
+                                                        <div className='item-nome'> {data.TAMANHO} </div>
+                                                    </div>
+                                                <div className='produtos-valor'>
+                                                    <div className='box-valor'>Até {data.QTD_MAXIMO === 1 ? (data.QTD_MAXIMO + " " + "Sabor"):(data.QTD_MAXIMO + " " + "Sabores")} </div>
+                                                </div>
+                                                </div>
+                                                <div className='produtos-img'>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    )    
-                                ) : null }
+                                        )    
+                                    ) : null }
+                                </div>
+                            ):(<div></div>)}
                             </div>
-                        ):(<div></div>)}
-                        </div>
-                    ) : (
-                        <div>
-                            <SubGrupoList
-                                grupo={item}
-                            />
-                        </div>
-                )}
-            </div>
-        )) : null} 
+                            ) : (
+                                <div>
+                                    <SubGrupoList
+                                        grupo={item}
+                                    />
+                                </div>
+                            )}
+                    </div>
+            )) : null} 
+        </div>
+        
    </div>
 )}

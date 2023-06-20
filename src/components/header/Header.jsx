@@ -17,9 +17,7 @@ export default function Header (){
                         </div>
                     </div>
                     <div className='banner-infos'>
-                        <div className='icone-fechar'>
-                            <img url='https://png.pngtree.com/png-vector/20220918/ourmid/pngtree-red-closed-sign-design-for-store-or-shope-png-image_6181316.png'></img>
-                        </div>
+                        <div className='icone-horario'></div>
                         <div className='tempo-banner'>
                             Fecha as 23:00
                         </div>
@@ -28,6 +26,7 @@ export default function Header (){
                 <div className='footer-header'>
                     <div className='endereço-header'> Rua sjisjajsijsiadjiajsidjasd, shdaijsdoaokdsa - sajdpsa </div>
                 </div>
+                <div className='logo-restaurante'></div>
             </div>    
         </div>
     )

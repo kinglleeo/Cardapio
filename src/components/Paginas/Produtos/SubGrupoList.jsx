@@ -49,13 +49,13 @@ export default function SubGrupoList({ grupo }) {
           <div className='box-subgrupos' key={item.ID_SUBGRUPO} id={item.ID_SUBGRUPO}>
             <div className='subgrupos'>
               <div className='subgrupo-titulo'>{item.SUBGRUPO}</div>
-              <div className='box-subgrupo-icon'>
-                <div className='subgrupo-icon' onClick={() => toggleLista(item.ID_SUBGRUPO)}>
-                  {subGrupoAtivo === item.ID_SUBGRUPO ? '-' : '+'}
+                <div className='box-subgrupo-icon'>
+                  <div className='subgrupo-icon' onClick={() => toggleLista(item.ID_SUBGRUPO)}>
+                    {subGrupoAtivo === item.ID_SUBGRUPO ? <div className='icone-setaUp'></div> : <div className='icone-setaDown'></div>}
+                  </div>
                 </div>
-              </div>
             </div>
-            <div className='listProdutos-subgrupos'>
+            <div>
               {subGrupoAtivo === item.ID_SUBGRUPO && (
                 <div className='subgrupolist-produto'>
                   <ProdutoList 
@@ -71,3 +71,5 @@ export default function SubGrupoList({ grupo }) {
     </div>
   );
 }
+
+

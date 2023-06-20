@@ -1,6 +1,3 @@
-.carde{
-
-}
 .carde-inner{
     --mask: radial-gradient(2px at 0 75%,#0000 98%,#000) 2px 50%/51% 8px repeat-y, radial-gradient(2px at 50% 25%,#000 99%,#0000 101%) left/4px 8px repeat-y, radial-gradient(2px at 100% 25%,#0000 98%,#000) calc(100% - 2px) 50%/51% 8px repeat-y, radial-gradient(2px at 50% 75%,#000 99%,#0000 101%) right/4px 8px repeat-y;
     -webkit-mask: var(--mask);
@@ -220,22 +217,49 @@
 .totalcart{
     display: grid;
     place-items: center;
-}.carrinho{
+}
+
+
+
+
+.carrinho{
     position: fixed;
-    bottom: 60px;
-    right: 0px;
+    bottom: 70px;
+    left: 30px;
+    right: 30px;
     height: 60px;
-    width: 70px;
-    border-radius: 60px 0 0 60px;
-    background-color: rgb(252, 129, 129);
-    display: grid;
-    place-items: center;
+    border-radius: 5px;
+    background-color: #FD4B2D;
 }
 .caixa-carrinho{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    height: 100%;
+    display: flex;
     place-items: center;
 }
+.quantidade-cart{
+    width: 20%;
+    display: flex;
+    place-items: center;
+    justify-content: space-evenly;
+}
+.totalQuantidade-cart-svg{
+    height: 30px;
+    width: 30px;
+}
+.img-cartCheio{
+    background-image: url('../imagens/icons8-carrinho-de-compras-carregado-30.png');
+    background-size: 100% 100%;
+}
+.img-cartVazio{
+    background-image: url('../imagens/icons8-carrinho-de-compras-30.png');
+    background-size: 100% 100%;
+}
+.text-cart{
+    width: 60%;
+    display: flex;
+    justify-content: center;
+}
+
 @media(max-width: 700px){
     .cart-item-descricao{
         overflow-y: scroll;

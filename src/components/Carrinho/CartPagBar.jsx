@@ -16,6 +16,7 @@ export function CartPagBar({ Pedido }) {
   const [totalCart, setTotalCart] = useState('');
   const [mesa, setMesa] = useState('');
 
+
   useEffect(()=>{
     const newMesa = sessionStorage.getItem('mesaValue');
       setMesa(newMesa)

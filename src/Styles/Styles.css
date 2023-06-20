@@ -7,19 +7,19 @@
     display: grid;
     place-items: center;
     font-size: 16px;
-    margin: 10px;
-    height: 30px;
-    --mask: 
-    radial-gradient(2px at 0    75%,#0000 98%,#000) 2px 50%/51% 8px repeat-y,
-    radial-gradient(2px at 50%  25%,#000 99%,#0000 101%) left/4px 8px repeat-y,
-    radial-gradient(2px at 100% 25%,#0000 98%,#000) calc(100% - 2px) 50%/51% 8px repeat-y,
-    radial-gradient(2px at 50%  75%,#000 99%,#0000 101%) right/4px 8px repeat-y;
-  -webkit-mask: var(--mask);
-          mask: var(--mask);
-    background-color: #ffb56b;
-    //background-color: #ca485c;
-    //background-color: #e16b5c;
-    //background-color: #f39060;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 50px;
+    background-color: #666666;
+}
+/* pizzaMista */
+.icon-grupoTamanho{
+  position: relative;
+  top: -40px;
+  left: 86%;
+  height: 20px;
+  width: 30px;
+  display: grid;
 }
 /* SubGrupo List */
 .box-subgrupos{
@@ -28,10 +28,11 @@
 .subgrupos{
     height: 35px;
     display: flex;
-    background-color: rgb(228, 67, 67);
+    background-color: #9E9E9E;
 }
 .subgrupo-titulo{
     width: 80%;
+    padding-left: 10px;
     margin: 5px;
     display: grid;
     place-items: center start;
@@ -43,93 +44,77 @@
 }
 .subgrupo-icon{
     height: 20px;
-    width: 40px;
+    width: 30px;
     display: grid;
-    place-items: center;
-    --mask: radial-gradient(2px at 0 75%,#0000 98%,#000) 2px 50%/51% 8px repeat-y, radial-gradient(2px at 50% 25%,#000 99%,#0000 101%) left/4px 8px repeat-y, radial-gradient(2px at 100% 25%,#0000 98%,#000) calc(100% - 2px) 50%/51% 8px repeat-y, radial-gradient(2px at 50% 75%,#000 99%,#0000 101%) right/4px 8px repeat-y;
-    -webkit-mask: var(--mask);
-    mask: var(--mask);
-    background-color: rgb(113, 255, 108);
 }
-.listProdutos-subgrupos{
-    width: auto;
-    height: auto;
+.icone-setaDown{
+  background-image: url('https://cdn-icons-png.flaticon.com/256/156/156317.png');
+  background-size: 100% 100%;
+}
+.icone-setaUp{
+  background-image: url('https://cdn-icons-png.flaticon.com/256/156/156317.png');
+  background-size: 100% 100%;
 }
 /* Produto List */
 .lista-produtos{
-    width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
-    margin-top: 15px;
+    margin-top: 5px;
 }
 .card-produtos{
-    height: 25%;
-    overflow: hidden;
+    height: auto;
     margin: 5px;
+    border: solid;
+    border-radius: 5px;
 }
 .box-produtos{
     display: flex;
-    min-height: 120px;
+    min-height: 110px;
 }
 .produtos-info{
     width: 70%;
     display: flex;
     flex-direction: column;
-    background-color: rgba(231, 127, 30, 0.712);
-    -webkit-animation: slide-in-left 0.5s both;
-	        animation: slide-in-left 0.5s both;
-
-    --mask: conic-gradient(from -135deg at right,#0000,#000 1deg 89deg,#0000 90deg) 50%/100% 10.00px;
-    -webkit-mask: var(--mask);
-        mask: var(--mask);
 }
 .produto-nome{
     height: 60%;
+    padding-top: 5px;
     display: grid;
-    place-items: center;
+    padding-left: 5px;
     font-size: 15px;
     word-break: normal;
+    -webkit-animation: slide-in-left 0.5s both;
+	        animation: slide-in-left 0.5s both;
 }
 .item-nome{
     width: 80%;
-    display: grid;
-    place-items: center;
+}
+.produto-ingredientes{
+    padding-left: 15px;
+    word-break: normal;
 }
 .produto-valor{
     height: 40%;
     display: grid;
-    place-items: center;
+    place-items: center start;
+    -webkit-animation: slide-in-left 0.5s both;
+	        animation: slide-in-left 0.5s both;
 }
 .box-valor{
   padding: 5px 10px 5px 10px;
   display: grid;
   place-items: center; 
   text-align: center;
-  --mask: radial-gradient(2px at 0 75%,#0000 98%,#000) 2px 50%/51% 8px repeat-y, radial-gradient(2px at 50% 25%,#000 99%,#0000 101%) left/4px 8px repeat-y, radial-gradient(2px at 100% 25%,#0000 98%,#000) calc(100% - 2px) 50%/51% 8px repeat-y, radial-gradient(2px at 50% 75%,#000 99%,#0000 101%) right/4px 8px repeat-y;
-      -webkit-mask: var(--mask);
-      mask: var(--mask);
-      background-color: rgb(113, 255, 108);
 }
 .produtos-img{
     width: 30%;
     background-image: url('https://media.gettyimages.com/id/1295796231/pt/foto/cheese-burger-with-bacon-on-black-dark-background.jpg?s=170667a&w=gi&k=20&c=Cwd1wP8q9UIyJ560nuuGh-8sfPy6JH1N7g5wXzKGqIw=');
     background-size: 100% 100%;
-    border-radius: 0 8px 8px 0;
+    border-radius: 0 5px 5px 0;
     -webkit-animation: slide-in-right 0.5s both;
         animation: slide-in-right 0.5s both;
+}
 
-    --mask: conic-gradient(from 45deg at left,#0000,#000 1deg 89deg,#0000 90deg) 50%/100% 10.00px;
-    -webkit-mask: var(--mask);
-        mask: var(--mask);
-}
-.icon-grupoTamanho{
-    position: relative;
-    top: -35px;
-    left: 90%;
-    width: 20px;
-    height: auto;
-}
   @keyframes slide-in-left {
     0% {
       transform: translateX(-1000px);
@@ -151,74 +136,3 @@
       opacity: 1;
     }
   }
-  @media(min-width: 1024px){
-    .lista-produtos {
-        display: flex;
-        margin-top: 15px;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        flex-direction: row !important;
-    }
-    .card-produtos {
-        width: 48%;
-        overflow: hidden;
-    }
-}
-@media(min-width: 1440px){
-    .card-produtos {
-        width: 32%;
-        overflow: hidden;
-    }
-}
-@media(min-width: 1800px){
-    .card-produtos {
-      width: 24%;
-      margin: 5px;
-    }
-    .box-produtos {
-      flex-direction: column-reverse;
-    }   
-    .produtos-img{
-      height: 40%;
-      width: 100%;
-    }
-    .produtos-info{
-      height: 70%;
-      width: 100%;
-      --mask: none;
-      border-radius: 0 0 20px 20px;
-    }
-    .produto-nome{
-      display: grid;
-      place-items: center;
-    }
-    .item-nome{
-      min-height: 30px;
-      width: auto;
-      font-size: 22px;
-      font-weight: 900;
-      text-align: center;
-      padding: 5px;
-    }
-    .card-valor{
-      width: 60%;
-      margin-bottom: 5px;
-      --mask: radial-gradient(2px at 0 75%,#0000 98%,#000) 2px 50%/51% 8px repeat-y, radial-gradient(2px at 50% 25%,#000 99%,#0000 101%) left/4px 8px repeat-y, radial-gradient(2px at 100% 25%,#0000 98%,#000) calc(100% - 2px) 50%/51% 8px repeat-y, radial-gradient(2px at 50% 75%,#000 99%,#0000 101%) right/4px 8px repeat-y;
-      -webkit-mask: var(--mask);
-      mask: var(--mask);
-      background-color: rgb(113, 255, 108);
-    }
-    .box-valor{
-      padding: 5px 10px 5px 10px;
-      font-size: 25px;
-      display: grid;
-      place-items: center; 
-      text-align: center;
-    }
-    .produtos-img{
-      height: 150px;
-      width: 100%;
-      --mask: none;
-      border-radius: 20px 20px 0 0;
-    }
-}

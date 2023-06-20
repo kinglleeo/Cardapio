@@ -20,25 +20,25 @@ export default function ProdutoList({ produto, subGrupo, grupo }){
                                 <div className='produtos-info'>
                                     <div className='produto-nome'>
                                         <div className='item-nome'>{data.PRODUTO}</div>
+                                            <div className='produto-ingredientes'>
+                                                <div>sahsiah asj dpajosi jdoaj sojdoa jsojd oajoi dsjioj sd ads</div>
+                                            </div>
                                     </div>
                                     <div className='produto-valor'>
-                                        <div className='card-valor'>
                                             <div className='box-valor'>
                                                 {data.VALOR_MINIMO > 0 ? (
                                                     <div>
-                                                        <div>Valor Apartir de</div>
-                                                        <div>{formCurrency.format(data.VALOR_MINIMO)}</div>
+                                                        <div>Apartir de {formCurrency.format(data.VALOR_MINIMO)}</div>
                                                     </div>
                                                 ) : (
                                                     <div>
-                                                        <div>valor </div>
-                                                        <div> {formCurrency.format(data .VALOR_VENDA)}</div>
+                                                        <div>valor {formCurrency.format(data .VALOR_VENDA)}</div>
                                                     </div>
                                                 )}
                                             </div>
-                                        </div>
                                     </div>
                                 </div>
+
                                 <div className='produtos-img'>
 
                                 </div>
