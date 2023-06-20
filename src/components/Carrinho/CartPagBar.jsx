@@ -77,6 +77,8 @@ export function CartPagBar({ Pedido }) {
   const handlePagar = (totalCart, compra, Pedido) => {
     //EnviarPedidoAPI(totalCart, compra)
     BancodePedidos(Pedido)
+      dispatch(clearCart());
+      navigate('/');
   };
   
   const BancodePedidos=()=>{
@@ -95,9 +97,6 @@ export function CartPagBar({ Pedido }) {
           items: Pedido
         });
 
-
-        //dispatch(clearCart());
-        //navigate('/');
       } catch (error) {
         console.error("Error saving order: ", error);
       }
