@@ -21,7 +21,7 @@
     height: 50px;
 }
 .logo-garline{
-    width: 120px;
+    width: 90px;
     height: 40px;
     background-image: url('../../imagens//logo.fw.png');
     background-position: center;
@@ -36,18 +36,11 @@
     display: flex;
     flex-direction: column;
 }
-.box-NomeEmpresa{
-    position: absolute;
-    height: 30px;
-    width: 80px;
-    left: 20px;
-    top: 240px;
-}
 .banner-garline{
     height: 75%;
     min-height: 200px;
     border-radius: 5px;
-    background-image: url('../../imagens//banner.fw.png');
+    background-image: url('../../imagens/banner.fw.png');
     background-size: 100% 100%;
 }
 .banner-infos{
@@ -57,36 +50,36 @@
     margin-top: 5px;
     background-color: #EFEFEF;
     border-radius: 5px;
-    width: 150px;
+    width: 130px;
     height: 35px;   
     display: flex;
     font-family: "Roboto-Condensed";
 }
+.caixa-icone{
+    width: 30%;
+    display: grid;
+    place-items: center;
+}
 .icone-tempo{
-    margin: 5px;
-    margin-left: 10px;
-    width: 25%;
-    background-image: url('../../imagens/icons8-timer-64.png');
+    height: 70%;
+    width: 70%;
+    background-image: url('../../imagens/icons8-cronômetro-58.png');
     background-size: 100% 100%;
 }
 .icone-horario{
-    margin: 5px;
-    margin-left: 10px;
-    width: 25%;
-    height: auto;
-    background-image: url('../../imagens/icons8-close-60.png');
+    height: 70%;
+    width: 70%;
+    background-image: url('../../imagens/icons8-close-sign-64.png');
     background-size: 100% 100%;
 }
 .icone-Whatsapp{
-    margin: 5px;
-    margin-left: 10px;
-    width: 25%;
-    height: auto;
-    background-image: url('../../imagens/icons8-whatsapp-48.png');
+    height: 70%;
+    width: 70%;
+    background-image: url('../../imagens/icons8-whatsapp-64.png');
     background-size: 100% 100%;
 }
 .tempo-banner{
-    width: 75%;
+    width: 70%;
     font-size: 12px;
     display: grid;
     place-items: center;
@@ -95,20 +88,23 @@
     position: absolute;
     height: 100px;
     width: 100px;
-    right: 20px;
-    top: 220px;
+    right:  35px;
+    top: 210px;
     border-radius: 5px;
-    background-color: black;
+}
+.img-restaurante{
+    height: 120px;
+    width: 120px;
 }
 .footer-header{
     height: 25%;
 }
 .endereço-header{
     position: relative;
-    width: 65%;
+    width: 60%;
     top: 5px;
     left: 5px;
-    word-break: break-all;
+    word-break: normal;
     overflow: hidden;
     font-family: "Roboto-Light";
 }

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function ProdutoList({ produto, subGrupo, grupo }){
     const navigate = useNavigate();
+    console.log(produto)
     
     const Adicionais = (data, subGrupo, grupo) => {
         navigate('/AdicionaisMain', { state: { data, subGrupo, grupo } });
@@ -37,9 +38,8 @@ export default function ProdutoList({ produto, subGrupo, grupo }){
                                             </div>
                                     </div>
                                 </div>
-
                                 <div className='produtos-img'>
-
+                                    <img src={'data:image/png;base64,' + data.IMAGEM_WEB} key={data.ID_PRODUTO} alt='Restaurante' className='img-restaurante'/>
                                 </div>
                             </div>
                         </div>

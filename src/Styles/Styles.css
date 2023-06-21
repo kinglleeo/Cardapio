@@ -121,13 +121,18 @@
 }
 .produtos-img{
     width: 30%;
-    background-image: url('https://media.gettyimages.com/id/1295796231/pt/foto/cheese-burger-with-bacon-on-black-dark-background.jpg?s=170667a&w=gi&k=20&c=Cwd1wP8q9UIyJ560nuuGh-8sfPy6JH1N7g5wXzKGqIw=');
-    background-size: 100% 100%;
     border-radius: 0 5px 5px 0;
     -webkit-animation: slide-in-right 0.5s both;
         animation: slide-in-right 0.5s both;
 }
-
+.pizza-img{
+  width: 30%;
+  background-image: url('https://t3.ftcdn.net/jpg/05/60/42/26/360_F_560422609_3nv30UESgwV4988d3rnk9yMJaGXw5x4T.jpg');
+  background-size: 100% 100%;
+  border-radius: 0 5px 5px 0;
+  -webkit-animation: slide-in-right 0.5s both;
+      animation: slide-in-right 0.5s both;
+}
   @keyframes slide-in-left {
     0% {
       transform: translateX(-1000px);

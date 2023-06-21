@@ -75,7 +75,7 @@ export default function Grupo(){
                                                     <div className='box-valor'>Até {data.QTD_MAXIMO === 1 ? (data.QTD_MAXIMO + " " + "Sabor"):(data.QTD_MAXIMO + " " + "Sabores")} </div>
                                                 </div>
                                                 </div>
-                                                <div className='produtos-img'>
+                                                <div className='pizza-img'>
                                                 </div>
                                             </div>
                                         </div>

@@ -18,18 +18,25 @@ export default function MenuBar({ grupos }) {
       windowHeight > 350? setStickyClass('nav-top') : setStickyClass('barradenavegacao')
     }
   }
+  const scrollToGroup = (groupID) => {
+    const groupElement = document.getElementById(groupID);
+    const yOffset = -50; 
+    const y = groupElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  }
 
   return (
     <div className={`${stickyClass}`}>
-      <div className='barra-nav'>
-        {Array.isArray(grupos)? (grupos.map((item)=>
-          <div className='nav-grupos' key={item.ID_GRUPO} onClick={() => document.getElementById(item.ID_GRUPO).scrollIntoView({ behavior: 'smooth' })}>
-            <div className='nav-grupos-box'>
-                <div className='name-grupo'>{item.GRUPO}</div>
-            </div>
+    <div className='barra-nav'>
+      {Array.isArray(grupos)? (grupos.map((item)=>
+        <div className='nav-grupos' key={item.ID_GRUPO} onClick={() => scrollToGroup(item.ID_GRUPO)}>
+          <div className='nav-grupos-box'>
+            <div className='name-grupo'>{item.GRUPO}</div>
           </div>
-        )) :null}  
-      </div>
+        </div>
+      )) :null}  
     </div>
+  </div>
     )
 }

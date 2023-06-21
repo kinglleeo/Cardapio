@@ -1,0 +1,102 @@
+@font-face {
+    font-family: "Roboto-Bold";
+    src: url('./fontes/roboto/Roboto-Bold.ttf');
+}
+.main-TelaInicial{
+    background-color: #FF8000;
+    display: flex;
+    justify-content: center;
+}
+.box-telainicial{
+    min-height: 100vh;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+}
+.logo-box{
+    height: 40%;
+    display: grid;
+    place-items: center;
+}
+.logo-telainicial{
+    height: 100px;
+    width: 250px;
+    background-image: url('./imagens/logo.fw.png');
+    background-size: 100% 100%;
+}
+.text-box{
+    height: 10%;
+    display: grid;
+    place-items: center;
+    color: white;
+    font-size: 25px;
+    font-family: "Roboto-Light";
+}
+.login-box{
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    place-items: center;
+}
+.login-box-inner{
+    height: 60%;
+    width: 90%;
+}
+.login-caixa{
+    height: 60px;
+    margin-top: 10px;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+}
+.login-iconebox{
+    width: 20%;
+    display: grid;
+    place-items: center;
+}
+.icone-login{
+    height: 60%;
+    width: 50%;
+    background-image: url('./imagens/icons8-account-64.png');
+    background-size: 100% 100%;
+}
+.icone-semlogin{
+    height: 60%;
+    width: 50%;
+    background-image: url('./imagens/icons8-kawaii-pizza-64.png');
+    background-size: 100% 100%;
+}
+.login-btn{
+    width: 80%;
+}
+.login-btn-telainicial{
+    background-color: white;
+    appearance: none;
+    border: none;
+    color: black;
+    font-size: 20px;
+    font-family: "Roboto-Bold";
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+}
+@media(min-width: 700px){
+    .box-telainicial{
+        width: 65%;
+    }
+}
+@media(min-width: 1024px){
+    .box-telainicial{
+        width: 55%;
+    }
+}
+@media(min-width: 1440px){
+    .box-telainicial{
+        width: 35%;
+    }
+}
+@media(min-width: 2560px){
+    .box-telainicial{
+        width: 25%;
+    }
+}
