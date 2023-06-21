@@ -55,15 +55,13 @@ export default function SubGrupoList({ grupo }) {
                   </div>
                 </div>
             </div>
-            <div>
+            <div className='subgrupolist-produto'>
               {subGrupoAtivo === item.ID_SUBGRUPO && (
-                <div className='subgrupolist-produto'>
                   <ProdutoList 
                     produto={produtos}
                     grupo={grupo} 
                     subGrupo={item}
                   />
-                </div>
               )}
             </div>
           </div>

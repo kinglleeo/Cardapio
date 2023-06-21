@@ -19,6 +19,7 @@ export default function TelaInicialCardapio(){
             setCnpj(cnpjValue || '');
                 sessionStorage.setItem('mesaValue', mesaValue);
                 sessionStorage.setItem('sesaoAtiva', "sim");
+                sessionStorage.setItem('cnpj', cnpjValue);
     }, []);
          
     useEffect(()=>{

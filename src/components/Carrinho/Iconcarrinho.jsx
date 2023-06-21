@@ -28,7 +28,7 @@ export default function iconcarrinho(){
                             {getTotalQuantity() || 0} X
                         </div>
                         <div className='totalQuantidade-cart-svg'>
-                            {getTotalQuantity > 0 ?(
+                            {getTotalQuantity() > 0 ?(
                                 <div className='img-cartCheio'></div>
                             ) : (
                                 <div className='img-cartVazio'></div>
@@ -37,7 +37,7 @@ export default function iconcarrinho(){
                     </div>
                     <div className='text-cart'>
                         <Link to='/carrinho' style={{ color: 'inherit', textDecoration: 'inherit'}}>
-                            <div> VER MEU CARRINHO </div>
+                            <div> MEU CARRINHO </div>
                         </Link>
                     </div>
                     <div className='quantidade-cart'>

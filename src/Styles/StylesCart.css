@@ -220,16 +220,20 @@
 }
 
 
-
-
+@font-face {
+    font-family: "Roboto-Condensed";
+    src: url('../fontes/roboto/Roboto-Condensed.ttf');
+}
 .carrinho{
     position: fixed;
     bottom: 40px;
-    left: 30px;
-    right: 30px;
-    height: 60px;
+    left: 60px;
+    right: 60px;
+    height: 50px;
     border-radius: 5px;
     background-color: #FD4B2D;
+    color: white;
+    font-family: "Roboto-Condensed";
 }
 .caixa-carrinho{
     height: 100%;

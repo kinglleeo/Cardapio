@@ -2,9 +2,17 @@
     padding: 0;
     margin: 0;
 }
+@font-face {
+    font-family: "Roboto-Light";
+    src: url('../../fontes/roboto/Roboto-Light.ttf');
+    font-family: "Roboto-Bold";
+    src: url('../../fontes/roboto/Roboto-Bold.ttf');
+    font-family: "Roboto-Condensed";
+    src: url('../../fontes/roboto/Roboto-Condensed.ttf');
+  }
 .Main-header{
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
 }
 .header-header{
     background-color: #FF8000;
@@ -28,6 +36,13 @@
     display: flex;
     flex-direction: column;
 }
+.box-NomeEmpresa{
+    position: absolute;
+    height: 30px;
+    width: 80px;
+    left: 20px;
+    top: 240px;
+}
 .banner-garline{
     height: 75%;
     min-height: 200px;
@@ -40,23 +55,34 @@
     left: 15px;
     top: 10px;
     margin-top: 5px;
-    background-color: #666666;
+    background-color: #EFEFEF;
     border-radius: 5px;
     width: 150px;
     height: 35px;   
     display: flex;
+    font-family: "Roboto-Condensed";
 }
 .icone-tempo{
+    margin: 5px;
     margin-left: 10px;
     width: 25%;
     background-image: url('../../imagens/icons8-timer-64.png');
     background-size: 100% 100%;
 }
 .icone-horario{
+    margin: 5px;
     margin-left: 10px;
     width: 25%;
     height: auto;
     background-image: url('../../imagens/icons8-close-60.png');
+    background-size: 100% 100%;
+}
+.icone-Whatsapp{
+    margin: 5px;
+    margin-left: 10px;
+    width: 25%;
+    height: auto;
+    background-image: url('../../imagens/icons8-whatsapp-48.png');
     background-size: 100% 100%;
 }
 .tempo-banner{
@@ -84,4 +110,5 @@
     left: 5px;
     word-break: break-all;
     overflow: hidden;
+    font-family: "Roboto-Light";
 }

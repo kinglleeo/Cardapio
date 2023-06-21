@@ -11,7 +11,6 @@ export default function ProdutoList({ produto, subGrupo, grupo }){
       };
     
     return(
-        <div>
            <div className='lista-produtos'>
                 {Array.isArray(produto) ? (
                     produto.map((data)=>
@@ -28,11 +27,11 @@ export default function ProdutoList({ produto, subGrupo, grupo }){
                                             <div className='box-valor'>
                                                 {data.VALOR_MINIMO > 0 ? (
                                                     <div>
-                                                        <div>Apartir de {formCurrency.format(data.VALOR_MINIMO)}</div>
+                                                        <div>{formCurrency.format(data.VALOR_MINIMO)}</div>
                                                     </div>
                                                 ) : (
                                                     <div>
-                                                        <div>valor {formCurrency.format(data .VALOR_VENDA)}</div>
+                                                        <div>{formCurrency.format(data .VALOR_VENDA)}</div>
                                                     </div>
                                                 )}
                                             </div>
@@ -46,6 +45,5 @@ export default function ProdutoList({ produto, subGrupo, grupo }){
                         </div>
                     )) : null}
            </div>
-        </div>
     )
 }
