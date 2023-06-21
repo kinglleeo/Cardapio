@@ -10,7 +10,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
             <BrowserRouter>  
                 <QueryClientProvider client={queryClient}>
-                    <App />
+                    <div className='app'>
+                        <App />
+                    </div>
                 </QueryClientProvider>
            </BrowserRouter>
 )

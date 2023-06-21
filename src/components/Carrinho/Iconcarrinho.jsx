@@ -36,7 +36,9 @@ export default function iconcarrinho(){
                         </div>
                     </div>
                     <div className='text-cart'>
-                        <div> VER MEU CARRINHO </div>
+                        <Link to='/carrinho' style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                            <div> VER MEU CARRINHO </div>
+                        </Link>
                     </div>
                     <div className='quantidade-cart'>
                         <div>{formCurrency.format(totalCart)}</div>

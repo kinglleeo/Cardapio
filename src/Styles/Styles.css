@@ -10,14 +10,14 @@
     margin-top: 5px;
     margin-bottom: 5px;
     height: 50px;
-    background-color: #666666;
+    background-color: #EEEEEE;
 }
 /* pizzaMista */
 .icon-grupoTamanho{
   position: relative;
-  top: -40px;
+  top: -45px;
   left: 86%;
-  height: 20px;
+  height: 30px;
   width: 30px;
   display: grid;
 }
@@ -28,7 +28,7 @@
 .subgrupos{
     height: 35px;
     display: flex;
-    background-color: #9E9E9E;
+    background-color:  #F4F4F4;
 }
 .subgrupo-titulo{
     width: 80%;
@@ -43,16 +43,16 @@
     place-items: center;
 }
 .subgrupo-icon{
-    height: 20px;
+    height: 30px;
     width: 30px;
     display: grid;
 }
 .icone-setaDown{
-  background-image: url('https://cdn-icons-png.flaticon.com/256/156/156317.png');
+  background-image: url('../imagens/down.fw.png');
   background-size: 100% 100%;
 }
 .icone-setaUp{
-  background-image: url('https://cdn-icons-png.flaticon.com/256/156/156317.png');
+  background-image: url('../imagens/up.fw.png');
   background-size: 100% 100%;
 }
 /* Produto List */
