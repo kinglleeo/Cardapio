@@ -112,6 +112,7 @@
 .footer-header{
     margin-bottom: 5px;
     width: 60%;
+    min-height: 50px;
 }
 .endereço-header{
     margin: 5px;
