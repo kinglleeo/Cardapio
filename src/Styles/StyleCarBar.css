@@ -1,0 +1,53 @@
+@font-face {
+    font-family: "Roboto-Condensed";
+    src: url('../fontes/roboto/Roboto-Condensed.ttf');
+}
+.carrinho{
+    position: fixed;
+    bottom: 40px;
+    left: 20px;
+    right: 20px;
+    height: 60px;
+    border-radius: 5px;
+    background-color: #FD4B2D;
+    color: white;
+    font-family: "Roboto-Condensed";
+}
+.caixa-carrinho{
+    height: 100%;
+    display: flex;
+    place-items: center;
+}
+.margin1{
+    margin-left: 10px;
+}
+.margin2{
+    margin-right: 10px;
+}
+.quantidade-cart{
+    width: 25%;
+    display: flex;
+    place-items: center;
+    justify-content: space-evenly;
+}
+.totalQuantidade-cart-svg{
+    height: 30px;
+    width: 30px;
+}
+.img-cartCheio{
+    height: 100%;
+    width: 100%;
+    background-image: url('../imagens/icons8-carrinho-de-compras-carregado-30.png');
+    background-size: 100% 100%;
+}
+.img-cartVazio{
+    height: 100%;
+    width: 100%;
+    background-image: url('../imagens/icons8-carrinho-de-compras-30.png');
+    background-size: 100% 100%;
+}
+.text-cart{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}

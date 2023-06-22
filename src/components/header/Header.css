@@ -1,7 +1,3 @@
-*{
-    padding: 0;
-    margin: 0;
-}
 @font-face {
     font-family: "Roboto-Light";
     src: url('../../fontes/roboto/Roboto-Light.ttf');
@@ -9,38 +5,55 @@
     src: url('../../fontes/roboto/Roboto-Bold.ttf');
     font-family: "Roboto-Condensed";
     src: url('../../fontes/roboto/Roboto-Condensed.ttf');
+    font-family: "Roboto-Thin";
+    src: url('../../fontes/roboto/Roboto-Thin.ttf');
   }
 .Main-header{
-    display: flex;
-    flex-direction: column; 
+    padding-top: 40px;
+    position: relative;
 }
 .header-header{
-    background-color: #FF8000;
+    position: fixed;
+    background-color: #fc740d;
+    height: 40px;
+    width: 100%;
+    display: flex;
+    z-index: 999;
+}
+.header-login{
+    width: 40%;
     display: grid;
     place-items: center;
-    height: 50px;
+}
+.logo-garline-header{
+    width: 60%;
+    margin-right: 10px;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    align-content: space-around;
 }
 .logo-garline{
-    width: 90px;
-    height: 40px;
-    background-image: url('../../imagens//logo.fw.png');
-    background-position: center;
+    height: 25px;
+    width: 80px;
+    background-image: url('../../imagens/logo.fw.png');
     background-size: 100% 100%;
 }
-.body-header{
-    margin-top: 20px;
-    margin-left: 5px;
-    margin-right: 5px;
-    min-height: 280px;
+.btn-login-header{
+    background-color: #DBDBDB;
+    border: solid;
     border-radius: 5px;
-    display: flex;
-    flex-direction: column;
+    border-width: 0.5px;
+    height: 25px;
+    width: 80px;
+}
+.body-header{
+    display: grid;
 }
 .banner-garline{
     height: 75%;
-    min-height: 200px;
-    border-radius: 5px;
-    background-image: url('../../imagens/banner.fw.png');
+    min-height: 150px;
+    background-image: url('../../imagens/banner1.fw.webp');
     background-size: 100% 100%;
 }
 .banner-infos{
@@ -87,9 +100,9 @@
 .logo-restaurante{
     position: absolute;
     height: 100px;
-    width: 100px;
-    right:  35px;
-    top: 210px;
+    width: 120px;
+    right:  10px;
+    top: 115px;
     border-radius: 5px;
 }
 .img-restaurante{
@@ -97,14 +110,17 @@
     width: 120px;
 }
 .footer-header{
-    height: 25%;
+    margin-bottom: 5px;
+    width: 60%;
 }
 .endereço-header{
-    position: relative;
-    width: 60%;
-    top: 5px;
-    left: 5px;
+    margin: 5px;
     word-break: normal;
     overflow: hidden;
-    font-family: "Roboto-Light";
+    color: rgb(3, 3, 3, 3);
+    font-family: 'Roboto-Thin';
+}
+.img-restaurante-logo{
+    width: 120px;
+    height: 120px;
 }

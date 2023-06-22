@@ -100,10 +100,13 @@
 }
 .item-nome{
     width: 80%;
+    font-weight: 700;
 }
 .produto-ingredientes{
     padding-left: 15px;
-    word-break: normal;
+    word-break: break-all;
+    font-size: 12px;
+    font-family: "Roboto-condensed";
 }
 .produto-valor{
     height: 40%;
@@ -121,17 +124,29 @@
 }
 .produtos-img{
     width: 30%;
+    display: flex;
+    justify-content: flex-end;
     border-radius: 0 5px 5px 0;
     -webkit-animation: slide-in-right 0.5s both;
         animation: slide-in-right 0.5s both;
 }
 .pizza-img{
   width: 30%;
-  background-image: url('https://t3.ftcdn.net/jpg/05/60/42/26/360_F_560422609_3nv30UESgwV4988d3rnk9yMJaGXw5x4T.jpg');
-  background-size: 100% 100%;
-  border-radius: 0 5px 5px 0;
+  display: flex;
+  justify-content: flex-end;
   -webkit-animation: slide-in-right 0.5s both;
       animation: slide-in-right 0.5s both;
+}
+.pizza-png{
+  width: 120px;
+  height: 120px;
+  border-radius: 0 4px 4px 0;
+  background-image: url('https://t3.ftcdn.net/jpg/05/60/42/26/360_F_560422609_3nv30UESgwV4988d3rnk9yMJaGXw5x4T.jpg');
+  background-size: 100% 100%;
+}
+.img-restaurante{
+  border-radius: 0 4px 4px 0;
+  width: 100%;
 }
   @keyframes slide-in-left {
     0% {

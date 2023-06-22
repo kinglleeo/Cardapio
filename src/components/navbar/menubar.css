@@ -1,6 +1,6 @@
 @font-face {
-    font-family: "Roboto-Bold";
-    src: url('../../fontes/roboto/Roboto-Bold.ttf');
+    font-family: "Roboto-Light";
+    src: url('../../fontes/roboto/Roboto-Light.ttf');
   }
 .barradenavegacao{
     display: flex;
@@ -8,17 +8,18 @@
     background-color: #666666;
     height: 50px;
     width: auto;
-    font-family: "Roboto-Bold";
+    font-family: "Roboto-Light";
 }
 .nav-top{
     position: fixed;
     overflow-x: auto;
-    top: 0;
+    top: 40px;
     width: 100%;
     z-index: 999;
     background-color: #666666;
     height: 50px;
     display: flex;
+    font-family: "Roboto-Light";
 }
 .barra-nav{ 
     display: flex;

@@ -76,6 +76,7 @@ export default function Grupo(){
                                                 </div>
                                                 </div>
                                                 <div className='pizza-img'>
+                                                    <div className='pizza-png'></div>
                                                 </div>
                                             </div>
                                         </div>

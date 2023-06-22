@@ -3,12 +3,15 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import { iniciarRota } from './conecções/api';
 import './telainicialcardapio.css'
+import { api } from './conecções/api';
+import { BoxLoading  } from 'react-loadingg';
 
 export default function TelaInicialCardapio(){
     const navigate = useNavigate()
     const [resposta, setResposta] = useState('');
     const [mesa, setMesa] = useState('');
     const [cnpj, setCnpj] = useState('');
+    const [infoClientes, setInfoClientes] = useState([])
 
     //formato da ult: http://192.168.0.93:3000?mesa=2&cnpj=000000000000
     useEffect(() => {
@@ -20,6 +23,11 @@ export default function TelaInicialCardapio(){
                 sessionStorage.setItem('mesaValue', mesaValue);
                 sessionStorage.setItem('sesaoAtiva', "sim");
                 sessionStorage.setItem('cnpj', cnpjValue);
+            api
+                .get(`/dadosEmpresa/${cnpjValue}`)
+                .then((getdata)=>{
+                    setInfoClientes(getdata.data);
+                });
     }, []);
          
     useEffect(()=>{
@@ -39,48 +47,40 @@ export default function TelaInicialCardapio(){
             const rotaBase = parts[1].trim();
             const RotaFinal = `${rotalink}:${rotaBase}`;
                 iniciarRota(RotaFinal)
-                console.log(RotaFinal)
           }
         }
     }, [resposta]);
-
-
-const logar=()=>{
-    navigate('/Login')
-}
-
-const EntrarNotLogin=()=>{
-    navigate('/Main')
-}
+    
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+          navigate('/Main'); 
+        }, 3000);
+    
+        return () => {
+          clearTimeout(timeout);
+        };
+      }, [navigate]);
 
     return(
         <div className='main-TelaInicial'>
             <div className='box-telainicial'>
                 <div className='logo-box'>
-                    <div className='logo-telainicial'></div>
+                    <div className='logo-telainicial'>
+                        {infoClientes !== null ? (
+                            infoClientes.map(item => (
+                                <img src={'data:image/png;base64,' + item.FOTO} key={item.id} alt='Restaurante' className='img-restaurante'/>
+                            ))
+                        ): ( <div> </div>)}
+                    </div>
                 </div>
                 <div className='text-box'>
-                    <div>FAÇA SEU PEDIDO!</div>
+                    <div>FAÇA SEU PEDIDO!</div>  
                 </div>
-                <div className='login-box'>
-                    <div className='login-box-inner' >
-                        <div className='login-caixa'>
-                            <div className='login-iconebox'>
-                                <div className='icone-login'></div>
-                            </div>
-                            <div className='login-btn'>
-                                <button onClick={logar} className='login-btn-telainicial'> FAZER LOGIN </button>
-                            </div>
-                        </div>
-                        <div className='login-caixa'>
-                            <div className='login-iconebox'>
-                                <div className='icone-semlogin'></div>
-                            </div>
-                            <div className='login-btn'>
-                                <button onClick={EntrarNotLogin} className='login-btn-telainicial'> COMPRAR </button>
-                            </div>
-                        </div>
-                    </div>
+                <div className='box-loading'>
+                    
+                </div>
+                <div className='poweredby'>
+                    <div> Powered By B&d Info Services. </div>
                 </div>
             </div>
         </div>

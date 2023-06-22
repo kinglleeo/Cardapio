@@ -4,6 +4,8 @@ import SubMenuBar from './subMenuBar';
 
 export default function MenuBar({ grupos }) {
   const [stickyClass, setStickyClass]= useState('barradenavegacao')
+  const [selectedGroup, setSelectedGroup] = useState(null);
+
 
   useEffect(()=>{
     window.addEventListener('scroll', stickNavbar)
@@ -15,12 +17,13 @@ export default function MenuBar({ grupos }) {
   const stickNavbar =()=>{
     if(window !== undefined){
       let windowHeight = window.scrollY 
-      windowHeight > 350? setStickyClass('nav-top') : setStickyClass('barradenavegacao')
+      windowHeight > 220? setStickyClass('nav-top') : setStickyClass('barradenavegacao')
     }
   }
+
   const scrollToGroup = (groupID) => {
     const groupElement = document.getElementById(groupID);
-    const yOffset = -50; 
+    const yOffset = -90; 
     const y = groupElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
 
     window.scrollTo({ top: y, behavior: 'smooth' });

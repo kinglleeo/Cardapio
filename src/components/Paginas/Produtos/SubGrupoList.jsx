@@ -35,7 +35,7 @@ export default function SubGrupoList({ grupo }) {
         }));
   
         if (activeListRef.current) {
-          const barraFixaHeight = 50; // Altura da barra fixa em pixels
+          const barraFixaHeight = 90; // Altura da barra fixa em pixels
           const scrollTop = activeListRef.current.getBoundingClientRect().top + window.pageYOffset - barraFixaHeight;
           window.scrollTo({ top: scrollTop, behavior: 'smooth' });
         }

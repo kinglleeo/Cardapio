@@ -5,8 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function ProdutoList({ produto, subGrupo, grupo }){
     const navigate = useNavigate();
-    console.log(produto)
-    
+
     const Adicionais = (data, subGrupo, grupo) => {
         navigate('/AdicionaisMain', { state: { data, subGrupo, grupo } });
       };
@@ -21,7 +20,7 @@ export default function ProdutoList({ produto, subGrupo, grupo }){
                                     <div className='produto-nome'>
                                         <div className='item-nome'>{data.PRODUTO}</div>
                                             <div className='produto-ingredientes'>
-                                                <div>sahsiah asj dpajosi jdoaj sojdoa jsojd oajoi dsjioj sd ads</div>
+                                                <div>{data.FICHA_TECNICA !== null ? (data.FICHA_TECNICA.toLowerCase()) : (<div></div>)}</div>
                                             </div>
                                     </div>
                                     <div className='produto-valor'>

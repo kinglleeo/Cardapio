@@ -1,4 +1,14 @@
-.footer{
-    height: 100px;   
-    background-color: #FF8000;
+@font-face {
+    font-family: "Roboto-Light";
+    src: url('../../fontes/roboto/Roboto-Light.ttf');
+  }
+.footer{   
+    background-color: #DBDBDB;
+    display: grid;
+    text-align: center;
+}
+.text-footer{
+    font-family: "Roboto-Light";
+    margin-top: 5px;
+    margin-bottom: 5px;
 }

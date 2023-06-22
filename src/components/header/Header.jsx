@@ -1,12 +1,12 @@
 import { React, useEffect, useState } from 'react'
 import './Header.css'
-import axios from 'axios'
 import { api } from '../../conecções/api'
+import { useNavigate } from 'react-router-dom'
 
 export default function Header (){
     const [infoClientes, setInfoClientes] = useState([])
     const [cnpj, setCnpj] = useState('')
-    console.log(infoClientes)
+    const navigate = useNavigate()
 
     useEffect(()=>{
         const cnpj = sessionStorage.getItem('cnpj');
@@ -16,7 +16,7 @@ export default function Header (){
             .then((getdata)=>{
                 setInfoClientes(getdata.data);
             });
-            
+        
     }, [setCnpj])
 
     const numerosFormatados = infoClientes.map(item => {
@@ -24,20 +24,26 @@ export default function Header (){
         const numeroFormatado = numero.replace(/(\d{2})(\d{4})(\d{4})/, "($1) $2-$3");
         return numeroFormatado;
       });
-
     
-
-    
+    const Login =()=>{
+        navigate('/Login')
+    }
     return(
-        <div className='Main-header'>
-            <div className='header-header'>
-                <div className='logo-garline'></div>
+        <div className='paginaHeader'>
+        <div className='header-header'>
+                <div className='header-login'>
+                    <button className='btn-login-header' onClick={Login}> Entrar </button>
+                </div>
+                <div className='logo-garline-header'>
+                    <div className='logo-garline'></div>
+                </div>
             </div>
+        <div className='Main-header'>   
             <div className='body-header'>
                 <div className='banner-garline'>
                     <div className='banner-infos'>
                         <div className='caixa-icone'>
-                            <div className='icone-tempo'> </div>
+                            <div className='icone-tempo'></div>
                         </div>
                         <div className='tempo-banner'>
                         <div>{infoClientes.map(item => item.TEMPO_ESPERA)} Minutos </div>
@@ -64,14 +70,15 @@ export default function Header (){
                     </div>
                 </div>
                 <div className='footer-header'>
-                    <div className='endereço-header'> {infoClientes.map(item => item.LOGRADOURO + ", " + item.BAIRRO + ", N°" + item.NUMERO + ", " + item.CIDADE + " - " + item.UF)} </div>
-                </div>
-                <div className='logo-restaurante'>
-                    {infoClientes.map(item => (
-                        <img src={'data:image/png;base64,' + item.FOTO} key={item.id} alt='Restaurante' className='img-restaurante' />
-                    ))}
+                    <div className='endereço-header'> {infoClientes.map(item => item.LOGRADOURO + ", " + item.BAIRRO + ", N°" + " " + item.NUMERO + ", " + item.CIDADE + " - " + item.UF)} </div>
                 </div>
             </div>    
+            <div className='logo-restaurante'>
+                    {infoClientes.map(item => (
+                        <img src={'data:image/png;base64,' + item.FOTO} key={item.id} alt='Restaurante' className='img-restaurante-logo' />
+                    ))}
+                </div>
         </div>
+    </div>
     )
 }
