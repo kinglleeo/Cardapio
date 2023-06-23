@@ -1,0 +1,38 @@
+.adicionarheaderbar{
+    position: fixed;
+    top: 0;
+    background-color: #fc740d;
+    height: 40px;
+    width: 100%;
+    display: flex;
+    z-index: 999;
+    justify-content: space-between;
+}
+.voltar{
+    width: 80px;
+    display: grid;
+    margin-left: 10px;
+}
+.btn-voltar{
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    width: 80%;
+    height: auto;
+    background-image: url('../../../../imagens/icons8-esquerda-64.png');
+    background-size: 100% 100%;   
+}
+.logo-garline-header{
+    width: 60%;
+    margin-right: 10px;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    align-content: space-around;
+}
+.logo-garline{
+    height: 20px;
+    width: 80px;
+    background-image: url('../../../../imagens/logo.fw.png');
+    background-size: 100% 100%;
+}

@@ -15,6 +15,7 @@ export default function GrupoAdicionais({ setValorTotalItem, setValorTotalCusto,
     const queryClient = useQueryClient();
     const ID_GRUPO_OPCOES= data.ID_GRUPO_OPCOES    
 
+
     useEffect(()=>{
         api
             .get(`/listaGrupoOpcionais/${data.ID_PRODUTO}`)
@@ -94,12 +95,12 @@ useEffect(() => {
 
   setValorTotalItem(totalItem.toNumber().toFixed(2));
   setValorTotalCusto(totalCusto.toNumber().toFixed(2));
-}, [adicionalSelecionado, quantidadeTotal]);
+  }, [adicionalSelecionado, quantidadeTotal]);
 
     return(
     <div>
         <div>{Array.isArray(listaGrupoOpcionais) ? (
-              <div className='Titulo-Adicionais'> ADICIONAIS </div>
+              <div className='Grupo-Titulo'> ADICIONAIS </div>
             ) : (
               <div></div>
             )}
@@ -107,32 +108,47 @@ useEffect(() => {
         <div>
             {Array.isArray(listaGrupoOpcionais) ? (
                 listaGrupoOpcionais.map((item) => 
-                    <div key={item.ID_GRUPO_OPCOES}>
-                        <div className='box-Adicionais'>
-                            <div className='Adicionais'>
-                                <div className='box-adicionais-descricao'>
-                                    <div className='Adicionais-titulo'> {item.DESCRICAO} </div>
-                                        <div className='adicionais-quantidadeMax'> 
-                                            <div>Até {item.MAXIMO} itens</div>
-                                        </div>
-                                </div>
-                            <div className='Adicionais-icon' onClick={() => toggleListaAdicionais(item.ID_GRUPO_OPCOES)}>
-                                {listaAdicionaisAtivo === item.ID_GRUPO_OPCOES ? '-' : '+'}
+                  <div key={item.ID_GRUPO_OPCOES}>
+                        <div className='box-adicionais'>
+                          <div className='adicionais-info'>
+                            <div className='adicionais-titulo'> {item.DESCRICAO} </div>
+                            <div className='informacoes-quantidade'>
+                              {item.MINIMO > 0
+                                ?(<div className='caixa-quantidades'>
+                                    <div className='obrigatorio'> Obrigatório </div>
+                                  </div>)
+                                : ('')
+                              }
+                              <div className='caixa-quantidades'>
+                                <div className='maximo'> Maximo: 0 </div>
+                              </div>
+                              <div className='caixa-quantidades'>
+                                <div className='escolhido'> Escolhidos: 0 </div>
+                              </div>
                             </div>
+                          </div>
+                            <div className='icon-adicionais'>
+                              <div 
+                                className='box-iconAdd' 
+                                onClick={() => toggleListaAdicionais(item.ID_GRUPO_OPCOES)}>
+                                  {listaAdicionaisAtivo === item.ID_GRUPO_OPCOES 
+                                    ? <div className='icone-setaUp'></div> 
+                                    : <div className='icone-setaDown'></div>}
+                              </div>
                             </div>
                         </div>
-                    <div>
-                        {listaAdicionaisAtivo === item.ID_GRUPO_OPCOES && (
-                            <ListaAdicionais
-                                Maximo={item.MAXIMO}
-                                listaAdicionais={listaAdicionais}
-                                setListaAdicionais={setListaAdicionais}
-                                quantidadeTotal={quantidadeTotal} 
-                                setQuantidadeTotal={setQuantidadeTotal}
-                            />
-                        )}
-                    </div>
-                </div>
+                        <div>
+                          {listaAdicionaisAtivo === item.ID_GRUPO_OPCOES && (
+                              <ListaAdicionais
+                                  Maximo={item.MAXIMO}
+                                  listaAdicionais={listaAdicionais}
+                                  setListaAdicionais={setListaAdicionais}
+                                  quantidadeTotal={quantidadeTotal} 
+                                  setQuantidadeTotal={setQuantidadeTotal}
+                              />
+                          )}
+                        </div>
+                  </div>
         )) : null}
                 
     </div>

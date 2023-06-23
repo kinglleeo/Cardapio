@@ -38,22 +38,18 @@ export default function GrupoTamanho({ setExisteTamanho, setTamanhoEscolhido }){
             {Array.isArray(grupoTamanho)
               ? grupoTamanho.map((item, index) => (
                   <div className='Card-tamanhos' key={item.ID}>
-                    <div className='Card-tamanhos-inner'>
-                      <div className='Card-tamanhos-Descricao'>
                         <div className='box-tamanhos-1'>
                           <div className='tamanhos-nome'>{item.TAMANHO}</div>
                         </div>
                         <div className='box-tamanhos-2'>
                           <div className='tamanhos-valor'>{formCurrency.format(item.VALOR_VENDA)}</div>
                         </div>
-                      </div>
                       <div className='Card-Icon'>
                           <SelecionarTamanho
                             item={item}
                             setTamanhoEscolhido={setTamanhoEscolhido}
                           />
                       </div>
-                    </div>
                   </div>
                 ))
               : null}

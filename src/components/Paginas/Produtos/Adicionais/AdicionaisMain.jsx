@@ -5,6 +5,7 @@ import AdicionaisTamanho from '../AdicionaisTamanho/AdicionaisTamanho'
 import GrupoAdicionais from './GrupoAdicionais'
 import Observacoes from './Observacoes'
 import { useLocation } from 'react-router-dom';
+import AdicionarHeaderBar from './AdicionarHeaderBar'
 
 export default function AdicionaisMain(){
     const { state } = useLocation();
@@ -30,7 +31,7 @@ export default function AdicionaisMain(){
     return(
         <div>
             <div>
-                <Header/>
+                <AdicionarHeaderBar/>
             </div>
             <div>
                 <AdicionaisInfo

@@ -14,6 +14,7 @@
 }
 .header-header{
     position: fixed;
+    top: 0;
     background-color: #fc740d;
     height: 40px;
     width: 100%;
@@ -34,7 +35,7 @@
     align-content: space-around;
 }
 .logo-garline{
-    height: 25px;
+    height: 20px;
     width: 80px;
     background-image: url('../../imagens/logo.fw.png');
     background-size: 100% 100%;
@@ -120,6 +121,7 @@
     overflow: hidden;
     color: rgb(3, 3, 3, 3);
     font-family: 'Roboto-Thin';
+    font-size: 12px;
 }
 .img-restaurante-logo{
     width: 120px;

@@ -41,51 +41,25 @@ export default function ListaAdicionais({ setQuantidadeTotal, quantidadeTotal, M
   return(
         <div>
             <div className='AdicionaisList'>
-              <div className='box-quantidadeMaxima'>
-                <div className='quantidadeMax'>
-                  <div className='quantidadeMax-text'>Quantidade Maxima</div>
-                  <div className='quantidadeMax-value-box'>
-                      <div className='quantidadeMax-value'>{Maximo}</div>
-                  </div>
-                </div>
-                <div className='quantidadeMax'>
-                  <div className='quantidadeMax-text'>Escolhidos</div>
-                  <div className='quantidadeMax-value-box'>
-                      <div className='quantidadeMax-value'>{Escolhidos()}</div>
-                  </div>
-                </div>
-                <div className='quantidadeMax'>
-                  <div className='quantidadeMax-text'>Faltam</div>
-                  <div className='quantidadeMax-value-box'>
-                      <div className='quantidadeMax-value'>{Faltam()}</div>
-                  </div>
-                </div>
-              </div>
               {Array.isArray(listaAdicionais)
                 ? listaAdicionais.map((item, index) => (
                     <div className='Card-Adicionais' key={item.ID}>
-                      <div className='Card-Adicionais-inner'>
-                        <div className='Card-Adicionais-Descricao'>
-                          <div className='box-descricao-1'>
+                          <div className='box-descricao-adicional'>
                             <div className='Adicional-nome'>{item.DESCRICAO}</div>
                           </div>
-                          <div className='box-descricao-2'>
+                          <div className='box-valor-adicional'>
                             <div className='adicional-valor'>{formCurrency.format(item.VALOR_VENDA)}</div>
                           </div>
-                        </div>
-                        <div className='Card-Adicionais-Botoes'>
-                          <div className='btn-quantia-adicionais'>
-                            <button className='arrow left' onClick={() => diminuirQuantidade(index)}></button>
+                          <div className='box-funcao-adicional'>
+                            {item.PERMITIR_ITEM_REPETIDO === "SIM", item.MINIMO > 1 
+                              ? (<div> quantidade </div>)
+                              : item.PERMITIR_ITEM_REPETIDO === "NAO", item.MINIMO > 1
+                                ? (<div> checkbox </div>)
+                              : item.PERMITIR_ITEM_REPETIDO === "NAO", item.MINIMO < 2
+                                ? (<div> radio </div>) : (<div></div>) 
+                            } 
                           </div>
-                          <div className='quantia-adicionais'>{item.quantidade}</div>
-                          <div className='btn-quantia-adicionais'>
-                            <button className='arrow right'onClick={() => aumentarQuantidade(index)}
-                                disabled={Faltam() === 0}
-                            ></button>
-                          </div>
-                        </div>
                       </div>
-                    </div>
                   ))
                 : null}   
             </div>
