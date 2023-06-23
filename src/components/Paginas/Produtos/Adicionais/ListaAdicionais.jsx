@@ -13,21 +13,8 @@ export default function ListaAdicionais({ setQuantidadeTotal, quantidadeTotal, M
         }
     }, [listaAdicionais]);
 
-    const aumentarQuantidade = (index) => {
-      const updatedListaOpcionais = [...listaAdicionais];
-      const quantidade = new Decimal(updatedListaOpcionais[index].quantidade);
-      updatedListaOpcionais[index].quantidade = quantidade.plus(1).toNumber();
-          setListaAdicionais(updatedListaOpcionais);
-  };
-  const diminuirQuantidade = (index) => {
-      const updatedListaOpcionais = [...listaAdicionais];
-      const quantidade = new Decimal(updatedListaOpcionais[index].quantidade);
-      if (quantidade.gt(0)) {
-      updatedListaOpcionais[index].quantidade = quantidade.minus(1).toNumber();
-          setListaAdicionais(updatedListaOpcionais);
-      }
-  };
-  
+    
+    
     const Escolhidos = () => {
         let escolhidos = quantidadeTotal
             return escolhidos
@@ -45,7 +32,7 @@ export default function ListaAdicionais({ setQuantidadeTotal, quantidadeTotal, M
                 ? listaAdicionais.map((item, index) => (
                     <div className='Card-Adicionais' key={item.ID}>
                           <div className='box-descricao-adicional'>
-                            <div className='Adicional-nome'>{item.DESCRICAO}</div>
+                            <div className='adicional-nome'>{item.DESCRICAO}</div>
                           </div>
                           <div className='box-valor-adicional'>
                             <div className='adicional-valor'>{formCurrency.format(item.VALOR_VENDA)}</div>
