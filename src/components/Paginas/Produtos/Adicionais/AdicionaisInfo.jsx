@@ -5,10 +5,8 @@ import '../../../../Styles/Styles.css'
 import { formCurrency } from '../../../AA-utilidades/numeros';
 import BtnCarrinho from './BtnCarrinho';
 
-export default function AdicionaisInfo({ valorTotalItem, valorTotalCusto, grupo, Produto, adicionalSelecionado, tamanhoEscolhido, observacoes, ID_GRUPO_OPCOES, existeTamanho }){
-    const [totalCompra, setTotalCompra] = useState('');
-    const [custoCompra, setCustoCompra] = useState('');
-
+export default function AdicionaisInfo({ setTotalCompra, setCustoCompra, valorTotalItem, valorTotalCusto, grupo, Produto, adicionalSelecionado, tamanhoEscolhido, observacoes, ID_GRUPO_OPCOES, existeTamanho }){
+    
     useEffect(() => {
         const valorVenda = new Decimal(tamanhoEscolhido.VALOR_VENDA > 0 ? (tamanhoEscolhido.VALOR_VENDA) : (Produto.VALOR_VENDA));
         const valorCusto = new Decimal(tamanhoEscolhido.VALOR_CUSTO > 0 ? (tamanhoEscolhido.VALOR_CUSTO) : (Produto.VALOR_CUSTO));

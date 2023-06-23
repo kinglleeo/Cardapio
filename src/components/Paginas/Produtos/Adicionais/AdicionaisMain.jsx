@@ -6,6 +6,8 @@ import GrupoAdicionais from './GrupoAdicionais'
 import Observacoes from './Observacoes'
 import { useLocation } from 'react-router-dom';
 import AdicionarHeaderBar from './AdicionarHeaderBar'
+import Footer from '../../../Footer/Footer'
+import BtnCarrinho from './BtnCarrinho'
 
 export default function AdicionaisMain(){
     const { state } = useLocation();
@@ -27,6 +29,8 @@ export default function AdicionaisMain(){
     
     const [ID_GRUPO_OPCOES, setID_GRUPO_OPCOES] = useState('');
 
+    const [totalCompra, setTotalCompra] = useState('');
+    const [custoCompra, setCustoCompra] = useState('');
     
     return(
         <div>
@@ -48,6 +52,9 @@ export default function AdicionaisMain(){
                         tamanhoEscolhido={tamanhoEscolhido}
                     //Observacoes
                         observacoes={observacoes}
+                    //
+                    setTotalCompra={setTotalCompra}
+                    setCustoCompra={setCustoCompra}
                 />
             </div>
             <div>
@@ -69,6 +76,22 @@ export default function AdicionaisMain(){
                 <Observacoes
                     setObservacao={setObservacao}
                 />
+            </div>
+            <div>
+                <BtnCarrinho
+                    Produto={data}
+                    PIZZA_MISTA={grupo.PIZZA_MISTA}
+                    ID_GRUPO_OPCOES={ID_GRUPO_OPCOES}
+                    adicionalSelecionado={adicionalSelecionado}
+                    totalCompra={totalCompra}
+                    tamanhoEscolhido={tamanhoEscolhido}
+                    observacoes={observacoes}
+                    totalCusto={custoCompra}
+                    existeTamanho={existeTamanho}
+                />
+            </div>
+            <div>
+                <Footer/>
             </div>
         </div>
     )

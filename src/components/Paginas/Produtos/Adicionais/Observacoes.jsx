@@ -1,5 +1,5 @@
 import { React } from 'react'
-import './Observacoes.css'
+import '../../../../Styles/StyleForAdicionais.css'
 
 
 export default function Observacoes({ setObservacao }){
@@ -10,13 +10,11 @@ export default function Observacoes({ setObservacao }){
         <div>
             <div className='titulo-observacoes'> OBSERVAÇÕES </div>
         </div>
-        <div className="ObservacoesAdicionais">
-            <div className='ObservacoesAdicionais-box'>
-                <textarea className='ObservacoesAdicionais-text'
-                    placeholder='Descreva suas Observações...'
-                    onChange={e => setObservacao(e.target.value)}
-                />
-            </div>
+        <div className='ObservacoesAdicionais-box'>
+            <textarea className='ObservacoesAdicionais-text'
+                placeholder='Descreva suas Observações...'
+                onChange={e => setObservacao(e.target.value)}
+            />
         </div>
     </div>
     )

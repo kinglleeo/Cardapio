@@ -7,6 +7,9 @@
   src: url('../fontes/roboto/Roboto-Condensed.ttf');
 }
 /* Grupo List */
+.lista-Main-Page{
+  padding-bottom: 90px;
+}
 .GrupoList{
     display: flex;
     flex-direction: column;

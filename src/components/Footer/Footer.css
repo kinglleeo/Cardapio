@@ -6,6 +6,9 @@
     background-color: #DBDBDB;
     display: grid;
     text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 .text-footer{
     font-family: "Roboto-Light";

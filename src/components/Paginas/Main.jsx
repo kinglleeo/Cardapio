@@ -5,6 +5,7 @@ import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../Usuarios/LoginPage/Firebase/firebaseConfig';
 import { useEffect, useState } from 'react';
 import Footer from '../Footer/Footer'
+import '../../Styles/Styles.css'
 
 export default function Main() {
   const [user, setUser] = useState('');
@@ -21,7 +22,7 @@ export default function Main() {
         <div>
           <Header/>
         </div>
-        <div>
+        <div className='lista-Main-Page'>
           <GrupoList/>
         </div>
         <div>
