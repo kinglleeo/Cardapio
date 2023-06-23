@@ -1,8 +1,16 @@
 import { React, useState, useEffect } from 'react'
+import Decimal from 'decimal.js';
 
 
-export default function AdicionaisPorQuantidade(){
 
+export default function AdicionaisPorQuantidade({ faltam, item, index, setQuantidadeTotal, listaAdicionais, setListaAdicionais }){
+
+  useEffect(() => {
+    if (Array.isArray(listaAdicionais)) {
+    const total = listaAdicionais.reduce((accumulator, item) => accumulator + item.quantidade, 0);
+        setQuantidadeTotal(total);
+    }
+  }, [listaAdicionais]);
 
   const aumentarQuantidade = (index) => {
     const updatedListaOpcionais = [...listaAdicionais];
@@ -20,8 +28,6 @@ export default function AdicionaisPorQuantidade(){
     }
   };
 
-
-
   return(
     <div className='Card-Adicionais-Botoes'>
       <div className='btn-quantia-adicionais'>
@@ -29,7 +35,7 @@ export default function AdicionaisPorQuantidade(){
       </div>
         <div className='quantia-adicionais'>{item.quantidade}</div>
       <div className='btn-quantia-adicionais'>
-        <button className='arrow right'onClick={() => aumentarQuantidade(index)} disabled={Faltam() === 0}></button>
+        <button className='arrow right'onClick={() => aumentarQuantidade(index)} disabled={faltam === 0}></button>
       </div>
     </div>
   )

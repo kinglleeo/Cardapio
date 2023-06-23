@@ -13,8 +13,8 @@ export default function GrupoAdicionais({ setValorTotalItem, setValorTotalCusto,
     const { state } = useLocation();
     const { data } = state;
     const queryClient = useQueryClient();
-    const ID_GRUPO_OPCOES= data.ID_GRUPO_OPCOES    
-
+    const ID_GRUPO_OPCOES= data.ID_GRUPO_OPCOES   
+    console.log(adicionalSelecionado)
 
     useEffect(()=>{
         api
@@ -52,11 +52,7 @@ export default function GrupoAdicionais({ setValorTotalItem, setValorTotalCusto,
             });
         }
       };
-      
-    const queryCache = queryClient.getQueryCache();
-    const listaAdicionaisCache = queryCache.findAll('listaAdicionais').map((query) => query.state.data);
-
-
+        
     useEffect(() => {
         listaAdicionais.forEach((item) => {
             if (item.quantidade > 0) {
@@ -79,23 +75,27 @@ export default function GrupoAdicionais({ setValorTotalItem, setValorTotalCusto,
     }, [listaAdicionais]);
 
     
-useEffect(() => {
-  let totalItem = new Decimal(0);
-  let totalCusto = new Decimal(0);
+    useEffect(() => {
+      let totalItem = new Decimal(0);
+      let totalCusto = new Decimal(0);
 
-  adicionalSelecionado.forEach(item => {
-    if (item.DIVIDIR === "NAO") {
-      totalItem = totalItem.plus(new Decimal(item.VALOR_VENDA).times(item.quantidade));
-      totalCusto = totalCusto.plus(new Decimal(item.VALOR_CUSTO).times(item.quantidade));
-    } else if (item.DIVIDIR === "SIM") {
-      totalItem = totalItem.plus(new Decimal(item.VALOR_VENDA).times(item.quantidade).dividedBy(quantidadeTotal));
-      totalCusto = totalCusto.plus(new Decimal(item.VALOR_CUSTO).times(item.quantidade).dividedBy(quantidadeTotal));
-    }
-  });
+      adicionalSelecionado.forEach(item => {
+        if (item.DIVIDIR === "NAO") {
+          totalItem = totalItem.plus(new Decimal(item.VALOR_VENDA).times(item.quantidade));
+          totalCusto = totalCusto.plus(new Decimal(item.VALOR_CUSTO).times(item.quantidade));
+        } else if (item.DIVIDIR === "SIM") {
+          totalItem = totalItem.plus(new Decimal(item.VALOR_VENDA).times(item.quantidade).dividedBy(quantidadeTotal));
+          totalCusto = totalCusto.plus(new Decimal(item.VALOR_CUSTO).times(item.quantidade).dividedBy(quantidadeTotal));
+        }
+      });
+        setValorTotalItem(totalItem.toNumber().toFixed(2));
+        setValorTotalCusto(totalCusto.toNumber().toFixed(2));
+      }, [adicionalSelecionado, quantidadeTotal]);
 
-  setValorTotalItem(totalItem.toNumber().toFixed(2));
-  setValorTotalCusto(totalCusto.toNumber().toFixed(2));
-  }, [adicionalSelecionado, quantidadeTotal]);
+
+  const queryCache = queryClient.getQueryCache();
+  const listaAdicionaisCache = queryCache.findAll('listaAdicionais').map((query) => query.state.data);
+  
 
     return(
     <div>
@@ -107,13 +107,13 @@ useEffect(() => {
           </div>
         <div>
             {Array.isArray(listaGrupoOpcionais) ? (
-                listaGrupoOpcionais.map((item) => 
-                  <div key={item.ID_GRUPO_OPCOES}>
+                listaGrupoOpcionais.map((itemGrupoAdd) => 
+                  <div key={itemGrupoAdd.ID_GRUPO_OPCOES}>
                         <div className='box-adicionais'>
                           <div className='adicionais-info'>
-                            <div className='adicionais-titulo'> {item.DESCRICAO} </div>
+                            <div className='adicionais-titulo'> {itemGrupoAdd.DESCRICAO} </div>
                             <div className='informacoes-quantidade'>
-                              {item.MINIMO > 0
+                              {itemGrupoAdd.MINIMO > 0
                                 ?(<div className='caixa-quantidades'>
                                     <div className='obrigatorio'> Obrigatório </div>
                                   </div>)
@@ -130,21 +130,23 @@ useEffect(() => {
                             <div className='icon-adicionais'>
                               <div 
                                 className='box-iconAdd' 
-                                onClick={() => toggleListaAdicionais(item.ID_GRUPO_OPCOES)}>
-                                  {listaAdicionaisAtivo === item.ID_GRUPO_OPCOES 
+                                onClick={() => toggleListaAdicionais(itemGrupoAdd.ID_GRUPO_OPCOES)}>
+                                  {listaAdicionaisAtivo === itemGrupoAdd.ID_GRUPO_OPCOES 
                                     ? <div className='icone-setaUp'></div> 
                                     : <div className='icone-setaDown'></div>}
                               </div>
                             </div>
                         </div>
                         <div>
-                          {listaAdicionaisAtivo === item.ID_GRUPO_OPCOES && (
+                          {listaAdicionaisAtivo === itemGrupoAdd.ID_GRUPO_OPCOES && (
                               <ListaAdicionais
-                                  Maximo={item.MAXIMO}
+                                  Maximo={itemGrupoAdd.MAXIMO}
                                   listaAdicionais={listaAdicionais}
                                   setListaAdicionais={setListaAdicionais}
                                   quantidadeTotal={quantidadeTotal} 
                                   setQuantidadeTotal={setQuantidadeTotal}
+                                  listaGrupoOpcionais={listaGrupoOpcionais}
+                                  itemGrupoAdd={itemGrupoAdd}
                               />
                           )}
                         </div>

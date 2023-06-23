@@ -2,28 +2,18 @@ import { React, useState, useEffect } from 'react'
 import '../../../../Styles/StyleForAdicionais.css'
 import { formCurrency } from '../../../AA-utilidades/numeros';
 import Decimal from 'decimal.js';
+import AdicionaisPorQuantidade from './AdicionaisPorQuantidade'
+import AdicionaisPorCheckbox from './AdicionaisPorCheckbox'
+import AdicionaisPorRadio from './AdicionaisPorRadio'
 
+export default function ListaAdicionais({ itemGrupoAdd, setQuantidadeTotal, quantidadeTotal, Maximo, listaAdicionais, setListaAdicionais, listaGrupoOpcionais }){
+  const [faltam, setFaltam] = useState('')
 
-export default function ListaAdicionais({ setQuantidadeTotal, quantidadeTotal, Maximo, listaAdicionais, setListaAdicionais }){
-
-    useEffect(() => {
-        if (Array.isArray(listaAdicionais)) {
-        const total = listaAdicionais.reduce((accumulator, item) => accumulator + item.quantidade, 0);
-            setQuantidadeTotal(total);
-        }
-    }, [listaAdicionais]);
-
-    
-    
-    const Escolhidos = () => {
-        let escolhidos = quantidadeTotal
-            return escolhidos
-    };
-    const Faltam = () => {
-        let faltam = Maximo;
-        const total = faltam - quantidadeTotal;
-            return total;
-    };
+  useEffect(()=>{
+    let faltam = Maximo;
+    const total = faltam - quantidadeTotal;
+      setFaltam(total)
+  }, [Maximo, quantidadeTotal])
 
   return(
         <div>
@@ -38,13 +28,41 @@ export default function ListaAdicionais({ setQuantidadeTotal, quantidadeTotal, M
                             <div className='adicional-valor'>{formCurrency.format(item.VALOR_VENDA)}</div>
                           </div>
                           <div className='box-funcao-adicional'>
-                            {item.PERMITIR_ITEM_REPETIDO === "SIM", item.MINIMO > 1 
-                              ? (<div> quantidade </div>)
-                              : item.PERMITIR_ITEM_REPETIDO === "NAO", item.MINIMO > 1
-                                ? (<div> checkbox </div>)
-                              : item.PERMITIR_ITEM_REPETIDO === "NAO", item.MINIMO < 2
-                                ? (<div> radio </div>) : (<div></div>) 
-                            } 
+                            {itemGrupoAdd.PERMITIR_ITEM_REPETIDO === "SIM" 
+                              ? (
+                                <AdicionaisPorQuantidade
+                                  setQuantidadeTotal={setQuantidadeTotal}
+                                  listaAdicionais={listaAdicionais}
+                                  setListaAdicionais={setListaAdicionais}
+                                  item={item}
+                                  index={index}
+                                  faltam={faltam}
+                                />
+                              ) 
+                              : itemGrupoAdd.PERMITIR_ITEM_REPETIDO === "NAO" === itemGrupoAdd.MAXIMO > 1 ?
+                                (
+                                  <AdicionaisPorCheckbox
+                                    setQuantidadeTotal={setQuantidadeTotal}
+                                    listaAdicionais={listaAdicionais}
+                                    setListaAdicionais={setListaAdicionais}
+                                    item={item}
+                                    index={index}
+                                    faltam={faltam}
+                                  />
+                                ) 
+                              : itemGrupoAdd.MINIMO === 1 ? 
+                                (
+                                  <AdicionaisPorRadio
+                                    setQuantidadeTotal={setQuantidadeTotal}
+                                    listaAdicionais={listaAdicionais}
+                                    setListaAdicionais={setListaAdicionais}
+                                    item={item}
+                                    index={index}
+                                    faltam={faltam}
+                                  />
+                                )
+                              : null
+                            }
                           </div>
                       </div>
                   ))
