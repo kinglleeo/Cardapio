@@ -21,6 +21,7 @@ export default function BtnCarrinho({ totalCusto, PIZZA_MISTA, Produto, adiciona
         tipo: PIZZA_MISTA,
         custoTotal: totalCusto,
     }
+    
     const handleCarrinho=(item, ID_GRUPO_OPCOES)=>{
         dispatch(addToCart(item))
         const cachedData = queryClient.clear(['listaAdicionais', ID_GRUPO_OPCOES])
