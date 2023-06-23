@@ -27,7 +27,7 @@ export default function AdicionaisPorCheckbox({ faltam, item, index, setQuantida
       <input
         type="checkbox"
         disabled={isCheckboxDisabled}
-        checked={item.quantidade === 1} // Add this line to check the checkbox if quantidade === 1
+        checked={item.quantidade === 1}
         onClick={() => selecionarAdicional(index)}
       />
     </div>

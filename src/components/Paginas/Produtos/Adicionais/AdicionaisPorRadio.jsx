@@ -13,8 +13,15 @@ export default function AdicionaisPorRadio({ faltam, item, index, setQuantidadeT
     }, [listaAdicionais]);    
 
     const selecionarAdicional = (index) => {
-        
-    };
+        const updatedListaOpcionais = [...listaAdicionais];
+        const quantidade = new Decimal(updatedListaOpcionais[index].quantidade);
+        if (quantidade.gt(0)) {
+          updatedListaOpcionais[index].quantidade = quantidade.minus(1).toNumber();
+        } else {
+          updatedListaOpcionais[index].quantidade = quantidade.plus(1).toNumber();
+        }
+        setListaAdicionais(updatedListaOpcionais);
+      };
 
 
     return(
