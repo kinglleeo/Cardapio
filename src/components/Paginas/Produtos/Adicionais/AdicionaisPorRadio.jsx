@@ -13,15 +13,19 @@ export default function AdicionaisPorRadio({ faltam, item, index, setQuantidadeT
     }, [listaAdicionais]);    
 
     const selecionarAdicional = (index) => {
-        const updatedListaOpcionais = [...listaAdicionais];
-        const quantidade = new Decimal(updatedListaOpcionais[index].quantidade);
-        if (quantidade.gt(0)) {
-          updatedListaOpcionais[index].quantidade = quantidade.minus(1).toNumber();
-        } else {
-          updatedListaOpcionais[index].quantidade = quantidade.plus(1).toNumber();
-        }
+        const updatedListaOpcionais = listaAdicionais.map((item, i) => {
+          if (i === index) {
+            // Adicionar 1 à quantidade do input selecionado
+            return { ...item, quantidade: item.quantidade + 1 };
+          } else {
+            // Definir a quantidade dos outros inputs como zero
+            return { ...item, quantidade: 0 };
+          }
+        });
+      
         setListaAdicionais(updatedListaOpcionais);
       };
+      
 
 
     return(
