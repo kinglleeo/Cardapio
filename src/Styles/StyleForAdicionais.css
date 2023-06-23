@@ -72,6 +72,16 @@
 .box-descricao-adicional{
     width: 60%;
 }
+.adicional-nome{
+    font-size: 14px;
+    font-family: "Roboto-Light";
+    margin-left: 10px;
+}
+.adicional-valor{
+    display: grid;
+    place-items: center;
+    font-family: "Roboto-Bold";
+}
 .box-valor-adicional{
     width: 20%;
 }
