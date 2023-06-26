@@ -16,11 +16,11 @@ export default function IconCarrinho() {
     });
     return total;
   };
+
   useEffect(() => {
     const newTotalCart = sessionStorage.getItem('totalCart');
     setTotalCart(newTotalCart);
   }, []);
-
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,16 +32,22 @@ export default function IconCarrinho() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const footerHeight = 150;
-  const windowHeight = window.innerHeight;
-  const contentHeight = document.body.offsetHeight;
-  const scrollThreshold = contentHeight - windowHeight - footerHeight;
-  const isCartFixed = scrollPosition >= scrollThreshold;
-  const cartBottomPosition = isCartFixed ? 150 : 40;
+  useEffect(() => {
+    const footerHeight = 40;
+    const windowHeight = window.innerHeight;
+    const contentHeight = document.body.offsetHeight;
+    const scrollThreshold = contentHeight - windowHeight - footerHeight;
+    const isCartFixed = scrollPosition >= scrollThreshold;
+    const cartBottomPosition = isCartFixed ? 150 : 40;
 
+    const cartElement = document.querySelector('.carrinho');
+    if (cartElement) {
+      cartElement.style.bottom = `${cartBottomPosition}px`;
+    }
+  }, [scrollPosition, cart]);
 
   return (
-    <div className='carrinho' style={{ bottom: `${cartBottomPosition}px` }}>
+    <div className='carrinho'>
       <div className='caixa-carrinho'>
         <div className='quantidade-cart margin1'>
           <div className='totalQuantidade-cart'>{getTotalQuantity() || 0} X</div>
