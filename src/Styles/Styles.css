@@ -84,29 +84,33 @@
 }
 .box-produtos{
     display: flex;
-    min-height: 110px;
 }
 .produtos-info{
     width: 70%;
     display: flex;
     flex-direction: column;
+    -webkit-animation: slide-in-left 0.5s both;
+	        animation: slide-in-left 0.5s both;
 }
 .produto-nome{
     height: 60%;
-    padding-top: 5px;
-    display: grid;
-    padding-left: 5px;
     font-size: 15px;
-    word-break: normal;
     -webkit-animation: slide-in-left 0.5s both;
 	      animation: slide-in-left 0.5s both;
+    display: flex;
+    flex-direction: column;
 }
 .item-nome{
-    width: 80%;
-    font-weight: 700;
+    height: 30%;
+    display: grid;
+    place-items: center start;
+    padding: 5px;
+    margin-bottom: 5px;
+    min-height: 20px;
 }
 .produto-ingredientes{
-    padding-left: 15px;
+    height: 70%;
+    margin: 8px;
     word-break: break-all;
     font-size: 12px;
     font-family: "Roboto-condensed";
@@ -115,8 +119,6 @@
     height: 40%;
     display: grid;
     place-items: center start;
-    -webkit-animation: slide-in-left 0.5s both;
-	        animation: slide-in-left 0.5s both;
 }
 .box-valor{
   padding: 5px 10px 5px 10px;
@@ -127,11 +129,16 @@
 }
 .produtos-img{
     width: 30%;
+    border-radius: 0 5px 5px 0;
     display: flex;
     justify-content: flex-end;
-    border-radius: 0 5px 5px 0;
     -webkit-animation: slide-in-right 0.5s both;
         animation: slide-in-right 0.5s both;
+}
+.img-produto{
+  border-radius: 0 4px 4px 0;
+  height: 100%;
+  max-width: 100%;
 }
 .pizza-img{
   width: 30%;
@@ -146,10 +153,6 @@
   border-radius: 0 4px 4px 0;
   background-image: url('https://t3.ftcdn.net/jpg/05/60/42/26/360_F_560422609_3nv30UESgwV4988d3rnk9yMJaGXw5x4T.jpg');
   background-size: 100% 100%;
-}
-.img-restaurante{
-  border-radius: 0 4px 4px 0;
-  width: 100%;
 }
   @keyframes slide-in-left {
     0% {

@@ -19,9 +19,7 @@ export default function ProdutoList({ produto, subGrupo, grupo }){
                                 <div className='produtos-info'>
                                     <div className='produto-nome'>
                                         <div className='item-nome'>{data.PRODUTO}</div>
-                                            <div className='produto-ingredientes'>
-                                                <div>{data.FICHA_TECNICA !== null ? (data.FICHA_TECNICA.toLowerCase()) : (<div></div>)}</div>
-                                            </div>
+                                            {data.FICHA_TECNICA !== null ? (<div className='produto-ingredientes'> {data.FICHA_TECNICA.toLowerCase()} </div>) : (null)}
                                     </div>
                                     <div className='produto-valor'>
                                             <div className='box-valor'>
@@ -38,7 +36,7 @@ export default function ProdutoList({ produto, subGrupo, grupo }){
                                     </div>
                                 </div>
                                 <div className='produtos-img'>
-                                    <img src={'data:image/png;base64,' + data.IMAGEM_WEB} key={data.ID_PRODUTO} alt='Restaurante' className='img-restaurante'/>
+                                    <img src={'data:image/png;base64,' + data.IMAGEM_WEB} key={data.ID_PRODUTO} alt='Restaurante' className='img-produto'/>
                                 </div>
                             </div>
                         </div>

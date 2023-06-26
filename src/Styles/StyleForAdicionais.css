@@ -64,6 +64,9 @@
     place-items: center;
     height: 40px;
 }
+.mudarCorCard{
+    background-color: rgb(85, 212, 85);
+}
 .box-descricao-adicional{
     width: 50%;
 }
@@ -90,29 +93,31 @@
     display: flex;
     place-items: center;
 }
-.btn-quantia-adicionais{
-    width: 40%;
-    display: grid;
-    place-items: center;
-}
 .quantia-adicionais{
     width: 20%;
     display: grid;
     place-items: center;
 }
+
+.btn-quantia-adicionais{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+}
+
 .arrow {
     border: none;
     background-color: transparent;
 }
 .iconePlus {
-    height: 40px;
-    width: 90%;
+    min-height: 40px;
+    aspect-ratio: 1 / 1;
     background-image: url('../imagens/iconeMais.png');
     background-size: 100% 100%;
 }
 .iconeMinus {
-    height: 40px;
-    width: 90%;
+    min-height: 40px;
+    aspect-ratio: 1 / 1;
     background-image: url('../imagens/iconeMenos.png');
     background-size: 100% 100%;
 }
@@ -165,7 +170,7 @@
     appearance: none;
     background-color: transparent;
     font-family: "Roboto-Bold";
-    font-size: 20px;
+    font-size: 16px;
     color: black;
     margin-left: 10px;
 }

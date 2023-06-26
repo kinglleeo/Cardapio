@@ -9,9 +9,7 @@ export default function GrupoAdicionais({ setValorTotalItem, setValorTotalCusto,
     const [listaGrupoOpcionais, setGruposAdicionais] = useState([]);
     const [listaAdicionais, setListaAdicionais] = useState([])
     const [listaAdicionaisAtivo, setListaAdicionaisAtivo] = useState(null);
-
     const [quantidadeTotalGrupos, setQuantidadeTotalGrupos] = useState({});
-
     const { state } = useLocation();
     const { data } = state;
     const queryClient = useQueryClient();

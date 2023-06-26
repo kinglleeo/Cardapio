@@ -99,6 +99,9 @@ export default function MainPizza(){
                 />
             </div>
             </div>
+            <div>
+                <Footer />
+            </div>
         </div>
     )
 }
