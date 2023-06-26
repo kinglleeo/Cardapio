@@ -6,10 +6,10 @@ import AdicionaisPorQuantidade from './AdicionaisPorQuantidade'
 import AdicionaisPorCheckbox from './AdicionaisPorCheckbox'
 import AdicionaisPorRadio from './AdicionaisPorRadio'
 
-export default function ListaAdicionais({ itemGrupoAdd, setQuantidadeTotal, quantidadeTotal, Maximo, listaAdicionais, setListaAdicionais, listaGrupoOpcionais }){
+export default function ListaAdicionais({ itemGrupoAdd, setQuantidadeTotal, quantidadeTotal, Maximo, listaAdicionais, setListaAdicionais }){
   const [faltam, setFaltam] = useState('')
 
-  useEffect(()=>{
+  useEffect(()=>{ 
     let faltam = Maximo;
     const total = faltam - quantidadeTotal;
       setFaltam(total)
@@ -47,7 +47,7 @@ export default function ListaAdicionais({ itemGrupoAdd, setQuantidadeTotal, quan
                                     setListaAdicionais={setListaAdicionais}
                                     item={item}
                                     index={index}
-                                    faltam={faltam}
+                                    faltam={faltam} 
                                   />
                                 ) 
                               : itemGrupoAdd.MINIMO === 1 ? 
@@ -56,9 +56,7 @@ export default function ListaAdicionais({ itemGrupoAdd, setQuantidadeTotal, quan
                                     setQuantidadeTotal={setQuantidadeTotal}
                                     listaAdicionais={listaAdicionais}
                                     setListaAdicionais={setListaAdicionais}
-                                    item={item}
                                     index={index}
-                                    faltam={faltam}
                                   />
                                 )
                               : null
