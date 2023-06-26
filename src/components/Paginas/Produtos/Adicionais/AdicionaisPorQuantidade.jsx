@@ -3,14 +3,8 @@ import Decimal from 'decimal.js';
 
 
 
-export default function AdicionaisPorQuantidade({ faltam, item, index, setQuantidadeTotal, listaAdicionais, setListaAdicionais }){
+export default function AdicionaisPorQuantidade({ faltam, item, index, listaAdicionais, setListaAdicionais }){
 
-  useEffect(() => {
-    if (Array.isArray(listaAdicionais)) {
-    const total = listaAdicionais.reduce((accumulator, item) => accumulator + item.quantidade, 0);
-        setQuantidadeTotal(total);
-    }
-  }, [listaAdicionais]);
 
   const aumentarQuantidade = (index) => {
     const updatedListaOpcionais = [...listaAdicionais];

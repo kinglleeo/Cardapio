@@ -1,13 +1,8 @@
 import React, { useEffect } from 'react';
 import Decimal from 'decimal.js';
 
-export default function AdicionaisPorCheckbox({ faltam, item, index, setQuantidadeTotal, listaAdicionais, setListaAdicionais }) {
-  useEffect(() => {
-    if (Array.isArray(listaAdicionais)) { 
-      const total = listaAdicionais.reduce((accumulator, item) => accumulator + item.quantidade, 0);
-      setQuantidadeTotal(total);
-    }
-  }, [listaAdicionais]);
+export default function AdicionaisPorCheckbox({ faltam, item, index, listaAdicionais, setListaAdicionais }) {
+  
 
   const selecionarAdicional = (index) => { 
     const updatedListaOpcionais = [...listaAdicionais];

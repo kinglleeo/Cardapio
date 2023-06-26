@@ -6,14 +6,14 @@ import AdicionaisPorQuantidade from './AdicionaisPorQuantidade'
 import AdicionaisPorCheckbox from './AdicionaisPorCheckbox'
 import AdicionaisPorRadio from './AdicionaisPorRadio'
 
-export default function ListaAdicionais({ itemGrupoAdd, setQuantidadeTotal, quantidadeTotal, Maximo, listaAdicionais, setListaAdicionais }){
+export default function ListaAdicionais({ itemGrupoAdd, quantidadeTotalGrupos, Maximo, listaAdicionais, setListaAdicionais }){
   const [faltam, setFaltam] = useState('')
-
+  
   useEffect(()=>{ 
     let faltam = Maximo;
-    const total = faltam - quantidadeTotal;
+    const total = faltam - quantidadeTotalGrupos[itemGrupoAdd.ID_GRUPO_OPCOES];
       setFaltam(total)
-  }, [Maximo, quantidadeTotal])
+  }, [Maximo, quantidadeTotalGrupos])
 
   return(
         <div>
@@ -31,7 +31,6 @@ export default function ListaAdicionais({ itemGrupoAdd, setQuantidadeTotal, quan
                             {itemGrupoAdd.PERMITIR_ITEM_REPETIDO === "SIM" 
                               ? (
                                 <AdicionaisPorQuantidade
-                                  setQuantidadeTotal={setQuantidadeTotal}
                                   listaAdicionais={listaAdicionais}
                                   setListaAdicionais={setListaAdicionais}
                                   item={item}
@@ -42,7 +41,6 @@ export default function ListaAdicionais({ itemGrupoAdd, setQuantidadeTotal, quan
                               : itemGrupoAdd.PERMITIR_ITEM_REPETIDO === "NAO" === itemGrupoAdd.MAXIMO > 1 ?
                                 (
                                   <AdicionaisPorCheckbox
-                                    setQuantidadeTotal={setQuantidadeTotal}
                                     listaAdicionais={listaAdicionais}
                                     setListaAdicionais={setListaAdicionais}
                                     item={item}
@@ -53,7 +51,6 @@ export default function ListaAdicionais({ itemGrupoAdd, setQuantidadeTotal, quan
                               : itemGrupoAdd.MINIMO === 1 ? 
                                 (
                                   <AdicionaisPorRadio
-                                    setQuantidadeTotal={setQuantidadeTotal}
                                     listaAdicionais={listaAdicionais}
                                     setListaAdicionais={setListaAdicionais}
                                     index={index}

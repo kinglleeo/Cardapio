@@ -31,6 +31,7 @@ export default function AdicionaisMain(){
 
     const [totalCompra, setTotalCompra] = useState('');
     const [custoCompra, setCustoCompra] = useState('');
+
     
     return(
         <div>

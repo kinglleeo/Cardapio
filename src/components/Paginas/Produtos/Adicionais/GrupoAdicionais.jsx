@@ -10,54 +10,65 @@ export default function GrupoAdicionais({ setValorTotalItem, setValorTotalCusto,
     const [listaAdicionais, setListaAdicionais] = useState([])
     const [listaAdicionaisAtivo, setListaAdicionaisAtivo] = useState(null);
 
-    const [quantidadeTotal, setQuantidadeTotal] = useState(0);
+    const [quantidadeTotalGrupos, setQuantidadeTotalGrupos] = useState({});
 
-    console.log(listaGrupoOpcionais)
     const { state } = useLocation();
     const { data } = state;
     const queryClient = useQueryClient();
     const ID_GRUPO_OPCOES= data.ID_GRUPO_OPCOES   
 
+
     useEffect(()=>{
         api
             .get(`/listaGrupoOpcionais/${data.ID_PRODUTO}`)
             .then((getdata) =>{
-                const data = getdata.data.map((item) => ({
-                  ...item,
-                  quantidadeTotal: 0
-                }))
-                setGruposAdicionais(data);
+                setGruposAdicionais(getdata.data);
             });
     }, []);
 
     const toggleListaAdicionais = (ID_GRUPO_OPCOES) => {
-        if (listaAdicionaisAtivo === ID_GRUPO_OPCOES) {
-            setListaAdicionaisAtivo(null);
-        } else {
-            setListaAdicionaisAtivo(ID_GRUPO_OPCOES);
-            selecionarListaOpcionais(ID_GRUPO_OPCOES)
-        }
-    }   
+      if (listaAdicionaisAtivo === ID_GRUPO_OPCOES) {
+        setListaAdicionaisAtivo(null);
+        setQuantidadeTotalGrupos((prevQuantidades) => ({
+          ...prevQuantidades,
+          [ID_GRUPO_OPCOES]: listaAdicionais.reduce(
+            (accumulator, item) => (item.ID_GRUPO_OPCOES === ID_GRUPO_OPCOES ? accumulator + item.quantidade : accumulator),
+            0
+          ),
+        }));
+      } else {
+        setListaAdicionaisAtivo(ID_GRUPO_OPCOES);
+        selecionarListaOpcionais(ID_GRUPO_OPCOES);
+      }
+    };
+    
 
     const selecionarListaOpcionais = (ID_GRUPO_OPCOES) => {
-        const cachedData = queryClient.getQueryData(['listaAdicionais', ID_GRUPO_OPCOES]);
-        if (cachedData) {
-          setListaAdicionais(cachedData);
+      const cachedData = queryClient.getQueryData(['listaAdicionais', ID_GRUPO_OPCOES]);
+      if (cachedData) {
+        setListaAdicionais(cachedData);
+        setID_GRUPO_OPCOES(ID_GRUPO_OPCOES);
+        setQuantidadeTotalGrupos((prevQuantidades) => ({
+          ...prevQuantidades,
+          [ID_GRUPO_OPCOES]: prevQuantidades[ID_GRUPO_OPCOES] || 0,
+        }));
+      } else {
+        api.get(`/listaOpcionais/${ID_GRUPO_OPCOES}`).then((getdata) => {
+          const data = getdata.data.map((item) => ({
+            ...item,
+            quantidade: 0,
+          }));
+          setListaAdicionais(data);
+          queryClient.setQueryData(['listaAdicionais', ID_GRUPO_OPCOES], data);
           setID_GRUPO_OPCOES(ID_GRUPO_OPCOES);
-        } else {
-          api
-            .get(`/listaOpcionais/${ID_GRUPO_OPCOES}`)
-            .then((getdata) => {
-              const data = getdata.data.map((item) => ({
-                ...item,
-                quantidade: 0
-              }));
-                setListaAdicionais(data);
-                    queryClient.setQueryData(['listaAdicionais', ID_GRUPO_OPCOES], data);
-                        setID_GRUPO_OPCOES(ID_GRUPO_OPCOES);
-            });
-        }
-      };
+          setQuantidadeTotalGrupos((prevQuantidades) => ({
+            ...prevQuantidades,
+            [ID_GRUPO_OPCOES]: prevQuantidades[ID_GRUPO_OPCOES] || 0,
+          }));
+        });
+      }
+    };
+    
         
     useEffect(() => {
         listaAdicionais.forEach((item) => {
@@ -81,28 +92,47 @@ export default function GrupoAdicionais({ setValorTotalItem, setValorTotalCusto,
     }, [listaAdicionais]);
 
     
+    
     useEffect(() => {
       let totalItem = new Decimal(0);
       let totalCusto = new Decimal(0);
-
-      adicionalSelecionado.forEach(item => {
-        if (item.DIVIDIR === "NAO") {
+    
+      adicionalSelecionado.forEach((item) => {
+        if (item.DIVIDIR === 'NAO') {
           totalItem = totalItem.plus(new Decimal(item.VALOR_VENDA).times(item.quantidade));
           totalCusto = totalCusto.plus(new Decimal(item.VALOR_CUSTO).times(item.quantidade));
-        } else if (item.DIVIDIR === "SIM") {
-          totalItem = totalItem.plus(new Decimal(item.VALOR_VENDA).times(item.quantidade).dividedBy(quantidadeTotal));
-          totalCusto = totalCusto.plus(new Decimal(item.VALOR_CUSTO).times(item.quantidade).dividedBy(quantidadeTotal));
+        } else if (item.DIVIDIR === 'SIM') {
+          totalItem = totalItem.plus(
+            new Decimal(item.VALOR_VENDA).times(item.quantidade).dividedBy(quantidadeTotalGrupos[item.ID_GRUPO_OPCOES])
+          );
+          totalCusto = totalCusto.plus(
+            new Decimal(item.VALOR_CUSTO).times(item.quantidade).dividedBy(quantidadeTotalGrupos[item.ID_GRUPO_OPCOES])
+          );
         }
       });
-        setValorTotalItem(totalItem.toNumber().toFixed(2));
-        setValorTotalCusto(totalCusto.toNumber().toFixed(2));
-      }, [adicionalSelecionado, quantidadeTotal]);
-
-
-  const queryCache = queryClient.getQueryCache();
-  const listaAdicionaisCache = queryCache.findAll('listaAdicionais').map((query) => query.state.data);
+    
+      setValorTotalItem(totalItem.toNumber().toFixed(2));
+      setValorTotalCusto(totalCusto.toNumber().toFixed(2));
+    }, [adicionalSelecionado, quantidadeTotalGrupos]);
+    
+  
+ 
+  useEffect(() => {
+    if (Array.isArray(listaAdicionais)) {
+      const total = listaAdicionais.reduce(
+        (accumulator, item) =>
+          item.ID_GRUPO_OPCOES === listaAdicionaisAtivo ? accumulator + item.quantidade : accumulator,
+        0
+      );
+      setQuantidadeTotalGrupos((prevQuantidades) => ({
+        ...prevQuantidades,
+        [listaAdicionaisAtivo]: total,
+      }));
+    }
+  }, [listaAdicionais, listaAdicionaisAtivo]);
   
 
+  
     return(
     <div>
         <div>{Array.isArray(listaGrupoOpcionais) ? (
@@ -129,7 +159,7 @@ export default function GrupoAdicionais({ setValorTotalItem, setValorTotalCusto,
                                 <div className='maximo'> Maximo: {itemGrupoAdd.MAXIMO} </div>
                               </div>
                               <div className='caixa-quantidades'>
-                                <div className='escolhido'> Escolhidos: {quantidadeTotal} </div>
+                                <div className='escolhido'> Escolhidos: {quantidadeTotalGrupos[itemGrupoAdd.ID_GRUPO_OPCOES]} </div>
                               </div>
                             </div>
                           </div>
@@ -150,8 +180,7 @@ export default function GrupoAdicionais({ setValorTotalItem, setValorTotalCusto,
                                   Maximo={itemGrupoAdd.MAXIMO}
                                   listaAdicionais={listaAdicionais}
                                   setListaAdicionais={setListaAdicionais}
-                                  quantidadeTotal={quantidadeTotal} 
-                                  setQuantidadeTotal={setQuantidadeTotal}
+                                  quantidadeTotalGrupos={quantidadeTotalGrupos} 
                                   listaGrupoOpcionais={listaGrupoOpcionais}
                                   itemGrupoAdd={itemGrupoAdd}
                               />

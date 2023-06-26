@@ -2,15 +2,8 @@ import { React, useState, useEffect } from 'react'
 import Decimal from 'decimal.js';
 
 
-export default function AdicionaisPorRadio({ index, setQuantidadeTotal, listaAdicionais, setListaAdicionais }){
-
-    useEffect(() => {
-        if (Array.isArray(listaAdicionais)) { 
-        const total = listaAdicionais.reduce(
-            (accumulator, item) => accumulator + item.quantidade, 0 );
-                setQuantidadeTotal(total);
-        }
-    }, [listaAdicionais]);     
+export default function AdicionaisPorRadio({ index,  listaAdicionais, setListaAdicionais }){
+  
 
     const selecionarAdicional = (index) => {
         const updatedListaOpcionais = listaAdicionais.map((item, i) => {
