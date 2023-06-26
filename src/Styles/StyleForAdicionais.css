@@ -14,19 +14,19 @@
     margin-top: 5px;
 }
 .adicionais-info{
-    width: 90%;
-    margin-left: 10px;
+    width: 85%;
     display: flex;
     flex-direction: column;
 }
 .adicionais-titulo{
     height: 50%;
+    padding-left: 10px;
     font-family: "Roboto-Condensed";
     display: grid;
     place-items: center start;
 }
 .icon-adicionais{
-    width: 20%;
+    width: 15%;
     display: grid;
     place-items: center;
 }
@@ -40,21 +40,15 @@
     display: flex;
 }
 .caixa-quantidades{
-    width: 120px;
-    margin: 5px;
+    width: auto;
+    margin-left: 5px;
+    padding: 5px;
     border-radius: 5px;
     background-color: #ff706b;
     display: grid;
     place-items: center;
     font-family: "Roboto-Bold";
     font-size: 14px;
-}
-.obrigatorio{
-
-}
-.maximo{
-}   
-.escolhido{
 }
 .AdicionaisList{
     height: auto;
@@ -71,7 +65,7 @@
     height: 40px;
 }
 .box-descricao-adicional{
-    width: 60%;
+    width: 50%;
 }
 .adicional-nome{
     font-size: 14px;
@@ -87,12 +81,12 @@
     width: 20%;
 }
 .box-funcao-adicional{
-    width: 20%;
+    width: 30%;
     display: grid;
     place-items: center;
 }
 .Card-Adicionais-Botoes{
-    width: 30%;
+    width: 100%;
     display: flex;
     place-items: center;
 }
@@ -107,19 +101,20 @@
     place-items: center;
 }
 .arrow {
-    border: solid black;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 3px;
+    border: none;
     background-color: transparent;
 }
-.right {
-    transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
+.iconePlus {
+    height: 40px;
+    width: 90%;
+    background-image: url('../imagens/iconeMais.png');
+    background-size: 100% 100%;
 }
-.left {
-    transform: rotate(135deg);
-    -webkit-transform: rotate(135deg);
+.iconeMinus {
+    height: 40px;
+    width: 90%;
+    background-image: url('../imagens/iconeMenos.png');
+    background-size: 100% 100%;
 }
 /* observacoes */
 .titulo-observacoes{
@@ -161,7 +156,7 @@
     height: 50px;
 }
 .pagarAdicionais-text{
-    width: 70%;
+    width: 60%;
     display: grid;
     place-items: center;
 }
@@ -170,13 +165,13 @@
     appearance: none;
     background-color: transparent;
     font-family: "Roboto-Bold";
-    font-size: 25px;
+    font-size: 20px;
     color: black;
     margin-left: 10px;
 }
 .pagarAdicionais-valor{
-    width: 30%;
-    font-size: 20px;
+    width: 40%;
+    font-size: 18px;
     display: grid;
     place-items: center;
     font-family: "Roboto-Bold";

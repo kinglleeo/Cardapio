@@ -5,6 +5,10 @@ import GrupoAdicionais from '../Adicionais/GrupoAdicionais'
 import Observacoes from '../Adicionais/Observacoes'
 import PizzasInfo from './PizzasInfo'
 import { useLocation } from 'react-router-dom';
+import BtnCarrinho from './BtnCarrinho-Pizza'
+import Footer from '../../../Footer/Footer'
+import './SaboresPizza/pizzas.css'
+import AdicionalHeaderBar from '../Adicionais/AdicionarHeaderBar'
 
 export default function MainPizza(){
     const { state } = useLocation();
@@ -24,13 +28,16 @@ export default function MainPizza(){
     //observaçoes
     const [observacoes, setObservacao] = useState('');
 
+    const [totalCompra, setTotalCompra] = useState('');
+    const [custoCompra, setCustoCompra] = useState('');
 
 
     return(
         <div>
             <div>
-                <Header />
+                <AdicionalHeaderBar/>
             </div>
+            <div className='MainPizza'>
             <div>
                 <PizzasInfo
                     //Info Pizzas
@@ -49,6 +56,8 @@ export default function MainPizza(){
                         valorTotalCusto={valorTotalCusto}
                     //info observacoes
                         observacoes={observacoes}
+                        setTotalCompra={setTotalCompra}
+                        setCustoCompra={setCustoCompra}
                 />
             </div>
             <div>
@@ -64,7 +73,7 @@ export default function MainPizza(){
             </div>
             <div>
                 <GrupoAdicionais
-                    adicionalSelecionado={adicionalSelecionado}
+                    adicionalSelecionado={adicionalSelecionado} 
                     setAdicionalSelecionado={setAdicionalSelecionado}
                     setID_GRUPO_OPCOES={setID_GRUPO_OPCOES}
                     setValorTotalCusto={setValorTotalCusto}
@@ -75,6 +84,20 @@ export default function MainPizza(){
                 <Observacoes
                     setObservacao={setObservacao}
                 />
+            </div>
+            <div>
+                <BtnCarrinho
+                    Produto={data}
+                    SaboresSelecionados={SaboresSelecionados}
+                    adicionalSelecionado={adicionalSelecionado}
+                    observacoes={observacoes}
+                    totalCompra={totalCompra}
+                    totalCusto={custoCompra}
+                    PIZZA_MISTA={PIZZA_MISTA}
+                    quantidadeTotal={quantidadeTotal}
+                    ID_GRUPO_OPCOES={ID_GRUPO_OPCOES}
+                />
+            </div>
             </div>
         </div>
     )

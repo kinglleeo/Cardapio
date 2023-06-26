@@ -9,18 +9,24 @@ export default function GrupoAdicionais({ setValorTotalItem, setValorTotalCusto,
     const [listaGrupoOpcionais, setGruposAdicionais] = useState([]);
     const [listaAdicionais, setListaAdicionais] = useState([])
     const [listaAdicionaisAtivo, setListaAdicionaisAtivo] = useState(null);
+
     const [quantidadeTotal, setQuantidadeTotal] = useState(0);
+
+    console.log(listaGrupoOpcionais)
     const { state } = useLocation();
     const { data } = state;
     const queryClient = useQueryClient();
     const ID_GRUPO_OPCOES= data.ID_GRUPO_OPCOES   
-    console.log(adicionalSelecionado)
 
     useEffect(()=>{
         api
             .get(`/listaGrupoOpcionais/${data.ID_PRODUTO}`)
             .then((getdata) =>{
-                setGruposAdicionais(getdata.data);
+                const data = getdata.data.map((item) => ({
+                  ...item,
+                  quantidadeTotal: 0
+                }))
+                setGruposAdicionais(data);
             });
     }, []);
 
@@ -120,10 +126,10 @@ export default function GrupoAdicionais({ setValorTotalItem, setValorTotalCusto,
                                 : ('')
                               }
                               <div className='caixa-quantidades'>
-                                <div className='maximo'> Maximo: 0 </div>
+                                <div className='maximo'> Maximo: {itemGrupoAdd.MAXIMO} </div>
                               </div>
                               <div className='caixa-quantidades'>
-                                <div className='escolhido'> Escolhidos: 0 </div>
+                                <div className='escolhido'> Escolhidos: {quantidadeTotal} </div>
                               </div>
                             </div>
                           </div>
@@ -133,7 +139,8 @@ export default function GrupoAdicionais({ setValorTotalItem, setValorTotalCusto,
                                 onClick={() => toggleListaAdicionais(itemGrupoAdd.ID_GRUPO_OPCOES)}>
                                   {listaAdicionaisAtivo === itemGrupoAdd.ID_GRUPO_OPCOES 
                                     ? <div className='icone-setaUp'></div> 
-                                    : <div className='icone-setaDown'></div>}
+                                    : <div className='icone-setaDown'></div>
+                                  }
                               </div>
                             </div>
                         </div>
@@ -148,7 +155,7 @@ export default function GrupoAdicionais({ setValorTotalItem, setValorTotalCusto,
                                   listaGrupoOpcionais={listaGrupoOpcionais}
                                   itemGrupoAdd={itemGrupoAdd}
                               />
-                          )}
+                          )} 
                         </div>
                   </div>
         )) : null}

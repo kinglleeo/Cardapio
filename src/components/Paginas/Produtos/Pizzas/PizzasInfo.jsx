@@ -3,10 +3,8 @@ import './PizzasInfo.css'
 import Decimal from 'decimal.js';
 import BtnCarrinho from './BtnCarrinho-Pizza';
 
-export default function PizzasInfo({ Produto, PIZZA_MISTA, valorTotalItem, valorTotalCusto, valorTotalCustoPizza, valorTotalSabores, SaboresSelecionados, adicionalSelecionado, observacoes, ID_GRUPO_OPCOES, quantidadeTotal }){
-    const [totalCompra, setTotalCompra] = useState('');
-    const [custoCompra, setCustoCompra] = useState('');
-
+export default function PizzasInfo({ SaboresSelecionados, Produto, setTotalCompra, setCustoCompra, valorTotalItem, valorTotalCusto, valorTotalCustoPizza, valorTotalSabores }){
+    console.log(SaboresSelecionados)
     useEffect(() => {
         const valorVenda = new Decimal(valorTotalSabores || 0);
         const valorCusto = new Decimal(valorTotalCustoPizza || 0);
@@ -20,18 +18,14 @@ export default function PizzasInfo({ Produto, PIZZA_MISTA, valorTotalItem, valor
 
     
     return(
-        <div className='PizzasInfo'>
-            <BtnCarrinho
-                Produto={Produto}
-                SaboresSelecionados={SaboresSelecionados}
-                adicionalSelecionado={adicionalSelecionado}
-                observacoes={observacoes}
-                totalCompra={totalCompra}
-                totalCusto={custoCompra}
-                PIZZA_MISTA={PIZZA_MISTA}
-                quantidadeTotal={quantidadeTotal}
-                ID_GRUPO_OPCOES={ID_GRUPO_OPCOES}
-            />
+        <div className='PizzasInfo'> 
+            <div className='pizzasInfoDescricao'>
+                <div className='pizzaInfoTamanho'> Pizza {Produto.TAMANHO} </div>
+                <div className='pizzasInfoCaixaSabores'> 
+                    {SaboresSelecionados.map((item) =>
+                        <div className='pizzasInfoSabores'> {item.PRODUTO.toLowerCase()} </div>
+                    )}</div>
+            </div>
         </div>
     )
 }

@@ -11,7 +11,7 @@ export default function BtnCarrinho({ totalCusto, PIZZA_MISTA, Produto, adiciona
     const navigate = useNavigate()
     const queryClient = useQueryClient();
     const [btnDesabilitado, setBtnDesabilitado] = useState(false)
-
+ 
     const item ={
         produto: Produto,
         adicionalSelecionado: adicionalSelecionado,

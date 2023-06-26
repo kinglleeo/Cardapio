@@ -3,13 +3,13 @@ import Decimal from 'decimal.js';
 
 export default function AdicionaisPorCheckbox({ faltam, item, index, setQuantidadeTotal, listaAdicionais, setListaAdicionais }) {
   useEffect(() => {
-    if (Array.isArray(listaAdicionais)) {
+    if (Array.isArray(listaAdicionais)) { 
       const total = listaAdicionais.reduce((accumulator, item) => accumulator + item.quantidade, 0);
       setQuantidadeTotal(total);
     }
   }, [listaAdicionais]);
 
-  const selecionarAdicional = (index) => {
+  const selecionarAdicional = (index) => { 
     const updatedListaOpcionais = [...listaAdicionais];
     const quantidade = new Decimal(updatedListaOpcionais[index].quantidade);
     if (quantidade.gt(0)) {
@@ -28,7 +28,7 @@ export default function AdicionaisPorCheckbox({ faltam, item, index, setQuantida
         type="checkbox"
         disabled={isCheckboxDisabled}
         checked={item.quantidade === 1}
-        onClick={() => selecionarAdicional(index)}
+        onChange={() => selecionarAdicional(index)}
       />
     </div>
   );

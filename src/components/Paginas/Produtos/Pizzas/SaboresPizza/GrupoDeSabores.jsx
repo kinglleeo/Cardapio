@@ -58,7 +58,7 @@ export default function GruposAdicionais({ quantidadeTotal, setQuantidadeTotal, 
         
         
       
-return(
+return( 
     <div>
         <ListaSaboresPizzas
             listaSaboresPizzas={listaSaboresPizzas}

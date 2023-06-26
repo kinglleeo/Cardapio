@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { addToCart } from '../../../../redux/cartSlice'
 import { useQueryClient } from '@tanstack/react-query';
+import { formCurrency } from '../../../AA-utilidades/numeros';
 
 export default function BtnCarrinho({ totalCusto, Produto, PIZZA_MISTA, SaboresSelecionados, adicionalSelecionado, observacoes, totalCompra, quantidadeTotal, ID_GRUPO_OPCOES }){
     const dispatch = useDispatch()
@@ -25,8 +26,11 @@ export default function BtnCarrinho({ totalCusto, Produto, PIZZA_MISTA, SaboresS
         navigate('/Carrinho')
     }
     return(
-        <div>
-             <button disabled={quantidadeTotal === 0} onClick={()=> handleCarrinho(item, ID_GRUPO_OPCOES)}>Adicionair</button>
+        <div className='barra-pagarAdicionais'>
+            <div className='pagarAdicionais-text'>
+                <button disabled={quantidadeTotal === 0} onClick={()=> handleCarrinho(item, ID_GRUPO_OPCOES)} className='btn-adicionarAdicionais'> ADICIONAR </button>
+            </div>
+            <div className='pagarAdicionais-valor'> {formCurrency.format(totalCompra)} </div>
         </div>
     )
 }

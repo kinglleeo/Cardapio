@@ -37,6 +37,7 @@ export default function AdicionaisMain(){
             <div>
                 <AdicionarHeaderBar/>
             </div>
+            <div className='MainPizza'>
             <div>
                 <AdicionaisInfo
                     //Info Produtos
@@ -90,8 +91,6 @@ export default function AdicionaisMain(){
                     existeTamanho={existeTamanho}
                 />
             </div>
-            <div>
-                <Footer/>
             </div>
         </div>
     )

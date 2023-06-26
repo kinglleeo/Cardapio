@@ -1,3 +1,11 @@
+@font-face {
+    font-family: "Roboto-Light";
+    src: url('../../../../../fontes/roboto/Roboto-Light.ttf');
+    font-family: "Roboto-Bold";
+    src: url('../../../../../fontes/roboto/Roboto-Bold.ttf');
+    font-family: "Roboto-Condensed";
+    src: url('../../../../../fontes/roboto/Roboto-Condensed.ttf');
+  }
 .pizza-List-Main{
 
 }
@@ -6,47 +14,52 @@
     flex-direction: column;
 }
 .pizza-Card{
-    height: 150px;
-    padding-bottom: 10px;
-}
-.pizza-card-interno{
+    height: 80px;
     display: flex;
-    height: 100%;
-    margin: 10px;
-    --mask: radial-gradient(2px at 0 75%,#0000 98%,#000) 2px 50%/51% 8px repeat-y, radial-gradient(2px at 50% 25%,#000 99%,#0000 101%) left/4px 8px repeat-y, radial-gradient(2px at 100% 25%,#0000 98%,#000) calc(100% - 2px) 50%/51% 8px repeat-y, radial-gradient(2px at 50% 75%,#000 99%,#0000 101%) right/4px 8px repeat-y;
-    -webkit-mask: var(--mask);
-    mask: var(--mask);
-    background-color: #ffb56b;
+    background-color: #DBDBDB;
+    margin-bottom: 5px;
+    font-family: "Roboto-Light";
 }
 .pizza-info{
     width: 80%;
     display: flex;
     flex-direction: column;
-
 }
-.pizza-nome{
-    height: 50%;
-    display: grid;
-    place-items: center start;
-    margin-left: 10px;
-    font-size: 20px;
+.pizzaSabor{
+    height: 30%;
+    margin: 5px;
+    font-family: "Roboto-Bold";
 }
-.pizza-nome-titulo{
-    padding-left: 10px;
+.pizza-caixa2{
+    height: 70%;
+    display: flex;
 }
-.pizza-nome-sabor{
-    padding-left: 50px;
+.pizzaFicha{
+    width: 70%;
+    margin-left: 5px;
+    font-family: "Roboto-Condensed";
+    font-size: 13px;
+    word-break: break-all;
+    margin-bottom: 3px;
+    overflow:scroll
 }
 .pizza-valor{
-    height: 50%;
+    width: 30%;
+    display: grid;
+    place-items: center;
+    font-size: 16px;
+    font-family: "Roboto-Condensed";
+}
+.pizza-input{
+    width: 30%;
     display: grid;
     place-items: center;
 }
-.pizzas-info{
-    height: 150px;
-    background-color: green;
-}
-.pizza-input{
+.MainPizza{
     background-color: white;
-    width: 20%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    min-height: 80vh;
 }

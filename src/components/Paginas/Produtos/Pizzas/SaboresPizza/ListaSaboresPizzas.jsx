@@ -2,17 +2,16 @@ import { React, useEffect, useState } from 'react'
 import { formCurrency } from '../../../../AA-utilidades/numeros';
 import './pizzas.css'
 import Decimal from 'decimal.js';
-import { useQueryClient } from '@tanstack/react-query';
 import './cssParaPizzas.css'
+import '../../../../../Styles/Styles.css'
 
 
 export default function ListaProdutosAdicionais({ quantidadeTotal, setQuantidadeTotal, listaSaboresPizzas, setListaSaboresPizzas, Min, Max, setSaboresSelecionados, SaboresSelecionados }) {
-  //const queryClient = useQueryClient();
   const [listaSalgadasAtiva, setListaSalgadasAtiva] = useState(null);
   const [listaDocesAtiva, setListaDocesAtiva] = useState(null);
   const Idsalgadas = '1'
   const IdDoces = '2'
-
+  
   const AbrirListaSalgadas = (Idsalgadas) => {
     if (listaSalgadasAtiva === Idsalgadas) {
         setListaSalgadasAtiva(null);
@@ -85,17 +84,19 @@ export default function ListaProdutosAdicionais({ quantidadeTotal, setQuantidade
           <div>
               <div className='titulo-SaboresPizza'> Sabores </div>
           </div>
-          <div className='Sabores-Quantidades'>
-            <div className='QTD'> Minimo {Min} Sabor </div>
-            <div className='QTD'> Até {Max} Sabores </div>
-            <div className='QTD'> Selecionados {NumeroSelecionados()} </div>
-            <div className='QTD'> Faltam {Faltam()} </div>
+          <div className='Sabores-Quantidades'> 
+            <div className='QTD'> Minimo: {Min} </div>
+            <div className='QTD'> Maximo: {Max} </div>
+            <div className='QTD'> Faltam: {Faltam()} </div>
           </div>
           <div>
               <div className='grupo-Sabores'> 
                 <div className='text-Sabores'> Salgadas </div>
                 <div className='icon-Sabores' onClick={() => AbrirListaSalgadas(Idsalgadas)}>
-                  {listaSalgadasAtiva === Idsalgadas ? '-' : '+'}
+                  {listaSalgadasAtiva === Idsalgadas 
+                    ? <div className='box-iconAdd'> <div className='icone-setaUp'></div> </div> 
+                    : <div className='box-iconAdd'> <div className='icone-setaDown'></div> </div>
+                  }
                 </div>
               </div>
               <div className='pizza-List-Main'>
@@ -105,33 +106,34 @@ export default function ListaProdutosAdicionais({ quantidadeTotal, setQuantidade
                         return (
                           <div className='pizza-List' key={itemSabor.ID_GRADE}>
                             <div className='pizza-Card'>
-                                    <div className='pizza-card-interno'>
-                                        <div className='pizza-info'>
-                                            <div className='pizza-nome'>
-                                                <div className='pizza-nome-titulo'> Pizza Sabor </div>
-                                                    <div className='pizza-nome-sabor'> {itemSabor.PRODUTO} </div>
-                                            </div>
-                                            <div className='pizza-valor'>
-                                                <div> Valor {formCurrency.format(itemSabor.VALOR_VENDA)} </div>
-                                            </div>
-                                        </div>
-                                        <div className='pizza-input'>   
-                                            <div>
-                                                <div className='Card-Adicionais-Botoes'>
-                                                    <div className='btn-quantia-adicionais'>
-                                                        <button className='arrow left' onClick={() => diminuirQuantidade(index, itemSabor)}></button>
-                                                    </div>
-                                                    <div className='quantia-adicionais'>{itemSabor.quantidade}</div>
-                                                    <div className='btn-quantia-adicionais'>
-                                                        <button className='arrow right'onClick={() => aumentarQuantidade(index, itemSabor)}
-                                                            disabled={quantidadeTotal === Max}
-                                                        ></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                <div className='pizza-info'>
+                                  <div className='pizzaSabor'> {itemSabor.PRODUTO.toLowerCase()} </div>
+                                  <div className='pizza-caixa2'>
+                                    <div className='pizzaFicha'> {itemSabor.FICHA_TECNICA !== null 
+                                            ? <div> {itemSabor.FICHA_TECNICA.toLowerCase()} </div>
+                                            : <div></div> 
+                                          } 
                                     </div>
+                                    <div className='pizza-valor'>
+                                      <div> {formCurrency.format(itemSabor.VALOR_VENDA)} </div>
+                                    </div>
+                                  </div>
                                 </div>
+
+                                <div className='pizza-input'> 
+                                  <div className='Card-Adicionais-Botoes'>
+                                    <div className='btn-quantia-adicionais'>
+                                      <button className='arrow iconeMinus' onClick={() => diminuirQuantidade(index, itemSabor)}></button>
+                                    </div>
+                                      <div className='quantia-adicionais'>{itemSabor.quantidade}</div>
+                                    <div className='btn-quantia-adicionais'>
+                                      <button className='arrow iconePlus'onClick={() => aumentarQuantidade(index, itemSabor)}
+                                        disabled={quantidadeTotal === Max}
+                                      ></button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                           </div>
                         );
                       }
@@ -144,7 +146,10 @@ export default function ListaProdutosAdicionais({ quantidadeTotal, setQuantidade
             <div className='grupo-Sabores'> 
               <div className='text-Sabores'> Doces </div>
               <div className='icon-Sabores' onClick={() => AbrirListaDoces(IdDoces)}>
-                  {listaDocesAtiva === IdDoces ? '-' : '+'}
+                  {listaDocesAtiva === IdDoces 
+                    ? <div className='box-iconAdd'> <div className='icone-setaUp'></div> </div>  
+                    : <div className='box-iconAdd'> <div className='icone-setaDown'></div> </div>
+                  }
               </div>
             </div>
             <div className='pizza-List-Main'>
@@ -154,33 +159,28 @@ export default function ListaProdutosAdicionais({ quantidadeTotal, setQuantidade
                     return (
                       <div className='pizza-List' key={itemSabor.ID_GRADE}>
                         <div className='pizza-Card'>
-                                <div className='pizza-card-interno'>
-                                    <div className='pizza-info'>
-                                        <div className='pizza-nome'>
-                                            <div className='pizza-nome-titulo'> Pizza Sabor </div>
-                                                <div className='pizza-nome-sabor'> {itemSabor.PRODUTO} </div>
-                                        </div>
-                                        <div className='pizza-valor'>
-                                            <div> Valor {formCurrency.format(itemSabor.VALOR_VENDA)} </div>
-                                        </div>
-                                    </div>
-                                    <div className='pizza-input'>   
-                                        <div>
-                                            <div className='Card-Adicionais-Botoes'>
-                                                <div className='btn-quantia-adicionais'>
-                                                    <button className='arrow left' onClick={() => diminuirQuantidade(index, itemSabor)}></button>
-                                                </div>
-                                                <div className='quantia-adicionais'>{itemSabor.quantidade}</div>
-                                                <div className='btn-quantia-adicionais'>
-                                                    <button className='arrow right'onClick={() => aumentarQuantidade(index, itemSabor)}
-                                                        disabled={quantidadeTotal === Max}
-                                                    ></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                          <div className='pizza-info'>
+                            <div className='pizza-nome'>
+                              <div> {itemSabor.PRODUTO} </div>
                             </div>
+                            <div className='pizza-valor'>
+                              <div> {formCurrency.format(itemSabor.VALOR_VENDA)} </div>
+                            </div>
+                          </div>
+                          <div className='pizza-input'>
+                            <div className='Card-Adicionais-Botoes'>
+                              <div className='btn-quantia-adicionais'>
+                                <button className='arrow iconeMinus' onClick={() => diminuirQuantidade(index, itemSabor)}></button>
+                              </div>
+                                <div className='quantia-adicionais'>{itemSabor.quantidade}</div>
+                              <div className='btn-quantia-adicionais'>
+                                <button className='arrow iconePlus'onClick={() => aumentarQuantidade(index, itemSabor)}
+                                  disabled={quantidadeTotal === Max}
+                                ></button>
+                              </div>
+                            </div>
+                            </div>
+                          </div>
                       </div>
                     );
                   }
