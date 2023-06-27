@@ -6,6 +6,8 @@ import { CartPagBar } from './CartPagBar';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { formCurrency } from '../AA-utilidades/numeros';
+import Decimal from 'decimal.js';
+
 
 export default function CartItem({ setPedido }) {
   const dispatch = useDispatch()
@@ -17,9 +19,12 @@ export default function CartItem({ setPedido }) {
   }, [])
 
   useEffect(()=>{
-    const totalCart = sessionStorage.getItem('totalCart');
-      setTotalCart(totalCart)
-  }, [])
+    let total = new Decimal(0) || 0
+    cart.forEach(item => {
+      total = total.plus(new Decimal(item.quantity || 0).times(item.totalCompra || 0)) 
+    })
+    setTotalCart(total.toFixed(2))
+}); 
 
   return (
     <div className='MainCartList'>

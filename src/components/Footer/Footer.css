@@ -1,6 +1,6 @@
 @font-face {
-    font-family: "Roboto-Light";
-    src: url('../../fontes/roboto/Roboto-Light.ttf');
+    font-family: "Roboto-Bold";
+    src: url('../../fontes/roboto/Roboto-Bold.ttf');
   }
 .footer{   
     background-color: #DBDBDB;
@@ -10,6 +10,7 @@
     width: 100%;
 }
 .text-footer{
-    font-family: "Roboto-Light";
-    font-size: 12px;
+    font-family: "Roboto-Bold";
+    font-size: 14px;
+    margin: 3px;
 }

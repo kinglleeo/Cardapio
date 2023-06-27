@@ -45,7 +45,7 @@ export default function AdicionaisInfo({ setTotalCompra, setCustoCompra, valorTo
                         </div>
                     </div>
                     <div className='produtos-img'>
-                        <img src={'data:image/png;base64,' + Produto.IMAGEM_WEB} key={Produto.ID_PRODUTO} alt='Restaurante' className='img-restaurante'/>
+                        <img src={'data:image/png;base64,' + Produto.IMAGEM_WEB} key={Produto.ID_PRODUTO} alt='Restaurante' className='img-produto'/>
                     </div>
                 </div>
             </div>

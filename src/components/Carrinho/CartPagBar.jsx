@@ -21,6 +21,7 @@ export function CartPagBar({ Pedido, observacoesCart }) {
   const cart = useSelector(state => state.cart)
   const items_pedido = compra
 
+
   useEffect(()=>{
       let total = new Decimal(0) || 0
       cart.forEach(item => {
@@ -28,10 +29,6 @@ export function CartPagBar({ Pedido, observacoesCart }) {
       })
       setTotalCart(total.toFixed(2))
   }); 
-
-  useEffect(()=>{
-    sessionStorage.setItem('totalCart', totalCart);
-  })
 
   useEffect(()=>{
     const tipo = sessionStorage.getItem('tipo');
