@@ -54,7 +54,7 @@ export default function Grupo(){
         <div className='Main-Cardapio'>
             {Array.isArray(grupos) ? (
                 grupos.map((item)=>
-                    <div className='GrupoList' id={item.ID_GRUPO} key={item.ID_GRUPO}>
+                    <div className='GrupoList' id={item.ID_GRUPO} key={item.ID_GRUPO} onClick={() => toggleListaTamanhos(IdTamanho)}>
                         <div className='Grupo-Titulo'>{item.GRUPO}</div>
                             {item.PIZZA_MISTA === "SIM" ? (
                                 <div>

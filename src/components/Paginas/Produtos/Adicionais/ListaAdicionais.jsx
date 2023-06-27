@@ -88,25 +88,34 @@ export default function ListaAdicionais({ itemGrupoAdd, quantidadeTotalGrupos, M
                               ) 
                               : itemGrupoAdd.PERMITIR_ITEM_REPETIDO === "NAO" === itemGrupoAdd.MAXIMO > 1 ?
                                 (
-                                  <div  className={`Card-Adicionais ${item.quantidade === 1 ? 'mudarCorCard' : ''}`} 
-                                        key={item.ID}
-                                        onClick={() => selecionarAdicional(index)}
-                                  >
-                                    <div className='box-descricao-adicional'>
-                                      <div className='adicional-nome'> {item.DESCRICAO} </div>
-                                    </div>
-                                    <div className='box-valor-adicional'>
-                                      <div className='adicional-valor'> {formCurrency.format(item.VALOR_VENDA)} </div>
-                                    </div>
-                                    <div className='box-funcao-adicional'>
-                                      <input
-                                        type="checkbox"
-                                        disabled={faltam === 0 && item.quantidade !== 1}
-                                        checked={item.quantidade === 1}
-                                        onClick={() => selecionarAdicional(index)}
-                                      />
-                                    </div>
+                                  <div className={`Card-Adicionais ${item.quantidade === 1 ? 'mudarCorCard' : ''}`}
+                                       key={item.ID}
+                                       onClick={() => {
+                                        if (faltam !== 0) {
+                                          selecionarAdicional(index);
+                                        } else if (item.quantidade === 1) {
+                                          selecionarAdicional(index);
+                                        }
+                                        }}>
+                                  <div className='box-descricao-adicional'>
+                                    <div className='adicional-nome'> {item.DESCRICAO} </div>
                                   </div>
+                                  <div className='box-valor-adicional'>
+                                    <div className='adicional-valor'> {formCurrency.format(item.VALOR_VENDA)} </div>
+                                  </div>
+                                  <div className='box-funcao-adicional'>
+                                    <input
+                                      type="checkbox"
+                                      disabled={faltam === 0 && item.quantidade !== 1}
+                                      checked={item.quantidade === 1}
+                                      onClick={() => selecionarAdicional(index)}
+                                    />
+                                      {item.quantidade === 1 
+                                        ? (<div className='iconePrato-acesso'></div>)
+                                        : (<div className='iconePrato-apagado'></div>) 
+                                      }
+                                  </div>
+                                </div>
                                 ) 
                               : itemGrupoAdd.MINIMO === 1 ? 
                                 (
@@ -122,12 +131,11 @@ export default function ListaAdicionais({ itemGrupoAdd, quantidadeTotalGrupos, M
                                       <div className='adicional-valor'>{formCurrency.format(item.VALOR_VENDA)}</div>
                                     </div>
                                     <div className='box-funcao-adicional'>
-                                      <input
-                                        type='radio'
-                                        name='radio'
-                                        checked={selectedRadioIndex === index}
-                                        onChange={() => {}}
-                                      />
+                                      <input type='radio' name='radio' checked={selectedRadioIndex === index} onChange={() => {}} />
+                                      {selectedRadioIndex === index 
+                                        ? (<div className='iconePrato-acesso'></div>)
+                                        : (<div className='iconePrato-apagado'></div>) 
+                                      }
                                     </div>
                                   </div>
                                 )

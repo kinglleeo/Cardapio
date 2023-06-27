@@ -17,17 +17,15 @@ export function TotalItem({ itemquantity, itemid, itemvalor }){
   return(
     <div className='cart-item-valor-total'>
       <div className='cart-total-valor'>
-          <div>Valor:</div>
           <div>{formCurrency.format(TotalItem())}</div>
       </div>
-      <div className='cart-quantia'>Quantia:</div>
-      <div className='box-itemquantia'>
+      <div className='box-funcao-cart'>
         <div className='cart-btn-quantia'>
-          <button className='arrow left' onClick={() => dispatch(decrementQuantity(itemid))}/>
+          <button className='arrow cartMinus' onClick={() => dispatch(decrementQuantity(itemid))}/>
         </div>
-        <div className='cart-item-quantia'>{itemquantity}</div>
+          <div className='cart-item-quantia'>{itemquantity}</div>
         <div className='cart-btn-quantia'>
-          <button className='arrow right' onClick={() => dispatch(incrementQuantity(itemid))}/>
+          <button className='arrow cartPlus' onClick={() => dispatch(incrementQuantity(itemid))}/>
         </div>
       </div>
   </div>

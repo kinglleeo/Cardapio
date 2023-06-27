@@ -91,7 +91,7 @@ export default function ListaProdutosAdicionais({ quantidadeTotal, setQuantidade
           </div>
           <div>
               <div className='grupo-Sabores'> 
-                <div className='text-Sabores'> Salgadas </div>
+                <div className='text-Sabores' onClick={() => AbrirListaSalgadas(Idsalgadas)}> Salgadas </div>
                 <div className='icon-Sabores' onClick={() => AbrirListaSalgadas(Idsalgadas)}>
                   {listaSalgadasAtiva === Idsalgadas 
                     ? <div className='box-iconAdd'> <div className='icone-setaUp'></div> </div> 
@@ -144,7 +144,7 @@ export default function ListaProdutosAdicionais({ quantidadeTotal, setQuantidade
           </div>
           <div>
             <div className='grupo-Sabores'> 
-              <div className='text-Sabores'> Doces </div>
+              <div className='text-Sabores' onClick={() => AbrirListaDoces(IdDoces)}> Doces </div>
               <div className='icon-Sabores' onClick={() => AbrirListaDoces(IdDoces)}>
                   {listaDocesAtiva === IdDoces 
                     ? <div className='box-iconAdd'> <div className='icone-setaUp'></div> </div>  

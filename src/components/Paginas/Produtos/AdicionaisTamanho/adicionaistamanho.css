@@ -43,3 +43,20 @@
     display: grid;
     place-items: center;
 }
+input[type="radio" i] {
+    background-color: transparent;
+    appearance: none;
+    border: none;
+}
+.iconePrato-apagado{
+    height: 40px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../../../../imagens/iconePratoApagado.png');
+    background-size: 100% 100%;
+}
+.iconePrato-acesso{
+    height: 40px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../../../../imagens/iconePratoAcesso.png');
+    background-size: 100% 100%;
+}

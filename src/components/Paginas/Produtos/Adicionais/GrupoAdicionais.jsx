@@ -143,7 +143,7 @@ export default function GrupoAdicionais({ setValorTotalItem, setValorTotalCusto,
         <div>
             {Array.isArray(listaGrupoOpcionais) ? (
                 listaGrupoOpcionais.map((itemGrupoAdd) => 
-                  <div key={itemGrupoAdd.ID_GRUPO_OPCOES}>
+                  <div key={itemGrupoAdd.ID_GRUPO_OPCOES}  onClick={() => toggleListaAdicionais(itemGrupoAdd.ID_GRUPO_OPCOES)}>
                         <div className='box-adicionais'>
                           <div className='adicionais-info'>
                             <div className='adicionais-titulo'> {itemGrupoAdd.DESCRICAO} </div>
@@ -158,7 +158,7 @@ export default function GrupoAdicionais({ setValorTotalItem, setValorTotalCusto,
                                 <div className='maximo'> Maximo: {itemGrupoAdd.MAXIMO} </div>
                               </div>
                               <div className='caixa-quantidades'>
-                                <div className={quantidadeTotalGrupos[itemGrupoAdd.ID_GRUPO_OPCOES] === itemGrupoAdd.MAXIMO ? 'escolhido' : 'escolhido'} style={{backgroundColor: quantidadeTotalGrupos[itemGrupoAdd.ID_GRUPO_OPCOES] === itemGrupoAdd.MAXIMO ? 'green' : ''}}>
+                                <div className={quantidadeTotalGrupos[itemGrupoAdd.ID_GRUPO_OPCOES] === itemGrupoAdd.MAXIMO ? 'escolhido' : 'escolhido'} style={{backgroundColor: quantidadeTotalGrupos[itemGrupoAdd.ID_GRUPO_OPCOES] === itemGrupoAdd.MAXIMO ? '#4cb04c' : ''}}>
                                      Escolhidos: {quantidadeTotalGrupos[itemGrupoAdd.ID_GRUPO_OPCOES]}
                                 </div>
                               </div>

@@ -1,14 +1,15 @@
 import { React, useEffect, useState } from 'react'
 import { formCurrency } from '../../../AA-utilidades/numeros';
-import { SelecionarTamanho } from './SelecionarTamanho'
 import { api } from '../../../../conecções/api'
 import { useLocation } from 'react-router-dom';
 import './adicionaistamanho.css'
+import '../../../../Styles/StyleForAdicionais.css'
 
 export default function GrupoTamanho({ setExisteTamanho, setTamanhoEscolhido }){
   const [grupoTamanho, setGrupoTamanho] = useState([]);
   const { state } = useLocation();
   const { data } = state;
+  const [selectedRadioIndex, setSelectedRadioIndex] = useState(null);
 
   useEffect(()=>{
     if(Array.isArray(grupoTamanho)){
@@ -26,6 +27,11 @@ export default function GrupoTamanho({ setExisteTamanho, setTamanhoEscolhido }){
         });
   }, []);
  
+  const RadioTamanhos = (item, index) => {
+    setSelectedRadioIndex(index);
+    setTamanhoEscolhido(item)
+  };
+
     return(
         <div>
           <div>{Array.isArray(grupoTamanho) ? (
@@ -37,7 +43,11 @@ export default function GrupoTamanho({ setExisteTamanho, setTamanhoEscolhido }){
           <div className='lista-tamanhos'> 
             {Array.isArray(grupoTamanho)
               ? grupoTamanho.map((item, index) => (
-                  <div className='Card-tamanhos' key={item.ID}>
+                  <div
+                    className={`Card-tamanhos ${selectedRadioIndex === index ? 'mudarCorCard' : '' }`}
+                    key={item.ID}
+                    onClick={() => RadioTamanhos(item, index)}
+                  >
                         <div className='box-tamanhos-1'>
                           <div className='tamanhos-nome'>{item.TAMANHO}</div>
                         </div>
@@ -45,10 +55,12 @@ export default function GrupoTamanho({ setExisteTamanho, setTamanhoEscolhido }){
                           <div className='tamanhos-valor'>{formCurrency.format(item.VALOR_VENDA)}</div>
                         </div>
                       <div className='Card-Icon'>
-                          <SelecionarTamanho
-                            item={item}
-                            setTamanhoEscolhido={setTamanhoEscolhido}
-                          />
+                        <input
+                            type='radio'
+                            name='tamanhos'
+                            checked={selectedRadioIndex === index}
+                            onChange={() => {}}
+                        />
                       </div>
                   </div>
                 ))

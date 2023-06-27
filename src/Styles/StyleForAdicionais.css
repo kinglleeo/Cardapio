@@ -50,22 +50,27 @@
     margin-left: 5px;
     padding: 5px;
     border-radius: 5px;
-    background-color: red;
+    display: grid;
+    place-items: center;
+    font-family: "Roboto-Bold";
+    font-size: 14px;
+    background-color: #ff706b;
 }
 .maximo{
     margin-left: 5px;
     padding: 5px;
     border-radius: 5px;
-    background-color: yellow;
+    font-family: "Roboto-Bold";
+    font-size: 14px;
+    background-color: #eded28;
+    display: grid;
+    place-items: center;
 }
 .escolhido{
     margin-left: 5px;
     padding: 5px;
     border-radius: 5px;
-    background-color: chocolate;
-}
-.escolhidosOK{
-    background-color: green;
+    background-color: #ff706b;
 }
 .AdicionaisList{
     height: auto;
@@ -171,7 +176,8 @@
     outline: none;
 }
 .barra-pagarAdicionais{
-    background-color: aquamarine;
+    background-color: rgb(66 175 66);
+    color: white;
     display: flex;
     margin: 8px;
     border-radius: 5px;
@@ -188,7 +194,7 @@
     background-color: transparent;
     font-family: "Roboto-Bold";
     font-size: 16px;
-    color: black;
+    color: white;
     margin-left: 10px;
 }
 .pagarAdicionais-valor{
@@ -197,4 +203,9 @@
     display: grid;
     place-items: center;
     font-family: "Roboto-Bold";
+}
+input[type="checkbox" i]{
+    background-color: transparent;
+    appearance: none;
+    border: none;
 }

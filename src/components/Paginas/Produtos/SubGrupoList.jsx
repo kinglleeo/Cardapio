@@ -59,6 +59,7 @@ export default function SubGrupoList({ grupo }) {
             key={item.ID_SUBGRUPO}
             id={item.ID_SUBGRUPO}
             ref={isSubGrupoAtivo(item.ID_SUBGRUPO) ? activeListRef : null}
+            onClick={() => toggleLista(item.ID_SUBGRUPO)}
           >
             <div className='subgrupos'>
               <div className='subgrupo-titulo'>{item.SUBGRUPO}</div>
