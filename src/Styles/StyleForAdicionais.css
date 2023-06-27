@@ -41,14 +41,31 @@
 }
 .caixa-quantidades{
     width: auto;
-    margin-left: 5px;
-    padding: 5px;
-    border-radius: 5px;
-    background-color: #ff706b;
     display: grid;
     place-items: center;
     font-family: "Roboto-Bold";
     font-size: 14px;
+}
+.obrigatorio{
+    margin-left: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: red;
+}
+.maximo{
+    margin-left: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: yellow;
+}
+.escolhido{
+    margin-left: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: chocolate;
+}
+.escolhidosOK{
+    background-color: green;
 }
 .AdicionaisList{
     height: auto;
