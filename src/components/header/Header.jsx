@@ -7,7 +7,7 @@ export default function Header (){
     const [infoClientes, setInfoClientes] = useState([])
     const [cnpj, setCnpj] = useState('')
     const navigate = useNavigate()
-
+    
     useEffect(()=>{
         const cnpj = sessionStorage.getItem('cnpj');
             setCnpj(cnpj)

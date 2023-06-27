@@ -6,87 +6,132 @@
     font-family: "Roboto-Condensed";
     src: url('../fontes/roboto/Roboto-Condensed.ttf');
 }
-.carde-cart{
-    background-color: white;
+
+.MainCartList{
+    margin-top: 50px;
+}
+.cartList{
+    display: flex;
+    flex-direction: column;
+}
+.cartTitulo{
+    font-size: 16px;
+    margin-bottom: 5px;
+    height: 50px;
+    background-color: #DBDBDB;
+    font-family: "Roboto-Bold";
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+}
+.iconeCarrinhoCart{
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 34px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../imagens/CarrinhoBlack.png');
+    background-size: 100% 100%;
+}
+.carrinhoName{
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+    font-family: "Roboto-Bold";
+}
+.cartListItems{
+    display: flex;
+    flex-direction: column;
+}
+.card-cart{
     margin: 5px;
     border: solid;
-    border-width: 0.5px;
     border-radius: 5px;
+    border-width: 0.5px;
     display: flex;
-    min-height: 110px;
+    min-height: 45px;
 }
-.carde-cart-img{
-    width: 30%;
-}
-.carde-cart-descricao{
-    width: 70%;
-}
-.carde-cart-descricao{
-    display: flex;
-    flex-direction: column;
-}
-.cart-item-name{
-    height: 30%;
+.cartBox-iconeLixeira{
+    width: 15%;
     display: grid;
     place-items: center;
-    font-family: "Roboto-Bold";
 }
-.descricao-box-2{
-    height: 70%;
-    display: flex;
+.btn-delete{
+    appearance: none;
+    border: none;
+    background-color: transparent;
 }
-.icones-adicionar{
-    width: 50%;
+.lixeira{
+    height: 35px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../imagens/iconeLixeira.png');
+    background-size: 100% 100%;
 }
-.cart-item-valor-total{
-    display: flex;
-    flex-direction: column;
-}
-.cart-total-valor{
-    display: grid;
-    place-items: center;
-    font-family: "Roboto-Bold";
-    margin: 5px;
-}
-.box-funcao-cart{
-    display: flex;
-}
-.cart-btn-quantia{
+.boxDescricao-nome{
     width: 40%;
     display: grid;
     place-items: center;
+    margin-right: 5px;
+}
+.cartBox-valor{
+    width: 45%;
+    display: flex;
+    margin-right: 5px;
+}
+.CartBox-valor{
+    width: 100%;
+    display: flex;
+}
+.cartTotal-valor{
+    width: 50%;
+    display: grid;
+    place-items: center;
+}
+.boxFuncao-cart{
+    width: 100%;
+    display: flex;
+    place-items: center;
+}
+.cart-btn-quantia{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+}
+.arrow{
+    border: none;
+    background-color: transparent;
 }
 .cart-item-quantia{
     width: 20%;
     display: grid;
     place-items: center;
 }
-.arrow {
-    border: none;
-    background-color: transparent;
-}
-.cartPlus {
-    min-height: 30px;
-    aspect-ratio: 1 / 1;
-    background-image: url('../imagens/iconeMais.png');
-    background-size: 100% 100%;
-}
-.cartMinus {
+.cartMinus{
     min-height: 30px;
     aspect-ratio: 1 / 1;
     background-image: url('../imagens/iconeMenos.png');
     background-size: 100% 100%;
 }
-.icone-excluir{
-    width: 50%;
-    display: flex;
-    justify-content: flex-end;
-    align-content: flex-end;
-    flex-wrap: wrap;
+.cartPlus{
+    min-height: 30px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../imagens/iconeMais.png');
+    background-size: 100% 100%;
 }
-.btn-delete{
-    border: none;
-    background-color: transparent;
+.barraTotalCartList{
+    font-size: 16px;
+    margin-bottom: 5px;
+    height: 50px;
+    background-color: #DBDBDB;
+    font-family: "Roboto-Bold";
+    display: flex;
+    justify-content: space-between;
+}
+.totalCartList{
+    display: grid;
+    place-items: center;
+    margin-right: 20px;
+    font-family: "Roboto-Bold";
+    font-size: 18px;
 }
 
 

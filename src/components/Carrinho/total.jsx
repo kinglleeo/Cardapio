@@ -15,11 +15,11 @@ export function TotalItem({ itemquantity, itemid, itemvalor }){
     }
 
   return(
-    <div className='cart-item-valor-total'>
-      <div className='cart-total-valor'>
-          <div>{formCurrency.format(TotalItem())}</div>
+    <div className='CartBox-valor'>
+      <div className='cartTotal-valor'>
+        <div>{formCurrency.format(TotalItem())}</div>
       </div>
-      <div className='box-funcao-cart'>
+      <div className='boxFuncao-cart'>
         <div className='cart-btn-quantia'>
           <button className='arrow cartMinus' onClick={() => dispatch(decrementQuantity(itemid))}/>
         </div>
@@ -28,7 +28,7 @@ export function TotalItem({ itemquantity, itemid, itemvalor }){
           <button className='arrow cartPlus' onClick={() => dispatch(incrementQuantity(itemid))}/>
         </div>
       </div>
-  </div>
+    </div>
   )
 }
 

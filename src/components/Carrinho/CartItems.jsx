@@ -3,48 +3,58 @@ import { TotalItem } from './total';
 import { clearCart, removeItem} from '../../redux/cartSlice';
 import '../../Styles/StylesCart.css'
 import { CartPagBar } from './CartPagBar';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { formCurrency } from '../AA-utilidades/numeros';
 
-export default function CartItem() {
+export default function CartItem({ setPedido }) {
   const dispatch = useDispatch()
   const cart = useSelector((state) => state.cart)
-  console.log(cart)
+  const [totalCart, setTotalCart] = useState('')
+
+  useEffect(()=>{
+    setPedido(cart)
+  }, [])
+
+  useEffect(()=>{
+    const totalCart = sessionStorage.getItem('totalCart');
+      setTotalCart(totalCart)
+  }, [])
+
   return (
-    <div> 
-      <div className='todos-items-lista'>
-        {cart.map((item)=>
-          <div className='carde-cart' key={item.idCart}>
-            <div className='carde-cart-img'>
-              <img src={'data:image/png;base64,' + item.produto.IMAGEM_WEB} key={item.produto.ID_PRODUTO} alt='Restaurante' className='img-produto'/>
-            </div>
-            <div className='carde-cart-descricao'>
-              <div className='cart-item-name'> {item.produto.PRODUTO.toLowerCase()} </div>
-              <div className='descricao-box-2'>
-                <div className='icones-adicionar'>
-                  <TotalItem
-                    itemquantity={item.quantity}
-                    itemid={item.id}
-                    itemvalor={item.totalCompra}
-                  />
-                </div>
-                <div className='icone-excluir'> 
-                  <button className="btn-delete" onClick={()=> dispatch(removeItem(item.id))}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" className="bi bi-trash" fill='red' viewBox="0 0 16 16">
-                      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
-                      <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
-                    </svg>
-                  </button>
-                </div>
+    <div className='MainCartList'>
+      <div className='CartList'>
+        <div className='cartTitulo'> 
+          <div className='iconeCarrinhoCart'></div>
+          <div className='carrinhoName'> Carrinho </div>
+        </div>
+        <div className='cartListItems'>
+          {cart.map((item)=>
+            <div className='card-cart' key={item.idCart}>
+              <div className='cartBox-iconeLixeira'>
+                <div className='lixeira' onClick={()=> dispatch(removeItem(item.id))}></div>
+              </div>
+                <div className='boxDescricao-nome'> {item.tipo === "NAO" ? (<div> {item.produto.PRODUTO.toLowerCase()} </div>) : (<div> Pizza {item.produto.TAMANHO.toLowerCase()} </div>) } </div>
+              <div className='cartBox-valor'>
+                <TotalItem
+                  itemquantity={item.quantity}
+                  itemid={item.id}
+                  itemvalor={item.totalCompra}
+                />
               </div>
             </div>
-          </div>        
-        )}
-      </div>
-        <div>
-          <CartPagBar
-            Pedido={cart}
-          />
+          )}
         </div>
+          <div className='barraTotalCartList'>
+            <div className='cartBox-iconeLixeira'>
+              <div className='lixeira' onClick={()=> dispatch(clearCart())}></div>
+            </div>
+            <div className='totalCartList'>
+              <div> TOTAL {formCurrency.format(totalCart)} </div>
+            </div>
+          </div>
       </div>
+    </div>
   )
 }
 

@@ -9,19 +9,17 @@ import { BoxLoading  } from 'react-loadingg';
 export default function TelaInicialCardapio(){
     const navigate = useNavigate()
     const [resposta, setResposta] = useState('');
-    const [mesa, setMesa] = useState('');
     const [cnpj, setCnpj] = useState('');
     const [infoClientes, setInfoClientes] = useState([])
+    
 
     //formato da ult: http://192.168.0.93:3000?mesa=2&cnpj=000000000000
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
         const mesaValue = urlParams.get('mesa');
         const cnpjValue = urlParams.get('cnpj');
-            setMesa(mesaValue || '');
             setCnpj(cnpjValue || '');
                 sessionStorage.setItem('mesaValue', mesaValue);
-                sessionStorage.setItem('sesaoAtiva', "sim");
                 sessionStorage.setItem('cnpj', cnpjValue);
             api
                 .get(`/dadosEmpresa/${cnpjValue}`)

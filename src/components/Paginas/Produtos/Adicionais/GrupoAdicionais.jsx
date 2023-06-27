@@ -143,8 +143,8 @@ export default function GrupoAdicionais({ setValorTotalItem, setValorTotalCusto,
         <div>
             {Array.isArray(listaGrupoOpcionais) ? (
                 listaGrupoOpcionais.map((itemGrupoAdd) => 
-                  <div key={itemGrupoAdd.ID_GRUPO_OPCOES}  onClick={() => toggleListaAdicionais(itemGrupoAdd.ID_GRUPO_OPCOES)}>
-                        <div className='box-adicionais'>
+                  <div key={itemGrupoAdd.ID_GRUPO_OPCOES} >
+                        <div className='box-adicionais' onClick={() => toggleListaAdicionais(itemGrupoAdd.ID_GRUPO_OPCOES)}>
                           <div className='adicionais-info'>
                             <div className='adicionais-titulo'> {itemGrupoAdd.DESCRICAO} </div>
                             <div className='informacoes-quantidade'>
