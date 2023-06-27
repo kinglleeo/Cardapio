@@ -18,7 +18,8 @@ export default function Main() {
   }, []);
   
   return ( 
-    <div>
+    <div >
+      <div className='Main'>
         <div>
           <Header/>
         </div>
@@ -28,6 +29,7 @@ export default function Main() {
         <div>
           <IconeCarrinho/>
         </div>
+      </div>
         <div>
           <Footer/>
         </div>

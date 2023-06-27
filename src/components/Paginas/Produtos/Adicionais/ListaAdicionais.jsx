@@ -6,7 +6,7 @@ import Decimal from 'decimal.js';
 export default function ListaAdicionais({ itemGrupoAdd, quantidadeTotalGrupos, Maximo, listaAdicionais, setListaAdicionais }){
   const [faltam, setFaltam] = useState('')
   const [selectedRadioIndex, setSelectedRadioIndex] = useState(null);
-
+  const [selectedAdicionalIndex, setSelectedAdicionalIndex] = useState(null);
   
   useEffect(()=>{ 
     let faltam = Maximo;
@@ -43,6 +43,9 @@ export default function ListaAdicionais({ itemGrupoAdd, quantidadeTotalGrupos, M
 
 
   const selecionarAdicionalRadio = (index) => {
+    if (selectedAdicionalIndex === index) {
+      return;
+    }
     const updatedListaOpcionais = listaAdicionais.map((item, i) => {
       if (i === index) {
         return { ...item, quantidade: item.quantidade + 1 };
@@ -50,7 +53,7 @@ export default function ListaAdicionais({ itemGrupoAdd, quantidadeTotalGrupos, M
         return { ...item, quantidade: 0 };
       }
     });
-  
+    setSelectedAdicionalIndex(index);
     setListaAdicionais(updatedListaOpcionais);
     setSelectedRadioIndex(index);
   };
@@ -87,7 +90,7 @@ export default function ListaAdicionais({ itemGrupoAdd, quantidadeTotalGrupos, M
                                 (
                                   <div  className={`Card-Adicionais ${item.quantidade === 1 ? 'mudarCorCard' : ''}`} 
                                         key={item.ID}
-                                        
+                                        onClick={() => selecionarAdicional(index)}
                                   >
                                     <div className='box-descricao-adicional'>
                                       <div className='adicional-nome'> {item.DESCRICAO} </div>
@@ -107,20 +110,23 @@ export default function ListaAdicionais({ itemGrupoAdd, quantidadeTotalGrupos, M
                                 ) 
                               : itemGrupoAdd.MINIMO === 1 ? 
                                 (
-                                  <div  className={`Card-Adicionais ${selectedRadioIndex === index ? 'mudarCorCard' : ''}`}
-                                        onClick={() => selecionarAdicionalRadio(index)}
-                                        key={item.ID}
+                                  <div
+                                    className={`Card-Adicionais ${selectedRadioIndex === index ? 'mudarCorCard' : ''}`}
+                                    key={item.ID}
+                                    onClick={() => selecionarAdicionalRadio(index)}
                                   >
                                     <div className='box-descricao-adicional'>
-                                      <div className='adicional-nome'> {item.DESCRICAO} </div>
+                                      <div className='adicional-nome'>{item.DESCRICAO}</div>
                                     </div>
                                     <div className='box-valor-adicional'>
-                                      <div className='adicional-valor'> {formCurrency.format(item.VALOR_VENDA)} </div>
+                                      <div className='adicional-valor'>{formCurrency.format(item.VALOR_VENDA)}</div>
                                     </div>
                                     <div className='box-funcao-adicional'>
-                                      <input 
-                                          type='radio' 
-                                          name='radio'
+                                      <input
+                                        type='radio'
+                                        name='radio'
+                                        checked={selectedRadioIndex === index}
+                                        onChange={() => {}}
                                       />
                                     </div>
                                   </div>

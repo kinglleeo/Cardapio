@@ -10,6 +10,7 @@ export default function GrupoAdicionais({ setValorTotalItem, setValorTotalCusto,
     const [listaAdicionais, setListaAdicionais] = useState([])
     const [listaAdicionaisAtivo, setListaAdicionaisAtivo] = useState(null);
     const [quantidadeTotalGrupos, setQuantidadeTotalGrupos] = useState({});
+
     const { state } = useLocation();
     const { data } = state;
     const queryClient = useQueryClient();
@@ -157,7 +158,9 @@ export default function GrupoAdicionais({ setValorTotalItem, setValorTotalCusto,
                                 <div className='maximo'> Maximo: {itemGrupoAdd.MAXIMO} </div>
                               </div>
                               <div className='caixa-quantidades'>
-                                <div className='escolhido'> Escolhidos: {quantidadeTotalGrupos[itemGrupoAdd.ID_GRUPO_OPCOES]} </div>
+                                <div className={quantidadeTotalGrupos[itemGrupoAdd.ID_GRUPO_OPCOES] === itemGrupoAdd.MAXIMO ? 'escolhido' : 'escolhido'} style={{backgroundColor: quantidadeTotalGrupos[itemGrupoAdd.ID_GRUPO_OPCOES] === itemGrupoAdd.MAXIMO ? 'green' : ''}}>
+                                     Escolhidos: {quantidadeTotalGrupos[itemGrupoAdd.ID_GRUPO_OPCOES]}
+                                </div>
                               </div>
                             </div>
                           </div>

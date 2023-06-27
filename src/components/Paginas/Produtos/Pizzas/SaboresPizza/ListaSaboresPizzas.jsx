@@ -86,8 +86,8 @@ export default function ListaProdutosAdicionais({ quantidadeTotal, setQuantidade
           </div>
           <div className='Sabores-Quantidades'> 
             <div className='QTD'> Minimo: {Min} </div>
-            <div className='QTD'> Maximo: {Max} </div>
-            <div className='QTD'> Faltam: {Faltam()} </div>
+            <div className='maximo'> Maximo: {Max} </div>
+            <div className='escolhido'> Faltam: {Faltam()} </div>
           </div>
           <div>
               <div className='grupo-Sabores'> 

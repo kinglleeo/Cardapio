@@ -8,6 +8,7 @@ export default function IconCarrinho() {
   const cart = useSelector((state) => state.cart);
   const [totalCart, setTotalCart] = useState('');
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [isCartFixed, setIsCartFixed] = useState(false);
 
   const getTotalQuantity = () => {
     let total = 0;
@@ -37,14 +38,19 @@ export default function IconCarrinho() {
     const windowHeight = window.innerHeight;
     const contentHeight = document.body.offsetHeight;
     const scrollThreshold = contentHeight - windowHeight - footerHeight;
-    const isCartFixed = scrollPosition >= scrollThreshold;
+    const shouldFixCart = scrollPosition >= scrollThreshold;
+
+    setIsCartFixed(shouldFixCart);
+  }, [scrollPosition]);
+
+  useEffect(() => {
     const cartBottomPosition = isCartFixed ? 150 : 40;
 
     const cartElement = document.querySelector('.carrinho');
     if (cartElement) {
       cartElement.style.bottom = `${cartBottomPosition}px`;
     }
-  }, [scrollPosition, cart]);
+  }, [isCartFixed]);
 
   return (
     <div className='carrinho'>

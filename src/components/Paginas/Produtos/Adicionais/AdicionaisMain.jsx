@@ -8,6 +8,7 @@ import { useLocation } from 'react-router-dom';
 import AdicionarHeaderBar from './AdicionarHeaderBar'
 import Footer from '../../../Footer/Footer'
 import BtnCarrinho from './BtnCarrinho'
+import '../../../../Styles/Styles.css'
 
 export default function AdicionaisMain(){
     const { state } = useLocation();
@@ -34,11 +35,11 @@ export default function AdicionaisMain(){
 
     
     return(
-        <div>
+        <div className='pagina'>
+            <div className='Main'>
             <div>
                 <AdicionarHeaderBar/>
             </div>
-            <div className='MainPizza'>
             <div>
                 <AdicionaisInfo
                     //Info Produtos
@@ -93,7 +94,9 @@ export default function AdicionaisMain(){
                 />
             </div>
             </div>
-            
+            <div>
+                <Footer/>
+            </div>
         </div>
     )
 }

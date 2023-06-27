@@ -8,6 +8,7 @@ import { useLocation } from 'react-router-dom';
 import BtnCarrinho from './BtnCarrinho-Pizza'
 import Footer from '../../../Footer/Footer'
 import './SaboresPizza/pizzas.css'
+import '../../../../Styles/Styles.css'
 import AdicionalHeaderBar from '../Adicionais/AdicionarHeaderBar'
 
 export default function MainPizza(){
@@ -33,11 +34,11 @@ export default function MainPizza(){
 
 
     return(
-        <div>
+        <div className='pagina'>
+        <div className='Main'>
             <div>
                 <AdicionalHeaderBar/>
             </div>
-            <div className='MainPizza'>
             <div>
                 <PizzasInfo
                     //Info Pizzas
@@ -98,10 +99,8 @@ export default function MainPizza(){
                     ID_GRUPO_OPCOES={ID_GRUPO_OPCOES}
                 />
             </div>
-            </div>
-            <div>
-                <Footer />
-            </div>
+        </div>
+            <Footer/>
         </div>
     )
 }
