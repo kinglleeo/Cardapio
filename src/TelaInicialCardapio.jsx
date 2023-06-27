@@ -9,33 +9,32 @@ import { BoxLoading  } from 'react-loadingg';
 export default function TelaInicialCardapio(){
     const navigate = useNavigate()
     const [resposta, setResposta] = useState('');
-    const [cnpj, setCnpj] = useState('');
     const [infoClientes, setInfoClientes] = useState([])
     
 
     //formato da ult: http://192.168.0.93:3000?mesa=2&cnpj=000000000000
+    //novoformato http://suporte.bedinfoservices.com.br:3000/?tipo=mesa&numerocomanda:2&cnpj=76787191000145
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
-        const mesaValue = urlParams.get('mesa');
-        const cnpjValue = urlParams.get('cnpj');
-            setCnpj(cnpjValue || '');
-                sessionStorage.setItem('mesaValue', mesaValue);
-                sessionStorage.setItem('cnpj', cnpjValue);
+        const tipo = urlParams.get('mesa');
+        const numerocomanda = urlParams.get('numerocomanda');
+        const cnpj = urlParams.get('cnpj');
+        const url = `http://suporte.bedinfoservices.com.br:99/appGarline/retornaApiCliente.php?cnpj=${cnpj}`;
+            axios
+                .post(url)
+                .then((response)=>{
+                    setResposta(response);
+                })
             api
-                .get(`/dadosEmpresa/${cnpjValue}`)
+                .get(`/dadosEmpresa/${cnpj}`)
                 .then((getdata)=>{
                     setInfoClientes(getdata.data);
                 });
+        sessionStorage.setItem('tipo', tipo);
+        sessionStorage.setItem('numerocomanda', numerocomanda);
+        sessionStorage.setItem('cnpj', cnpj);
     }, []);
-         
-    useEffect(()=>{
-          const url = `http://suporte.bedinfoservices.com.br:99/appGarline/retornaApiCliente.php?cnpj=${cnpj}`;
-          axios
-            .post(url)
-            .then((response)=>{
-                setResposta(response);
-            })
-    }, [cnpj])  
+           
 
     useEffect(() => {
         if (resposta) {
@@ -53,7 +52,7 @@ export default function TelaInicialCardapio(){
         const timeout = setTimeout(() => {
           navigate('/Main'); 
         }, 3000);
-    
+      
         return () => {
           clearTimeout(timeout);
         };

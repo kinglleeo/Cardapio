@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { TotalCart } from './total';
 import '../../Styles/StylesCart.css';
 import { useNavigate } from 'react-router-dom';
 import { collection, addDoc, serverTimestamp, doc  } from "firebase/firestore";
@@ -7,23 +6,42 @@ import { db, auth } from '../Usuarios/LoginPage/Firebase/firebaseConfig'
 import { useDispatch } from 'react-redux';
 import { clearCart } from '../../redux/cartSlice'
 import axios from 'axios';
- 
+import { formCurrency } from '../AA-utilidades/numeros';
+import { useSelector } from 'react-redux';
+import Decimal from 'decimal.js';
 
-export function CartPagBar({ Pedido }) {
+export function CartPagBar({ Pedido, observacoesCart }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [compra, setCompra] = useState([]);
   const [totalCart, setTotalCart] = useState('');
-  const [mesa, setMesa] = useState('');
+  const [tipo, setTipo] = useState('');
+  const [numerocomanda, setNumeroComanda] = useState('');
+  const [cnpj, setCpj] = useState('');
+  const cart = useSelector(state => state.cart)
+  const items_pedido = compra
+
+  useEffect(()=>{
+      let total = new Decimal(0) || 0
+      cart.forEach(item => {
+        total = total.plus(new Decimal(item.quantity || 0).times(item.totalCompra || 0)) 
+      })
+      setTotalCart(total.toFixed(2))
+  }); 
 
   useEffect(()=>{
     sessionStorage.setItem('totalCart', totalCart);
   })
 
   useEffect(()=>{
-    const newMesa = sessionStorage.getItem('mesaValue');
-      setMesa(newMesa)
+    const tipo = sessionStorage.getItem('tipo');
+      setTipo(tipo)
+    const numerocomanda = sessionStorage.getItem('numerocomanda');
+      setNumeroComanda(numerocomanda)
+    const cnpj = sessionStorage.getItem('cnpj');
+      setCpj(cnpj)
   })
+
   useEffect(() => {
     const updatedCompra = Pedido.map((item) => {
       const itemExistente = compra.find((compraItem) => compraItem.id === item.id);
@@ -80,9 +98,9 @@ export function CartPagBar({ Pedido }) {
 
   const handlePagar = (totalCart, compra, Pedido) => {
     //EnviarPedidoAPI(totalCart, compra)
-    BancodePedidos(Pedido)
+    //BancodePedidos(Pedido)
       dispatch(clearCart());
-      navigate('/');
+      navigate('/Main');
   };
   
   const BancodePedidos=()=>{
@@ -108,44 +126,35 @@ export function CartPagBar({ Pedido }) {
     saveBd();
   }
 
-  const items_pedido = compra
-
   const EnviarPedidoAPI =(totalCart, items_pedido)=>{
     const pedidoString = JSON.stringify();
     axios
       .post(`http://192.168.0.100:9865/inserirPedido`, {
         cnpj: '',
-        mesa: mesa,
+        tipo: tipo,
+        numerocomanda: numerocomanda,
         total: totalCart,
         pagamento: 'balcão',
         items_pedido: items_pedido, 
+        observacoespedido: observacoesCart
       })
       .then((response)=>{
           console.log(response)
           alert('Pedido Feito')
       })
   }
-
+  
   const handleCotinuar = () => {
     navigate('/Main');
   };
 
   return (
     <div>
-      <div className='card-btn-continuar'>
-        <button className='btn-continuar' onClick={handleCotinuar}>
-          Continuar Comprando
-        </button>
+      <div className='cartBarPagar'> 
+        <div className='PagarTexto' onClick={()=> handlePagar(totalCart, items_pedido, Pedido)}> CONFIRMAR </div>
+        <div className='pagarValor'> {formCurrency.format(totalCart)} </div>
       </div>
-      <div className='card-total-pagar'>
-        <TotalCart 
-          setTotalCart={setTotalCart}
-          totalCart={totalCart}
-        />
-      </div>
-      <div className='card-btn-pagar'>
-        <button className='btn-pagar' onClick={()=> handlePagar(totalCart, items_pedido, Pedido)}> Finalizar </button>
-      </div>       
+      <div className='cartBarContinuar' onClick={handleCotinuar}> CONTINUAR </div>
     </div>
   );
 }

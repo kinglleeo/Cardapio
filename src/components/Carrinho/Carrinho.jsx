@@ -30,6 +30,7 @@ return(
         <div>
           <CartPagBar
             Pedido={pedido}
+            observacoesCart={observacoesCart}
           />
         </div>
       </div>
