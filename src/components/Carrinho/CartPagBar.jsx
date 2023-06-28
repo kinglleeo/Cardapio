@@ -10,12 +10,11 @@ import { formCurrency } from '../AA-utilidades/numeros';
 import { useSelector } from 'react-redux';
 import Decimal from 'decimal.js';
 
-export function CartPagBar({ Pedido, observacoesCart }) {
+export function CartPagBar({ Pedido, observacoesCart, tipo, setTipo }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [compra, setCompra] = useState([]);
   const [totalCart, setTotalCart] = useState('');
-  const [tipo, setTipo] = useState('');
   const [numerocomanda, setNumeroComanda] = useState('');
   const [cnpj, setCpj] = useState('');
   const cart = useSelector(state => state.cart)

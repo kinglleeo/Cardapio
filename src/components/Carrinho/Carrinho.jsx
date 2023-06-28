@@ -11,7 +11,8 @@ import Localizacao from './Localizacao'
 export default function Cart(){
   const [observacoesCart, setObservacaoCart] = useState('');
   const [pedido, setPedido] = useState([]);
-
+  const [tipo, setTipo] = useState('');
+  console.log(tipo)
 return(
     <div className='pagina'>
       <div className='Main'>
@@ -30,12 +31,18 @@ return(
         </div>
         <div>
           <CartPagBar
+            tipo={tipo}
+            setTipo={setTipo}
             Pedido={pedido}
             observacoesCart={observacoesCart}
           />
         </div>
         <div>
-          <Localizacao/>
+          {tipo === "mesa" 
+            ? (<div></div>)
+            : tipo === "comanda" ? (<Localizacao/>)
+              : null
+          }
         </div>
       </div>
       <div>
