@@ -2,10 +2,13 @@ import { React } from 'react';
 import './login.css'
 import Footer from '../../Footer/Footer'
 import LoginHeader from './LoginHeader'
-import LoginGoogleFacebook from './LoginMetodos/LoginGoogleFacebook'
+import LoginGoogle from './LoginMetodos/LoginGoogle'
 
 export default function Login(){
   
+
+    ///loginAtendente/:login/senha
+
     return(
         <div className='pagina'>
             <div className='Main'>
@@ -14,7 +17,7 @@ export default function Login(){
                 </div>
                 <div className='MainLogin'>
                     <div className='MainLoginTexto'> Acesse sua Conta </div>
-                        <LoginGoogleFacebook/>
+                        <LoginGoogle/>
                 </div>
             </div>
             <div>

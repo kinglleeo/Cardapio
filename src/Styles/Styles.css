@@ -84,7 +84,6 @@
     font-family: "Roboto-Condensed";
 }
 .card-produtos{
-    height: auto;
     margin: 5px;
     border-radius: 5px;
     border: solid;
@@ -92,50 +91,48 @@
 }
 .box-produtos{
     display: flex;
+    height: auto;
 }
 .produtos-info{
     width: 70%;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 1fr;
     -webkit-animation: slide-in-left 0.5s both;
 	        animation: slide-in-left 0.5s both;
 }
 .produto-nome{
-    height: 60%;
     font-size: 15px;
     -webkit-animation: slide-in-left 0.5s both;
 	      animation: slide-in-left 0.5s both;
-    display: flex;
-    flex-direction: column;
+    display: grid;
 }
 .item-nome{
-    height: 30%;
     display: grid;
-    place-items: center start;
-    padding: 5px;
-    margin-bottom: 5px;
-    min-height: 20px;
+    padding-left: 5px;
+    padding-top: 3px;
     font-family: "Roboto-Bold";
+    font-size: 14px;
 }
 .produto-ingredientes{
-    height: 70%;
-    margin: 8px;
-    word-break: break-all;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-top: 5px;
+    word-break: break-word;
     font-size: 12px;
     font-family: "Roboto-Light";
+    max-height: 35px;
 }
 .produto-valor{
-    height: 40%;
+    margin: 5px;
     display: grid;
     place-items: center start;
     font-family: "Roboto-Bold";
 }
 .box-valor{
-  padding: 5px 10px 5px 10px;
   display: grid;
   place-items: center; 
   text-align: center;
-  font-weight: 700;
+  font-family: "Roboto-Bold";
 }
 .produtos-img{
     width: 30%;
@@ -147,8 +144,8 @@
 }
 .img-produto{
   border-radius: 0 4px 4px 0;
-  height: 100%;
   max-width: 100%;
+  aspect-ratio: 1 / 1;
 }
 .pizza-img{
   width: 30%;
@@ -158,8 +155,8 @@
       animation: slide-in-right 0.5s both;
 }
 .pizza-png{
-  width: 120px;
-  height: 120px;
+  width: 80px;
+  height: 60px;
   border-radius: 0 4px 4px 0;
   background-image: url('https://t3.ftcdn.net/jpg/05/60/42/26/360_F_560422609_3nv30UESgwV4988d3rnk9yMJaGXw5x4T.jpg');
   background-size: 100% 100%;
@@ -185,3 +182,9 @@
       opacity: 1;
     }
   }
+
+@media(max-width: 500px){
+  .produto-ingredientes{
+    overflow: scroll;
+  }
+}

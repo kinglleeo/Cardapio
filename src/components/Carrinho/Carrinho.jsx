@@ -12,7 +12,8 @@ export default function Cart(){
   const [observacoesCart, setObservacaoCart] = useState('');
   const [pedido, setPedido] = useState([]);
   const [tipo, setTipo] = useState('');
-  console.log(tipo)
+  const [mesaSelecionada, setMesaSelecionada] = useState('');
+  
 return(
     <div className='pagina'>
       <div className='Main'>
@@ -30,19 +31,19 @@ return(
             />
         </div>
         <div>
+          <Localizacao
+            tipo={tipo}
+            setMesaSelecionada={setMesaSelecionada}
+          />
+        </div>
+        <div>
           <CartPagBar
             tipo={tipo}
             setTipo={setTipo}
             Pedido={pedido}
             observacoesCart={observacoesCart}
+            mesaSelecionada={mesaSelecionada}
           />
-        </div>
-        <div>
-          {tipo === "mesa" 
-            ? (<div></div>)
-            : tipo === "comanda" ? (<Localizacao/>)
-              : null
-          }
         </div>
       </div>
       <div>

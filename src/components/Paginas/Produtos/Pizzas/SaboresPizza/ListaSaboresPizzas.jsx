@@ -77,7 +77,10 @@ export default function ListaProdutosAdicionais({ quantidadeTotal, setQuantidade
     const Faltam = Max - quantidadeTotal
     return Faltam
   }
-
+  
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
   return(
         <div>
@@ -107,7 +110,7 @@ export default function ListaProdutosAdicionais({ quantidadeTotal, setQuantidade
                           <div className='pizza-List' key={itemSabor.ID_GRADE}>
                             <div className='pizza-Card'>
                                 <div className='pizza-info'>
-                                  <div className='pizzaSabor'> {itemSabor.PRODUTO.toLowerCase()} </div>
+                                  <div className='pizzaSabor'> {capitalizeFirstLetter(itemSabor.PRODUTO.toLowerCase())} </div>
                                   <div className='pizza-caixa2'>
                                     <div className='pizzaFicha'> {itemSabor.FICHA_TECNICA !== null 
                                             ? <div> {itemSabor.FICHA_TECNICA.toLowerCase()} </div>

@@ -10,16 +10,17 @@ import { formCurrency } from '../AA-utilidades/numeros';
 import { useSelector } from 'react-redux';
 import Decimal from 'decimal.js';
 
-export function CartPagBar({ Pedido, observacoesCart, tipo, setTipo }) {
+export function CartPagBar({ Pedido, observacoesCart, tipo, setTipo, mesaSelecionada }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [compra, setCompra] = useState([]);
   const [totalCart, setTotalCart] = useState('');
   const [numerocomanda, setNumeroComanda] = useState('');
   const [cnpj, setCpj] = useState('');
+  const [mesaEntrega, setMesaEntrega] = useState('')
+  const [idGarcom, setIdGarcom] = useState(null)
   const cart = useSelector(state => state.cart)
   const items_pedido = compra
-
 
   useEffect(()=>{
       let total = new Decimal(0) || 0
@@ -36,6 +37,16 @@ export function CartPagBar({ Pedido, observacoesCart, tipo, setTipo }) {
       setNumeroComanda(numerocomanda)
     const cnpj = sessionStorage.getItem('cnpj');
       setCpj(cnpj)
+    const idGarcom = sessionStorage.getItem('idGarcom');
+      setIdGarcom(idGarcom)
+  })
+
+  useEffect(()=>{
+    if(tipo === "comanda"){
+      setMesaEntrega(mesaSelecionada)
+    } else if(tipo === "mesa"){
+      setMesaEntrega(numerocomanda)
+    }
   })
 
   useEffect(() => {
@@ -90,13 +101,13 @@ export function CartPagBar({ Pedido, observacoesCart, tipo, setTipo }) {
   
     setCompra(updatedCompra);
   }, [Pedido, setCompra]);
-
+  
 
   const handlePagar = (totalCart, compra, Pedido) => {
     //EnviarPedidoAPI(totalCart, compra)
     //BancodePedidos(Pedido)
-      dispatch(clearCart());
-      navigate('/Main');
+    //dispatch(clearCart());
+    //navigate('/Main');
   };
   
   const BancodePedidos=()=>{
@@ -121,18 +132,18 @@ export function CartPagBar({ Pedido, observacoesCart, tipo, setTipo }) {
     };
     saveBd();
   }
+  
 
   const EnviarPedidoAPI =(totalCart, items_pedido)=>{
-    const pedidoString = JSON.stringify();
     axios
       .post(`http://192.168.0.100:9865/inserirPedido`, {
         cnpj: cnpj,
         tipocomanda: tipo,
         numerocomanda: numerocomanda,
-        idgarcom: '',
+        idgarcom: idGarcom,
         total: totalCart,
         pagamento: 'balcão',
-        localizacao: '',
+        localizacao: mesaSelecionada,
         items_pedido: items_pedido, 
         observacoespedido: observacoesCart
       })

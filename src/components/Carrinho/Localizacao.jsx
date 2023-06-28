@@ -3,9 +3,10 @@ import { api } from '../../conecções/api';
 import '../../Styles/StylesCart.css'
 
 
-export default function Localizacao(){
+export default function Localizacao({ tipo, setMesaSelecionada }){
     const [localizacao, setLocalizacao] = useState([]);
-    
+    const [selectedMesa, setSelectedMesa] = useState(null);
+   
     useEffect(()=>{
         api
             .get(`/listaMesas`)
@@ -15,18 +16,36 @@ export default function Localizacao(){
         
     }, [])
 
+    const selecionarMesa = (item, index) => {
+        if (selectedMesa === index) {
+          return;
+        } else {
+            setMesaSelecionada(item.MESA)
+        }
+        setSelectedMesa(index);
+      };
+
     return(
-        <div className='cartTitulo'> 
-          <div className='iconeLocalizacao'></div>
-            <div className='carrinhoName'> Localização </div>
-          <div className='cartListItems'>
-            {localizacao.map((item)=>
-                <div className='Card-mesa'>
-                    <div className='mesaNome'> {item.MESA} </div>
-                    <div className='mesaIcone'></div>
-                </div>
-            )}
-        </div>
+        <div>
+            {tipo !== "mesa" 
+                ? (
+                    <div>
+                        <div className='cartTitulo'> 
+                            <div className='iconeLocalizacao'></div>
+                            <div className='carrinhoName'> Localização </div>
+                        </div>
+                        <div className='cartListItems'>
+                            {localizacao.map((item, index)=>
+                                <div className={`card-mesa ${selectedMesa === index ? 'mudarCorCardMesa' : ''}`} onClick={() => selecionarMesa(item, index)}>
+                                    <div className='mesaNome'> {item.MESA} </div>
+                                    <div className={`mesaIcone ${selectedMesa === index ? 'mudarIconeMesa' : ''}`} ></div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                )
+                : null
+            }
         </div>
     )
 }

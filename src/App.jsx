@@ -12,7 +12,6 @@ import { UserAuthContextProvider } from "./components/Usuarios/LoginPage/Firebas
 import PaginaUsuario from './components/Usuarios/UsuarioInfo/PaginaUsuario/PaginaUsuario'
 import MainPizzas from './components/Paginas/Produtos/Pizzas/MainPizzas'
 import AdicionaisMain from './components/Paginas/Produtos/Adicionais/AdicionaisMain'
-import PaginaLoadLogin from './components/Usuarios/LoginPage/LoginMetodos/PaginaLoadLogin'
 import TelaInicialCardapio from './TelaInicialCardapio'
 import LoginGarcom from './components/Usuarios/LoginPage/LoginGarcom'
 
@@ -32,7 +31,6 @@ export default function App(){
               <Route path='/Pizzas' element={ <MainPizzas/> }/>
               <Route path='/login' element={<LoginPage/>}></Route>
               <Route path='/loginGarcom' element={<LoginGarcom/>}></Route>
-              <Route path='/PaginaLoadLogin' element={<PaginaLoadLogin/>}/>
             </Routes>
           </Provider>
         </UserAuthContextProvider>

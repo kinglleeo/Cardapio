@@ -188,13 +188,14 @@
 .card-mesa{
     display: flex;
     margin: 5px;
-    height: 30px;
+    height: 40px;
     place-items: center;
     border: solid;
     border-radius: 5px;
     border-width: 0.5px;
 }
 .mesaNome{
+    width: 70%;
     padding-left: 10px;
     font-size: 14px;
     font-family: "Roboto-Bold";
@@ -202,6 +203,12 @@
 .mesaIcone{
     height: 40px;
     aspect-ratio: 1 / 1;
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAD+ElEQVR4nO1aXagbRRid21atBYsPokVpqSJVqSjiQ/0DLf6UCj4oPlzBPqnFtlQfBBUKXrDYFl9EKWj1QShacFtFlIo+RURCwNk5ZzaBCxckbcW3Qi2KoPZ25LvZQFh2e5Mwm91098CBZCeZfOdkduabb0epGjVq1KhRIzeQ/Ijkm6qqINkA8GHRcUw12u32emvtfaqqIBkA+KvRaKxa7rMLCwtXRVF0g7qcYK29zVq7fbnPAXiC5HmSDsBx59wKVSUAsCJ+gNtUlcAeqmuAMeZxkn/E4oPcb4F2u70+CIKVqkTodDpXkrw+9x/SWm8AcJHk3DjfB/AIySNCY8zDqmyIouhea+2zURTdktYu/zzJtwBsHrVvkjti85buVXkN4HlVBgQ9YcHARPIfydd8/gbJ3xOTlZjwmyoDALyUDI7khXH+6TQ0m82rU/pfGgXdbne1KhoAjmYEuHPcPiWDI/kQgNelfwCLKf3/CWBr4ckLgANpBhhjnhylH+fcjDHmsdjQpexsGEoyExsxIxOlzEVqkgBwE4CzicCaw+ThAgmc5CyAaFjRKSYsAng7no/2A9AAnlaTgtZ6A8nDAL6TmV5rvWaY75G8R8waV3gKT8q6DuBgbMz3JDepssE5t0KKHiT/9Si+PxqOyUgA8GX8/h9r7auqLNBarwFwwrfwhAkHAVxL8vTAtU9kdAxTkJGqVC7i5+fnryH5c57iY14guUUm4sT1H5e7PUU8gDe8i+92u6sB/DQB8X12pNgB4JvE6Ph22AnaG1xviTo2QfF9vmKMuXswje7fDrkIbWQ4S3JvAeKFp7TWVyRHQcwXvIrvdDrr4gRm7+D1KIpuJ/l3QQYId0h5LOX6uTAMb/RmQLOXs3+e3KrGa7ErkE1ZdgGcSWn7WuUJktsKFt/fOku2+n5G+4N5GtAo2oBY5B5r7aMZ7V/lIj6KoruKFj7AHyQHydhVLoZheKt3A0i+WwLhfZ6LN12djBHyjncDAPxaAuGDvJnkpxltv/gWv7EEgpN8xhizO2MELGqtr/NmAMnZEghOitxH8qmsdino+jRgf9GCU/heGIb3X8Igfxsgkp+VQHBS4FGZ7S/R/oE3A9CrDLmS8WRcI3C55wMkN0lxskyUR+ayFGa1eymdsZf6zpE8NKWckzMD44r/uATD3BdHK4kZYx4oQdBeOdIZI5K7ig44B7486qNrdzlx5EfwAI4XHbRHfqFGhXNuxlr7nCQU/YMM08Y49lnRMrIBNWpMFiTvbLVaa1UV0Wq11saPvw6rqsJa+2IYhneoaUIQBCvlrKCqKtjbbFysrAkANssJkrKcFpXkTaiqCpKH5DBF0XHUqFGjRg01JfgfIPF8Cf6r1YQAAAAASUVORK5CYII=);
+    background-image: url('../imagens/iconePratoApagado.png');
     background-size: 100% 100%;
+}
+.mudarCorCardMesa{
+    background-color: rgb(78, 194, 78);
+}
+.mudarIconeMesa{
+    background-image: url('../imagens/iconePratoAcesso.png');
 }

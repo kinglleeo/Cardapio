@@ -74,9 +74,7 @@ export default function Header (){
                 </div>
             </div>    
             <div className='logo-restaurante'>
-                    {infoClientes.map(item => (
-                        <img src={'data:image/png;base64,' + item.FOTO} key={item.id} alt='Restaurante' className='img-restaurante-logo' />
-                    ))}
+                        <img src={'data:image/png;base64,' + infoClientes.map((item) => item.FOTO)}  alt='Restaurante' className='img-restaurante-logo' />
                 </div>
         </div>
     </div>
