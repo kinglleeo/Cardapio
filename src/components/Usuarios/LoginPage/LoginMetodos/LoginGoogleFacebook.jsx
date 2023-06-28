@@ -26,13 +26,12 @@ export default function LoginSociais () {
         {
           provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
           customParameters: {
-            prompt: 'select_account', // Exibe a tela de seleção de conta
+            prompt: 'select_account', 
           },
         },
       ],
     };
 
-    // Inicializa o FirebaseUI
     const ui = firebaseui.auth.AuthUI.getInstance() 
           || new firebaseui.auth.AuthUI(firebase.auth());
     

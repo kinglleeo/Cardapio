@@ -10,7 +10,8 @@ export default function TelaInicialCardapio(){
     const navigate = useNavigate()
     const [resposta, setResposta] = useState('');
     const [infoClientes, setInfoClientes] = useState([])
-    
+    const [cnpj, setCnpj] = useState('')
+    console.log(infoClientes)
 
     //formato da ult: http://192.168.0.93:3000?mesa=2&cnpj=000000000000
     //novoformato http://suporte.bedinfoservices.com.br:3000/?tipo=mesa&numerocomanda:2&cnpj=76787191000145
@@ -19,22 +20,18 @@ export default function TelaInicialCardapio(){
         const tipo = urlParams.get('mesa');
         const numerocomanda = urlParams.get('numerocomanda');
         const cnpj = urlParams.get('cnpj');
+            setCnpj(cnpj)
         const url = `http://suporte.bedinfoservices.com.br:99/appGarline/retornaApiCliente.php?cnpj=${cnpj}`;
             axios
                 .post(url)
                 .then((response)=>{
                     setResposta(response);
                 })
-            api
-                .get(`/dadosEmpresa/${cnpj}`)
-                .then((getdata)=>{
-                    setInfoClientes(getdata.data);
-                });
         sessionStorage.setItem('tipo', tipo);
         sessionStorage.setItem('numerocomanda', numerocomanda);
         sessionStorage.setItem('cnpj', cnpj);
     }, []);
-           
+    
 
     useEffect(() => {
         if (resposta) {
@@ -46,7 +43,12 @@ export default function TelaInicialCardapio(){
                 iniciarRota(RotaFinal)
           }
         }
-    }, [resposta]);
+        api
+            .get(`/dadosEmpresa/${cnpj}`)
+            .then((getdata)=>{
+                setInfoClientes(getdata.data);
+            });
+    }, [cnpj, resposta]);
     
     useEffect(() => {
         const timeout = setTimeout(() => {

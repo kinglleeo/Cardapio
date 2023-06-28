@@ -71,6 +71,7 @@
     padding: 5px;
     border-radius: 5px;
     background-color: #ff706b;
+    font-family: "Roboto-Bold";
 }
 .AdicionaisList{
     height: auto;
@@ -119,6 +120,7 @@
     width: 20%;
     display: grid;
     place-items: center;
+    font-family: "Roboto-Bold";
 }
 
 .btn-quantia-adicionais{
@@ -132,13 +134,13 @@
     background-color: transparent;
 }
 .iconePlus {
-    min-height: 40px;
+    min-height: 20px;
     aspect-ratio: 1 / 1;
     background-image: url('../imagens/iconeMais.png');
     background-size: 100% 100%;
 }
 .iconeMinus {
-    min-height: 40px;
+    min-height: 20px;
     aspect-ratio: 1 / 1;
     background-image: url('../imagens/iconeMenos.png');
     background-size: 100% 100%;

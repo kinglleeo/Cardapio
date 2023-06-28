@@ -36,7 +36,7 @@ export default function BtnCarrinho({ totalCusto, PIZZA_MISTA, Produto, adiciona
             setBtnDesabilitado(true);
           } else {
             setBtnDesabilitado(false);
-          }
+          } 
         }
       }, [existeTamanho, tamanhoEscolhido]);
 

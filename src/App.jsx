@@ -7,7 +7,6 @@ import { store, persistor } from './redux/store';
 import Carrinho from './components/Carrinho/Carrinho'
 import Pagamentos from "./components/Carrinho/Pagamentos";
 import LoginPage from "./components/Usuarios/LoginPage/LoginPage";
-import CriarConta from './components/Usuarios/LoginPage/CriarConta/CriarConta'
 import ProtectedRoute from "./components/Usuarios/LoginPage/Firebase/ProtectRoute";
 import { UserAuthContextProvider } from "./components/Usuarios/LoginPage/Firebase/base"
 import PaginaUsuario from './components/Usuarios/UsuarioInfo/PaginaUsuario/PaginaUsuario'
@@ -15,6 +14,7 @@ import MainPizzas from './components/Paginas/Produtos/Pizzas/MainPizzas'
 import AdicionaisMain from './components/Paginas/Produtos/Adicionais/AdicionaisMain'
 import PaginaLoadLogin from './components/Usuarios/LoginPage/LoginMetodos/PaginaLoadLogin'
 import TelaInicialCardapio from './TelaInicialCardapio'
+import LoginGarcom from './components/Usuarios/LoginPage/LoginGarcom'
 
 export default function App(){
   
@@ -31,7 +31,7 @@ export default function App(){
               <Route path='/AdicionaisMain' element={ <AdicionaisMain/> }/>
               <Route path='/Pizzas' element={ <MainPizzas/> }/>
               <Route path='/login' element={<LoginPage/>}></Route>
-              <Route path='/CriarConta' element={<CriarConta/>}></Route>
+              <Route path='/loginGarcom' element={<LoginGarcom/>}></Route>
               <Route path='/PaginaLoadLogin' element={<PaginaLoadLogin/>}/>
             </Routes>
           </Provider>

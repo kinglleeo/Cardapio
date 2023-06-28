@@ -119,7 +119,6 @@ export default function ListaProdutosAdicionais({ quantidadeTotal, setQuantidade
                                     </div>
                                   </div>
                                 </div>
-
                                 <div className='pizza-input'> 
                                   <div className='Card-Adicionais-Botoes'>
                                     <div className='btn-quantia-adicionais'>
@@ -159,26 +158,31 @@ export default function ListaProdutosAdicionais({ quantidadeTotal, setQuantidade
                     return (
                       <div className='pizza-List' key={itemSabor.ID_GRADE}>
                         <div className='pizza-Card'>
-                          <div className='pizza-info'>
-                            <div className='pizza-nome'>
-                              <div> {itemSabor.PRODUTO} </div>
-                            </div>
-                            <div className='pizza-valor'>
-                              <div> {formCurrency.format(itemSabor.VALOR_VENDA)} </div>
-                            </div>
-                          </div>
-                          <div className='pizza-input'>
-                            <div className='Card-Adicionais-Botoes'>
-                              <div className='btn-quantia-adicionais'>
-                                <button className='arrow iconeMinus' onClick={() => diminuirQuantidade(index, itemSabor)}></button>
-                              </div>
-                                <div className='quantia-adicionais'>{itemSabor.quantidade}</div>
-                              <div className='btn-quantia-adicionais'>
-                                <button className='arrow iconePlus'onClick={() => aumentarQuantidade(index, itemSabor)}
-                                  disabled={quantidadeTotal === Max}
-                                ></button>
+                            <div className='pizza-info'>
+                              <div className='pizzaSabor'> {itemSabor.PRODUTO.toLowerCase()} </div>
+                              <div className='pizza-caixa2'>
+                                <div className='pizzaFicha'> {itemSabor.FICHA_TECNICA !== null 
+                                        ? <div> {itemSabor.FICHA_TECNICA.toLowerCase()} </div>
+                                        : <div></div> 
+                                      } 
+                                </div>
+                                <div className='pizza-valor'>
+                                  <div> {formCurrency.format(itemSabor.VALOR_VENDA)} </div>
+                                </div>
                               </div>
                             </div>
+                            <div className='pizza-input'> 
+                              <div className='Card-Adicionais-Botoes'>
+                                <div className='btn-quantia-adicionais'>
+                                  <button className='arrow iconeMinus' onClick={() => diminuirQuantidade(index, itemSabor)}></button>
+                                </div>
+                                  <div className='quantia-adicionais'>{itemSabor.quantidade}</div>
+                                <div className='btn-quantia-adicionais'>
+                                  <button className='arrow iconePlus'onClick={() => aumentarQuantidade(index, itemSabor)}
+                                    disabled={quantidadeTotal === Max}
+                                  ></button>
+                                </div>
+                              </div>
                             </div>
                           </div>
                       </div>

@@ -115,18 +115,20 @@
     padding: 5px;
     margin-bottom: 5px;
     min-height: 20px;
+    font-family: "Roboto-Bold";
 }
 .produto-ingredientes{
     height: 70%;
     margin: 8px;
     word-break: break-all;
     font-size: 12px;
-    font-family: "Roboto-condensed";
+    font-family: "Roboto-Light";
 }
 .produto-valor{
     height: 40%;
     display: grid;
     place-items: center start;
+    font-family: "Roboto-Bold";
 }
 .box-valor{
   padding: 5px 10px 5px 10px;

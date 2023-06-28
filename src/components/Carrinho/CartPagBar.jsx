@@ -127,11 +127,13 @@ export function CartPagBar({ Pedido, observacoesCart }) {
     const pedidoString = JSON.stringify();
     axios
       .post(`http://192.168.0.100:9865/inserirPedido`, {
-        cnpj: '',
-        tipo: tipo,
+        cnpj: cnpj,
+        tipocomanda: tipo,
         numerocomanda: numerocomanda,
+        idgarcom: '',
         total: totalCart,
         pagamento: 'balcão',
+        localizacao: '',
         items_pedido: items_pedido, 
         observacoespedido: observacoesCart
       })
@@ -145,13 +147,18 @@ export function CartPagBar({ Pedido, observacoesCart }) {
     navigate('/Main');
   };
 
+  const handleLogar =()=>{
+    navigate('/Login')
+  }
+
   return (
     <div>
       <div className='cartBarPagar'> 
         <div className='PagarTexto' onClick={()=> handlePagar(totalCart, items_pedido, Pedido)}> CONFIRMAR </div>
         <div className='pagarValor'> {formCurrency.format(totalCart)} </div>
       </div>
-      <div className='cartBarContinuar' onClick={handleCotinuar}> CONTINUAR </div>
+      <div className='cartBarContinuar' onClick={handleCotinuar}> CONTINUAR COMPRANDO </div>
+      <div className='FazerLogin' onClick={handleLogar}> FAZER LOGIN </div>
     </div>
   );
 }

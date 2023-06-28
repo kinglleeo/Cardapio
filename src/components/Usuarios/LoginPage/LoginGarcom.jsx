@@ -2,7 +2,7 @@ import { React } from 'react';
 import './login.css'
 import Footer from '../../Footer/Footer'
 import LoginHeader from './LoginHeader'
-import LoginGoogleFacebook from './LoginMetodos/LoginGoogleFacebook'
+import MetodoLoginGarcom from './LoginMetodos/MetodoLoginGarcom'
 
 export default function Login(){
   
@@ -13,8 +13,8 @@ export default function Login(){
                     <LoginHeader/>
                 </div>
                 <div className='MainLogin'>
-                    <div className='MainLoginTexto'> Acesse sua Conta </div>
-                        <LoginGoogleFacebook/>
+                    <div className='MainLoginTexto'> Login Atendente </div>
+                        <MetodoLoginGarcom/>
                 </div>
             </div>
             <div>

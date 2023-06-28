@@ -6,6 +6,7 @@ import '../../Styles/Styles.css'
 import CartHeader from './CartHeader'
 import Observacoes from './Observacoes'
 import { CartPagBar } from './CartPagBar'
+import Localizacao from './Localizacao'
 
 export default function Cart(){
   const [observacoesCart, setObservacaoCart] = useState('');
@@ -32,6 +33,9 @@ return(
             Pedido={pedido}
             observacoesCart={observacoesCart}
           />
+        </div>
+        <div>
+          <Localizacao/>
         </div>
       </div>
       <div>

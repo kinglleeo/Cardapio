@@ -1,6 +1,6 @@
 @font-face {
-    font-family: "Roboto-Bold";
-    src: url('../../fontes/roboto/Roboto-Bold.ttf');
+    font-family: "Roboto-Light";
+    src: url('../../fontes/roboto/Roboto-Light.ttf');
   }
 .footer{   
     background-color: #DBDBDB;
@@ -9,8 +9,12 @@
     margin-top: auto;
     width: 100%;
 }
+.footerBlocoTexto{
+    margin: 5px;
+}
 .text-footer{
-    font-family: "Roboto-Bold";
-    font-size: 14px;
+    font-family: "Roboto-Light";
+    font-weight: 600;
+    font-size: 12px;
     margin: 3px;
 }

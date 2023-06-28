@@ -7,7 +7,7 @@ export default function Footer(){
 
     return(
         <div className='footer'>
-            <div>
+            <div className='footerBlocoTexto'>
                 <div className='text-footer'> Garline </div>
                 <div className='text-footer'> BeD Info Services </div>
                 <div className='text-footer'> Rua Prefeito Arnaldo Facini, 499, Santo Antonio do Sudoeste - PR</div>
