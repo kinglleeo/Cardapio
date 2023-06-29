@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import '../../Styles/StylesCart.css';
-import { useNavigate } from 'react-router-dom';
-import { collection, addDoc, serverTimestamp, doc  } from "firebase/firestore";
-import { db, auth } from '../Usuarios/LoginPage/Firebase/firebaseConfig'
-import { useDispatch } from 'react-redux';
-import { clearCart } from '../../redux/cartSlice'
-import axios from 'axios';
-import { formCurrency } from '../AA-utilidades/numeros';
-import { useSelector } from 'react-redux';
+import '../../../Styles/StylesCart.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { formCurrency } from '../../AA-utilidades/numeros';
 import Decimal from 'decimal.js';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { collection, addDoc, serverTimestamp, doc  } from "firebase/firestore";
+import { db, auth } from '../../Usuarios/LoginPage/Firebase/firebaseConfig'
 
-export function CartPagBar({ Pedido, observacoesCart, tipo, setTipo, mesaSelecionada }) {
+export function CarrinhoBarPagamento({ Pedido, observacoesCart, tipo, setTipo, mesaSelecionada }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [compra, setCompra] = useState([]);

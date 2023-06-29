@@ -7,7 +7,7 @@ import './historico.css'
 import { formCurrency } from '../../../AA-utilidades/numeros';
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import Iconcarrinho from '../../../Carrinho/Iconcarrinho'
+import BarraCarrinhoAtalho from '../../../Carrinho/BarraCarrinhoAtalho'
 import { addToCart } from '../../../../redux/cartSlice'
 
 export default function Historico(){
@@ -120,7 +120,7 @@ export default function Historico(){
             </div>
           )}
           <div>
-            <Iconcarrinho/>
+            <BarraCarrinhoAtalho/>
           </div>
         </div>
     )

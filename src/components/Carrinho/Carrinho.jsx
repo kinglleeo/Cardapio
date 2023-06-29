@@ -1,14 +1,13 @@
-import CartItem from './CartItems'
-import { React, useState, useEffect } from 'react'
-import Header from '../header/Header'
-import Footer from '../Footer/Footer'
+import { React, useState } from 'react'
 import '../../Styles/Styles.css'
+import { CarrinhoBarPagamento } from './CarrinhoFunções/CarrinhoBarPagamento'
 import HeaderSimplificado from '../header/HeaderSimplificado'
-import Observacoes from './Observacoes'
-import { CartPagBar } from './CartPagBar'
-import Localizacao from './Localizacao'
+import CartItem from './CarrinhoFunções/CartItems'
+import Observacoes from './CarrinhoFunções/Observacoes'
+import Localizacao from './CarrinhoFunções/Localizacao'
+import Footer from '../Footer/Footer'
 
-export default function Cart(){
+export default function CarrinhoMain(){
   const [observacoesCart, setObservacaoCart] = useState('');
   const [pedido, setPedido] = useState([]);
   const [tipo, setTipo] = useState('');
@@ -37,7 +36,7 @@ return(
           />
         </div>
         <div>
-          <CartPagBar
+          <CarrinhoBarPagamento
             tipo={tipo}
             setTipo={setTipo}
             Pedido={pedido}

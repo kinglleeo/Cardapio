@@ -1,10 +1,8 @@
-import {useDispatch, useSelector} from 'react-redux'
+import { useDispatch } from 'react-redux'
+import '../../../Styles/StylesCart.css'
+import { formCurrency } from '../../AA-utilidades/numeros';
+import { incrementQuantity, decrementQuantity } from '../../../redux/cartSlice';
 import Decimal from 'decimal.js';
-import { formCurrency } from '../AA-utilidades/numeros';
-import { incrementQuantity, decrementQuantity } from '../../redux/cartSlice';
-import '../../Styles/StylesCart.css'
-import { useEffect, useState } from 'react';
-
 export function TotalItem({ itemquantity, itemid, itemvalor }){
   const dispatch = useDispatch()
 

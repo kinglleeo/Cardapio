@@ -1,10 +1,10 @@
 import { React, useState, useEffect } from 'react';
+import '../../Styles/StyleCarBar.css';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import '../../Styles/StyleCarBar.css';
 import { formCurrency } from '../AA-utilidades/numeros';
 
-export default function IconCarrinho() {
+export default function BarraCarrinhoAtalho() {
   const cart = useSelector((state) => state.cart);
   const [totalCart, setTotalCart] = useState('');
   const [buttonBottom, setButtonBottom] = useState(0);

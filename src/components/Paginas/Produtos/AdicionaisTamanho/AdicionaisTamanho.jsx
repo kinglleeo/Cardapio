@@ -2,7 +2,6 @@ import { React, useEffect, useState } from 'react'
 import { formCurrency } from '../../../AA-utilidades/numeros';
 import { api } from '../../../../conecções/api'
 import { useLocation } from 'react-router-dom';
-import './adicionaistamanho.css'
 import '../../../../Styles/StyleForAdicionais.css'
 
 export default function GrupoTamanho({ setExisteTamanho, setTamanhoEscolhido }){

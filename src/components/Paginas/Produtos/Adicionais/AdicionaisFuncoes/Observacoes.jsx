@@ -1,7 +1,5 @@
 import { React } from 'react'
-import '../../../../Styles/StyleForAdicionais.css'
-
-
+import '../../../../../Styles/StyleForAdicionais.css'
 export default function Observacoes({ setObservacao }){
 
 

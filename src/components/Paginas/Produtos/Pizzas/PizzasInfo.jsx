@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react'
 import './PizzasInfo.css'
 import Decimal from 'decimal.js';
-import BtnCarrinho from './BtnCarrinho-Pizza';
+import BtnCarrinho from './BtnCarrinhoPizza';
 
 export default function PizzasInfo({ SaboresSelecionados, listaSaboresPizzas, setListaSaboresPizzas, Produto, setTotalCompra, setCustoCompra, valorTotalItem, valorTotalCusto, valorTotalCustoPizza, valorTotalSabores }){
     

@@ -1,6 +1,6 @@
 import Header from '../header/Header';
 import GrupoList from './Produtos/GrupoList';
-import IconeCarrinho from '../Carrinho/Iconcarrinho'
+import BarraCarrinhoAtalho from '../Carrinho/BarraCarrinhoAtalho'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../Usuarios/LoginPage/Firebase/firebaseConfig';
 import { useEffect, useState } from 'react';
@@ -27,7 +27,7 @@ export default function Main() {
           <GrupoList/>
         </div>
         <div>
-          <IconeCarrinho/>
+          <BarraCarrinhoAtalho/>
         </div>
       </div>
         <div>

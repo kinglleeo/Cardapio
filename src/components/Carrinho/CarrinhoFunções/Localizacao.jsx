@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from 'react'
-import { api } from '../../conecções/api';
-import '../../Styles/StylesCart.css'
+import { api } from '../../../conecções/api';
+import '../../../Styles/StylesCart.css'
 
 
 export default function Localizacao({ tipo, setMesaSelecionada }){

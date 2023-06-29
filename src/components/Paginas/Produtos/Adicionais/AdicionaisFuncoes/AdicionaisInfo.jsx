@@ -1,9 +1,8 @@
-import { React, useState, useEffect } from 'react'
-import './Adicionais.css'
+import { React, useEffect } from 'react'
 import Decimal from 'decimal.js';
-import '../../../../Styles/Styles.css'
-import { formCurrency } from '../../../AA-utilidades/numeros';
-import BtnCarrinho from './BtnCarrinho';
+import '../../../../../Styles/Styles.css'
+import '../../../../../Styles/StyleForAdicionais.css'
+import { formCurrency } from '../../../../AA-utilidades/numeros';
 
 export default function AdicionaisInfo({ setTotalCompra, setCustoCompra, valorTotalItem, valorTotalCusto, grupo, Produto, adicionalSelecionado, tamanhoEscolhido, observacoes, ID_GRUPO_OPCOES, existeTamanho }){
     

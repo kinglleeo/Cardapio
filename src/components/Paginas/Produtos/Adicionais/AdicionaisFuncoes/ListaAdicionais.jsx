@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from 'react'
-import '../../../../Styles/StyleForAdicionais.css'
-import { formCurrency } from '../../../AA-utilidades/numeros';
+import '../../../../../Styles/StyleForAdicionais.css'
+import { formCurrency } from '../../../../AA-utilidades/numeros';
 import Decimal from 'decimal.js';
 
 export default function ListaAdicionais({ itemGrupoAdd, quantidadeTotalGrupos, Maximo, listaAdicionais, setListaAdicionais }){

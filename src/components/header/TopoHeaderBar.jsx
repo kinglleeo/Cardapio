@@ -1,5 +1,5 @@
 import React from 'react'
-import './cartheader.css'
+import './StyleHeaders.css'
 import { useNavigate } from 'react-router-dom';
 
 export default function cartHeader(){

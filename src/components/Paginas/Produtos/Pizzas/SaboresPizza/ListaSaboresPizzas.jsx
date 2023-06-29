@@ -1,9 +1,8 @@
 import { React, useEffect, useState } from 'react'
 import { formCurrency } from '../../../../AA-utilidades/numeros';
-import './pizzas.css'
 import Decimal from 'decimal.js';
-import './cssParaPizzas.css'
 import '../../../../../Styles/Styles.css'
+import '../../../../../Styles/StylePizzas.css'
 
 
 export default function ListaSaboresPizza({ quantidadeTotal, setQuantidadeTotal, listaSaboresPizzas, setListaSaboresPizzas, Min, Max, setSaboresSelecionados, SaboresSelecionados }) {

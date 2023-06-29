@@ -1,15 +1,15 @@
 import { React, useState } from 'react'
-import Header from '../../../header/Header'
+import TopoHeaderBar from '../../../header/TopoHeaderBar'
 import PizzasSabores from './SaboresPizza/PizzasSabores'
-import GrupoAdicionais from '../Adicionais/GrupoAdicionais'
-import Observacoes from '../Adicionais/Observacoes'
+import GrupoAdicionais from '../Adicionais/AdicionaisFuncoes/GrupoAdicionais'
+import Observacoes from '../Adicionais/AdicionaisFuncoes/Observacoes'
 import PizzasInfo from './PizzasInfo'
 import { useLocation } from 'react-router-dom';
-import BtnCarrinho from './BtnCarrinho-Pizza'
+import BtnCarrinho from './BtnCarrinhoPizza'
 import Footer from '../../../Footer/Footer'
-import './SaboresPizza/pizzas.css'
+import '../../../../Styles/StylePizzas.css'
 import '../../../../Styles/Styles.css'
-import TopoHeaderBar from '../../../header/TopoHeaderBar'
+
 
 export default function MainPizza(){
     const { state } = useLocation();

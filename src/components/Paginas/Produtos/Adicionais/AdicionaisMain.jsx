@@ -1,9 +1,8 @@
 import { React, useState } from 'react'
-import Header from '../../../header/Header'
-import AdicionaisInfo from './AdicionaisInfo'
+import AdicionaisInfo from './AdicionaisFuncoes/AdicionaisInfo'
 import AdicionaisTamanho from '../AdicionaisTamanho/AdicionaisTamanho'
-import GrupoAdicionais from './GrupoAdicionais'
-import Observacoes from './Observacoes'
+import GrupoAdicionais from './AdicionaisFuncoes/GrupoAdicionais'
+import Observacoes from './AdicionaisFuncoes/Observacoes'
 import { useLocation } from 'react-router-dom';
 import TopoHeaderBar from '../../../header/TopoHeaderBar'
 import Footer from '../../../Footer/Footer'

@@ -1,11 +1,6 @@
-import { React, useState, useEffect } from 'react'
-import './observacoes.css'
-
-
+import React from 'react'
+import '../../../Styles/StyleCarBar.css'
 export default function Observacoes({ setObservacaoCart }){
-
-
-
     return(
         <div className='observacoesMain'>
             <div className='observacoesTitulo'>

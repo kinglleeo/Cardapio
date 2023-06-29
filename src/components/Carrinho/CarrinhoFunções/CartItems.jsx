@@ -1,18 +1,15 @@
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { TotalItem } from './total';
-import { clearCart, removeItem} from '../../redux/cartSlice';
-import '../../Styles/StylesCart.css'
-import { CartPagBar } from './CartPagBar';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { formCurrency } from '../AA-utilidades/numeros';
+import '../../../Styles/StylesCart.css'
+import { clearCart, removeItem} from '../../../redux/cartSlice';
+import { formCurrency } from '../../AA-utilidades/numeros';
 import Decimal from 'decimal.js';
-
+import { TotalItem } from './TotalItem';
 
 export default function CartItem({ setPedido }) {
-  const dispatch = useDispatch()
-  const cart = useSelector((state) => state.cart)
-  const [totalCart, setTotalCart] = useState('')
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
+  const [totalCart, setTotalCart] = useState('');
 
   useEffect(()=>{
     setPedido(cart)

@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from 'react'
 import { api } from '../../conecções/api';
-import './cartheader.css'
+import './StyleHeaders.css'
 import TopoHeaderBar from './TopoHeaderBar'
 
 export default function cartHeader(){

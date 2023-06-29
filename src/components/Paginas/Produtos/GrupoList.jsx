@@ -1,10 +1,9 @@
-import '../../../Styles/Styles.css'
 import { useState, useEffect } from 'react'
+import '../../../Styles/Styles.css'
 import { api } from '../../../conecções/api';
 import MenuBar from '../../navbar/menubar';
 import SubGrupoList from './SubGrupoList';
 import { useNavigate } from 'react-router-dom';
-import './grupolist.css'
 
 export default function Grupo(){
     const [grupos, setGrupos] = useState([]);

@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
-import { api } from '../../../../conecções/api';
+import { api } from '../../../../../conecções/api';
 import { useQueryClient } from '@tanstack/react-query';
 import ListaAdicionais from './ListaAdicionais';
 import Decimal from 'decimal.js'; 

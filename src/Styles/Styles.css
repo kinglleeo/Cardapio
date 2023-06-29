@@ -182,7 +182,6 @@
       opacity: 1;
     }
   }
-
 @media(max-width: 500px){
   .produto-ingredientes{
     overflow: scroll;
