@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../../Styles/StyleCarBar.css'
+import '../../../Styles/StyleCarrinho.css'
 export default function Observacoes({ setObservacaoCart }){
     return(
         <div className='observacoesMain'>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '../../../Styles/StylesCart.css';
+import '../../../Styles/StyleCarrinho.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { formCurrency } from '../../AA-utilidades/numeros';
 import Decimal from 'decimal.js';

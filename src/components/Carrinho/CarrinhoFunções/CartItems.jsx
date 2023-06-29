@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import '../../../Styles/StylesCart.css'
+import '../../../Styles/StyleCarrinho.css'
 import { clearCart, removeItem} from '../../../redux/cartSlice';
 import { formCurrency } from '../../AA-utilidades/numeros';
 import Decimal from 'decimal.js';

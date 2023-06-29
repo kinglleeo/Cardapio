@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import '../../../Styles/StylesCart.css'
+import '../../../Styles/StyleCarrinho.css'
 import { formCurrency } from '../../AA-utilidades/numeros';
 import { incrementQuantity, decrementQuantity } from '../../../redux/cartSlice';
 import Decimal from 'decimal.js';

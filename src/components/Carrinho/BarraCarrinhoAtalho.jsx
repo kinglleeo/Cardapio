@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react';
-import '../../Styles/StyleCarBar.css';
+import '../../Styles/StyleCarrinhoBarPagamento.css';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { formCurrency } from '../AA-utilidades/numeros';

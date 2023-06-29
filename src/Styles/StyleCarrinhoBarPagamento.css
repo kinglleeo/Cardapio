@@ -4,6 +4,7 @@
     font-family: "Roboto-Condensed";
     src: url('../fontes/roboto/Roboto-Condensed.ttf');
 }
+
 .carrinho{
     position: fixed;
     bottom: 40px; 
@@ -52,47 +53,4 @@
     width: 50%;
     display: flex;
     justify-content: center;
-}
-/* OBSERVACOES DO CARRINHO */
-.observacoesTitulo{
-    font-size: 16px;
-    margin-bottom: 5px;
-    height: 50px;
-    background-color: #DBDBDB;
-    font-family: "Roboto-Bold";
-    display: flex;
-    align-content: center;
-    flex-wrap: wrap;
-}
-.observacoesIcone{
-    margin-left: 10px;
-    margin-right: 10px;
-    height: 34px;
-    aspect-ratio: 1 / 1;
-    background-image: url('../imagens/iconePadNote.png');
-    background-size: 100% 100%;
-}
-.observacoesNome{
-    display: grid;
-    place-items: center;
-    font-family: "Roboto-Bold";
-    font-size: 18px;
-}
-.observacoesCart{
-    height: 60px;
-    margin: 5px;
-    border: solid;
-    border-width: 0.5px;
-    border-radius: 5px;
-    display: grid;
-    place-items: center;
-}
-.observacoesCart-text {
-    font-size: 14px;
-    height: 90%;
-    width: 98%;
-    border: none;
-    background-color: transparent;
-    color: black;
-    font-family: "Roboto-Light";
 }

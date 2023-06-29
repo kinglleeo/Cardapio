@@ -2,7 +2,7 @@ import { React, useState, useEffect } from 'react'
 import { collection, getDocs } from "firebase/firestore";
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth, db } from '../../LoginPage/Firebase/firebaseConfig';
-import '../../../../Styles/StylesCart.css'
+import '../../../../Styles/StyleCarrinho.css'
 import './historico.css'
 import { formCurrency } from '../../../AA-utilidades/numeros';
 import { useDispatch } from 'react-redux'
