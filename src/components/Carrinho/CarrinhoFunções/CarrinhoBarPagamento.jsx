@@ -8,46 +8,42 @@ import axios from 'axios';
 import { collection, addDoc, serverTimestamp, doc  } from "firebase/firestore";
 import { db, auth } from '../../Usuarios/LoginPage/Firebase/firebaseConfig'
 
-export function CarrinhoBarPagamento({ Pedido, observacoesCart, tipo, setTipo, mesaSelecionada }) {
+export function CarrinhoBarPagamento({ Pedido, observacoesCart, tipocomanda, setTipo, mesaSelecionada }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [compra, setCompra] = useState([]);
   const [totalCart, setTotalCart] = useState('');
   const [numerocomanda, setNumeroComanda] = useState('');
   const [cnpj, setCpj] = useState('');
-  const [mesaEntrega, setMesaEntrega] = useState('')
-  const [idGarcom, setIdGarcom] = useState(null)
+  const [idGarcom, setIdGarcom] = useState('')
   const cart = useSelector(state => state.cart)
   const items_pedido = compra
-  
-  useEffect(()=>{
-      let total = new Decimal(0) || 0
+
+  useEffect(() => {
+    if (cart && Array.isArray(cart)) {
+      let total = new Decimal(0) || 0;
       cart.forEach(item => {
-        total = total.plus(new Decimal(item.quantity || 0).times(item.totalCompra || 0)) 
-      })
-      setTotalCart(total.toFixed(2))
-  }); 
+        total = total.plus(new Decimal(item.quantity || 0).times(item.totalCompra || 0));
+      });
+      setTotalCart(total.toFixed(2));
+    }
+  }, [cart]);
 
   useEffect(()=>{
-    const tipo = sessionStorage.getItem('tipo');
-      setTipo(tipo)
-    const numerocomanda = sessionStorage.getItem('numerocomanda');
+    const tipocomanda = localStorage.getItem('tipo');
+      setTipo(tipocomanda)
+    const numerocomanda = localStorage.getItem('numerocomanda');
       setNumeroComanda(numerocomanda)
-    const cnpj = sessionStorage.getItem('cnpj');
+    const cnpj = localStorage.getItem('cnpj');
       setCpj(cnpj)
     const idGarcom = localStorage.getItem('idGarcom')
       setIdGarcom(idGarcom)
-  })
+  }, [])
 
-  useEffect(()=>{
-    if(tipo === "comanda"){
-      setMesaEntrega(mesaSelecionada)
-    } else if(tipo === "mesa"){
-      setMesaEntrega(numerocomanda)
-    }
-  })
+    
 
   useEffect(() => {
+    if (Pedido && Array.isArray(Pedido)) {
     const updatedCompra = Pedido.map((item) => {
       const itemExistente = compra.find((compraItem) => compraItem.id === item.id);
       if (!itemExistente) {
@@ -89,20 +85,21 @@ export function CarrinhoBarPagamento({ Pedido, observacoesCart, tipo, setTipo, m
           };
         }
         return novoItemPedido;
-      } else {
+      }
+       else {
         return {
           ...itemExistente,
           quantidade: item.quantity
         };
       }
     });
-  
-    setCompra(updatedCompra);
+      setCompra(updatedCompra);
+    }
   }, [Pedido, setCompra]);
   
 
-  const handlePagar = (totalCart, compra, Pedido) => {
-    //EnviarPedidoAPI(totalCart, compra)
+  const handlePagar = (cnpj, tipocomanda, numerocomanda, idGarcom, totalCart, mesaSelecionada, items_pedido, observacoesCart) => {
+    EnviarPedidoAPI(cnpj, tipocomanda, numerocomanda, idGarcom, totalCart, mesaSelecionada, items_pedido, observacoesCart)
     //BancodePedidos(Pedido)
     //dispatch(clearCart());
     //navigate('/Main');
@@ -132,11 +129,11 @@ export function CarrinhoBarPagamento({ Pedido, observacoesCart, tipo, setTipo, m
   }
   
 
-  const EnviarPedidoAPI =(totalCart, items_pedido)=>{
+  const EnviarPedidoAPI =(cnpj, tipocomanda, numerocomanda, idGarcom, totalCart, mesaSelecionada, items_pedido, observacoesCart)=>{
     axios
       .post(`http://192.168.0.100:9865/inserirPedido`, {
         cnpj: cnpj,
-        tipocomanda: tipo,
+        tipocomanda: tipocomanda,
         numerocomanda: numerocomanda,
         idgarcom: idGarcom,
         total: totalCart,
@@ -161,9 +158,11 @@ export function CarrinhoBarPagamento({ Pedido, observacoesCart, tipo, setTipo, m
 
   return (
     <div>
-      <div className='cartBarPagar'> 
-        <div className='PagarTexto' onClick={()=> handlePagar(totalCart, items_pedido, Pedido)}> CONFIRMAR </div>
-        <div className='pagarValor'> {formCurrency.format(totalCart)} </div>
+      <div className='caixaBarPagar'>
+        <button className='cartBarPagar' onClick={()=> handlePagar(cnpj, tipocomanda, numerocomanda, idGarcom, totalCart, mesaSelecionada, items_pedido, observacoesCart)} disabled={cart === null}> 
+          <div className='PagarTexto'> CONFIRMAR </div>
+          <div className='pagarValor'> {formCurrency.format(totalCart)} </div>
+        </button>
       </div>
       <div className='cartBarContinuar' onClick={handleCotinuar}> CONTINUAR COMPRANDO </div>
       <div className='FazerLogin' onClick={handleLogar}> FAZER LOGIN </div>

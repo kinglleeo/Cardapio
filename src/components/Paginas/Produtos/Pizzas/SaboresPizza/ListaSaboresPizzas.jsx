@@ -81,6 +81,7 @@ export default function ListaSaboresPizza({ quantidadeTotal, setQuantidadeTotal,
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+
   return(
         <div>
           <div>
@@ -107,7 +108,7 @@ export default function ListaSaboresPizza({ quantidadeTotal, setQuantidadeTotal,
                       if (listaSalgadasAtiva === Idsalgadas && itemSabor.SUBGRUPOS === "PIZZA SALGADA") {
                         return (
                           <div className='pizza-List' key={itemSabor.ID_GRADE}>
-                            <div className='pizza-Card'>
+                            <div className={`pizza-Card ${itemSabor.quantidade > 0 ? 'mudarFundoSaborPizza' : ''}`}>
                                 <div className='pizza-info'>
                                   <div className='pizzaSabor'> {capitalizeFirstLetter(itemSabor.PRODUTO.toLowerCase())} </div>
                                   <div className='pizza-caixa2'>
@@ -116,12 +117,12 @@ export default function ListaSaboresPizza({ quantidadeTotal, setQuantidadeTotal,
                                             : <div></div> 
                                           } 
                                     </div>
-                                    <div className='pizza-valor'>
-                                      <div> {formCurrency.format(itemSabor.VALOR_VENDA)} </div>
-                                    </div>
                                   </div>
                                 </div>
                                 <div className='pizza-input'> 
+                                    <div className='pizza-valor'>
+                                      <div> {formCurrency.format(itemSabor.VALOR_VENDA)} </div>
+                                    </div>
                                   <div className='Card-Adicionais-Botoes'>
                                     <div className='btn-quantia-adicionais'>
                                       <button className='arrow iconeMinus' onClick={() => diminuirQuantidade(index, itemSabor)}></button>
@@ -159,7 +160,7 @@ export default function ListaSaboresPizza({ quantidadeTotal, setQuantidadeTotal,
                   if (listaDocesAtiva === IdDoces && itemSabor.SUBGRUPOS === "PIZZA DOCE") {
                     return (
                       <div className='pizza-List' key={itemSabor.ID_GRADE}>
-                        <div className='pizza-Card'>
+                        <div className={`pizza-Card ${itemSabor.quantidade > 0 ? 'mudarFundoSaborPizza' : ''}`}>
                             <div className='pizza-info'>
                               <div className='pizzaSabor'> {itemSabor.PRODUTO.toLowerCase()} </div>
                               <div className='pizza-caixa2'>
@@ -168,12 +169,12 @@ export default function ListaSaboresPizza({ quantidadeTotal, setQuantidadeTotal,
                                         : <div></div> 
                                       } 
                                 </div>
-                                <div className='pizza-valor'>
-                                  <div> {formCurrency.format(itemSabor.VALOR_VENDA)} </div>
-                                </div>
                               </div>
                             </div>
                             <div className='pizza-input'> 
+                              <div className='pizza-valor'>
+                                  <div> {formCurrency.format(itemSabor.VALOR_VENDA)} </div>
+                                </div>
                               <div className='Card-Adicionais-Botoes'>
                                 <div className='btn-quantia-adicionais'>
                                   <button className='arrow iconeMinus' onClick={() => diminuirQuantidade(index, itemSabor)}></button>

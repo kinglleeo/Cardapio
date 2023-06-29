@@ -66,26 +66,26 @@ export default function ListaAdicionais({ itemGrupoAdd, quantidadeTotalGrupos, M
                     <div>
                       {itemGrupoAdd.PERMITIR_ITEM_REPETIDO === "SIM" 
                         ? (
-                          <div className='Card-Adicionais' key={item.ID}>
-                            <div className='box-descricao-adicional'>
-                              <div className='adicional-nome'> {item.DESCRICAO} </div>
-                            </div>
-                            <div className='box-valor-adicional'>
-                              <div className='adicional-valor'> {formCurrency.format(item.VALOR_VENDA)} </div>
-                            </div>
-                            <div className='box-funcao-adicional'>
-                              <div className='Card-Adicionais-Botoes'>
-                                <div className='btn-quantia-adicionais'>
-                                  <button className='arrow iconeMinus' onClick={() => diminuirQuantidade(index)}></button>
-                                </div>
-                                  <div className='quantia-adicionais'>{item.quantidade}</div>
-                                <div className='btn-quantia-adicionais'>
-                                  <button className='arrow iconePlus'onClick={() => aumentarQuantidade(index)} disabled={faltam === 0}></button>
+                            <div className={`Card-Adicionais ${item.quantidade > 0 ? 'medarBordaCor' : ''}`} key={item.ID}>
+                              <div className='box-descricao-adicional'>
+                                <div className='adicional-nome'> {item.DESCRICAO} </div>
+                              </div>
+                              <div className='box-valor-adicional'>
+                                <div className='adicional-valor'> {formCurrency.format(item.VALOR_VENDA)} </div>
+                              </div>
+                              <div className='box-funcao-adicional'>
+                                <div className='Card-Adicionais-Botoes'>
+                                  <div className='btn-quantia-adicionais'>
+                                    <button className='arrow iconeMinus' onClick={() => diminuirQuantidade(index)}></button>
+                                  </div>
+                                    <div className='quantia-adicionais'>{item.quantidade}</div>
+                                  <div className='btn-quantia-adicionais'>
+                                    <button className='arrow iconePlus'onClick={() => aumentarQuantidade(index)} disabled={faltam === 0}></button>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                              ) 
+                            ) 
                               : itemGrupoAdd.PERMITIR_ITEM_REPETIDO === "NAO" === itemGrupoAdd.MAXIMO > 1 ?
                                 (
                                   <div className={`Card-Adicionais ${item.quantidade === 1 ? 'mudarCorCard' : ''}`}

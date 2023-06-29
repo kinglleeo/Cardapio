@@ -7,7 +7,7 @@ export default function cartHeader(){
     const [infoClientes, setInfoClientes] = useState([])
     
     useEffect(()=>{
-        const cnpj = sessionStorage.getItem('cnpj');
+        const cnpj = localStorage.getItem('cnpj');
             setCnpj(cnpj)
         api
             .get(`/dadosEmpresa/${cnpj}`)
@@ -26,9 +26,12 @@ export default function cartHeader(){
             </div>
             <div className='loginHeaderBody'>
                 <div className='login-logo-resta'>
-                    {infoClientes.map(item => (
-                        <img src={'data:image/png;base64,' + item.FOTO} key={item.id} alt='Restaurante' className='img-restaurante-logo' />
-                    ))}
+                    {Array.isArray(infoClientes) ?  (
+                        infoClientes.map((item)=> 
+                            <div>
+                                <img src={'data:image/png;base64,' + item.FOTO} key={item.id} alt='Restaurante' className='img-restaurante-logo' />
+                            </div>
+                    )) : null}                    
                 </div>
             </div>
         </div>

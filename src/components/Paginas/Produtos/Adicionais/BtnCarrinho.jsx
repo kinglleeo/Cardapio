@@ -12,6 +12,8 @@ export default function BtnCarrinho({ totalCusto, PIZZA_MISTA, Produto, adiciona
     const queryClient = useQueryClient();
     const [btnDesabilitado, setBtnDesabilitado] = useState(false)
  
+    console.log(totalCompra)
+
     const item ={
         produto: Produto,
         adicionalSelecionado: adicionalSelecionado,
@@ -41,11 +43,13 @@ export default function BtnCarrinho({ totalCusto, PIZZA_MISTA, Produto, adiciona
       }, [existeTamanho, tamanhoEscolhido]);
 
     return(
-      <div className='barra-pagarAdicionais' onClick={()=> handleCarrinho(item, ID_GRUPO_OPCOES)}>
-        <div className='pagarAdicionais-text'>
-          <button disabled={btnDesabilitado === true} className='btn-adicionarAdicionais'> ADICIONAR </button>
+      <button className='btnPagarAdicionais' onClick={()=> handleCarrinho(item, ID_GRUPO_OPCOES)} disabled={tamanhoEscolhido === null}>
+        <div className='barra-pagarAdicionais'>
+          <div className='pagarAdicionais-text'>
+            <button disabled={btnDesabilitado === true} className='btn-adicionarAdicionais'> ADICIONAR </button>
+          </div>
+          <div className='pagarAdicionais-valor'>{formCurrency.format(totalCompra)}</div>   
         </div>
-        <div className='pagarAdicionais-valor'>{formCurrency.format(totalCompra)}</div>   
-      </div>
+      </button>
     )
 }

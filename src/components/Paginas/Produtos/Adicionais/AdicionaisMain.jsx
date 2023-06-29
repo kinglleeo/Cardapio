@@ -22,7 +22,7 @@ export default function AdicionaisMain(){
     const [valorTotalItem, setValorTotalItem] = useState(0);
     const [valorTotalCusto, setValorTotalCusto] = useState(0);
     //AdicionaisTamanho
-    const [tamanhoEscolhido, setTamanhoEscolhido] = useState([]);
+    const [tamanhoEscolhido, setTamanhoEscolhido] = useState(null);
     const [existeTamanho, setExisteTamanho] = useState(false);
     //observaçoes
     const [observacoes, setObservacao] = useState('');
@@ -32,7 +32,6 @@ export default function AdicionaisMain(){
     const [totalCompra, setTotalCompra] = useState('');
     const [custoCompra, setCustoCompra] = useState('');
 
-    
     return(
         <div className='pagina'>
             <div className='Main'>

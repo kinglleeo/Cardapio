@@ -68,10 +68,10 @@ export default function Grupo(){
                                             <div className='box-produtos' onClick={()=> handlePizzas(data, item.PIZZA_MISTA)}>
                                                 <div className='produtos-info'>
                                                     <div className='produto-nome'>
-                                                        <div className='item-nome'> {data.TAMANHO} </div>
+                                                        <div className='item-nome item-nomeTamanhoPizza'> {data.TAMANHO} </div>
                                                     </div>
-                                                <div className='produtos-valor'>
-                                                    <div className='box-valor'>Até {data.QTD_MAXIMO === 1 ? (data.QTD_MAXIMO + " " + "Sabor"):(data.QTD_MAXIMO + " " + "Sabores")} </div>
+                                                <div className='ValorTamanhoPizza'>
+                                                    <div >Até {data.QTD_MAXIMO === 1 ? (data.QTD_MAXIMO + " " + "Sabor"):(data.QTD_MAXIMO + " " + "Sabores")} </div>
                                                 </div>
                                                 </div>
                                                 <div className='pizza-img'>

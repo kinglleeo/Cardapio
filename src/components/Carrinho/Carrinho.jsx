@@ -10,8 +10,8 @@ import Footer from '../Footer/Footer'
 export default function CarrinhoMain(){
   const [observacoesCart, setObservacaoCart] = useState('');
   const [pedido, setPedido] = useState([]);
-  const [tipo, setTipo] = useState('');
-  const [mesaSelecionada, setMesaSelecionada] = useState('');
+  const [tipo, setTipo] = useState(null);
+  const [mesaSelecionada, setMesaSelecionada] = useState(null);
   
 return(
     <div className='pagina'>
@@ -37,7 +37,7 @@ return(
         </div>
         <div>
           <CarrinhoBarPagamento
-            tipo={tipo}
+            tipocomanda={tipo}
             setTipo={setTipo}
             Pedido={pedido}
             observacoesCart={observacoesCart}

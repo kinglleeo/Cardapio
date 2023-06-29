@@ -5,6 +5,8 @@
     src: url('../fontes/roboto/Roboto-Bold.ttf');
     font-family: "Roboto-Condensed";
     src: url('../fontes/roboto/Roboto-Condensed.ttf');
+    font-family: "Roboto-Regular";
+    src: url('../fontes/roboto/Roboto-Regular.ttf');
 }
 .box-adicionais{
     display: flex;
@@ -60,18 +62,21 @@
     margin-left: 5px;
     padding: 5px;
     border-radius: 5px;
-    font-family: "Roboto-Bold";
+    font-family: "Roboto-Light";
     font-size: 14px;
     background-color: #eded28;
     display: grid;
     place-items: center;
+    font-size: 13px;
 }
 .escolhido{
     margin-left: 5px;
     padding: 5px;
     border-radius: 5px;
     background-color: #ff706b;
-    font-family: "Roboto-Bold";
+    font-family: "Roboto-Light";
+    color: white;
+    font-size: 13px;
 }
 .AdicionaisList{
     height: auto;
@@ -87,21 +92,26 @@
     place-items: center;
     height: 40px;
 }
+/* D7FCDB */
+.medarBordaCor{
+    background-color: #E9FEEE ;
+}
 .mudarCorCard{
-    background-color: rgb(85, 212, 85) ;
+    background-color: #E9FEEE ;
 }
 .box-descricao-adicional{
     width: 50%;
 }
 .adicional-nome{
-    font-size: 14px;
-    font-family: "Roboto-Light";
+    font-size: 13px;
+    font-family: "Roboto-Regular";
     margin-left: 10px;
 }
 .adicional-valor{
     display: grid;
     place-items: center;
-    font-family: "Roboto-Bold";
+    font-family: "Roboto-Light";
+    font-size: 14px;
 }
 .box-valor-adicional{
     width: 20%;
@@ -176,6 +186,11 @@
 }
 .ObservacoesAdicionais-text:focus-visible {
     outline: none;
+}
+.btnPagarAdicionais{
+    width: 100%;
+    background-color: transparent;
+    border: none;
 }
 .barra-pagarAdicionais{
     background-color: rgb(66 175 66);

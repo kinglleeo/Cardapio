@@ -11,9 +11,11 @@ export default function BarraCarrinhoAtalho() {
 
   const getTotalQuantity = () => {
     let total = 0;
-    cart.forEach((item) => {
-      total += item.quantity;
-    });
+    if (cart && Array.isArray(cart)) {
+      cart.forEach((item) => {
+        total += item.quantity;
+      });
+    }
     return total;
   };
 
@@ -22,29 +24,11 @@ export default function BarraCarrinhoAtalho() {
     setTotalCart(newTotalCart);
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const footer = document.getElementById('footer');
-      const footerRect = footer.getBoundingClientRect();
-      const buttonBottomPosition = footerRect.top - window.innerHeight + 110;
 
-      if (window.scrollY >= buttonBottomPosition) {
-        setButtonBottom(120);
-      } else {
-        setButtonBottom(40)
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-  
 
   return (
-    <div className='carrinho' style={{ position: 'fixed', bottom: `${buttonBottom}px` }}>
+    <Link to='/carrinho' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+      <div className='carrinho'>
       <div className='caixa-carrinho'>
         <div className='quantidade-cart margin1'>
           <div className='totalQuantidade-cart'>{getTotalQuantity() || 0} X</div>
@@ -56,15 +40,8 @@ export default function BarraCarrinhoAtalho() {
             )}
           </div>
         </div>
-        <div className='text-cart'>
-          <Link to='/carrinho' style={{ color: 'inherit', textDecoration: 'inherit' }}>
-            <div>MEU CARRINHO</div>
-          </Link>
-        </div>
-        <div className='quantidade-cart margin2'>
-          <div>{formCurrency.format(totalCart)}</div>
-        </div>
       </div>
     </div>
+    </Link>
   );
 }

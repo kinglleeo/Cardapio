@@ -113,6 +113,10 @@
     font-family: "Roboto-Bold";
     font-size: 14px;
 }
+.item-nomeTamanhoPizza{
+  margin-top: 10px;
+  margin-left: 10px;
+}
 .produto-ingredientes{
     margin-bottom: 5px;
     margin-left: 5px;
@@ -132,7 +136,13 @@
   display: grid;
   place-items: center; 
   text-align: center;
-  font-family: "Roboto-Bold";
+  font-family: "Roboto-Light";
+}
+.ValorTamanhoPizza{
+  margin-left: 15px;
+  margin-bottom: 10px;
+  font-family: "Roboto-Light";
+  font-size: 14px;
 }
 .produtos-img{
     width: 30%;

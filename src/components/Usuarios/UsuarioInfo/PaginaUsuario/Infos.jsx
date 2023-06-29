@@ -5,8 +5,6 @@ import { auth } from '../../LoginPage/Firebase/firebaseConfig';
 
 export default function Infos(){
     const [user, setUser] = useState('');
-    console.log(user)
-
     useEffect(()=>{
         const usuario = onAuthStateChanged(auth, (user)=>{
             setUser(user)

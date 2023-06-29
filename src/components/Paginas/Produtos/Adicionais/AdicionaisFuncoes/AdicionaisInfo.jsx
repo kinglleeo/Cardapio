@@ -5,10 +5,10 @@ import '../../../../../Styles/StyleForAdicionais.css'
 import { formCurrency } from '../../../../AA-utilidades/numeros';
 
 export default function AdicionaisInfo({ setTotalCompra, setCustoCompra, valorTotalItem, valorTotalCusto, grupo, Produto, adicionalSelecionado, tamanhoEscolhido, observacoes, ID_GRUPO_OPCOES, existeTamanho }){
-    
+    console.log(Produto)
     useEffect(() => {
-        const valorVenda = new Decimal(tamanhoEscolhido.VALOR_VENDA > 0 ? (tamanhoEscolhido.VALOR_VENDA) : (Produto.VALOR_VENDA));
-        const valorCusto = new Decimal(tamanhoEscolhido.VALOR_CUSTO > 0 ? (tamanhoEscolhido.VALOR_CUSTO) : (Produto.VALOR_CUSTO));
+        const valorVenda = new Decimal(tamanhoEscolhido !== null ? (tamanhoEscolhido.VALOR_VENDA) : (Produto.VALOR_MINIMO));
+        const valorCusto = new Decimal(tamanhoEscolhido !== null ? (tamanhoEscolhido.VALOR_CUSTO) : (Produto.VALOR_CUSTO));
     
         const newTotalCompra = valorVenda.plus(valorTotalItem);
         const newCustoCompra = valorCusto.plus(valorTotalCusto);

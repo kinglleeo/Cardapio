@@ -15,13 +15,15 @@ export default function CartItem({ setPedido }) {
     setPedido(cart)
   }, [])
 
-  useEffect(()=>{
-    let total = new Decimal(0) || 0
-    cart.forEach(item => {
-      total = total.plus(new Decimal(item.quantity || 0).times(item.totalCompra || 0)) 
-    })
-    setTotalCart(total.toFixed(2))
-}); 
+  useEffect(() => {
+    if (cart && Array.isArray(cart)) {
+      let total = new Decimal(0) || 0;
+      cart.forEach(item => {
+        total = total.plus(new Decimal(item.quantity || 0).times(item.totalCompra || 0));
+      });
+      setTotalCart(total.toFixed(2));
+    }
+  }, [cart]);
 
   return (
     <div className='MainCartList'>
@@ -31,21 +33,23 @@ export default function CartItem({ setPedido }) {
           <div className='carrinhoName'> Carrinho </div>
         </div>
         <div className='cartListItems'>
-          {cart.map((item)=>
-            <div className='card-cart' key={item.idCart}>
-              <div className='cartBox-iconeLixeira'>
-                <div className='lixeira' onClick={()=> dispatch(removeItem(item.id))}></div>
+          {Array.isArray(cart) ? (
+              cart.map((item)=>
+              <div className='card-cart' key={item.idCart}>
+                <div className='cartBox-iconeLixeira'>
+                  <div className='lixeira' onClick={()=> dispatch(removeItem(item.id))}></div>
+                </div>
+                  <div className='boxDescricao-nome'> {item.tipo === "NAO" ? (<div> {item.produto.PRODUTO.toLowerCase()} </div>) : (<div> Pizza {item.produto.TAMANHO.toLowerCase()} </div>) } </div>
+                <div className='cartBox-valor'>
+                  <TotalItem
+                    itemquantity={item.quantity}
+                    itemid={item.id}
+                    itemvalor={item.totalCompra}
+                  />
+                </div>
               </div>
-                <div className='boxDescricao-nome'> {item.tipo === "NAO" ? (<div> {item.produto.PRODUTO.toLowerCase()} </div>) : (<div> Pizza {item.produto.TAMANHO.toLowerCase()} </div>) } </div>
-              <div className='cartBox-valor'>
-                <TotalItem
-                  itemquantity={item.quantity}
-                  itemid={item.id}
-                  itemvalor={item.totalCompra}
-                />
-              </div>
-            </div>
-          )}
+              )
+          ) : null}
         </div>
           <div className='barraTotalCartList'>
             <div className='cartBox-iconeLixeira'>

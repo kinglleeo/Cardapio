@@ -5,6 +5,10 @@
     src: url('../fontes/roboto/Roboto-Bold.ttf');
     font-family: "Roboto-Condensed";
     src: url('../fontes/roboto/Roboto-Condensed.ttf');
+    font-family: "Roboto-CondensedItalic";
+    src: url('../fontes/roboto/Roboto-CondensedItalic.ttf');
+    font-family: "Roboto-Regular";
+    src: url('../fontes/roboto/Roboto-Regular.ttf');
 }
 .titulo-SaboresPizza{
     display: grid;
@@ -26,8 +30,10 @@
     padding: 5px;
     background-color: #ff706b;
     margin: 5px;
-    font-family: "Roboto-Bold";
+    font-family: "Roboto-Light";
     border-radius: 5px;
+    font-size: 13px;
+    color: white;
 }
 .grupo-Sabores{
     display: flex;
@@ -57,9 +63,12 @@
 .pizza-Card{
     height: 80px;
     display: flex;
-    background-color: #DBDBDB;
+    background-color: #f8f8f8;
     margin-bottom: 5px;
     font-family: "Roboto-Light";
+}
+.mudarFundoSaborPizza{
+    background-color: #E9FEEE;
 }
 .pizza-info{
     width: 80%;
@@ -76,10 +85,10 @@
     display: flex;
 }
 .pizzaFicha{
-    width: 70%;
+    width: 100%;
     margin-left: 5px;
-    font-family: "Roboto-Condensed";
-    font-size: 13px;
+    font-family: "Roboto-CondensedItalic";
+    font-size: 12px;
     word-break: break-all;
     margin-bottom: 3px;
 }
@@ -87,8 +96,8 @@
     width: 30%;
     display: grid;
     place-items: center;
-    font-size: 16px;
-    font-family: "Roboto-Bold";
+    font-size: 14px;
+    font-family: "Roboto-Regular";
 }
 .pizza-input{
     width: 30%;

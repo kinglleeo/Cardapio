@@ -8,7 +8,7 @@ export default function cartHeader(){
     const [infoClientes, setInfoClientes] = useState([]);
     
     useEffect(()=>{
-        const cnpj = sessionStorage.getItem('cnpj');
+        const cnpj = localStorage.getItem('cnpj');
             setCnpj(cnpj)
         api
             .get(`/dadosEmpresa/${cnpj}`)
@@ -26,7 +26,12 @@ export default function cartHeader(){
             <TopoHeaderBar/>
             <div className='cartHeaderBody'>
                 <div className='logo-resta'>
-                    <img src={'data:image/png;base64,' + infoClientes.map((item) => item.FOTO)} alt='Restaurante' className='img-restaurante-logo'/>
+                {Array.isArray(infoClientes) ?  (
+                        infoClientes.map((item)=> 
+                            <div>
+                                <img src={'data:image/png;base64,' + item.FOTO} key={item.id} alt='Restaurante' className='img-restaurante-logo' />
+                            </div>
+                    )) : null} 
                 </div>
             </div>
         </div>
