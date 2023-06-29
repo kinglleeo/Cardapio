@@ -7,28 +7,21 @@
 
 .carrinho{
     position: fixed;
-    bottom: 40px; 
-    left: 20px;
-    right: 20px;
+    bottom: 40px;
+    right: 0;
     height: 60px;
-    border-radius: 5px;
+    width: 110px;
+    border-radius: 5px 0 0 5px;
     background-color: #FD4B2D;
     color: white;
     font-family: "Roboto-Condensed";
 }
 .caixa-carrinho{
-    height: 100%;
-    display: flex;
+    display: grid;
     place-items: center;
 }
-.margin1{
-    margin-left: 10px;
-}
-.margin2{
-    margin-right: 10px;
-}
 .quantidade-cart{
-    width: 25%;
+    height: 100%;
     display: flex;
     place-items: center;
     justify-content: space-evenly;
