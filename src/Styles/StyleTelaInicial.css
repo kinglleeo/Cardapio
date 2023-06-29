@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Roboto-Bold";
-    src: url('./fontes/roboto/Roboto-Bold.ttf');
+    src: url('../fontes/roboto/Roboto-Bold.ttf');
 }
 .main-TelaInicial{
     background-color: #FF8000;

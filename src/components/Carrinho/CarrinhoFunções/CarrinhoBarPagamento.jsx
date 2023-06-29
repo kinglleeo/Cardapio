@@ -19,7 +19,7 @@ export function CarrinhoBarPagamento({ Pedido, observacoesCart, tipo, setTipo, m
   const [idGarcom, setIdGarcom] = useState(null)
   const cart = useSelector(state => state.cart)
   const items_pedido = compra
-
+  
   useEffect(()=>{
       let total = new Decimal(0) || 0
       cart.forEach(item => {
@@ -35,7 +35,7 @@ export function CarrinhoBarPagamento({ Pedido, observacoesCart, tipo, setTipo, m
       setNumeroComanda(numerocomanda)
     const cnpj = sessionStorage.getItem('cnpj');
       setCpj(cnpj)
-    const idGarcom = sessionStorage.getItem('idGarcom');
+    const idGarcom = localStorage.getItem('idGarcom')
       setIdGarcom(idGarcom)
   })
 

@@ -1,6 +1,6 @@
 import { React } from 'react'
-import '../../../Styles/Styles.css'
-import { formCurrency } from '../../AA-utilidades/numeros';
+import '../../../../Styles/Styles.css'
+import { formCurrency } from '../../../AA-utilidades/numeros';
 import { useNavigate } from 'react-router-dom';
 
 export default function ProdutoList({ produto, subGrupo, grupo }){

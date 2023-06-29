@@ -1,10 +1,9 @@
 import { React, useState, useEffect } from 'react'
+import './Styles/StyleTelaInicial.css'
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios';
 import { iniciarRota } from './conecções/api';
-import './telainicialcardapio.css'
 import { api } from './conecções/api';
-import { BoxLoading  } from 'react-loadingg';
+import axios from 'axios';
 
 export default function TelaInicialCardapio(){
     const navigate = useNavigate()

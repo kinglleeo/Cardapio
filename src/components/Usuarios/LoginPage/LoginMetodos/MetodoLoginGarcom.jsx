@@ -1,16 +1,13 @@
 import { React, useState, useEffect } from 'react'
 import '../login.css'
 import { api } from '../../../../conecções/api'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 export default function MetodoLoginGarcom(){
     const [nome, setNome] = useState('')
     const [senha, setSenha] = useState('')
-    const [idGarcom, setIdGarcom] = useState('')
-    console.log(idGarcom)
+    const navigate = useNavigate();
 
-    useEffect(()=>{
-        sessionStorage.setItem('idGarcom', idGarcom)
-    })
     const Nome =(event)=>{
         setNome(event.target.value)
     }
@@ -20,15 +17,24 @@ export default function MetodoLoginGarcom(){
 
     const LoginGarcom = (nome, senha) => {
         api
-            .post(`/loginAtendente/:${nome}/:${senha}`)
+            .get(`/loginAtendente/${nome}/${senha}`)
             .then((response) => {
-                setIdGarcom(response.data);
+                if(response.data > 0){
+                    localStorage.setItem('idGarcom', response.data)
+                    navigate('/Main')
+                } else if (response.data === 0) {
+                    alert('Usuario não econtrado')
+                } else if (response.data === -1) {
+                    alert('error')
+                } else {
+                    ('error desconhecido')
+                }
             })
-            .catch((error) => {
-                alert('Usuario não encontrado')
+            .catch((error)=>{
+                alert(error)
             })
     };
-    
+
     return(
         <div className='loginBoxDados'>
             <div className='BoxNome'>

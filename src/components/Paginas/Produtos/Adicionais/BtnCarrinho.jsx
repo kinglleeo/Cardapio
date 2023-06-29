@@ -41,9 +41,9 @@ export default function BtnCarrinho({ totalCusto, PIZZA_MISTA, Produto, adiciona
       }, [existeTamanho, tamanhoEscolhido]);
 
     return(
-      <div className='barra-pagarAdicionais'>
+      <div className='barra-pagarAdicionais' onClick={()=> handleCarrinho(item, ID_GRUPO_OPCOES)}>
         <div className='pagarAdicionais-text'>
-          <button disabled={btnDesabilitado === true} onClick={()=> handleCarrinho(item, ID_GRUPO_OPCOES)} className='btn-adicionarAdicionais'> ADICIONAR </button>
+          <button disabled={btnDesabilitado === true} className='btn-adicionarAdicionais'> ADICIONAR </button>
         </div>
         <div className='pagarAdicionais-valor'>{formCurrency.format(totalCompra)}</div>   
       </div>

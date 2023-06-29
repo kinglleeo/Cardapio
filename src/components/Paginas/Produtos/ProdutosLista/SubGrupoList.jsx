@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import '../../../Styles/Styles.css';
-import { api } from '../../../conecções/api';
+import '../../../../Styles/Styles.css';
+import { api } from '../../../../conecções/api';
 import ProdutoList from './ProdutosList';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 

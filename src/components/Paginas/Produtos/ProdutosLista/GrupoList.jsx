@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import '../../../Styles/Styles.css'
-import { api } from '../../../conecções/api';
-import MenuBar from '../../navbar/menubar';
+import '../../../../Styles/Styles.css'
+import { api } from '../../../../conecções/api';
+import MenuBar from '../../../navbar/menubar';
 import SubGrupoList from './SubGrupoList';
 import { useNavigate } from 'react-router-dom';
 

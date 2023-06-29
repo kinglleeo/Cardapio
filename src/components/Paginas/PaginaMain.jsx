@@ -1,5 +1,5 @@
 import Header from '../header/Header';
-import GrupoList from './Produtos/GrupoList';
+import GrupoList from './Produtos/ProdutosLista/GrupoList';
 import BarraCarrinhoAtalho from '../Carrinho/BarraCarrinhoAtalho'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../Usuarios/LoginPage/Firebase/firebaseConfig';

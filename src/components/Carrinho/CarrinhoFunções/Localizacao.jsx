@@ -6,7 +6,8 @@ import '../../../Styles/StyleCarrinho.css'
 export default function Localizacao({ tipo, setMesaSelecionada }){
     const [localizacao, setLocalizacao] = useState([]);
     const [selectedMesa, setSelectedMesa] = useState(null);
-   
+    const [listaLocalizacaoAtiva, setListaLocalizacaoAtiva] = useState(null);
+    
     useEffect(()=>{
         api
             .get(`/listaMesas`)
@@ -25,15 +26,30 @@ export default function Localizacao({ tipo, setMesaSelecionada }){
         setSelectedMesa(index);
       };
 
+    const toggleListaLocalizacao = () => {
+        if (listaLocalizacaoAtiva === "ativo") {
+            setListaLocalizacaoAtiva(null);
+        } else {
+            setListaLocalizacaoAtiva("ativo");
+        }
+    } 
+
     return(
         <div>
             {tipo !== "mesa" 
                 ? (
                     <div>
                         <div className='cartTitulo'> 
-                            <div className='iconeLocalizacao'></div>
-                            <div className='carrinhoName'> Localização </div>
+                            <div className='iconeEnomeLocalizacao'>
+                                <div className='iconeLocalizacao'></div>
+                                <div className='carrinhoName'> Localização </div>
+                            </div>
+                            <div className='iconeSetaLocalizacao' onClick={toggleListaLocalizacao}>
+                                {listaLocalizacaoAtiva === "ativo" ? <div className='icone-setaBaixo'></div> : <div className='icone-setaCima'></div>}
+                            </div>
                         </div>
+                        {listaLocalizacaoAtiva === "ativo" 
+                            ? (
                         <div className='cartListItems'>
                             {localizacao.map((item, index)=>
                                 <div className={`card-mesa ${selectedMesa === index ? 'mudarCorCardMesa' : ''}`} onClick={() => selecionarMesa(item, index)}>
@@ -42,6 +58,7 @@ export default function Localizacao({ tipo, setMesaSelecionada }){
                                 </div>
                             )}
                         </div>
+                            ) : null }
                     </div>
                 )
                 : null
