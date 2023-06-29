@@ -6,7 +6,7 @@ import './cssParaPizzas.css'
 import '../../../../../Styles/Styles.css'
 
 
-export default function ListaProdutosAdicionais({ quantidadeTotal, setQuantidadeTotal, listaSaboresPizzas, setListaSaboresPizzas, Min, Max, setSaboresSelecionados, SaboresSelecionados }) {
+export default function ListaSaboresPizza({ quantidadeTotal, setQuantidadeTotal, listaSaboresPizzas, setListaSaboresPizzas, Min, Max, setSaboresSelecionados, SaboresSelecionados }) {
   const [listaSalgadasAtiva, setListaSalgadasAtiva] = useState(null);
   const [listaDocesAtiva, setListaDocesAtiva] = useState(null);
   const Idsalgadas = '1'
@@ -33,7 +33,7 @@ export default function ListaProdutosAdicionais({ quantidadeTotal, setQuantidade
     updatedListaOpcionais[index].quantidade = quantidade.plus(1).toNumber();
       setListaSaboresPizzas(updatedListaOpcionais);
   };
-
+ 
   const diminuirQuantidade = (index) => {
     const updatedListaOpcionais = [...listaSaboresPizzas];
     const quantidade = new Decimal(updatedListaOpcionais[index].quantidade);

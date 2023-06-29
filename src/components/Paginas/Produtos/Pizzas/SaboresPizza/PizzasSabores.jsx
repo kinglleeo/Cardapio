@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Header from '../../../../header/Header';
 import GruposDeSabores from './GrupoDeSabores';
 
-export default function Adicionais({ quantidadeTotal, setValorTotalCustoPizza, setQuantidadeTotal, setValorTotalSabores, setSaboresSelecionados, SaboresSelecionados  }) {
+export default function PizzaSabores({ listaSaboresPizzas, setListaSaboresPizzas, quantidadeTotal, setValorTotalCustoPizza, setQuantidadeTotal, setValorTotalSabores, setSaboresSelecionados, SaboresSelecionados  }) {
   
   return (
     <div>
@@ -11,6 +11,8 @@ export default function Adicionais({ quantidadeTotal, setValorTotalCustoPizza, s
             setValorTotalSabores={setValorTotalSabores}
             setSaboresSelecionados={setSaboresSelecionados}
             SaboresSelecionados={SaboresSelecionados}
+            listaSaboresPizzas={listaSaboresPizzas}
+            setListaSaboresPizzas={setListaSaboresPizzas}
 
             quantidadeTotal={quantidadeTotal}
             setQuantidadeTotal={setQuantidadeTotal}

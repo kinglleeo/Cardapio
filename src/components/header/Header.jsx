@@ -32,7 +32,6 @@ export default function Header (){
         <div className='paginaHeader'>
         <div className='header-header'>
                 <div className='header-login'>
-                    <button className='btn-login-header' onClick={Login}> Entrar </button>
                 </div>
                 <div className='logo-garline-header'>
                     <div className='logo-garline'></div>

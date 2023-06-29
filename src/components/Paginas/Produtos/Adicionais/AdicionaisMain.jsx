@@ -5,7 +5,7 @@ import AdicionaisTamanho from '../AdicionaisTamanho/AdicionaisTamanho'
 import GrupoAdicionais from './GrupoAdicionais'
 import Observacoes from './Observacoes'
 import { useLocation } from 'react-router-dom';
-import AdicionarHeaderBar from './AdicionarHeaderBar'
+import TopoHeaderBar from '../../../header/TopoHeaderBar'
 import Footer from '../../../Footer/Footer'
 import BtnCarrinho from './BtnCarrinho'
 import '../../../../Styles/Styles.css'
@@ -38,7 +38,7 @@ export default function AdicionaisMain(){
         <div className='pagina'>
             <div className='Main'>
             <div>
-                <AdicionarHeaderBar/>
+                <TopoHeaderBar/>
             </div>
             <div>
                 <AdicionaisInfo

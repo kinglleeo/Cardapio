@@ -7,12 +7,11 @@ import ListaSaboresPizzas from './ListaSaboresPizzas'
 import Decimal from 'decimal.js';
 
 
-export default function GruposAdicionais({ quantidadeTotal, setQuantidadeTotal, setValorTotalCustoPizza, setValorTotalSabores, setSaboresSelecionados, SaboresSelecionados }){
+export default function GruposSabores({ listaSaboresPizzas, setListaSaboresPizzas, quantidadeTotal, setQuantidadeTotal, setValorTotalCustoPizza, setValorTotalSabores, setSaboresSelecionados, SaboresSelecionados }){
     const { state } = useLocation();
     const { data } = state;
     const queryClient = useQueryClient();
-    const IdTamanho = data.ID;
-    const [listaSaboresPizzas, setListaSaboresPizzas] = useState([]);
+    const IdTamanho = data.ID; 
 
       useEffect(()=>{
         api

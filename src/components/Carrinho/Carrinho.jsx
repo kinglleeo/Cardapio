@@ -3,7 +3,7 @@ import { React, useState, useEffect } from 'react'
 import Header from '../header/Header'
 import Footer from '../Footer/Footer'
 import '../../Styles/Styles.css'
-import CartHeader from './CartHeader'
+import HeaderSimplificado from '../header/HeaderSimplificado'
 import Observacoes from './Observacoes'
 import { CartPagBar } from './CartPagBar'
 import Localizacao from './Localizacao'
@@ -18,7 +18,7 @@ return(
     <div className='pagina'>
       <div className='Main'>
         <div>
-          <CartHeader/>
+          <HeaderSimplificado/>
         </div>
         <div>
           <CartItem

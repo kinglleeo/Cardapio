@@ -6,7 +6,7 @@ export default function Footer(){
 
 
     return(
-        <div className='footer'>
+        <div className='footer' id='footer'>
             <div className='footerBlocoTexto'>
                 <div className='text-footer'> Garline </div>
                 <div className='text-footer'> BeD Info Services </div>

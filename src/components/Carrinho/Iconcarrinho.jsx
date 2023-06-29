@@ -7,8 +7,7 @@ import { formCurrency } from '../AA-utilidades/numeros';
 export default function IconCarrinho() {
   const cart = useSelector((state) => state.cart);
   const [totalCart, setTotalCart] = useState('');
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const [isCartFixed, setIsCartFixed] = useState(false);
+  const [buttonBottom, setButtonBottom] = useState(0);
 
   const getTotalQuantity = () => {
     let total = 0;
@@ -25,35 +24,27 @@ export default function IconCarrinho() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const position = window.pageYOffset;
-      setScrollPosition(position);
+      const footer = document.getElementById('footer');
+      const footerRect = footer.getBoundingClientRect();
+      const buttonBottomPosition = footerRect.top - window.innerHeight + 110;
+
+      if (window.scrollY >= buttonBottomPosition) {
+        setButtonBottom(120);
+      } else {
+        setButtonBottom(40)
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
-
-  useEffect(() => {
-    const footerHeight = 40;
-    const windowHeight = window.innerHeight;
-    const contentHeight = document.body.offsetHeight;
-    const scrollThreshold = contentHeight - windowHeight - footerHeight;
-    const shouldFixCart = scrollPosition >= scrollThreshold;
-
-    setIsCartFixed(shouldFixCart);
-  }, [scrollPosition]);
-
-  useEffect(() => {
-    const cartBottomPosition = isCartFixed ? 150 : 40;
-
-    const cartElement = document.querySelector('.carrinho');
-    if (cartElement) {
-      cartElement.style.bottom = `${cartBottomPosition}px`;
-    }
-  }, [isCartFixed]);
+  
 
   return (
-    <div className='carrinho'>
+    <div className='carrinho' style={{ position: 'fixed', bottom: `${buttonBottom}px` }}>
       <div className='caixa-carrinho'>
         <div className='quantidade-cart margin1'>
           <div className='totalQuantidade-cart'>{getTotalQuantity() || 0} X</div>

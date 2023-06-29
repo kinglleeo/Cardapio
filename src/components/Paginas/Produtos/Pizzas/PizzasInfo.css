@@ -20,9 +20,21 @@
 .pizzasInfoCaixaSabores{
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 .pizzasInfoSabores{
     width: 45%;
     margin: 5px;
+    display: flex;
+}
+.iconeInfo{
+    height: 25px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../../../../imagens/iconePizza.png');
+    background-size: 100% 100%;
+}
+.nomeInfo{
+    margin-left: 5px;
     font-family: "Roboto-Light";
+    font-size: 14px;
 }

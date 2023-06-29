@@ -9,7 +9,7 @@ import BtnCarrinho from './BtnCarrinho-Pizza'
 import Footer from '../../../Footer/Footer'
 import './SaboresPizza/pizzas.css'
 import '../../../../Styles/Styles.css'
-import AdicionalHeaderBar from '../Adicionais/AdicionarHeaderBar'
+import TopoHeaderBar from '../../../header/TopoHeaderBar'
 
 export default function MainPizza(){
     const { state } = useLocation();
@@ -17,6 +17,7 @@ export default function MainPizza(){
     const { PIZZA_MISTA } = state;
     const { data } = state;
     //saboresPizza
+    const [listaSaboresPizzas, setListaSaboresPizzas] = useState([]);
     const [SaboresSelecionados, setSaboresSelecionados] = useState([]);
     const [valorTotalSabores, setValorTotalSabores] = useState('');
     const [valorTotalCustoPizza, setValorTotalCustoPizza] = useState(0)
@@ -37,7 +38,7 @@ export default function MainPizza(){
         <div className='pagina'>
         <div className='Main'>
             <div>
-                <AdicionalHeaderBar/>
+                <TopoHeaderBar/>
             </div>
             <div>
                 <PizzasInfo
@@ -59,6 +60,9 @@ export default function MainPizza(){
                         observacoes={observacoes}
                         setTotalCompra={setTotalCompra}
                         setCustoCompra={setCustoCompra}
+
+                        listaSaboresPizzas={listaSaboresPizzas}
+                        setListaSaboresPizzas={setListaSaboresPizzas}
                 />
             </div>
             <div>
@@ -66,6 +70,8 @@ export default function MainPizza(){
                     setValorTotalSabores={setValorTotalSabores}
                     setSaboresSelecionados={setSaboresSelecionados}
                     SaboresSelecionados={SaboresSelecionados}
+                    listaSaboresPizzas={listaSaboresPizzas}
+                    setListaSaboresPizzas={setListaSaboresPizzas}
                     
                     quantidadeTotal={quantidadeTotal}
                     setQuantidadeTotal={setQuantidadeTotal}
