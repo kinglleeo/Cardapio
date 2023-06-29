@@ -15,20 +15,20 @@
     background-color: #FD4B2D;
     color: white;
     font-family: "Roboto-Condensed";
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
-.caixa-carrinho{
+.totalQuantidade-cart{
     display: grid;
     place-items: center;
-}
-.quantidade-cart{
-    height: 100%;
-    display: flex;
-    place-items: center;
-    justify-content: space-evenly;
+    margin: 5px;
 }
 .totalQuantidade-cart-svg{
-    height: 30px;
     width: 30px;
+    height: 30px;
+    margin: 5px;
 }
 .img-cartCheio{
     height: 100%;
