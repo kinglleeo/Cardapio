@@ -9,7 +9,7 @@ export default function BtnCarrinho({ totalCusto, Produto, PIZZA_MISTA, SaboresS
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const queryClient = useQueryClient();
-
+ 
     const item ={
         produto: Produto,
         adicionalSelecionado: adicionalSelecionado,
@@ -19,9 +19,8 @@ export default function BtnCarrinho({ totalCusto, Produto, PIZZA_MISTA, SaboresS
         tipo: PIZZA_MISTA,
         custoTotal: totalCusto
     }
-
     const handleCarrinho=(item, ID_GRUPO_OPCOES)=>{
-        dispatch(addToCart(item))
+          dispatch(addToCart(item))
             const cachedData = queryClient.clear(['listaAdicionais', ID_GRUPO_OPCOES])
         navigate('/Carrinho')
     }

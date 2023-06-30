@@ -9,10 +9,12 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import BarraCarrinhoAtalho from '../../../Carrinho/BarraCarrinhoAtalho'
 import { addToCart } from '../../../../redux/cartSlice'
+import { render } from 'react-dom';
 
 export default function Historico(){
     const [historico, sethistorico] = useState([]);
     const [user, setUser] = useState('');
+    const [listaHistorico, setListaHistorico] = useState(null);
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -39,7 +41,7 @@ export default function Historico(){
     useEffect(() => {
       if (user) {
         const fetchHistorico = async () => {
-          const querySnapshot = await getDocs(collection(db, "usuario", user, "pedidos"));
+          const querySnapshot = await getDocs(collection(db, "usuarios", user, "pedidos"));
           const historicoData = querySnapshot.docs.map((doc) => doc.data());
           sethistorico(historicoData);
         };
@@ -51,77 +53,68 @@ export default function Historico(){
       dispatch(addToCart(item))
     }
 
+    const toggleListaHistorico = () => {
+      if (listaHistorico === "ativo") {
+        setListaHistorico(null);
+      } else {
+        setListaHistorico("ativo");
+      }
+  } 
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+  const abrirHistoricoProduto=()=>{
+    return(
+      <div className="corpoFlutuante">
+          
+      </div>
+  );
+  }
+  const abrirHistoricoPizza=()=>{
+    
+  }
 
     return(
-        <div className='lista-historico'>
-          {historico.map((item)=>
-            <div className='historicoItem-box'>
-              <div className='historico-date'> Dia {formatDate(item.date)}</div>
+      <div>
+        {Array.isArray(historico) ? (
+          historico.map((item)=>
+            <div className='listaHistorico'>
+              <div className='tituloData' onClick={toggleListaHistorico}> 
+                <div className='tituloTexto'> {formatDate(item.date)} </div>
+                  <div className='caixaIconeTitulo'>
+                    {listaHistorico === "ativo" ? <div className='tituloSetaCima'></div> : <div className='tituloSetaBaixo'></div>}
+                  </div>
+              </div>
               <div>
-                {item.items.map((item)=>
+                {listaHistorico === "ativo" ?(
                   <div>
-                    {item.tipo === "NAO" ? (
-                      <div>
-                        <div className='carde carde-cart'>
-                        <div className='carde-inner'>
-                          <div className='cart-box'>
-                            <div className='cart-item2'>
-                              <div className='box-item-cart'>
-                                <div className='cart-box-item-name'>
-                                  <div> {item.produto.PRODUTO} </div><div> {item.quantity} </div>
-                                </div>
-                                <div className='cart-box-item-descricao'>
-                                  <div></div>
-                                </div>
-                              </div>
-                            </div>
+                    {item.items.map((item)=> 
+                      item.tipo === "NAO" ?(
+                          <div className='cardHistorico' onClick={abrirHistoricoProduto}>
+                            <div className='historicoNome'> {item.quantity} - {capitalizeFirstLetter(item.produto.PRODUTO.toLowerCase())} </div>
+                            <div className='historicoValor'> {formCurrency.format(item.totalCompra)} </div>
                           </div>
-                          <div className='cart-box-observacoes'>
-                            <div> {formCurrency.format(item.totalCompra)} </div>
+                      ) : item.tipo === "SIM" ? (
+                        <div className='cardHistoricoPizza' onClick={abrirHistoricoPizza}>
+                          <div className='bixPizzahistorico'>
+                            <div className='historicoNome'> {item.quantity} - Pizza {capitalizeFirstLetter(item.produto.TAMANHO.toLowerCase())} </div>
+                            <div className='historicoValor'> {formCurrency.format(item.totalCompra)} </div>
                           </div>
-                          <div>
-                            <button onClick={()=> AddCart(item)}> Add Carrinho </button>
+                          <div className='historicoSabores'>
+                            {item.SaboresSelecionados.map((sabores)=>
+                                <div className='historicoItemSabor'> {sabores.PRODUTO.toLowerCase()} / </div>
+                            )}
                           </div>
                         </div>
-                      </div>
-                      </div>
-                    ) : (
-                      <div>
-                        <div className='carde carde-cart'>
-                        <div className='carde-inner'>
-                          <div className='cart-box'>
-                            <div className='cart-item2'>
-                              <div className='box-item-cart'>
-                                <div className='cart-box-item-name'>
-                                  <div> Pizza {item.produto.TAMANHO} </div><div> {item.quantity} </div>
-                                </div>
-                                <div className='cart-box-item-descricao'>
-                                  <div></div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className='cart-box-observacoes'>
-                            <div> {item.SaboresSelecionados.map(item => item.PRODUTO)} </div>
-                          </div>
-                          <div>
-                            <div> {formCurrency.format(item.totalCompra)} </div>
-                          </div>
-                          <div>
-                            <button onClick={()=> AddCart(item)}> Add Carrinho </button>
-                          </div>
-                        </div>
-                      </div>
-                      </div>
+                      ) : null
                     )}
                   </div>
-                )}
-              </div>
+                ) : null}
+              </div>              
             </div>
-          )}
-          <div>
-            <BarraCarrinhoAtalho/>
-          </div>
-        </div>
+          )
+        ) : null }
+      </div>
     )
 }

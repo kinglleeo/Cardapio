@@ -23,8 +23,20 @@
 }
 .header-login{
     width: 40%;
-    display: grid;
-    place-items: center;
+    display: flex;
+}
+.caixaIconeUsuario{
+    width: 50px;
+    height: 100%;
+    margin-left: 10px;
+}
+.iconeUsuario{
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: transparent;
+    border: none;
+    background-image: url('../../imagens/iconeUsuario.png');
+    background-size: 100% 100%;
 }
 .logo-garline-header{
     width: 60%;

@@ -18,7 +18,7 @@ export function CarrinhoBarPagamento({ Pedido, observacoesCart, tipocomanda, set
   const [idGarcom, setIdGarcom] = useState('')
   const cart = useSelector(state => state.cart)
   const items_pedido = compra
-console.log(Pedido)
+
   useEffect(() => {
     if (cart && Array.isArray(cart)) {
       let total = new Decimal(0) || 0;
@@ -99,8 +99,8 @@ console.log(Pedido)
   
 
   const handlePagar = (cnpj, tipocomanda, numerocomanda, idGarcom, totalCart, mesaSelecionada, items_pedido, observacoesCart) => {
-    EnviarPedidoAPI(cnpj, tipocomanda, numerocomanda, idGarcom, totalCart, mesaSelecionada, items_pedido, observacoesCart)
-    //BancodePedidos(Pedido)
+    //EnviarPedidoAPI(cnpj, tipocomanda, numerocomanda, idGarcom, totalCart, mesaSelecionada, items_pedido, observacoesCart)
+    BancodePedidos(Pedido)
     //dispatch(clearCart());
     //navigate('/Main');
   };

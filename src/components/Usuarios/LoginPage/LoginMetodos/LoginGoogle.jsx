@@ -19,9 +19,11 @@ export default function LoginSociais () {
   };
 
   firebase.initializeApp(firebaseConfig);
-    
-    // Configuração do FirebaseUI
     const uiConfig = {
+      callbacks: {
+        signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+          navigate('/Main')
+        }},
       signInOptions: [
         {
           provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,

@@ -2,10 +2,13 @@ import { React, useEffect, useState } from 'react'
 import './StyleHeaders.css'
 import { api } from '../../conecções/api'
 import { useNavigate } from 'react-router-dom'
+import { onAuthStateChanged } from 'firebase/auth'
+import { auth } from '../Usuarios/LoginPage/Firebase/firebaseConfig';
 
 export default function Header (){
     const [infoClientes, setInfoClientes] = useState([])
     const [cnpj, setCnpj] = useState('')
+    const [user, setUser] = useState('');
     const navigate = useNavigate()
 
     useEffect(()=>{
@@ -18,11 +21,25 @@ export default function Header (){
             }); 
     }, [setInfoClientes])
 
-        
+    useEffect(()=>{
+      const usuario = onAuthStateChanged(auth, (user)=>{
+          setUser(user)
+      })
+    }, []); 
+    
+    const PaginaUsuario =()=>{
+        navigate('/PaginaUsuario')
+    }
+
     return(
         <div className='paginaHeader'>
         <div className='header-header'>
                 <div className='header-login'>
+                    {user !== '' ? (
+                        <div className='caixaIconeUsuario'>
+                            <button className='iconeUsuario' onClick={PaginaUsuario}></button>
+                        </div>
+                    ) : ('')}
                 </div>
                 <div className='logo-garline-header'>
                     <div className='logo-garline'></div>

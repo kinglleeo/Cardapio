@@ -1,18 +1,23 @@
 import React from 'react'
 import Infos from './Infos'
 import Historico from './Historico'
-
+import Footer from '../../../Footer/Footer'
 
 export default function PaginaUsuario(){
     
 
     return(
-        <div className=''>
+        <div className='paginaUser'>
+            <div className='principalUser'>
+                <div>
+                    <Infos/>
+                </div>
+                <div>
+                    <Historico/>
+                </div>
+                </div>
             <div>
-                <Infos/>
-            </div>
-            <div>
-                <Historico/>
+                <Footer/>
             </div>
         </div>
     )

@@ -1,4 +1,27 @@
+@font-face {
+   font-family: "Roboto-Bold";
+   src: url('../../../../fontes/roboto/Roboto-Bold.ttf');
+ }
 .infos{
-    height: 150px;
-    background-color: aqua;
+   margin-top: 50px;
+}
+.usuarioInfos{
+   margin: 5px;
+   background-color: #fc740d;
+   border-radius: 5px;
+   padding: 10px;
+   display: flex;
+   justify-content: space-evenly;
+}
+.iconeInfsoUser{
+   height: 50px;
+   aspect-ratio: 1 / 1;
+   background-image: url('../../../../imagens/iconeNomeUser.png');
+   background-size: 100% 100%;
+}
+.itemInfos{
+   margin: 5px;
+   display: grid;
+   place-items: center;
+   font-family: "Roboto-Bold";
 }

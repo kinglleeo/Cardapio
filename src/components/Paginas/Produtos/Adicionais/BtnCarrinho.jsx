@@ -11,9 +11,8 @@ export default function BtnCarrinho({ totalCusto, PIZZA_MISTA, Produto, adiciona
     const navigate = useNavigate()
     const queryClient = useQueryClient();
     const [btnDesabilitado, setBtnDesabilitado] = useState(true)
+    const [newTamanho, setNewTamanho]= useState('');
  
-   
-
     const item ={
         produto: Produto,
         adicionalSelecionado: adicionalSelecionado,
@@ -23,7 +22,6 @@ export default function BtnCarrinho({ totalCusto, PIZZA_MISTA, Produto, adiciona
         tipo: PIZZA_MISTA,
         custoTotal: totalCusto,
     }
-   console.log(tamanhoEscolhido)
 
     const handleCarrinho=(item, ID_GRUPO_OPCOES)=>{
         dispatch(addToCart(item))
