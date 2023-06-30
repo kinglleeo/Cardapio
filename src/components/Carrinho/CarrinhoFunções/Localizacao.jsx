@@ -45,7 +45,7 @@ export default function Localizacao({ tipo, setMesaSelecionada }){
                                 <div className='carrinhoName'> Localização </div>
                             </div>
                             <div className='iconeSetaLocalizacao' onClick={toggleListaLocalizacao}>
-                                {listaLocalizacaoAtiva === "ativo" ? <div className='icone-setaBaixo'></div> : <div className='icone-setaCima'></div>}
+                                {listaLocalizacaoAtiva === "ativo" ? <div className='icone-setaCima'></div> : <div className='icone-setaBaixo'></div>}
                             </div>
                         </div>
                         {listaLocalizacaoAtiva === "ativo" 

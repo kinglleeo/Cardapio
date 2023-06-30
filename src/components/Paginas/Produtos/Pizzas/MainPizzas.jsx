@@ -9,6 +9,7 @@ import BtnCarrinho from './BtnCarrinhoPizza'
 import Footer from '../../../Footer/Footer'
 import '../../../../Styles/StylePizzas.css'
 import '../../../../Styles/Styles.css'
+import Topo from '../../../AA-utilidades/Topo'
 
 
 export default function MainPizza(){
@@ -104,6 +105,9 @@ export default function MainPizza(){
                     quantidadeTotal={quantidadeTotal}
                     ID_GRUPO_OPCOES={ID_GRUPO_OPCOES}
                 />
+            </div>
+            <div>
+                <Topo/>
             </div>
         </div>
             <Footer/>

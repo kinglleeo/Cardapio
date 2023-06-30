@@ -12,7 +12,7 @@ export default function TopoPagina(){
 
     return(
         <div className='btn-topo-pagina'>
-            <button className='btn-topo' onClick={handleTopo}> ↑ </button>
+            <button className='btn-topo' onClick={handleTopo}></button>
         </div>
     )
 }

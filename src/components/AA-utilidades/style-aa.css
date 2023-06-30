@@ -1,25 +1,20 @@
 .btn-topo-pagina{
     position: fixed;
-    bottom: 10px;
-    left: 10px;
+    bottom: 30px;
+    left: 0;
     height: 30px;
     width: 30px;
 }
 .btn-topo{
-    height: 100%;
-    width: 100%;
+    background-color: transparent;
+    border: none;
 }
 .btn-topo {
-    font-size: 20px;
-    background-color: white;
-    color: black;
     width: 45px;
     height: 45px;
-    opacity: 0.75;
-    border: 1px solid #e7eae8;
-    border-radius: 8px;
     cursor: pointer;
-    animation: bounce_513 1s infinite;
+    background-image: url('../../imagens/iconeCima.png');
+    background-size: 100% 100%;
 }
 @keyframes bounce_513 {
     0%,
