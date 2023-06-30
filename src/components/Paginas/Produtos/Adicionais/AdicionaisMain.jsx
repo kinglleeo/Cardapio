@@ -56,6 +56,7 @@ export default function AdicionaisMain(){
                     //
                     setTotalCompra={setTotalCompra}
                     setCustoCompra={setCustoCompra}
+                    totalCompra={totalCompra}
                 />
             </div>
             <div>

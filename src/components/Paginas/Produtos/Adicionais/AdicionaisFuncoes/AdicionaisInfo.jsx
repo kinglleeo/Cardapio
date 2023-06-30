@@ -4,17 +4,28 @@ import '../../../../../Styles/Styles.css'
 import '../../../../../Styles/StyleForAdicionais.css'
 import { formCurrency } from '../../../../AA-utilidades/numeros';
 
-export default function AdicionaisInfo({ setTotalCompra, setCustoCompra, valorTotalItem, valorTotalCusto, grupo, Produto, adicionalSelecionado, tamanhoEscolhido, observacoes, ID_GRUPO_OPCOES, existeTamanho }){
-    console.log(Produto)
+export default function AdicionaisInfo({ existeTamanho, totalCompra, setTotalCompra, setCustoCompra, valorTotalItem, valorTotalCusto, Produto, tamanhoEscolhido }){
+    
     useEffect(() => {
-        const valorVenda = new Decimal(tamanhoEscolhido !== null ? (tamanhoEscolhido.VALOR_VENDA) : (Produto.VALOR_MINIMO));
-        const valorCusto = new Decimal(tamanhoEscolhido !== null ? (tamanhoEscolhido.VALOR_CUSTO) : (Produto.VALOR_CUSTO));
-    
-        const newTotalCompra = valorVenda.plus(valorTotalItem);
-        const newCustoCompra = valorCusto.plus(valorTotalCusto);
-    
-        setTotalCompra(newTotalCompra.toNumber().toFixed(2));
-        setCustoCompra(newCustoCompra.toNumber().toFixed(2));
+        if(existeTamanho === false){
+            const valorVenda = new Decimal(Produto.VALOR_VENDA);
+            const valorCusto = new Decimal(Produto.VALOR_CUSTO);
+        
+            const newTotalCompra = valorVenda.plus(valorTotalItem);
+            const newCustoCompra = valorCusto.plus(valorTotalCusto);
+        
+            setTotalCompra(newTotalCompra.toNumber().toFixed(2));
+            setCustoCompra(newCustoCompra.toNumber().toFixed(2));
+        } else if (existeTamanho === true){
+            const valorVenda = new Decimal(tamanhoEscolhido !== null ? (tamanhoEscolhido.VALOR_VENDA) : (0));
+            const valorCusto = new Decimal(tamanhoEscolhido !== null ? (tamanhoEscolhido.VALOR_CUSTO) : (0));
+        
+            const newTotalCompra = valorVenda.plus(valorTotalItem);
+            const newCustoCompra = valorCusto.plus(valorTotalCusto);
+        
+            setTotalCompra(newTotalCompra.toNumber().toFixed(2));
+            setCustoCompra(newCustoCompra.toNumber().toFixed(2));
+        }
       }, [valorTotalItem, valorTotalCusto, tamanhoEscolhido]);
 
     
@@ -30,21 +41,11 @@ export default function AdicionaisInfo({ setTotalCompra, setCustoCompra, valorTo
                                 </div>
                         </div>
                         <div className='produto-valor'>
-                            <div className='box-valor'>
-                                    {Produto.VALOR_MINIMO > 0 ? (
-                                <div>
-                                    <div>{formCurrency.format(Produto.VALOR_MINIMO)}</div>
-                                </div>
-                                    ) : (
-                                <div>
-                                    <div>{formCurrency.format(Produto .VALOR_VENDA)}</div>
-                                </div>
-                                    )}
-                            </div>
+                            <div className='box-valor'> {formCurrency.format(totalCompra)} </div>
                         </div>
                     </div>
                     <div className='produtos-img'>
-                        <img src={'data:image/png;base64,' + Produto.IMAGEM_WEB} key={Produto.ID_PRODUTO} alt='Restaurante' className='img-produto'/>
+                        <img src={'data:image/png;base64,' + Produto.IMAGEM_WEB} key={Produto.ID_PRODUTO} alt='Restaurante' className='img-produto limiteimg'/>
                     </div>
                 </div>
             </div>
