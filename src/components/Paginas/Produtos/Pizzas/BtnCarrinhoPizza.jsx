@@ -26,11 +26,13 @@ export default function BtnCarrinho({ totalCusto, Produto, PIZZA_MISTA, SaboresS
         navigate('/Carrinho')
     }
     return(
-        <div className='barra-pagarAdicionais' onClick={()=> handleCarrinho(item, ID_GRUPO_OPCOES)}>
-            <div className='pagarAdicionais-text'>
-                <button disabled={quantidadeTotal === 0} className='btn-adicionarAdicionais'> ADICIONAR </button>
-            </div>
-            <div className='pagarAdicionais-valor'> {formCurrency.format(totalCompra)} </div>
+        <button className='btnPagarAdicionais' onClick={()=> handleCarrinho(item, ID_GRUPO_OPCOES)} disabled={quantidadeTotal === 0}>
+        <div className='barra-pagarAdicionais'>
+          <div className='pagarAdicionais-text'>
+            <div className='btn-adicionarAdicionais'> ADICIONAR </div>
+          </div>
+          <div className='pagarAdicionais-valor'>{formCurrency.format(totalCompra)}</div>   
         </div>
+      </button>
     )
 }
