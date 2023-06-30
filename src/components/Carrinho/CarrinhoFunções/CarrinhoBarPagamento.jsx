@@ -18,7 +18,7 @@ export function CarrinhoBarPagamento({ Pedido, observacoesCart, tipocomanda, set
   const [idGarcom, setIdGarcom] = useState('')
   const cart = useSelector(state => state.cart)
   const items_pedido = compra
-
+console.log(Pedido)
   useEffect(() => {
     if (cart && Array.isArray(cart)) {
       let total = new Decimal(0) || 0;
@@ -67,8 +67,8 @@ export function CarrinhoBarPagamento({ Pedido, observacoesCart, tipocomanda, set
             id_unidade: item.produto.ID_UNIDADE,
             id_produto: item.produto.ID_PRODUTO,
             valor_venda: item.totalCompra,
-            id_grade: item.tamanhoEscolhido.ID_GRADE ? item.tamanhoEscolhido.ID_GRADE : "",
-            id_tamanho: item.tamanhoEscolhido.ID ? item.tamanhoEscolhido.ID : "",
+            id_grade: item.tamanhoEscolhido !== null ? item.tamanhoEscolhido.ID_GRADE : "",
+            id_tamanho: item.tamanhoEscolhido !== null ? item.tamanhoEscolhido.ID : "",
           };
         } else if (item.tipo === "SIM") {
           novoItemPedido = {

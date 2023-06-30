@@ -26,7 +26,7 @@ export default function AdicionaisInfo({ existeTamanho, totalCompra, setTotalCom
             setTotalCompra(newTotalCompra.toNumber().toFixed(2));
             setCustoCompra(newCustoCompra.toNumber().toFixed(2));
         }
-      }, [valorTotalItem, valorTotalCusto, tamanhoEscolhido]);
+      }, [valorTotalItem, valorTotalCusto, tamanhoEscolhido, existeTamanho]);
 
     
     return(

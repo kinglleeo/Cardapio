@@ -10,9 +10,9 @@ export default function BtnCarrinho({ totalCusto, PIZZA_MISTA, Produto, adiciona
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const queryClient = useQueryClient();
-    const [btnDesabilitado, setBtnDesabilitado] = useState(false)
+    const [btnDesabilitado, setBtnDesabilitado] = useState(true)
  
-    console.log(totalCompra)
+    console.log(tamanhoEscolhido)
 
     const item ={
         produto: Produto,
@@ -31,22 +31,24 @@ export default function BtnCarrinho({ totalCusto, PIZZA_MISTA, Produto, adiciona
     }
 
     useEffect(() => {
-        if (existeTamanho !== true) {
-          setBtnDesabilitado(false);
-        } else if (existeTamanho === true) {
-          if (Array.isArray(tamanhoEscolhido)) {
-            setBtnDesabilitado(true);
-          } else {
+        if (existeTamanho === true) {
+          if(tamanhoEscolhido !== null){
             setBtnDesabilitado(false);
-          } 
+          } else {
+            setBtnDesabilitado(true);
+          }
+        } else {
+          setBtnDesabilitado(false);
         }
+        
       }, [existeTamanho, tamanhoEscolhido]);
 
+    
     return(
-      <button className='btnPagarAdicionais' onClick={()=> handleCarrinho(item, ID_GRUPO_OPCOES)} disabled={tamanhoEscolhido === null}>
+      <button className='btnPagarAdicionais' onClick={()=> handleCarrinho(item, ID_GRUPO_OPCOES)} disabled={btnDesabilitado === true}>
         <div className='barra-pagarAdicionais'>
           <div className='pagarAdicionais-text'>
-            <button disabled={btnDesabilitado === true} className='btn-adicionarAdicionais'> ADICIONAR </button>
+            <div className='btn-adicionarAdicionais'> ADICIONAR </div>
           </div>
           <div className='pagarAdicionais-valor'>{formCurrency.format(totalCompra)}</div>   
         </div>
