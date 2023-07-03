@@ -13,7 +13,7 @@ export default function Historico(){
     const [user, setUser] = useState('');
     const [listaHistorico, setListaHistorico] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
-
+    const [itemModal, setItemModal] = useState('')
 
     useEffect(()=>{
         const usuario = onAuthStateChanged(auth, (user)=>{
@@ -56,6 +56,10 @@ export default function Historico(){
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
+  const chamarModal=(item)=>{
+    setIsOpen(true)
+    setItemModal(item)
+  }
 
     return(
       <div>
@@ -74,24 +78,26 @@ export default function Historico(){
                     {item.items.map((item)=> 
                       item.tipo === "NAO" ?(
                           <div>
-                            <div className='cardHistorico' onClick={()=> setIsOpen(true)}>
+                            <div className='cardHistorico' onClick={()=> chamarModal(item)}>
                               <div className='historicoNome'> {item.quantity} - {capitalizeFirstLetter(item.produto.PRODUTO.toLowerCase())} </div>
                               <div className='historicoValor'> {formCurrency.format(item.totalCompra)} </div>
                             </div>
-                            {isOpen && <Modal item={item} setIsOpen={setIsOpen} />}
+                              {isOpen && <Modal item={itemModal} setIsOpen={setIsOpen}/>}
                           </div>
                       ) : item.tipo === "SIM" ? (
-                        <div className='cardHistoricoPizza'  onClick={()=> setIsOpen(true)}>
-                          <div className='bixPizzahistorico'>
-                            <div className='historicoNome'> {item.quantity} - Pizza {capitalizeFirstLetter(item.produto.TAMANHO.toLowerCase())} </div>
-                            <div className='historicoValor'> {formCurrency.format(item.totalCompra)} </div>
+                        <div>
+                          <div className='cardHistoricoPizza'  onClick={()=> chamarModal(item)}>
+                            <div className='bixPizzahistorico'>
+                              <div className='historicoNome'> {item.quantity} - Pizza {capitalizeFirstLetter(item.produto.TAMANHO.toLowerCase())} </div>
+                              <div className='historicoValor'> {formCurrency.format(item.totalCompra)} </div>
+                            </div>
+                            <div className='historicoSabores'>
+                              {item.SaboresSelecionados.map((sabores)=>
+                                  <div className='historicoItemSabor'> {sabores.PRODUTO.toLowerCase()} / </div>
+                              )}
+                            </div>
                           </div>
-                          <div className='historicoSabores'>
-                            {item.SaboresSelecionados.map((sabores)=>
-                                <div className='historicoItemSabor'> {sabores.PRODUTO.toLowerCase()} / </div>
-                            )}
-                          </div>
-                            {isOpen && <Modal item={item} setIsOpen={setIsOpen} />}
+                            {isOpen && <Modal item={itemModal} setIsOpen={setIsOpen} />}
                         </div>
                       ) : null
                     )}

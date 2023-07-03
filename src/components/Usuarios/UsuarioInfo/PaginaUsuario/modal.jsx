@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 export default function modal({ setIsOpen, item }){
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    console.log(item)
+
 
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
@@ -16,12 +16,13 @@ export default function modal({ setIsOpen, item }){
     const AddCart=(item)=>{
         dispatch(addToCart(item))
     }
+
     return(
     <>
       <div className='darkBG' onClick={() => setIsOpen(false)} />
         <div className='centered'>
             <div className='modal'>
-                <button className='closeBtn' onClick={() => setIsOpen(false)}> <div className='iconeBtnCloseModal'></div> </button>
+            <button className='closeBtn' onClick={() => setIsOpen(false)}> <div className='iconeBtnCloseModal'></div> </button>
                 <div className='modalContent'>
                     {item.tipo === "NAO" ?(
                             <div className="modalItems">
@@ -37,7 +38,7 @@ export default function modal({ setIsOpen, item }){
                                         )
                                         ) : ('')}
                             </div>
-                        ) : item.tipo === "SIM" ? (
+                    ) : item.tipo === "SIM" ? (
                             <div className="modalItems">
                                 <div className='modalProduto'>{item.quantity} - Pizza {item.produto.TAMANHO}</div>
                                 <div>
@@ -57,11 +58,10 @@ export default function modal({ setIsOpen, item }){
                                             )
                                             ) : ('')}
                             </div>
-                        ): null 
-                    }
+                        ) : null}
                 </div>
                 <div className='modalValor'>{formCurrency.format(item.totalCompra)}</div>
-                    <button className='AddCartModal'> adicionar  </button>
+                    <button className='AddCartModal' onClick={()=> AddCart(item)}> adicionar  </button>
             </div>
         </div>
     </>

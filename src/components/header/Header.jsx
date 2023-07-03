@@ -8,7 +8,7 @@ import { auth } from '../Usuarios/LoginPage/Firebase/firebaseConfig';
 export default function Header (){
     const [infoClientes, setInfoClientes] = useState([])
     const [cnpj, setCnpj] = useState('')
-    const [user, setUser] = useState('');
+    const [user, setUser] = useState(null);
     const navigate = useNavigate()
 
     useEffect(()=>{
@@ -35,7 +35,7 @@ export default function Header (){
         <div className='paginaHeader'>
         <div className='header-header'>
                 <div className='header-login'>
-                    {user !== '' ? (
+                    {user !== null ? (
                         <div className='caixaIconeUsuario'>
                             <button className='iconeUsuario' onClick={PaginaUsuario}></button>
                         </div>

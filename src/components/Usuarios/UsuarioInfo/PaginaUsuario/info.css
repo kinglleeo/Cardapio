@@ -25,3 +25,13 @@
    place-items: center;
    font-family: "Roboto-Bold";
 }
+.caixaiconeLogout{
+   display: grid;
+   place-items: center;
+}
+.iconeLogout{
+   height: 40px;
+   aspect-ratio: 1 / 1;
+   background-image: url('../../../../imagens/iconeDesligar.png');
+   background-size: 100% 100%;
+}

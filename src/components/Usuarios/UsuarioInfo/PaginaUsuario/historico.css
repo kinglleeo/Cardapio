@@ -28,17 +28,19 @@
     background-color: #bdbdbd;
     flex-wrap: wrap;
     align-content: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 .tituloTexto{
     display: grid;
     place-items: center;
     font-family: "Roboto-Bold";
+    margin-left: 20px;
 }
 .caixaIconeTitulo{
     display: grid;
     place-items: center;
     margin-right: 20px;
+
 }
 .tituloSetaCima{
     height: 30px;
