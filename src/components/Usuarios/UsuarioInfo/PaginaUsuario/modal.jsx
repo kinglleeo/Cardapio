@@ -19,11 +19,11 @@ export default function modal({ setIsOpen, item }){
 
     return(
     <>
-      <div className='darkBG' onClick={() => setIsOpen(false)} />
-        <div className='centered'>
+        <div className='darkBG' onClick={() => setIsOpen(false)} />
+            <div className='centered'>
             <div className='modal'>
             <button className='closeBtn' onClick={() => setIsOpen(false)}> <div className='iconeBtnCloseModal'></div> </button>
-                <div className='modalContent'>
+                <div className='modalContent'> 
                     {item.tipo === "NAO" ?(
                             <div className="modalItems">
                                 <div className='modalProduto'>{item.quantity} - {capitalizeFirstLetter(item.produto.PRODUTO.toLowerCase())}</div>

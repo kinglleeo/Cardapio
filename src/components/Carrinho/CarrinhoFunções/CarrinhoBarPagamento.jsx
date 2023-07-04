@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { collection, addDoc, serverTimestamp, doc  } from "firebase/firestore";
 import { db, auth } from '../../Usuarios/LoginPage/Firebase/firebaseConfig'
+import { onAuthStateChanged } from 'firebase/auth'
 
 export function CarrinhoBarPagamento({ Pedido, observacoesCart, tipocomanda, setTipo, mesaSelecionada }) {
   const navigate = useNavigate();
@@ -16,9 +17,11 @@ export function CarrinhoBarPagamento({ Pedido, observacoesCart, tipocomanda, set
   const [numerocomanda, setNumeroComanda] = useState('');
   const [cnpj, setCpj] = useState('');
   const [idGarcom, setIdGarcom] = useState('')
+  const [delivery, setDelivery] = useState('')
+  const [user, setUser] = useState('')
+  const [desativarConfirmar, setDesativarConfirmar] = useState(false)
   const cart = useSelector(state => state.cart)
   const items_pedido = compra
-
   useEffect(() => {
     if (cart && Array.isArray(cart)) {
       let total = new Decimal(0) || 0;
@@ -40,6 +43,24 @@ export function CarrinhoBarPagamento({ Pedido, observacoesCart, tipocomanda, set
       setIdGarcom(idGarcom)
   }, [])
 
+  useEffect(()=>{
+    const delivery = localStorage.getItem('delivery')
+      setDelivery(delivery)
+    const usuario = onAuthStateChanged(auth, (user)=>{
+        setUser(user)
+    })
+  })
+  useEffect(() => {
+    if (delivery === 'sim' && user !== null) {
+      setDesativarConfirmar(false);
+    } else if (delivery === 'sim' && user === null) {
+      setDesativarConfirmar(true);
+    } else if (delivery === 'nao') {
+      setDesativarConfirmar(false);
+    } else if (cart.length === 0) {
+      setDesativarConfirmar(true);
+    }
+  }, [delivery, user, cart]);
     
 
   useEffect(() => {
@@ -159,7 +180,7 @@ export function CarrinhoBarPagamento({ Pedido, observacoesCart, tipocomanda, set
   return (
     <div>
       <div className='caixaBarPagar'>
-        <button className='cartBarPagar' onClick={()=> handlePagar(cnpj, tipocomanda, numerocomanda, idGarcom, totalCart, mesaSelecionada, items_pedido, observacoesCart)} disabled={cart === null}> 
+        <button className='cartBarPagar' onClick={()=> handlePagar(cnpj, tipocomanda, numerocomanda, idGarcom, totalCart, mesaSelecionada, items_pedido, observacoesCart)} disabled={desativarConfirmar === true}> 
           <div className='PagarTexto'> CONFIRMAR </div>
           <div className='pagarValor'> {formCurrency.format(totalCart)} </div>
         </button>

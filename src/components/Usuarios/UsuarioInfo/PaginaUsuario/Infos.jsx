@@ -10,7 +10,6 @@ export default function Infos(){
     const [user, setUser] = useState('');
     const navigate = useNavigate()
 
-    
     useEffect(()=>{
         const usuario = onAuthStateChanged(auth, (user)=>{
             setUser(user)
@@ -33,9 +32,15 @@ export default function Infos(){
             </div>
             <div className='infos'>
                 <div className='usuarioInfos'>
-                    <div className='iconeInfsoUser'></div>
-                    <div className='itemInfos'> {user.displayName !== null ?(user.displayName) : ('')} </div>
+                    {user.photoURL !== null ? (
+                        <img src={user.photoURL} className='fotoPerfil'/>
+                    ) : null}
                     <div className='caixaiconeLogout'><div className='iconeLogout' onClick={()=> deslogar()}></div></div>
+                    <div className='itemInfos'> {user.displayName !== null ?(user.displayName) : ('')} </div>
+                </div>
+                <div className='listaInfos'>
+                    <div className='infoEmail'> {user.email} </div>
+                    <div className='infoEmail'> {user.phoneNumber} </div>
                 </div>
             </div>
         </div>

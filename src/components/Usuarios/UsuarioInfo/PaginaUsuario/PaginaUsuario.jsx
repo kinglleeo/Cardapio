@@ -3,6 +3,7 @@ import Infos from './Infos'
 import Historico from './Historico'
 import Footer from '../../../Footer/Footer'
 import BarraCarrinhoAtalho from '../../../Carrinho/BarraCarrinhoAtalho'
+import EnderecosUsuario from './EnderecosUsuario'
 
 export default function PaginaUsuario(){
     
@@ -12,6 +13,9 @@ export default function PaginaUsuario(){
             <div className='principalUser'>
                 <div>
                     <Infos/>
+                </div>
+                <div>
+                    <EnderecosUsuario/>
                 </div>
                 <div>
                     <Historico/>

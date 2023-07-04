@@ -48,7 +48,7 @@ export default function Header (){
         <div className='Main-header'>   
             {Array.isArray(infoClientes) ?  (
                 infoClientes.map((item)=>
-                <div>
+                <div key={cnpj}>
                     <div className='body-header'>
                     <div className='banner-garline'>
                         <div className='banner-infos'>

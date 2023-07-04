@@ -45,6 +45,14 @@
     background-image: url('../imagens/iconeLocal.png');
     background-size: 100% 100%;
 }
+.iconeEntrega{
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 34px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../imagens/iconeDelivery.png');
+    background-size: 100% 100%;
+}
 .iconeSetaLocalizacao{
     display: grid;
     place-items: center;

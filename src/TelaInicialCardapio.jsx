@@ -13,12 +13,13 @@ export default function TelaInicialCardapio(){
     const [tipo, setTipo] = useState('')
     const [numerocomanda, setNumeroComanda] = useState('');
     
-    //http://suporte.bedinfoservices.com.br:3000/?tipo=mesa&numerocomanda:2&cnpj=76787191000145
+    //http://suporte.bedinfoservices.com.br:3000/?cnpj=76787191000145&tipo=mesa&numerocomanda=2&delivery=sim
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
         const tipo = urlParams.get('tipo');
         const numerocomanda = urlParams.get('numerocomanda');
         const cnpj = urlParams.get('cnpj');
+        const delivery = urlParams.get('delivery')
             setCnpj(cnpj)
             setTipo(tipo)
             setNumeroComanda(numerocomanda)
@@ -31,6 +32,7 @@ export default function TelaInicialCardapio(){
         localStorage.setItem('tipo', tipo);
         localStorage.setItem('numerocomanda', numerocomanda);
         localStorage.setItem('cnpj', cnpj);
+        localStorage.setItem('delivery', delivery);
         const timeout = setTimeout(() => {
             if(tipo !== null){
               navigate('/Main')

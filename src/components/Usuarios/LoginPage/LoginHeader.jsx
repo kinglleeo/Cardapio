@@ -28,7 +28,7 @@ export default function cartHeader(){
                 <div className='login-logo-resta'>
                     {Array.isArray(infoClientes) ?  (
                         infoClientes.map((item)=> 
-                            <div>
+                            <div key={cnpj}>
                                 <img src={'data:image/png;base64,' + item.FOTO} key={item.id} alt='Restaurante' className='img-restaurante-logo' />
                             </div>
                     )) : null}                    
