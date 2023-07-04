@@ -2,6 +2,7 @@ import { React, useState, useEffect } from 'react'
 import '../../../Styles/StyleCarrinho.css'
 import './entrega.css'
 import ModalEndereco from './ModalEndereco'
+import ModalEditarEndereco from './ModalEditarEndereco'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../../Usuarios/LoginPage/Firebase/firebaseConfig';
 
@@ -59,6 +60,7 @@ export default function Entrega(){
                             ): null}
                     </div>
                     {openCadastroEndereco && <ModalEndereco setOpenCadastroEndereco={setOpenCadastroEndereco}/>}
+                    {openEditarEndereco && <ModalEditarEndereco enderecoCompleto={enderecoCompleto} setOpenEditarEndereco={setOpenEditarEndereco}/>}
                 </div>
             ) : null}
         </div>
