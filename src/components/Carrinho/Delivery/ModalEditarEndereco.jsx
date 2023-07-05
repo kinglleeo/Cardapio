@@ -4,7 +4,7 @@ import './modalendereco.css'
 
 export default function ModalEndereco({ enderecoCompleto, setOpenEditarEndereco }){
         
-
+    console.log(enderecoCompleto)
     return(
         <>
         <div className='modalEndereco' onClick={()=> setOpenEditarEndereco(false)}/>

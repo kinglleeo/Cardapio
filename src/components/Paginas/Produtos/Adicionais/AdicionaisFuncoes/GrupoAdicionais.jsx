@@ -52,7 +52,8 @@ export default function GrupoAdicionais({ setValorTotalItem, setValorTotalCusto,
           [ID_GRUPO_OPCOES]: prevQuantidades[ID_GRUPO_OPCOES] || 0,
         }));
       } else {
-        api.get(`/listaOpcionais/${ID_GRUPO_OPCOES}`).then((getdata) => {
+        api.get(`/listaOpcionais/${ID_GRUPO_OPCOES}`)
+          .then((getdata) => {
           const data = getdata.data.map((item) => ({
             ...item,
             quantidade: 0,

@@ -16,12 +16,13 @@ export function CarrinhoBarPagamento({ Pedido, observacoesCart, tipocomanda, set
   const [totalCart, setTotalCart] = useState('');
   const [numerocomanda, setNumeroComanda] = useState('');
   const [cnpj, setCpj] = useState('');
-  const [idGarcom, setIdGarcom] = useState('')
+  const [idGarcom, setIdGarcom] = useState(null)
   const [delivery, setDelivery] = useState('')
   const [user, setUser] = useState('')
   const [desativarConfirmar, setDesativarConfirmar] = useState(false)
   const cart = useSelector(state => state.cart)
   const items_pedido = compra
+
   useEffect(() => {
     if (cart && Array.isArray(cart)) {
       let total = new Decimal(0) || 0;
@@ -39,9 +40,10 @@ export function CarrinhoBarPagamento({ Pedido, observacoesCart, tipocomanda, set
       setNumeroComanda(numerocomanda)
     const cnpj = localStorage.getItem('cnpj');
       setCpj(cnpj)
-    const idGarcom = localStorage.getItem('idGarcom')
+    const idGarcom = sessionStorage.getItem('idgarcom');
       setIdGarcom(idGarcom)
   }, [])
+
 
   useEffect(()=>{
     const delivery = localStorage.getItem('delivery')
@@ -61,7 +63,7 @@ export function CarrinhoBarPagamento({ Pedido, observacoesCart, tipocomanda, set
       setDesativarConfirmar(true);
     }
   }, [delivery, user, cart]);
-    
+
 
   useEffect(() => {
     if (Pedido && Array.isArray(Pedido)) {
@@ -79,7 +81,13 @@ export function CarrinhoBarPagamento({ Pedido, observacoesCart, tipocomanda, set
           pizza_mista: item.tipo,
           quantidade: item.quantity,
           observacao: item.observacoes,
-          opcional: item.adicionalSelecionado,
+          opcional: item.adicionalSelecionado.map((item)=>({
+            idopcional: item.ID,
+            descricao: item.DESCRICAO,
+            valorvenda: item.VALOR_VENDA,
+            quantidade: item.quantidade,
+            dividir: item.DIVIDIR 
+          })),
           sabores: []
         };
         if (item.tipo === "NAO") {
@@ -119,9 +127,9 @@ export function CarrinhoBarPagamento({ Pedido, observacoesCart, tipocomanda, set
   }, [Pedido, setCompra]);
   
 
-  const handlePagar = (cnpj, tipocomanda, numerocomanda, idGarcom, totalCart, mesaSelecionada, items_pedido, observacoesCart) => {
-    //EnviarPedidoAPI(cnpj, tipocomanda, numerocomanda, idGarcom, totalCart, mesaSelecionada, items_pedido, observacoesCart)
-    BancodePedidos(Pedido)
+  const handlePagar = () => {
+    EnviarPedidoAPI()
+    //BancodePedidos(Pedido)
     //dispatch(clearCart());
     //navigate('/Main');
   };
@@ -150,24 +158,26 @@ export function CarrinhoBarPagamento({ Pedido, observacoesCart, tipocomanda, set
   }
   
 
-  const EnviarPedidoAPI =(cnpj, tipocomanda, numerocomanda, idGarcom, totalCart, mesaSelecionada, items_pedido, observacoesCart)=>{
+  const EnviarPedidoAPI =()=>{
     axios
       .post(`http://192.168.0.100:9865/inserirPedido`, {
         cnpj: cnpj,
+        delivery: delivery,
         tipocomanda: tipocomanda,
         numerocomanda: numerocomanda,
         idgarcom: idGarcom,
         total: totalCart,
+        observacoespedido: observacoesCart,
         pagamento: 'balcão',
         localizacao: mesaSelecionada,
         items_pedido: items_pedido, 
-        observacoespedido: observacoesCart
       })
       .then((response)=>{
           console.log(response)
           alert('Pedido Feito')
       })
   }
+
   
   const handleCotinuar = () => {
     navigate('/Main');
@@ -180,13 +190,13 @@ export function CarrinhoBarPagamento({ Pedido, observacoesCart, tipocomanda, set
   return (
     <div>
       <div className='caixaBarPagar'>
-        <button className='cartBarPagar' onClick={()=> handlePagar(cnpj, tipocomanda, numerocomanda, idGarcom, totalCart, mesaSelecionada, items_pedido, observacoesCart)} disabled={desativarConfirmar === true}> 
+        <button className='cartBarPagar' onClick={()=> handlePagar()} disabled={desativarConfirmar === true}> 
           <div className='PagarTexto'> CONFIRMAR </div>
           <div className='pagarValor'> {formCurrency.format(totalCart)} </div>
         </button>
       </div>
       <div className='cartBarContinuar' onClick={handleCotinuar}> CONTINUAR COMPRANDO </div>
-      <div className='FazerLogin' onClick={handleLogar}> FAZER LOGIN </div>
+      {idGarcom === null ? (<div className='FazerLogin' onClick={handleLogar}> FAZER LOGIN </div>) : null}
     </div>
   );
 }

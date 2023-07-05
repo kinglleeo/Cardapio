@@ -20,7 +20,7 @@ export default function MetodoLoginGarcom(){
             .get(`/loginAtendente/${nome}/${senha}`)
             .then((response) => {
                 if(response.data > 0){
-                    localStorage.setItem('idGarcom', response.data)
+                    sessionStorage.setItem('idgarcom', response.data)                    
                     navigate('/Main')
                 } else if (response.data === 0) {
                     alert('Usuario não econtrado')

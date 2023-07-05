@@ -14,7 +14,6 @@ export default function Localizacao({ tipo, setMesaSelecionada }){
             .then((getdata)=>{
                 setLocalizacao(getdata.data);
             });
-        
     }, [])
 
     const selecionarMesa = (item, index) => {
@@ -36,7 +35,7 @@ export default function Localizacao({ tipo, setMesaSelecionada }){
 
     return(
         <div>
-            {tipo !== "mesa" 
+            {tipo === "CARTAO" 
                 ? (
                     <div>
                         <div className='cartTitulo'> 
