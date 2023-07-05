@@ -36,7 +36,11 @@ export default function TelaInicialCardapio(){
         const timeout = setTimeout(() => {
             if(tipo !== null){
               navigate('/Main')
-            } else if (tipo === null){{
+            } 
+            else if (tipo === null && delivery === "SIM"){{
+              navigate('/Main')
+            }} 
+            else if (tipo === null){{
               navigate('/LoginGarcom')
             }} 
           }, 3000);

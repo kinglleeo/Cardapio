@@ -14,7 +14,9 @@ export default function CarrinhoMain(){
   const [pedido, setPedido] = useState([]);
   const [tipo, setTipo] = useState(null);
   const [mesaSelecionada, setMesaSelecionada] = useState(null);
-  
+  const [opçaoEscolhida, setOpçaoEscolhida] = useState('')
+  const [numeroComanda, setNumeroComanda] = useState('')
+
 return(
     <div className='pagina'>
       <div className='Main'>
@@ -32,10 +34,14 @@ return(
             />
         </div>
         <div>
-          <FunçõesCarrinho/>
+          <FunçõesCarrinho
+            setOpçaoEscolhida={setOpçaoEscolhida}
+            setNumeroComanda={setNumeroComanda}
+          />
         </div>
         <div>
           <Localizacao
+            opçaoEscolhida={opçaoEscolhida}
             tipo={tipo}
             setMesaSelecionada={setMesaSelecionada}
           />
@@ -50,6 +56,8 @@ return(
             Pedido={pedido}
             observacoesCart={observacoesCart}
             mesaSelecionada={mesaSelecionada}
+            opçaoEscolhida={opçaoEscolhida}
+            numeroComanda={numeroComanda}
           />
         </div>
       </div>

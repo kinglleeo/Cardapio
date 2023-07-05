@@ -1,12 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css'
 import { useNavigate } from 'react-router-dom';
+import { onAuthStateChanged } from 'firebase/auth'
+import { auth } from '../Firebase/firebaseConfig';
 
 export default function LoginSociais () {
   const navigate = useNavigate()  
+  
+
   useEffect(() => {
     const firebaseConfig = {
       apiKey: "AIzaSyBDEDA0OOXbRvb_oYARfYB2y9d7k0azFd0",
@@ -21,7 +25,8 @@ export default function LoginSociais () {
   firebase.initializeApp(firebaseConfig);
     const uiConfig = {
       callbacks: {
-        signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+        signInSuccessWithAuthResult: function(authResult) {
+          
           navigate('/Main')
         }},
       signInOptions: [

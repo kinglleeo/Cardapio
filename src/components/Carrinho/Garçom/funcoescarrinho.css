@@ -1,14 +1,35 @@
 .quandroFuncaoGarcom{
     margin-bottom: 5px;
     height: 50px;
-    background-color: #DBDBDB;
+    background-color: #ececec;
     display: flex;
     justify-content: space-evenly;
 }
 .itemsQuandroFuncaoGarcom{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+}
+.FuncaoGarcom-text{
+    display: grid;
+    place-items: center; 
+    margin-right: 10px;
+}
+.FuncaoGarcom-Icon{
     display: grid;
     place-items: center;
-    font-size: 16px;
+}
+.FuncaoGarcom-acesso{
+    height: 30px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../../../imagens/iconeRadioAcesso.png');
+    background-size: 100% 100%;
+}
+.FuncaoGarcom-apagado{
+    height: 30px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../../../imagens/iconeRadioApagado.png');
+    background-size: 100% 100%;
 }
 .inputNumeroComanda{
     height: 40px;

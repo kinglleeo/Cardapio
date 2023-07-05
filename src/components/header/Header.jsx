@@ -8,7 +8,7 @@ import { auth } from '../Usuarios/LoginPage/Firebase/firebaseConfig';
 export default function Header (){
     const [infoClientes, setInfoClientes] = useState([])
     const [cnpj, setCnpj] = useState('')
-    const [user, setUser] = useState(null);
+    const user = auth.currentUser;
     const navigate = useNavigate()
 
     useEffect(()=>{
@@ -20,12 +20,6 @@ export default function Header (){
                 setInfoClientes(getdata.data);
             }); 
     }, [setInfoClientes])
-
-    useEffect(()=>{
-      const usuario = onAuthStateChanged(auth, (user)=>{
-          setUser(user)
-      })
-    }, []); 
     
     const PaginaUsuario =()=>{
         navigate('/PaginaUsuario')

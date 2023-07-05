@@ -27,6 +27,7 @@ export default function Entrega(){
         })
     }, []);
 
+
     useEffect(()=>{
         const delivery = localStorage.getItem('delivery')
             setDelivery(delivery)
@@ -34,7 +35,7 @@ export default function Entrega(){
 
     return(
         <div>
-            {delivery === "sim" && user !== null ? (
+            {delivery === "SIM" && user !== null ? (
                 <div className='listaEndereço'>
                     <div className='cartTitulo entregaTitulo'> 
                         <div className='iconeEnomeLocalizacao'>

@@ -1,21 +1,14 @@
 import { React, useState, useEffect } from 'react'
 import './info.css'
-import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../../LoginPage/Firebase/firebaseConfig';
 import HeaderSimplificado from '../../../header/HeaderSimplificado';
 import { useNavigate } from 'react-router-dom';
 import { signOut } from "firebase/auth";
 
 export default function Infos(){
-    const [user, setUser] = useState('');
+    const user = auth.currentUser;
     const navigate = useNavigate()
-
-    useEffect(()=>{
-        const usuario = onAuthStateChanged(auth, (user)=>{
-            setUser(user)
-        })
-    }, []);
-
+    
     const deslogar =()=>{
         signOut(auth)
         .then(() => {

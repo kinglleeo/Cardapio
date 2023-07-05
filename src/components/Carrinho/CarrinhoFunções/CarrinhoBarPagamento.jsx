@@ -8,8 +8,9 @@ import axios from 'axios';
 import { collection, addDoc, serverTimestamp, doc  } from "firebase/firestore";
 import { db, auth } from '../../Usuarios/LoginPage/Firebase/firebaseConfig'
 import { onAuthStateChanged } from 'firebase/auth'
+import { api } from '../../../conecções/api';
 
-export function CarrinhoBarPagamento({ Pedido, observacoesCart, tipocomanda, setTipo, mesaSelecionada }) {
+export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, observacoesCart, tipocomanda, setTipo, mesaSelecionada }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [compra, setCompra] = useState([]);
@@ -40,18 +41,15 @@ export function CarrinhoBarPagamento({ Pedido, observacoesCart, tipocomanda, set
       setNumeroComanda(numerocomanda)
     const cnpj = localStorage.getItem('cnpj');
       setCpj(cnpj)
+    const delivery = localStorage.getItem('delivery');
+      setDelivery(delivery)
     const idGarcom = sessionStorage.getItem('idgarcom');
       setIdGarcom(idGarcom)
+    const usuario = onAuthStateChanged(auth, (user)=>{
+      setUser(user)
+  })
   }, [])
 
-
-  useEffect(()=>{
-    const delivery = localStorage.getItem('delivery')
-      setDelivery(delivery)
-    const usuario = onAuthStateChanged(auth, (user)=>{
-        setUser(user)
-    })
-  })
   useEffect(() => {
     if (delivery === 'sim' && user !== null) {
       setDesativarConfirmar(false);
@@ -159,12 +157,12 @@ export function CarrinhoBarPagamento({ Pedido, observacoesCart, tipocomanda, set
   
 
   const EnviarPedidoAPI =()=>{
-    axios
-      .post(`http://192.168.0.100:9865/inserirPedido`, {
+    api
+      .post(`/inserirPedido`, {
         cnpj: cnpj,
         delivery: delivery,
-        tipocomanda: tipocomanda,
-        numerocomanda: numerocomanda,
+        tipocomanda: tipocomanda !== null ? tipocomanda : opçaoEscolhida,
+        numerocomanda: numerocomanda !== null ? numerocomanda :  numeroComanda,
         idgarcom: idGarcom,
         total: totalCart,
         observacoespedido: observacoesCart,
