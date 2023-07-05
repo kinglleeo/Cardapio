@@ -56,19 +56,21 @@ export default function Localizacao({ tipo, opçaoEscolhida, setMesaSelecionada 
                                 {listaLocalizacaoAtiva === "ativo" ? <div className='icone-setaCima'></div> : <div className='icone-setaBaixo'></div>}
                             </div>
                         </div>
-                        <div className='caixaPesquisaMesa'>
-                            <input type='text' className='pesquisaMesa' placeholder="Busca..."value={searchQuery} onChange={handleSearchInputChange}/>
-                        </div>
                         {listaLocalizacaoAtiva === "ativo" 
                             ? (
-                        <div className='cartListItems'>
-                            {data.map((item, index)=>
-                                <div className={`card-mesa ${selectedMesa === index ? 'mudarCorCardMesa' : ''}`} onClick={() => selecionarMesa(item, index)}>
-                                    <div className='mesaNome'> {item.MESA} </div>
-                                    <div className={`mesaIcone ${selectedMesa === index ? 'mudarIconeMesa' : ''}`} ></div>
+                            <div>
+                                <div className='caixaPesquisaMesa'>
+                                    <input type='text' className='pesquisaMesa' placeholder="Busca..."value={searchQuery} onChange={handleSearchInputChange}/>
                                 </div>
-                            )}
-                        </div>
+                                <div className='cartListItems'>
+                                    {data.map((item, index)=>
+                                        <div className={`card-mesa ${selectedMesa === index ? 'mudarCorCardMesa' : ''}`} onClick={() => selecionarMesa(item, index)}>
+                                            <div className='mesaNome'> {item.MESA} </div>
+                                            <div className={`mesaIcone ${selectedMesa === index ? 'mudarIconeMesa' : ''}`} ></div>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
                             ) : null }
                     </div>
                 )
