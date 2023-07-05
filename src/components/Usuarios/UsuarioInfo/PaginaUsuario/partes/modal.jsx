@@ -1,6 +1,6 @@
 import './modal.css'
-import { formCurrency } from "../../../AA-utilidades/numeros";
-import { addToCart } from '../../../../redux/cartSlice'
+import { formCurrency } from "../../../../AA-utilidades/numeros";
+import { addToCart } from '../../../../../redux/cartSlice'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 

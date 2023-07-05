@@ -1,10 +1,10 @@
 import { React, useState, useEffect } from 'react'
 import { collection, getDocs } from "firebase/firestore";
 import { onAuthStateChanged } from 'firebase/auth'
-import { auth, db } from '../../LoginPage/Firebase/firebaseConfig';
-import '../../../../Styles/StyleCarrinho.css'
+import { auth, db } from '../../../LoginPage/Firebase/firebaseConfig';
+import '../../../../../Styles/StyleCarrinho.css'
 import './historico.css'
-import { formCurrency } from '../../../AA-utilidades/numeros';
+import { formCurrency } from '../../../../AA-utilidades/numeros';
 
 import Modal from './modal';
 

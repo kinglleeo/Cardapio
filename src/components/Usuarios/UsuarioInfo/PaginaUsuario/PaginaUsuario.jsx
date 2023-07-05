@@ -1,9 +1,9 @@
 import React from 'react'
-import Infos from './Infos'
-import Historico from './Historico'
+import Infos from './partes/Infos'
+import Historico from './partes/Historico'
 import Footer from '../../../Footer/Footer'
 import BarraCarrinhoAtalho from '../../../Carrinho/BarraCarrinhoAtalho'
-import EnderecosUsuario from './EnderecosUsuario'
+import EnderecosUsuario from './partes/EnderecosUsuario'
 
 export default function PaginaUsuario(){
     

@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react'
 import './info.css'
-import { auth } from '../../LoginPage/Firebase/firebaseConfig';
-import HeaderSimplificado from '../../../header/HeaderSimplificado';
+import { auth } from '../../../LoginPage/Firebase/firebaseConfig';
+import HeaderSimplificado from '../../../../header/HeaderSimplificado';
 import { useNavigate } from 'react-router-dom';
 import { signOut } from "firebase/auth";
 

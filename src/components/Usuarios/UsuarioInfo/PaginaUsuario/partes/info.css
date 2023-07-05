@@ -1,8 +1,8 @@
 @font-face {
    font-family: "Roboto-Bold";
-   src: url('../../../../fontes/roboto/Roboto-Bold.ttf');
+   src: url('../../../../../fontes/roboto/Roboto-Bold.ttf');
    font-family: "Roboto-Light";
-   src: url('../../../../fontes/roboto/Roboto-Light.ttf');
+   src: url('../../../../../fontes/roboto/Roboto-Light.ttf');
 }
 .infos{
    margin-top: 30px;
@@ -40,7 +40,7 @@
 .iconeLogout{
    height: 50px;
    aspect-ratio: 1 / 1;
-   background-image: url('../../../../imagens/iconeDesligar.png');
+   background-image: url('../../../../../imagens/iconeDesligar.png');
    background-size: 100% 100%;
 }
 .listaInfos{

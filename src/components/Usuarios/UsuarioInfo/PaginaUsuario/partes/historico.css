@@ -1,8 +1,8 @@
 @font-face {
     font-family: "Roboto-Bold";
-    src: url('../../../../fontes/roboto/Roboto-Bold.ttf');
+    src: url('../../../../../fontes/roboto/Roboto-Bold.ttf');
     font-family: "Roboto-Light";
-    src: url('../../../../fontes/roboto/Roboto-Light.ttf');
+    src: url('../../../../../fontes/roboto/Roboto-Light.ttf');
 }
 .paginaUser{
     background-color: white;
@@ -45,13 +45,13 @@
 .tituloSetaCima{
     height: 30px;
     aspect-ratio: 1 / 1;
-    background-image: url('../../../../imagens/setaCima.png');
+    background-image: url('../../../../../imagens/setaCima.png');
     background-size: 100% 100%;
 }
 .tituloSetaBaixo{
     height: 30px;
     aspect-ratio: 1 / 1;
-    background-image: url('../../../../imagens/setaBaixo.png');
+    background-image: url('../../../../../imagens/setaBaixo.png');
     background-size: 100% 100%;
 }
 .listaItemsHistorico{
