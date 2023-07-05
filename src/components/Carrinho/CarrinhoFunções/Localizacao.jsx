@@ -7,6 +7,7 @@ export default function Localizacao({ tipo, opçaoEscolhida, setMesaSelecionada 
     const [localizacao, setLocalizacao] = useState([]);
     const [selectedMesa, setSelectedMesa] = useState(null);
     const [listaLocalizacaoAtiva, setListaLocalizacaoAtiva] = useState(null);
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(()=>{
         api
@@ -33,24 +34,35 @@ export default function Localizacao({ tipo, opçaoEscolhida, setMesaSelecionada 
         }
     } 
 
+    const handleSearchInputChange = (e) => {
+        setSearchQuery(e.target.value)
+    }
+    const filteredData = localizacao.filter((item) =>
+      (item.MESA && item.MESA.toLowerCase().includes(searchQuery.toLowerCase()))
+    )
+    const data = filteredData
+
     return(
         <div>
             {(tipo === "CARTAO" || opçaoEscolhida === "CARTAO")
                 ? (
                     <div>
-                        <div className='cartTitulo'> 
+                        <div className='cartTitulo localizao' onClick={toggleListaLocalizacao}> 
                             <div className='iconeEnomeLocalizacao'>
                                 <div className='iconeLocalizacao'></div>
                                 <div className='carrinhoName'> Localização </div>
                             </div>
-                            <div className='iconeSetaLocalizacao' onClick={toggleListaLocalizacao}>
+                            <div className='iconeSetaLocalizacao'>
                                 {listaLocalizacaoAtiva === "ativo" ? <div className='icone-setaCima'></div> : <div className='icone-setaBaixo'></div>}
                             </div>
+                        </div>
+                        <div className='caixaPesquisaMesa'>
+                            <input type='text' className='pesquisaMesa' placeholder="Busca..."value={searchQuery} onChange={handleSearchInputChange}/>
                         </div>
                         {listaLocalizacaoAtiva === "ativo" 
                             ? (
                         <div className='cartListItems'>
-                            {localizacao.map((item, index)=>
+                            {data.map((item, index)=>
                                 <div className={`card-mesa ${selectedMesa === index ? 'mudarCorCardMesa' : ''}`} onClick={() => selecionarMesa(item, index)}>
                                     <div className='mesaNome'> {item.MESA} </div>
                                     <div className={`mesaIcone ${selectedMesa === index ? 'mudarIconeMesa' : ''}`} ></div>

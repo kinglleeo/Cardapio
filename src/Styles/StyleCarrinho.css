@@ -246,7 +246,7 @@
     background-size: 100% 100%;
 }
 .mudarCorCardMesa{
-    background-color: rgb(78, 194, 78);
+    background-color: rgb(137, 255, 137);
 }
 .mudarIconeMesa{
     background-image: url('../imagens/iconePratoAcesso.png');
@@ -296,4 +296,21 @@
 }
 .observacoesCart-text:focus-visible {
     outline: none;
+}
+/* localizacao */
+.localizao{
+    justify-content: space-between; 
+}
+.caixaPesquisaMesa{
+    display: grid;
+    place-items: center;
+}
+.pesquisaMesa{
+    border-radius: 5px;
+    border-width: 0.5px;
+    padding: 10px;
+    width: 90%;
+}
+.pesquisaMesa:focus-visible {
+    outline-color: #f79a53;
 }
