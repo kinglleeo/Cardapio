@@ -25,7 +25,6 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, o
   const cart = useSelector(state => state.cart)
   const items_pedido = compra
 
-
   useEffect(()=>{
     const dados = localStorage.getItem('dados')
          setDados(JSON.parse(dados))

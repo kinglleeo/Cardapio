@@ -1,0 +1,33 @@
+@font-face {
+    font-family: "Roboto-Medium";
+    src: url('../../../../../fontes/roboto/Roboto-Medium.ttf');
+}
+.listaDetalhesPedido{
+    margin-top: 50px;
+}
+
+.caixaBtnsPedidos{
+    display: flex;
+    margin: 5px;
+    align-content: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.btnAceitarPedido{
+    background-color: green;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    color: white;
+    font-family: "Roboto-Medium";
+    font-size: 16px;
+}
+.btnCancelarPedido{
+    background-color: rgb(255, 0, 0);
+    border-radius: 5px;
+    border: none;
+    padding: 15px;
+    color: white;
+    font-family: "Roboto-Medium";
+    font-size: 16px;
+}

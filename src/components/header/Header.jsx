@@ -18,6 +18,7 @@ export default function Header (){
             .get(`/dadosEmpresa/${cnpj}`)
             .then((getdata)=>{
                 setInfoClientes(getdata.data);
+                localStorage.setItem('empresa', JSON.stringify(getdata.data))
             }); 
     }, [setInfoClientes])
     

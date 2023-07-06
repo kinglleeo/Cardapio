@@ -1,0 +1,87 @@
+@font-face {
+    font-family: "Roboto-Bold";
+    src: url('../../../../fontes/roboto/Roboto-Bold.ttf');
+}
+.ListaPedidos{
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+.TituloLista{
+    height: 40px;
+    background-color: rgb(209, 209, 209);
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-between;
+    margin: 5px;
+}
+.TituloLista-nome{
+    display: grid;
+    place-items: center;
+    margin-left: 10px;
+}
+.TituloLista-numero{
+    display: grid;
+    place-items: center;
+    margin-right: 10px;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+.listaPedido-card{
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+    height: 90px;
+    border: solid;
+    border-bottom: none;
+    border-right: none;
+    border-color: rgb(240, 238, 238);
+    border-radius: 5px 0 0 0;
+    box-shadow: 4px 8px 6px 0px #8f8f8f;
+}
+.pedidoCard-linha{
+    height: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-between;
+}
+.linhaEsquerda{
+    margin-left: 10px;
+    display: grid;
+    place-items: center;
+    font-family: "Roboto-Bold";
+}
+.linhaDireita{
+    margin-right: 10px;
+    display: grid;
+    place-items: center;
+    font-family: "Roboto-Bold";
+}
+.iniciado{
+    background-color: rgb(255, 255, 0);
+}
+.pendente{
+    background-color: rgb(248, 48, 48);
+}
+.confirmado{
+    background-color: rgb(48, 255, 48);
+}
+.cancelado{
+    background-color: rgb(56, 56, 56);
+    color: white;
+}
+.statusPedidos{
+    border-radius: 20px;
+    height: 20px;
+    display: grid;
+    place-items: center;
+    margin: 10px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}

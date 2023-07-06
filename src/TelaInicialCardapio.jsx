@@ -18,6 +18,7 @@ export default function TelaInicialCardapio(){
         const numerocomanda = urlParams.get('numerocomanda');
         const cnpj = urlParams.get('cnpj');
         const delivery = urlParams.get('delivery')
+        const login = urlParams.get('login')
             setCnpj(cnpj)
         const url = `http://suporte.bedinfoservices.com.br:99/appGarline/retornaApiCliente.php?cnpj=${cnpj}`;
             axios
@@ -25,7 +26,6 @@ export default function TelaInicialCardapio(){
                 .then((response)=>{
                     setResposta(response);
                 })
-
             const Dados = {
                 tipo: tipo,
                 numerocomanda: numerocomanda,
@@ -40,8 +40,11 @@ export default function TelaInicialCardapio(){
             else if (tipo === null && delivery === "SIM"){{
               navigate('/Main')
             }} 
-            else if (tipo === null){{
+            else if (login === "GARCOM"){{
               navigate('/LoginGarcom')
+            }}
+            else if (login === "TERMINAL"){{
+                navigate('/LoginAdm')
             }} 
           }, 3000);
           return () => {
