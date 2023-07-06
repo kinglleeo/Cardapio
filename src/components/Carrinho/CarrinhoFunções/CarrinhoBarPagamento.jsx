@@ -15,14 +15,27 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, o
   const dispatch = useDispatch();
   const [compra, setCompra] = useState([]);
   const [totalCart, setTotalCart] = useState('');
-  const [numerocomanda, setNumeroComanda] = useState('');
-  const [cnpj, setCpj] = useState('');
   const [idGarcom, setIdGarcom] = useState(null)
-  const [delivery, setDelivery] = useState('')
   const [user, setUser] = useState('')
   const [desativarConfirmar, setDesativarConfirmar] = useState(false)
+  const [dados, setDados] = useState([]);
+  const cnpj = dados.cnpj
+  const delivery = dados.delivery
+  const numerocomanda = dados.numerocomanda
   const cart = useSelector(state => state.cart)
   const items_pedido = compra
+
+
+  useEffect(()=>{
+    const dados = localStorage.getItem('dados')
+         setDados(JSON.parse(dados))
+         setTipo(dados.tipo)
+    const usuario = onAuthStateChanged(auth, (user)=>{
+          setUser(user)
+    })
+    const idGarcom = sessionStorage.getItem('idgarcom');
+      setIdGarcom(idGarcom)
+ }, [setDados])
 
   useEffect(() => {
     if (cart && Array.isArray(cart)) {
@@ -33,22 +46,6 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, o
       setTotalCart(total.toFixed(2));
     }
   }, [cart]);
-
-  useEffect(()=>{
-    const tipocomanda = localStorage.getItem('tipo');
-      setTipo(tipocomanda)
-    const numerocomanda = localStorage.getItem('numerocomanda');
-      setNumeroComanda(numerocomanda)
-    const cnpj = localStorage.getItem('cnpj');
-      setCpj(cnpj)
-    const delivery = localStorage.getItem('delivery');
-      setDelivery(delivery)
-    const idGarcom = sessionStorage.getItem('idgarcom');
-      setIdGarcom(idGarcom)
-    const usuario = onAuthStateChanged(auth, (user)=>{
-      setUser(user)
-  })
-  }, [])
 
   useEffect(() => {
     if (delivery === 'sim' && user !== null) {
@@ -126,10 +123,10 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, o
   
 
   const handlePagar = () => {
-    EnviarPedidoAPI()
+    //EnviarPedidoAPI()
     //BancodePedidos(Pedido)
     //dispatch(clearCart());
-    //navigate('/Main');
+    SalvarPedido()
   };
   
   const BancodePedidos=()=>{
@@ -154,7 +151,15 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, o
     };
     saveBd();
   }
+
+  const PedidoFeito = [{
+    Pedidos: items_pedido
+  }]
   
+  const SalvarPedido =()=>{
+    sessionStorage.setItem('PedidosFeitos', JSON.stringify(PedidoFeito))
+    navigate('/Pedidos')
+  }
 
   const EnviarPedidoAPI =()=>{
     api

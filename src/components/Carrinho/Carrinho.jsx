@@ -17,6 +17,7 @@ export default function CarrinhoMain(){
   const [opçaoEscolhida, setOpçaoEscolhida] = useState('')
   const [numeroComanda, setNumeroComanda] = useState('')
 
+  
 return(
     <div className='pagina'>
       <div className='Main'>

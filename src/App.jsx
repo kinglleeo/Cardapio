@@ -11,6 +11,9 @@ import Carrinho from './components/Carrinho/Carrinho'
 import LoginPage from "./components/Usuarios/LoginPage/LoginPage";
 import PaginaUsuario from './components/Usuarios/UsuarioInfo/PaginaUsuario/PaginaUsuario'
 import LoginGarcom from './components/Usuarios/LoginPage/LoginGarcom'
+import Pedidos from './components/Usuarios/UsuarioInfo/PaginaUsuario/partes/Pedidos/Pedidos'
+import Terminal from './components/Administração/Terminal/Terminal'
+
 export default function App(){
   
     return(
@@ -26,6 +29,10 @@ export default function App(){
               <Route path='/login' element={<LoginPage/>}></Route>
               <Route path='/PaginaUsuario' element={ <PaginaUsuario/> }/>
               <Route path='/loginGarcom' element={<LoginGarcom/>}></Route>
+              <Route path='/Pedidos' element={<Pedidos/>}></Route>
+
+              <Route path='/Terminal' element={<Terminal/>}></Route>
+
             </Routes>
           </Provider>
         </UserAuthContextProvider>

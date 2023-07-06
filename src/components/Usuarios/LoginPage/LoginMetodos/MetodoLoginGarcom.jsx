@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react'
 import '../login.css'
 import { api } from '../../../../conecções/api'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export default function MetodoLoginGarcom(){
     const [nome, setNome] = useState('')

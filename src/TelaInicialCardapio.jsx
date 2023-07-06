@@ -10,8 +10,6 @@ export default function TelaInicialCardapio(){
     const [resposta, setResposta] = useState('');
     const [infoClientes, setInfoClientes] = useState([])
     const [cnpj, setCnpj] = useState('')
-    const [tipo, setTipo] = useState('')
-    const [numerocomanda, setNumeroComanda] = useState('');
     
     //http://suporte.bedinfoservices.com.br:3000/?cnpj=76787191000145&tipo=mesa&numerocomanda=2&delivery=sim
     useEffect(() => {
@@ -21,18 +19,20 @@ export default function TelaInicialCardapio(){
         const cnpj = urlParams.get('cnpj');
         const delivery = urlParams.get('delivery')
             setCnpj(cnpj)
-            setTipo(tipo)
-            setNumeroComanda(numerocomanda)
         const url = `http://suporte.bedinfoservices.com.br:99/appGarline/retornaApiCliente.php?cnpj=${cnpj}`;
             axios
                 .post(url)
                 .then((response)=>{
                     setResposta(response);
                 })
-        localStorage.setItem('tipo', tipo);
-        localStorage.setItem('numerocomanda', numerocomanda);
-        localStorage.setItem('cnpj', cnpj);
-        localStorage.setItem('delivery', delivery);
+
+            const Dados = {
+                tipo: tipo,
+                numerocomanda: numerocomanda,
+                cnpj: cnpj,
+                delivery: delivery,
+            }
+            localStorage.setItem('dados', JSON.stringify(Dados));
         const timeout = setTimeout(() => {
             if(tipo !== null){
               navigate('/Main')
