@@ -43,10 +43,41 @@ export default function DetalhesDoPedido({ itemPedido }){
                 </div>
             </div>
             <div className='quadroDetalhesPedido'>
-                <div></div>
+                <div className='detalhesPedidoTitulo'> Items </div>
+                <div className='detalhesPedidoBox'> 
+                    <div className='detalhesPedidoQtd'> Qtd </div>
+                    <div className='detalhesPedidoDesc'> Descrição </div>
+                    <div className='detalhesPedidoValor'> Valor </div>
+                </div>
+                <div>
+                    
+                    <div className='pedidoItemCard'>
+                        <div className='itemCardLinha'>
+                            <div className='itemPedidoQTD'> 10 </div>
+                            <div className='itemPedidoDesc'> CocaCola-Lata </div>
+                            <div className='itemValor'> R$ 5.000,00 </div>
+                        </div>
+                        <div className='itemCardLinha textOpcional'>
+                            <div className='itemCardIcone'></div>
+                            <div className='itemCardOpcoes'>
+
+                                <div className='itemOpcionais'>
+                                    <div className='nomeOpcional'> Limão e Gelo </div>
+                                    <div className='quantiaOpcional'> X 1 </div>
+                                </div>
+
+                                <div className='itemObservacoes'> Trazer Junto do fim do mundo </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
             <div className='quadroDetalhesPedido'>
-
+                <div className='barraTotalPedido'>
+                    <div> Total Pedido </div>
+                    <div> R$ 5,000.00 </div>
+                </div>
             </div>
             <div className='caixaBtnsPedidos'>
                 <button className='btnAceitarPedido' onClick={() => aceitarPedido()}> Aceitar Pedido </button>
