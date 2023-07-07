@@ -12,7 +12,7 @@ export default function Terminal({ nomeEmpresa }) {
     const [filtroRejeitados, setFiltroRejeitados] = useState(false);
     const [filtroConcluidos, setFiltroConcluidos] = useState(false);
     const navigate = useNavigate();
-
+  console.log(listaPedidos)
     useEffect(()=>{
         api
             .get('/listaPedidos')
@@ -68,7 +68,7 @@ export default function Terminal({ nomeEmpresa }) {
           <div className='TituloLista-nome'>{capitalizeFirstLetter(nomeEmpresa.NOME_FANTASIA.toLowerCase())}</div>
           <div className='TituloLista-numero'>{quantidadeLista}</div>
         </div>
-        <div className='barraAtalhoTerminal'>
+          <div className='barraAtalhoTerminal'>
         <div className='caixaAtalhoTerminal'>
           <div className='atalhoTerminalNome'>Novos</div>
           <div>
@@ -111,7 +111,7 @@ export default function Terminal({ nomeEmpresa }) {
             filteredPedidos.map((itemPedido) => (
               <div className='listaPedido-card' key={itemPedido.ID} onClick={() => selecionarPedido(itemPedido)}>
                 <div className='pedidoCard-linha'>
-                  <div className='linhaEsquerda'>{itemPedido.TIPOCOMANDA}</div>
+                  <div className='linhaEsquerda'>{itemPedido.TIPOCOMANDA} n° {itemPedido.NUMEROCOMANDA}</div>
                   <div className='linhaDireita'>{itemPedido.HORA.split(':').slice(0, 2).join(':')}</div>
                 </div>
                 <div className='pedidoCard-linha linhaBaixo'>

@@ -16,10 +16,6 @@ export default function cartHeader(){
                 setInfoClientes(getdata.data);
             });
     }, []);
-
-    const Voltar =()=>{
-        navigate('/Main')
-    }
     
     return(
         <div className='cartHeader'>
