@@ -16,7 +16,6 @@ export default function PedidosCorpo(){
 
     return(
         <div>
-
         </div>
     )
 }

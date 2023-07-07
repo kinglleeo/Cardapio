@@ -7,7 +7,7 @@ import Footer from '../../Footer/Footer'
 export default function Terminal(){
     const [adm, setAdm] = useState(null);
     const [empresa, setEmpresa] = useState('')
-    
+    console.log(empresa)
     useEffect(()=>{
         const adm = localStorage.getItem('administrador')
             setAdm(adm);

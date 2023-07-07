@@ -67,6 +67,7 @@ export default function TelaInicialCardapio(){
             .get(`/dadosEmpresa/${cnpj}`)
             .then((getdata)=>{
                 setInfoClientes(getdata.data);
+                localStorage.setItem('empresa', JSON.stringify(getdata.data))
             });
     }, [cnpj, resposta]);
     
