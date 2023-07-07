@@ -1,9 +1,43 @@
 @font-face {
     font-family: "Roboto-Medium";
     src: url('../../../../../fontes/roboto/Roboto-Medium.ttf');
+    font-family: "Roboto-Regular";
+    src: url('../../../../../fontes/roboto/Roboto-Regular.ttf');
 }
 .listaDetalhesPedido{
     margin-top: 50px;
+}
+.quadroDetalhesPedido{
+    margin: 10px;
+    padding: 10px;
+    border: solid;
+    border-bottom: none;
+    border-right: none;
+    border-color: rgb(240, 238, 238);
+    border-radius: 5px 0 0 0;
+    box-shadow: 4px 8px 6px 0px #8f8f8f;
+}
+.quadroPedidoLinha{
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.textoFonte{
+    font-family: "Roboto-Medium";
+    font-size: 14px;
+}
+.localizacaoPedido{
+    margin-left: 20px;
+    font-family: "Roboto-Regular";
+    font-size: 12px;
+}
+.numeroPedido{
+    display: grid;
+    place-items: center;
+    font-family: "Roboto-Regular";
+    font-size: 14px;
+    color: #8f8f8f;
 }
 
 .caixaBtnsPedidos{

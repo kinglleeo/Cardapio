@@ -7,7 +7,7 @@ export default function ProdutoList({ produto, subGrupo, grupo }){
     const navigate = useNavigate();
 
     const Adicionais = (data, subGrupo, grupo) => {
-        navigate('/AdicionaisMain', { state: { data, subGrupo, grupo } });
+        navigate('/Adicionais', { state: { data, subGrupo, grupo } });
       };
     
     function capitalizeFirstLetter(string) {

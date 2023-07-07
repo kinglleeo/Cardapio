@@ -25,7 +25,7 @@ export default function App(){
               <Route path='/' element={<TelaInicialCardapio/>}/>
               <Route path='/Main' element={ <PaginaMain/> } />
               <Route path='/GrupoList' element={ <GrupoList/> }/>
-              <Route path='/AdicionaisMain' element={ <AdicionaisMain/> }/>
+              <Route path='/Adicionais' element={ <AdicionaisMain/> }/>
               <Route path='/Pizzas' element={ <MainPizzas/> }/>
               <Route path='/Carrinho' element={ <Carrinho/>  }/>
               <Route path='/login' element={<LoginPage/>}></Route>
