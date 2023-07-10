@@ -1,0 +1,19 @@
+@font-face {
+    font-family: "Roboto-Light";
+    src: url('../../fontes/roboto/Roboto-Light.ttf');
+  }
+.footer{   
+    background-color: #DBDBDB;
+    display: grid;
+    text-align: center;
+    margin-top: auto;
+    width: 100%;
+}
+.footerBlocoTexto{
+    margin: 5px;
+}
+.text-footer{
+    font-family: "Roboto-Light";
+    font-size: 12px;
+    margin: 3px;
+}

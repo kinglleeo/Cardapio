@@ -1,0 +1,198 @@
+@font-face {
+    font-family: "Roboto-Light";
+    src: url('../../fontes/roboto/Roboto-Light.ttf');
+    font-family: "Roboto-Bold";
+    src: url('../../fontes/roboto/Roboto-Bold.ttf');
+    font-family: "Roboto-Condensed";
+    src: url('../../fontes/roboto/Roboto-Condensed.ttf');
+    font-family: "Roboto-Thin";
+    src: url('../../fontes/roboto/Roboto-Thin.ttf');
+  }
+.Main-header{
+    padding-top: 40px;
+    position: relative;
+}
+.header-header{
+    position: fixed;
+    top: 0;
+    background-color: #fc740d;
+    height: 40px;
+    width: 100%;
+    display: flex;
+    z-index: 999;
+}
+.header-login{
+    width: 40%;
+    display: flex;
+}
+.caixaIconeUsuario{
+    width: 50px;
+    height: 100%;
+    margin-left: 10px;
+}
+.iconeUsuario{
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: transparent;
+    border: none;
+    background-image: url('../../imagens/iconeUsuario.png');
+    background-size: 100% 100%;
+}
+.logo-garline-header{
+    width: 60%;
+    margin-right: 10px;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    align-content: space-around;
+}
+.logo-garline{
+    height: 20px;
+    width: 80px;
+    background-image: url('../../imagens/logo.fw.png');
+    background-size: 100% 100%;
+}
+.btn-login-header{
+    background-color: #DBDBDB;
+    border: solid;
+    border-radius: 5px;
+    border-width: 0.5px;
+    height: 25px;
+    width: 80px;
+}
+.body-header{
+    display: grid;
+}
+.banner-garline{
+    height: 75%;
+    min-height: 150px;
+    background-image: url('../../imagens/banner1.fw.webp');
+    background-size: 100% 100%;
+}
+.banner-infos{
+    position: relative;
+    left: 15px;
+    top: 10px;
+    margin-top: 5px;
+    background-color: #EFEFEF;
+    border-radius: 5px;
+    width: 130px;
+    height: 35px;   
+    display: flex;
+    font-family: "Roboto-Condensed";
+}
+.caixa-icone{
+    width: 30%;
+    display: grid;
+    place-items: center;
+}
+.icone-tempo{
+    height: 70%;
+    width: 70%;
+    background-image: url('../../imagens/icons8-cronômetro-58.png');
+    background-size: 100% 100%;
+}
+.icone-horario{
+    height: 70%;
+    width: 70%;
+    background-image: url('../../imagens/icons8-close-sign-64.png');
+    background-size: 100% 100%;
+}
+.icone-Whatsapp{
+    height: 70%;
+    width: 70%;
+    background-image: url('../../imagens/icons8-whatsapp-64.png');
+    background-size: 100% 100%;
+}
+.tempo-banner{
+    width: 70%;
+    font-size: 12px;
+    display: grid;
+    place-items: center;
+}
+.logo-restaurante{
+    position: absolute;
+    height: 100px;
+    width: 120px;
+    right:  10px;
+    top: 115px;
+    border-radius: 5px;
+}
+.img-restaurante{
+    height: 120px;
+    width: 120px;
+}
+.footer-header{
+    margin-bottom: 5px;
+    width: 60%;
+    min-height: 50px;
+}
+.endereço-header{
+    margin: 5px;
+    word-break: normal;
+    overflow: hidden;
+    color: rgb(3, 3, 3, 3);
+    font-family: "Roboto-Light";
+    font-size: 13px;
+}
+.img-restaurante-logo{
+    width: 120px;
+    height: 120px;
+}
+.cartHeaderTopo{
+    position: fixed;
+    top: 0;
+    background-color: #fc740d;
+    height: 40px;
+    width: 100%;
+    display: flex;
+    z-index: 999;
+    justify-content: space-between;
+}
+.logo-resta{
+    display: block;
+    height: 100px;
+    width: 120px;
+    margin: auto;
+    padding-top: 50px;
+}
+.cartHeaderBody{
+    margin-top: 40px;
+    min-height: 150px;
+    background-image: url('../../imagens/banner1.fw.webp');
+    background-size: 100% 100%;
+}
+.logo-garline-header {
+    width: 60%;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    align-content: space-around;
+}
+.logo-garline {
+    aspect-ratio: 1 / 1;
+    height: 20px;
+    background-image: url('../../imagens/logo.fw.png');
+    background-size: 100% 100%;
+}
+.cartHeaderTopoEsquerda{
+    display: flex;
+}
+.caixaPaginaNome{
+    display: grid;
+    place-items: center;
+    margin-left: 10px;
+    font-family: "Roboto-Bold";
+    font-family: 14px;
+    color: white;
+}
+.caixa-seta{
+    display: grid;
+    place-items: center;
+}
+.setaEsquerda{
+    height: 35px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../../imagens/setaEsquerda.png');
+    background-size: 100% 100%;
+}

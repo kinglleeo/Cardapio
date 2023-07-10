@@ -1,0 +1,126 @@
+.bloco-promocoes{
+    height: auto;
+}
+.bloco-1365{
+    width: auto;
+    height: 100%;
+}
+.swiper-wrapper{
+    padding: 5px !important;
+}
+.swiper-slide{
+    height: 95% !important;
+    width: 100% !important;
+}
+.card{
+    width: 99%;
+    height: 200px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    background-color: #fff;
+    position: relative;
+}
+.card span{
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.card span::before{
+     content: 'Promoção';
+     position: absolute;
+     width: 250px;
+     height: 35px;
+     background-color: #b71a3b;
+     transform: rotate(-45deg) translateY(-20px);
+     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     color: #fff;
+     font-weight: 500;
+     text-transform: uppercase;
+}
+.card span::after{
+     content: '';
+     position: absolute;
+     width: 10px;
+     height: 10px;
+     bottom: 0;
+     left: 0;
+     background-color: #7e0f12;
+     z-index: -1;
+}
+.tabela-card-promo{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+.img{
+    width: 55%;
+    height: 100%;
+    background-image: url('https://images.pexels.com/photos/2702674/pexels-photo-2702674.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-size: 100% 100%;
+    border-radius: 15px 0 0 15px;
+}
+.btn-adicionais-promo{
+    height: 100%;
+    display: grid;
+    place-items: end;
+}
+.descricoes{
+    width: 45%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-image: url('https://img.freepik.com/premium-photo/old-brown-paper-grunge-background-abstract-liquid-coffee-color-texture_51524-21133.jpg?w=360');
+    background-size: 100% 100%;
+    border-radius: 0 15px 15px 0;    
+}
+.descricoes-items{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.bloco-1{
+    height: 20%;
+    display: grid;
+    place-items: center;
+}
+.bloco-2{
+    height: 50%;
+    padding-left: 7px;
+}
+.bloco-3{
+    height: 30%;
+}
+.items-valor{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    height: 100%;
+}
+.valores{
+    display: grid;
+    font-size: 15px;
+    padding-left: 5px;
+}
+@media(min-width: 1024px){
+    .btn-promo{
+        position: relative;
+        bottom: 20px;
+    }
+    .swiper-slide{
+        width: 48% !important;
+    }
+}
+@media(min-width: 2000px){
+    .swiper-slide{
+        width: 19% !important;
+    }
+}

@@ -1,0 +1,316 @@
+@font-face {
+    font-family: "Roboto-Light";
+    src: url('../fontes/roboto/Roboto-Light.ttf');
+    font-family: "Roboto-Bold";
+    src: url('../fontes/roboto/Roboto-Bold.ttf');
+    font-family: "Roboto-Condensed";
+    src: url('../fontes/roboto/Roboto-Condensed.ttf');
+}
+/* CARRINHO */
+.MainCartList{
+    margin-top: 50px;
+}
+.cartList{
+    display: flex;
+    flex-direction: column;
+}
+.cartTitulo{
+    font-size: 16px;
+    margin-bottom: 5px;
+    height: 50px;
+    background-color: #DBDBDB;
+    font-family: "Roboto-Bold";
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap
+}
+.iconeCarrinhoCart{
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 34px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../imagens/CarrinhoBlack.png');
+    background-size: 100% 100%;
+}
+.iconeEnomeLocalizacao{
+    display: flex;
+    align-content: space-around;
+    flex-wrap: wrap;
+}
+.iconeLocalizacao{
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 34px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../imagens/iconeLocal.png');
+    background-size: 100% 100%;
+}
+.iconeEntrega{
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 34px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../imagens/iconeDelivery.png');
+    background-size: 100% 100%;
+}
+.iconeSetaLocalizacao{
+    display: grid;
+    place-items: center;
+    margin-right: 20px;
+}
+.icone-setaCima{
+    height: 34px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../imagens/setaCima.png');
+    background-size: 100% 100%;
+}
+.icone-setaBaixo{
+    height: 34px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../imagens/setaBaixo.png');
+    background-size: 100% 100%;
+}
+.carrinhoName{
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+    font-family: "Roboto-Bold";
+}
+.cartListItems{
+    display: flex;
+    flex-direction: column;
+}
+.card-cart{
+    margin: 5px;
+    border: solid;
+    border-radius: 5px;
+    border-width: 0.5px;
+    display: flex;
+    min-height: 45px;
+}
+.cartBox-iconeLixeira{
+    width: 15%;
+    display: grid;
+    place-items: center;
+}
+.btn-delete{
+    appearance: none;
+    border: none;
+    background-color: transparent;
+}
+.lixeira{
+    height: 35px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../imagens/iconeLixeira.png');
+    background-size: 100% 100%;
+}
+.boxDescricao-nome{
+    width: 40%;
+    display: grid;
+    place-items: center;
+    font-family: "Roboto-Light";
+    font-size: 14px;
+}
+.cartBox-valor{
+    width: 45%;
+    display: flex;
+}
+.CartBox-valor{
+    width: 100%;
+    display: flex;
+}
+.cartTotal-valor{
+    width: 50%;
+    display: grid;
+    font-size: 14px;
+    place-items: center;
+    margin-right: 5px;
+    font-family: "Roboto-Light";
+}
+.boxFuncao-cart{
+    width: 100%;
+    display: flex;
+    place-items: center;
+}
+.cart-btn-quantia{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+}
+.arrow{
+    border: none;
+    background-color: transparent;
+}
+.cart-item-quantia{
+    width: 20%;
+    display: grid;
+    place-items: center;
+}
+.cartMinus{
+    min-height: 20px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../imagens/iconeMenos.png');
+    background-size: 100% 100%;
+}
+.cartPlus{
+    min-height: 20px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../imagens/iconeMais.png');
+    background-size: 100% 100%;
+}
+.barraTotalCartList{
+    font-size: 16px;
+    margin-bottom: 5px;
+    height: 50px;
+    background-color: #f0eeee;
+    font-family: "Roboto-Bold";
+    display: flex;
+    justify-content: space-between;
+}
+.totalCartList{
+    display: grid;
+    place-items: center;
+    margin-right: 20px;
+    font-family: "Roboto-Bold";
+    font-size: 18px;
+}
+.caixaBarPagar{
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+.cartBarPagar{
+    appearance: none;
+    border: none;
+    width: 99%;
+    display: flex;
+    min-height: 50px;
+    border-radius: 5px;
+    background-color: rgb(58, 180, 58);
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
+    font-family: "Roboto-Bold";
+    font-size: 18px;
+    color: white;
+}
+.FazerLogin{
+    font-family: "Roboto-Light";
+    color: white;
+    min-height: 35px;
+    margin: 5px;
+    background-color: #3085f3;
+    display: grid;
+    place-items: center;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.pagarTexto{
+    display: grid;
+    place-items: center;
+}
+.pagarValor{
+    display: grid;
+    place-items: center;
+}
+.cartBarContinuar{
+    display: grid;
+    place-items: center;
+    min-height: 35px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: #fc740d;
+    font-family: "Roboto-Light";
+    font-size: 14px;
+    color: white;   
+}
+.card-mesa{
+    display: flex;
+    margin: 5px;
+    height: 40px;
+    place-items: center;
+    border: solid;
+    border-radius: 5px;
+    border-width: 0.5px;
+}
+.mesaNome{
+    width: 70%;
+    padding-left: 10px;
+    font-size: 14px;
+    font-family: "Roboto-Bold";
+}
+.mesaIcone{
+    height: 40px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../imagens/iconePratoApagado.png');
+    background-size: 100% 100%;
+}
+.mudarCorCardMesa{
+    background-color: rgb(137, 255, 137);
+}
+.mudarIconeMesa{
+    background-image: url('../imagens/iconePratoAcesso.png');
+}
+/* OBSERVACOES DO CARRINHO */
+.observacoesTitulo{
+    font-size: 16px;
+    margin-bottom: 5px;
+    height: 50px;
+    background-color: #DBDBDB;
+    font-family: "Roboto-Bold";
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+}
+.observacoesIcone{
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 34px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../imagens/iconePadNote.png');
+    background-size: 100% 100%;
+}
+.observacoesNome{
+    display: grid;
+    place-items: center;
+    font-family: "Roboto-Bold";
+    font-size: 18px;
+}
+.observacoesCart{
+    height: 60px;
+    margin: 5px;
+    border: solid;
+    border-width: 0.5px;
+    border-radius: 5px;
+    display: grid;
+    place-items: center;
+}
+.observacoesCart-text {
+    font-size: 14px;
+    height: 90%;
+    width: 98%;
+    border: none;
+    background-color: transparent;
+    color: black;
+    font-family: "Roboto-Light";
+}
+.observacoesCart-text:focus-visible {
+    outline: none;
+}
+/* localizacao */
+.localizao{
+    justify-content: space-between; 
+}
+.caixaPesquisaMesa{
+    display: grid;
+    place-items: center;
+}
+.pesquisaMesa{
+    border-radius: 5px;
+    border-width: 0.5px;
+    padding: 10px;
+    width: 90%;
+}
+.pesquisaMesa:focus-visible {
+    outline-color: #f79a53;
+}
