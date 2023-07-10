@@ -26,6 +26,7 @@ export default function Terminal(){
                     <div>
                         <CorpoTerminal
                             nomeEmpresa={empresa.find((item) => item.NOME_FANTASIA)}
+                            adm={adm}
                         />
                     </div>
                 </div>

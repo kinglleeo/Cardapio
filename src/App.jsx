@@ -12,7 +12,7 @@ import LoginPage from "./components/Usuarios/LoginPage/LoginPage";
 import PaginaUsuario from './components/Usuarios/UsuarioInfo/PaginaUsuario/PaginaUsuario'
 import LoginGarcom from './components/Usuarios/LoginPage/LoginGarcom'
 import LoginAdm from './components/Usuarios/LoginPage/LoginAdm'
-import Pedidos from './components/Usuarios/UsuarioInfo/PaginaUsuario/partes/Pedidos/Pedidos'
+import Pedidos from './components/Administração/Pedidos/Pedidos'
 import Terminal from './components/Administração/Terminal/Terminal'
 import DetalhesPedido from './components/Administração/Terminal/partes/MainDetalhesPedidos'
 

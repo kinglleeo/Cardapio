@@ -69,15 +69,24 @@
     font-family: "Roboto-Medium";
     font-size: 14px;
 }
-.iniciado{
-    background-color: rgb(255, 255, 0);
+.itemSabores{
+    word-break: break-all;
 }
-.pendente{
-    background-color: rgb(248, 48, 48);
+.novo{
+    background-color: rgb(255, 0, 0);
     color: white;
 }
-.confirmado{
-    background-color: rgb(48, 255, 48);
+.aceito{
+    background-color: rgb(30, 255, 0);
+}
+.preparo{
+    background-color: rgb(251, 255, 0);
+}
+.transporte{
+    background-color: rgb(89, 0, 255);
+}
+.finalizados{
+    background-color: rgb(0, 217, 255);
 }
 .cancelado{
     background-color: rgb(56, 56, 56);
@@ -99,14 +108,14 @@
     display: flex;
     border-radius: 5px;
     background-color: rgb(185, 185, 185);
-    height: 50px;
     flex-wrap: wrap;
-    align-content: center;
-    justify-content: space-around;
+    padding: 5px;
+    justify-content: space-between;
 }
 .caixaAtalhoTerminal{
     display: flex;
     flex-direction: column;
+    width: 30%;
 }
 .atalhoTerminalNome{
     display: grid;

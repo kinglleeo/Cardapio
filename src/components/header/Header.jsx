@@ -19,6 +19,8 @@ export default function Header (){
         navigate('/PaginaUsuario')
     }
 
+    
+
     return(
         <div className='paginaHeader'>
         <div className='header-header'>

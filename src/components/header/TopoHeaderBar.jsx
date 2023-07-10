@@ -19,6 +19,9 @@ export default function cartHeader(){
     const Voltar =()=>{
         navigate(-1)
     }
+    const navegacao = ()=>{
+        navigate('/Main')
+    }
     
     return(
         <div className='cartHeaderTopo'>
@@ -29,7 +32,7 @@ export default function cartHeader(){
                 <div className='caixaPaginaNome'> {pagina} </div>
             </div>
             <div className='logo-garline-header'>
-                <div className='logo-garline'></div>
+                <div className='logo-garline' onClick={()=> navegacao()}></div>
             </div>
         </div>
     )

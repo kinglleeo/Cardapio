@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from 'react'
-import TopoHeaderBar from '../../../../../header/TopoHeaderBar'
-import Footer from '../../../../../Footer/Footer'
+import TopoHeaderBar from '../../header/TopoHeaderBar'
+import Footer from '../../Footer/Footer'
 import './pedidos.css'
 import PedidosCorpo from './Pagina/PedidosCorpo'
 

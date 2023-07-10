@@ -19,6 +19,7 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, o
   const [user, setUser] = useState('')
   const [desativarConfirmar, setDesativarConfirmar] = useState(false)
   const [dados, setDados] = useState([]);
+  const [numeroPedido, setNumeroPedido] = useState('');
   const cnpj = dados.cnpj
   const delivery = dados.delivery
   const numerocomanda = dados.numerocomanda
@@ -28,13 +29,15 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, o
   useEffect(()=>{
     const dados = localStorage.getItem('dados')
          setDados(JSON.parse(dados))
-         setTipo(dados.tipo)
     const usuario = onAuthStateChanged(auth, (user)=>{
-          setUser(user)
+          setUser(user) 
     })
     const idGarcom = sessionStorage.getItem('idgarcom');
       setIdGarcom(idGarcom)
- }, [setDados])
+ }, [setDados, setTipo])
+  useEffect(()=>{
+    setTipo(dados.tipo)
+  })
 
   useEffect(() => {
     if (cart && Array.isArray(cart)) {
@@ -122,10 +125,10 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, o
   
 
   const handlePagar = () => {
-    //EnviarPedidoAPI()
+    EnviarPedidoAPI()
     //BancodePedidos(Pedido)
     //dispatch(clearCart());
-    SalvarPedido()
+    //SalvarPedido()
   };
   
   const BancodePedidos=()=>{
@@ -155,14 +158,9 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, o
     Pedidos: items_pedido
   }]
   
-  const SalvarPedido =()=>{
-    sessionStorage.setItem('PedidosFeitos', JSON.stringify(PedidoFeito))
-    navigate('/Pedidos')
-  }
-
   const EnviarPedidoAPI =()=>{
-    api
-      .post(`/inserirPedido`, {
+    axios
+      .post(`http://192.168.0.100:9865/inserirPedido`, {
         cnpj: cnpj,
         delivery: delivery,
         tipocomanda: tipocomanda !== null ? tipocomanda : opçaoEscolhida,
@@ -175,8 +173,7 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, o
         items_pedido: items_pedido, 
       })
       .then((response)=>{
-          console.log(response)
-          alert('Pedido Feito')
+        setNumeroPedido(response)
       })
   }
 

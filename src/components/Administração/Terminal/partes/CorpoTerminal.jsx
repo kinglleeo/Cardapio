@@ -3,61 +3,71 @@ import './corpoterminal.css';
 import { api } from '../../../../conecções/api';
 import { formCurrency } from '../../../AA-utilidades/numeros';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-export default function Terminal({ nomeEmpresa }) {
+export default function Terminal({ nomeEmpresa, adm }) {
     const [listaPedidos, setListaPedidos] = useState([]);
     const [filtroNovos, setFiltroNovos] = useState(true);
-    const [filtroProducao, setFiltroProducao] = useState(true);
-    const [filtroRejeitados, setFiltroRejeitados] = useState(false);
-    const [filtroConcluidos, setFiltroConcluidos] = useState(false);
+    const [filtroAceitos, setFiltroAceitos] = useState(false);
+    const [filtroPreparo, setFiltroPreparo] = useState(false);
+    const [filtroTransporte, setFiltroTransporte] = useState(false);
+    const [filtroFinalizados, setFiltroFinalizados] = useState(false);
+    const [filtroCancelado, setFiltroCancelado] = useState(false);
+    const [terminal, setTerminal] = useState([])
+    const [dados, setDados] = useState([]);
+    const delivery = dados.delivery
     const navigate = useNavigate();
-    console.log(listaPedidos)
+
     useEffect(()=>{
-        api
-            .get('/listaPedidos')
+      const dados = localStorage.getItem('dados')
+      setDados(JSON.parse(dados))
+  }, [])
+
+    useEffect(()=>{
+        axios
+            .get('http://192.168.0.100:9865/listaPedidos')
             .then((getdata)=>{
                 setListaPedidos(getdata.data);
             })
     }, [])
+    useEffect(()=>{
+      axios
+          .get('http://192.168.0.100:9865/parametros')
+          .then((getdata)=>{
+            setTerminal(getdata.data);
+          })
+    }, [])
 
-   
-
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  const formatDate = (dateObj) => {
-    const seconds = dateObj.seconds;
-    const milliseconds = seconds * 1000;
-    const date = new Date(milliseconds);
-
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
-    const year = date.getFullYear();
-
-    return `${day}/${month}/${year}`;
-  };
-
-  const selecionarPedido = (itemPedido) => {
-    navigate('/DetalhesPedido', { state: { itemPedido } });
+  const selecionarPedido = (itemPedido, adm, terminal) => {
+    navigate('/DetalhesPedido', { state: { itemPedido, adm, terminal } });
   };
 
     const filteredPedidos = listaPedidos.filter((itemPedido) => {
-        if (filtroNovos && itemPedido.ULTIMO_STATUS_PEDIDO === 'PENDENTE') {
+        if (filtroNovos && itemPedido.STATUS === 1) {
             return true;
         }
-        if (filtroProducao && itemPedido.ULTIMO_STATUS_PEDIDO === 'PEDIDO INICIADO') {
+        if (filtroAceitos && itemPedido.STATUS === 2) {
             return true;
         }
-        if (filtroRejeitados && itemPedido.ULTIMO_STATUS_PEDIDO === 'PEDIDO CANCELADO') {
+        if (filtroPreparo && itemPedido.STATUS === 3) {
             return true;
         }
-        if (filtroConcluidos && itemPedido.ULTIMO_STATUS_PEDIDO === 'PEDIDO CONFIRMADO') {
+        if (filtroTransporte && itemPedido.STATUS === 4) {
             return true;
+        }
+        if (filtroFinalizados && itemPedido.STATUS === 5) {
+          return true;
+        }
+        if (filtroCancelado && itemPedido.STATUS === 6) {
+          return true;
         }
         return false;
     });
-            
+
   return (
     <>
       <div className='ListaPedidos'>
@@ -65,63 +75,97 @@ export default function Terminal({ nomeEmpresa }) {
           <div className='TituloLista-nome'>{capitalizeFirstLetter(nomeEmpresa.NOME_FANTASIA.toLowerCase())}</div>
           <div className='TituloLista-numero'>{filteredPedidos.length}</div>
         </div>
-          <div className='barraAtalhoTerminal'>
-        <div className='caixaAtalhoTerminal'>
-          <div className='atalhoTerminalNome'>Novos</div>
+        <div className='barraAtalhoTerminal'>
+          <div className='caixaAtalhoTerminal'>
+            <div className='atalhoTerminalNome'>Novos</div>
+            <div>
+              <label className='containerCheckTerminal'>
+                <input type='checkbox' checked={filtroNovos} onChange={() => setFiltroNovos(!filtroNovos)} />
+                <div className='checkmark'></div>
+              </label>
+            </div>
+          </div>
+          <div className='caixaAtalhoTerminal'>
+            <div className='atalhoTerminalNome'>Aceitos</div>
+            <div>
+              <label className='containerCheckTerminal'>
+                <input type='checkbox' checked={filtroAceitos} onChange={() => setFiltroAceitos(!filtroAceitos)} />
+                <div className='checkmark'></div>
+              </label>
+            </div>
+          </div>
+          <div className='caixaAtalhoTerminal'>
+          <div className='atalhoTerminalNome'>Cancelados</div>
           <div>
             <label className='containerCheckTerminal'>
-              <input type='checkbox' checked={filtroNovos} onChange={() => setFiltroNovos(!filtroNovos)} />
+              <input type='checkbox' checked={filtroCancelado} onChange={() => setFiltroCancelado(!filtroCancelado)} />
               <div className='checkmark'></div>
             </label>
           </div>
-        </div>
-        <div className='caixaAtalhoTerminal'>
-          <div className='atalhoTerminalNome'>Produção</div>
-          <div>
-            <label className='containerCheckTerminal'>
-              <input type='checkbox' checked={filtroProducao} onChange={() => setFiltroProducao(!filtroProducao)} />
-              <div className='checkmark'></div>
-            </label>
           </div>
-        </div>
-        <div className='caixaAtalhoTerminal'>
-          <div className='atalhoTerminalNome'>Rejeitados</div>
-          <div className='caixaCheckBoxTerminal'>
-            <label className='containerCheckTerminal'>
-              <input type='checkbox' checked={filtroRejeitados} onChange={() => setFiltroRejeitados(!filtroRejeitados)} />
-              <div className='checkmark'></div>
-            </label>
-          </div>
-        </div>
-        <div className='caixaAtalhoTerminal'>
-          <div className='atalhoTerminalNome'>Concluidos</div>
-          <div>
-            <label className='containerCheckTerminal'>
-              <input type='checkbox' checked={filtroConcluidos} onChange={() => setFiltroConcluidos(!filtroConcluidos)} />
-              <div className='checkmark'></div>
-            </label>
-          </div>
-        </div>
+          {terminal.map((item) =>
+            item.PEDIDOS_APP_USARGESTAO === "SIM" ?(
+              <>
+                <div className='caixaAtalhoTerminal'>
+                  <div className='atalhoTerminalNome'>Em Preparo</div>
+                  <div className='caixaCheckBoxTerminal'>
+                    <label className='containerCheckTerminal'>
+                      <input type='checkbox' checked={filtroPreparo} onChange={() => setFiltroPreparo(!filtroPreparo)} />
+                      <div className='checkmark'></div>
+                    </label>
+                  </div>
+                </div>
+                {delivery === "SIM" ? (
+                  <div className='caixaAtalhoTerminal'>
+                    <div className='atalhoTerminalNome'>Em Transporte</div>
+                    <div>
+                      <label className='containerCheckTerminal'>
+                        <input type='checkbox' checked={filtroTransporte} onChange={() => setFiltroTransporte(!filtroTransporte)} />
+                        <div className='checkmark'></div>
+                      </label>
+                    </div>
+                  </div>
+                ) : null}
+                <div className='caixaAtalhoTerminal'>
+                  <div className='atalhoTerminalNome'>Finalizados</div>
+                  <div>
+                    <label className='containerCheckTerminal'>
+                      <input type='checkbox' checked={filtroFinalizados} onChange={() => setFiltroFinalizados(!filtroFinalizados)} />
+                      <div className='checkmark'></div>
+                    </label>
+                  </div>
+                </div>
+              </>
+            ) : null )}
       </div>
         <div>
           {Array.isArray(filteredPedidos) ? (
             filteredPedidos.map((itemPedido) => (
-              <div className='listaPedido-card' key={itemPedido.ID} onClick={() => selecionarPedido(itemPedido)}>
+              <div className='listaPedido-card' onClick={() => selecionarPedido(itemPedido, adm, terminal)}>
                 <div className='pedidoCard-linha'>
                   <div className='linhaEsquerda'>{itemPedido.TIPOCOMANDA} n° {itemPedido.NUMEROCOMANDA}</div>
                   <div className='linhaDireita'>{itemPedido.HORA.split(':').slice(0, 2).join(':')}</div>
                 </div>
                 <div className='pedidoCard-linha linhaBaixo'>
-                  <div className='linhaEsquerda'>{formCurrency.format(itemPedido.VNF_W16)}</div>
+                  <div className='linhaEsquerda'>{formCurrency.format(itemPedido.TOTAL)}</div>
                   <div className={
                       'statusPedidos ' +
-                      (itemPedido.ULTIMO_STATUS_PEDIDO === 'PEDIDO INICIADO' ? 'iniciado'
-                        : itemPedido.ULTIMO_STATUS_PEDIDO === 'PEDIDO CANCELADO' ? 'cancelado'
-                        : itemPedido.ULTIMO_STATUS_PEDIDO === 'PEDIDO CONFIRMADO' ? 'confirmado'
-                        : itemPedido.ULTIMO_STATUS_PEDIDO === 'PENDENTE' ? 'pendente'
+                      (itemPedido.STATUS === 1 ? 'novo'
+                        : itemPedido.STATUS === 2 ? 'aceito'
+                        : itemPedido.STATUS === 3 ? 'preparo'
+                        : itemPedido.STATUS === 4 ? 'transporte'
+                        : itemPedido.STATUS === 5 ? 'finalizados'
+                        : itemPedido.STATUS === 6 ? 'cancelado'
                         : '')
                     }>
-                        {capitalizeFirstLetter(itemPedido.ULTIMO_STATUS_PEDIDO.toLowerCase())}
+                        {itemPedido.STATUS === 1 ? 'Novo'
+                          : itemPedido.STATUS === 2 ? 'Aceito'
+                          : itemPedido.STATUS === 3 ? 'Em Preparo'
+                          : itemPedido.STATUS === 4 ? 'Em Transporte'
+                          : itemPedido.STATUS === 5 ? ' Finalizado'
+                          : itemPedido.STATUS === 6 ? 'Cancelado'
+                          : ''
+                        }
                   </div>
                 </div>
               </div>

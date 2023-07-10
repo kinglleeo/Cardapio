@@ -1,22 +1,43 @@
 import { React, useState, useEffect } from 'react'
 import './detalhesdopedido.css'
+import axios from 'axios';
+import { formCurrency } from '../../../../AA-utilidades/numeros';
 
 
-export default function DetalhesDoPedido({ itemPedido }){
+export default function DetalhesDoPedido({ itemPedido, adm, terminal }){
     const [dadosCompraPedido, setDadosCompraPedido] = useState([]);
-    console.log(itemPedido)
+    const [dados, setDados] = useState([]);
+    const delivery = dados.delivery
 
+    useEffect(()=>{
+        axios
+            .get(`http://192.168.0.100:9865/listaItensPedidos/${itemPedido.ID}`)
+            .then((getdata)=>{
+                setDadosCompraPedido(getdata.data);
+            })
+    }, [])
+    useEffect(()=>{
+        const dados = localStorage.getItem('dados')
+        setDados(JSON.parse(dados))
+    }, [])
 
-    const aceitarPedido=()=>{
+    const mudarStatus=(novoStatus)=>{
+        axios
+            .post(`http://192.168.0.100:9865/alterarStatusPedido`, {
+                idpedidoapp: itemPedido.ID,
+                idpedido: itemPedido.ID_PEDIDO,
+                usuario: adm,
+                delivery: delivery,
+                status: novoStatus
+        })
+            .then((response)=>{
+                Navigate('/Terminal')
+            })
+    } 
 
-    }
-
-    const cancelarPedido=()=>{
-        
-    }
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
-      }
+    }
 
     return(
         <div className='listaDetalhesPedido'>
@@ -29,17 +50,26 @@ export default function DetalhesDoPedido({ itemPedido }){
                     <div className='localizacaoPedido'> localização </div>
                 </div>
                 <div className='quadroPedidoLinha'>
-                    <div className='numeroPedido'> Pedido n° {itemPedido.ID} </div>
+                    <div className='numeroPedido'> Pedido n° {itemPedido.ID_PEDIDO} </div>
                     <div className={
                       'statusPedidos ' +
-                      (itemPedido.ULTIMO_STATUS_PEDIDO === 'PEDIDO INICIADO' ? 'iniciado'
-                        : itemPedido.ULTIMO_STATUS_PEDIDO === 'PEDIDO CANCELADO' ? 'cancelado'
-                        : itemPedido.ULTIMO_STATUS_PEDIDO === 'PEDIDO CONFIRMADO' ? 'confirmado'
-                        : itemPedido.ULTIMO_STATUS_PEDIDO === 'PENDENTE' ? 'pendente'
+                      (itemPedido.STATUS === 1 ? 'novo'
+                        : itemPedido.STATUS === 2 ? 'aceito'
+                        : itemPedido.STATUS === 3 ? 'preparo'
+                        : itemPedido.STATUS === 4 ? 'transporte'
+                        : itemPedido.STATUS === 5 ? 'finalizados'
+                        : itemPedido.STATUS === 6 ? 'cancelado'
                         : '')
                     }>
-                        {capitalizeFirstLetter(itemPedido.ULTIMO_STATUS_PEDIDO.toLowerCase())}
-                    </div>
+                        {itemPedido.STATUS === 1 ? 'Novo'
+                          : itemPedido.STATUS === 2 ? 'Aceito'
+                          : itemPedido.STATUS === 3 ? 'Em Preparo'
+                          : itemPedido.STATUS === 4 ? 'Em Transporte'
+                          : itemPedido.STATUS === 5 ? ' Finalizado'
+                          : itemPedido.STATUS === 6 ? 'Cancelado'
+                          : ''
+                        }
+                  </div>
                 </div>
             </div>
             <div className='quadroDetalhesPedido'>
@@ -50,38 +80,58 @@ export default function DetalhesDoPedido({ itemPedido }){
                     <div className='detalhesPedidoValor'> Valor </div>
                 </div>
                 <div>
-                    
-                    <div className='pedidoItemCard'>
-                        <div className='itemCardLinha'>
-                            <div className='itemPedidoQTD'> 10 </div>
-                            <div className='itemPedidoDesc'> CocaCola-Lata </div>
-                            <div className='itemValor'> R$ 5.000,00 </div>
-                        </div>
-                        <div className='itemCardLinha textOpcional'>
-                            <div className='itemCardIcone'></div>
-                            <div className='itemCardOpcoes'>
-
-                                <div className='itemOpcionais'>
-                                    <div className='nomeOpcional'> Limão e Gelo </div>
-                                    <div className='quantiaOpcional'> X 1 </div>
+                    {Array.isArray(dadosCompraPedido)? (
+                        dadosCompraPedido.map((item)=>
+                        <div className='pedidoItemCard'>
+                            <div className='itemCardLinha'>
+                                <div className='itemPedidoQTD'> {item.QTDE_COM} </div>
+                                <div className='itemPedidoDesc'> {item.DESCRICAO} </div>
+                                <div className='itemValor'> {formCurrency.format(item.TOTAL)} </div>
+                            </div>
+                            <div className='itemCardLinha textOpcional'>
+                                <div className='itemCardIcone'></div>
+                                <div className='itemCardOpcoes'>
+                                    {item.SABORES !== null ? (
+                                        <div className='itemSabores'> {item.SABORES.toLowerCase()} </div>
+                                    ) : null}
+                                    <div className='itemOpcionais'>
+                                        <div className='nomeOpcional'> {item.OPCOES.toLowerCase()} </div>
+                                    </div>
+                                    <div className='itemObservacoes'> {item.OBSERVACOES} </div>
                                 </div>
-
-                                <div className='itemObservacoes'> Trazer Junto do fim do mundo </div>
                             </div>
                         </div>
-                    </div>
-
+                    )
+                    ) : null}
                 </div>
             </div>
+
             <div className='quadroDetalhesPedido'>
                 <div className='barraTotalPedido'>
                     <div> Total Pedido </div>
-                    <div> R$ 5,000.00 </div>
+                    <div> {formCurrency.format(itemPedido.TOTAL)} </div>
                 </div>
             </div>
             <div className='caixaBtnsPedidos'>
-                <button className='btnAceitarPedido' onClick={() => aceitarPedido()}> Aceitar Pedido </button>
-                <button className='btnCancelarPedido' onClick={() => cancelarPedido()}> Cancelar Pedido </button>
+                {itemPedido.STATUS === 1 ?(
+                    <button className='btnCancelarPedido' onClick={() => mudarStatus(6)}> Cancelar Pedido </button>
+                ) : null}
+                    {itemPedido.STATUS === 1 ? (
+                        terminal === "NAO" ? (
+                            <button className='btnAceitarPedido' onClick={() => mudarStatus(5)}> Finalizar Pedido </button>
+                        ) : (
+                            <button className='btnAceitarPedido' onClick={() => mudarStatus(3)}> Aceitar Pedido </button>
+                        )
+                    )
+                    : itemPedido.STATUS === 3 ? (
+                        delivery === "NAO" ? (
+                            <button className='btnAceitarPedido' onClick={() => mudarStatus(5)}> Finalizar Pedido </button>
+                            ) : (
+                            <button className='btnAceitarPedido' onClick={() => mudarStatus(4)}> Em Transporte </button>)
+                            )
+                    : itemPedido.STATUS === 4 ? (
+                        <button className='btnAceitarPedido' onClick={() => mudarStatus(5)}> Finalizar Pedido </button>
+                    ) : null}
             </div>
         </div>
     )
