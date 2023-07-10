@@ -1,0 +1,102 @@
+@font-face {
+    font-family: "Roboto-Bold";
+    src: url('../../../../../fontes/roboto/Roboto-Bold.ttf');
+    font-family: "Roboto-Light";
+    src: url('../../../../../fontes/roboto/Roboto-Light.ttf');
+}
+.paginaUser{
+    background-color: white;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.principalUser{
+    flex: 1;
+}
+
+.listaHistorico{
+
+}
+.tituloData{
+    height: 30px;
+    display: flex;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: #bdbdbd;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-between;
+}
+.tituloTexto{
+    display: grid;
+    place-items: center;
+    font-family: "Roboto-Bold";
+    margin-left: 20px;
+}
+.caixaIconeTitulo{
+    display: grid;
+    place-items: center;
+    margin-right: 20px;
+
+}
+.tituloSetaCima{
+    height: 30px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../../../../../imagens/setaCima.png');
+    background-size: 100% 100%;
+}
+.tituloSetaBaixo{
+    height: 30px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../../../../../imagens/setaBaixo.png');
+    background-size: 100% 100%;
+}
+.listaItemsHistorico{
+    display: flex;
+    flex-direction: column;
+}
+.cardHistorico{
+    margin: 5px;
+    background-color: #dfdfdf;
+    border-radius: 5px;
+    display: flex;
+    min-height: 30px;
+    justify-content: space-between;
+}
+.historicoNome{
+    display: grid;
+    place-items: center;
+    margin: 10px;
+}
+.historicoValor{
+    display: grid;
+    place-items: center;
+    margin-right: 10px;
+}
+.cardHistoricoPizza{
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    background-color: #dfdfdf;
+    border-radius: 5px;
+}
+.bixPizzahistorico{
+    display: flex;
+    justify-content: space-between;
+}
+.historicoSabores{
+    margin: 5px;
+    display: flex;
+}
+.historicoItemSabor{
+    margin-left: 5px;
+}
+.corpoFlutuante{
+    
+}
+
+
+

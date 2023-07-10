@@ -1,0 +1,60 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+@font-face {
+    font-family: "Roboto-Light";
+    src: url('../..//../fontes/roboto/Roboto-Light.ttf');
+    font-family: "Roboto-Bold";
+    src: url('../..//../fontes/roboto/Roboto-Bold.ttf');
+}
+.MainLogin{
+    margin-top: 60px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: #f0eeee;
+    border-radius: 5px;
+}
+.MainLoginTexto{
+    padding: 10px;
+    font-family: "Roboto-Light";
+    display: grid;
+    place-items: center;
+    font-family: "Roboto-Bold";
+    font-size: 20px;
+}
+.loginBoxDados{
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.BoxNome{
+    height: 40px;
+    background-color: #DBDBDB;
+    margin: 5px;
+    border-radius: 5px;
+    font-family: "Roboto-Light";
+}
+.inputLogin{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    margin-left: 10px;
+}
+.btnLogin{
+    min-height: 50px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: rgb(58, 180, 58);
+    font-family: "Roboto-Bold";
+    font-size: 18px;
+    color: white;
+    border: none;
+}
+::placeholder {
+}

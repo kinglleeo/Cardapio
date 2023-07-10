@@ -1,0 +1,25 @@
+@font-face {
+    font-family: "Roboto-Bold";
+    src: url('../../../../../../../fontes/roboto/Roboto-Bold.ttf');
+    font-family: "Roboto-Light";
+    src: url('../../../../../../../fontes/roboto/Roboto-Light.ttf');
+}
+.pedidosClienteCard{
+    margin: 15px;
+    height: 90px;
+    border: solid;
+    border-bottom: none;
+    border-right: none;
+    border-color: rgb(240, 238, 238);
+    border-radius: 5px 0 0 0;
+    box-shadow: 4px 8px 6px 0px #8f8f8f;
+    display: flex;
+    flex-direction: column;
+}
+.clienteCardTipo{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    font-size: 14px;
+    font-family: "Roboto-Bold";
+}

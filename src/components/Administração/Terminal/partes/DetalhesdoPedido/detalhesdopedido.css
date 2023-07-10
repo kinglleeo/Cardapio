@@ -1,0 +1,165 @@
+@font-face {
+    font-family: "Roboto-Medium";
+    src: url('../../../../../fontes/roboto/Roboto-Medium.ttf');
+    font-family: "Roboto-Regular";
+    src: url('../../../../../fontes/roboto/Roboto-Regular.ttf');
+    font-family: "Roboto-Bold";
+    src: url('../../../../../fontes/roboto/Roboto-Bold.ttf');
+}
+.listaDetalhesPedido{
+    margin-top: 50px;
+}
+.quadroDetalhesPedido{
+    margin: 10px;
+    padding: 10px;
+    border: solid;
+    border-bottom: none;
+    border-right: none;
+    border-color: rgb(240, 238, 238);
+    border-radius: 5px 0 0 0;
+    box-shadow: 4px 8px 6px 0px #8f8f8f;
+}
+.quadroPedidoLinha{
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.textoFonte{
+    font-family: "Roboto-Medium";
+    font-size: 14px;
+}
+.localizacaoPedido{
+    margin-left: 20px;
+    font-family: "Roboto-Regular";
+    font-size: 12px;
+}
+.numeroPedido{
+    display: grid;
+    place-items: center;
+    font-family: "Roboto-Regular";
+    font-size: 14px;
+    color: #8f8f8f;
+}
+.detalhesPedidoTitulo{
+    font-family: "Roboto-Medium";
+    font-size: 13px;
+}
+.detalhesPedidoBox{
+    display: flex;
+    font-family: "Roboto-Regular";
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 3px;
+}
+.detalhesPedidoQtd{
+    width: 10%;
+    display: grid;
+    place-items: center;
+}
+.detalhesPedidoDesc{
+    width: 70%;  
+    display: grid;
+    place-items: center start;
+    margin-left: 5px;
+}
+.detalhesPedidoValor{
+    width: 20%;
+    display: grid;
+    place-items: center;
+    margin-right: 10px; 
+}
+
+
+.itemCardLinha{
+    display: flex;
+    margin-top: 5px;
+}
+.itemPedidoQTD{
+    width: 10%;
+    display: grid;
+    place-items: center;
+    font-family: "Roboto-Bold";
+    font-size: 14px;
+}
+.itemPedidoDesc{
+    width: 60%;  
+    display: grid;
+    place-items: center start;
+    font-family: "Roboto-Bold";
+    font-size: 14px;
+}
+.itemValor{
+    width: 30%;
+    font-size: 14px;
+    display: grid;
+    place-items: center;
+    font-family: "Roboto-Bold";
+}
+.itemCardIcone{
+    width: 10%;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    background-image: url('../../../../../imagens/iconeNota.png');
+    background-size: 100% 100%;
+}
+.itemCardOpcoes{
+    width: 90%;
+    margin-left: 5px;
+    display: flex;
+    flex-direction: column;
+
+}
+.itemOpcionais{
+    display: flex;
+}
+.nomeOpcional{
+    width: 90%;
+}
+.quantiaOpcional{
+    width: 10%;
+}
+.itemObservacoes{
+}
+.textOpcional{
+    font-family: "Roboto-Regular";
+    font-size: 13px;
+    color: rgb(46, 143, 255);
+}
+.barraTotalPedido{
+    display: flex;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    font-family: "Roboto-Bold";
+    font-size: 16px;
+}
+
+
+.caixaBtnsPedidos{
+    display: flex;
+    margin: 5px;
+    align-content: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.btnAceitarPedido{
+    background-color: green;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    color: white;
+    font-family: "Roboto-Medium";
+    font-size: 16px;
+}
+.btnCancelarPedido{
+    background-color: rgb(90, 90, 90);
+    border-radius: 5px;
+    border: none;
+    padding: 15px;
+    color: white;
+    font-family: "Roboto-Medium";
+    font-size: 16px;
+}

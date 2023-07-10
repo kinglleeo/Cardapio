@@ -1,0 +1,30 @@
+.btn-topo-pagina{
+    position: fixed;
+    bottom: 30px;
+    left: 0;
+    height: 30px;
+    width: 30px;
+}
+.btn-topo{
+    background-color: transparent;
+    border: none;
+}
+.btn-topo {
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    background-image: url('../../imagens/iconeCima.png');
+    background-size: 100% 100%;
+}
+@keyframes bounce_513 {
+    0%,
+      100% {
+      transform: translateY(-25%);
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+}
+50% {
+      transform: translateY(0);
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+}
+  
