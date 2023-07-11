@@ -16,7 +16,7 @@ export default function Header (){
     }, [])
     
     const PaginaUsuario =()=>{
-        navigate('/PaginaUsuario')
+        navigate('/PaginaUser')
     }
 
     

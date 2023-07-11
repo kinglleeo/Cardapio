@@ -13,7 +13,7 @@ export default function Terminal({ nomeEmpresa, adm }) {
     const [filtroTransporte, setFiltroTransporte] = useState(false);
     const [filtroFinalizados, setFiltroFinalizados] = useState(false);
     const [filtroCancelado, setFiltroCancelado] = useState(false);
-    const [terminal, setTerminal] = useState([])
+    const [terminal, setTerminal] = useState([]);
     const [dados, setDados] = useState([]);
     const delivery = dados.delivery
     const navigate = useNavigate();

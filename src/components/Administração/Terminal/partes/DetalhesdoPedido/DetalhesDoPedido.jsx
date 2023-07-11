@@ -4,21 +4,34 @@ import axios from 'axios';
 import { formCurrency } from '../../../../AA-utilidades/numeros';
 
 
-export default function DetalhesDoPedido({ itemPedido, adm, terminal }){
+export default function DetalhesDoPedido({ itemPedido, terminal }){
     const [dadosCompraPedido, setDadosCompraPedido] = useState([]);
     const [dados, setDados] = useState([]);
+    const [adm, setAdm] = useState('')
     const delivery = dados.delivery
+    console.log(dadosCompraPedido)
 
     useEffect(()=>{
-        axios
-            .get(`http://192.168.0.100:9865/listaItensPedidos/${itemPedido.ID}`)
-            .then((getdata)=>{
-                setDadosCompraPedido(getdata.data);
-            })
-    }, [])
+        if (delivery === "NAO" && itemPedido.STATUS === 6){
+            axios
+                .get(`http://192.168.0.100:9865/listaItensCancelados/${itemPedido.ID}`)
+                .then((getdata)=>{
+                    setDadosCompraPedido(getdata.data);
+                })  
+        } else {
+            axios
+                .get(`http://192.168.0.100:9865/listaItensPedidos/${itemPedido.ID}`)
+                .then((getdata)=>{
+                    setDadosCompraPedido(getdata.data);
+                })
+        }
+    }, [delivery, itemPedido])
+
     useEffect(()=>{
         const dados = localStorage.getItem('dados')
         setDados(JSON.parse(dados))
+        const adm = localStorage.getItem('administrador')
+            setAdm(adm);
     }, [])
 
     const mudarStatus=(novoStatus)=>{
@@ -26,8 +39,8 @@ export default function DetalhesDoPedido({ itemPedido, adm, terminal }){
             .post(`http://192.168.0.100:9865/alterarStatusPedido`, {
                 idpedidoapp: itemPedido.ID,
                 idpedido: itemPedido.ID_PEDIDO,
-                usuario: adm,
                 delivery: delivery,
+                idusuario: adm,
                 status: novoStatus
         })
             .then((response)=>{
@@ -92,10 +105,10 @@ export default function DetalhesDoPedido({ itemPedido, adm, terminal }){
                                 <div className='itemCardIcone'></div>
                                 <div className='itemCardOpcoes'>
                                     {item.SABORES !== null ? (
-                                        <div className='itemSabores'> {item.SABORES.toLowerCase()} </div>
+                                        <div className='itemSabores'> {item.SABORES !== null ? (item.SABORES.toLowerCase()) : null} </div>
                                     ) : null}
                                     <div className='itemOpcionais'>
-                                        <div className='nomeOpcional'> {item.OPCOES.toLowerCase()} </div>
+                                        <div className='nomeOpcional'> {item.OPCOES !== null ? (item.OPCOES.toLowerCase()) : null} </div>
                                     </div>
                                     <div className='itemObservacoes'> {item.OBSERVACOES} </div>
                                 </div>

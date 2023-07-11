@@ -12,7 +12,8 @@ export default function SubGrupoList({ grupo }) {
   const activeListRef = useRef(null);
 
   useEffect(() => {
-    api.get(`/listaSubGrupos/${grupo.ID_GRUPO}`).then((getdata) => {
+    api
+      .get(`/listaSubGrupos/${grupo.ID_GRUPO}`).then((getdata) => {
       setSubGrupo(getdata.data);
     });
   }, []);

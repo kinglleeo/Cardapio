@@ -2,12 +2,15 @@ import { React, useState, useEffect } from 'react'
 import axios from 'axios';
 import './pedidoscorpo.css'
 import { formCurrency } from '../../../AA-utilidades/numeros';
+import { useLocation } from 'react-router-dom';
 
 export default function PedidosCorpo(){
     const [dados, setDados] = useState([]);
     //const [numeroPedido, setNumeroPedido] = useState([]);
     const [dadosCompraPedido, setDadosCompraPedido] = useState([]);
-    const idPedido = 5
+    const [totalPedido, setTotalPedido] = useState(0);
+    const { state } = useLocation();
+    const { numeroPedido } = state;
     
     useEffect(()=>{
         const dados = localStorage.getItem('dados')
@@ -17,7 +20,7 @@ export default function PedidosCorpo(){
 
     useEffect(()=>{
         axios
-            .get(`http://192.168.0.100:9865/listaItensPedidos/${idPedido}`)
+            .get(`http://192.168.0.100:9865/listaItensPedidos/${numeroPedido}`)
             .then((getdata)=>{
                 setDadosCompraPedido(getdata.data);
             })
@@ -52,10 +55,10 @@ export default function PedidosCorpo(){
                                 <div className='itemCardIcone'></div>
                                 <div className='itemCardOpcoes'>
                                     {item.SABORES !== null ? (
-                                        <div className='itemSabores'> {item.SABORES.toLowerCase()} </div>
+                                        <div className='itemSabores'> {item.OPCOES !== null ? (item.OPCOES.toLowerCase()) : null} </div>
                                     ) : null}
                                     <div className='itemOpcionais'>
-                                        <div className='nomeOpcional'> {item.OPCOES.toLowerCase()} </div>
+                                        <div className='nomeOpcional'> {item.OPCOES !== null ? (item.OPCOES.toLowerCase()) : null} </div>
                                     </div>
                                     <div className='itemObservacoes'> {item.OBSERVACOES} </div>
                                 </div>
@@ -64,6 +67,10 @@ export default function PedidosCorpo(){
                     )
                     ) : null}
                 </div>
+            </div>
+            <div className='TotalValorPedidos'>
+                <div>Total</div>
+                <div> {formCurrency.format(totalPedido)}</div>
             </div>
         </div>
     )

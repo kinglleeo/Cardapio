@@ -9,6 +9,7 @@ import { collection, addDoc, serverTimestamp, doc  } from "firebase/firestore";
 import { db, auth } from '../../Usuarios/LoginPage/Firebase/firebaseConfig'
 import { onAuthStateChanged } from 'firebase/auth'
 import { api } from '../../../conecções/api';
+import ModalPedidos from './ModalPedidos'
 
 export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, observacoesCart, tipocomanda, setTipo, mesaSelecionada }) {
   const navigate = useNavigate();
@@ -20,19 +21,20 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, o
   const [desativarConfirmar, setDesativarConfirmar] = useState(false)
   const [dados, setDados] = useState([]);
   const [numeroPedido, setNumeroPedido] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
   const cnpj = dados.cnpj
   const delivery = dados.delivery
   const numerocomanda = dados.numerocomanda
   const cart = useSelector(state => state.cart)
   const items_pedido = compra
-
+  console.log(items_pedido)
   useEffect(()=>{
     const dados = localStorage.getItem('dados')
          setDados(JSON.parse(dados))
     const usuario = onAuthStateChanged(auth, (user)=>{
           setUser(user) 
     })
-    const idGarcom = sessionStorage.getItem('idgarcom');
+    const idGarcom = localStorage.getItem('idgarcom');
       setIdGarcom(idGarcom)
  }, [setDados, setTipo])
   useEffect(()=>{
@@ -173,17 +175,19 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, o
         items_pedido: items_pedido, 
       })
       .then((response)=>{
-        setNumeroPedido(response)
+        setNumeroPedido(response.data)
+        setIsOpen(true)
       })
   }
 
-  
   const handleCotinuar = () => {
     navigate('/Main');
   };
-
   const handleLogar =()=>{
     navigate('/Login')
+  }
+  const terminal=()=>{
+    navigate('/LoginAdm')
   }
 
   return (
@@ -196,6 +200,8 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, o
       </div>
       <div className='cartBarContinuar' onClick={handleCotinuar}> CONTINUAR COMPRANDO </div>
       {idGarcom === null ? (<div className='FazerLogin' onClick={handleLogar}> FAZER LOGIN </div>) : null}
+      {idGarcom !== null ? (<div className='FazerLogin' onClick={terminal}> Terminal </div>) : null}
+      {isOpen && <ModalPedidos setIsOpen={setIsOpen} numeroPedido={numeroPedido} />}
     </div>
   );
 }

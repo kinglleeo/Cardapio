@@ -29,7 +29,7 @@ export default function App(){
               <Route path='/Pizzas' element={ <MainPizzas/> }/>
               <Route path='/Carrinho' element={ <Carrinho/>  }/>
               <Route path='/login' element={<LoginPage/>}></Route>
-              <Route path='/PaginaUsuario' element={ <PaginaUsuario/> }/>
+              <Route path='/PaginaUser' element={ <PaginaUsuario/> }/>
               <Route path='/loginGarcom' element={<LoginGarcom/>}></Route>
               <Route path='/loginAdm' element={<LoginAdm/>}/>
               <Route path='/Pedidos' element={<Pedidos/>}></Route>

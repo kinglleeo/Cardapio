@@ -4,8 +4,6 @@ import 'firebase/compat/auth';
 import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css'
 import { useNavigate } from 'react-router-dom';
-import { onAuthStateChanged } from 'firebase/auth'
-import { auth } from '../Firebase/firebaseConfig';
 
 export default function LoginSociais () {
   const navigate = useNavigate()  
@@ -25,8 +23,7 @@ export default function LoginSociais () {
   firebase.initializeApp(firebaseConfig);
     const uiConfig = {
       callbacks: {
-        signInSuccessWithAuthResult: function(authResult) {
-          
+        signInSuccessWithAuthResult: function(authResult, redirectUrl){
           navigate('/Main')
         }},
       signInOptions: [

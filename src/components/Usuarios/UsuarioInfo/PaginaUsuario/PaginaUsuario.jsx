@@ -1,9 +1,9 @@
 import React from 'react'
 import Infos from './partes/Infos'
-import Historico from './partes/Historico'
 import Footer from '../../../Footer/Footer'
 import BarraCarrinhoAtalho from '../../../Carrinho/BarraCarrinhoAtalho'
 import EnderecosUsuario from './partes/EnderecosUsuario'
+import './paginausuario.css'
 
 export default function PaginaUsuario(){
     
@@ -16,9 +16,6 @@ export default function PaginaUsuario(){
                 </div>
                 <div>
                     <EnderecosUsuario/>
-                </div>
-                <div>
-                    <Historico/>
                 </div>
                 <div>
                     <BarraCarrinhoAtalho/>

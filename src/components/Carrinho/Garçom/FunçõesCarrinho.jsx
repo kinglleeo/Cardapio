@@ -9,7 +9,7 @@ export default function FunçõesCarrinho({ setOpçaoEscolhida, setNumeroComanda
     const cartao = "CARTAO";
     
     useEffect(()=>{
-        const idGarcom = sessionStorage.getItem('idgarcom');
+        const idGarcom = localStorage.getItem('idgarcom');
           setIdGarcom(idGarcom)
     }, [])
 
