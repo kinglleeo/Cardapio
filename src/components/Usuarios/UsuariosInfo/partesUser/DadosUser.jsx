@@ -11,7 +11,7 @@ export default function DadosUsuarios({user}){
     const [dadosCliente, setDadosCliente] = useState([]);
     const [item, setItem] = useState('');
     const navigate = useNavigate()
-    
+
     useEffect(()=>{
         axios
             .get(`http://192.168.0.100:9865/dadosCliente/${user.uid}`)
@@ -32,6 +32,14 @@ export default function DadosUsuarios({user}){
         })
         .catch((error) => {
         });
+    }
+
+    function formataData(){
+        let data = new Date(),
+        dia = data.getDate().toString().padStart(2, '0'),
+        mes = (data.getMonth()+1).toString().padStart(2, '0'),
+        ano = data.getFullYear();
+    return `${dia}/${mes}/${ano}`;
     }
     
     return(
@@ -62,7 +70,7 @@ export default function DadosUsuarios({user}){
                             </div>
                             <div className='caixaUsuario'>
                                 <div> Data de Nascimento </div>
-                                <div> {item.data_nascimento} </div>
+                                <div> {formataData(item.data_nascimento)} </div>
                             </div>
                         </div>
                     )

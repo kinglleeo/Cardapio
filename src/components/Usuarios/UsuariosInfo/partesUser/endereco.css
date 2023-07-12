@@ -11,19 +11,20 @@
 }
 .endereco{
     display: flex;
-    height: 50px;
-    margin-top: 5px;
-    padding: 5px;
-    background-color: #fc740d;
+    flex-direction: column;   
 }
 .descricaoendereco{
-    width: 85%;
     display: flex;
     flex-direction: column;
+    background-color: #fc740d;
+    margin-top: 5px;
+    padding: 5px;
 }
 .enderecoApelido{
     font-size: 16px;
     margin-left: 20px;
+    display: flex;
+    justify-content: space-between;
 }
 .caixaEndereco{
     display: flex;
@@ -34,10 +35,29 @@
 }
 .enderecoNumero{
     width: 20%;
+    margin-left: 5px;
 }
-
-
-
+.tituloRua{
+    font-size: 12px;
+    padding: 0 5px;
+    background-color: #fc740d;
+    position: relative;
+    width: fit-content;
+    margin: 0 0 0 5px;
+    top: 9px;
+    z-index: 0;
+}
+.textoRua{
+    padding: 8px 8px;
+    font-size: 13px;
+    border: 0.5px black solid;
+    border-radius: 5px;
+}
+.textoApelido{
+    display: grid;
+    place-items: center;
+    font-family: "Roboto-Bold";
+}
 
 
 

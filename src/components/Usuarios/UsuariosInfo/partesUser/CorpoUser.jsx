@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { signOut } from "firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
 import DadosUser from './DadosUser'
+import Endereços from './Endereços'
 
 export default function Infos(){
     const navigate = useNavigate()
@@ -31,6 +32,11 @@ export default function Infos(){
                     user={user}
                     nome={nome}
                     Email={Email}
+                />
+            </div>
+            <div>
+                <Endereços
+                    user={user}
                 />
             </div>
         </div>

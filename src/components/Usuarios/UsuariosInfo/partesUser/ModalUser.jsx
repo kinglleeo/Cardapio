@@ -1,19 +1,26 @@
 import { React, useState} from 'react'
 import './dados.css'
 import axios from 'axios';
+import { useEffect } from 'react';
 
 export default function modal({ user, item, setIsOpenUserDados}){
     const [nome, setNome] = useState('');
     const [telefone, setTelefone] = useState('');
     const [dataNascimento, setDataNascimento] = useState('');
-    console.log(item)
+
+    useEffect(()=>{
+        setNome(item.nome)
+        setTelefone(item.numero_telefone)
+        setDataNascimento(item.data_nascimento)
+    }, [])
     
     const Salvar = () => {
         axios
-            .put(`http://192.168.0.100:9865/alterarDadosCliente/${user.uid}`, {
+            .post(`http://192.168.0.100:9865/alterarDadosCliente/${user.uid}`, {
+                firebase_token: user.uid,
                 nome: nome,
-                telefone: telefone,
-                dataNascimento: dataNascimento
+                numero_telefone: telefone,
+                data_nascimento: dataNascimento
             })
             .then((response)=>{
                 alert('Dados Salvos')
@@ -48,7 +55,7 @@ export default function modal({ user, item, setIsOpenUserDados}){
                                 placeholder='Digite seus Dados...'
                                 name='input'
                                 className='input'
-                                value={item.nome}
+                                value={nome}
                                 onChange={(e)=> setNome(e.target.value)}
                             />
                         </div>
@@ -59,7 +66,7 @@ export default function modal({ user, item, setIsOpenUserDados}){
                                 placeholder='Digite seus Dados...'
                                 name='input'
                                 className='input'
-                                value={item.numero_telefone}
+                                value={telefone}
                                 onChange={(e)=> setTelefone(e.target.value)}
                             />
                         </div>
@@ -70,7 +77,7 @@ export default function modal({ user, item, setIsOpenUserDados}){
                                 placeholder='Digite seus Dados...'
                                 name='input'
                                 className='input'
-                                value={formataData(item.data_nascimento)}
+                                value={dataNascimento}
                                 onChange={(e)=> setDataNascimento(e.target.value)}
                             />
                         </div>
