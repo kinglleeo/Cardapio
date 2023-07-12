@@ -4,6 +4,7 @@ import 'firebase/compat/auth';
 import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css'
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export default function LoginSociais () {
   const navigate = useNavigate()  
@@ -24,8 +25,23 @@ export default function LoginSociais () {
     const uiConfig = {
       callbacks: {
         signInSuccessWithAuthResult: function(authResult, redirectUrl){
-          navigate('/Main')
-        }},
+            const user = authResult.user
+            axios
+              .post('http://192.168.0.100:9865/insereCliente',{
+                nome: user.displayName,
+                data_nascimento: '',
+                email: user.email,
+                firebase_token: user.uid,
+                numero_telefone: user.phoneNumber
+              })
+              .then((response)=>{
+                console.log(response)
+              })
+              .catch((error)=>{
+                console.log(error)
+              })
+            navigate('/Main')
+          }},
       signInOptions: [
         {
           provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,

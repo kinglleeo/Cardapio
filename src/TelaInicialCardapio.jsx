@@ -20,7 +20,7 @@ export default function TelaInicialCardapio(){
         const delivery = urlParams.get('delivery')
         const login = urlParams.get('login')
             setCnpj(cnpj)
-        const url = `http://suporte.bedinfoservices.com.br:99/appGarline/retornaApiCliente.php?cnpj=${cnpj}`;
+        const url = `http://suporte.bedinfoservices.com.br:99/appGarline/retornaApiRestaurante.php?cnpj=${cnpj}`;
             axios
                 .post(url)
                 .then((response)=>{

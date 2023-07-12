@@ -1,14 +1,9 @@
 import { React, useState, useEffect } from 'react'
 import '../../../Styles/StyleCarrinho.css'
-import './entrega.css'
-import ModalEndereco from './ModalEndereco'
-import ModalEditarEndereco from './ModalEditarEndereco'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../../Usuarios/LoginPage/Firebase/firebaseConfig';
 
 export default function Entrega(){
-    const [openCadastroEndereco, setOpenCadastroEndereco] = useState(false);
-    const [openEditarEndereco, setOpenEditarEndereco] = useState(false);
     const [delivery, setDelivery] = useState('')
     const [user, setUser] = useState('');
     const enderecoCompleto = [{
@@ -60,8 +55,7 @@ export default function Entrega(){
                                 </div>
                             ): null}
                     </div>
-                    {openCadastroEndereco && <ModalEndereco setOpenCadastroEndereco={setOpenCadastroEndereco}/>}
-                    {openEditarEndereco && <ModalEditarEndereco enderecoCompleto={enderecoCompleto} setOpenEditarEndereco={setOpenEditarEndereco}/>}
+                   
                 </div>
             ) : null}
         </div>

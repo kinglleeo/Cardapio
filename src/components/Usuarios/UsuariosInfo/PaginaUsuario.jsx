@@ -1,9 +1,9 @@
 import React from 'react'
-import Infos from './partes/Infos'
-import Footer from '../../../Footer/Footer'
-import BarraCarrinhoAtalho from '../../../Carrinho/BarraCarrinhoAtalho'
-import EnderecosUsuario from './partes/EnderecosUsuario'
-import './paginausuario.css'
+import Footer from '../../Footer/Footer'
+import BarraCarrinhoAtalho from '../../Carrinho/BarraCarrinhoAtalho'
+import CorpoUsuario from './partesUser/CorpoUser'
+import Endereços from './partesUser/Endereços'
+import './paginauser.css'
 
 export default function PaginaUsuario(){
     
@@ -12,10 +12,10 @@ export default function PaginaUsuario(){
         <div className='paginaUser'>
             <div className='principalUser'>
                 <div>
-                    <Infos/>
+                    <CorpoUsuario/>
                 </div>
                 <div>
-                    <EnderecosUsuario/>
+                    <Endereços/>
                 </div>
                 <div>
                     <BarraCarrinhoAtalho/>
