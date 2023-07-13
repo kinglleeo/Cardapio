@@ -11,6 +11,7 @@ export default function modal({ user, setIsOpenCadastrarEndereco}){
     const [cidade, setCidade] = useState('');
     const [idCidade, nomeCidade] = cidade.split('|');
     const [bairro, setBairro] = useState('');
+    const [idBairro, nomeBairro] = bairro.split('|');
     const [cidadesAceitas, setCidadesAceitas] = useState([]);
     const [bairrosAceitos, setBairrosAceitos] = useState([]);
     
@@ -22,13 +23,47 @@ export default function modal({ user, setIsOpenCadastrarEndereco}){
             })
     }, [])
 
-    useEffect(()=>{
+
+    const handleCidade=(event)=>{
+        setCidade(event)
+        pegarBairro(event);
+    }
+
+    const pegarBairro=(event)=>{
+        const [idCidade, nomeCidade] = event.split('|');
         axios
             .get(`http://192.168.0.100:9865/bairros/${idCidade}`)
-            .then((getdata)=>{
-                setBairro(getdata.data)
+            .then((response) => {
+               setBairrosAceitos(response.data);
+            })
+            .catch((error) => {
+               console.error(error);
             });
-    }, [])
+    }
+    const salvar =()=>{
+        axios
+            .post(`http://192.168.0.100:9865/insereEndereco`,{
+                firebase_token: user.uid,
+                apelido: apelido,
+                rua: rua,
+                numero: numero,
+                referencia, referencia,
+                id_cidade: idCidade,
+                id_bairro: idBairro,
+                bairro: nomeBairro
+            })
+            .then((response) => {
+                if(response.data === -400){
+                    alert('Endereco ja Cadastrado')
+                } else if (response.data === 200){
+                    window.location.reload()
+                }
+                console.log(response)
+            .catch((error) => {
+                console.error(error);
+            });
+        })
+    }
     
     return(
     <>
@@ -85,7 +120,7 @@ export default function modal({ user, setIsOpenCadastrarEndereco}){
                         </div>
                         <div className="coolinput">
                                 <div>Cidade</div>
-                            <select id="escolha" name="escolha" onChange={(event) => setCidade(event.target.value)}>
+                            <select id="escolha" name="escolha" onChange={(event) => handleCidade(event.target.value)}>
                                 <option value="">Selecione uma cidade</option>
                                 {Array.isArray(cidadesAceitas) ? (
                                     cidadesAceitas.map((item) => (
@@ -96,18 +131,19 @@ export default function modal({ user, setIsOpenCadastrarEndereco}){
                         </div>
                         <div className="coolinput">
                         <div> Bairro </div>
-                            <select id="escolha" name="escolha">
-                                {Array.isArray(bairrosAceitos) ?(
-                                    bairrosAceitos.map((item)=>
-                                        <option value={item.ID} key={item.ID}> {item.NOME} </option>
-                                    )
+                        <select id="escolha" name="escolha" onChange={(event) => setBairro(event.target.value)}>
+                                <option value="">Selecione uma cidade</option>
+                                {Array.isArray(bairrosAceitos) ? (
+                                    bairrosAceitos.map((item) => (
+                                        <option key={item.ID} value={`${item.ID}|${item.DESCRICAO}`}> {item.DESCRICAO} </option>
+                                    ))
                                 ) : null}
                             </select>
                         </div>
                     </div>
                 </div>
                 <div>
-                    <button className='btnSalvar enderecobtn'> Salvar </button>
+                    <button className='btnSalvar enderecobtn' onClick={()=> salvar()}> Salvar </button>
                 </div>
             </div>
         </div>

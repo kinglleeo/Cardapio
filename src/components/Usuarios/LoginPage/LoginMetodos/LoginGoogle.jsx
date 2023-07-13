@@ -35,7 +35,7 @@ export default function LoginSociais () {
                 numero_telefone: user.phoneNumber
               })
               .then((response)=>{
-                console.log(response)
+                localStorage.setItem('idCliente', response.data)
               })
               .catch((error)=>{
                 console.log(error)

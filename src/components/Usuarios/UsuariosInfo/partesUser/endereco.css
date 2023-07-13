@@ -24,7 +24,30 @@
     font-size: 16px;
     margin-left: 20px;
     display: flex;
-    justify-content: space-between;
+}
+.textoApelido{
+    width: 60%;
+    font-family: "Roboto-Bold";
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+}
+.caixaBtnExpandir{
+    width: 20%;
+    display: grid;
+    place-items: center;
+}
+.tamanhoIcone{
+    height: 30px;
+    width: 30px;
+}
+.iconeEnderecoUp{
+    background-image: url('../../../../imagens/enderecoCima.png');
+    background-size: 100% 100%;
+}
+.iconeEnderecoDown{
+    background-image: url('../../../../imagens/enderecoDown.png');
+    background-size: 100% 100%;
 }
 .caixaEndereco{
     display: flex;
@@ -53,12 +76,9 @@
     border: 0.5px black solid;
     border-radius: 5px;
 }
-.textoApelido{
-    display: grid;
-    place-items: center;
-    font-family: "Roboto-Bold";
-}
+.btnCadastrar{
 
+}
 
 
 

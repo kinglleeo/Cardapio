@@ -7,35 +7,67 @@ export default function modal({ user, item, setIsOpenModalEndereco}){
     const [apelido, setApelido] = useState('');
     const [rua, setRua] = useState('');
     const [numero, setNumero] = useState('');
+    const [referencia, setReferencia] = useState('');
     const [bairro, setBairro] = useState('');
     const [cidade, setCidade] = useState('');
-    const [estado, setEstado] = useState('');
-
+    const [idCidade, nomeCidade] = cidade.split('|');
+    const [idBairro, nomeBairro] = bairro.split('|');
     const [cidadesAceitas, setCidadesAceitas] = useState('');
     const [bairrosAceitos, setBairrosAceitos] = useState('');
+    
+    useEffect(()=>{
+        setApelido(item.APELIDO)
+        setRua(item.RUA)
+        setReferencia(item.REFERENCIA)
+        setNumero(item.NUMERO)
+        setBairro(item.BAIRRO)
+        setCidade(item.CIDADE)
+    }, [])
 
     useEffect(()=>{
-        setApelido(item.apelido)
-        setRua(item.rua)
-        setNumero(item.numero)
-        setBairro(item.bairro)
-        setCidade(item.cidade)
-        setEstado(item.estado)
+        axios
+            .get('http://192.168.0.100:9865/cidades')
+            .then((getdata)=>{
+                setCidadesAceitas(getdata.data)
+            })
     }, [])
+    const handleCidade=(event)=>{
+        setCidade(event)
+        pegarBairro(event);
+    }
+
+    const pegarBairro=(event)=>{
+        const [idCidade, nomeCidade] = event.split('|');
+        axios
+            .get(`http://192.168.0.100:9865/bairros/${idCidade}`)
+            .then((response) => {
+               setBairrosAceitos(response.data);
+            })
+            .catch((error) => {
+               console.error(error);
+            });
+    }
     
     const Salvar = () => {
         axios
-            .post(`http://192.168.0.100:9865/alterarDadosCliente/${user.uid}`, {
+            .post(`http://192.168.0.100:9865/alterarEndereco`, {
+                firebase_token: user.uid,
                 apelido: apelido,
                 rua: rua,
                 numero: numero,
+                referencia: referencia,
+                id_cidade: idCidade,
+                id_bairro: idBairro,
                 bairro: bairro,
-                cidade: cidade,
-                estado: estado
+                id_garline: item.ID
             })
             .then((response)=>{
-                alert('Dados Salvos')
-                setIsOpenModalEndereco(false)
+                if(response.data === -500){
+                    alert("erro")
+                } else if (response.data === 200){
+                    alert('Salvo')
+                    window.location.reload()
+                }
             })
             .catch((error)=>{
                 console.log(error)
@@ -85,40 +117,38 @@ export default function modal({ user, item, setIsOpenModalEndereco}){
                             />
                         </div>
                         <div class="coolinput">
-                            <label for="input" className="text"> Cidade </label>
+                            <label for="input" className="text"> Referencia </label>
                             <input
                                 type='text'
                                 placeholder='Digite seus Dados...'
                                 name='input'
                                 className='input'
-                                value={cidade}
-                                onChange={(e)=> setCidade(e.target.value)}
+                                value={referencia}
+                                onChange={(e)=> setReferencia(e.target.value)}
                             />
                         </div>
-                        <div class="coolinput">
-                            <label for="input" className="text"> Estado </label>
-                            <input
-                                type='text'
-                                placeholder='Digite seus Dados...'
-                                name='input'
-                                className='input'
-                                value={estado}
-                                onChange={(e)=> setEstado(e.target.value)}
-                            />
+                        <div className="coolinput">
+                                <div>Cidade</div>
+                            <select id="escolha" name="escolha" onChange={(event) => handleCidade(event.target.value)}>
+                                <option value="">Selecione uma cidade</option>
+                                {Array.isArray(cidadesAceitas) ? (
+                                    cidadesAceitas.map((item) => (
+                                        <option key={item.ID} value={`${item.ID}|${item.NOME}`}> {item.NOME} </option>
+                                    ))
+                                ) : null}
+                            </select>
                         </div>
-                        {item.cidade !== null || cidade !==null ? (
-                            <div class="coolinput">
-                                <label for="input" className="text"> Bairro </label>
-                                <input
-                                    type='text'
-                                    placeholder='Digite seus Dados...'
-                                    name='input'
-                                    className='input'
-                                    value={bairro}
-                                    onChange={(e)=> setBairro(e.target.value)}
-                                />
+                        <div className="coolinput">
+                                    <div> Bairro </div>
+                            <select id="escolha" name="escolha" onChange={(event) => setBairro(event.target.value)}>
+                                    <option value="">Selecione uma cidade</option>
+                                    {Array.isArray(bairrosAceitos) ? (
+                                        bairrosAceitos.map((item) => (
+                                            <option key={item.ID} value={`${item.ID}|${item.DESCRICAO}`}> {item.DESCRICAO} </option>
+                                        ))
+                                    ) : null}
+                                </select>
                             </div>
-                        ) : null}
                     </div>
                 </div>
                 <div>

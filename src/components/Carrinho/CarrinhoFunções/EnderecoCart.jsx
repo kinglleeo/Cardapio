@@ -1,8 +1,8 @@
 import { React, useState, useEffect } from 'react'
-import './endereco.css'
+import '../../Usuarios/UsuariosInfo/partesUser/endereco.css'
 import axios from 'axios';
-import ModalEndereco from './ModalEndereco'
-import ModalCadastrarEndereco from './ModalCadastrarEndereco'
+import ModalEndereco from '../../Usuarios/UsuariosInfo/partesUser/ModalEndereco'
+import ModalCadastrarEndereco from '../../Usuarios/UsuariosInfo/partesUser/ModalCadastrarEndereco'
 
 export default function Endereços ({ user }){
     const [endereco, setEndereco] = useState([]);
@@ -10,7 +10,13 @@ export default function Endereços ({ user }){
     const [enderecoMudar, setEnderecoEditar] = useState('');
     const [isOpenCadastrarEndereco, setIsOpenCadastrarEndereco] = useState(false);
     const [listaTamanhosAtivos, setListaTamanhosAtivos] = useState(null);
-    console.log(endereco)
+    const [selectedRadioIndex, setSelectedRadioIndex] = useState(null);
+    
+    const RadioEndereco = (item, index) => {
+        setSelectedRadioIndex(index);
+        setEnderecoSelecionado(item)
+    };
+    
     useEffect(()=>{
         axios
             .get(`http://192.168.0.100:9865/enderecos/${user.uid}`)
@@ -42,9 +48,16 @@ export default function Endereços ({ user }){
                 <button className='btnCadastrar' onClick={()=> setIsOpenCadastrarEndereco(true)} > Cadastrar Novo Endereço</button>
             <div className='endereco'>
                 {Array.isArray(endereco) ?(
-                    endereco.map((item)=>
-                    <div className='descricaoendereco'>
+                    endereco.map((item, index)=>
+                    <div className='descricaoendereco' onClick={() => RadioEndereco(item, index)}>
                         <div className='enderecoApelido'> 
+                            <div className='Card-Icon'>
+                                <input type='radio' name='endereco' checked={selectedRadioIndex === index} onChange={() => {}}/>
+                                    {selectedRadioIndex === index 
+                                    ? (<div className='iconePrato-acesso'></div>)
+                                    : (<div className='iconePrato-apagado'></div>) 
+                                    }
+                            </div>
                             <div className='textoApelido'> {capitalizeFirstLetter(item.APELIDO.toLowerCase())} </div>
                             <div className='btneditarendereco'>
                                 <button className='BtnEditar' onClick={()=> editarEndereco(item)}>

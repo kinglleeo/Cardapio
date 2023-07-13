@@ -38,7 +38,7 @@ export default function TelaInicialCardapio(){
               navigate('/Main')
             } 
             else if (tipo === null && delivery === "SIM"){{
-              navigate('/Main')
+                navigate('/Main')
             }} 
             else if (login === "GARCOM"){{
               navigate('/LoginGarcom')

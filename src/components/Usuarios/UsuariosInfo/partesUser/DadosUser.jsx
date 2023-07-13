@@ -10,15 +10,19 @@ export default function DadosUsuarios({user}){
     const [isOpenUserDados, setIsOpenUserDados] = useState(false);
     const [dadosCliente, setDadosCliente] = useState([]);
     const [item, setItem] = useState('');
+    const [idGarline, setIdGarline] = useState('');
     const navigate = useNavigate()
-
+    console.log(idGarline)
     useEffect(()=>{
+        const idgarline = localStorage.getItem('idCliente')
+            setIdGarline(idgarline)
         axios
             .get(`http://192.168.0.100:9865/dadosCliente/${user.uid}`)
             .then((getdata)=>{
                 setDadosCliente(getdata.data)
             });
     }, [user])
+
 
     const EditarDados=(item)=>{
         setItem(item)

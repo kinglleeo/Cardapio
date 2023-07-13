@@ -10,6 +10,7 @@ import { db, auth } from '../../Usuarios/LoginPage/Firebase/firebaseConfig'
 import { onAuthStateChanged } from 'firebase/auth'
 import { api } from '../../../conecções/api';
 import ModalPedidos from './ModalPedidos'
+import EnderecoCart from './EnderecoCart'
 
 export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, observacoesCart, tipocomanda, setTipo, mesaSelecionada }) {
   const navigate = useNavigate();
@@ -22,12 +23,13 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, o
   const [dados, setDados] = useState([]);
   const [numeroPedido, setNumeroPedido] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const [enderecoSelecionado, setEnderecoSelecionado] = useState('');
   const cnpj = dados.cnpj
   const delivery = dados.delivery
   const numerocomanda = dados.numerocomanda
   const cart = useSelector(state => state.cart)
   const items_pedido = compra
-  console.log(items_pedido)
+  
   useEffect(()=>{
     const dados = localStorage.getItem('dados')
          setDados(JSON.parse(dados))
@@ -128,34 +130,9 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, o
 
   const handlePagar = () => {
     EnviarPedidoAPI()
-    //BancodePedidos(Pedido)
     //dispatch(clearCart());
-    //SalvarPedido()
   };
   
-  const BancodePedidos=()=>{
-    const saveBd = async () => {
-      try {
-        const user = auth.currentUser;
-        if (!user) {
-            console.error("Usuario não Autenticado");
-          return;
-        }
-  
-        const userDocRef = doc(db, "usuarios", user.uid); 
-        const orderCollectionRef = collection(userDocRef, "pedidos"); 
-        const newOrderDocRef = await addDoc(orderCollectionRef, {
-          date: serverTimestamp(),
-          items: Pedido
-        });
-
-      } catch (error) {
-        console.error("Error saving order: ", error);
-      }
-    };
-    saveBd();
-  }
-
   const PedidoFeito = [{
     Pedidos: items_pedido
   }]
@@ -164,8 +141,9 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, o
     axios
       .post(`http://192.168.0.100:9865/inserirPedido`, {
         cnpj: cnpj,
+        id_endereco: delivery === "SIM" ? enderecoSelecionado.ID : "",
         delivery: delivery,
-        tipocomanda: tipocomanda !== null ? tipocomanda : opçaoEscolhida,
+        tipocomanda: tipocomanda !== null ? tipocomanda : tipocomanda === null && delivery === "SIM" ? "DELIVERY" : opçaoEscolhida,
         numerocomanda: numerocomanda !== null ? numerocomanda :  numeroComanda,
         idgarcom: idGarcom,
         total: totalCart,
@@ -199,9 +177,14 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, o
         </button>
       </div>
       <div className='cartBarContinuar' onClick={handleCotinuar}> CONTINUAR COMPRANDO </div>
-      {idGarcom === null ? (<div className='FazerLogin' onClick={handleLogar}> FAZER LOGIN </div>) : null}
+      {idGarcom === null && user === null ? (<div className='FazerLogin' onClick={handleLogar}> FAZER LOGIN </div>) : null}
       {idGarcom !== null ? (<div className='FazerLogin' onClick={terminal}> Terminal </div>) : null}
       {isOpen && <ModalPedidos setIsOpen={setIsOpen} numeroPedido={numeroPedido} />}
+      {user !== null ?(
+        <div>
+          <EnderecoCart user={user} enderecoSelecionado={enderecoSelecionado} setEnderecoSelecionado={setEnderecoSelecionado}/>
+        </div>
+      ) : null}
     </div>
   );
 }
