@@ -10,7 +10,7 @@ export default function Endereços ({ user }){
     const [enderecoMudar, setEnderecoEditar] = useState('');
     const [isOpenCadastrarEndereco, setIsOpenCadastrarEndereco] = useState(false);
     const [listaTamanhosAtivos, setListaTamanhosAtivos] = useState(null);
-    console.log(endereco)
+    
     useEffect(()=>{
         axios
             .get(`http://192.168.0.100:9865/enderecos/${user.uid}`)

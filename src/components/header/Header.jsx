@@ -2,17 +2,23 @@ import { React, useEffect, useState } from 'react'
 import './StyleHeaders.css'
 import { api } from '../../conecções/api'
 import { useNavigate } from 'react-router-dom'
-import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../Usuarios/LoginPage/Firebase/firebaseConfig';
 
 export default function Header (){
     const [infoClientes, setInfoClientes] = useState([])
-    const user = auth.currentUser;
+    const [user, setUser] = useState('');
     const navigate = useNavigate()
     
     useEffect(()=>{
         const dados = localStorage.getItem('empresa')
             setInfoClientes(JSON.parse(dados))
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                setUser(user)
+            } else {
+                alert('Usuario nao encontrado')
+            }
+        });
     }, [])
     
     const PaginaUsuario =()=>{

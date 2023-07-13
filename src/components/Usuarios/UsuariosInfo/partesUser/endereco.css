@@ -80,7 +80,17 @@
 
 }
 
-
+.btnMeusPedidos{
+    position: fixed;
+    top: 80px;
+    right: 0;
+    padding: 7px;
+    border: none;
+    background-color: #fc740d;
+    border-radius: 5px 0 0 5px;
+    font-family: "Roboto-Bold";
+    font-size: 14px;
+}
 
 
 

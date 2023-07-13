@@ -14,12 +14,13 @@ export default function Infos(){
     const [Email, setEmail] = useState('');
     
 
-    onAuthStateChanged(auth, (user) => {
+    auth.onAuthStateChanged((user) => {
         if (user) {
-          setUser(user)
+            setUser(user)
         } else {
+            alert('Usuario nao encontrado')
         }
-    }, [setUser]);
+    });
    
 
     return(

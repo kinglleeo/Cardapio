@@ -5,12 +5,12 @@ import { formCurrency } from '../../AA-utilidades/numeros';
 import Decimal from 'decimal.js';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { collection, addDoc, serverTimestamp, doc  } from "firebase/firestore";
-import { db, auth } from '../../Usuarios/LoginPage/Firebase/firebaseConfig'
+import { auth } from '../../Usuarios/LoginPage/Firebase/firebaseConfig'
 import { onAuthStateChanged } from 'firebase/auth'
 import { api } from '../../../conecções/api';
 import ModalPedidos from './ModalPedidos'
 import EnderecoCart from './EnderecoCart'
+import FormasDePagamento from './FormasDePagamento';
 
 export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, observacoesCart, tipocomanda, setTipo, mesaSelecionada }) {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, o
   const [compra, setCompra] = useState([]);
   const [totalCart, setTotalCart] = useState('');
   const [idGarcom, setIdGarcom] = useState(null)
-  const [user, setUser] = useState('')
+  const [user, setUser] = useState('');
   const [desativarConfirmar, setDesativarConfirmar] = useState(false)
   const [dados, setDados] = useState([]);
   const [numeroPedido, setNumeroPedido] = useState('');
@@ -29,15 +29,19 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, o
   const numerocomanda = dados.numerocomanda
   const cart = useSelector(state => state.cart)
   const items_pedido = compra
-  
+  console.log(delivery)
   useEffect(()=>{
     const dados = localStorage.getItem('dados')
          setDados(JSON.parse(dados))
-    const usuario = onAuthStateChanged(auth, (user)=>{
-          setUser(user) 
-    })
     const idGarcom = localStorage.getItem('idgarcom');
       setIdGarcom(idGarcom)
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user)
+      } else {
+        alert('Usuario nao encontrado')
+      }
+    });
  }, [setDados, setTipo])
   useEffect(()=>{
     setTipo(dados.tipo)
@@ -142,6 +146,7 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, o
       .post(`http://192.168.0.100:9865/inserirPedido`, {
         cnpj: cnpj,
         id_endereco: delivery === "SIM" ? enderecoSelecionado.ID : "",
+        id_cliente: delivery === "SIM" ? enderecoSelecionado.ID_PESSOAS : "",
         delivery: delivery,
         tipocomanda: tipocomanda !== null ? tipocomanda : tipocomanda === null && delivery === "SIM" ? "DELIVERY" : opçaoEscolhida,
         numerocomanda: numerocomanda !== null ? numerocomanda :  numeroComanda,
@@ -167,7 +172,9 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, o
   const terminal=()=>{
     navigate('/LoginAdm')
   }
-
+  const meusPedidos=()=>{
+    navigate('/MeusPedidos')
+  }
   return (
     <div>
       <div className='caixaBarPagar'>
@@ -181,9 +188,32 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, o
       {idGarcom !== null ? (<div className='FazerLogin' onClick={terminal}> Terminal </div>) : null}
       {isOpen && <ModalPedidos setIsOpen={setIsOpen} numeroPedido={numeroPedido} />}
       {user !== null ?(
+        <>
         <div>
           <EnderecoCart user={user} enderecoSelecionado={enderecoSelecionado} setEnderecoSelecionado={setEnderecoSelecionado}/>
         </div>
+        <div>
+          <button onClick={()=> meusPedidos()} className='btnMeusPedidos'> 
+              <div>M</div>
+              <div>E</div>
+              <div>U</div>
+              <div>S</div>
+              <div> - </div>
+              <div>P</div>
+              <div>E</div>
+              <div>D</div>
+              <div>I</div>
+              <div>D</div>
+              <div>O</div>
+              <div>S</div>
+          </button>
+        </div>
+        {delivery === "SIM" ? (
+          <div>
+            <FormasDePagamento/>
+          </div>
+        ):null}
+      </>
       ) : null}
     </div>
   );

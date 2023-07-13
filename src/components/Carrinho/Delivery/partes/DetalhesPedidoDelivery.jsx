@@ -1,54 +1,13 @@
 import { React, useState, useEffect } from 'react'
-import './detalhesdopedido.css'
 import axios from 'axios';
-import { formCurrency } from '../../../../AA-utilidades/numeros';
+import { formCurrency } from '../../../AA-utilidades/numeros';
+import { useLocation } from 'react-router-dom';
 
-
-export default function DetalhesDoPedido({ itemPedido, terminal }){
-    const [dadosCompraPedido, setDadosCompraPedido] = useState([]);
-    const [dados, setDados] = useState([]);
-    const [adm, setAdm] = useState('')
-    console.log(dados)
-    const delivery = dados.delivery
-    console.log(dadosCompraPedido)
-
-    useEffect(()=>{
-        if (delivery === "NAO" && itemPedido.STATUS === 6){
-            axios
-                .get(`http://192.168.0.100:9865/listaItensCancelados/${itemPedido.ID}`)
-                .then((getdata)=>{
-                    setDadosCompraPedido(getdata.data);
-                })  
-        } else {
-            axios
-                .get(`http://192.168.0.100:9865/listaItensPedidos/${itemPedido.ID}`)
-                .then((getdata)=>{
-                    setDadosCompraPedido(getdata.data);
-                })
-        }
-    }, [delivery, itemPedido])
-
-    useEffect(()=>{
-        const dados = localStorage.getItem('dados')
-        setDados(JSON.parse(dados))
-        const adm = localStorage.getItem('administrador')
-            setAdm(adm);
-    }, [])
-
-    const mudarStatus=(novoStatus)=>{
-        axios
-            .post(`http://192.168.0.100:9865/alterarStatusPedido`, {
-                idpedidoapp: itemPedido.ID,
-                idpedido: itemPedido.ID_PEDIDO,
-                delivery: delivery,
-                idusuario: adm,
-                status: novoStatus,
-                tipocomanda: "DELIVERY"
-        })
-            .then((response)=>{
-                Navigate('/Terminal')
-            })
-    } 
+export default function DetalhesDoPedido(){
+    const [dadosCompraPedido, setDadosCompraPedido] = useState('');
+    const { state } = useLocation();
+    const { itemPedido } = state;
+    const { user } = state;
 
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
@@ -57,13 +16,6 @@ export default function DetalhesDoPedido({ itemPedido, terminal }){
     return(
         <div className='listaDetalhesPedido'>
             <div className='quadroDetalhesPedido'>
-                <div className='quadroPedidoLinha'>
-                    <div className='tipoPedido marginEsquerda textoFonte'> {itemPedido.TIPOCOMANDA} </div> 
-                    <div className='horaPedido marginDireita textoFonte'> {itemPedido.HORA.split(':').slice(0, 2).join(':')} </div>
-                </div>
-                <div className='quadroPedidoLinha'>
-                    <div className='localizacaoPedido'> localização </div>
-                </div>
                 <div className='quadroPedidoLinha'>
                     <div className='numeroPedido'> Pedido n° {itemPedido.ID_PEDIDO} </div>
                     <div className={
@@ -120,33 +72,11 @@ export default function DetalhesDoPedido({ itemPedido, terminal }){
                     ) : null}
                 </div>
             </div>
-
             <div className='quadroDetalhesPedido'>
                 <div className='barraTotalPedido'>
                     <div> Total Pedido </div>
                     <div> {formCurrency.format(itemPedido.TOTAL)} </div>
                 </div>
-            </div>
-            <div className='caixaBtnsPedidos'>
-                {itemPedido.STATUS === 1 ?(
-                    <button className='btnCancelarPedido' onClick={() => mudarStatus(6)}> Cancelar Pedido </button>
-                ) : null}
-                    {itemPedido.STATUS === 1 ? (
-                        terminal === "NAO" ? (
-                            <button className='btnAceitarPedido' onClick={() => mudarStatus(5)}> Finalizar Pedido </button>
-                        ) : (
-                            <button className='btnAceitarPedido' onClick={() => mudarStatus(3)}> Aceitar Pedido </button>
-                        )
-                    )
-                    : itemPedido.STATUS === 3 ? (
-                        delivery === "NAO" ? (
-                            <button className='btnAceitarPedido' onClick={() => mudarStatus(5)}> Finalizar Pedido </button>
-                            ) : (
-                            <button className='btnAceitarPedido' onClick={() => mudarStatus(4)}> Em Transporte </button>)
-                            )
-                    : itemPedido.STATUS === 4 ? (
-                        <button className='btnAceitarPedido' onClick={() => mudarStatus(5)}> Finalizar Pedido </button>
-                    ) : null}
             </div>
         </div>
     )

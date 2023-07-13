@@ -4,7 +4,7 @@ import axios from 'axios';
 import ModalEndereco from '../../Usuarios/UsuariosInfo/partesUser/ModalEndereco'
 import ModalCadastrarEndereco from '../../Usuarios/UsuariosInfo/partesUser/ModalCadastrarEndereco'
 
-export default function Endereços ({ user }){
+export default function Endereços ({ user, enderecoSelecionado, setEnderecoSelecionado }){
     const [endereco, setEndereco] = useState([]);
     const [isOpenModalEndereco, setIsOpenModalEndereco] = useState(false);
     const [enderecoMudar, setEnderecoEditar] = useState('');

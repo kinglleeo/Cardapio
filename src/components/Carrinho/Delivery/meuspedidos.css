@@ -1,0 +1,28 @@
+.MainPedidosDelivery{
+    background-color: white;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.CorpoPedidosDelivery{
+    flex: 1;
+}
+.corpoPedidosDelivery{
+    margin-top: 50px;
+}
+.caixaUser{
+    display: grid;
+    place-items: center;
+}
+.userName{
+    background-color: #fc740d;
+    height: 30px;
+    padding: 5px;
+    width: 95%;
+    display: grid;
+    place-items: center;
+    border-radius: 5px;
+}

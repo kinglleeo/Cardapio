@@ -1,0 +1,44 @@
+.tituloPagamentos{
+    display: flex;
+    background-color: #DBDBDB;
+    height: 50px;
+}
+.iconePagamentosBox{
+    display: grid;
+    place-items: center;
+}
+.iconePagamentos{
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 34px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../../../imagens/iconeReal.png');
+    background-size: 100% 100%;
+}
+.tituloPagamentosTexto{
+    display: grid;
+    place-items: center;
+    font-family: "Roboto-Bold";
+    font-size: 18px;
+}
+.listaMetodosPagamentos{
+    display: flex;
+    flex-direction: column;
+}
+.cardPagamento{
+    display: flex;
+    margin: 5px;
+    border: solid;
+    border-width: 0.5px;
+    border-radius: 5px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: center;
+}
+.pagamentoNome{
+    display: grid;
+    place-items: center;
+    font-size: 15px;
+    font-family: "Roboto-Bold";
+    margin-left: 5px;
+}

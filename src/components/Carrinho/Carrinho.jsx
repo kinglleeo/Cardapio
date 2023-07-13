@@ -6,7 +6,6 @@ import CartItem from './CarrinhoFunções/CartItems'
 import Observacoes from './CarrinhoFunções/Observacoes'
 import Localizacao from './CarrinhoFunções/Localizacao'
 import Footer from '../Footer/Footer'
-import Entrega from './Delivery/Entrega'
 import FunçõesCarrinho from './Garçom/FunçõesCarrinho'
 
 export default function CarrinhoMain(){
@@ -46,9 +45,6 @@ return(
             tipo={tipo}
             setMesaSelecionada={setMesaSelecionada}
           />
-        </div>
-        <div>
-          <Entrega/>
         </div>
         <div>
           <CarrinhoBarPagamento

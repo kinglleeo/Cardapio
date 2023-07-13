@@ -14,7 +14,7 @@ export default function modal({ user, item, setIsOpenModalEndereco}){
     const [idBairro, nomeBairro] = bairro.split('|');
     const [cidadesAceitas, setCidadesAceitas] = useState('');
     const [bairrosAceitos, setBairrosAceitos] = useState('');
-    
+   
     useEffect(()=>{
         setApelido(item.APELIDO)
         setRua(item.RUA)
@@ -47,7 +47,16 @@ export default function modal({ user, item, setIsOpenModalEndereco}){
                console.error(error);
             });
     }
-    
+    const excluirEndereco=(item)=>{
+        axios
+            .post('http://192.168.0.100:9865/excluirEndereco', {
+                id: item.ID
+            })
+            .then((response)=>{
+                alert('Salvo')
+                    window.location.reload()
+            })
+    }
     const Salvar = () => {
         axios
             .post(`http://192.168.0.100:9865/alterarEndereco`, {
@@ -153,6 +162,9 @@ export default function modal({ user, item, setIsOpenModalEndereco}){
                 </div>
                 <div>
                     <button className='btnSalvar enderecobtn' onClick={()=> Salvar()}> Salvar </button>
+                </div>
+                <div>
+                    <button onClick={()=> excluirEndereco(item)}> Excluir Endereco </button>
                 </div>
             </div>
         </div>

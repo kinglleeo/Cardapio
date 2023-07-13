@@ -15,6 +15,8 @@ import Pedidos from './components/Administração/Pedidos/Pedidos'
 import Terminal from './components/Administração/Terminal/Terminal'
 import DetalhesPedido from './components/Administração/Terminal/partes/MainDetalhesPedidos'
 import PaginaUsuario from './components/Usuarios/UsuariosInfo/PaginaUsuario'
+import MeusPedidos from './components/Carrinho/Delivery/MeusPedidos'
+import DetalhesPedidoDelivery from './components/Carrinho/Delivery/partes/DetalhesPedidoDelivery'
 
 export default function App(){
   
@@ -33,10 +35,10 @@ export default function App(){
               <Route path='/loginAdm' element={<LoginAdm/>}/>
               <Route path='/Pedidos' element={<Pedidos/>}></Route>
               <Route path='/PaginaUsuario' element={<PaginaUsuario/>}/>
-
+              <Route path='/MeusPedidos' element={<MeusPedidos/>}/>
               <Route path='/Terminal' element={<Terminal/>}></Route>
               <Route path='/DetalhesPedido' element={<DetalhesPedido/>}></Route>
-
+              <Route path='/DetalhesPedidoDelivery' element={<DetalhesPedidoDelivery/>}></Route>
             </Routes>
           </Provider>
         </UserAuthContextProvider>
