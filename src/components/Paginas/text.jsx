@@ -35,37 +35,3 @@
         });
       }, []);
 
-
-
-                              
-
-
-      <div>
-            <div className='caixaAtalhoTerminal'>
-              <div className='atalhoTerminalNome'>Em Preparo</div>
-              <div className='caixaCheckBoxTerminal'>
-                <label className='containerCheckTerminal'>
-                  <input type='checkbox' checked={filtroPreparo} onChange={() => setFiltroPreparo(!filtroPreparo)} />
-                  <div className='checkmark'></div>
-                </label>
-              </div>
-            </div>
-            <div className='caixaAtalhoTerminal'>
-              <div className='atalhoTerminalNome'>Em Transporte</div>
-              <div>
-                <label className='containerCheckTerminal'>
-                  <input type='checkbox' checked={filtroTransporte} onChange={() => setFiltroTransporte(!filtroTransporte)} />
-                  <div className='checkmark'></div>
-                </label>
-              </div>
-            </div>
-            <div className='caixaAtalhoTerminal'>
-              <div className='atalhoTerminalNome'>Finalizados</div>
-              <div>
-                <label className='containerCheckTerminal'>
-                  <input type='checkbox' checked={filtroFinalizados} onChange={() => setFiltroFinalizados(!filtroFinalizados)} />
-                  <div className='checkmark'></div>
-                </label>
-              </div>
-            </div>
-            </div>
