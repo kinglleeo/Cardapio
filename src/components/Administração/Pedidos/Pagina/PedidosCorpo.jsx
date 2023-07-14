@@ -32,7 +32,7 @@ export default function PedidosCorpo(){
             <div className='pedidosClienteCard'>
                 <div className='clienteCardTipo'>
                     <div className='cardMargin'> {dados.tipo} </div>
-                    <div className='cardMargin'> n° {dados.numerocomanda}  </div>
+                    <div className='cardMargin'> n° {dados.numeroComanda}  </div>
                 </div>
             </div>
             <div className='quadroDetalhesPedido'>

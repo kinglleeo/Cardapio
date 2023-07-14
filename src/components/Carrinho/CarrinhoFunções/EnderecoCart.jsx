@@ -18,12 +18,13 @@ export default function Endereços ({ user, enderecoSelecionado, setEnderecoSele
     };
     
     useEffect(()=>{
+        const uidToken = localStorage.getItem('uidToken')
         axios
-            .get(`http://192.168.0.100:9865/enderecos/${user.uid}`)
+            .get(`http://192.168.0.100:9865/enderecos/${uidToken}`)
             .then((getdata)=>{
                 setEndereco(getdata.data)
             });
-    }, [user]);
+    }, []);
 
     const editarEndereco=(item)=>{
         setIsOpenModalEndereco(true)

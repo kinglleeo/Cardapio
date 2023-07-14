@@ -6,25 +6,18 @@ export default function CorpoPedidosDelivery(){
     const [user, setUser] = useState('');
     const [listaPedidos, setListaPedidos] = useState([]);
     const [filtroNovos, setFiltroNovos] = useState(true);
-    const [filtroAceitos, setFiltroAceitos] = useState(false);
     const [filtroPreparo, setFiltroPreparo] = useState(false);
     const [filtroTransporte, setFiltroTransporte] = useState(false);
     const [filtroFinalizados, setFiltroFinalizados] = useState(false);
     const [filtroCancelado, setFiltroCancelado] = useState(false);
     
-    auth.onAuthStateChanged((user) => {
-        if (user) {
-          setUser(user)
-        } else {
-            alert('Usuario nao encontrado')
-        }
-    });
-
+    useEffect(()=>{
+        auth.onAuthStateChanged((user) => {
+            setUser(user)
+        });
+    }, []);
     const filteredPedidos = listaPedidos.filter((itemPedido) => {
         if (filtroNovos && itemPedido.STATUS === 1) {
-            return true;
-        }
-        if (filtroAceitos && itemPedido.STATUS === 2) {
             return true;
         }
         if (filtroPreparo && itemPedido.STATUS === 3) {
@@ -51,7 +44,6 @@ export default function CorpoPedidosDelivery(){
             <div className='caixaUser'>
                 <div className='userName'> Leonardo </div>
             </div>
-            
         <div className='ListaPedidos'>
             <div className='barraAtalhoTerminal'>
                 <div className='caixaAtalhoTerminal'>
@@ -60,24 +52,6 @@ export default function CorpoPedidosDelivery(){
                         <label className='containerCheckTerminal'>
                             <input type='checkbox' checked={filtroNovos} onChange={() => setFiltroNovos(!filtroNovos)} />
                             <div className='checkmark'></div>
-                        </label>
-                    </div>
-                </div>
-                <div className='caixaAtalhoTerminal'>
-                    <div className='atalhoTerminalNome'>Aceitos</div>
-                    <div>
-                    <label className='containerCheckTerminal'>
-                        <input type='checkbox' checked={filtroAceitos} onChange={() => setFiltroAceitos(!filtroAceitos)} />
-                        <div className='checkmark'></div>
-                    </label>
-                    </div>
-                </div>
-                <div className='caixaAtalhoTerminal'>
-                    <div className='atalhoTerminalNome'>Cancelados</div>
-                    <div>
-                        <label className='containerCheckTerminal'>
-                        <input type='checkbox' checked={filtroCancelado} onChange={() => setFiltroCancelado(!filtroCancelado)} />
-                        <div className='checkmark'></div>
                         </label>
                     </div>
                 </div>
@@ -98,7 +72,16 @@ export default function CorpoPedidosDelivery(){
                             <div className='checkmark'></div>
                         </label>
                     </div>
+                </div>
+                <div className='caixaAtalhoTerminal'>
+                    <div className='atalhoTerminalNome'>Cancelados</div>
+                    <div>
+                        <label className='containerCheckTerminal'>
+                        <input type='checkbox' checked={filtroCancelado} onChange={() => setFiltroCancelado(!filtroCancelado)} />
+                        <div className='checkmark'></div>
+                        </label>
                     </div>
+                </div>
                 <div className='caixaAtalhoTerminal'>
                     <div className='atalhoTerminalNome'>Finalizados</div>
                     <div>

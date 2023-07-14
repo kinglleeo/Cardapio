@@ -2,18 +2,16 @@ import { React, useState, useEffect } from 'react'
 import './detalhesdopedido.css'
 import axios from 'axios';
 import { formCurrency } from '../../../../AA-utilidades/numeros';
-
+import { capitalizeFirstLetter } from '../../../../AA-utilidades/primeiraMaiuscula';
 
 export default function DetalhesDoPedido({ itemPedido, terminal }){
     const [dadosCompraPedido, setDadosCompraPedido] = useState([]);
     const [dados, setDados] = useState([]);
     const [adm, setAdm] = useState('')
-    console.log(dados)
-    const delivery = dados.delivery
-    console.log(dadosCompraPedido)
+    const tipoComanda = dados.tipoComanda;
 
     useEffect(()=>{
-        if (delivery === "NAO" && itemPedido.STATUS === 6){
+        if (tipoComanda === "DELIVERY" && itemPedido.STATUS === 6){
             axios
                 .get(`http://192.168.0.100:9865/listaItensCancelados/${itemPedido.ID}`)
                 .then((getdata)=>{
@@ -26,7 +24,7 @@ export default function DetalhesDoPedido({ itemPedido, terminal }){
                     setDadosCompraPedido(getdata.data);
                 })
         }
-    }, [delivery, itemPedido])
+    }, [tipoComanda, itemPedido])
 
     useEffect(()=>{
         const dados = localStorage.getItem('dados')
@@ -40,19 +38,14 @@ export default function DetalhesDoPedido({ itemPedido, terminal }){
             .post(`http://192.168.0.100:9865/alterarStatusPedido`, {
                 idpedidoapp: itemPedido.ID,
                 idpedido: itemPedido.ID_PEDIDO,
-                delivery: delivery,
                 idusuario: adm,
                 status: novoStatus,
-                tipocomanda: "DELIVERY"
+                tipocomanda: tipoComanda
         })
             .then((response)=>{
                 Navigate('/Terminal')
             })
     } 
-
-    function capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
 
     return(
         <div className='listaDetalhesPedido'>
@@ -139,7 +132,7 @@ export default function DetalhesDoPedido({ itemPedido, terminal }){
                         )
                     )
                     : itemPedido.STATUS === 3 ? (
-                        delivery === "NAO" ? (
+                        tipoComanda === "DELIVERY" ? (
                             <button className='btnAceitarPedido' onClick={() => mudarStatus(5)}> Finalizar Pedido </button>
                             ) : (
                             <button className='btnAceitarPedido' onClick={() => mudarStatus(4)}> Em Transporte </button>)

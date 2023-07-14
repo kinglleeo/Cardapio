@@ -2,9 +2,9 @@ import { React, useState, useEffect } from 'react'
 import './formasdepagamento.css'
 import { capitalizeFirstLetter } from '../../AA-utilidades/primeiraMaiuscula'
 
-export default function FormasDePagamento(){
+export default function FormasDePagamento({ setPagamentoSelecionado }){
     const [selectedRadioIndex, setSelectedRadioIndex] = useState(null);
-    const [pagamentoSelecionado, setPagamentoSelecionado] = useState('');
+    
 
     const RadioPagamento = (item, index) => {
         setSelectedRadioIndex(index);

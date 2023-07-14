@@ -11,12 +11,12 @@ import FunçõesCarrinho from './Garçom/FunçõesCarrinho'
 export default function CarrinhoMain(){
   const [observacoesCart, setObservacaoCart] = useState('');
   const [pedido, setPedido] = useState([]);
-  const [tipo, setTipo] = useState(null);
+  const [tipoComanda, setTipoComanda] = useState(null);
   const [mesaSelecionada, setMesaSelecionada] = useState(null);
-  const [opçaoEscolhida, setOpçaoEscolhida] = useState('')
-  const [numeroComanda, setNumeroComanda] = useState('')
+  const [opçaoEscolhidaGarcom, setOpçaoEscolhidaGarcom] = useState('')
+  const [numeroComandaGarcom, setNumeroComandaGarcom] = useState('')
 
-  
+   
 return(
     <div className='pagina'>
       <div className='Main'>
@@ -35,26 +35,26 @@ return(
         </div>
         <div>
           <FunçõesCarrinho
-            setOpçaoEscolhida={setOpçaoEscolhida}
-            setNumeroComanda={setNumeroComanda}
+            setOpçaoEscolhidaGarcom={setOpçaoEscolhidaGarcom}
+            setNumeroComandaGarcom={setNumeroComandaGarcom}
           />
         </div>
         <div>
           <Localizacao
-            opçaoEscolhida={opçaoEscolhida}
-            tipo={tipo}
+            opçaoEscolhidaGarcom={opçaoEscolhidaGarcom}
+            tipoComanda={tipoComanda}
             setMesaSelecionada={setMesaSelecionada}
           />
         </div>
         <div>
           <CarrinhoBarPagamento
-            tipocomanda={tipo}
-            setTipo={setTipo}
+            tipoComanda={tipoComanda}
+            setTipoComanda={setTipoComanda}
             Pedido={pedido}
             observacoesCart={observacoesCart}
             mesaSelecionada={mesaSelecionada}
-            opçaoEscolhida={opçaoEscolhida}
-            numeroComanda={numeroComanda}
+            opçaoEscolhidaGarcom={opçaoEscolhidaGarcom}
+            numeroComandaGarcom={numeroComandaGarcom}
           />
         </div>
       </div>

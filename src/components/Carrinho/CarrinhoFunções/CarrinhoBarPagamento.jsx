@@ -12,7 +12,7 @@ import ModalPedidos from './ModalPedidos'
 import EnderecoCart from './EnderecoCart'
 import FormasDePagamento from './FormasDePagamento';
 
-export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, observacoesCart, tipocomanda, setTipo, mesaSelecionada }) {
+export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, tipoComandaGarcom, numeroComandaGarcom, mesaSelecionada, observacoesCart, setTipoComanda, tipoComanda }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [compra, setCompra] = useState([]);
@@ -24,28 +24,25 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, o
   const [numeroPedido, setNumeroPedido] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [enderecoSelecionado, setEnderecoSelecionado] = useState('');
+  const [pagamentoSelecionado, setPagamentoSelecionado] = useState('');
   const cnpj = dados.cnpj
-  const delivery = dados.delivery
-  const numerocomanda = dados.numerocomanda
+  const numeroComanda = dados.numerocomanda
   const cart = useSelector(state => state.cart)
   const items_pedido = compra
-  console.log(delivery)
+
   useEffect(()=>{
     const dados = localStorage.getItem('dados')
          setDados(JSON.parse(dados))
     const idGarcom = localStorage.getItem('idgarcom');
       setIdGarcom(idGarcom)
-    auth.onAuthStateChanged((user) => {
-      if (user) {
+      auth.onAuthStateChanged((user) => {
         setUser(user)
-      } else {
-        alert('Usuario nao encontrado')
-      }
-    });
- }, [setDados, setTipo])
+      });
+ }, [setDados])
+  
   useEffect(()=>{
-    setTipo(dados.tipo)
-  })
+    setTipoComanda(dados.setTipoComanda)
+  }, [])
 
   useEffect(() => {
     if (cart && Array.isArray(cart)) {
@@ -58,16 +55,16 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, o
   }, [cart]);
 
   useEffect(() => {
-    if (delivery === 'sim' && user !== null) {
+    if (tipoComanda === 'DELIVERY' && user !== null) {
       setDesativarConfirmar(false);
-    } else if (delivery === 'sim' && user === null) {
+    } else if (tipoComanda === 'DELIVERY' && user === null) {
       setDesativarConfirmar(true);
-    } else if (delivery === 'nao') {
-      setDesativarConfirmar(false);
     } else if (cart.length === 0) {
       setDesativarConfirmar(true);
+    } else {
+      setDesativarConfirmar(false);
     }
-  }, [delivery, user, cart]);
+  }, [tipoComanda, user, cart]);
 
 
   useEffect(() => {
@@ -142,25 +139,41 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, o
   }]
   
   const EnviarPedidoAPI =()=>{
-    axios
+    if(tipoComanda === "DELIVERY"){
+      axios
       .post(`http://192.168.0.100:9865/inserirPedido`, {
         cnpj: cnpj,
-        id_endereco: delivery === "SIM" ? enderecoSelecionado.ID : "",
-        id_cliente: delivery === "SIM" ? enderecoSelecionado.ID_PESSOAS : "",
-        delivery: delivery,
-        tipocomanda: tipocomanda !== null ? tipocomanda : tipocomanda === null && delivery === "SIM" ? "DELIVERY" : opçaoEscolhida,
-        numerocomanda: numerocomanda !== null ? numerocomanda :  numeroComanda,
-        idgarcom: idGarcom,
+        id_endereco: enderecoSelecionado.ID,
+        id_cliente: enderecoSelecionado.ID_PESSOAS,
+        tipo_comanda: tipoComanda,
         total: totalCart,
-        observacoespedido: observacoesCart,
-        pagamento: 'balcão',
-        localizacao: mesaSelecionada,
+        observacoes_pedido: observacoesCart,
+        pagamento: pagamentoSelecionado,
         items_pedido: items_pedido, 
       })
       .then((response)=>{
         setNumeroPedido(response.data)
         setIsOpen(true)
       })
+    } else if (tipoComanda !== "MESA") {
+      axios
+        .post(`http://192.168.0.100:9865/inserirPedido`, {
+          cnpj: cnpj,
+          pagamento: "balcão",
+          id_cliente: enderecoSelecionado.ID_PESSOAS !==null ? enderecoSelecionado.ID_PESSOAS : "",
+          tipo_comanda: tipoComanda !== null ? tipoComanda : tipoComandaGarcom,
+          numero_comanda: numeroComanda !== null ? numeroComanda : numeroComandaGarcom,
+          id_carcom: idGarcom,
+          total: totalCart,
+          observacoes_pedido: observacoesCart,
+          localizacao: tipoComanda === "CARTAO" ? mesaSelecionada : numeroComanda,
+          items_pedido: items_pedido, 
+        })
+        .then((response)=>{
+          setNumeroPedido(response.data)
+          setIsOpen(true)
+        })
+    }
   }
 
   const handleCotinuar = () => {
@@ -189,9 +202,11 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, o
       {isOpen && <ModalPedidos setIsOpen={setIsOpen} numeroPedido={numeroPedido} />}
       {user !== null ?(
         <>
-        <div>
-          <EnderecoCart user={user} enderecoSelecionado={enderecoSelecionado} setEnderecoSelecionado={setEnderecoSelecionado}/>
-        </div>
+        {tipoComanda === "DELIVERY" ? (
+          <div>
+            <EnderecoCart user={user} enderecoSelecionado={enderecoSelecionado} setEnderecoSelecionado={setEnderecoSelecionado}/>
+          </div>
+        ) :null}
         <div>
           <button onClick={()=> meusPedidos()} className='btnMeusPedidos'> 
               <div>M</div>
@@ -208,9 +223,11 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhida, numeroComanda, o
               <div>S</div>
           </button>
         </div>
-        {delivery === "SIM" ? (
+        {tipoComanda === "DELIVERY" ? (
           <div>
-            <FormasDePagamento/>
+            <FormasDePagamento
+              setPagamentoSelecionado={setPagamentoSelecionado}
+            />
           </div>
         ):null}
       </>

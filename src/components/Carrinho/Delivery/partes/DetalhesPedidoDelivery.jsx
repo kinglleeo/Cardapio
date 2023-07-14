@@ -2,6 +2,7 @@ import { React, useState, useEffect } from 'react'
 import axios from 'axios';
 import { formCurrency } from '../../../AA-utilidades/numeros';
 import { useLocation } from 'react-router-dom';
+import { capitalizeFirstLetter } from '../../../AA-utilidades/primeiraMaiuscula';
 
 export default function DetalhesDoPedido(){
     const [dadosCompraPedido, setDadosCompraPedido] = useState('');
@@ -9,9 +10,11 @@ export default function DetalhesDoPedido(){
     const { itemPedido } = state;
     const { user } = state;
 
-    function capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
+    useEffect(()=>{
+        const uidToken = localStorage.getItem('uidToken')
+        
+    }, []);
+
 
     return(
         <div className='listaDetalhesPedido'>

@@ -3,7 +3,7 @@ import { api } from '../../../conecções/api';
 import '../../../Styles/StyleCarrinho.css'
 
 
-export default function Localizacao({ tipo, opçaoEscolhida, setMesaSelecionada }){
+export default function Localizacao({ tipoComanda, opçaoEscolhidaGarcom, setMesaSelecionada }){
     const [localizacao, setLocalizacao] = useState([]);
     const [selectedMesa, setSelectedMesa] = useState(null);
     const [listaLocalizacaoAtiva, setListaLocalizacaoAtiva] = useState(null);
@@ -44,7 +44,7 @@ export default function Localizacao({ tipo, opçaoEscolhida, setMesaSelecionada 
 
     return(
         <div>
-            {(tipo === "CARTAO" || opçaoEscolhida === "CARTAO")
+            {(tipoComanda === "CARTAO" || opçaoEscolhidaGarcom === "CARTAO")
                 ? (
                     <div>
                         <div className='cartTitulo localizao' onClick={toggleListaLocalizacao}> 

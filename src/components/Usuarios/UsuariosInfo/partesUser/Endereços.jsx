@@ -3,6 +3,7 @@ import './endereco.css'
 import axios from 'axios';
 import ModalEndereco from './ModalEndereco'
 import ModalCadastrarEndereco from './ModalCadastrarEndereco'
+import { capitalizeFirstLetter } from '../../../AA-utilidades/primeiraMaiuscula';
 
 export default function Endereços ({ user }){
     const [endereco, setEndereco] = useState([]);
@@ -10,14 +11,16 @@ export default function Endereços ({ user }){
     const [enderecoMudar, setEnderecoEditar] = useState('');
     const [isOpenCadastrarEndereco, setIsOpenCadastrarEndereco] = useState(false);
     const [listaTamanhosAtivos, setListaTamanhosAtivos] = useState(null);
+    const uidToken = user.uid; 
     
     useEffect(()=>{
+        const uidToken = localStorage.getItem('uidToken')
         axios
-            .get(`http://192.168.0.100:9865/enderecos/${user.uid}`)
+            .get(`http://192.168.0.100:9865/enderecos/${uidToken}`)
             .then((getdata)=>{
                 setEndereco(getdata.data)
             });
-    }, [user]);
+    }, []);
 
     const editarEndereco=(item)=>{
         setIsOpenModalEndereco(true)
@@ -30,10 +33,6 @@ export default function Endereços ({ user }){
         } else {
             setListaTamanhosAtivos(IdEndereco);
         }
-    }
-
-    function capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
     return(

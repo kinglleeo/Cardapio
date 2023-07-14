@@ -2,7 +2,7 @@ import { React, useState, useEffect } from 'react'
 import './funcoescarrinho.css'
 
 
-export default function FunçõesCarrinho({ setOpçaoEscolhida, setNumeroComanda}){
+export default function FunçõesCarrinho({ setOpçaoEscolhidaGarcom, setNumeroComandaGarcom}){
     const [idGarcom, setIdGarcom] = useState(null)
     const [selectedRadioIndex, setSelectedRadioIndex] = useState(null);
     const mesa = "MESA";
@@ -15,7 +15,7 @@ export default function FunçõesCarrinho({ setOpçaoEscolhida, setNumeroComanda
 
     const RadioOpcao = (mesa, cartao) => {
         setSelectedRadioIndex(mesa, cartao);
-        setOpçaoEscolhida(mesa, cartao)
+        setOpçaoEscolhidaGarcom(mesa, cartao)
     };
 
     return(
@@ -35,7 +35,7 @@ export default function FunçõesCarrinho({ setOpçaoEscolhida, setNumeroComanda
                             </div>
                     </div>
                     <div className='itemsQuandroFuncaoGarcom'> 
-                        <input className='inputNumeroComanda' placeholder='n° comanda' onChange={e => setNumeroComanda(e.target.value)}>
+                        <input className='inputNumeroComanda' placeholder='n° comanda' onChange={e => setNumeroComandaGarcom(e.target.value)}>
                     </input> </div>
                 </div>
             ) : null}

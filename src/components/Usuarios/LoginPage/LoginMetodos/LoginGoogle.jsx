@@ -36,6 +36,7 @@ export default function LoginSociais () {
               })
               .then((response)=>{
                 localStorage.setItem('idCliente', response.data)
+                localStorage.setItem('uidToken', user.uid)
               })
               .catch((error)=>{
                 console.log(error)

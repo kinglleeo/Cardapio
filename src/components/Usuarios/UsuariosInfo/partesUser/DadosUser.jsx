@@ -6,22 +6,23 @@ import { auth } from '../../LoginPage/Firebase/firebaseConfig';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-export default function DadosUsuarios({user}){
+export default function DadosUsuarios({ user }){
     const [isOpenUserDados, setIsOpenUserDados] = useState(false);
     const [dadosCliente, setDadosCliente] = useState([]);
     const [item, setItem] = useState('');
     const [idGarline, setIdGarline] = useState('');
     const navigate = useNavigate()
-    console.log(idGarline)
+console.log(user)
     useEffect(()=>{
         const idgarline = localStorage.getItem('idCliente')
             setIdGarline(idgarline)
+        const uidToken = localStorage.getItem('uidToken')
         axios
-            .get(`http://192.168.0.100:9865/dadosCliente/${user.uid}`)
+            .get(`http://192.168.0.100:9865/dadosCliente/${uidToken}`)
             .then((getdata)=>{
                 setDadosCliente(getdata.data)
             });
-    }, [user])
+    }, []);
 
 
     const EditarDados=(item)=>{

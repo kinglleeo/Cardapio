@@ -12,14 +12,10 @@ export default function Header (){
     useEffect(()=>{
         const dados = localStorage.getItem('empresa')
             setInfoClientes(JSON.parse(dados))
-        auth.onAuthStateChanged((user) => {
-            if (user) {
+            auth.onAuthStateChanged((user) => {
                 setUser(user)
-            } else {
-                alert('Usuario nao encontrado')
-            }
-        });
-    }, [])
+            });
+    }, []);
     
     const PaginaUsuario =()=>{
         navigate('/PaginaUsuario')

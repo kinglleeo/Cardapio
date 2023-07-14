@@ -11,13 +11,12 @@ export default function TelaInicialCardapio(){
     const [infoClientes, setInfoClientes] = useState([])
     const [cnpj, setCnpj] = useState('')
     
-    //http://suporte.bedinfoservices.com.br:3000/?cnpj=76787191000145&tipo=mesa&numerocomanda=2&delivery=sim
+    //http://suporte.bedinfoservices.com.br:3000/?cnpj=76787191000145&tipoComanda=mesa&numeroComanda=2
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
-        const tipo = urlParams.get('tipo');
-        const numerocomanda = urlParams.get('numerocomanda');
+        const tipoComanda = urlParams.get('tipoComanda');
+        const numeroComanda = urlParams.get('numeroComanda');
         const cnpj = urlParams.get('cnpj');
-        const delivery = urlParams.get('delivery')
         const login = urlParams.get('login')
             setCnpj(cnpj)
         const url = `http://suporte.bedinfoservices.com.br:99/appGarline/retornaApiRestaurante.php?cnpj=${cnpj}`;
@@ -27,17 +26,20 @@ export default function TelaInicialCardapio(){
                     setResposta(response);
                 })
             const Dados = {
-                tipo: tipo,
-                numerocomanda: numerocomanda,
-                cnpj: cnpj,
-                delivery: delivery,
+                tipoComanda: tipoComanda,
+                numeroComanda: numeroComanda,
+                cnpj: cnpj
             }
             localStorage.setItem('dados', JSON.stringify(Dados));
-        const timeout = setTimeout(() => {
-            if(tipo !== null){
-              navigate('/Main')
+        
+            const timeout = setTimeout(() => {
+            if(tipoComanda === "MESA"){
+                navigate('/Main')
             } 
-            else if (tipo === null && delivery === "SIM"){{
+            else if(tipoComanda === "CARTAO"){
+                navigate('/Main')
+            }
+            else if (tipoComanda === "DELIVERY"){{
                 navigate('/Main')
             }} 
             else if (login === "GARCOM"){{
@@ -71,8 +73,6 @@ export default function TelaInicialCardapio(){
             });
     }, [cnpj, resposta]);
     
-    
-
     return(
         <div className='main-TelaInicial'>
             <div className='box-telainicial'>

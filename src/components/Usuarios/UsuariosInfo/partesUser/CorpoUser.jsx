@@ -12,18 +12,12 @@ export default function Infos(){
     const [user, setUser] = useState([]);
     const [nome, setNome] = useState('');
     const [Email, setEmail] = useState('');
-    
-
-    auth.onAuthStateChanged((user) => {
-        if (user) {
+    useEffect(()=>{
+        auth.onAuthStateChanged((user) => {
             setUser(user)
-        } else {
-            alert('Usuario nao encontrado')
-        }
-    });
-   
-
-    return(
+        });
+    }, []);
+   return(
         <div>
             <div>
                 <HeaderSimplificado/>

@@ -4,6 +4,7 @@ import { api } from '../../../../conecções/api';
 import { formCurrency } from '../../../AA-utilidades/numeros';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { capitalizeFirstLetter } from '../../../AA-utilidades/primeiraMaiuscula';
 
 export default function Terminal({ nomeEmpresa, adm }) {
     const [listaPedidos, setListaPedidos] = useState([]);
@@ -15,7 +16,7 @@ export default function Terminal({ nomeEmpresa, adm }) {
     const [filtroCancelado, setFiltroCancelado] = useState(false);
     const [terminal, setTerminal] = useState([]);
     const [dados, setDados] = useState([]);
-    const delivery = dados.delivery
+    const tipoComanda = dados.tipoComanda;
     const navigate = useNavigate();
 
     useEffect(()=>{
@@ -38,9 +39,6 @@ export default function Terminal({ nomeEmpresa, adm }) {
           })
     }, [])
 
-    function capitalizeFirstLetter(string) {
-      return string.charAt(0).toUpperCase() + string.slice(1);
-  }
 
   const selecionarPedido = (itemPedido, adm, terminal) => {
     navigate('/DetalhesPedido', { state: { itemPedido, adm, terminal } });
@@ -115,7 +113,7 @@ export default function Terminal({ nomeEmpresa, adm }) {
                     </label>
                   </div>
                 </div>
-                {delivery === "SIM" ? (
+                { tipoComanda === "DELIVERY" ? (
                   <div className='caixaAtalhoTerminal'>
                     <div className='atalhoTerminalNome'>Em Transporte</div>
                     <div>

@@ -3,7 +3,7 @@ import '../../../Styles/StyleCarrinho.css'
 
 export default function Observacoes({ setObservacaoCart }){
     const [dados, setDados] = useState([]);
-    const delivery = dados.delivery
+    const tipoComanda = dados.delivery
 
     useEffect(()=>{
         const dados = localStorage.getItem('dados')
@@ -13,7 +13,7 @@ export default function Observacoes({ setObservacaoCart }){
 
     return(
         <>
-        {delivery === "SIM" ?(
+        {tipoComanda === "DELIVERY" ?(
             <div className='observacoesMain'>
                 <div className='observacoesTitulo'>
                     <div className='observacoesIcone'></div>
