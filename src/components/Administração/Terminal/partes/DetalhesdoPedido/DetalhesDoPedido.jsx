@@ -36,11 +36,11 @@ export default function DetalhesDoPedido({ itemPedido, terminal }){
     const mudarStatus=(novoStatus)=>{
         axios
             .post(`http://192.168.0.100:9865/alterarStatusPedido`, {
-                idpedidoapp: itemPedido.ID,
-                idpedido: itemPedido.ID_PEDIDO,
-                idusuario: adm,
+                id_pedido_app: itemPedido.ID,
+                id_pedido: itemPedido.ID_PEDIDO,
+                id_usuario: adm,
                 status: novoStatus,
-                tipocomanda: tipoComanda
+                tipo_comanda: tipoComanda
         })
             .then((response)=>{
                 Navigate('/Terminal')

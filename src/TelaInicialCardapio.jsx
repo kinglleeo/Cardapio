@@ -31,7 +31,7 @@ export default function TelaInicialCardapio(){
                 cnpj: cnpj
             }
             localStorage.setItem('dados', JSON.stringify(Dados));
-        
+            localStorage.setItem('login', login);
             const timeout = setTimeout(() => {
             if(tipoComanda === "MESA"){
                 navigate('/Main')
