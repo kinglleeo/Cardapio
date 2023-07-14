@@ -1,21 +1,36 @@
 import { React, useState, useEffect } from 'react'
 import { auth } from '../../../Usuarios/LoginPage/Firebase/firebaseConfig';
 import '../meuspedidos.css'
+import axios from 'axios';
+import { formCurrency } from '../../../AA-utilidades/numeros';
+import { useNavigate } from 'react-router-dom';
 
 export default function CorpoPedidosDelivery(){
-    const [user, setUser] = useState('');
+    const [usuario, setUsuario] = useState('');
+    const [uidToken, setUidToken] = useState('');
     const [listaPedidos, setListaPedidos] = useState([]);
     const [filtroNovos, setFiltroNovos] = useState(true);
     const [filtroPreparo, setFiltroPreparo] = useState(false);
     const [filtroTransporte, setFiltroTransporte] = useState(false);
     const [filtroFinalizados, setFiltroFinalizados] = useState(false);
     const [filtroCancelado, setFiltroCancelado] = useState(false);
+    const navigate = useNavigate();
     
     useEffect(()=>{
-        auth.onAuthStateChanged((user) => {
-            setUser(user)
-        });
+        const uidToken = localStorage.getItem("uidToken")
+            setUidToken(uidToken);
+            axios
+                .get(`http://192.168.0.100:9865/dadosCliente/${uidToken}`)
+                .then((getdata)=>{
+                    setUsuario(getdata.data)
+                });
+            axios
+                .get(`http://192.168.0.100:9865/listaPedidosCliente/${uidToken}`)
+                .then((getdata)=>{
+                    setListaPedidos(getdata.data);
+                })
     }, []);
+
     const filteredPedidos = listaPedidos.filter((itemPedido) => {
         if (filtroNovos && itemPedido.STATUS === 1) {
             return true;
@@ -35,14 +50,14 @@ export default function CorpoPedidosDelivery(){
         return false;
     });
 
-    const selecionarPedido = (itemPedido, user) => {
-        navigate('/DetalhesPedidoDelivery', { state: { itemPedido, user } });
+    const selecionarPedido = (itemPedido, usuario) => {
+        navigate('/DetalhesPedidoDelivery', { state: { itemPedido, usuario} });
       };
 
     return(
         <div>
             <div className='caixaUser'>
-                <div className='userName'> Leonardo </div>
+                <div className='userName'> {Array.isArray(usuario) ? (usuario.map((item) => item.nome)) : null} </div>
             </div>
         <div className='ListaPedidos'>
             <div className='barraAtalhoTerminal'>
@@ -95,7 +110,7 @@ export default function CorpoPedidosDelivery(){
             <div>
             {Array.isArray(filteredPedidos) ? (
                 filteredPedidos.map((itemPedido) => (
-                    <div className='listaPedido-card' onClick={() => selecionarPedido(itemPedido, user)}>
+                    <div className='listaPedido-card' onClick={() => selecionarPedido(itemPedido, usuario)}>
                         <div className='pedidoCard-linha'>
                             <div className='linhaEsquerda'>{itemPedido.TIPOCOMANDA} n° {itemPedido.NUMEROCOMANDA}</div>
                             <div className='linhaDireita'>{itemPedido.HORA.split(':').slice(0, 2).join(':')}</div>

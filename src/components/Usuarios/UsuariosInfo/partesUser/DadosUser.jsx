@@ -12,7 +12,7 @@ export default function DadosUsuarios({ user }){
     const [item, setItem] = useState('');
     const [idGarline, setIdGarline] = useState('');
     const navigate = useNavigate()
-console.log(user)
+
     useEffect(()=>{
         const idgarline = localStorage.getItem('idCliente')
             setIdGarline(idgarline)

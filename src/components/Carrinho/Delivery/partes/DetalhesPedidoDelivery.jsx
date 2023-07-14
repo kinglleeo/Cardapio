@@ -3,20 +3,43 @@ import axios from 'axios';
 import { formCurrency } from '../../../AA-utilidades/numeros';
 import { useLocation } from 'react-router-dom';
 import { capitalizeFirstLetter } from '../../../AA-utilidades/primeiraMaiuscula';
+import TopoHeaderBar from '../../../header/TopoHeaderBar'
 
 export default function DetalhesDoPedido(){
     const [dadosCompraPedido, setDadosCompraPedido] = useState('');
+    const [dados, setDados] = useState([]);
+    const tipoComanda = dados.tipoComanda;
     const { state } = useLocation();
     const { itemPedido } = state;
-    const { user } = state;
+    const { usuario } = state;
+    console.log(itemPedido)
 
     useEffect(()=>{
-        const uidToken = localStorage.getItem('uidToken')
-        
+        const dados = localStorage.getItem('dados')
+        setDados(JSON.parse(dados))
     }, []);
 
+    useEffect(()=>{
+        if (tipoComanda === "DELIVERY" && itemPedido.STATUS === 6){
+            axios
+                .get(`http://192.168.0.100:9865/listaItensCancelados/${itemPedido.ID}`)
+                .then((getdata)=>{
+                    setDadosCompraPedido(getdata.data);
+                })  
+        } else {
+            axios
+                .get(`http://192.168.0.100:9865/listaItensPedidos/${itemPedido.ID}`)
+                .then((getdata)=>{
+                    setDadosCompraPedido(getdata.data);
+                })
+        }
+    }, [tipoComanda, itemPedido]);
 
     return(
+    <>
+        <div>
+            <TopoHeaderBar/>
+        </div>
         <div className='listaDetalhesPedido'>
             <div className='quadroDetalhesPedido'>
                 <div className='quadroPedidoLinha'>
@@ -82,5 +105,6 @@ export default function DetalhesDoPedido(){
                 </div>
             </div>
         </div>
+    </>
     )
 }
