@@ -1,35 +1,24 @@
 import { React, useState, useEffect } from 'react'
 import './formasdepagamento.css'
 import { capitalizeFirstLetter } from '../../AA-utilidades/primeiraMaiuscula'
+import axios from 'axios';
 
 export default function FormasDePagamento({ setPagamentoSelecionado }){
     const [selectedRadioIndex, setSelectedRadioIndex] = useState(null);
+    const [metodosPagamento, setMetodosPagamento] = useState([]);
     
-
     const RadioPagamento = (item, index) => {
         setSelectedRadioIndex(index);
         setPagamentoSelecionado(item)
       };
+    useEffect(()=>{
+        axios
+            .get('http://192.168.0.100:9865/pagamentos')
+            .then((getdata)=>{
+                setMetodosPagamento(getdata.data)
+            })
+    }, [])
     
-    const metodosPagamento = [
-        { 
-            ID: '1',
-            DESCRICAO: 'DINHEIRO'
-        },
-        {
-            ID: '3',
-            DESCRICAO: 'CREDITO'
-        },
-        {
-            ID: '4',
-            DESCRICAO: 'DEBITO'
-        },
-        {
-            ID: '17',
-            DESCRICAO: 'PIX'
-        }
-    ]
-
     return(
         <div>
             <div className='tituloPagamentos'>
@@ -42,7 +31,7 @@ export default function FormasDePagamento({ setPagamentoSelecionado }){
                 {Array.isArray(metodosPagamento) ? (
                         metodosPagamento.map((item, index)=>
                             <div className='cardPagamento' key={item.ID}  onClick={()=> RadioPagamento(item,index)}>
-                                <div className='pagamentoNome'> {capitalizeFirstLetter(item.DESCRICAO.toLowerCase())} </div>
+                                <div className='pagamentoNome'> {capitalizeFirstLetter(item.DESCRICAO.toLowerCase())} {item.DESCRICAO === "PIX" ? (<div> ( {item.CHAVE_PIX} ) </div>) : null} </div>
                                 <div className='Card-Icon'>
                                     <input type='radio' name='tamanhos' checked={selectedRadioIndex === index} onChange={() => {}}/>
                                         {selectedRadioIndex === index 

@@ -31,6 +31,7 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
   const cart = useSelector(state => state.cart)
   const items_pedido = compra
   
+  
   useEffect(()=>{
     const dados = localStorage.getItem('dados')
          setDados(JSON.parse(dados))
@@ -59,26 +60,7 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
     }
   }, [cart]);
   
-  useEffect(() => {
-    if(cart.length === 0){
-      setDesativarConfirmar(true);
-    } else if (tipoComanda === "CARTAO" || opçaoEscolhidaGarcom === "CARTAO" && mesaSelecionada === null){
-      setDesativarConfirmar(true)
-    } else if (tipoComanda === "DELIVERY"){
-      if(user === null){
-        setDesativarConfirmar(true);
-      } else if (enderecoSelecionado === ""){
-        setDesativarConfirmar(true)
-      } else if (pagamentoSelecionado === ""){
-        setDesativarConfirmar(true)
-      } else {
-        setDesativarConfirmar(false)
-      }
-    } else {
-      setDesativarConfirmar(false);
-    }
-
-  }, [tipoComanda, user, cart]);
+  
 
 
   useEffect(() => {
@@ -150,7 +132,7 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
   const EnviarPedidoAPI =()=>{
       axios
         .post(`http://192.168.0.100:9865/inserirPedido`, {
-          pagamento: pagamentoSelecionado !== "" ? pagamentoSelecionado : "balcão",
+          pagamento: pagamentoSelecionado !== "" ? pagamentoSelecionado.ID : "balcão",
           id_endereco: enderecoSelecionado !== "" ? enderecoSelecionado.ID : "",
           id_garcom: idGarcom !==null ? idGarcom : "",
           id_cliente: enderecoSelecionado !== "" ? enderecoSelecionado.ID_PESSOAS : "",
@@ -200,11 +182,6 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
       {isOpen && <ModalPedidos setIsOpen={setIsOpen} numeroPedido={numeroPedido} />}
       {user !== null ?(
         <>
-        {tipoComanda === "DELIVERY" ? (
-          <div>
-            <EnderecoCart user={user} enderecoSelecionado={enderecoSelecionado} setEnderecoSelecionado={setEnderecoSelecionado}/>
-          </div>
-        ) :null}
         <div>
           <button onClick={()=> meusPedidos()} className='btnMeusPedidos'> 
               <div>M</div>
@@ -221,6 +198,11 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
               <div>S</div>
           </button>
         </div>
+        {tipoComanda === "DELIVERY" ? (
+          <div>
+            <EnderecoCart user={user} enderecoSelecionado={enderecoSelecionado} setEnderecoSelecionado={setEnderecoSelecionado}/>
+          </div>
+        ) :null}
         {tipoComanda === "DELIVERY" ? (
           <div>
             <FormasDePagamento

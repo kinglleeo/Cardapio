@@ -8,8 +8,8 @@ export default function DetalhesDoPedido({ itemPedido, terminal }){
     const [dadosCompraPedido, setDadosCompraPedido] = useState([]);
     const [dados, setDados] = useState([]);
     const [adm, setAdm] = useState('')
-    const tipoComanda = dados.tipoComanda;
-
+    const tipoComanda = itemPedido.TIPOCOMANDA;
+    
     useEffect(()=>{
         if (tipoComanda === "DELIVERY" && itemPedido.STATUS === 6){
             axios
