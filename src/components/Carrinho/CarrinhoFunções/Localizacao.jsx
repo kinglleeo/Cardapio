@@ -64,7 +64,7 @@ export default function Localizacao({ tipoComanda, opçaoEscolhidaGarcom, setMes
                                 </div>
                                 <div className='cartListItems'>
                                     {data.map((item, index)=>
-                                        <div className={`card-mesa ${selectedMesa === index ? 'mudarCorCardMesa' : ''}`} onClick={() => selecionarMesa(item, index)}>
+                                        <div key={item.MESA} className={`card-mesa ${selectedMesa === index ? 'mudarCorCardMesa' : ''}`} onClick={() => selecionarMesa(item, index)}>
                                             <div className='mesaNome'> {item.MESA} </div>
                                             <div className={`mesaIcone ${selectedMesa === index ? 'mudarIconeMesa' : ''}`} ></div>
                                         </div>

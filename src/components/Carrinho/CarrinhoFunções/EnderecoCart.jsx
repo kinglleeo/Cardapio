@@ -42,7 +42,6 @@ export default function Endereços ({ user, enderecoSelecionado, setEnderecoSele
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
-
     return(
         <div className='endereços'>
             <div className='tituloEnderecos'> Endereços </div>
@@ -50,7 +49,7 @@ export default function Endereços ({ user, enderecoSelecionado, setEnderecoSele
             <div className='endereco'>
                 {Array.isArray(endereco) ?(
                     endereco.map((item, index)=>
-                    <div className='descricaoendereco' onClick={() => RadioEndereco(item, index)}>
+                    <div className='descricaoendereco' onClick={() => RadioEndereco(item, index)} key={item.APELIDO}>
                         <div className='enderecoApelido'> 
                             <div className='Card-Icon'>
                                 <input type='radio' name='endereco' checked={selectedRadioIndex === index} onChange={() => {}}/>

@@ -54,36 +54,39 @@ export default function Grupo(){
             {Array.isArray(grupos) ? (
                 grupos.map((item)=>
                     <div className='GrupoList' id={item.ID_GRUPO} key={item.ID_GRUPO}>
-                        <div className='Grupo-Titulo'>{item.GRUPO}</div>
+                        <div className='Grupo-Titulo'>{item.GRUPO}
                             {item.PIZZA_MISTA === "SIM" ? (
-                                <div>
-                                    <div className='icon-grupoTamanho' onClick={() => toggleListaTamanhos(IdTamanho)}>
-                                        {listaTamanhosAtivos === IdTamanho ? <div className='icone-setaUp'></div> : <div className='icone-setaDown'></div>}
+                                <div className='icon-grupoTamanho' onClick={() => toggleListaTamanhos(IdTamanho)}>
+                                    {listaTamanhosAtivos === IdTamanho ? <div className='icone-setaUp'></div> : <div className='icone-setaDown'></div>}
                                 </div>
-                            {listaTamanhosAtivos === "1" ? (
-                                <div>
-                                    {Array.isArray(tamanhosPizza) ? (
-                                        tamanhosPizza.map((data)=>
-                                        <div className='card-produtos' key={data.ID}>
-                                            <div className='box-produtos' onClick={()=> handlePizzas(data, item.PIZZA_MISTA)}>
-                                                <div className='produtos-info'>
-                                                    <div className='produto-nome'>
-                                                        <div className='item-nome item-nomeTamanhoPizza'> {data.TAMANHO} </div>
+                            ) : null}
+                        </div>
+                            {item.PIZZA_MISTA === "SIM" ? (
+                                <>
+                                {listaTamanhosAtivos === "1" ? (
+                                    <>
+                                        {Array.isArray(tamanhosPizza) ? (
+                                            tamanhosPizza.map((data)=>
+                                            <div className='card-produtos' key={data.ID}>
+                                                <div className='box-produtos' onClick={()=> handlePizzas(data, item.PIZZA_MISTA)}>
+                                                    <div className='produtos-info'>
+                                                        <div className='produto-nome'>
+                                                            <div className='item-nome item-nomeTamanhoPizza'> {data.TAMANHO} </div>
+                                                        </div>
+                                                    <div className='ValorTamanhoPizza'>
+                                                        <div >Até {data.QTD_MAXIMO === 1 ? (data.QTD_MAXIMO + " " + "Sabor"):(data.QTD_MAXIMO + " " + "Sabores")} </div>
                                                     </div>
-                                                <div className='ValorTamanhoPizza'>
-                                                    <div >Até {data.QTD_MAXIMO === 1 ? (data.QTD_MAXIMO + " " + "Sabor"):(data.QTD_MAXIMO + " " + "Sabores")} </div>
-                                                </div>
-                                                </div>
-                                                <div className='pizza-img'>
-                                                    <div className='pizza-png'></div>
+                                                    </div>
+                                                    <div className='pizza-img'>
+                                                        <div className='pizza-png'></div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        )    
-                                    ) : null }
-                                </div>
-                            ):(<div></div>)}
-                            </div>
+                                            )    
+                                        ) : null }
+                                    </>
+                                ) : null}
+                            </>
                             ) : (
                                 <div>
                                     <SubGrupoList

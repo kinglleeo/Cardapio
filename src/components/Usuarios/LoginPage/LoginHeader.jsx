@@ -9,7 +9,6 @@ export default function cartHeader(){
         const dados = localStorage.getItem('empresa')
             setInfoClientes(JSON.parse(dados))
     }, [])
-
     return(
         <div className='loginHeader'>
             <div className='loginHeaderTopo'>
@@ -23,7 +22,7 @@ export default function cartHeader(){
             <div className='login-logo-resta'>
                 {Array.isArray(infoClientes) ?  (
                     infoClientes.map((item)=> 
-                    <div>
+                    <div key={item.NOME_FANTASIA}>
                         <img src={'data:image/png;base64,' + item.FOTO} key={item.id} alt='Restaurante' className='img-restaurante-logo' />
                     </div>
                 )) : null}                    
