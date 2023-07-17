@@ -8,7 +8,7 @@ export default function Header (){
     const [infoClientes, setInfoClientes] = useState([])
     const [user, setUser] = useState('');
     const navigate = useNavigate()
-    
+    console.log(infoClientes)
     useEffect(()=>{
         const dados = localStorage.getItem('empresa')
             setInfoClientes(JSON.parse(dados))
@@ -20,8 +20,6 @@ export default function Header (){
     const PaginaUsuario =()=>{
         navigate('/PaginaUsuario')
     }
-
-    
 
     return(
         <div className='paginaHeader'>

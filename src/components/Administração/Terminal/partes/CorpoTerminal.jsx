@@ -14,11 +14,11 @@ export default function Terminal({ nomeEmpresa, adm }) {
     const [filtroTransporte, setFiltroTransporte] = useState(false);
     const [filtroFinalizados, setFiltroFinalizados] = useState(false);
     const [filtroCancelado, setFiltroCancelado] = useState(false);
-    const [terminal, setTerminal] = useState([]);
     const [dados, setDados] = useState([]);
     const tipoComanda = dados.tipoComanda;
     const navigate = useNavigate();
-
+    
+  
     useEffect(()=>{
       const dados = localStorage.getItem('dados')
       setDados(JSON.parse(dados))
@@ -31,17 +31,10 @@ export default function Terminal({ nomeEmpresa, adm }) {
                 setListaPedidos(getdata.data);
             })
     }, [])
-    useEffect(()=>{
-      axios
-          .get('http://192.168.0.100:9865/parametros')
-          .then((getdata)=>{
-            setTerminal(getdata.data);
-          })
-    }, [])
+    
 
-
-  const selecionarPedido = (itemPedido, adm, terminal) => {
-    navigate('/DetalhesPedido', { state: { itemPedido, adm, terminal } });
+  const selecionarPedido = (itemPedido) => {
+    navigate('/DetalhesPedido', { state: { itemPedido } });
   };
 
     const filteredPedidos = listaPedidos.filter((itemPedido) => {
@@ -84,15 +77,6 @@ export default function Terminal({ nomeEmpresa, adm }) {
             </div>
           </div>
           <div className='caixaAtalhoTerminal'>
-            <div className='atalhoTerminalNome'>Aceitos</div>
-            <div>
-              <label className='containerCheckTerminal'>
-                <input type='checkbox' checked={filtroAceitos} onChange={() => setFiltroAceitos(!filtroAceitos)} />
-                <div className='checkmark'></div>
-              </label>
-            </div>
-          </div>
-          <div className='caixaAtalhoTerminal'>
           <div className='atalhoTerminalNome'>Cancelados</div>
           <div>
             <label className='containerCheckTerminal'>
@@ -101,45 +85,38 @@ export default function Terminal({ nomeEmpresa, adm }) {
             </label>
           </div>
           </div>
-          {terminal.map((item) =>
-            item.PEDIDOS_APP_USARGESTAO === "SIM" ?(
-              <>
-                <div className='caixaAtalhoTerminal'>
-                  <div className='atalhoTerminalNome'>Em Preparo</div>
-                  <div className='caixaCheckBoxTerminal'>
-                    <label className='containerCheckTerminal'>
-                      <input type='checkbox' checked={filtroPreparo} onChange={() => setFiltroPreparo(!filtroPreparo)} />
-                      <div className='checkmark'></div>
-                    </label>
-                  </div>
-                </div>
-                { tipoComanda === "DELIVERY" ? (
-                  <div className='caixaAtalhoTerminal'>
-                    <div className='atalhoTerminalNome'>Em Transporte</div>
-                    <div>
-                      <label className='containerCheckTerminal'>
-                        <input type='checkbox' checked={filtroTransporte} onChange={() => setFiltroTransporte(!filtroTransporte)} />
-                        <div className='checkmark'></div>
-                      </label>
-                    </div>
-                  </div>
-                ) : null}
-                <div className='caixaAtalhoTerminal'>
-                  <div className='atalhoTerminalNome'>Finalizados</div>
-                  <div>
-                    <label className='containerCheckTerminal'>
-                      <input type='checkbox' checked={filtroFinalizados} onChange={() => setFiltroFinalizados(!filtroFinalizados)} />
-                      <div className='checkmark'></div>
-                    </label>
-                  </div>
-                </div>
-              </>
-            ) : null )}
+          <div className='caixaAtalhoTerminal'>
+            <div className='atalhoTerminalNome'>Em Preparo</div>
+            <div className='caixaCheckBoxTerminal'>
+              <label className='containerCheckTerminal'>
+                <input type='checkbox' checked={filtroPreparo} onChange={() => setFiltroPreparo(!filtroPreparo)} />
+                <div className='checkmark'></div>
+              </label>
+            </div>
+          </div>
+          <div className='caixaAtalhoTerminal'>
+              <div className='atalhoTerminalNome'>Em Transporte</div>
+              <div>
+              <label className='containerCheckTerminal'>
+                  <input type='checkbox' checked={filtroTransporte} onChange={() => setFiltroTransporte(!filtroTransporte)} />
+                <div className='checkmark'></div>
+              </label>
+            </div>
+          </div>
+          <div className='caixaAtalhoTerminal'>
+            <div className='atalhoTerminalNome'>Finalizados</div>
+            <div>
+              <label className='containerCheckTerminal'>
+                <input type='checkbox' checked={filtroFinalizados} onChange={() => setFiltroFinalizados(!filtroFinalizados)} />
+                <div className='checkmark'></div>
+              </label>
+            </div>
+          </div>
       </div>
         <div>
           {Array.isArray(filteredPedidos) ? (
             filteredPedidos.map((itemPedido) => (
-              <div className='listaPedido-card' onClick={() => selecionarPedido(itemPedido, adm, terminal)}>
+              <div className='listaPedido-card' onClick={() => selecionarPedido(itemPedido)}>
                 <div className='pedidoCard-linha'>
                   <div className='linhaEsquerda'>{itemPedido.TIPOCOMANDA} n° {itemPedido.NUMEROCOMANDA}</div>
                   <div className='linhaDireita'>{itemPedido.HORA.split(':').slice(0, 2).join(':')}</div>
@@ -149,7 +126,6 @@ export default function Terminal({ nomeEmpresa, adm }) {
                   <div className={
                       'statusPedidos ' +
                       (itemPedido.STATUS === 1 ? 'novo'
-                        : itemPedido.STATUS === 2 ? 'aceito'
                         : itemPedido.STATUS === 3 ? 'preparo'
                         : itemPedido.STATUS === 4 ? 'transporte'
                         : itemPedido.STATUS === 5 ? 'finalizados'
@@ -157,7 +133,6 @@ export default function Terminal({ nomeEmpresa, adm }) {
                         : '')
                     }>
                         {itemPedido.STATUS === 1 ? 'Novo'
-                          : itemPedido.STATUS === 2 ? 'Aceito'
                           : itemPedido.STATUS === 3 ? 'Em Preparo'
                           : itemPedido.STATUS === 4 ? 'Em Transporte'
                           : itemPedido.STATUS === 5 ? ' Finalizado'

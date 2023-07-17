@@ -59,8 +59,39 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
       setTotalCart(total.toFixed(2));
     }
   }, [cart]);
-  
-  
+
+  useEffect(()=>{
+    if (tipoComanda === "DELIVERY"){
+      if(login !== null && enderecoSelecionado !== "" && pagamentoSelecionado !== "" && cart !== ""){
+        setDesativarConfirmar(false)
+      } else {
+        setDesativarConfirmar(true)
+      }
+    } 
+    else if (idGarcom !== null){
+      if(opçaoEscolhidaGarcom === "CARTAO" && mesaSelecionada !== ""){
+        setDesativarConfirmar(false)
+      } else if (opçaoEscolhidaGarcom === "MESA" && numeroComandaGarcom !== ""){
+        setDesativarConfirmar(false)
+      } else {
+        setDesativarConfirmar(true)
+      }
+    }
+    else if (tipoComanda === "CARTAO"){
+      if(mesaSelecionada !== "" && cart !== ""){
+        setDesativarConfirmar(false)
+      } else {
+        setDesativarConfirmar(true)
+      }
+    }
+    else if (tipoComanda === "MESA"){
+      if(cart !== ""){
+        setDesativarConfirmar(false)
+      } else {
+        setDesativarConfirmar(true)
+      }
+    }
+  })
 
 
   useEffect(() => {
