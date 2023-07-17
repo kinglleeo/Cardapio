@@ -24,7 +24,6 @@ export default function DadosUsuarios({ user }){
             });
     }, []);
 
-
     const EditarDados=(item)=>{
         setItem(item)
         setIsOpenUserDados(true)
@@ -58,7 +57,7 @@ export default function DadosUsuarios({ user }){
                 </div>
                 {Array.isArray(dadosCliente) ?
                     dadosCliente.map((item)=>
-                        <div className='listaInfos'>
+                        <div key={item.nome} className='listaInfos'>
                             <div className='linhaEditar'>
                             <button className='BtnEditar' onClick={()=> EditarDados(item)} > 
                                 <div className='editarText'> Editar </div>

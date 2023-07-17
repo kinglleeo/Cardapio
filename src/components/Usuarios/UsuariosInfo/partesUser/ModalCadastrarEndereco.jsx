@@ -74,8 +74,8 @@ export default function modal({ user, setIsOpenCadastrarEndereco}){
                 <div className='modalEditContent'> 
                     <div className='modalTitulo'> Editar </div>
                     <div className='itensModal'>
-                        <div class="coolinput">
-                            <label for="input" className="text"> Apelido </label>
+                        <div className="coolinput">
+                            <label htmlFor="input" className="text"> Apelido </label>
                             <input
                                 type='text'
                                 placeholder='Digite seus Dados...'
@@ -86,7 +86,7 @@ export default function modal({ user, setIsOpenCadastrarEndereco}){
                             />
                         </div>
                         <div className="coolinput">
-                            <label for="input" className="text"> Rua </label>
+                            <label htmlFor="input" className="text"> Rua </label>
                             <input
                                 type='text'
                                 placeholder='Digite seus Dados...'
@@ -97,7 +97,7 @@ export default function modal({ user, setIsOpenCadastrarEndereco}){
                             />
                         </div>
                         <div className="coolinput">
-                            <label for="input" className="text"> Numero </label>
+                            <label htmlFor="input" className="text"> Numero </label>
                             <input
                                 type='text'
                                 placeholder='Digite seus Dados...'
@@ -108,7 +108,7 @@ export default function modal({ user, setIsOpenCadastrarEndereco}){
                             />
                         </div>
                         <div className="coolinput">
-                            <label for="input" className="text"> Referencia </label>
+                            <label htmlFor="input" className="text"> Referencia </label>
                             <input
                                 type='text'
                                 placeholder='Digite seus Dados...'

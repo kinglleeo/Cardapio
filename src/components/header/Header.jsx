@@ -41,6 +41,8 @@ export default function Header (){
                 <div key={item.NOME_FANTASIA}>
                     <div className='body-header'>
                     <div className='banner-garline'>
+                    </div>
+                        <div className='caixa-infos'>
                         <div className='banner-infos'>
                             <div className='caixa-icone'>
                                 <div className='icone-tempo'></div>
@@ -68,7 +70,7 @@ export default function Header (){
                                 <div>{item.WHATS.replace(/(\d{2})(\d{4})(\d{4})/, "($1) $2-$3")}</div>
                             </div>
                         </div>
-                    </div>
+                        </div>
                     <div className='footer-header'>
                         <div className='endereço-header'> {item.LOGRADOURO + ", " + item.BAIRRO + ", N°" + " " + item.NUMERO + ", " + item.CIDADE + " - " + item.UF} </div>
                     </div>

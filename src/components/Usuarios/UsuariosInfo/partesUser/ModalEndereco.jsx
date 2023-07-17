@@ -92,8 +92,8 @@ export default function modal({ user, item, setIsOpenModalEndereco}){
                 <div className='modalEditContent'> 
                     <div className='modalTitulo'> Editar </div>
                     <div className='itensModal'>
-                        <div class="coolinput">
-                            <label for="input" className="text"> Apelido </label>
+                        <div className="coolinput">
+                            <label htmlFor="input" className="text"> Apelido </label>
                             <input
                                 type='text'
                                 placeholder='Digite seus Dados...'
@@ -103,8 +103,8 @@ export default function modal({ user, item, setIsOpenModalEndereco}){
                                 onChange={(e)=> setApelido(e.target.value)}
                             />
                         </div>
-                        <div class="coolinput">
-                            <label for="input" className="text"> Rua </label>
+                        <div className="coolinput">
+                            <label htmlFor="input" className="text"> Rua </label>
                             <input
                                 type='text'
                                 placeholder='Digite seus Dados...'
@@ -114,8 +114,8 @@ export default function modal({ user, item, setIsOpenModalEndereco}){
                                 onChange={(e)=> setRua(e.target.value)}
                             />
                         </div>
-                        <div class="coolinput">
-                            <label for="input" className="text"> Numero </label>
+                        <div className="coolinput">
+                            <label htmlFor="input" className="text"> Numero </label>
                             <input
                                 type='text'
                                 placeholder='Digite seus Dados...'
@@ -125,8 +125,8 @@ export default function modal({ user, item, setIsOpenModalEndereco}){
                                 onChange={(e)=> setNumero(e.target.value)}
                             />
                         </div>
-                        <div class="coolinput">
-                            <label for="input" className="text"> Referencia </label>
+                        <div className="coolinput">
+                            <label htmlFor="input" className="text"> Referencia </label>
                             <input
                                 type='text'
                                 placeholder='Digite seus Dados...'

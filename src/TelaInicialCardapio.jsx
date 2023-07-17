@@ -25,50 +25,53 @@ export default function TelaInicialCardapio(){
                 .post(url)
                 .then((response)=>{
                     setResposta(response);
-                })
-            if (resposta) {
-                const parts = resposta.data.split('|');
+                    const parts = response.data.split('|');
                     if (parts.length === 2) {
                       const rotalink = parts[0].trim();
                       const rotaBase = parts[1].trim();
                       const RotaFinal = `${rotalink}:${rotaBase}`;
                           iniciarRota(RotaFinal)
+                          Iniciar(cnpj, tipoComanda, numeroComanda, login)
                     }
-                  }
-                api
-                    .get(`/dadosEmpresa/${cnpj}`)
-                    .then((getdata)=>{
-                        setInfoClientes(getdata.data);
-                        const dadosEmpresa = getdata.data;
-                        const dados = {
-                            tipoComanda: tipoComanda,
-                            numeroComanda: numeroComanda,
-                            cnpj: cnpj
-                        }   
-                        if(tipoComanda === "MESA"){
-                            irParaMenu(dados, dadosEmpresa)
-                        } 
-                        else if(tipoComanda === "CARTAO"){
-                            irParaMenu(dados, dadosEmpresa)
-                        }
-                        else if (login === "TERMINAL"){{
-                            irParaTerminal(dados, login, dadosEmpresa)
-                        }}
-                        else if (login === "GARCOM"){{
-                            irParaGarcom(dados, login, dadosEmpresa)
-                        }}
-                        else if (tipoComanda === "DELIVERY"){{
-                            irParaMenu(dados, dadosEmpresa)
-                        }}
-                    });
-            
+                })
+                
     }, []);
 
+    const Iniciar=(cnpj, tipoComanda, numeroComanda, login)=>{
+        api
+            .get(`/dadosEmpresa/${cnpj}`)
+            .then((getdata)=>{
+                setInfoClientes(getdata.data);
+                const dadosEmpresa = getdata.data;
+                const dados = {
+                    tipoComanda: tipoComanda,
+                    numeroComanda: numeroComanda,
+                    cnpj: cnpj
+                    }   
+                    if(tipoComanda === "MESA"){
+                        irParaMenu(dados, dadosEmpresa)
+                    } 
+                    else if(tipoComanda === "CARTAO"){
+                        irParaMenu(dados, dadosEmpresa)
+                    }
+                    else if (login === "TERMINAL"){{
+                        irParaTerminal(dados, login, dadosEmpresa)
+                    }}
+                    else if (login === "GARCOM"){{
+                        irParaGarcom(dados, login, dadosEmpresa)
+                    }}
+                    else if (tipoComanda === "DELIVERY"){{
+                        irParaMenu(dados, dadosEmpresa)
+                    }}
+                });
+    }
     const irParaMenu=(dados, dadosEmpresa)=>{
         const timeout = setTimeout(() => {
             localStorage.clear()
             localStorage.setItem('dados', JSON.stringify(dados));
             localStorage.setItem('empresa', JSON.stringify(dadosEmpresa))
+            console.log(dados)
+            console.log(dadosEmpresa)
             navigate('/Main')
         }, 3000);
         return () => {
@@ -81,6 +84,8 @@ export default function TelaInicialCardapio(){
             localStorage.setItem('login', login);
             localStorage.setItem('empresa', JSON.stringify(dadosEmpresa))
             navigate('/LoginAdm')
+            console.log(dados)
+            console.log(dadosEmpresa)
         }, 3000);
         return () => {
             clearTimeout(timeout);
@@ -92,6 +97,8 @@ export default function TelaInicialCardapio(){
             localStorage.setItem('login', login);
             localStorage.setItem('empresa', JSON.stringify(dadosEmpresa))
             navigate('/LoginGarcom')
+            console.log(dados)
+            console.log(dadosEmpresa)
         }, 3000);
         return () => {
             clearTimeout(timeout);

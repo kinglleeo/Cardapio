@@ -42,7 +42,7 @@ export default function Endereços ({ user }){
             <div className='endereco'>
                 {Array.isArray(endereco) ?(
                     endereco.map((item)=>
-                    <div className='descricaoendereco'>
+                    <div key={item.APELIDO} className='descricaoendereco'>
                         <div className='enderecoApelido'> 
                             <div className='textoApelido'> {capitalizeFirstLetter(item.APELIDO.toLowerCase())} </div>
                             <div className='btneditarendereco'>

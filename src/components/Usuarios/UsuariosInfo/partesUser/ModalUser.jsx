@@ -48,8 +48,8 @@ export default function modal({ user, item, setIsOpenUserDados}){
                 <div className='modalEditContent'> 
                     <div className='modalTitulo'> Editar </div>
                     <div className='itensModal'>
-                        <div class="coolinput">
-                            <label for="input" className="text"> Nome </label>
+                        <div className="coolinput">
+                            <label htmlFor="input" className="text"> Nome </label>
                             <input
                                 type='text'
                                 placeholder='Digite seus Dados...'
@@ -59,8 +59,8 @@ export default function modal({ user, item, setIsOpenUserDados}){
                                 onChange={(e)=> setNome(e.target.value)}
                             />
                         </div>
-                        <div class="coolinput">
-                            <label for="input" className="text"> Celular (xx) xxxxx-xxxx </label>
+                        <div className="coolinput">
+                            <label htmlFor="input" className="text"> Celular (xx) xxxxx-xxxx </label>
                             <input
                                 type='text'
                                 placeholder='Digite seus Dados...'
@@ -70,8 +70,8 @@ export default function modal({ user, item, setIsOpenUserDados}){
                                 onChange={(e)=> setTelefone(e.target.value)}
                             />
                         </div>
-                        <div class="coolinput">
-                            <label for="input" className="text"> Data de Nascimento xx/xx/xxxx </label>
+                        <div className="coolinput">
+                            <label htmlFor="input" className="text"> Data de Nascimento xx/xx/xxxx </label>
                             <input
                                 type='text'
                                 placeholder='Digite seus Dados...'

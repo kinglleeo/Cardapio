@@ -110,7 +110,7 @@ export default function CorpoPedidosDelivery(){
             <div>
             {Array.isArray(filteredPedidos) ? (
                 filteredPedidos.map((itemPedido) => (
-                    <div className='listaPedido-card' onClick={() => selecionarPedido(itemPedido, usuario)}>
+                    <div key={itemPedido.ID} className='listaPedido-card' onClick={() => selecionarPedido(itemPedido, usuario)}>
                         <div className='pedidoCard-linha'>
                             <div className='linhaEsquerda'>{itemPedido.TIPOCOMANDA} n° {itemPedido.NUMEROCOMANDA}</div>
                             <div className='linhaDireita'>{itemPedido.HORA.split(':').slice(0, 2).join(':')}</div>

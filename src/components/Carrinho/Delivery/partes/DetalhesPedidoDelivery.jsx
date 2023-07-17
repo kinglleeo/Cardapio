@@ -34,7 +34,7 @@ export default function DetalhesDoPedido(){
                 })
         }
     }, [tipoComanda, itemPedido]);
-
+    
     return(
     <>
         <div>
@@ -75,7 +75,7 @@ export default function DetalhesDoPedido(){
                 <div>
                     {Array.isArray(dadosCompraPedido)? (
                         dadosCompraPedido.map((item)=>
-                        <div className='pedidoItemCard'>
+                        <div key={item.DESCRICAO} className='pedidoItemCard'>
                             <div className='itemCardLinha'>
                                 <div className='itemPedidoQTD'> {item.QTDE_COM} </div>
                                 <div className='itemPedidoDesc'> {item.DESCRICAO} </div>

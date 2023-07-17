@@ -49,7 +49,7 @@ export default function DetalhesDoPedido({ itemPedido }){
                 tipo_comanda: tipoComanda
         })
             .then((response)=>{
-                
+                console.log(response)
             })
     } 
     console.log(itemPedido)

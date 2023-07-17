@@ -89,7 +89,7 @@
     min-height: 45px;
 }
 .cartBox-iconeLixeira{
-    width: 15%;
+    width: 10%;
     display: grid;
     place-items: center;
 }
@@ -99,32 +99,35 @@
     background-color: transparent;
 }
 .lixeira{
-    height: 35px;
+    height: 30px;
     aspect-ratio: 1 / 1;
     background-image: url('../imagens/iconeLixeira.png');
     background-size: 100% 100%;
 }
 .boxDescricao-nome{
-    width: 40%;
-    display: grid;
-    place-items: center;
+    width: 60%;
     font-family: "Roboto-Light";
     font-size: 14px;
+    display: flex;
+    align-content: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-left: 5px;
 }
 .cartBox-valor{
-    width: 45%;
+    width: 30%;
     display: flex;
 }
 .CartBox-valor{
     width: 100%;
-    display: flex;
+    display: grid;
+    place-items: center;
 }
 .cartTotal-valor{
-    width: 50%;
+    width: 100%;
     display: grid;
     font-size: 14px;
     place-items: center;
-    margin-right: 5px;
     font-family: "Roboto-Light";
 }
 .boxFuncao-cart{
