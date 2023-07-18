@@ -24,20 +24,26 @@ export default function BarraCarrinhoAtalho() {
     setTotalCart(newTotalCart);
   }, []);
 
-
-
   return (
-    <Link to='/carrinho' style={{ color: 'inherit', textDecoration: 'inherit' }}>
-      <div className='carrinho'>
-        <div className='totalQuantidade-cart'>{getTotalQuantity() || 0} X</div>
-        <div className='totalQuantidade-cart-svg'>
-          {getTotalQuantity() > 0 ? (
-            <div className='img-cartCheio'></div>
-            ) : (
-            <div className='img-cartVazio'></div>
-            )}
+      <div className='atalhoCarrinho'>
+        <div className='mainPage'>
+          <Link to='/Main' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+            <div className='centralizarIcone'><div className='iconeMainPageApagado'></div></div>
+            <div style={{ color: 'grey'}}> Home </div>
+          </Link>
+        </div>
+        <div className='usuarioPage'>
+          <Link to='/PaginaUsuario' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+            <div className='centralizarIcone'><div className='iconePerfilApagado'></div></div>
+            <div style={{ color: 'grey'}}> Perfil </div>
+          </Link>
+        </div>
+        <div className='cartPage'>
+          <Link to='/Carrinho' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+              <div className='totalQuantidade-cart-svg'><div className='iconeCartApagado'></div></div>
+              <div style={{ color: 'grey'}}> Carrinho </div>
+          </Link>
         </div>
       </div>
-    </Link>
   );
 }

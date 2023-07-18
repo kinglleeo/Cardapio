@@ -10,26 +10,36 @@ export default function Grupo(){
     const [tamanhosPizza, setTamanhosPizza] = useState([]);
     const navigate = useNavigate();
     const [listaTamanhosAtivos, setListaTamanhosAtivos] = useState(null);
+    const [dados, setDados] = useState('');
+    const tipoComanda = dados.tipoComanda
     const IdTamanho ="1"
-
-    useEffect(() => {
-        api
-            .get(`/listaGrupos`)
-            .then((getdata) => {
-            if (Array.isArray(getdata.data)) {
-              const sortedData = getdata.data.sort((a, b) => a.numeration - b.numeration);
-              setGrupos(sortedData);
-            }
-          });
-    }, []);
+    console.log(tipoComanda)
 
     useEffect(()=>{
-        api
-            .get('/listaTamanhosPizza')
-            .then((getdata)=>{
-                setTamanhosPizza(getdata.data);
+        const dados = localStorage.getItem('dados')
+            setDados(JSON.parse(dados))
+    }, [])
+
+    useEffect(() => {
+        const dados = localStorage.getItem('dados')
+            setDados(JSON.parse(dados))
+        const tipoComanda = JSON.parse(dados)
+        const comanda = tipoComanda.tipoComanda
+            api
+                .get(`http://192.168.0.100:9865/listaGrupos/${comanda}`)
+                .then((getdata) => {
+                    if (Array.isArray(getdata.data)) {
+                    const sortedData = getdata.data.sort((a, b) => a.numeration - b.numeration);
+                    setGrupos(sortedData);
+                    }
             });
+            api
+                .get(`http://192.168.0.100:9865/listaTamanhosPizza`)
+                    .then((getdata)=>{
+                        setTamanhosPizza(getdata.data);
+                    });
     }, []);
+
     
     const handlePizzas=(data, PIZZA_MISTA)=>{
         navigate('/Pizzas', { state: { data, PIZZA_MISTA } });

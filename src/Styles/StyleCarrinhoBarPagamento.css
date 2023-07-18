@@ -5,41 +5,79 @@
     src: url('../fontes/roboto/Roboto-Condensed.ttf');
 }
 
-.carrinho{
+.atalhoCarrinho{
     position: fixed;
-    bottom: 40px;
-    right: 0;
-    height: 60px;
-    width: 110px;
-    border-radius: 5px 0 0 5px;
-    background-color: #FD4B2D;
-    color: white;
-    font-family: "Roboto-Condensed";
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    flex-wrap: wrap;
+    bottom: 0;
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-top: solid;
+    border-width: 0.5px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: white;
+}
+.mainPage{
+    grid-column: 1;
+    display: grid;
+    place-items: center;
+}
+.usuarioPage{
+    grid-column: 2;
+    display: grid;
+    place-items: center;
+}
+.cartPage{
+    grid-column: 3;
+    display: grid;
+    place-items: center;
+}
+.iconeMainPageApagado{
+    width: 25px;
+    height: 25px;
+    background-image: url('../imagens/iconeHomeApagado.png');
+    background-size: 100% 100%;
+}
+.iconeMainPageAcesso{
+    width: 25px;
+    height: 25px;
+    background-image: url('../imagens/iconeHome.png');
+    background-size: 100% 100%;
+}
+.centralizarIcone{
+    display: grid;
+    place-items: center;
+}
+.iconePerfilApagado{
+    width: 25px;
+    height: 25px;
+    background-image: url('../imagens/iconeUsuarioApagado.png');
+    background-size: 100% 100%;
+}
+.iconePerfil{
+    width: 25px;
+    height: 25px;
+    background-image: url('../imagens/iconeUsuario.png');
+    background-size: 100% 100%;
 }
 .totalQuantidade-cart{
     display: grid;
     place-items: center;
-    margin: 5px;
 }
 .totalQuantidade-cart-svg{
-    width: 30px;
-    height: 30px;
-    margin: 5px;
+    display: grid;
+    place-items: center;
 }
 .img-cartCheio{
-    height: 100%;
-    width: 100%;
-    background-image: url('../imagens/icons8-carrinho-de-compras-carregado-30.png');
+    width: 25px;
+    height: 25px;
+    background-image: url('../imagens/carrinhoCheio.png');
     background-size: 100% 100%;
 }
-.img-cartVazio{
-    height: 100%;
-    width: 100%;
-    background-image: url('../imagens/icons8-carrinho-de-compras-30.png');
+.iconeCartApagado{
+    width: 25px;
+    height: 25px;
+    background-image: url('../imagens/iconeCartApagado.png');
     background-size: 100% 100%;
 }
 .text-cart{

@@ -6,31 +6,50 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    position: absolute;
+    position: fixed;
 } 
 .centered {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 1;
 }
 .modalPedidos {
-    min-width: 250px;
+    min-width: 278px;
     min-height: 170px;
     background: white;
-    z-index: 10;
     border-radius: 10px;
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
 }
 .modalPedidosContent {
-    font-size: 14px;
     padding: 10px;
-    font-family: "Roboto-Light";
+    display: grid;
 }
-
-.closeBtn{
-
+.tituloModalPedidoCart{
+    display: grid;
+    place-items: center;
 }
-.iconeBtnCloseModal{
-
+.textoPedidoCartModal{
+    margin-top: 50px;
+    display: grid;
+    place-items: center;
+}
+.btnFecharModalPedidoCart{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 5px;
+    border: none;
+    border-radius: 0 0 0 5px;
+    background-color: rgb(166, 175, 182);
+}
+.btnPedidoModalCArt{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 5px;
+    border: none;
+    border-radius: 0 0 5px 0 ;
+    background-color: rgb(3, 255, 3);
 }

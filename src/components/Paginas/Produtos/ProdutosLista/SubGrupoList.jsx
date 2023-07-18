@@ -3,20 +3,32 @@ import '../../../../Styles/Styles.css';
 import { api } from '../../../../conecções/api';
 import ProdutoList from './ProdutosList';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
+import axios from 'axios';
 
 export default function SubGrupoList({ grupo }) {
   const [subGrupo, setSubGrupo] = useState([]);
   const [subGrupoAtivo, setSubGrupoAtivo] = useState(null);
   const [produtoCache, setProdutoCache] = useState({});
+  const [dados, setDados] = useState('');
   const queryClient = useQueryClient();
   const activeListRef = useRef(null);
-
+  const tipoComanda = dados.tipoComanda
   useEffect(() => {
+    const dados = localStorage.getItem('dados')
+            setDados(JSON.parse(dados))
+        const tipoComanda = JSON.parse(dados)
+        const comanda = tipoComanda.tipoComanda
     api
-      .get(`/listaSubGrupos/${grupo.ID_GRUPO}`).then((getdata) => {
-      setSubGrupo(getdata.data);
-    });
+      .get(`http://192.168.0.100:9865/listaSubGrupos/${grupo.ID_GRUPO}/${comanda}`)
+      .then((getdata) => {
+        setSubGrupo(getdata.data);
+      });
   }, []);
+
+  useEffect(()=>{
+    const dados = localStorage.getItem('dados')
+         setDados(JSON.parse(dados))
+  }, [])
 
   const toggleLista = (idSubGrupo) => {
     if (subGrupoAtivo === idSubGrupo) {
@@ -29,12 +41,13 @@ export default function SubGrupoList({ grupo }) {
 
   const selecionarProdutos = (idSubGrupo) => {
     if (!produtoCache[idSubGrupo]) {
-      api.get(`/listaProdutos/${idSubGrupo}`).then((getdata) => {
-        setProdutoCache((prevProdutoCache) => ({
-          ...prevProdutoCache,
-          [idSubGrupo]: getdata.data,
-        }));
-  
+      axios
+        .get(`http://192.168.0.100:9865/listaProdutos/${idSubGrupo}/${tipoComanda}`)
+        .then((getdata) => {
+          setProdutoCache((prevProdutoCache) => ({
+            ...prevProdutoCache,
+            [idSubGrupo]: getdata.data,
+          }));
         if (activeListRef.current) {
           const barraFixaHeight = 90; // Altura da barra fixa em pixels
           const scrollTop = activeListRef.current.getBoundingClientRect().top + window.pageYOffset - barraFixaHeight;

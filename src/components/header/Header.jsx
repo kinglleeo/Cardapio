@@ -8,7 +8,7 @@ export default function Header (){
     const [infoClientes, setInfoClientes] = useState([])
     const [user, setUser] = useState('');
     const navigate = useNavigate()
-    console.log(infoClientes)
+    
     useEffect(()=>{
         const dados = localStorage.getItem('empresa')
             setInfoClientes(JSON.parse(dados))
@@ -24,13 +24,6 @@ export default function Header (){
     return(
         <div className='paginaHeader'>
         <div className='header-header'>
-                <div className='header-login'>
-                    {user !== null ? (
-                        <div className='caixaIconeUsuario'>
-                            <button className='iconeUsuario' onClick={PaginaUsuario}></button>
-                        </div>
-                    ) : ('')}
-                </div>
                 <div className='logo-garline-header'>
                     <div className='logo-garline'></div>
                 </div>

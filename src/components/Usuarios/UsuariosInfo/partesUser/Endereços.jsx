@@ -37,8 +37,11 @@ export default function Endereços ({ user }){
 
     return(
         <div className='endereços'>
-            <div className='tituloEnderecos'> Endereços </div>
-                <button className='btnCadastrar' onClick={()=> setIsOpenCadastrarEndereco(true)} > Cadastrar Novo Endereço</button>
+            <div className='tituloEnderecos'>
+                <div className='iconeEndereco'></div>
+                <div className='nomeEndereco'> Endereços </div>
+                <button className='btnCadastrar' onClick={()=> setIsOpenCadastrarEndereco(true)} > Novo Endereço</button>
+            </div>
             <div className='endereco'>
                 {Array.isArray(endereco) ?(
                     endereco.map((item)=>

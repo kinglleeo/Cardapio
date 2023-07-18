@@ -16,10 +16,10 @@ export default function modal({ setIsOpen, numeroPedido }){
             <div className='modalPedidos'>
             <button className='closeBtn' onClick={() => setIsOpen(false)}> <div className='iconeBtnCloseModal'></div> </button>
                 <div className='modalPedidosContent'> 
-                    <div> Pedidos Feito </div>
-                    <div> Gostaria de Acompanhar seus Pedidos? </div>
-                    <button onClick={() => setIsOpen(false)}> Fechar </button>
-                    <button onClick={irPedidos}> Acompanhar Pedidos </button>
+                    <div className='tituloModalPedidoCart'> Pedido Feito </div>
+                    <div className='textoPedidoCartModal'> Gostaria de Acompanhar seus Pedidos? </div>
+                    <button className='btnFecharModalPedidoCart'  onClick={() => setIsOpen(false)}> Continuar Comprando </button>
+                    <button className='btnPedidoModalCArt' onClick={irPedidos}> Acompanhar Pedidos </button>
                 </div>
             </div>
         </div>

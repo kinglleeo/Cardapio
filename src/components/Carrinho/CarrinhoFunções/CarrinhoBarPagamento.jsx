@@ -30,8 +30,11 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
   const numeroComanda = dados.numeroComanda
   const cart = useSelector(state => state.cart)
   const items_pedido = compra
-  
-  
+  console.log(numeroComandaGarcom)
+  console.log(tipoComanda)
+  console.log(enderecoSelecionado)
+  console.log(pagamentoSelecionado)
+  console.log(user)
   useEffect(()=>{
     const dados = localStorage.getItem('dados')
          setDados(JSON.parse(dados))
@@ -62,7 +65,7 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
 
   useEffect(()=>{
     if (tipoComanda === "DELIVERY"){
-      if(login !== null && enderecoSelecionado !== "" && pagamentoSelecionado !== "" && cart !== ""){
+      if(user !== null && enderecoSelecionado !== "" && pagamentoSelecionado !== "" && cart !== ""){
         setDesativarConfirmar(false)
       } else {
         setDesativarConfirmar(true)
@@ -196,39 +199,14 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
       navigate('/LoginAdm')
     }
   }
-  const meusPedidos=()=>{
-    navigate('/MeusPedidos')
-  }
+ 
   return (
     <div>
-      <div className='caixaBarPagar'>
-        <button className='cartBarPagar' onClick={()=> handlePagar()} disabled={desativarConfirmar === true}> 
-          <div className='PagarTexto'> CONFIRMAR </div>
-          <div className='pagarValor'> {formCurrency.format(totalCart)} </div>
-        </button>
-      </div>
-      <div className='cartBarContinuar' onClick={handleCotinuar}> CONTINUAR COMPRANDO </div>
       {idGarcom === null && user === null ? (<div className='FazerLogin' onClick={handleLogar}> FAZER LOGIN </div>) : null}
       {idGarcom !== null || login === "TERMINAL" ? (<div className='FazerLogin' onClick={terminal}> Terminal </div>) : null}
       {isOpen && <ModalPedidos setIsOpen={setIsOpen} numeroPedido={numeroPedido} />}
       {user !== null ?(
         <>
-        <div>
-          <button onClick={()=> meusPedidos()} className='btnMeusPedidos'> 
-              <div>M</div>
-              <div>E</div>
-              <div>U</div>
-              <div>S</div>
-              <div> - </div>
-              <div>P</div>
-              <div>E</div>
-              <div>D</div>
-              <div>I</div>
-              <div>D</div>
-              <div>O</div>
-              <div>S</div>
-          </button>
-        </div>
         {tipoComanda === "DELIVERY" ? (
           <div>
             <EnderecoCart user={user} enderecoSelecionado={enderecoSelecionado} setEnderecoSelecionado={setEnderecoSelecionado}/>
@@ -243,6 +221,13 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
         ):null}
       </>
       ) : null}
-    </div>
+      <div className='caixaBarPagar'>
+        <button className='cartBarPagar' onClick={()=> handlePagar()} disabled={desativarConfirmar === true}> 
+          <div className='PagarTexto'> CONFIRMAR </div>
+          <div className='pagarValor'> {formCurrency.format(totalCart)} </div>
+        </button>
+      </div>
+        <div className='cartBarContinuar' onClick={handleCotinuar}> CONTINUAR COMPRANDO </div>
+      </div>
   );
 }

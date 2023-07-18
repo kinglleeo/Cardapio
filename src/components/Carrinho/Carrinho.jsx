@@ -7,6 +7,7 @@ import Observacoes from './CarrinhoFunções/Observacoes'
 import Localizacao from './CarrinhoFunções/Localizacao'
 import Footer from '../Footer/Footer'
 import FunçõesCarrinho from './Garçom/FunçõesCarrinho'
+import BarraCarrinhoAtalho from './BarraCarrinhoAtalho'
 
 export default function CarrinhoMain(){
   const [observacoesCart, setObservacaoCart] = useState('');
@@ -56,6 +57,9 @@ return(
             opçaoEscolhidaGarcom={opçaoEscolhidaGarcom}
             numeroComandaGarcom={numeroComandaGarcom}
           />
+        </div>
+        <div>
+          <BarraCarrinhoAtalho/>
         </div>
       </div>
       <div>

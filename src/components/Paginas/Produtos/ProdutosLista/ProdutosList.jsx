@@ -10,7 +10,7 @@ export default function ProdutoList({ produto, subGrupo, grupo }){
     const Adicionais = (data, subGrupo, grupo) => {
         navigate('/Adicionais', { state: { data, subGrupo, grupo } });
       };
-      console.log(produto)
+      
     return(
            <div className='lista-produtos'>
                 {Array.isArray(produto) ? (
