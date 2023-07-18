@@ -49,10 +49,15 @@ export default function DetalhesDoPedido({ itemPedido }){
                 tipo_comanda: tipoComanda
         })
             .then((response)=>{
-                console.log(response)
+                if(response.data === -400){
+                    alert('Caixa Fechado')
+                }
+                else if (response.data === 200){
+                    alert('Status alterado')
+                }
             })
     } 
-    console.log(itemPedido)
+    
     return(
         <div className='listaDetalhesPedido'>
             <div className='quadroDetalhesPedido'>
