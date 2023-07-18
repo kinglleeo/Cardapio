@@ -10,6 +10,7 @@ import Footer from '../../../Footer/Footer'
 import '../../../../Styles/StylePizzas.css'
 import '../../../../Styles/Styles.css'
 import Topo from '../../../AA-utilidades/Topo'
+import BarraCarrinhoAtalho from '../../../Carrinho/BarraCarrinhoAtalho'
 
 
 export default function MainPizza(){
@@ -108,6 +109,9 @@ export default function MainPizza(){
             </div>
             <div>
                 <Topo/>
+            </div>
+            <div>
+                <BarraCarrinhoAtalho/>
             </div>
         </div>
             <Footer/>

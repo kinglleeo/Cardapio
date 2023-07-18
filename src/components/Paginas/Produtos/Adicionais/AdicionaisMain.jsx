@@ -8,6 +8,7 @@ import TopoHeaderBar from '../../../header/TopoHeaderBar'
 import Footer from '../../../Footer/Footer'
 import BtnCarrinho from './BtnCarrinho'
 import '../../../../Styles/Styles.css'
+import BarraCarrinhoAtalho from '../../../Carrinho/BarraCarrinhoAtalho'
 
 export default function AdicionaisMain(){
     const { state } = useLocation();
@@ -91,6 +92,9 @@ export default function AdicionaisMain(){
                     totalCusto={custoCompra}
                     existeTamanho={existeTamanho}
                 />
+            </div>
+            <div>
+                <BarraCarrinhoAtalho/>
             </div>
             </div>
             <div>

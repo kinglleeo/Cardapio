@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function CorpoPedidosDelivery(){
     const [usuario, setUsuario] = useState('');
-    const [uidToken, setUidToken] = useState('');
+    const [user, setUser] = useState('');
     const [listaPedidos, setListaPedidos] = useState([]);
     const [filtroNovos, setFiltroNovos] = useState(true);
     const [filtroPreparo, setFiltroPreparo] = useState(false);
@@ -16,9 +16,11 @@ export default function CorpoPedidosDelivery(){
     const [filtroCancelado, setFiltroCancelado] = useState(false);
     const navigate = useNavigate();
     
+    
     useEffect(()=>{
-        const uidToken = localStorage.getItem("uidToken")
-            setUidToken(uidToken);
+        auth.onAuthStateChanged((user) => {
+            setUser(user)
+            const uidToken = user.uid
             axios
                 .get(`http://192.168.0.100:9865/dadosCliente/${uidToken}`)
                 .then((getdata)=>{
@@ -29,6 +31,7 @@ export default function CorpoPedidosDelivery(){
                 .then((getdata)=>{
                     setListaPedidos(getdata.data);
                 })
+        });
     }, []);
 
     const filteredPedidos = listaPedidos.filter((itemPedido) => {

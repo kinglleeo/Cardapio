@@ -10,14 +10,14 @@ import Endereços from './Endereços'
 export default function Infos(){
     const navigate = useNavigate()
     const [user, setUser] = useState([]);
-    const [nome, setNome] = useState('');
-    const [Email, setEmail] = useState('');
     useEffect(()=>{
         auth.onAuthStateChanged((user) => {
             setUser(user)
         });
     }, []);
-   return(
+   
+
+    return(
         <div>
             <div>
                 <HeaderSimplificado/>
@@ -25,8 +25,6 @@ export default function Infos(){
             <div>
                 <DadosUser
                     user={user}
-                    nome={nome}
-                    Email={Email}
                 />
             </div>
             <div>

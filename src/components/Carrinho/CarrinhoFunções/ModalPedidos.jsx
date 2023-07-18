@@ -1,26 +1,59 @@
+import { useState } from 'react'
 import './modalpedidos.css'
 import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react';
 
-export default function modal({ setIsOpen, numeroPedido }){
+export default function modal({ setIsOpen }){
+    const [numeroPedido, setNumeroPedido] = useState('');
+    const [dadosPedidos, setDadosCompraPedido] = useState('');
     const navigate = useNavigate()
 
-
+    useEffect(()=>{
+        const numeroPedido = localStorage.getItem('numeroPedido')
+            setNumeroPedido(numeroPedido)
+        if(numeroPedido > 0){
+            axios
+                .get(`http://192.168.0.100:9865/listaItensPedidos/${numeroPedido}`)
+                .then((getdata)=>{
+                    setDadosCompraPedido(getdata.data);
+                })
+        }
+    }, [])
+    
     const irPedidos=()=>{
-       navigate('/Pedidos', { state: { numeroPedido } })
+       navigate('/PedidosCartaoMesa')
     }
-
+    
     return(
     <>
         <div className='darkBG' onClick={() => setIsOpen(false)} />
             <div className='centered'>
             <div className='modalPedidos'>
             <button className='closeBtn' onClick={() => setIsOpen(false)}> <div className='iconeBtnCloseModal'></div> </button>
-                <div className='modalPedidosContent'> 
-                    <div className='tituloModalPedidoCart'> Pedido Feito </div>
-                    <div className='textoPedidoCartModal'> Gostaria de Acompanhar seus Pedidos? </div>
-                    <button className='btnFecharModalPedidoCart'  onClick={() => setIsOpen(false)}> Continuar Comprando </button>
-                    <button className='btnPedidoModalCArt' onClick={irPedidos}> Acompanhar Pedidos </button>
-                </div>
+            <div className='modalPedidosContent'> 
+                {numeroPedido === -100 || numeroPedido === -101 || numeroPedido === -102 || numeroPedido === -103 || numeroPedido === -200 ? (
+                    <div>
+                        <div className='tituloModalPedidoCart'> 
+                            <div className='caixaIconeALerta'><div className='iconeAlerta'></div></div>
+                            {numeroPedido === -100 ? ('Cartão Bloqueado!') 
+                                : numeroPedido === -101 ? ('Cartão Vencid0!') 
+                                : numeroPedido === -102 ? ('Limite Insuficiente!')
+                                : numeroPedido === -103 ? ('Saldo Insuficiente!')
+                                : numeroPedido === -200 ? ('Cartão Não Encontrado!')
+                                : ('Erro Grave')
+                            }
+                        </div>
+                         <button className='btnAlertOk'  onClick={() => setIsOpen(false)}> Fechar </button>
+                    </div>
+                ) : numeroPedido > 1 ? (
+                    <div>
+                        <div className='tituloModalPedidoCart'> Pedido Realizado! </div>
+                        <div className='textoPedidoCartModal'> Gostaria de Acompanhar seus Pedidos? </div>
+                        <button className='btnFecharModalPedidoCart'  onClick={() => setIsOpen(false)}> Continuar Comprando </button>
+                        <button className='btnPedidoModalCArt' onClick={irPedidos}> Acompanhar Pedidos </button>
+                    </div>
+                ) : ("erro")}  
+            </div>
             </div>
         </div>
     </>

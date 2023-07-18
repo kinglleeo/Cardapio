@@ -31,14 +31,16 @@ export default function modal({ user, setIsOpenCadastrarEndereco}){
 
     const pegarBairro=(event)=>{
         const [idCidade, nomeCidade] = event.split('|');
-        axios
-            .get(`http://192.168.0.100:9865/bairros/${idCidade}`)
-            .then((response) => {
-               setBairrosAceitos(response.data);
-            })
-            .catch((error) => {
-               console.error(error);
-            });
+        if(idCidade !== ""){
+            axios
+                .get(`http://192.168.0.100:9865/bairros/${idCidade}`)
+                .then((response) => {
+                setBairrosAceitos(response.data);
+                })
+                .catch((error) => {
+                console.error(error);
+                });
+        }
     }
     const salvar =()=>{
         axios
@@ -119,8 +121,8 @@ export default function modal({ user, setIsOpenCadastrarEndereco}){
                             />
                         </div>
                         <div className="coolinput">
-                                <div>Cidade</div>
-                            <select id="escolha" name="escolha" onChange={(event) => handleCidade(event.target.value)}>
+                            <label htmlFor="input" className="text"> Cidade </label>
+                            <select id="escolha" name="escolha" className='select' onChange={(event) => handleCidade(event.target.value)}>
                                 <option value="">Selecione uma cidade</option>
                                 {Array.isArray(cidadesAceitas) ? (
                                     cidadesAceitas.map((item) => (
@@ -130,8 +132,8 @@ export default function modal({ user, setIsOpenCadastrarEndereco}){
                             </select>
                         </div>
                         <div className="coolinput">
-                        <div> Bairro </div>
-                        <select id="escolha" name="escolha" onChange={(event) => setBairro(event.target.value)}>
+                            <label htmlFor="input" className="text"> Bairro </label>
+                        <select id="escolha" name="escolha" className='select' onChange={(event) => setBairro(event.target.value)}>
                                 <option value="">Selecione uma cidade</option>
                                 {Array.isArray(bairrosAceitos) ? (
                                     bairrosAceitos.map((item) => (

@@ -143,6 +143,7 @@
     display: flex;
     flex-direction: column;
     min-height: auto;
+    margin-bottom: 30px;
 }
 .coolinput {
     display: flex;
@@ -181,8 +182,12 @@
     font-size: 16px;
     font-family: "Roboto-Bold";
 }
-.enderecobtn{
-    position: relative;
+
+
+
+.select{
+    padding: 11px 10px;
+    font-size: 13px;
+    border: 2px #fc740d solid;
+    border-radius: 5px;
 }
-
-

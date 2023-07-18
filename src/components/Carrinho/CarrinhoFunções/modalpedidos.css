@@ -1,3 +1,7 @@
+@font-face {
+    font-family: "Roboto-Bold";
+    src: url('../../../fontes/roboto/Roboto-Bold.ttf');
+}
 .darkBG {
     background-color: rgba(0, 0, 0, 0.2);
     width: 100vw;
@@ -29,6 +33,8 @@
 .tituloModalPedidoCart{
     display: grid;
     place-items: center;
+    font-size: 18px;
+    font-family: "Roboto-Bold";
 }
 .textoPedidoCartModal{
     margin-top: 50px;
@@ -40,6 +46,7 @@
     bottom: 0;
     left: 0;
     padding: 5px;
+    height: 30px;
     border: none;
     border-radius: 0 0 0 5px;
     background-color: rgb(166, 175, 182);
@@ -49,7 +56,29 @@
     bottom: 0;
     right: 0;
     padding: 5px;
+    height: 30px;
     border: none;
     border-radius: 0 0 5px 0 ;
     background-color: rgb(3, 255, 3);
+}
+.caixaIconeALerta{
+    display: grid;
+    place-items: center;
+    margin-bottom: 15px;
+}
+.iconeAlerta{
+    width: 50px;
+    height: 50px;
+    background-image: url('../../../imagens/iconeAlert4.png');
+    background-size: 100% 100%;
+}
+.btnAlertOk{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: none;
+    height: 30px;
+    background-color: rgb(0, 255, 0);
+    border-radius: 0 0  5px 5px ;
 }

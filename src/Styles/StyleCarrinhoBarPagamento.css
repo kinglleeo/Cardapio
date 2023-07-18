@@ -68,10 +68,10 @@
     display: grid;
     place-items: center;
 }
-.img-cartCheio{
+.iconeCartAcesso{
     width: 25px;
     height: 25px;
-    background-image: url('../imagens/carrinhoCheio.png');
+    background-image: url('../imagens/iconeCarrinhoAcesso.png');
     background-size: 100% 100%;
 }
 .iconeCartApagado{

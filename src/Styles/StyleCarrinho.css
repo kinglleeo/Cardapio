@@ -29,7 +29,7 @@
     margin-right: 10px;
     height: 34px;
     aspect-ratio: 1 / 1;
-    background-image: url('../imagens/CarrinhoBlack.png');
+    background-image: url('../imagens/iconeCarrinhoAcesso.png');
     background-size: 100% 100%;
 }
 .iconeEnomeLocalizacao{
@@ -316,4 +316,32 @@
 }
 .pesquisaMesa:focus-visible {
     outline-color: #f79a53;
+}
+.btnPedidosMesaCartao{
+    position: absolute;
+    right: 5px;
+    top: 175px;
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    display: grid;
+    place-items: center;
+}
+.textoPedidosBtn{
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+.caixaIconePedidos{
+    padding-left: 2px;
+    padding-right: 2px;
+    display: grid;
+    place-items: center;
+    border-radius: 10px 10px 0 0;
+}
+.iconePedidos{
+    height: 40px;
+    width: 40px;
+    background-image: url('../imagens/iconePedidos.png');
+    background-size: 100% 100%;
 }

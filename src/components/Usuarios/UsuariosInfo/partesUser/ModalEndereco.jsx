@@ -137,8 +137,8 @@ export default function modal({ user, item, setIsOpenModalEndereco}){
                             />
                         </div>
                         <div className="coolinput">
-                                <div>Cidade</div>
-                            <select id="escolha" name="escolha" onChange={(event) => handleCidade(event.target.value)}>
+                            <label htmlFor="input" className="text"> Cidade </label>
+                            <select id="escolha" name="escolha" className='select' onChange={(event) => handleCidade(event.target.value)}>
                                 <option value="">Selecione uma cidade</option>
                                 {Array.isArray(cidadesAceitas) ? (
                                     cidadesAceitas.map((item) => (
@@ -148,8 +148,8 @@ export default function modal({ user, item, setIsOpenModalEndereco}){
                             </select>
                         </div>
                         <div className="coolinput">
-                                    <div> Bairro </div>
-                            <select id="escolha" name="escolha" onChange={(event) => setBairro(event.target.value)}>
+                            <label htmlFor="input" className="text"> Bairro </label>
+                            <select id="escolha" name="escolha" className='select' onChange={(event) => setBairro(event.target.value)}>
                                     <option value="">Selecione uma cidade</option>
                                     {Array.isArray(bairrosAceitos) ? (
                                         bairrosAceitos.map((item) => (
@@ -161,10 +161,10 @@ export default function modal({ user, item, setIsOpenModalEndereco}){
                     </div>
                 </div>
                 <div>
-                    <button className='btnSalvar enderecobtn' onClick={()=> Salvar()}> Salvar </button>
+                    <button className='enderecobtn' onClick={()=> Salvar()}> Salvar </button>
                 </div>
                 <div>
-                    <button onClick={()=> excluirEndereco(item)}> Excluir Endereco </button>
+                    <button className='btnExcluirEndereco' onClick={()=> excluirEndereco(item)}> Excluir Endereco </button>
                 </div>
             </div>
         </div>

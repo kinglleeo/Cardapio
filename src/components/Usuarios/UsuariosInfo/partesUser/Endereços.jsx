@@ -11,16 +11,16 @@ export default function Endereços ({ user }){
     const [enderecoMudar, setEnderecoEditar] = useState('');
     const [isOpenCadastrarEndereco, setIsOpenCadastrarEndereco] = useState(false);
     const [listaTamanhosAtivos, setListaTamanhosAtivos] = useState(null);
-    const uidToken = user.uid; 
+    
     
     useEffect(()=>{
-        const uidToken = localStorage.getItem('uidToken')
+        const uidToken = user.uid; 
         axios
             .get(`http://192.168.0.100:9865/enderecos/${uidToken}`)
             .then((getdata)=>{
                 setEndereco(getdata.data)
             });
-    }, []);
+    }, [user]);
 
     const editarEndereco=(item)=>{
         setIsOpenModalEndereco(true)

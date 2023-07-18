@@ -21,7 +21,6 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
   const [user, setUser] = useState('');
   const [desativarConfirmar, setDesativarConfirmar] = useState(false)
   const [dados, setDados] = useState([]);
-  const [numeroPedido, setNumeroPedido] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [enderecoSelecionado, setEnderecoSelecionado] = useState('');
   const [pagamentoSelecionado, setPagamentoSelecionado] = useState('');
@@ -30,11 +29,7 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
   const numeroComanda = dados.numeroComanda
   const cart = useSelector(state => state.cart)
   const items_pedido = compra
-  console.log(numeroComandaGarcom)
-  console.log(tipoComanda)
-  console.log(enderecoSelecionado)
-  console.log(pagamentoSelecionado)
-  console.log(user)
+
   useEffect(()=>{
     const dados = localStorage.getItem('dados')
          setDados(JSON.parse(dados))
@@ -178,7 +173,7 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
           items_pedido: items_pedido, 
         })
         .then((response)=>{
-          setNumeroPedido(response.data)
+          localStorage.setItem('numeroPedido', response.data)
           setIsOpen(true)
         })
         .catch((error)=>{
@@ -199,12 +194,18 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
       navigate('/LoginAdm')
     }
   }
- 
+
+  const MeusPedidosMesaCartao=()=>{
+    navigate('/PedidosCartaoMesa')
+  }
+  const PedidosDelivery =()=>{
+    navigate('/MeusPedidos')
+  }
   return (
     <div>
       {idGarcom === null && user === null ? (<div className='FazerLogin' onClick={handleLogar}> FAZER LOGIN </div>) : null}
       {idGarcom !== null || login === "TERMINAL" ? (<div className='FazerLogin' onClick={terminal}> Terminal </div>) : null}
-      {isOpen && <ModalPedidos setIsOpen={setIsOpen} numeroPedido={numeroPedido} />}
+      {isOpen && <ModalPedidos setIsOpen={setIsOpen} />}
       {user !== null ?(
         <>
         {tipoComanda === "DELIVERY" ? (
@@ -217,10 +218,24 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
             <FormasDePagamento
               setPagamentoSelecionado={setPagamentoSelecionado}
             />
+            <button className='btnPedidosMesaCartao' onClick={()=> PedidosDelivery()}> 
+              <div className='caixaIconePedidos'>
+                <div className='iconePedidos'></div>
+              </div>
+              <div>Pedidos</div>
+            </button>
           </div>
         ):null}
       </>
       ) : null}
+      {tipoComanda === "MESA" || tipoComanda === "CARTAO" ?(
+        <button className='btnPedidosMesaCartao' onClick={()=> MeusPedidosMesaCartao()}> 
+          <div className='caixaIconePedidos'>
+            <div className='iconePedidos'></div>
+          </div>
+          <div>Pedidos</div>
+        </button>
+      ): null}
       <div className='caixaBarPagar'>
         <button className='cartBarPagar' onClick={()=> handlePagar()} disabled={desativarConfirmar === true}> 
           <div className='PagarTexto'> CONFIRMAR </div>

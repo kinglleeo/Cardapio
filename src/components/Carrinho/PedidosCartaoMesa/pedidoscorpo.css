@@ -1,8 +1,11 @@
 @font-face {
     font-family: "Roboto-Bold";
-    src: url('../../../../fontes/roboto/Roboto-Bold.ttf');
+    src: url('../../../fontes/roboto/Roboto-Bold.ttf');
     font-family: "Roboto-Light";
-    src: url('../../../../fontes/roboto/Roboto-Light.ttf');
+    src: url('../../../fontes/roboto/Roboto-Light.ttf');
+}
+.margin{
+    margin-top: 50px;
 }
 .pedidosClienteCard{
     margin: 15px;

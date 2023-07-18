@@ -1,21 +1,16 @@
 import { React, useState, useEffect } from 'react'
 import axios from 'axios';
 import './pedidoscorpo.css'
-import { formCurrency } from '../../../AA-utilidades/numeros';
-import { useLocation } from 'react-router-dom';
+import { formCurrency } from '../../AA-utilidades/numeros';
 
-export default function PedidosCorpo(){
+export default function PedidosCorpo({ numeroPedido }){
     const [dados, setDados] = useState([]);
-    //const [numeroPedido, setNumeroPedido] = useState([]);
     const [dadosCompraPedido, setDadosCompraPedido] = useState([]);
     const [totalPedido, setTotalPedido] = useState(0);
-    const { state } = useLocation();
-    const { numeroPedido } = state;
     
     useEffect(()=>{
         const dados = localStorage.getItem('dados')
             setDados(JSON.parse(dados))
-        localStorage.setItem('quantidadePedidos', dadosCompraPedido.lenght)
     }, [setDados])
 
     useEffect(()=>{
@@ -24,14 +19,14 @@ export default function PedidosCorpo(){
             .then((getdata)=>{
                 setDadosCompraPedido(getdata.data);
             })
-    }, [])
+    }, [numeroPedido])
 
 
     return(
         <div>
             <div className='pedidosClienteCard'>
                 <div className='clienteCardTipo'>
-                    <div className='cardMargin'> {dados.tipo} </div>
+                    <div className='cardMargin'> {dados.tipoComanda} </div>
                     <div className='cardMargin'> n° {dados.numeroComanda}  </div>
                 </div>
             </div>
