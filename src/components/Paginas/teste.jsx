@@ -1,13 +1,10 @@
-{listaGrupoOpcionais.PERMITIR_ITEM_REPETIDO === "SIM", listaGrupoOpcionais.MINIMO > 1 
-                              ? (
-                                <AdicionaisPorQuantidade
-                                  setQuantidadeTotal={setQuantidadeTotal}
-                                  listaAdicionais={listaAdicionais}
-                                  setListaAdicionais={setListaAdicionais}
-                                />
-                              )
-                              : listaGrupoOpcionais.PERMITIR_ITEM_REPETIDO === "NAO", listaGrupoOpcionais.MINIMO > 1
-                                ? (<div> checkbox </div>)
-                              : listaGrupoOpcionais.PERMITIR_ITEM_REPETIDO === "NAO", listaGrupoOpcionais.MINIMO < 2
-                                ? (<div> radio </div>) : (<div></div>) 
-                            }
+<Link to='/carrinho' style={{ color: 'inherit', textDecoration: 'inherit' }}></Link>
+</Link>
+<div className='totalQuantidade-cart'>{getTotalQuantity() || 0} X</div>
+        <div className='totalQuantidade-cart-svg'>
+          {getTotalQuantity() > 0 ? (
+            <div className='img-cartCheio'></div>
+            ) : (
+            <div className='img-cartVazio'></div>
+            )}
+        </div>
