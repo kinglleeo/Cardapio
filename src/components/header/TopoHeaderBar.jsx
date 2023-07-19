@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-
 export default function cartHeader(){
     const navigate = useNavigate();
     const [pagina, setPagina] = useState('')

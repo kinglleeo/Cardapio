@@ -4,7 +4,7 @@ import Decimal from 'decimal.js';
 import BtnCarrinho from './BtnCarrinhoPizza';
 
 export default function PizzasInfo({ SaboresSelecionados, listaSaboresPizzas, setListaSaboresPizzas, Produto, setTotalCompra, setCustoCompra, valorTotalItem, valorTotalCusto, valorTotalCustoPizza, valorTotalSabores }){
-    console.log(SaboresSelecionados)
+    
     useEffect(() => {
         const valorVenda = new Decimal(valorTotalSabores || 0);
         const valorCusto = new Decimal(valorTotalCustoPizza || 0);

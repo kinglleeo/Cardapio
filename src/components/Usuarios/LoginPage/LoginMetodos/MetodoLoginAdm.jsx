@@ -1,11 +1,14 @@
 import { React, useState, useEffect } from 'react'
-import '../login.css'
+import '../../../../Styles/StyleLogin.css'
 import { api } from '../../../../conecções/api'
 import { useNavigate } from 'react-router-dom'
+import ModalError from '../../../erros/ModalError'
 
 export default function MetodoLoginGarcom(){
-    const [nome, setNome] = useState('')
-    const [senha, setSenha] = useState('')
+    const [nome, setNome] = useState('');
+    const [senha, setSenha] = useState('');
+    const [modalError, setModalError] = useState(false);
+    const [error, setError] = useState('');
     const navigate = useNavigate();
 
     const Nome =(event)=>{
@@ -30,9 +33,10 @@ export default function MetodoLoginGarcom(){
                     ('error desconhecido')
                 }
             })
-            .catch((error)=>{
-                alert(error)
-            })
+            .catch((error) => {
+                setError("Erro no loginPainelPedidos")
+                setModalError(true)
+            });
     };
 
     return(
@@ -44,6 +48,7 @@ export default function MetodoLoginGarcom(){
                 <input type="password" className='inputLogin' name="senha" id="senha" placeholder="Senha" onChange={Senha}/>
             </div>
                 <button className="btnLogin" onClick={()=> LoginAdm(nome, senha)}> ENTRAR </button>
+                {modalError && <ModalError setModalError={setModalError} error={error} />}
         </div>
     )
 }

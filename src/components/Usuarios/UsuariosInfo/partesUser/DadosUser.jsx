@@ -1,32 +1,37 @@
 import { React, useState, useEffect } from 'react'
-import './dados.css'
-import ModalUser from './ModalUser'
+import '../../../../Styles/StylePaginaUsuario.css'
+import { api } from '../../../../conecções/api';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../LoginPage/Firebase/firebaseConfig';
 import { useNavigate } from 'react-router-dom';
+import ModalUser from './ModalUser'
 import axios from 'axios';
+import ModalError from '../../../erros/ModalError'
 
 export default function DadosUsuarios({ user }){
     const [isOpenUserDados, setIsOpenUserDados] = useState(false);
     const [dadosCliente, setDadosCliente] = useState([]);
     const [item, setItem] = useState('');
-    const [idGarline, setIdGarline] = useState('');
+    const [modalError, setModalError] = useState(false);
+    const [error, setError] = useState('');
     const navigate = useNavigate()
-    
-    useEffect(()=>{
-        const uidToken = user.uid
-        axios
-            .get(`http://192.168.0.100:9865/dadosCliente/${uidToken}`)
-            .then((getdata)=>{
-                setDadosCliente(getdata.data)
-            });
-    }, [user]);
 
+    useEffect(()=>{
+        const uidToken = localStorage.getItem('uidToken')
+            axios
+                .get(`http://192.168.0.100:9865/dadosCliente/${uidToken}`)
+                .then((getdata)=>{
+                    setDadosCliente(getdata.data)
+                })
+                .catch((error) => {
+                    setError("Erro no dadosCliente")
+                    setModalError(true)
+                });
+    }, []);
     const EditarDados=(item)=>{
         setItem(item)
         setIsOpenUserDados(true)
     }
-
     const deslogar =()=>{
         signOut(auth)
         .then(() => {
@@ -35,7 +40,6 @@ export default function DadosUsuarios({ user }){
         .catch((error) => {
         });
     }
-
     function formataData(){
         let data = new Date(),
         dia = data.getDate().toString().padStart(2, '0'),
@@ -43,7 +47,6 @@ export default function DadosUsuarios({ user }){
         ano = data.getFullYear();
     return `${dia}/${mes}/${ano}`;
     }
-    
     return(
         <div className='infos'>
                 <div className='usuarioInfos'>
@@ -80,7 +83,9 @@ export default function DadosUsuarios({ user }){
                 <div>
                     {isOpenUserDados && <ModalUser user={user} item={item} setIsOpenUserDados={setIsOpenUserDados}/>}
                 </div>
-
+                <div>
+                    {modalError && <ModalError setModalError={setModalError} error={error} />}
+                </div>
         </div>
     )
 }

@@ -1,7 +1,6 @@
 import { React, useState, useEffect } from 'react'
 import './funcoescarrinho.css'
 
-
 export default function FunçõesCarrinho({ setOpçaoEscolhidaGarcom, setNumeroComandaGarcom}){
     const [idGarcom, setIdGarcom] = useState(null)
     const [selectedRadioIndex, setSelectedRadioIndex] = useState(null);

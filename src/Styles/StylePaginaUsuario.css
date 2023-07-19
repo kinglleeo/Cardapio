@@ -1,0 +1,125 @@
+@font-face {
+    font-family: "Roboto-Bold";
+    src: url('../fontes/roboto/Roboto-Light.ttf');
+}
+/* Pagina Usuario */
+.paginaUser{
+    background-color: white;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.principalUser{
+    flex: 1;
+}
+.UserBar{
+    margin: 0;
+    height: 60px;
+    background-color: aqua;
+    display: flex;
+}
+.userbar-deslogar{
+    width: 40%;
+    display: grid;
+    place-items: center;
+}
+.userbar-name{
+    width: 30%;
+    display: grid;
+    place-items: center end;
+}
+.userbar-icon{
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+    align-items: center;
+    padding-right: 20px;
+}
+/* Dados Usuario */
+.infos{
+    margin-top: 35px;
+}
+.usuarioInfos{
+    margin: 5px;
+    background-color: #fc740d;
+    border-radius: 5px;
+    font-family: "Roboto-Bold";
+}
+.fotoPerfil{
+    position: absolute;
+    left: 15px;
+    top: 150px;
+    border: solid;
+    border-color: white;
+    max-width: 60px;
+    max-height: 60px;
+    border-radius: 50%;
+}
+.itemInfos{
+    padding: 5px;
+    display: grid;
+    place-items: center;
+    font-family: "Roboto-Bold";
+}
+.caixaiconeLogout{
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+    right: 15px;
+    top: 160px;
+    display: grid;
+    place-items: center;
+}
+.iconeLogout{
+    height: 50px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../imagens/iconeDesligar.png');
+    background-size: 100% 100%;
+}
+.listaInfos{
+    background-color: #fc740d;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+    font-family: "Roboto-Light";
+}
+.caixaUsuario{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    flex-wrap: wrap;
+    padding: 5px;
+}
+.linhaEditar{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-end;
+    padding: 5px;
+    font-family: "Roboto-Light";
+}
+.BtnEditar{
+    border: none;
+    background-color: transparent;
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 5px;
+}
+.editarText{
+    display: grid;
+    place-items: center;
+    margin-right: 5px;
+    font-size: 12px;
+}
+.iconeEditar{
+    height: 20px;
+    width: 20px;
+    background-image: url('../imagens/iconeEditar.png');
+    background-size: 100% 100%;
+}

@@ -4,10 +4,11 @@
 }
 @font-face {
     font-family: "Roboto-Light";
-    src: url('../..//../fontes/roboto/Roboto-Light.ttf');
+    src: url('../fontes/roboto/Roboto-Light.ttf');
     font-family: "Roboto-Bold";
-    src: url('../..//../fontes/roboto/Roboto-Bold.ttf');
+    src: url('../fontes/roboto/Roboto-Bold.ttf');
 }
+/* Login */
 .MainLogin{
     margin-top: 60px;
     margin-left: 10px;
@@ -56,5 +57,42 @@
     color: white;
     border: none;
 }
-::placeholder {
+/* Login Header */
+.loginHeaderTopo{
+    position: fixed;
+    top: 0;
+    background-color: #fc740d;
+    height: 40px;
+    width: 100%;
+    display: flex;
+    z-index: 999;
+    justify-content: flex-end;
+}
+.loginHeaderBody{
+    margin-top: 40px;
+    min-height: 150px;
+    background-image: url('../imagens/banner1.fw.webp');
+    background-size: 100% 100%;
+    -webkit-box-reflect: below 0px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
+}
+.login-logo-resta{
+    position: absolute;
+    height: 100px;
+    width: 120px;
+    top: 100px;
+    left: calc(50vw - (/* width */120px / 2)); 
+}
+.login-logo-garline-header {
+    width: 60%;
+    margin-right: 10px;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    align-content: space-around;
+}
+.login-logo-garline {
+    aspect-ratio: 4 / 1;
+    height: 20px;
+    background-image: url('../imagens/logo.fw.png');
+    background-size: 100% 100%;
 }

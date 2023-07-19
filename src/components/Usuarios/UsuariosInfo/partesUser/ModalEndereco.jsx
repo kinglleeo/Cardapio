@@ -1,7 +1,8 @@
-import { React, useState} from 'react'
-import './dados.css'
+import { React, useState, useEffect} from 'react'
+import '../../../../Styles/StyleEndereco.css'
 import axios from 'axios';
-import { useEffect } from 'react';
+import { api } from '../../../../conecções/api';
+import ModalError from '../../../erros/ModalError'
 
 export default function modal({ user, item, setIsOpenModalEndereco}){
     const [apelido, setApelido] = useState('');
@@ -14,6 +15,8 @@ export default function modal({ user, item, setIsOpenModalEndereco}){
     const [idBairro, nomeBairro] = bairro.split('|');
     const [cidadesAceitas, setCidadesAceitas] = useState('');
     const [bairrosAceitos, setBairrosAceitos] = useState('');
+    const [modalError, setModalError] = useState(false);
+    const [error, setError] = useState('');
    
     useEffect(()=>{
         setApelido(item.APELIDO)
@@ -30,6 +33,10 @@ export default function modal({ user, item, setIsOpenModalEndereco}){
             .then((getdata)=>{
                 setCidadesAceitas(getdata.data)
             })
+            .catch((error) => {
+                setError("Erro no cidades")
+                setModalError(true)
+            });
     }, [])
     const handleCidade=(event)=>{
         setCidade(event)
@@ -44,19 +51,25 @@ export default function modal({ user, item, setIsOpenModalEndereco}){
                setBairrosAceitos(response.data);
             })
             .catch((error) => {
-               console.error(error);
-            });
+                    setError("Erro no bairros")
+                    setModalError(true)
+                });
     }
+
     const excluirEndereco=(item)=>{
         axios
             .post('http://192.168.0.100:9865/excluirEndereco', {
                 id: item.ID
             })
             .then((response)=>{
-                alert('Salvo')
-                    window.location.reload()
+                window.location.reload()
             })
+            .catch((error) => {
+                setError("Erro no excluirEndereco")
+                setModalError(true)
+            });
     }
+    
     const Salvar = () => {
         axios
             .post(`http://192.168.0.100:9865/alterarEndereco`, {
@@ -72,15 +85,17 @@ export default function modal({ user, item, setIsOpenModalEndereco}){
             })
             .then((response)=>{
                 if(response.data === -500){
-                    alert("erro")
+                    setError('error')
+                    setModalError(true)
                 } else if (response.data === 200){
                     alert('Salvo')
                     window.location.reload()
                 }
             })
-            .catch((error)=>{
-                console.log(error)
-            })
+            .catch((error) => {
+                setError("Erro no alterarEndereco")
+                setModalError(true)
+            });
     };
       
     return(
@@ -166,6 +181,7 @@ export default function modal({ user, item, setIsOpenModalEndereco}){
                 <div>
                     <button className='btnExcluirEndereco' onClick={()=> excluirEndereco(item)}> Excluir Endereco </button>
                 </div>
+                {modalError && <ModalError setModalError={setModalError} error={error} />}
             </div>
         </div>
     </>

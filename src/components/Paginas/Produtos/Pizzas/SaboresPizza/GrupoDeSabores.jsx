@@ -5,11 +5,13 @@ import '../../../../../Styles/StyleForAdicionais.css'
 import { useQueryClient } from '@tanstack/react-query';
 import ListaSaboresPizzas from './ListaSaboresPizzas'
 import Decimal from 'decimal.js';
-
+import ModalError from '../../../../erros/ModalError'
 
 export default function GruposSabores({ listaSaboresPizzas, setListaSaboresPizzas, quantidadeTotal, setQuantidadeTotal, setValorTotalCustoPizza, setValorTotalSabores, setSaboresSelecionados, SaboresSelecionados }){
     const { state } = useLocation();
     const { data } = state;
+    const [modalError, setModalError] = useState(false);
+    const [error, setError] = useState('');
     const queryClient = useQueryClient();
     const IdTamanho = data.ID; 
 
@@ -22,7 +24,11 @@ export default function GruposSabores({ listaSaboresPizzas, setListaSaboresPizza
                 quantidade: 0,
               }));
                 setListaSaboresPizzas(data);
-            });
+            })
+            .catch((error) => {
+              setError("Erro no listaSaboresPizza")
+              setModalError(true)
+          });
       }, [])   
 
       useEffect(() => {
@@ -71,6 +77,7 @@ return(
             quantidadeTotal={quantidadeTotal}
             setQuantidadeTotal={setQuantidadeTotal}
         />
+        {modalError && <ModalError setModalError={setModalError} error={error} />}
     </div>
 )
 }

@@ -1,22 +1,31 @@
 import { React, useState, useEffect } from 'react'
 import './formasdepagamento.css'
-import { capitalizeFirstLetter } from '../../AA-utilidades/primeiraMaiuscula'
+import { capitalizeFirstLetter } from '../../../AA-utilidades/primeiraMaiuscula'
 import axios from 'axios';
+import { api } from '../../../../conecções/api';
+import ModalError from '../../../erros/ModalError'
 
 export default function FormasDePagamento({ setPagamentoSelecionado }){
     const [selectedRadioIndex, setSelectedRadioIndex] = useState(null);
     const [metodosPagamento, setMetodosPagamento] = useState([]);
+    const [modalError, setModalError] = useState(false);
+    const [error, setError] = useState('');
     
     const RadioPagamento = (item, index) => {
         setSelectedRadioIndex(index);
         setPagamentoSelecionado(item)
-      };
+    };
+
     useEffect(()=>{
         axios
             .get('http://192.168.0.100:9865/pagamentos')
             .then((getdata)=>{
                 setMetodosPagamento(getdata.data)
             })
+            .catch((error) => {
+                setError("Erro no pagamentos")
+                setModalError(true)
+            });
     }, [])
     
     return(
@@ -42,6 +51,7 @@ export default function FormasDePagamento({ setPagamentoSelecionado }){
                             </div>
                 )):null}
             </div>
+            {modalError && <ModalError setModalError={setModalError} error={error} />}
         </div>
     )
 }

@@ -1,19 +1,25 @@
 import { React, useState, useEffect } from 'react'
-import { api } from '../../../conecções/api';
-import '../../../Styles/StyleCarrinho.css'
-
+import { api } from '../../../../conecções/api';
+import '../../../../Styles/StyleCarrinho.css'
+import ModalError from '../../../erros/ModalError'
 
 export default function Localizacao({ tipoComanda, opçaoEscolhidaGarcom, setMesaSelecionada }){
     const [localizacao, setLocalizacao] = useState([]);
     const [selectedMesa, setSelectedMesa] = useState(null);
     const [listaLocalizacaoAtiva, setListaLocalizacaoAtiva] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
+    const [modalError, setModalError] = useState(false);
+    const [error, setError] = useState('');
 
     useEffect(()=>{
         api
             .get(`/listaMesas`)
             .then((getdata)=>{
                 setLocalizacao(getdata.data);
+            })
+            .catch((error) => {
+                setError("Erro no listaMesas")
+                setModalError(true)
             });
     }, [])
 
@@ -76,6 +82,7 @@ export default function Localizacao({ tipoComanda, opçaoEscolhidaGarcom, setMes
                 )
                 : null
             }
+            {modalError && <ModalError setModalError={setModalError} error={error} />}
         </div>
     )
 }

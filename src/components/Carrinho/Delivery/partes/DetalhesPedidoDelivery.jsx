@@ -1,9 +1,10 @@
 import { React, useState, useEffect } from 'react'
 import axios from 'axios';
+import { api } from '../../../../conecções/api';
 import { formCurrency } from '../../../AA-utilidades/numeros';
 import { useLocation } from 'react-router-dom';
-import { capitalizeFirstLetter } from '../../../AA-utilidades/primeiraMaiuscula';
 import TopoHeaderBar from '../../../header/TopoHeaderBar'
+import ModalError from '../../../erros/ModalError'
 
 export default function DetalhesDoPedido(){
     const [dadosCompraPedido, setDadosCompraPedido] = useState('');
@@ -12,7 +13,8 @@ export default function DetalhesDoPedido(){
     const { state } = useLocation();
     const { itemPedido } = state;
     const { usuario } = state;
-    console.log(itemPedido)
+    const [modalError, setModalError] = useState(false);
+    const [error, setError] = useState('');
 
     useEffect(()=>{
         const dados = localStorage.getItem('dados')
@@ -26,12 +28,20 @@ export default function DetalhesDoPedido(){
                 .then((getdata)=>{
                     setDadosCompraPedido(getdata.data);
                 })  
+                .catch((error) => {
+                    setError("Erro no listaItensCancelados")
+                    setModalError(true)
+                });
         } else {
             axios
                 .get(`http://192.168.0.100:9865/listaItensPedidos/${itemPedido.ID}`)
                 .then((getdata)=>{
                     setDadosCompraPedido(getdata.data);
                 })
+                .catch((error) => {
+                    setError("Erro no listaItensPedidos")
+                    setModalError(true)
+                });
         }
     }, [tipoComanda, itemPedido]);
     
@@ -104,6 +114,7 @@ export default function DetalhesDoPedido(){
                     <div> {formCurrency.format(itemPedido.TOTAL)} </div>
                 </div>
             </div>
+            {modalError && <ModalError setModalError={setModalError} error={error} />}
         </div>
     </>
     )

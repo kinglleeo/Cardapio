@@ -1,4 +1,4 @@
-import { react, useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import TopoHeaderBar from '../../header/TopoHeaderBar'
 import BarraCarrinhoAtalho from '../BarraCarrinhoAtalho'
 import Footer from '../../Footer/Footer'

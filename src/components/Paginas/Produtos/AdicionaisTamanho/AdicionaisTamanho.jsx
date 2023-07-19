@@ -3,12 +3,15 @@ import { formCurrency } from '../../../AA-utilidades/numeros';
 import { api } from '../../../../conecções/api'
 import { useLocation } from 'react-router-dom';
 import '../../../../Styles/StyleForAdicionais.css'
+import ModalError from '../../../erros/ModalError'
 
 export default function GrupoTamanho({ setExisteTamanho, setTamanhoEscolhido }){
   const [grupoTamanho, setGrupoTamanho] = useState([]);
   const { state } = useLocation();
   const { data } = state;
   const [selectedRadioIndex, setSelectedRadioIndex] = useState(null);
+  const [modalError, setModalError] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(()=>{
     if(Array.isArray(grupoTamanho)){
@@ -23,7 +26,11 @@ export default function GrupoTamanho({ setExisteTamanho, setTamanhoEscolhido }){
         .get(`/listaTamanhos/${data.ID_PRODUTO}`)
         .then((getdata)=>{
             setGrupoTamanho(getdata.data);
-        });
+        })
+        .catch((error) => {
+          setError("Erro no listaTamanhos")
+          setModalError(true)
+      });
   }, []);
  
   const RadioTamanhos = (item, index) => {
@@ -64,6 +71,7 @@ export default function GrupoTamanho({ setExisteTamanho, setTamanhoEscolhido }){
                 ))
               : null}
             </div> 
+            {modalError && <ModalError setModalError={setModalError} error={error} />}
         </div>
     )
 

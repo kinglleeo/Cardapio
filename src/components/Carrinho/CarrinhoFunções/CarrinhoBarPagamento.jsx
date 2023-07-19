@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import '../../../Styles/StyleCarrinho.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { formCurrency } from '../../AA-utilidades/numeros';
-import Decimal from 'decimal.js';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { auth } from '../../Usuarios/LoginPage/Firebase/firebaseConfig'
-import { onAuthStateChanged } from 'firebase/auth'
 import { api } from '../../../conecções/api';
-import ModalPedidos from './ModalPedidos'
-import EnderecoCart from './EnderecoCart'
-import FormasDePagamento from './FormasDePagamento';
+import { auth } from '../../Usuarios/LoginPage/Firebase/firebaseConfig'
+import ModalPedidos from './PedidoCart/ModalPedidos'
+import EnderecoCart from './EndereçoCarrinho/EnderecoCart'
+import FormasDePagamento from './FormasDePagamento/FormasDePagamento';
+import Decimal from 'decimal.js';
+import { formCurrency } from '../../AA-utilidades/numeros';
+import { useNavigate } from 'react-router-dom';
+import { clearCart } from '../../../redux/cartSlice';
+import ModalError from '../../erros/ModalError'
 
 export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComandaGarcom, mesaSelecionada, observacoesCart, setTipoComanda, tipoComanda }) {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const [compra, setCompra] = useState([]);
   const [totalCart, setTotalCart] = useState('');
   const [idGarcom, setIdGarcom] = useState(null)
@@ -26,6 +27,8 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
   const [pagamentoSelecionado, setPagamentoSelecionado] = useState('');
   const [login, setLogin] = useState('');
   const [adm, setAdm] = useState('');
+  const [modalError, setModalError] = useState(false);
+    const [error, setError] = useState('');
   const numeroComanda = dados.numeroComanda
   const cart = useSelector(state => state.cart)
   const items_pedido = compra
@@ -156,7 +159,7 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
 
   const handlePagar = () => {
     EnviarPedidoAPI()
-    //dispatch(clearCart());
+    dispatch(clearCart());
   };
   const EnviarPedidoAPI =()=>{
       axios
@@ -176,9 +179,10 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
           localStorage.setItem('numeroPedido', response.data)
           setIsOpen(true)
         })
-        .catch((error)=>{
-          console.log(error)
-        })
+        .catch((error) => {
+          setError("Erro no inserirPedido")
+          setModalError(true)
+      });
     }
 
   const handleCotinuar = () => {
@@ -243,6 +247,8 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
         </button>
       </div>
         <div className='cartBarContinuar' onClick={handleCotinuar}> CONTINUAR COMPRANDO </div>
+        {modalError && <ModalError setModalError={setModalError} error={error} />}
       </div>
+      
   );
 }

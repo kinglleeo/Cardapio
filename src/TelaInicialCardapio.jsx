@@ -4,12 +4,15 @@ import { useNavigate } from 'react-router-dom'
 import { iniciarRota } from './conecções/api';
 import { api } from './conecções/api';
 import axios from 'axios';
+import ModalError from './components/erros/ModalError'
 
 export default function TelaInicialCardapio(){
     const navigate = useNavigate()
     const [resposta, setResposta] = useState('');
     const [infoClientes, setInfoClientes] = useState([]);
     const [cnpj, setCnpj] = useState('');
+    const [modalError, setModalError] = useState(false);
+    const [error, setError] = useState('');
     
     
     //http://suporte.bedinfoservices.com.br:3000/?cnpj=76787191000145&tipoComanda=mesa&numeroComanda=2
@@ -34,7 +37,10 @@ export default function TelaInicialCardapio(){
                           Iniciar(cnpj, tipoComanda, numeroComanda, login)
                     }
                 })
-                
+                .catch((error) => {
+                    setError('Nenhum Restaurante Encontrado')
+                    setModalError(true)
+                });
     }, []);
 
     const Iniciar=(cnpj, tipoComanda, numeroComanda, login)=>{
@@ -63,15 +69,19 @@ export default function TelaInicialCardapio(){
                     else if (tipoComanda === "DELIVERY"){{
                         irParaMenu(dados, dadosEmpresa)
                     }}
+                })
+                .catch((error) => {
+                    setError("Erro nos Dados da Empresa")
+                    setModalError(true)
                 });
     }
     const irParaMenu=(dados, dadosEmpresa)=>{
         const timeout = setTimeout(() => {
+            const uidToken = localStorage.getItem('uidToken')
             localStorage.clear()
+            localStorage.setItem('uidToken', uidToken)
             localStorage.setItem('dados', JSON.stringify(dados));
             localStorage.setItem('empresa', JSON.stringify(dadosEmpresa))
-            console.log(dados)
-            console.log(dadosEmpresa)
             navigate('/Main')
         }, 3000);
         return () => {
@@ -79,26 +89,26 @@ export default function TelaInicialCardapio(){
     }}
     const irParaTerminal=(dados, login, dadosEmpresa)=>{
         const timeout = setTimeout(() => {
+            const uidToken = localStorage.getItem('uidToken')
             localStorage.clear()
+            localStorage.setItem('idCliente', uidToken)
             localStorage.setItem('dados', JSON.stringify(dados));
             localStorage.setItem('login', login);
             localStorage.setItem('empresa', JSON.stringify(dadosEmpresa))
             navigate('/LoginAdm')
-            console.log(dados)
-            console.log(dadosEmpresa)
         }, 3000);
         return () => {
             clearTimeout(timeout);
     }}
     const irParaGarcom=(dados, login, dadosEmpresa)=>{
         const timeout = setTimeout(() => {
+            const uidToken = localStorage.getItem('uidToken')
             localStorage.clear()
+            localStorage.setItem('idCliente', uidToken)
             localStorage.setItem('dados', JSON.stringify(dados));
             localStorage.setItem('login', login);
             localStorage.setItem('empresa', JSON.stringify(dadosEmpresa))
             navigate('/LoginGarcom')
-            console.log(dados)
-            console.log(dadosEmpresa)
         }, 3000);
         return () => {
             clearTimeout(timeout);
@@ -126,6 +136,7 @@ export default function TelaInicialCardapio(){
                     <div> Powered By B&d Info Services. </div>
                 </div>
             </div>
+            {modalError && <ModalError setModalError={setModalError} error={error} />}
         </div>
     )
 }

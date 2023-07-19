@@ -4,15 +4,19 @@ import { api } from '../../../../conecções/api';
 import ProdutoList from './ProdutosList';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
+import ModalError from '../../../erros/ModalError'
 
 export default function SubGrupoList({ grupo }) {
   const [subGrupo, setSubGrupo] = useState([]);
   const [subGrupoAtivo, setSubGrupoAtivo] = useState(null);
   const [produtoCache, setProdutoCache] = useState({});
   const [dados, setDados] = useState('');
+  const [modalError, setModalError] = useState(false);
+    const [error, setError] = useState('');
   const queryClient = useQueryClient();
   const activeListRef = useRef(null);
   const tipoComanda = dados.tipoComanda
+
   useEffect(() => {
     const dados = localStorage.getItem('dados')
             setDados(JSON.parse(dados))
@@ -22,6 +26,10 @@ export default function SubGrupoList({ grupo }) {
       .get(`http://192.168.0.100:9865/listaSubGrupos/${grupo.ID_GRUPO}/${comanda}`)
       .then((getdata) => {
         setSubGrupo(getdata.data);
+      })
+      .catch((error) => {
+        setError("Erro no listaSubGrupos")
+        setModalError(true)
       });
   }, []);
 
@@ -53,7 +61,11 @@ export default function SubGrupoList({ grupo }) {
           const scrollTop = activeListRef.current.getBoundingClientRect().top + window.pageYOffset - barraFixaHeight;
           window.scrollTo({ top: scrollTop, behavior: 'smooth' });
         }
-      });
+      })
+        .catch((error) => {
+          setError("Erro no listaProdutos")
+          setModalError(true)
+        });
     }
   };
 
@@ -100,6 +112,8 @@ export default function SubGrupoList({ grupo }) {
       ) : (
         <div>No subgrupos found.</div>
       )}
+      {modalError && <ModalError setModalError={setModalError} error={error} />}
     </div>
+    
   );
 }

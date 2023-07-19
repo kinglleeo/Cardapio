@@ -1,12 +1,10 @@
-import React from 'react'
+import { React } from 'react'
+import '../../../Styles/StylePaginaUsuario.css'
 import Footer from '../../Footer/Footer'
 import BarraCarrinhoAtalho from '../../Carrinho/BarraCarrinhoAtalho'
 import CorpoUsuario from './partesUser/CorpoUser'
-import './paginauser.css'
 
 export default function PaginaUsuario(){
-    
-
     return(
         <div className='paginaUser'>
             <div className='principalUser'>

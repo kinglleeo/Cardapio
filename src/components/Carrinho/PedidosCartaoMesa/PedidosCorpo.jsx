@@ -1,13 +1,25 @@
 import { React, useState, useEffect } from 'react'
 import axios from 'axios';
+import { api } from '../../../conecções/api';
 import './pedidoscorpo.css'
 import { formCurrency } from '../../AA-utilidades/numeros';
+import Decimal from 'decimal.js';
+import ModalError from '../../erros/ModalError'
 
 export default function PedidosCorpo({ numeroPedido }){
     const [dados, setDados] = useState([]);
     const [dadosCompraPedido, setDadosCompraPedido] = useState([]);
     const [totalPedido, setTotalPedido] = useState(0);
+    const [modalError, setModalError] = useState(false);
+    const [error, setError] = useState('');
+
     
+    useEffect(()=>{
+        const valor = new Decimal(0);
+        const valorItem = dadosCompraPedido.map((item)=> valor.plus(new Decimal(item.TOTAL)))
+            setTotalPedido(valorItem)
+    }, [dadosCompraPedido])
+
     useEffect(()=>{
         const dados = localStorage.getItem('dados')
             setDados(JSON.parse(dados))
@@ -19,6 +31,10 @@ export default function PedidosCorpo({ numeroPedido }){
             .then((getdata)=>{
                 setDadosCompraPedido(getdata.data);
             })
+            .catch((error) => {
+                setError("Erro no listaItensPedidos")
+                setModalError(true)
+            });
     }, [numeroPedido])
 
 
@@ -67,6 +83,7 @@ export default function PedidosCorpo({ numeroPedido }){
                 <div>Total</div>
                 <div> {formCurrency.format(totalPedido)}</div>
             </div>
+            {modalError && <ModalError setModalError={setModalError} error={error} />}
         </div>
     )
 }

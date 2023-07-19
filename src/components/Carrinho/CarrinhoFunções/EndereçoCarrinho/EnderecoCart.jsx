@@ -1,8 +1,10 @@
 import { React, useState, useEffect } from 'react'
-import '../../Usuarios/UsuariosInfo/partesUser/endereco.css'
+import '../../../../Styles/StyleEndereco.css'
 import axios from 'axios';
-import ModalEndereco from '../../Usuarios/UsuariosInfo/partesUser/ModalEndereco'
-import ModalCadastrarEndereco from '../../Usuarios/UsuariosInfo/partesUser/ModalCadastrarEndereco'
+import { api } from '../../../../conecções/api';
+import ModalEndereco from '../../../Usuarios/UsuariosInfo/partesUser/ModalEndereco'
+import ModalCadastrarEndereco from '../../../Usuarios/UsuariosInfo/partesUser/ModalCadastrarEndereco'
+import ModalError from '../../../erros/ModalError'
 
 export default function Endereços ({ user, enderecoSelecionado, setEnderecoSelecionado }){
     const [endereco, setEndereco] = useState([]);
@@ -11,6 +13,8 @@ export default function Endereços ({ user, enderecoSelecionado, setEnderecoSele
     const [isOpenCadastrarEndereco, setIsOpenCadastrarEndereco] = useState(false);
     const [listaTamanhosAtivos, setListaTamanhosAtivos] = useState(null);
     const [selectedRadioIndex, setSelectedRadioIndex] = useState(null);
+    const [modalError, setModalError] = useState(false);
+    const [error, setError] = useState('');
     
     const RadioEndereco = (item, index) => {
         setSelectedRadioIndex(index);
@@ -23,6 +27,10 @@ export default function Endereços ({ user, enderecoSelecionado, setEnderecoSele
             .get(`http://192.168.0.100:9865/enderecos/${uidToken}`)
             .then((getdata)=>{
                 setEndereco(getdata.data)
+            })
+            .catch((error) => {
+                setError("Erro no enderecos")
+                setModalError(true)
             });
     }, [user]);
 
@@ -107,7 +115,9 @@ export default function Endereços ({ user, enderecoSelecionado, setEnderecoSele
                 <div>
                     {isOpenCadastrarEndereco && <ModalCadastrarEndereco user={user} setIsOpenCadastrarEndereco={setIsOpenCadastrarEndereco}/>}
                 </div>
-
+                <div>
+                    {modalError && <ModalError setModalError={setModalError} error={error} />}
+                </div>
         </div>
     )
 }

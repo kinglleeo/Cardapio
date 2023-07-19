@@ -4,6 +4,7 @@ import { api } from '../../../../conecções/api';
 import MenuBar from '../../../navbar/menubar';
 import SubGrupoList from './SubGrupoList';
 import { useNavigate } from 'react-router-dom';
+import ModalError from '../../../erros/ModalError'
 
 export default function Grupo(){
     const [grupos, setGrupos] = useState([]);
@@ -11,9 +12,10 @@ export default function Grupo(){
     const navigate = useNavigate();
     const [listaTamanhosAtivos, setListaTamanhosAtivos] = useState(null);
     const [dados, setDados] = useState('');
+    const [modalError, setModalError] = useState(false);
+    const [error, setError] = useState('');
     const tipoComanda = dados.tipoComanda
     const IdTamanho ="1"
-    console.log(tipoComanda)
 
     useEffect(()=>{
         const dados = localStorage.getItem('dados')
@@ -32,12 +34,20 @@ export default function Grupo(){
                     const sortedData = getdata.data.sort((a, b) => a.numeration - b.numeration);
                     setGrupos(sortedData);
                     }
-            });
+                })
+                .catch((error) => {
+                    setError("Erro no listaGrupos")
+                    setModalError(true)
+                });
             api
                 .get(`http://192.168.0.100:9865/listaTamanhosPizza`)
                     .then((getdata)=>{
                         setTamanhosPizza(getdata.data);
-                    });
+                })
+                .catch((error) => {
+                    setError("Erro no listaTamanhosPizza")
+                    setModalError(true)
+                });
     }, []);
 
     
@@ -107,6 +117,6 @@ export default function Grupo(){
                     </div>
             )) : null} 
         </div>
-        
+        {modalError && <ModalError setModalError={setModalError} error={error} />}
    </div>
 )}

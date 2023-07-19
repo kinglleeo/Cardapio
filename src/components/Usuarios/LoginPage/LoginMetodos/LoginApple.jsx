@@ -1,5 +1,4 @@
 import React from 'react'
-import './lloginapple.css'
 import { useEffect } from 'react';
 
 //const clientId = "";

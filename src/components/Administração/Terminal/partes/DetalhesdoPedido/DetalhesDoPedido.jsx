@@ -1,14 +1,17 @@
 import { React, useState, useEffect } from 'react'
-import './detalhesdopedido.css'
+import '../../../../../Styles/StyleTerminal.css'
 import axios from 'axios';
 import { formCurrency } from '../../../../AA-utilidades/numeros';
-import { capitalizeFirstLetter } from '../../../../AA-utilidades/primeiraMaiuscula';
+import { api } from '../../../../../conecções/api';
+import ModalError from '../../../../erros/ModalError'
 
 export default function DetalhesDoPedido({ itemPedido }){
     const [dadosCompraPedido, setDadosCompraPedido] = useState([]);
     const [dados, setDados] = useState([]);
     const [adm, setAdm] = useState('');
     const [gestao, setGestao] = useState('');
+    const [modalError, setModalError] = useState(false);
+    const [error, setError] = useState('');
     const tipoComanda = itemPedido.TIPOCOMANDA;
     
     useEffect(()=>{
@@ -18,12 +21,20 @@ export default function DetalhesDoPedido({ itemPedido }){
                 .then((getdata)=>{
                     setDadosCompraPedido(getdata.data);
                 })  
+                .catch((error) => {
+                    setError("Erro na listaItensCancelados")
+                    setModalError(true)
+                });
         } else {
             axios
                 .get(`http://192.168.0.100:9865/listaItensPedidos/${itemPedido.ID}`)
                 .then((getdata)=>{
                     setDadosCompraPedido(getdata.data);
                 })
+                .catch((error) => {
+                    setError("Erro na listaItensPedidos")
+                    setModalError(true)
+                });
         }
     }, [tipoComanda, itemPedido])
 
@@ -37,6 +48,10 @@ export default function DetalhesDoPedido({ itemPedido }){
             .then((getdata)=>{
                 setGestao(getdata.data.map((data)=> data.PEDIDOS_APP_USARGESTAO));
             })
+            .catch((error) => {
+                setError("Erro nos parametros")
+                setModalError(true)
+            });
     }, [])
 
     const mudarStatus=(novoStatus)=>{
@@ -56,6 +71,10 @@ export default function DetalhesDoPedido({ itemPedido }){
                     alert('Status alterado')
                 }
             })
+            .catch((error) => {
+                setError("Erro no alterarStatusPedido")
+                setModalError(true)
+            });
     } 
     
     return(
@@ -158,6 +177,7 @@ export default function DetalhesDoPedido({ itemPedido }){
                         )
                     )}
             </div>
+            {modalError && <ModalError setModalError={setModalError} error={error} />}
         </div>
     )
 }

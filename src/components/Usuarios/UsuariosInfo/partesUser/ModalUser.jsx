@@ -1,12 +1,15 @@
-import { React, useState} from 'react'
-import './dados.css'
+import { React, useState, useEffect } from 'react'
+import '../../../../Styles/StyleEndereco.css'
 import axios from 'axios';
-import { useEffect } from 'react';
+import { api } from '../../../../conecções/api';
+import ModalError from '../../../erros/ModalError'
 
 export default function modal({ user, item, setIsOpenUserDados}){
     const [nome, setNome] = useState('');
     const [telefone, setTelefone] = useState('');
     const [dataNascimento, setDataNascimento] = useState('');
+    const [modalError, setModalError] = useState(false);
+    const [error, setError] = useState('');
 
     useEffect(()=>{
         setNome(item.nome)
@@ -23,13 +26,14 @@ export default function modal({ user, item, setIsOpenUserDados}){
                 data_nascimento: dataNascimento
             })
             .then((response)=>{
-                alert('Dados Salvos')
-                setIsOpenUserDados(false)
+                window.location.reload()
             })
-            .catch((error)=>{
-                console.log(error)
-            })
+            .catch((error) => {
+                setError("Erro no alterarDadosCliente")
+                setModalError(true)
+            });
     };
+
 
     function formataData(){
         let data = new Date(),
@@ -86,6 +90,7 @@ export default function modal({ user, item, setIsOpenUserDados}){
                 <div>
                     <button className='btnSalvar' onClick={()=> Salvar()}> Salvar </button>
                 </div>
+                {modalError && <ModalError setModalError={setModalError} error={error} />}
             </div>
         </div>
     </>

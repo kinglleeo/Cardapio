@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react'
-import './terminal.css'
+import '../../../Styles/StyleTerminal.css'
 import TopoHeaderBar from '../../header/TopoHeaderBar'
 import CorpoTerminal from './partes/CorpoTerminal'
 import Footer from '../../Footer/Footer'

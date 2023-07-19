@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from 'react'
 import { api } from '../../../conecções/api';
-import './loginheader.css'
+import '../../../Styles/StyleLogin.css'
 
 export default function cartHeader(){
     const [infoClientes, setInfoClientes] = useState([]);

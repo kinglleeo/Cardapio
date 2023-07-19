@@ -1,9 +1,11 @@
 import { React, useState, useEffect } from 'react'
-import './endereco.css'
+import '../../../../Styles/StyleEndereco.css'
 import axios from 'axios';
+import { api } from '../../../../conecções/api';
 import ModalEndereco from './ModalEndereco'
 import ModalCadastrarEndereco from './ModalCadastrarEndereco'
 import { capitalizeFirstLetter } from '../../../AA-utilidades/primeiraMaiuscula';
+import ModalError from '../../../erros/ModalError'
 
 export default function Endereços ({ user }){
     const [endereco, setEndereco] = useState([]);
@@ -11,15 +13,20 @@ export default function Endereços ({ user }){
     const [enderecoMudar, setEnderecoEditar] = useState('');
     const [isOpenCadastrarEndereco, setIsOpenCadastrarEndereco] = useState(false);
     const [listaTamanhosAtivos, setListaTamanhosAtivos] = useState(null);
-    
+    const [modalError, setModalError] = useState(false);
+    const [error, setError] = useState('');
     
     useEffect(()=>{
-        const uidToken = user.uid; 
-        axios
-            .get(`http://192.168.0.100:9865/enderecos/${uidToken}`)
-            .then((getdata)=>{
-                setEndereco(getdata.data)
-            });
+        const uidToken = localStorage.getItem('uidToken')
+            axios
+                .get(`http://192.168.0.100:9865/enderecos/${uidToken}`)
+                .then((getdata)=>{
+                    setEndereco(getdata.data)
+                })
+                .catch((error) => {
+                    setError("Erro no enderecos")
+                    setModalError(true)
+                });
     }, [user]);
 
     const editarEndereco=(item)=>{
@@ -93,7 +100,9 @@ export default function Endereços ({ user }){
                 <div>
                     {isOpenCadastrarEndereco && <ModalCadastrarEndereco user={user} setIsOpenCadastrarEndereco={setIsOpenCadastrarEndereco}/>}
                 </div>
-
+                <div>
+                    {modalError && <ModalError setModalError={setModalError} error={error} />}
+                </div>
         </div>
     )
 }

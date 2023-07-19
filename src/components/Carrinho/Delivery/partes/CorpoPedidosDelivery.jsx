@@ -2,8 +2,10 @@ import { React, useState, useEffect } from 'react'
 import { auth } from '../../../Usuarios/LoginPage/Firebase/firebaseConfig';
 import '../meuspedidos.css'
 import axios from 'axios';
+import { api } from '../../../../conecções/api';
 import { formCurrency } from '../../../AA-utilidades/numeros';
 import { useNavigate } from 'react-router-dom';
+import ModalError from '../../../erros/ModalError'
 
 export default function CorpoPedidosDelivery(){
     const [usuario, setUsuario] = useState('');
@@ -14,6 +16,8 @@ export default function CorpoPedidosDelivery(){
     const [filtroTransporte, setFiltroTransporte] = useState(false);
     const [filtroFinalizados, setFiltroFinalizados] = useState(false);
     const [filtroCancelado, setFiltroCancelado] = useState(false);
+    const [modalError, setModalError] = useState(false);
+    const [error, setError] = useState('');
     const navigate = useNavigate();
     
     
@@ -25,12 +29,20 @@ export default function CorpoPedidosDelivery(){
                 .get(`http://192.168.0.100:9865/dadosCliente/${uidToken}`)
                 .then((getdata)=>{
                     setUsuario(getdata.data)
+                })
+                .catch((error) => {
+                    setError("Erro no dadosCliente")
+                    setModalError(true)
                 });
             axios
                 .get(`http://192.168.0.100:9865/listaPedidosCliente/${uidToken}`)
                 .then((getdata)=>{
                     setListaPedidos(getdata.data);
                 })
+                .catch((error) => {
+                    setError("Erro no listaPedidosCliente")
+                    setModalError(true)
+                });
         });
     }, []);
 
@@ -145,6 +157,7 @@ export default function CorpoPedidosDelivery(){
             ) : null}
             </div>
         </div>
+        {modalError && <ModalError setModalError={setModalError} error={error} />}
         </div>
     )
 }

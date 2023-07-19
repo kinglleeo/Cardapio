@@ -27,11 +27,11 @@
         });
     
         document.addEventListener("AppleIDSignInOnSuccess", (event) => {
-          console.log("Success ", event);
+          alet("Success ", event);
         });
     
         document.addEventListener("AppleIDSignInOnFailure", (event) => {
-          console.log("Error ", event);
+          aletconsole.log("Error ", event);
         });
       }, []);
 

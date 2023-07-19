@@ -1,7 +1,8 @@
-import { React, useState} from 'react'
-import './dados.css'
+import { React, useState, useEffect} from 'react'
+import '../../../../Styles/StyleEndereco.css'
 import axios from 'axios';
-import { useEffect } from 'react';
+import { api } from '../../../../conecções/api';
+import ModalError from '../../../erros/ModalError'
 
 export default function modal({ user, setIsOpenCadastrarEndereco}){
     const [apelido, setApelido] = useState('');
@@ -14,7 +15,9 @@ export default function modal({ user, setIsOpenCadastrarEndereco}){
     const [idBairro, nomeBairro] = bairro.split('|');
     const [cidadesAceitas, setCidadesAceitas] = useState([]);
     const [bairrosAceitos, setBairrosAceitos] = useState([]);
-    
+    const [modalError, setModalError] = useState(false);
+    const [error, setError] = useState('');
+
     useEffect(()=>{
         axios
             .get('http://192.168.0.100:9865/cidades')
@@ -22,7 +25,6 @@ export default function modal({ user, setIsOpenCadastrarEndereco}){
                 setCidadesAceitas(getdata.data)
             })
     }, [])
-
 
     const handleCidade=(event)=>{
         setCidade(event)
@@ -38,10 +40,12 @@ export default function modal({ user, setIsOpenCadastrarEndereco}){
                 setBairrosAceitos(response.data);
                 })
                 .catch((error) => {
-                console.error(error);
+                    setError("Erro no bairros")
+                    setModalError(true)
                 });
         }
     }
+
     const salvar =()=>{
         axios
             .post(`http://192.168.0.100:9865/insereEndereco`,{
@@ -54,17 +58,18 @@ export default function modal({ user, setIsOpenCadastrarEndereco}){
                 id_bairro: idBairro,
                 bairro: nomeBairro
             })
-            .then((response) => {
+            .then((response) =>{
                 if(response.data === -400){
-                    alert('Endereco ja Cadastrado')
+                    setError('Endereco ja Cadastrado')
+                    setModalError(true)
                 } else if (response.data === 200){
                     window.location.reload()
                 }
-                console.log(response)
+            })
             .catch((error) => {
-                console.error(error);
+                setError('Erro ao Cadastrar Endereço')
+                setModalError(true)
             });
-        })
     }
     
     return(
@@ -147,6 +152,7 @@ export default function modal({ user, setIsOpenCadastrarEndereco}){
                 <div>
                     <button className='btnSalvar enderecobtn' onClick={()=> salvar()}> Salvar </button>
                 </div>
+                {modalError && <ModalError setModalError={setModalError} error={error} />}
             </div>
         </div>
     </>

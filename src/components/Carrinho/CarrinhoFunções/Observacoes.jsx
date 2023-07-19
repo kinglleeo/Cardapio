@@ -9,7 +9,6 @@ export default function Observacoes({ setObservacaoCart }){
         const dados = localStorage.getItem('dados')
             setDados(JSON.parse(dados))
     }, [])
-   
 
     return(
         <>

@@ -3,10 +3,14 @@ import './modalpedidos.css'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react';
 import axios from 'axios';
+import { api } from '../../../../conecções/api';
+import ModalError from '../../../erros/ModalError'
 
 export default function modal({ setIsOpen }){
     const [numeroPedido, setNumeroPedido] = useState('');
     const [dadosPedidos, setDadosCompraPedido] = useState('');
+    const [modalError, setModalError] = useState(false);
+    const [error, setError] = useState('');
     const navigate = useNavigate()
 
     useEffect(()=>{
@@ -18,6 +22,10 @@ export default function modal({ setIsOpen }){
                 .then((getdata)=>{
                     setDadosCompraPedido(getdata.data);
                 })
+                .catch((error) => {
+                    setError("Erro no listaItensPedidos")
+                    setModalError(true)
+                });
         }
     }, [])
     
@@ -56,6 +64,7 @@ export default function modal({ setIsOpen }){
                 ) : ("erro")}  
             </div>
             </div>
+            {modalError && <ModalError setModalError={setModalError} error={error} />}
         </div>
     </>
   );

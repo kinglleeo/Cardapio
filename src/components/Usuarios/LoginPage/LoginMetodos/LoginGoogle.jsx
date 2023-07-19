@@ -39,7 +39,7 @@ export default function LoginSociais () {
                 localStorage.setItem('uidToken', user.uid)
               })
               .catch((error)=>{
-                console.log(error)
+                alert(error)
               })
             navigate('/Main')
           }},

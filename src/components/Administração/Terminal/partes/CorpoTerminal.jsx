@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import './corpoterminal.css';
+import '../../../../Styles/StyleTerminal.css';
 import { api } from '../../../../conecções/api';
 import { formCurrency } from '../../../AA-utilidades/numeros';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { capitalizeFirstLetter } from '../../../AA-utilidades/primeiraMaiuscula';
+import ModalError from '../../../erros/ModalError'
 
 export default function Terminal({ nomeEmpresa, adm }) {
     const [listaPedidos, setListaPedidos] = useState([]);
@@ -15,6 +16,8 @@ export default function Terminal({ nomeEmpresa, adm }) {
     const [filtroFinalizados, setFiltroFinalizados] = useState(false);
     const [filtroCancelado, setFiltroCancelado] = useState(false);
     const [dados, setDados] = useState([]);
+    const [modalError, setModalError] = useState(false);
+    const [error, setError] = useState('');
     const tipoComanda = dados.tipoComanda;
     const navigate = useNavigate();
     
@@ -30,6 +33,10 @@ export default function Terminal({ nomeEmpresa, adm }) {
             .then((getdata)=>{
                 setListaPedidos(getdata.data);
             })
+            .catch((error) => {
+              setError("Erro na Lista de Pedidos no Terminal")
+              setModalError(true)
+            });
     }, [])
     
 
@@ -145,6 +152,7 @@ export default function Terminal({ nomeEmpresa, adm }) {
             ))
           ) : null}
         </div>
+          {modalError && <ModalError setModalError={setModalError} error={error} />}
       </div>
     </>
   );

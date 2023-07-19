@@ -9,7 +9,7 @@ export default function BarraCarrinhoAtalho() {
   const [usuarioAtivo, setUsuarioAtivo] = useState(false);
   const [carrinhoAtivo, setCarrinhoAtivo] = useState(false);
   const location = useLocation();
-  
+    
   useEffect(()=>{
         const path = location.pathname;
         const nome = path.substring(path.lastIndexOf('/') + 1);
