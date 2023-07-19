@@ -29,7 +29,7 @@ export default function modal({ user, item, setIsOpenUserDados}){
                 window.location.reload()
             })
             .catch((error) => {
-                setError("Erro no alterarDadosCliente")
+                setError(error.message)
                 setModalError(true)
             });
     };

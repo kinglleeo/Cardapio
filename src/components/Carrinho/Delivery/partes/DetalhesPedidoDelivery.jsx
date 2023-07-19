@@ -12,9 +12,9 @@ export default function DetalhesDoPedido(){
     const tipoComanda = dados.tipoComanda;
     const { state } = useLocation();
     const { itemPedido } = state;
-    const { usuario } = state;
     const [modalError, setModalError] = useState(false);
     const [error, setError] = useState('');
+    
 
     useEffect(()=>{
         const dados = localStorage.getItem('dados')

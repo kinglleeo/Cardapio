@@ -67,7 +67,7 @@ export default function modal({ user, setIsOpenCadastrarEndereco}){
                 }
             })
             .catch((error) => {
-                setError('Erro ao Cadastrar Endereço')
+                setError(error.message)
                 setModalError(true)
             });
     }

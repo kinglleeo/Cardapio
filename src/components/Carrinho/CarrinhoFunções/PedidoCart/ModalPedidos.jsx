@@ -6,13 +6,13 @@ import axios from 'axios';
 import { api } from '../../../../conecções/api';
 import ModalError from '../../../erros/ModalError'
 
-export default function modal({ setIsOpen }){
+export default function modal({ setIsOpen, tipoComanda }){
     const [numeroPedido, setNumeroPedido] = useState('');
     const [dadosPedidos, setDadosCompraPedido] = useState('');
     const [modalError, setModalError] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate()
-
+    
     useEffect(()=>{
         const numeroPedido = localStorage.getItem('numeroPedido')
             setNumeroPedido(numeroPedido)
@@ -30,7 +30,11 @@ export default function modal({ setIsOpen }){
     }, [])
     
     const irPedidos=()=>{
-       navigate('/PedidosCartaoMesa')
+       if(tipoComanda === "DELIVERY"){
+            navigate('/MeusPedidos')
+       } else if (tipoComanda === "MESA" || tipoComanda === "CARTAO"){
+            navigate('/PedidosCartaoMesa')
+       }
     }
     
     return(
@@ -59,7 +63,7 @@ export default function modal({ setIsOpen }){
                         <div className='tituloModalPedidoCart'> Pedido Realizado! </div>
                         <div className='textoPedidoCartModal'> Gostaria de Acompanhar seus Pedidos? </div>
                         <button className='btnFecharModalPedidoCart'  onClick={() => setIsOpen(false)}> Continuar Comprando </button>
-                        <button className='btnPedidoModalCArt' onClick={irPedidos}> Acompanhar Pedidos </button>
+                        <button className='btnPedidoModalCArt' onClick={irPedidos} > Acompanhar Pedidos </button>
                     </div>
                 ) : ("erro")}  
             </div>

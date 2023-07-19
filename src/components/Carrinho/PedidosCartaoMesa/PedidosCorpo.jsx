@@ -6,17 +6,31 @@ import { formCurrency } from '../../AA-utilidades/numeros';
 import Decimal from 'decimal.js';
 import ModalError from '../../erros/ModalError'
 
-export default function PedidosCorpo({ numeroPedido }){
+export default function PedidosCorpo(){
     const [dados, setDados] = useState([]);
     const [dadosCompraPedido, setDadosCompraPedido] = useState([]);
     const [totalPedido, setTotalPedido] = useState(0);
     const [modalError, setModalError] = useState(false);
     const [error, setError] = useState('');
-
+    
+    useEffect(()=>{
+        const numeroPedido = localStorage.getItem('numeroPedido')
+        if(numeroPedido !== ""){
+            axios
+                .get(`http://192.168.0.100:9865/listaItensPedidos/${numeroPedido}`)
+                .then((getdata)=>{
+                    setDadosCompraPedido(getdata.data);
+                })
+                .catch((error) => {
+                    setError(error.message)
+                    setModalError(true)
+                });
+        }
+    }, [])
     
     useEffect(()=>{
         const valor = new Decimal(0);
-        const valorItem = dadosCompraPedido.map((item)=> valor.plus(new Decimal(item.TOTAL)))
+        const valorItem = Array.isArray(dadosCompraPedido)? dadosCompraPedido.map((item)=> valor.plus(new Decimal(item.TOTAL))) : 0
             setTotalPedido(valorItem)
     }, [dadosCompraPedido])
 
@@ -24,19 +38,6 @@ export default function PedidosCorpo({ numeroPedido }){
         const dados = localStorage.getItem('dados')
             setDados(JSON.parse(dados))
     }, [setDados])
-
-    useEffect(()=>{
-        axios
-            .get(`http://192.168.0.100:9865/listaItensPedidos/${numeroPedido}`)
-            .then((getdata)=>{
-                setDadosCompraPedido(getdata.data);
-            })
-            .catch((error) => {
-                setError("Erro no listaItensPedidos")
-                setModalError(true)
-            });
-    }, [numeroPedido])
-
 
     return(
         <div>

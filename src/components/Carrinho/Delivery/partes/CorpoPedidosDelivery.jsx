@@ -19,8 +19,7 @@ export default function CorpoPedidosDelivery(){
     const [modalError, setModalError] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate();
-    
-    
+        
     useEffect(()=>{
         auth.onAuthStateChanged((user) => {
             setUser(user)

@@ -85,7 +85,7 @@ export default function modal({ user, item, setIsOpenModalEndereco}){
             })
             .then((response)=>{
                 if(response.data === -500){
-                    setError('error')
+                    setError("Verifique as Informações Preenchidas")
                     setModalError(true)
                 } else if (response.data === 200){
                     alert('Salvo')
@@ -93,7 +93,7 @@ export default function modal({ user, item, setIsOpenModalEndereco}){
                 }
             })
             .catch((error) => {
-                setError("Erro no alterarEndereco")
+                setError(error.message)
                 setModalError(true)
             });
     };

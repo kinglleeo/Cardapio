@@ -33,7 +33,10 @@
     flex-wrap: wrap;
     align-content: center;
     justify-content: space-between;
-    margin: 5px;
+    margin-top: 50px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
 }
 .TituloLista-nome{
     display: grid;

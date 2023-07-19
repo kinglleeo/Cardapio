@@ -28,7 +28,7 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
   const [login, setLogin] = useState('');
   const [adm, setAdm] = useState('');
   const [modalError, setModalError] = useState(false);
-    const [error, setError] = useState('');
+  const [error, setError] = useState('');
   const numeroComanda = dados.numeroComanda
   const cart = useSelector(state => state.cart)
   const items_pedido = compra
@@ -209,7 +209,7 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
     <div>
       {idGarcom === null && user === null ? (<div className='FazerLogin' onClick={handleLogar}> FAZER LOGIN </div>) : null}
       {idGarcom !== null || login === "TERMINAL" ? (<div className='FazerLogin' onClick={terminal}> Terminal </div>) : null}
-      {isOpen && <ModalPedidos setIsOpen={setIsOpen} />}
+      {isOpen && <ModalPedidos setIsOpen={setIsOpen} tipoComanda={tipoComanda} />}
       {user !== null ?(
         <>
         {tipoComanda === "DELIVERY" ? (
