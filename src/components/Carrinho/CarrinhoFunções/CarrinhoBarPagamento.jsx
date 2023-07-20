@@ -184,6 +184,7 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
           setModalError(true)
       });
     }
+    
 
   const handleCotinuar = () => {
     navigate('/Main');

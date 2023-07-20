@@ -47,9 +47,14 @@ export default function Endereços ({ user, enderecoSelecionado, setEnderecoSele
         }
     }
 
-    function capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
+    function capitalizeFirstLetter(str) {
+        const parts = str.split('|');
+        if (parts.length === 2) {
+          return parts[1].charAt(0).toUpperCase() + parts[1].slice(1);
+        } else {
+          return str; 
+        }
+      }
     return(
         <div className='endereços'>
             <div className='tituloEnderecos'>

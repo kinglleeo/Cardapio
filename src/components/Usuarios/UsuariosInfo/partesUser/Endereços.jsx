@@ -4,7 +4,6 @@ import axios from 'axios';
 import { api } from '../../../../conecções/api';
 import ModalEndereco from './ModalEndereco'
 import ModalCadastrarEndereco from './ModalCadastrarEndereco'
-import { capitalizeFirstLetter } from '../../../AA-utilidades/primeiraMaiuscula';
 import ModalError from '../../../erros/ModalError'
 
 export default function Endereços ({ user }){
@@ -41,6 +40,15 @@ export default function Endereços ({ user }){
             setListaTamanhosAtivos(IdEndereco);
         }
     }
+
+    function capitalizeFirstLetter(str) {
+        const parts = str.split('|');
+        if (parts.length === 2) {
+          return parts[1].charAt(0).toUpperCase() + parts[1].slice(1);
+        } else {
+          return str; 
+        }
+      }
 
     return(
         <div className='endereços'>
