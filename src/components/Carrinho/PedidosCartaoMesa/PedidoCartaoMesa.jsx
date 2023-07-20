@@ -7,7 +7,7 @@ import './pedidoscorpo.css'
 
 export default function PedidoCartaoMesa(){
     const [numeroPedido, setNumeroPedido] = useState('');
-    
+   
     useEffect(()=>{
         const numeroPedido = localStorage.getItem('numeroPedido')
             setNumeroPedido(numeroPedido)

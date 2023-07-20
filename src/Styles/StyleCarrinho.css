@@ -148,6 +148,7 @@
     width: 20%;
     display: grid;
     place-items: center;
+    font-family: "Roboto-Bold";
 }
 .cartMinus{
     min-height: 20px;

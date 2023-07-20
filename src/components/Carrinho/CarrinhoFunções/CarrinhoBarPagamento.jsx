@@ -93,7 +93,7 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
       }
     }
   })
-
+ 
 
   useEffect(() => {
     if (Pedido && Array.isArray(Pedido)) {

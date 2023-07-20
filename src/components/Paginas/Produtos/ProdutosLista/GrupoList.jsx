@@ -5,6 +5,7 @@ import MenuBar from '../../../navbar/menubar';
 import SubGrupoList from './SubGrupoList';
 import { useNavigate } from 'react-router-dom';
 import ModalError from '../../../erros/ModalError'
+import axios from 'axios';
 
 export default function Grupo(){
     const [grupos, setGrupos] = useState([]);
@@ -21,13 +22,12 @@ export default function Grupo(){
         const dados = localStorage.getItem('dados')
             setDados(JSON.parse(dados))
     }, [])
-
     useEffect(() => {
         const dados = localStorage.getItem('dados')
             setDados(JSON.parse(dados))
         const tipoComanda = JSON.parse(dados)
         const comanda = tipoComanda.tipoComanda
-            api
+            axios
                 .get(`http://192.168.0.100:9865/listaGrupos/${comanda}`)
                 .then((getdata) => {
                     if (Array.isArray(getdata.data)) {

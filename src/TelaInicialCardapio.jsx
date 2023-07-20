@@ -10,19 +10,71 @@ export default function TelaInicialCardapio(){
     const navigate = useNavigate()
     const [resposta, setResposta] = useState('');
     const [infoClientes, setInfoClientes] = useState([]);
-    const [cnpj, setCnpj] = useState('');
     const [modalError, setModalError] = useState(false);
     const [error, setError] = useState('');
+    const [tipoComanda, setTipoComanda] = useState('');
+    const [numeroComanda, setNumeroComanda] = useState('');
+    const [cnpj, setCnpj] = useState('');
+    const [login, setLogin] = useState('');
     
-    
-    //http://suporte.bedinfoservices.com.br:3000/?cnpj=76787191000145&tipoComanda=mesa&numeroComanda=2
+    //http://suporte.bedinfoservices.com.br:3000/?17011d0b=43595a595a5e4a5251565547555c&00061d0e2e001e020f0204=190a1e00&1a1a00041f00300c0c070b1200=46
     useEffect(()=>{
         const urlParams = new URLSearchParams(window.location.search);
-        const tipoComanda = urlParams.get('tipoComanda');
-        const numeroComanda = urlParams.get('numeroComanda');
-        const cnpj = urlParams.get('cnpj');
-            setCnpj(cnpj);
-        const login = urlParams.get('login');  
+        const tipoComanda = urlParams.get('00061d0e2e001e020f0204');
+            descriptTipoComanda(tipoComanda)
+        const numeroComanda = urlParams.get('1a1a00041f00300c0c070b1200');
+            descriptNumeroComanda(numeroComanda)
+        const cnpj = urlParams.get('17011d0b');
+            descriptCnpj(cnpj)
+        const login = urlParams.get('18000a0803');
+            descriptLogin(login)
+    }, []);
+    const descriptTipoComanda =(tipoComanda)=>{
+        axios
+            .get(`http://192.168.0.100:9865/descript/${tipoComanda}`)
+            .then((response)=>{
+                if(response.data === "TO"){
+                    setTipoComanda(null);
+                } else {
+                    setTipoComanda(response.data.toUpperCase());
+                }
+            })
+    }
+    const descriptNumeroComanda =(numeroComanda)=>{
+        axios
+            .get(`http://192.168.0.100:9865/descript/${numeroComanda}`)
+            .then((response)=>{
+                if(response.data === "TO"){
+                    setNumeroComanda(null);
+                } else {
+                    setNumeroComanda(response.data);
+                }
+            })
+    }
+    const descriptCnpj =(cnpj)=>{
+        axios
+            .get(`http://192.168.0.100:9865/descript/${cnpj}`)
+            .then((response)=>{
+                if(response.data === "TO"){
+                    setCnpj(null);
+                } else {
+                    setCnpj(response.data);
+                }
+            })
+    }
+    const descriptLogin =(login)=>{
+        axios
+            .get(`http://192.168.0.100:9865/descript/${login}`)
+            .then((response)=>{
+                if(response.data === "TO"){
+                    setLogin(null);
+                } else {
+                    setLogin(response.data);
+                }
+            })
+    }
+
+    useEffect(()=>{
         const url = `http://suporte.bedinfoservices.com.br:99/appGarline/retornaApiRestaurante.php?cnpj=${cnpj}`;
             axios
                 .post(url)
@@ -41,8 +93,8 @@ export default function TelaInicialCardapio(){
                     setError('Nenhum Restaurante Encontrado')
                     setModalError(true)
                 });
-    }, []);
-
+    }, [cnpj])
+    
     const Iniciar=(cnpj, tipoComanda, numeroComanda, login)=>{
         api
             .get(`/dadosEmpresa/${cnpj}`)
@@ -55,19 +107,19 @@ export default function TelaInicialCardapio(){
                     cnpj: cnpj
                     }   
                     if(tipoComanda === "MESA"){
-                        irParaMenu(dados, dadosEmpresa)
+                        irParaMenu(dadosEmpresa, dados)
                     } 
                     else if(tipoComanda === "CARTAO"){
-                        irParaMenu(dados, dadosEmpresa)
+                        irParaMenu(dadosEmpresa, dados )
                     }
                     else if (login === "TERMINAL"){{
-                        irParaTerminal(dados, login, dadosEmpresa)
+                        irParaTerminal(dadosEmpresa, login, dados)
                     }}
                     else if (login === "GARCOM"){{
-                        irParaGarcom(dados, login, dadosEmpresa)
+                        irParaGarcom(dadosEmpresa, login, dados)
                     }}
                     else if (tipoComanda === "DELIVERY"){{
-                        irParaMenu(dados, dadosEmpresa)
+                        irParaMenu(dadosEmpresa, dados)
                     }}
                 })
                 .catch((error) => {
@@ -75,39 +127,39 @@ export default function TelaInicialCardapio(){
                     setModalError(true)
                 });
     }
-    const irParaMenu=(dados, dadosEmpresa)=>{
+    const irParaMenu=(dadosEmpresa, dados)=>{
         const timeout = setTimeout(() => {
             const uidToken = localStorage.getItem('uidToken')
             localStorage.clear()
             localStorage.setItem('uidToken', uidToken)
-            localStorage.setItem('dados', JSON.stringify(dados));
             localStorage.setItem('empresa', JSON.stringify(dadosEmpresa))
+            localStorage.setItem('dados', JSON.stringify(dados));
             navigate('/Main')
         }, 3000);
         return () => {
             clearTimeout(timeout);
     }}
-    const irParaTerminal=(dados, login, dadosEmpresa)=>{
+    const irParaTerminal=(dadosEmpresa, login, dados)=>{
         const timeout = setTimeout(() => {
             const uidToken = localStorage.getItem('uidToken')
             localStorage.clear()
             localStorage.setItem('idCliente', uidToken)
-            localStorage.setItem('dados', JSON.stringify(dados));
-            localStorage.setItem('login', login);
             localStorage.setItem('empresa', JSON.stringify(dadosEmpresa))
+            localStorage.setItem('login', login);
+            localStorage.setItem('dados', JSON.stringify(dados));
             navigate('/LoginAdm')
         }, 3000);
         return () => {
             clearTimeout(timeout);
     }}
-    const irParaGarcom=(dados, login, dadosEmpresa)=>{
+    const irParaGarcom=(dadosEmpresa, login, dados)=>{
         const timeout = setTimeout(() => {
             const uidToken = localStorage.getItem('uidToken')
             localStorage.clear()
             localStorage.setItem('idCliente', uidToken)
-            localStorage.setItem('dados', JSON.stringify(dados));
-            localStorage.setItem('login', login);
             localStorage.setItem('empresa', JSON.stringify(dadosEmpresa))
+            localStorage.setItem('login', login);
+            localStorage.setItem('dados', JSON.stringify(dados));
             navigate('/LoginGarcom')
         }, 3000);
         return () => {

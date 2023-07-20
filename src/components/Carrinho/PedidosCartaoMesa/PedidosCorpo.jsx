@@ -17,7 +17,7 @@ export default function PedidosCorpo(){
         const numeroPedido = localStorage.getItem('numeroPedido')
         if(numeroPedido !== ""){
             axios
-                .get(`http://192.168.0.100:9865/listaItensPedidos/${numeroPedido}`)
+                .get(`http://192.168.0.100:9865/listaItensPedido/${numeroPedido}`)
                 .then((getdata)=>{
                     setDadosCompraPedido(getdata.data);
                 })
@@ -28,11 +28,16 @@ export default function PedidosCorpo(){
         }
     }, [])
     
-    useEffect(()=>{
-        const valor = new Decimal(0);
-        const valorItem = Array.isArray(dadosCompraPedido)? dadosCompraPedido.map((item)=> valor.plus(new Decimal(item.TOTAL))) : 0
-            setTotalPedido(valorItem)
-    }, [dadosCompraPedido])
+    useEffect(() => {
+        if (Array.isArray(dadosCompraPedido)) {
+          let total = new Decimal(0);
+          dadosCompraPedido.forEach(item => {
+            total = total.plus(new Decimal(item.TOTAL || 0));
+          });
+          setTotalPedido(total);
+        } 
+      }, [dadosCompraPedido]);
+
 
     useEffect(()=>{
         const dados = localStorage.getItem('dados')

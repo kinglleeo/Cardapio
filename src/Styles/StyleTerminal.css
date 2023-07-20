@@ -298,6 +298,10 @@
 .itemOpcionais{
     display: flex;
 }
+.itemObservacoes{
+    width: 90%;
+    word-break: break-all;
+}
 .nomeOpcional{
     width: 90%;
 }

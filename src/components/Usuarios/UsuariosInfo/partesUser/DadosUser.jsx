@@ -15,7 +15,7 @@ export default function DadosUsuarios({ user }){
     const [modalError, setModalError] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate()
-
+    
     useEffect(()=>{
         const uidToken = localStorage.getItem('uidToken')
             axios
@@ -28,6 +28,7 @@ export default function DadosUsuarios({ user }){
                     setModalError(true)
                 });
     }, []);
+
     const EditarDados=(item)=>{
         setItem(item)
         setIsOpenUserDados(true)

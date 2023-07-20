@@ -13,8 +13,7 @@ export default function DetalhesDoPedido({ itemPedido }){
     const [modalError, setModalError] = useState(false);
     const [error, setError] = useState('');
     const tipoComanda = itemPedido.TIPOCOMANDA;
-    
-    
+        
     useEffect(()=>{
         if (tipoComanda === "DELIVERY" && itemPedido.STATUS === 6){
             axios
