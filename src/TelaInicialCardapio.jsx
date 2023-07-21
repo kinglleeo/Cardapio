@@ -3,8 +3,11 @@ import './Styles/StyleTelaInicial.css'
 import { useNavigate } from 'react-router-dom'
 import { iniciarRota } from './conecções/api';
 import { api } from './conecções/api';
-import axios from 'axios';
 import ModalError from './components/erros/ModalError'
+import { auth } from './components/Usuarios/LoginPage/Firebase/firebaseConfig';
+import { onAuthStateChanged } from "firebase/auth";
+import { signOut } from 'firebase/auth';
+import axios from 'axios';
 
 export default function TelaInicialCardapio(){
     const navigate = useNavigate()
@@ -31,7 +34,7 @@ export default function TelaInicialCardapio(){
     }, []);
     const descriptTipoComanda =(tipoComanda)=>{
         axios
-            .get(`http://192.168.0.100:9865/descript/${tipoComanda}`)
+            .get(`http://suporte.bedinfoservices.com.br:9865/descript/${tipoComanda}`)
             .then((response)=>{
                 if(response.data === "TO"){
                     setTipoComanda(null);
@@ -42,7 +45,7 @@ export default function TelaInicialCardapio(){
     }
     const descriptNumeroComanda =(numeroComanda)=>{
         axios
-            .get(`http://192.168.0.100:9865/descript/${numeroComanda}`)
+            .get(`http://suporte.bedinfoservices.com.br:9865/descript/${numeroComanda}`)
             .then((response)=>{
                 if(response.data === "TO"){
                     setNumeroComanda(null);
@@ -53,7 +56,7 @@ export default function TelaInicialCardapio(){
     }
     const descriptCnpj =(cnpj)=>{
         axios
-            .get(`http://192.168.0.100:9865/descript/${cnpj}`)
+            .get(`http://suporte.bedinfoservices.com.br:9865/descript/${cnpj}`)
             .then((response)=>{
                 if(response.data === "TO"){
                     setCnpj(null);
@@ -64,7 +67,7 @@ export default function TelaInicialCardapio(){
     }
     const descriptLogin =(login)=>{
         axios
-            .get(`http://192.168.0.100:9865/descript/${login}`)
+            .get(`http://suporte.bedinfoservices.com.br:9865/descript/${login}`)
             .then((response)=>{
                 if(response.data === "TO"){
                     setLogin(null);
@@ -76,7 +79,7 @@ export default function TelaInicialCardapio(){
 
     useEffect(()=>{
         const url = `http://suporte.bedinfoservices.com.br:99/appGarline/retornaApiRestaurante.php?cnpj=${cnpj}`;
-            axios
+            api
                 .post(url)
                 .then((response)=>{
                     setResposta(response);
@@ -129,9 +132,10 @@ export default function TelaInicialCardapio(){
     }
     const irParaMenu=(dadosEmpresa, dados)=>{
         const timeout = setTimeout(() => {
-            const uidToken = localStorage.getItem('uidToken')
             localStorage.clear()
-            localStorage.setItem('uidToken', uidToken)
+            auth.onAuthStateChanged((user) => {
+                localStorage.setItem('uidToken', user.uid)
+            });
             localStorage.setItem('empresa', JSON.stringify(dadosEmpresa))
             localStorage.setItem('dados', JSON.stringify(dados));
             navigate('/Main')
@@ -141,9 +145,8 @@ export default function TelaInicialCardapio(){
     }}
     const irParaTerminal=(dadosEmpresa, login, dados)=>{
         const timeout = setTimeout(() => {
-            const uidToken = localStorage.getItem('uidToken')
             localStorage.clear()
-            localStorage.setItem('idCliente', uidToken)
+            signOut(auth)
             localStorage.setItem('empresa', JSON.stringify(dadosEmpresa))
             localStorage.setItem('login', login);
             localStorage.setItem('dados', JSON.stringify(dados));
@@ -154,9 +157,8 @@ export default function TelaInicialCardapio(){
     }}
     const irParaGarcom=(dadosEmpresa, login, dados)=>{
         const timeout = setTimeout(() => {
-            const uidToken = localStorage.getItem('uidToken')
             localStorage.clear()
-            localStorage.setItem('idCliente', uidToken)
+            signOut(auth)
             localStorage.setItem('empresa', JSON.stringify(dadosEmpresa))
             localStorage.setItem('login', login);
             localStorage.setItem('dados', JSON.stringify(dados));

@@ -1,5 +1,4 @@
 import { React, useState, useEffect } from 'react'
-import axios from 'axios';
 import { api } from '../../../conecções/api';
 import './pedidoscorpo.css'
 import { formCurrency } from '../../AA-utilidades/numeros';
@@ -16,8 +15,8 @@ export default function PedidosCorpo(){
     useEffect(()=>{
         const numeroPedido = localStorage.getItem('numeroPedido')
         if(numeroPedido !== ""){
-            axios
-                .get(`http://192.168.0.100:9865/listaItensPedido/${numeroPedido}`)
+            api
+                .get(`/listaItensPedido/${numeroPedido}`)
                 .then((getdata)=>{
                     setDadosCompraPedido(getdata.data);
                 })
@@ -62,7 +61,7 @@ export default function PedidosCorpo(){
                 <div>
                     {Array.isArray(dadosCompraPedido)? (
                         dadosCompraPedido.map((item)=>
-                        <div className='pedidoItemCard'>
+                        <div key={item.DESCRICAO} className='pedidoItemCard'>
                             <div className='itemCardLinha'>
                                 <div className='itemPedidoQTD'> {item.QTDE_COM} </div>
                                 <div className='itemPedidoDesc'> {item.DESCRICAO} </div>

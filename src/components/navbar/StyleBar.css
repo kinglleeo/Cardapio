@@ -13,6 +13,7 @@
 .nav-top{
     position: fixed;
     overflow-x: auto;
+    z-index: 1;
     top: 40px;
     width: 100%;
     background-color: #666666;

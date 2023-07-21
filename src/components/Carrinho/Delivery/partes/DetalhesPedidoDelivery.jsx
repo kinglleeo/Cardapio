@@ -1,5 +1,4 @@
 import { React, useState, useEffect } from 'react'
-import axios from 'axios';
 import { api } from '../../../../conecções/api';
 import { formCurrency } from '../../../AA-utilidades/numeros';
 import { useLocation } from 'react-router-dom';
@@ -23,8 +22,8 @@ export default function DetalhesDoPedido(){
 
     useEffect(()=>{
         if (tipoComanda === "DELIVERY" && itemPedido.STATUS === 6){
-            axios
-                .get(`http://192.168.0.100:9865/listaItensCancelados/${itemPedido.ID}`)
+            api
+                .get(`/listaItensCancelados/${itemPedido.ID}`)
                 .then((getdata)=>{
                     setDadosCompraPedido(getdata.data);
                 })  
@@ -33,8 +32,8 @@ export default function DetalhesDoPedido(){
                     setModalError(true)
                 });
         } else {
-            axios
-                .get(`http://192.168.0.100:9865/listaItensPedidos/${itemPedido.ID}`)
+            api
+                .get(`/listaItensPedidos/${itemPedido.ID}`)
                 .then((getdata)=>{
                     setDadosCompraPedido(getdata.data);
                 })

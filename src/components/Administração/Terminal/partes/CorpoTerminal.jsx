@@ -3,14 +3,12 @@ import '../../../../Styles/StyleTerminal.css';
 import { api } from '../../../../conecções/api';
 import { formCurrency } from '../../../AA-utilidades/numeros';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { capitalizeFirstLetter } from '../../../AA-utilidades/primeiraMaiuscula';
 import ModalError from '../../../erros/ModalError'
 
 export default function Terminal({ nomeEmpresa, adm }) {
     const [listaPedidos, setListaPedidos] = useState([]);
     const [filtroNovos, setFiltroNovos] = useState(true);
-    const [filtroAceitos, setFiltroAceitos] = useState(false);
     const [filtroPreparo, setFiltroPreparo] = useState(false);
     const [filtroTransporte, setFiltroTransporte] = useState(false);
     const [filtroFinalizados, setFiltroFinalizados] = useState(false);
@@ -20,7 +18,7 @@ export default function Terminal({ nomeEmpresa, adm }) {
     const [error, setError] = useState('');
     const tipoComanda = dados.tipoComanda;
     const navigate = useNavigate();
-    
+
   
     useEffect(()=>{
       const dados = localStorage.getItem('dados')
@@ -28,8 +26,8 @@ export default function Terminal({ nomeEmpresa, adm }) {
   }, [])
 
     useEffect(()=>{
-        axios
-            .get('http://192.168.0.100:9865/listaPedidos')
+      api
+            .get('/listaPedidos')
             .then((getdata)=>{
                 setListaPedidos(getdata.data);
             })
@@ -48,9 +46,6 @@ export default function Terminal({ nomeEmpresa, adm }) {
         if (filtroNovos && itemPedido.STATUS === 1) {
             return true;
         }
-        if (filtroAceitos && itemPedido.STATUS === 2) {
-            return true;
-        }
         if (filtroPreparo && itemPedido.STATUS === 3) {
             return true;
         }
@@ -66,6 +61,8 @@ export default function Terminal({ nomeEmpresa, adm }) {
         return false;
     });
 
+    filteredPedidos.sort((a, b) => b.id - a.id);
+    
   return (
     <>
       <div className='ListaPedidos'>
@@ -123,10 +120,14 @@ export default function Terminal({ nomeEmpresa, adm }) {
         <div>
           {Array.isArray(filteredPedidos) ? (
             filteredPedidos.map((itemPedido) => (
-              <div className='listaPedido-card' onClick={() => selecionarPedido(itemPedido)}>
+              <div key={itemPedido.ID} className='listaPedido-card' onClick={() => selecionarPedido(itemPedido)}>
                 <div className='pedidoCard-linha'>
                   <div className='linhaEsquerda'>{itemPedido.TIPOCOMANDA} n° {itemPedido.NUMEROCOMANDA}</div>
                   <div className='linhaDireita'>{itemPedido.HORA.split(':').slice(0, 2).join(':')}</div>
+                </div>
+                <div className='pedidoCard-linha'>
+                    <div className='linhaEsquerda'> N° Pedido </div>
+                    <div className='linhaDireita'> {itemPedido.ID} </div>
                 </div>
                 <div className='pedidoCard-linha linhaBaixo'>
                   <div className='linhaEsquerda'>{formCurrency.format(itemPedido.TOTAL)}</div>

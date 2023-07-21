@@ -3,7 +3,6 @@ import '../../../../Styles/Styles.css';
 import { api } from '../../../../conecções/api';
 import ProdutoList from './ProdutosList';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
 import ModalError from '../../../erros/ModalError'
 
 export default function SubGrupoList({ grupo }) {
@@ -12,10 +11,11 @@ export default function SubGrupoList({ grupo }) {
   const [produtoCache, setProdutoCache] = useState({});
   const [dados, setDados] = useState('');
   const [modalError, setModalError] = useState(false);
-    const [error, setError] = useState('');
+  const [error, setError] = useState('');
   const queryClient = useQueryClient();
   const activeListRef = useRef(null);
   const tipoComanda = dados.tipoComanda
+  
 
   useEffect(() => {
     const dados = localStorage.getItem('dados')
@@ -23,7 +23,7 @@ export default function SubGrupoList({ grupo }) {
         const tipoComanda = JSON.parse(dados)
         const comanda = tipoComanda.tipoComanda
     api
-      .get(`http://192.168.0.100:9865/listaSubGrupos/${grupo.ID_GRUPO}/${comanda}`)
+      .get(`/listaSubGrupos/${grupo.ID_GRUPO}/${comanda}`)
       .then((getdata) => {
         setSubGrupo(getdata.data);
       })
@@ -49,8 +49,8 @@ export default function SubGrupoList({ grupo }) {
 
   const selecionarProdutos = (idSubGrupo) => {
     if (!produtoCache[idSubGrupo]) {
-      axios
-        .get(`http://192.168.0.100:9865/listaProdutos/${idSubGrupo}/${tipoComanda}`)
+      api
+        .get(`/listaProdutos/${idSubGrupo}/${tipoComanda}`)
         .then((getdata) => {
           setProdutoCache((prevProdutoCache) => ({
             ...prevProdutoCache,

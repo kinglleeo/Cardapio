@@ -9,11 +9,14 @@ import LoginGoogle from '../../LoginPage/LoginMetodos/LoginGoogle'
 
 export default function Infos(){
     const [user, setUser] = useState([]);
+    const [login, setLogin] = useState('');
 
     useEffect(()=>{
         auth.onAuthStateChanged((user) => {
             setUser(user)
         });
+       const login = localStorage.getItem('login');
+            setLogin(login);
     }, []);
 
     return(
@@ -21,17 +24,19 @@ export default function Infos(){
             <div>
                 <HeaderSimplificado/>
             </div>
-            <div>
-                {user !== null ? (
-                    <DadosUser
-                        user={user}
-                    />
-                ) : (
-                    <div className='marginLogin'>
-                        <LoginGoogle/>
-                    </div>
-                )}
-            </div>
+            {login === null ? (
+                <div>
+                    {user !== null ? (
+                        <DadosUser
+                            user={user}
+                        />
+                    ) : (
+                        <div className='marginLogin'>
+                            <LoginGoogle/>
+                        </div>
+                    )}
+                </div>
+            ) : null}
             <div>
                 {user !== null ? (
                     <Endereços

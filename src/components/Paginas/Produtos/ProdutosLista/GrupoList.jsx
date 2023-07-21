@@ -5,7 +5,6 @@ import MenuBar from '../../../navbar/menubar';
 import SubGrupoList from './SubGrupoList';
 import { useNavigate } from 'react-router-dom';
 import ModalError from '../../../erros/ModalError'
-import axios from 'axios';
 
 export default function Grupo(){
     const [grupos, setGrupos] = useState([]);
@@ -17,6 +16,7 @@ export default function Grupo(){
     const [error, setError] = useState('');
     const tipoComanda = dados.tipoComanda
     const IdTamanho ="1"
+    
 
     useEffect(()=>{
         const dados = localStorage.getItem('dados')
@@ -27,8 +27,8 @@ export default function Grupo(){
             setDados(JSON.parse(dados))
         const tipoComanda = JSON.parse(dados)
         const comanda = tipoComanda.tipoComanda
-            axios
-                .get(`http://192.168.0.100:9865/listaGrupos/${comanda}`)
+            api
+                .get(`/listaGrupos/${comanda}`)
                 .then((getdata) => {
                     if (Array.isArray(getdata.data)) {
                     const sortedData = getdata.data.sort((a, b) => a.numeration - b.numeration);
@@ -40,7 +40,7 @@ export default function Grupo(){
                     setModalError(true)
                 });
             api
-                .get(`http://192.168.0.100:9865/listaTamanhosPizza`)
+                .get(`/listaTamanhosPizza`)
                     .then((getdata)=>{
                         setTamanhosPizza(getdata.data);
                 })

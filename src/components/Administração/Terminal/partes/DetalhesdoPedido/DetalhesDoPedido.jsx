@@ -1,6 +1,5 @@
 import { React, useState, useEffect } from 'react'
 import '../../../../../Styles/StyleTerminal.css'
-import axios from 'axios';
 import { formCurrency } from '../../../../AA-utilidades/numeros';
 import { api } from '../../../../../conecções/api';
 import ModalError from '../../../../erros/ModalError'
@@ -16,8 +15,8 @@ export default function DetalhesDoPedido({ itemPedido }){
         
     useEffect(()=>{
         if (tipoComanda === "DELIVERY" && itemPedido.STATUS === 6){
-            axios
-                .get(`http://192.168.0.100:9865/listaItensCancelados/${itemPedido.ID}`)
+            api
+                .get(`/listaItensCancelados/${itemPedido.ID}`)
                 .then((getdata)=>{
                     setDadosCompraPedido(getdata.data);
                 })  
@@ -26,8 +25,8 @@ export default function DetalhesDoPedido({ itemPedido }){
                     setModalError(true)
                 });
         } else {
-            axios
-                .get(`http://192.168.0.100:9865/listaItensPedidos/${itemPedido.ID}`)
+            api
+                .get(`/listaItensPedidos/${itemPedido.ID}`)
                 .then((getdata)=>{
                     setDadosCompraPedido(getdata.data);
                 })
@@ -43,8 +42,8 @@ export default function DetalhesDoPedido({ itemPedido }){
             setDados(JSON.parse(dados))
         const adm = localStorage.getItem('administrador')
             setAdm(adm);
-        axios
-            .get('http://192.168.0.100:9865/parametros')
+            api
+            .get('/parametros')
             .then((getdata)=>{
                 setGestao(getdata.data.map((data)=> data.PEDIDOS_APP_USARGESTAO));
             })
@@ -53,10 +52,10 @@ export default function DetalhesDoPedido({ itemPedido }){
                 setModalError(true)
             });
     }, [])
-
+   
     const mudarStatus=(novoStatus)=>{
-        axios
-            .post(`http://192.168.0.100:9865/alterarStatusPedido`, {
+        api
+            .post(`/alterarStatusPedido`, {
                 id_pedido_app: itemPedido.ID,
                 id_pedido: itemPedido.ID_PEDIDO,
                 id_usuario: adm,
@@ -68,7 +67,7 @@ export default function DetalhesDoPedido({ itemPedido }){
                     alert('Caixa Fechado')
                 }
                 else if (response.data === 200){
-                    alert('Status alterado')
+                    window.location.reload();
                 }
             })
             .catch((error) => {
@@ -120,7 +119,7 @@ export default function DetalhesDoPedido({ itemPedido }){
                 <div>
                     {Array.isArray(dadosCompraPedido)? (
                         dadosCompraPedido.map((item)=>
-                        <div className='pedidoItemCard'>
+                        <div key={item.DESCRICAO} className='pedidoItemCard'>
                             <div className='itemCardLinha'>
                                 <div className='itemPedidoQTD'> {item.QTDE_COM} </div>
                                 <div className='itemPedidoDesc'> {item.DESCRICAO} </div>

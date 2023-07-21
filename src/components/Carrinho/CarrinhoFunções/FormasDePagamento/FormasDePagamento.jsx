@@ -1,7 +1,6 @@
 import { React, useState, useEffect } from 'react'
 import './formasdepagamento.css'
 import { capitalizeFirstLetter } from '../../../AA-utilidades/primeiraMaiuscula'
-import axios from 'axios';
 import { api } from '../../../../conecções/api';
 import ModalError from '../../../erros/ModalError'
 
@@ -17,8 +16,8 @@ export default function FormasDePagamento({ setPagamentoSelecionado }){
     };
 
     useEffect(()=>{
-        axios
-            .get('http://192.168.0.100:9865/pagamentos')
+        api
+            .get('/pagamentos')
             .then((getdata)=>{
                 setMetodosPagamento(getdata.data)
             })

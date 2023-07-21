@@ -1,7 +1,6 @@
 import { React, useState, useEffect } from 'react'
 import { auth } from '../../../Usuarios/LoginPage/Firebase/firebaseConfig';
 import '../meuspedidos.css'
-import axios from 'axios';
 import { api } from '../../../../conecções/api';
 import { formCurrency } from '../../../AA-utilidades/numeros';
 import { useNavigate } from 'react-router-dom';
@@ -24,8 +23,8 @@ export default function CorpoPedidosDelivery(){
         auth.onAuthStateChanged((user) => {
             setUser(user)
             const uidToken = user.uid
-            axios
-                .get(`http://192.168.0.100:9865/dadosCliente/${uidToken}`)
+            api
+                .get(`/dadosCliente/${uidToken}`)
                 .then((getdata)=>{
                     setUsuario(getdata.data)
                 })
@@ -33,8 +32,8 @@ export default function CorpoPedidosDelivery(){
                     setError("Erro no dadosCliente")
                     setModalError(true)
                 });
-            axios
-                .get(`http://192.168.0.100:9865/listaPedidosCliente/${uidToken}`)
+            api
+                .get(`/listaPedidosCliente/${uidToken}`)
                 .then((getdata)=>{
                     setListaPedidos(getdata.data);
                 })
@@ -125,6 +124,8 @@ export default function CorpoPedidosDelivery(){
             {Array.isArray(filteredPedidos) ? (
                 filteredPedidos.map((itemPedido) => (
                     <div key={itemPedido.ID} className='listaPedido-card' onClick={() => selecionarPedido(itemPedido, usuario)}>
+                        <div>
+                        </div>
                         <div className='pedidoCard-linha'>
                             <div className='linhaEsquerda'>{itemPedido.TIPOCOMANDA} n° {itemPedido.NUMEROCOMANDA}</div>
                             <div className='linhaDireita'>{itemPedido.HORA.split(':').slice(0, 2).join(':')}</div>

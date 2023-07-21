@@ -2,7 +2,6 @@ import { useState } from 'react'
 import './modalpedidos.css'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react';
-import axios from 'axios';
 import { api } from '../../../../conecções/api';
 import ModalError from '../../../erros/ModalError'
 
@@ -17,8 +16,8 @@ export default function modal({ setIsOpen, tipoComanda }){
         const numeroPedido = localStorage.getItem('numeroPedido')
             setNumeroPedido(numeroPedido)
         if(numeroPedido > 0){
-            axios
-                .get(`http://192.168.0.100:9865/listaItensPedidos/${numeroPedido}`)
+            api
+                .get(`/listaItensPedidos/${numeroPedido}`)
                 .then((getdata)=>{
                     setDadosCompraPedido(getdata.data);
                 })

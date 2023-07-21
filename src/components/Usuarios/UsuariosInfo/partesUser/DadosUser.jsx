@@ -5,7 +5,6 @@ import { signOut } from 'firebase/auth';
 import { auth } from '../../LoginPage/Firebase/firebaseConfig';
 import { useNavigate } from 'react-router-dom';
 import ModalUser from './ModalUser'
-import axios from 'axios';
 import ModalError from '../../../erros/ModalError'
 
 export default function DadosUsuarios({ user }){
@@ -18,8 +17,8 @@ export default function DadosUsuarios({ user }){
     
     useEffect(()=>{
         const uidToken = localStorage.getItem('uidToken')
-            axios
-                .get(`http://192.168.0.100:9865/dadosCliente/${uidToken}`)
+            api
+                .get(`/dadosCliente/${uidToken}`)
                 .then((getdata)=>{
                     setDadosCliente(getdata.data)
                 })
@@ -36,7 +35,6 @@ export default function DadosUsuarios({ user }){
     const deslogar =()=>{
         signOut(auth)
         .then(() => {
-            navigate('/Main')
         })
         .catch((error) => {
         });

@@ -1,6 +1,5 @@
 import { React, useState, useEffect} from 'react'
 import '../../../../Styles/StyleEndereco.css'
-import axios from 'axios';
 import { api } from '../../../../conecções/api';
 import ModalError from '../../../erros/ModalError'
 
@@ -28,8 +27,8 @@ export default function modal({ user, item, setIsOpenModalEndereco}){
     }, [])
 
     useEffect(()=>{
-        axios
-            .get('http://192.168.0.100:9865/cidades')
+        api
+            .get('/cidades')
             .then((getdata)=>{
                 setCidadesAceitas(getdata.data)
             })
@@ -45,8 +44,8 @@ export default function modal({ user, item, setIsOpenModalEndereco}){
 
     const pegarBairro=(event)=>{
         const [idCidade, nomeCidade] = event.split('|');
-        axios
-            .get(`http://192.168.0.100:9865/bairros/${idCidade}`)
+        api
+            .get(`/bairros/${idCidade}`)
             .then((response) => {
                setBairrosAceitos(response.data);
             })
@@ -57,8 +56,8 @@ export default function modal({ user, item, setIsOpenModalEndereco}){
     }
 
     const excluirEndereco=(item)=>{
-        axios
-            .post('http://192.168.0.100:9865/excluirEndereco', {
+        api
+            .post('/excluirEndereco', {
                 id: item.ID
             })
             .then((response)=>{
@@ -71,8 +70,8 @@ export default function modal({ user, item, setIsOpenModalEndereco}){
     }
     
     const Salvar = () => {
-        axios
-            .post(`http://192.168.0.100:9865/alterarEndereco`, {
+        api
+            .post(`/alterarEndereco`, {
                 firebase_token: user.uid,
                 apelido: apelido,
                 rua: rua,

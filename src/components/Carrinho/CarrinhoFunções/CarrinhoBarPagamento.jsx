@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../../../Styles/StyleCarrinho.css';
 import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios';
 import { api } from '../../../conecções/api';
 import { auth } from '../../Usuarios/LoginPage/Firebase/firebaseConfig'
 import ModalPedidos from './PedidoCart/ModalPedidos'
@@ -32,7 +31,7 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
   const numeroComanda = dados.numeroComanda
   const cart = useSelector(state => state.cart)
   const items_pedido = compra
-
+  
   useEffect(()=>{
     const dados = localStorage.getItem('dados')
          setDados(JSON.parse(dados))
@@ -69,7 +68,7 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
         setDesativarConfirmar(true)
       }
     } 
-    else if (idGarcom !== null){
+    else if (idGarcom !== null || login === "TERMINAL"){
       if(opçaoEscolhidaGarcom === "CARTAO" && mesaSelecionada !== ""){
         setDesativarConfirmar(false)
       } else if (opçaoEscolhidaGarcom === "MESA" && numeroComandaGarcom !== ""){
@@ -161,9 +160,10 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
     EnviarPedidoAPI()
     dispatch(clearCart());
   };
+  
   const EnviarPedidoAPI =()=>{
-      axios
-        .post(`http://192.168.0.100:9865/inserirPedido`, {
+    api
+        .post(`/inserirPedido`, {
           pagamento: pagamentoSelecionado !== "" ? pagamentoSelecionado.ID : "balcão",
           id_endereco: enderecoSelecionado !== "" ? enderecoSelecionado.ID : "",
           id_garcom: idGarcom !==null ? idGarcom : "",
@@ -189,9 +189,6 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
   const handleCotinuar = () => {
     navigate('/Main');
   };
-  const handleLogar =()=>{
-    navigate('/Login')
-  }
   const terminal=()=>{
     if(adm !== null){
       navigate('/Terminal')
@@ -208,7 +205,6 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
   }
   return (
     <div>
-      {idGarcom === null && user === null ? (<div className='FazerLogin' onClick={handleLogar}> FAZER LOGIN </div>) : null}
       {idGarcom !== null || login === "TERMINAL" ? (<div className='FazerLogin' onClick={terminal}> Terminal </div>) : null}
       {isOpen && <ModalPedidos setIsOpen={setIsOpen} tipoComanda={tipoComanda} />}
       {user !== null ?(

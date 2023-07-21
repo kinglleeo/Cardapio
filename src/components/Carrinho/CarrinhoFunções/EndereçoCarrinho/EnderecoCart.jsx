@@ -1,6 +1,5 @@
 import { React, useState, useEffect } from 'react'
 import '../../../../Styles/StyleEndereco.css'
-import axios from 'axios';
 import { api } from '../../../../conecções/api';
 import ModalEndereco from '../../../Usuarios/UsuariosInfo/partesUser/ModalEndereco'
 import ModalCadastrarEndereco from '../../../Usuarios/UsuariosInfo/partesUser/ModalCadastrarEndereco'
@@ -23,8 +22,8 @@ export default function Endereços ({ user, enderecoSelecionado, setEnderecoSele
     
     useEffect(()=>{
         const uidToken = user.uid; 
-        axios
-            .get(`http://192.168.0.100:9865/enderecos/${uidToken}`)
+        api
+            .get(`/enderecos/${uidToken}`)
             .then((getdata)=>{
                 setEndereco(getdata.data)
             })

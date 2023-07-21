@@ -1,6 +1,5 @@
 import { React, useState, useEffect } from 'react'
 import '../../../../Styles/StyleEndereco.css'
-import axios from 'axios';
 import { api } from '../../../../conecções/api';
 import ModalError from '../../../erros/ModalError'
 
@@ -18,8 +17,8 @@ export default function modal({ user, item, setIsOpenUserDados}){
     }, [])
     
     const Salvar = () => {
-        axios
-            .post(`http://192.168.0.100:9865/alterarDadosCliente/${user.uid}`, {
+        api
+            .post(`/alterarDadosCliente/${user.uid}`, {
                 firebase_token: user.uid,
                 nome: nome,
                 numero_telefone: telefone,
