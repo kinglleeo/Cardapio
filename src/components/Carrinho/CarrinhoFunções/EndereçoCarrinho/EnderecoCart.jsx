@@ -15,6 +15,7 @@ export default function Endereços ({ user, enderecoSelecionado, setEnderecoSele
     const [modalError, setModalError] = useState(false);
     const [error, setError] = useState('');
     
+    
     const RadioEndereco = (item, index) => {
         setSelectedRadioIndex(index);
         setEnderecoSelecionado(item)

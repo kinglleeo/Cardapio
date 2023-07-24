@@ -14,7 +14,6 @@ export default function DetalhesDoPedido(){
     const [modalError, setModalError] = useState(false);
     const [error, setError] = useState('');
     
-
     useEffect(()=>{
         const dados = localStorage.getItem('dados')
         setDados(JSON.parse(dados))
