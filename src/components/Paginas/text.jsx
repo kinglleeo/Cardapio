@@ -76,3 +76,73 @@
     })
   ) : null}
 </div>
+
+
+
+
+  useEffect(() => {
+    // Function to fetch updated pedidos and handle notifications
+    const fetchUpdatedPedidos = () => {
+      api
+        .get(`/listaPedidosCliente/${user.uid}`)
+        .then((getdata) => {
+          const updatedPedidos = getdata.data;
+          setListaPedidos(updatedPedidos);
+
+          // Check if the STATUS of any pedido has changed
+          updatedPedidos.forEach((updatedPedido) => {
+            const originalPedido = listaPedidos.find(
+              (pedido) => pedido.ID === updatedPedido.ID
+            );
+
+            // Show notification if the STATUS has changed
+            if (originalPedido && originalPedido.STATUS !== updatedPedido.STATUS) {
+              const statusText =
+                updatedPedido.STATUS === 1
+                  ? 'Novo'
+                  : updatedPedido.STATUS === 2
+                  ? 'Aceito'
+                  : updatedPedido.STATUS === 3
+                  ? 'Em Preparo'
+                  : updatedPedido.STATUS === 4
+                  ? 'Em Transporte'
+                  : updatedPedido.STATUS === 5
+                  ? 'Finalizado'
+                  : updatedPedido.STATUS === 6
+                  ? 'Cancelado'
+                  : '';
+
+              toast.info(`Pedido ${updatedPedido.NUMEROCOMANDA} está agora ${statusText}`);
+            }
+          });
+        })
+        .catch((error) => {
+          setError('Erro no listaPedidosCliente');
+          setModalError(true);
+        });
+    };
+
+    // Fetch updated pedidos every 15 seconds
+    const intervalId = setInterval(fetchUpdatedPedidos, 15000);
+
+    // Cleanup the interval on component unmount
+    return () => clearInterval(intervalId);
+  }, [user.uid, listaPedidos]);
+
+  // ... (rest of the code)
+}
+
+
+// At the root level of your application (e.g., in App.js or index.js)
+import React from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+function App() {
+  return (
+    <div>
+      {/* ... Your other components ... */}
+      <ToastContainer />
+    </div>
+  );
+}
