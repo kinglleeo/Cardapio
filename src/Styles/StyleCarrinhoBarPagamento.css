@@ -84,3 +84,27 @@
     display: flex;
     justify-content: center;
 }
+.iconeDelivery{
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 34px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../imagens/iconeDelivery.png');
+    background-size: 100% 100%;
+}
+.barraEntrega{
+    font-size: 16px;
+    margin-bottom: 5px;
+    height: 50px;
+    background-color: #DBDBDB;
+    font-family: "Roboto-Bold";
+    display: flex;
+    justify-content: space-between;
+}
+.entrega{
+    display: flex;
+}
+.taxaEntrega{
+    display: grid;
+    place-items: center;
+}

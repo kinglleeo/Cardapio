@@ -28,10 +28,12 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
   const [adm, setAdm] = useState('');
   const [modalError, setModalError] = useState(false);
   const [error, setError] = useState('');
+  const [oneSignalId, setOneSignalId] = useState('');
+  const [taxaEntrega, setTaxaEntrega] = useState(0);
   const numeroComanda = dados.numeroComanda
   const cart = useSelector(state => state.cart)
   const items_pedido = compra
-  
+
   useEffect(()=>{
     const dados = localStorage.getItem('dados')
          setDados(JSON.parse(dados))
@@ -44,6 +46,8 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
       auth.onAuthStateChanged((user) => {
         setUser(user)
       });
+    const oneSignalId = localStorage.getItem('playerID')
+      setOneSignalId(oneSignalId)
  }, [setDados])
   
   useEffect(()=>{
@@ -52,13 +56,16 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
 
   useEffect(() => {
     if (cart && Array.isArray(cart)) {
-      let total = new Decimal(0) || 0;
+      let total = new Decimal(0);
       cart.forEach(item => {
         total = total.plus(new Decimal(item.quantity || 0).times(item.totalCompra || 0));
       });
+
+      total = total.plus(new Decimal(taxaEntrega));
+
       setTotalCart(total.toFixed(2));
     }
-  }, [cart]);
+  }, [cart, taxaEntrega]);
 
   useEffect(()=>{
     if (tipoComanda === "DELIVERY"){
@@ -93,7 +100,6 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
     }
   })
  
-
   useEffect(() => {
     if (Pedido && Array.isArray(Pedido)) {
     const updatedCompra = Pedido.map((item) => {
@@ -164,6 +170,7 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
   const EnviarPedidoAPI =()=>{
     api
         .post(`/inserirPedido`, {
+          token_notificacao: oneSignalId,
           pagamento: pagamentoSelecionado !== "" ? pagamentoSelecionado.ID : "balcão",
           id_endereco: enderecoSelecionado !== "" ? enderecoSelecionado.ID : "",
           id_garcom: idGarcom !==null ? idGarcom : "",
@@ -172,6 +179,7 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
           tipo_comanda: tipoComanda !== null ? tipoComanda : opçaoEscolhidaGarcom,
           localizacao: tipoComanda === "CARTAO" || opçaoEscolhidaGarcom === "CARTAO" ? mesaSelecionada : numeroComanda !== null ? numeroComanda : "",
           total: totalCart,
+          taxa_entrega: taxaEntrega,
           observacoes_pedido: tipoComanda === "DELIVERY" ? observacoesCart : "",
           items_pedido: items_pedido, 
         })
@@ -211,7 +219,7 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
         <>
         {tipoComanda === "DELIVERY" ? (
           <div>
-            <EnderecoCart user={user} enderecoSelecionado={enderecoSelecionado} setEnderecoSelecionado={setEnderecoSelecionado}/>
+            <EnderecoCart user={user} enderecoSelecionado={enderecoSelecionado} setEnderecoSelecionado={setEnderecoSelecionado} setDesativarConfirmar={setDesativarConfirmar} setTaxaEntrega={setTaxaEntrega} />
           </div>
         ) :null}
         {tipoComanda === "DELIVERY" ? (
@@ -237,6 +245,19 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
           <div>Pedidos</div>
         </button>
       ): null}
+      <div>
+        {tipoComanda === "DELIVERY" ? (
+          <div className='barraEntrega'> 
+          <div className='entrega'>
+            <div className='iconePagamentosBox'>
+              <div className='iconeDelivery'></div>
+            </div>
+            <div className='tituloPagamentosTexto'> Taxa de Entrega </div>
+          </div>
+        <div className='totalCartList'> {formCurrency.format(taxaEntrega)} </div>
+      </div>
+        ) : null}
+      </div>
       <div className='caixaBarPagar'>
         <button className='cartBarPagar' onClick={()=> handlePagar()} disabled={desativarConfirmar === true}> 
           <div className='PagarTexto'> CONFIRMAR </div>

@@ -17,6 +17,7 @@ export default function modal({ user, item, setIsOpenModalEndereco}){
     const [modalError, setModalError] = useState(false);
     const [error, setError] = useState('');
    
+
     useEffect(()=>{
         setApelido(item.APELIDO)
         setRua(item.RUA)

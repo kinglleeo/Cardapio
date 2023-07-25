@@ -3,6 +3,8 @@ import '../../../../../Styles/StyleTerminal.css'
 import { formCurrency } from '../../../../AA-utilidades/numeros';
 import { api } from '../../../../../conecções/api';
 import ModalError from '../../../../erros/ModalError'
+import OneSignal from 'react-onesignal';
+
 
 export default function DetalhesDoPedido({ itemPedido }){
     const [dadosCompraPedido, setDadosCompraPedido] = useState([]);
@@ -12,7 +14,10 @@ export default function DetalhesDoPedido({ itemPedido }){
     const [modalError, setModalError] = useState(false);
     const [error, setError] = useState('');
     const tipoComanda = itemPedido.TIPOCOMANDA;
-        
+    const userIDNotificaçao = "6157e287-8269-499d-81b2-307e8e3266a6"
+    
+    
+
     useEffect(()=>{
         if (tipoComanda === "DELIVERY" && itemPedido.STATUS === 6){
             api
@@ -43,16 +48,16 @@ export default function DetalhesDoPedido({ itemPedido }){
         const adm = localStorage.getItem('administrador')
             setAdm(adm);
             api
-            .get('/parametros')
-            .then((getdata)=>{
-                setGestao(getdata.data.map((data)=> data.PEDIDOS_APP_USARGESTAO));
-            })
+                .get('/parametros')
+                .then((getdata)=>{
+                    setGestao(getdata.data.map((data)=> data.PEDIDOS_APP_USARGESTAO));
+                })
             .catch((error) => {
                 setError("Erro nos parametros")
                 setModalError(true)
             });
     }, [])
-   
+
     const mudarStatus=(novoStatus)=>{
         api
             .post(`/alterarStatusPedido`, {
@@ -67,14 +72,28 @@ export default function DetalhesDoPedido({ itemPedido }){
                     alert('Caixa Fechado')
                 }
                 else if (response.data === 200){
-                    window.location.reload();
+                    const statusAlterado = novoStatus === 3 ? "Em Preparo" : novoStatus === 4 ? "Em Transporte" : novoStatus === 6 ? "Cancelado" : null
+                      const notification = {
+                        headings: { en: 'Status Update' },
+                        contents: { en: `Pedido ${itemPedido.ID_PEDIDO} está ${statusAlterado}.` },
+                        include_player_ids: [userIDNotificaçao],
+                      };
+              
+                      OneSignal.postNotification(notification, (success) => {
+                        console.log('Notification sent successfully:', success);
+                      }, (error) => {
+                        console.error('Error sending notification:', error);
+                      });
+                      window.location.reload();
                 }
             })
             .catch((error) => {
-                setError("Erro no alterarStatusPedido")
+                setError(error.message)
                 setModalError(true)
             });
     } 
+
+
     
     return(
         <div className='listaDetalhesPedido'>

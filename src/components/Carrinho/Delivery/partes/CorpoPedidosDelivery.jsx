@@ -5,8 +5,6 @@ import { api } from '../../../../conecções/api';
 import { formCurrency } from '../../../AA-utilidades/numeros';
 import { useNavigate } from 'react-router-dom';
 import ModalError from '../../../erros/ModalError'
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 export default function CorpoPedidosDelivery(){
     const [usuario, setUsuario] = useState('');
@@ -69,53 +67,12 @@ export default function CorpoPedidosDelivery(){
         navigate('/DetalhesPedidoDelivery', { state: { itemPedido, usuario} });
     };
 
-    useEffect(() => {
-        const fetchUpdatedPedidos = () => {
-            const uidToken = user.uid
-          api
-            .get(`/listaPedidosCliente/${uidToken}`)
-            .then((getdata) => {
-              const updatedPedidos = getdata.data;
-              setListaPedidos(updatedPedidos);
-              updatedPedidos.forEach((updatedPedido) => {
-                const originalPedido = listaPedidos.find(
-                  (pedido) => pedido.ID === updatedPedido.ID
-                );
-                if (originalPedido && originalPedido.STATUS !== updatedPedido.STATUS) {
-                  const statusText =
-                    updatedPedido.STATUS === 1
-                      ? 'Novo'
-                      : updatedPedido.STATUS === 2
-                      ? 'Aceito'
-                      : updatedPedido.STATUS === 3
-                      ? 'Em Preparo'
-                      : updatedPedido.STATUS === 4
-                      ? 'Em Transporte'
-                      : updatedPedido.STATUS === 5
-                      ? 'Finalizado'
-                      : updatedPedido.STATUS === 6
-                      ? 'Cancelado'
-                      : '';
-                  toast.info(`Pedido ${updatedPedido.NUMEROCOMANDA} está ${statusText}`);
-                }
-              });
-            })
-            .catch((error) => {
-              setError(error.message);
-              setModalError(true);
-            });
-        };
-        const intervalId = setInterval(fetchUpdatedPedidos, 15000);
-        return () => clearInterval(intervalId);
-    }, [user.uid, listaPedidos]);
-
 
     return(
         <div>
             <div className='caixaUser'>
                 <div className='userName'> {Array.isArray(usuario) ? (usuario.map((item) => item.nome)) : null} </div>
             </div>
-            <ToastContainer />
         <div className='ListaPedidos'>
             <div className='barraAtalhoTerminal'>
                 <div className='caixaAtalhoTerminal'>

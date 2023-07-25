@@ -3,6 +3,7 @@ import '../../../Styles/StylePaginaUsuario.css'
 import Footer from '../../Footer/Footer'
 import BarraCarrinhoAtalho from '../../Carrinho/BarraCarrinhoAtalho'
 import CorpoUsuario from './partesUser/CorpoUser'
+import NotificationPermissionButton from '../../Carrinho/notificações/NotificationPermissionButton'
 
 export default function PaginaUsuario(){
     return(
@@ -13,6 +14,9 @@ export default function PaginaUsuario(){
                 </div>
                 <div>
                     <BarraCarrinhoAtalho/>
+                </div>
+                <div>
+                    <NotificationPermissionButton/>
                 </div>
             </div>
             <div>

@@ -17,9 +17,26 @@ import PaginaUsuario from './components/Usuarios/UsuariosInfo/PaginaUsuario'
 import MeusPedidos from './components/Carrinho/Delivery/MeusPedidos'
 import DetalhesPedidoDelivery from './components/Carrinho/Delivery/partes/DetalhesPedidoDelivery'
 import PedidosCartaoMesa from './components/Carrinho/PedidosCartaoMesa/PedidoCartaoMesa'
+import './app.css'
+import { React, useState, useEffect} from 'react'
+import OneSignal from 'react-onesignal';
 
 export default function App(){
-  
+
+  useEffect(() => {
+    OneSignal.init({ 
+      appId: '770d044d-d725-43f1-989e-6b3d27e71df5', 
+      allowLocalhostAsSecureOrigin: true});
+  }, [])
+
+  const onHandleTag =(tag)=>{
+    console.log('taggling');
+    OneSignal.SendTag('Tech', tag)
+    .then(() =>{
+      console.log('tagged')
+    })
+  }
+
     return(
       <UserAuthContextProvider>
           <Provider store={store}>

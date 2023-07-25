@@ -18,7 +18,7 @@ export default function Terminal({ nomeEmpresa, adm }) {
     const [error, setError] = useState('');
     const tipoComanda = dados.tipoComanda;
     const navigate = useNavigate();
-
+    
   
     useEffect(()=>{
       const dados = localStorage.getItem('dados')

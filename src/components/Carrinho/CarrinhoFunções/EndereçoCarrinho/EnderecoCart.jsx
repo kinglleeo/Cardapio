@@ -5,7 +5,7 @@ import ModalEndereco from '../../../Usuarios/UsuariosInfo/partesUser/ModalEndere
 import ModalCadastrarEndereco from '../../../Usuarios/UsuariosInfo/partesUser/ModalCadastrarEndereco'
 import ModalError from '../../../erros/ModalError'
 
-export default function Endereços ({ user, enderecoSelecionado, setEnderecoSelecionado }){
+export default function Endereços ({ user, enderecoSelecionado, setEnderecoSelecionado, setDesativarConfirmar, setTaxaEntrega }){
     const [endereco, setEndereco] = useState([]);
     const [isOpenModalEndereco, setIsOpenModalEndereco] = useState(false);
     const [enderecoMudar, setEnderecoEditar] = useState('');
@@ -14,24 +14,43 @@ export default function Endereços ({ user, enderecoSelecionado, setEnderecoSele
     const [selectedRadioIndex, setSelectedRadioIndex] = useState(null);
     const [modalError, setModalError] = useState(false);
     const [error, setError] = useState('');
-    
-    
+
     const RadioEndereco = (item, index) => {
         setSelectedRadioIndex(index);
         setEnderecoSelecionado(item)
+        verificarEntrega(item)
     };
     
-    useEffect(()=>{
-        const uidToken = user.uid; 
+    const verificarEntrega=(item)=>{
         api
-            .get(`/enderecos/${uidToken}`)
-            .then((getdata)=>{
-                setEndereco(getdata.data)
+            .get(`/bairros/${item.ID_CIDADES}`)
+            .then((response) => {
+                const bairrosAceitos = response.data;
+                const selectedAddress = bairrosAceitos.find((bairro) => bairro.ID === item.ID_BAIRRO);
+                    if (selectedAddress && selectedAddress.ENTREGAR === 'NÃO') {
+                        setDesativarConfirmar(true);
+                        alert('Naõ entregamos em seu Bairro')
+                    } else {
+                        setDesativarConfirmar(false);
+                        setTaxaEntrega(selectedAddress.TAXA_ENTREGA)
+                    }
             })
             .catch((error) => {
-                setError("Erro no enderecos")
-                setModalError(true)
-            });
+                    setError(error.message)
+                    setModalError(true)
+                });
+    }
+    useEffect(()=>{
+        const uidToken = user.uid; 
+            api
+                .get(`/enderecos/${uidToken}`)
+                .then((getdata)=>{
+                    setEndereco(getdata.data)
+                })
+                .catch((error) => {
+                    setError("Erro no enderecos")
+                    setModalError(true)
+                });
     }, [user]);
 
     const editarEndereco=(item)=>{
@@ -54,7 +73,9 @@ export default function Endereços ({ user, enderecoSelecionado, setEnderecoSele
         } else {
           return str; 
         }
-      }
+    }
+
+
     return(
         <div className='endereços'>
             <div className='tituloEnderecos'>

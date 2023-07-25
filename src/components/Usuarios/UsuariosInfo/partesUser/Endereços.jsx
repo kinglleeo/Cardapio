@@ -13,7 +13,7 @@ export default function Endereços ({ user }){
     const [listaTamanhosAtivos, setListaTamanhosAtivos] = useState(null);
     const [modalError, setModalError] = useState(false);
     const [error, setError] = useState('');
-    
+
     useEffect(()=>{
         const uidToken = localStorage.getItem('uidToken')
             api
