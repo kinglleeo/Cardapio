@@ -11,6 +11,7 @@ import { formCurrency } from '../../AA-utilidades/numeros';
 import { useNavigate } from 'react-router-dom';
 import { clearCart } from '../../../redux/cartSlice';
 import ModalError from '../../erros/ModalError'
+import axios from 'axios';
 
 export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComandaGarcom, mesaSelecionada, observacoesCart, setTipoComanda, tipoComanda }) {
   const dispatch = useDispatch();
@@ -28,11 +29,12 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
   const [adm, setAdm] = useState('');
   const [modalError, setModalError] = useState(false);
   const [error, setError] = useState('');
-  const [oneSignalId, setOneSignalId] = useState('');
+  const [idNotificacao, setIdNotificacao] = useState('');
   const [taxaEntrega, setTaxaEntrega] = useState(0);
   const numeroComanda = dados.numeroComanda
   const cart = useSelector(state => state.cart)
   const items_pedido = compra
+
 
   useEffect(()=>{
     const dados = localStorage.getItem('dados')
@@ -46,8 +48,8 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
       auth.onAuthStateChanged((user) => {
         setUser(user)
       });
-    const oneSignalId = localStorage.getItem('playerID')
-      setOneSignalId(oneSignalId)
+    const idNotificacao = localStorage.getItem('idNotificacao')
+      setIdNotificacao(idNotificacao)
  }, [setDados])
   
   useEffect(()=>{
@@ -166,33 +168,32 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
     EnviarPedidoAPI()
     dispatch(clearCart());
   };
-  
+
   const EnviarPedidoAPI =()=>{
-    api
-        .post(`/inserirPedido`, {
-          token_notificacao: oneSignalId,
-          pagamento: pagamentoSelecionado !== "" ? pagamentoSelecionado.ID : "balcão",
-          id_endereco: enderecoSelecionado !== "" ? enderecoSelecionado.ID : "",
-          id_garcom: idGarcom !==null ? idGarcom : "",
-          id_cliente: enderecoSelecionado !== "" ? enderecoSelecionado.ID_PESSOAS : "",
-          numero_comanda: numeroComanda !== null ? numeroComanda : numeroComandaGarcom !== null ? numeroComandaGarcom : "",
-          tipo_comanda: tipoComanda !== null ? tipoComanda : opçaoEscolhidaGarcom,
-          localizacao: tipoComanda === "CARTAO" || opçaoEscolhidaGarcom === "CARTAO" ? mesaSelecionada : numeroComanda !== null ? numeroComanda : "",
-          total: totalCart,
-          taxa_entrega: taxaEntrega,
-          observacoes_pedido: tipoComanda === "DELIVERY" ? observacoesCart : "",
-          items_pedido: items_pedido, 
-        })
-        .then((response)=>{
-          localStorage.setItem('numeroPedido', response.data)
-          setIsOpen(true)
-        })
-        .catch((error) => {
-          setError("Erro no inserirPedido")
-          setModalError(true)
-      });
+    axios
+      .post(`http://192.168.0.100:9865/inserirPedido`, {
+        token_notificacao: idNotificacao,
+        pagamento: pagamentoSelecionado !== "" ? pagamentoSelecionado.ID : "balcão",
+        id_endereco: enderecoSelecionado !== "" ? enderecoSelecionado.ID : "",
+        id_garcom: idGarcom !==null ? idGarcom : "",
+        id_cliente: enderecoSelecionado !== "" ? enderecoSelecionado.ID_PESSOAS : "",
+        numero_comanda: numeroComanda !== null ? numeroComanda : numeroComandaGarcom !== null ? numeroComandaGarcom : "",
+        tipo_comanda: tipoComanda !== null ? tipoComanda : opçaoEscolhidaGarcom,
+        localizacao: tipoComanda === "CARTAO" || opçaoEscolhidaGarcom === "CARTAO" ? mesaSelecionada : numeroComanda !== null ? numeroComanda : "",
+        total: totalCart,
+        taxa_entrega: taxaEntrega,
+        observacoes_pedido: tipoComanda === "DELIVERY" ? observacoesCart : "",
+        items_pedido: items_pedido, 
+      })
+      .then((response)=>{
+        localStorage.setItem('numeroPedido', response.data)
+        setIsOpen(true)
+      })
+      .catch((error) => {
+        setError("Erro no inserirPedido")
+        setModalError(true)
+    });
     }
-    
 
   const handleCotinuar = () => {
     navigate('/Main');

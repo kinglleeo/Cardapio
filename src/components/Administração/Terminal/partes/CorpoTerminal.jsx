@@ -5,6 +5,7 @@ import { formCurrency } from '../../../AA-utilidades/numeros';
 import { useNavigate } from 'react-router-dom';
 import { capitalizeFirstLetter } from '../../../AA-utilidades/primeiraMaiuscula';
 import ModalError from '../../../erros/ModalError'
+import axios from 'axios';
 
 export default function Terminal({ nomeEmpresa, adm }) {
     const [listaPedidos, setListaPedidos] = useState([]);

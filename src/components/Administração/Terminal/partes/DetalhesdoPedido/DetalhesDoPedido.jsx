@@ -3,7 +3,8 @@ import '../../../../../Styles/StyleTerminal.css'
 import { formCurrency } from '../../../../AA-utilidades/numeros';
 import { api } from '../../../../../conecções/api';
 import ModalError from '../../../../erros/ModalError'
-import OneSignal from 'react-onesignal';
+import axios from 'axios';
+import ImpirmirPedidos from '../../../Impressão/ImprimirPedido';
 
 
 export default function DetalhesDoPedido({ itemPedido }){
@@ -13,11 +14,8 @@ export default function DetalhesDoPedido({ itemPedido }){
     const [gestao, setGestao] = useState('');
     const [modalError, setModalError] = useState(false);
     const [error, setError] = useState('');
-    const tipoComanda = itemPedido.TIPOCOMANDA;
-    const userIDNotificaçao = "6157e287-8269-499d-81b2-307e8e3266a6"
+    const tipoComanda = itemPedido.TIPOCOMANDA;  
     
-    
-
     useEffect(()=>{
         if (tipoComanda === "DELIVERY" && itemPedido.STATUS === 6){
             api
@@ -59,40 +57,51 @@ export default function DetalhesDoPedido({ itemPedido }){
     }, [])
 
     const mudarStatus=(novoStatus)=>{
-        api
-            .post(`/alterarStatusPedido`, {
-                id_pedido_app: itemPedido.ID,
-                id_pedido: itemPedido.ID_PEDIDO,
-                id_usuario: adm,
-                status: novoStatus,
-                tipo_comanda: tipoComanda
+        axios
+        .post(`http://192.168.0.100:9865/alterarStatusPedido`, {
+            id_pedido_app: itemPedido.ID,
+            id_pedido: itemPedido.ID_PEDIDO,
+            id_usuario: adm,
+            status: novoStatus,
+            tipo_comanda: tipoComanda
+    })
+        .then((response)=>{
+            if(response.data === -400){
+                alert('Caixa Fechado')
+            }
+            else if (response.data === 200) {
+                sendMessageToOneSignal(novoStatus);
+                window.location.reload();
+              }
         })
-            .then((response)=>{
-                if(response.data === -400){
-                    alert('Caixa Fechado')
-                }
-                else if (response.data === 200){
-                    const statusAlterado = novoStatus === 3 ? "Em Preparo" : novoStatus === 4 ? "Em Transporte" : novoStatus === 6 ? "Cancelado" : null
-                      const notification = {
-                        headings: { en: 'Status Update' },
-                        contents: { en: `Pedido ${itemPedido.ID_PEDIDO} está ${statusAlterado}.` },
-                        include_player_ids: [userIDNotificaçao],
-                      };
-              
-                      OneSignal.postNotification(notification, (success) => {
-                        console.log('Notification sent successfully:', success);
-                      }, (error) => {
-                        console.error('Error sending notification:', error);
-                      });
-                      window.location.reload();
-                }
-            })
-            .catch((error) => {
-                setError(error.message)
-                setModalError(true)
-            });
+        .catch((error) => {
+            setError(error.message)
+            sendMessageToOneSignal();
+            setModalError(true)
+        });
     } 
-
+    const sendMessageToOneSignal = (novoStatus) => {
+        const statusNovo = novoStatus === 3 ? "em preparo" : novoStatus === 4 ? "em transporte" : novoStatus === 5 ? "finalizado" : null
+        const notificationData = {
+          app_id: '770d044d-d725-43f1-989e-6b3d27e71df5',
+          contents: { en: `Pedido N° ${itemPedido.ID_PEDIDO} esta ${statusNovo}` },
+          headings: { en: 'Título da notificação' },
+          include_player_ids: [itemPedido.TOKEN_NOTIFICACAO],
+        };
+      
+        axios.post('https://onesignal.com/api/v1/notifications', notificationData, {
+          headers: {
+            'Authorization': 'YjZlMGU2NWEtMTU3Yi00N2I5LTgxZTItNjQ1NzM3ZDM3ZDA5',
+            'Content-Type': 'application/json',
+          },
+        })
+        .then(response => {
+          console.log('Notificação enviada com sucesso:', response);
+        })
+        .catch(error => {
+          console.error('Erro ao enviar notificação:', error);
+        });
+      };
 
     
     return(
@@ -194,6 +203,12 @@ export default function DetalhesDoPedido({ itemPedido }){
                             ) : null
                         )
                     )}
+            </div>
+            <div>
+                <ImpirmirPedidos
+                    itemPedido={itemPedido}
+                    dadosCompraPedido={dadosCompraPedido}
+                />
             </div>
             {modalError && <ModalError setModalError={setModalError} error={error} />}
         </div>

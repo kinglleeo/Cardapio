@@ -19,7 +19,7 @@ export default function TelaInicialCardapio(){
     const [numeroComanda, setNumeroComanda] = useState('');
     const [cnpj, setCnpj] = useState('');
     const [login, setLogin] = useState('');
-    
+   
     //http://suporte.bedinfoservices.com.br:3000/?17011d0b=43595a595a5e4a5251565547555c&00061d0e2e001e020f0204=190a1e00&1a1a00041f00300c0c070b1200=46
     useEffect(()=>{
         const urlParams = new URLSearchParams(window.location.search);
@@ -138,6 +138,26 @@ export default function TelaInicialCardapio(){
             });
             localStorage.setItem('empresa', JSON.stringify(dadosEmpresa))
             localStorage.setItem('dados', JSON.stringify(dados));
+            
+                OneSignal = window.OneSignal || [];
+                OneSignal.push(function() {
+                    OneSignal.init({
+                        appId: "770d044d-d725-43f1-989e-6b3d27e71df5",
+                        allowLocalhostAsSecureOrigin: true
+                    })
+                });
+                OneSignal.on('init', function() {
+                    OneSignal.showNativePrompt();
+                });
+                OneSignal.on('subscriptionChange', function (isSubscribed) {
+                    if (isSubscribed) {
+                        OneSignal.getUserId()
+                            .then(function(playerId) {
+                                localStorage.setItem('idNotificacao', playerId);
+                            });
+                    }
+                });
+
             navigate('/Main')
         }, 3000);
         return () => {

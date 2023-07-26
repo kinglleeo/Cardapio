@@ -146,3 +146,40 @@ function App() {
     </div>
   );
 }
+
+
+
+const irParaMenu = (dadosEmpresa, dados) => {
+  const timeout = setTimeout(() => {
+    localStorage.clear();
+    auth.onAuthStateChanged((user) => {
+      localStorage.setItem('uidToken', user.uid);
+    });
+    localStorage.setItem('empresa', JSON.stringify(dadosEmpresa));
+    localStorage.setItem('dados', JSON.stringify(dados));
+
+    OneSignal = window.OneSignal || [];
+    OneSignal.push(function() {
+      OneSignal.init({
+        appId: "YOUR_ONESIGNAL_APP_ID_HERE"
+      })
+    });
+
+    // Wait for OneSignal to initialize before showing the prompt
+    OneSignal.on('init', function() {
+      OneSignal.showNativePrompt();
+    });
+
+    // Listen for subscription changes
+    OneSignal.on('subscriptionChange', function (isSubscribed) {
+      if (isSubscribed) {
+        OneSignal.getUserId()
+          .then(function(playerId) {
+            localStorage.setItem('playerId', playerId);
+          });
+      }
+    });
+
+    navigate('/Main');
+  }, 3000);
+};

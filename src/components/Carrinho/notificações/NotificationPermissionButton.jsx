@@ -1,43 +1,35 @@
 import React, { useState, useEffect } from 'react';
+import './notificacao.css'
 
-const OneSignalPermissionButton = () => {
-  const [isNotificationEnabled, setIsNotificationEnabled] = useState(false);
-  const [playerID, setPlayerID] = useState(null);
+const OneSignalPermission = () => {
+  const [isSubscribed, setIsSubscribed] = useState(false);
 
   useEffect(() => {
-    if (window.OneSignal) {
-      window.OneSignal.isPushNotificationsEnabled((isEnabled) => {
-        setIsNotificationEnabled(isEnabled);
-        if (isEnabled) {
-          window.OneSignal.getUserId((userID) => {
-            setPlayerID(userID);
-          });
-        }
-      });
-    }
+    OneSignal.isPushNotificationsEnabled((isEnabled) => {
+      setIsSubscribed(isEnabled);
+    });
   }, []);
 
-  const handlePermissionToggle = () => {
-    if (isNotificationEnabled) {
-      window.OneSignal.setSubscription(false);
-        localStorage.removeItem('playerID');
+  const handlePermissionChange = () => {
+    if (isSubscribed) {
+      OneSignal.setSubscription(false);
+      setIsSubscribed(false);
     } else {
-      window.OneSignal.setSubscription(true);
-      window.OneSignal.getUserId((userID) => {
-        localStorage.setItem('playerID', userID);
-        setPlayerID(userID);
-      });
+      OneSignal.setSubscription(true);
+      setIsSubscribed(true);
     }
-    setIsNotificationEnabled(!isNotificationEnabled);
   };
 
   return (
-    <div>
-      <button onClick={handlePermissionToggle}>
-        {isNotificationEnabled ? 'Desativar Notificações' : 'Ativar Notificações'}
+    <div className='caixabtnnotificacao'>
+      <button className='btnnotificacao' onClick={handlePermissionChange}>
+        <div className='btnnotificacaotext'><div className='textbtnnotificacao'>{isSubscribed ? 'Desativar Notificações' : 'Ativar Notificações'}</div></div>
+        <div className='btnnotificacaocaixaicone'>
+          <div className={isSubscribed ? 'iconeAtivo' : 'iconeDesativado'}></div>
+        </div>
       </button>
     </div>
   );
 };
 
-export default OneSignalPermissionButton;
+export default OneSignalPermission;
