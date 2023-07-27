@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.5ef74afe.css",
+    "main.js": "/static/js/main.2ef35eb3.js",
+    "static/media/Roboto-Bold.ttf": "/static/media/Roboto-Bold.63311334b795ce3b76e2.ttf",
+    "static/media/Roboto-Light.ttf": "/static/media/Roboto-Light.03e629f6348896ffa23a.ttf",
+    "static/media/Roboto-CondensedItalic.ttf": "/static/media/Roboto-CondensedItalic.9e2c17591d43dd93dbf9.ttf",
+    "static/media/Roboto-Medium.ttf": "/static/media/Roboto-Medium.d2d7f0c01bffaa5ec8f7.ttf",
+    "static/media/Roboto-Regular.ttf": "/static/media/Roboto-Regular.f25bd05915c1a3468d3d.ttf",
+    "static/media/Roboto-Condensed.ttf": "/static/media/Roboto-Condensed.0eb141b0ad60e21ed02e.ttf",
+    "static/media/Roboto-Thin.ttf": "/static/media/Roboto-Thin.7cc2944f187ea510b4c7.ttf",
+    "static/media/logo.fw.png": "/static/media/logo.fw.9f7aeb9feda7b47378b0.png",
+    "static/media/banner1.fw.webp": "/static/media/banner1.fw.4d8676995baa04f60f37.webp",
+    "static/media/up.fw.png": "/static/media/up.fw.ba6bba123c32bd671fdd.png",
+    "static/media/down.fw.png": "/static/media/down.fw.660282e09a6cb5168c26.png",
+    "static/media/icons8-close-sign-64.png": "/static/media/icons8-close-sign-64.a8f7ed7c79a8446cb9ca.png",
+    "static/media/icons8-whatsapp-64.png": "/static/media/icons8-whatsapp-64.cb024ded3ce5c7145c27.png",
+    "index.html": "/index.html",
+    "main.5ef74afe.css.map": "/static/css/main.5ef74afe.css.map",
+    "main.2ef35eb3.js.map": "/static/js/main.2ef35eb3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5ef74afe.css",
+    "static/js/main.2ef35eb3.js"
+  ]
+}

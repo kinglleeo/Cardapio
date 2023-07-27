@@ -35,7 +35,6 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
   const cart = useSelector(state => state.cart)
   const items_pedido = compra
 
-
   useEffect(()=>{
     const dados = localStorage.getItem('dados')
          setDados(JSON.parse(dados))
@@ -68,39 +67,45 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
       setTotalCart(total.toFixed(2));
     }
   }, [cart, taxaEntrega]);
-console.log(cart)
-  useEffect(()=>{
+
+  const chamadaPedido=()=>{
     if (tipoComanda === "DELIVERY"){
-      if(user !== null && enderecoSelecionado !== "" && pagamentoSelecionado !== "" && cart !== []){
-        setDesativarConfirmar(false)
+      if(user !== null && enderecoSelecionado !== "" && pagamentoSelecionado !== "" && cart.length === "0" ){
+        EnviarPedidoAPI()
+        dispatch(clearCart());
       } else {
-        setDesativarConfirmar(true)
+        alert('Faça login, escolha uma forma de Pagamento ou adicione um pedido ao carrinho')
       }
     } 
-    else if (idGarcom !== null || login === "TERMINAL"){
-      if(opçaoEscolhidaGarcom === "CARTAO" && mesaSelecionada !== ""){
-        setDesativarConfirmar(false)
+    else if (login === "TERMINAL" || login === "GARCOM" && idGarcom !== null){
+      if(opçaoEscolhidaGarcom === "CARTAO" && mesaSelecionada !== "" && numeroComandaGarcom !== ""){
+        EnviarPedidoAPI()
+        dispatch(clearCart());
       } else if (opçaoEscolhidaGarcom === "MESA" && numeroComandaGarcom !== ""){
-        setDesativarConfirmar(false)
+        EnviarPedidoAPI()
+        dispatch(clearCart());
       } else {
-        setDesativarConfirmar(true)
+        alert('faça login')
       }
     }
     else if (tipoComanda === "CARTAO"){
       if(mesaSelecionada !== "" && cart !== ""){
-        setDesativarConfirmar(false)
+        EnviarPedidoAPI()
+        dispatch(clearCart());
       } else {
-        setDesativarConfirmar(true)
+        alert('Selecione uma localização ou adicine um pedido')
       }
     }
     else if (tipoComanda === "MESA"){
       if(cart !== ""){
-        setDesativarConfirmar(false)
+        EnviarPedidoAPI()
+        dispatch(clearCart());
       } else {
-        setDesativarConfirmar(true)
+        alert('Selecione um Pedido')
       }
     }
-  })
+  }
+  
  
   useEffect(() => {
     if (Pedido && Array.isArray(Pedido)) {
@@ -163,12 +168,7 @@ console.log(cart)
     }
   }, [Pedido, setCompra]);
   
-
-  const handlePagar = () => {
-    EnviarPedidoAPI()
-    dispatch(clearCart());
-  };
-
+ 
   const EnviarPedidoAPI =()=>{
     axios
       .post(`http://192.168.0.100:9865/inserirPedido`, {
@@ -260,7 +260,7 @@ console.log(cart)
         ) : null}
       </div>
       <div className='caixaBarPagar'>
-        <button className='cartBarPagar' onClick={()=> handlePagar()} disabled={desativarConfirmar === true}> 
+        <button className='cartBarPagar' onClick={chamadaPedido}> 
           <div className='PagarTexto'> CONFIRMAR </div>
           <div className='pagarValor'> {formCurrency.format(totalCart)} </div>
         </button>

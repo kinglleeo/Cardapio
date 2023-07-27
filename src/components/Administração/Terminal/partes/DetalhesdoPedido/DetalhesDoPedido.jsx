@@ -76,7 +76,6 @@ export default function DetalhesDoPedido({ itemPedido }){
         })
         .catch((error) => {
             setError(error.message)
-            sendMessageToOneSignal();
             setModalError(true)
         });
     } 
@@ -153,18 +152,20 @@ export default function DetalhesDoPedido({ itemPedido }){
                                 <div className='itemPedidoDesc'> {item.DESCRICAO} </div>
                                 <div className='itemValor'> {formCurrency.format(item.TOTAL)} </div>
                             </div>
-                            <div className='itemCardLinha textOpcional'>
-                                <div className='itemCardIcone'></div>
-                                <div className='itemCardOpcoes'>
-                                    {item.SABORES !== null ? (
-                                        <div className='itemSabores'> {item.SABORES !== null ? (item.SABORES.toLowerCase()) : null} </div>
-                                    ) : null}
-                                    <div className='itemOpcionais'>
-                                        <div className='nomeOpcional'> {item.OPCOES !== null ? (item.OPCOES.toLowerCase()) : null} </div>
+                            {item.SABORES !==null || item.OPCOES !== null ? (
+                                <div className='itemCardLinha textOpcional'>
+                                    <div className='itemCardIcone'></div>
+                                    <div className='itemCardOpcoes'>
+                                        {item.SABORES !== null ? (
+                                            <div className='itemSabores'> {item.SABORES !== null ? (item.SABORES.toLowerCase()) : null} </div>
+                                        ) : null}
+                                        <div className='itemOpcionais'>
+                                            <div className='nomeOpcional'> {item.OPCOES !== null ? (item.OPCOES.toLowerCase()) : null} </div>
+                                        </div>
+                                        <div className='itemObservacoes'> {item.OBSERVACOES} </div>
                                     </div>
-                                    <div className='itemObservacoes'> {item.OBSERVACOES} </div>
                                 </div>
-                            </div>
+                            ) : null}
                         </div>
                     )
                     ) : null}

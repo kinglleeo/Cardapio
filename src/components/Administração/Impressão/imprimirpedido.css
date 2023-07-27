@@ -1,22 +1,17 @@
-@font-face {
-    font-family: "Roboto-Light";
-    src: url('../../../fontes/roboto/Roboto-Light.ttf');
-    font-family: "Roboto-Bold";
-    src: url('../../../fontes/roboto/Roboto-Bold.ttf');
-}
 .corpoImprecao{
-    display: grid;
-    place-items: center;
+    font-family: 'Courier New', Courier, monospace;
 }
 .papelzinho{
-    display: grid;
-    place-items: center;
-    width: 300px;
-    font-family: "Roboto-Light";
     font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 265px;
+}
+.nomeRestaurante{
+    font-weight: 600;
 }
 .infoRestaurante{
-    margin-top: 20px;
     display: grid;
     place-items: center;
 }
@@ -24,6 +19,7 @@
     font-size: 14px;
 }
 .espaçoEntreLinhas{
+    font-size: 10px;
     margin-top: 5px;
     margin-bottom: 5px;
 }
@@ -40,46 +36,40 @@
     display: flex;
 }
 .idItem{
-    width: 50px;
-    font-family: "Roboto-Light";
+    width: 10%;
 }
 .descricaoItem{
-    width: 100px;
-    font-family: "Roboto-Light";
+    width: 30%;
 }
 .tamanhoItem{
-    width: 35px;
-    font-family: "Roboto-Light";
+    width: 10%;
 }
 .qtdeItem{
-    width: 35px;
-    font-family: "Roboto-Light";
     display: grid;
     place-items: center;
+    width: 10%;
 }
 .unItem{
-    width: 35px;
-    font-family: "Roboto-Light";
     display: grid;
     place-items: center;
+    width: 10%;
 }
 .unitItem{
-    width: 30px;
-    font-family: "Roboto-Light";
     display: grid;
     place-items: center;
+    width: 15%;
 }
 .totalItem{
-    width: 30px;
-    font-family: "Roboto-Light";
+    margin-left: 5px;
     display: grid;
     place-items: center end;
+    width: 15%;
 }
 .linhaValores{
     display: flex;
     align-content: center;
     flex-wrap: wrap;
-    justify-content: space-between
+    justify-content: space-between;
 }
 .btnImpressão{
     border: none;

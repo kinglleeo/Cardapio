@@ -11,11 +11,6 @@ const PrintableContent = React.forwardRef(({ itemPedido, dadosCompraPedido }, re
     const [endereco, setEndereco] = useState('')
     const uidToken = "UfBsKvtaJYaI9PLgo65BfdyaVL63"
 
-    
-    console.log(dadosCliente)
-    console.log(itemPedido)
-    console.log(dadosCompraPedido)
-    console.log(endereco)
     function formataData(){
         let data = new Date(),
         dia = data.getDate().toString().padStart(2, '0'),
@@ -25,8 +20,6 @@ const PrintableContent = React.forwardRef(({ itemPedido, dadosCompraPedido }, re
     }
 
     const formCurrency = new Intl.NumberFormat('pt-BR', {
-        style: 'currency',
-        currency: 'BRL',
         minimumFractionDigits: 2
     })
     
@@ -69,7 +62,7 @@ const PrintableContent = React.forwardRef(({ itemPedido, dadosCompraPedido }, re
     <div ref={ref}>
       <div className='corpoImprecao'>
         <div className='papelzinho'>
-        <div className='dadosRestaurante'>
+          <div className='dadosRestaurante'>
             {Array.isArray(empresa) ? (
               empresa.map((item)=>
               <div className='infoRestaurante'>
@@ -80,21 +73,22 @@ const PrintableContent = React.forwardRef(({ itemPedido, dadosCompraPedido }, re
               </div>
               )  
             ) : null}
-        <div className='espaçoEntreLinhas'>--------------------------------------------------------------</div>
+          </div>
+        <div className='espaçoEntreLinhas'>--------------------------------------------</div>
             <div className='linhaPedido'>
                 <div>Pedido: {itemPedido !== undefined ? itemPedido.ID_PEDIDO : null}</div>
                 <div>Data: {formataData(itemPedido.DATA)}</div>
             </div>
-        <div className='espaçoEntreLinhas'>--------------------------------------------------------------</div>
+        <div className='espaçoEntreLinhas'>--------------------------------------------</div>
             <div className='linhaPedido'>
                 <div>{itemPedido !== undefined ? itemPedido.TIPOCOMANDA : null}</div>
                 <div>Hora: {itemPedido.HORA}</div>
             </div>
-        <div className='espaçoEntreLinhas'>--------------------------------------------------------------</div>
+        <div className='espaçoEntreLinhas'>--------------------------------------------</div>
             <div className='linhaFormaDePagamento'>
                 <div>Pagamento </div>
             </div>
-        <div className='espaçoEntreLinhas'>--------------------------------------------------------------</div>
+        <div className='espaçoEntreLinhas'>--------------------------------------------</div>
             <div className='infoCliente'>
             {Array.isArray(dadosCliente) ? (
                 dadosCliente.map((item)=>
@@ -110,17 +104,17 @@ const PrintableContent = React.forwardRef(({ itemPedido, dadosCompraPedido }, re
                 )  
                 ) : null}
             </div>
-        <div className='espaçoEntreLinhas'>--------------------------------------------------------------</div>
+        <div className='espaçoEntreLinhas'>--------------------------------------------</div>
         <div className='descricaoTabelaPedidos'>
-            <div className='idItem'>Código</div>
+            <div className='idItem'>Cód</div>
             <div className='descricaoItem'>Descrição</div>
             <div className='tamanhoItem'>Tam</div>
             <div className='qtdeItem'>Qtde</div>
             <div className='unItem'>Un</div>
             <div className='unitItem'>Unit</div>
             <div className='totalItem'>Total</div>
-                        </div>
-        <div className='espaçoEntreLinhas'>--------------------------------------------------------------</div>
+        </div>
+        <div className='espaçoEntreLinhas'>--------------------------------------------</div>
             <div className='tabelaPedidos'>
             {Array.isArray(dadosCompraPedido) ? (
                 dadosCompraPedido.map((item)=>
@@ -131,8 +125,8 @@ const PrintableContent = React.forwardRef(({ itemPedido, dadosCompraPedido }, re
                     <div className='tamanhoItem'>{item.TAMANHO}</div>
                     <div className='qtdeItem'>{item.QTDE_COM}</div>
                     <div className='unItem'>{item.UNIDADE}</div>
-                    <div className='unitItem'>{item.TOTAL}</div>
-                    <div className='totalItem'>{item.TOTAL*item.QTDE_COM}</div>
+                    <div className='unitItem'>{formCurrency.format(item.TOTAL)}</div>
+                    <div className='totalItem'>{formCurrency.format(item.TOTAL*item.QTDE_COM)}</div>
                   </div>
                   {item.SABORES !== null ? (
                     <div className='descricaoTabelaPedidos'>
@@ -150,14 +144,14 @@ const PrintableContent = React.forwardRef(({ itemPedido, dadosCompraPedido }, re
             </div>
             {itemPedido.OBSERVACOES !== "" ? (
               <div>
-                <div className='espaçoEntreLinhas'>--------------------------------------------------------------</div>
+                <div className='espaçoEntreLinhas'>--------------------------------------------</div>
                   <div>Observações: {itemPedido.OBSERVACOES}</div>
               </div>
             ) : null}
-        <div className='espaçoEntreLinhas'>--------------------------------------------------------------</div>
+        <div className='espaçoEntreLinhas'>--------------------------------------------</div>
             <div className='linhaValores'>
                 <div> Itens: {dadosCompraPedido.length}</div>
-                <div> Produtos: {itemPedido.TOTAL}</div>
+                <div> Produtos: {formCurrency.format(itemPedido.TOTAL)}</div>
             </div>
             <div className='linhaValores'>
                 <div>Qtd. Produ: </div>
@@ -169,19 +163,18 @@ const PrintableContent = React.forwardRef(({ itemPedido, dadosCompraPedido }, re
             </div>
             <div className='linhaValores'>
                 <div></div>
-                <div>------------------</div>
+                <div>-----------------</div>
             </div>
             <div className='linhaValores'>
                 <div></div>
                 <div>Total: {formCurrency.format(itemPedido.TOTAL)}</div>
             </div>
-        <div className='espaçoEntreLinhas'>--------------------------------------------------------------</div>
+        <div className='espaçoEntreLinhas'>--------------------------------------------</div>
             <div>Colaborador: </div>
         </div>
         </div>
       </div>
       
-    </div>
   );
 });
 
