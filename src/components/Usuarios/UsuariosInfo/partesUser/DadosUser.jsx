@@ -16,7 +16,7 @@ export default function DadosUsuarios({ user }){
     const navigate = useNavigate()
     
     useEffect(()=>{
-        const uidToken = localStorage.getItem('uidToken')
+        const uidToken = user.uid
             api
                 .get(`/dadosCliente/${uidToken}`)
                 .then((getdata)=>{
@@ -26,7 +26,7 @@ export default function DadosUsuarios({ user }){
                     setError("Erro no dadosCliente")
                     setModalError(true)
                 });
-    }, []);
+    }, [user]);
 
     const EditarDados=(item)=>{
         setItem(item)
@@ -39,6 +39,7 @@ export default function DadosUsuarios({ user }){
         .catch((error) => {
         });
     }
+
     function formataData(){
         let data = new Date(),
         dia = data.getDate().toString().padStart(2, '0'),
@@ -46,13 +47,13 @@ export default function DadosUsuarios({ user }){
         ano = data.getFullYear();
     return `${dia}/${mes}/${ano}`;
     }
+
     return(
         <div className='infos'>
                 <div className='usuarioInfos'>
                     <img src={user.photoURL} className='fotoPerfil' />
                     <div className='caixaiconeLogout'><div className='iconeLogout' onClick={()=> deslogar()}></div></div>
                     <div className='itemInfos'> {Array.isArray(dadosCliente) ? dadosCliente.map((item) => item.nome) : null}
-                    
                 </div>
                 </div>
                 {Array.isArray(dadosCliente) ?

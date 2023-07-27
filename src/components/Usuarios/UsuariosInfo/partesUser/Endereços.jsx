@@ -15,7 +15,7 @@ export default function Endereços ({ user }){
     const [error, setError] = useState('');
 
     useEffect(()=>{
-        const uidToken = localStorage.getItem('uidToken')
+        const uidToken = user.uid
             api
                 .get(`/enderecos/${uidToken}`)
                 .then((getdata)=>{

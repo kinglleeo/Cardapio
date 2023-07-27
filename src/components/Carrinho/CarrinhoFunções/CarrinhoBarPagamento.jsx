@@ -68,10 +68,10 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
       setTotalCart(total.toFixed(2));
     }
   }, [cart, taxaEntrega]);
-
+console.log(cart)
   useEffect(()=>{
     if (tipoComanda === "DELIVERY"){
-      if(user !== null && enderecoSelecionado !== "" && pagamentoSelecionado !== "" && cart !== ""){
+      if(user !== null && enderecoSelecionado !== "" && pagamentoSelecionado !== "" && cart !== []){
         setDesativarConfirmar(false)
       } else {
         setDesativarConfirmar(true)

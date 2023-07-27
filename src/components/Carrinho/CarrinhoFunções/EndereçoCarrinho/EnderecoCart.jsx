@@ -29,7 +29,7 @@ export default function Endereços ({ user, enderecoSelecionado, setEnderecoSele
                 const selectedAddress = bairrosAceitos.find((bairro) => bairro.ID === item.ID_BAIRRO);
                     if (selectedAddress && selectedAddress.ENTREGAR === 'NÃO') {
                         setDesativarConfirmar(true);
-                        alert('Naõ entregamos em seu Bairro')
+                        alert('Não entregamos em seu Bairro')
                     } else {
                         setDesativarConfirmar(false);
                         setTaxaEntrega(selectedAddress.TAXA_ENTREGA)

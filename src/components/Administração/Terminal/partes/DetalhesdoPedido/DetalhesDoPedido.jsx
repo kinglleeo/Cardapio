@@ -180,7 +180,7 @@ export default function DetalhesDoPedido({ itemPedido }){
             <div className='caixaBtnsPedidos'>
                     {itemPedido.STATUS === 1 ?(
                         <button className='btnCancelarPedido' onClick={() => mudarStatus(6)}> Cancelar Pedido </button>
-                    ) : null}
+                    ) : <div></div>}
                     {itemPedido.TIPOCOMANDA === "DELIVERY" ? (
                         itemPedido.STATUS === 1 ? (
                             <button className='btnAceitarPedido' onClick={() => mudarStatus(3)}> Aceitar Pedido </button>
@@ -204,11 +204,16 @@ export default function DetalhesDoPedido({ itemPedido }){
                         )
                     )}
             </div>
-            <div>
-                <ImpirmirPedidos
-                    itemPedido={itemPedido}
-                    dadosCompraPedido={dadosCompraPedido}
-                />
+            <div className='quadroDetalhesPedido'>
+                <div className='barraTotalPedido'>
+                    <div className='textoImprimir'>Imprimir</div>
+                    <div>
+                        <ImpirmirPedidos
+                            itemPedido={itemPedido}
+                            dadosCompraPedido={dadosCompraPedido}
+                        />
+                    </div>
+                </div>
             </div>
             {modalError && <ModalError setModalError={setModalError} error={error} />}
         </div>

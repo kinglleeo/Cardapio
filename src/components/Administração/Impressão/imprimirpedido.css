@@ -1,18 +1,95 @@
-.infoRestaurante{
-    margin-top: 20px;
-    display: grid;
-    place-items: center;
+@font-face {
+    font-family: "Roboto-Light";
+    src: url('../../../fontes/roboto/Roboto-Light.ttf');
+    font-family: "Roboto-Bold";
+    src: url('../../../fontes/roboto/Roboto-Bold.ttf');
 }
 .corpoImprecao{
     display: grid;
     place-items: center;
 }
+.papelzinho{
+    display: grid;
+    place-items: center;
+    width: 300px;
+    font-family: "Roboto-Light";
+    font-size: 12px;
+}
+.infoRestaurante{
+    margin-top: 20px;
+    display: grid;
+    place-items: center;
+}
+.enderecoRestaurante{
+    font-size: 14px;
+}
 .espaçoEntreLinhas{
-    margin: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 .linhaPedido{
     display: flex;
     align-content: center;
     flex-wrap: wrap;
     justify-content: space-between
+}
+.infoCliente{
+    display: grid;
+}
+.descricaoTabelaPedidos{
+    display: flex;
+}
+.idItem{
+    width: 50px;
+    font-family: "Roboto-Light";
+}
+.descricaoItem{
+    width: 100px;
+    font-family: "Roboto-Light";
+}
+.tamanhoItem{
+    width: 35px;
+    font-family: "Roboto-Light";
+}
+.qtdeItem{
+    width: 35px;
+    font-family: "Roboto-Light";
+    display: grid;
+    place-items: center;
+}
+.unItem{
+    width: 35px;
+    font-family: "Roboto-Light";
+    display: grid;
+    place-items: center;
+}
+.unitItem{
+    width: 30px;
+    font-family: "Roboto-Light";
+    display: grid;
+    place-items: center;
+}
+.totalItem{
+    width: 30px;
+    font-family: "Roboto-Light";
+    display: grid;
+    place-items: center end;
+}
+.linhaValores{
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: space-between
+}
+.btnImpressão{
+    border: none;
+    background-color: transparent;
+    display: grid;
+    place-items: center;
+}
+.iconeImpressora{
+    height: 30px;
+    width: 30px;
+    background-image: url('../../../imagens/iconeImpressora.png');
+    background-size: 100% 100%;
 }
