@@ -140,10 +140,9 @@ export default function TelaInicialCardapio(){
             localStorage.setItem('dados', JSON.stringify(dados));
             
                 OneSignal = window.OneSignal || [];
-                OneSignal.push(function() {
+                    OneSignal.push(function() {
                     OneSignal.init({
-                        appId: "770d044d-d725-43f1-989e-6b3d27e71df5",
-                        allowLocalhostAsSecureOrigin: true
+                        appId: "770d044d-d725-43f1-989e-6b3d27e71df5"
                     })
                 });
                 OneSignal.on('init', function() {

@@ -35,6 +35,7 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
   const cart = useSelector(state => state.cart)
   const items_pedido = compra
 
+
   useEffect(()=>{
     const dados = localStorage.getItem('dados')
          setDados(JSON.parse(dados))
@@ -49,7 +50,7 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
       });
     const idNotificacao = localStorage.getItem('idNotificacao')
       setIdNotificacao(idNotificacao)
- }, [setDados])
+ }, [])
   
   useEffect(()=>{
     setTipoComanda(dados.tipoComanda)
@@ -67,14 +68,20 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
       setTotalCart(total.toFixed(2));
     }
   }, [cart, taxaEntrega]);
-
+  
   const chamadaPedido=()=>{
     if (tipoComanda === "DELIVERY"){
-      if(user !== null && enderecoSelecionado !== "" && pagamentoSelecionado !== "" && cart.length === "0" ){
+      if(user === null){
+        alert('Faça login')
+      } else if(enderecoSelecionado === null){
+        alert('escolha um endereco')
+      } else if(pagamentoSelecionado === ""){
+        alert('escolha uma forma de pagamento')
+      } else if( cart.length === "0"){
+        alert('adicione um pedido')
+      } else {
         EnviarPedidoAPI()
         dispatch(clearCart());
-      } else {
-        alert('Faça login, escolha uma forma de Pagamento ou adicione um pedido ao carrinho')
       }
     } 
     else if (login === "TERMINAL" || login === "GARCOM" && idGarcom !== null){
@@ -239,7 +246,7 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
       </>
       ) : null}
       {tipoComanda === "MESA" || tipoComanda === "CARTAO" ?(
-        <button className='btnPedidosMesaCartao' onClick={()=> MeusPedidosMesaCartao()}> 
+        <button className='btnPedidosMesaCartao' onClick={()=> MeusPedidosMesaCartao()} disabled={desativarConfirmar === true}> 
           <div className='caixaIconePedidos'>
             <div className='iconePedidos'></div>
           </div>
@@ -260,7 +267,7 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
         ) : null}
       </div>
       <div className='caixaBarPagar'>
-        <button className='cartBarPagar' onClick={chamadaPedido}> 
+        <button className='cartBarPagar' onClick={()=> chamadaPedido()}> 
           <div className='PagarTexto'> CONFIRMAR </div>
           <div className='pagarValor'> {formCurrency.format(totalCart)} </div>
         </button>
