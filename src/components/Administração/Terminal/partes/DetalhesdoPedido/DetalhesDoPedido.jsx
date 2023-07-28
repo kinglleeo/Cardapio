@@ -60,29 +60,29 @@ export default function DetalhesDoPedido({ itemPedido }){
 
     const mudarStatus=(novoStatus)=>{
         axios
-        .post(`http://192.168.0.100:9865/alterarStatusPedido`, {
-            id_pedido_app: itemPedido.ID,
-            id_pedido: itemPedido.ID_PEDIDO,
-            id_usuario: adm,
-            status: novoStatus,
-            tipo_comanda: tipoComanda
-    })
-        .then((response)=>{
-            if(response.data === -400){
-                alert('Caixa Fechado')
-            }
-            else if (response.data === 200) {
-                sendMessageToOneSignal(novoStatus);
-                navigate(-1)
-              }
-        })
-        .catch((error) => {
-            setError(error.message)
-            setModalError(true)
-        });
+            .post(`http://192.168.0.100:9865/alterarStatusPedido`, {
+                id_pedido_app: itemPedido.ID,
+                id_pedido: itemPedido.ID_PEDIDO,
+                id_usuario: adm,
+                status: novoStatus,
+                tipo_comanda: tipoComanda
+            })
+            .then((response)=>{
+                if(response.data === -400){
+                    alert('Caixa Fechado')
+                }
+                else if (response.data === 200) {
+                    sendMessageToOneSignal(novoStatus);
+                    navigate(-1)
+                }
+            })
+            .catch((error) => {
+                setError(error.message)
+                setModalError(true)
+            });
     } 
     const sendMessageToOneSignal = (novoStatus) => {
-        const statusNovo = novoStatus === 3 ? "em preparo" : novoStatus === 4 ? "em transporte" : novoStatus === 5 ? "finalizado" : null
+        const statusNovo = novoStatus === 3 ? "em preparo" : novoStatus === 4 ? "em transporte" : novoStatus === 5 ? "finalizado" : novoStatus === 6 ? "cancelado" : null
         const notificationData = {
           app_id: '770d044d-d725-43f1-989e-6b3d27e71df5',
           contents: { en: `Pedido N° ${itemPedido.ID_PEDIDO} esta ${statusNovo}` },
