@@ -156,7 +156,9 @@ export default function DetalhesDoPedido({ itemPedido }){
                             </div>
                             {item.SABORES !==null || item.OPCOES !== null ? (
                                 <div className='itemCardLinha textOpcional'>
-                                    <div className='itemCardIcone'></div>
+                                    <div className='itemCardIcone'>
+                                        <div className='iconeItemCardIcone'></div>
+                                    </div>
                                     <div className='itemCardOpcoes'>
                                         {item.SABORES !== null ? (
                                             <div className='itemSabores'> {item.SABORES !== null ? (item.SABORES.toLowerCase()) : null} </div>

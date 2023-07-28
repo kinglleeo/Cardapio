@@ -6,6 +6,9 @@
   font-family: "Roboto-Condensed";
   src: url('../fontes/roboto/Roboto-Condensed.ttf');
 }
+.Main{
+  min-height: 100vh;
+}
 .pagina{
     display: flex;
     flex-direction: column;
@@ -194,10 +197,6 @@
       opacity: 1;
     }
   }
-@media(min-width: 1024px){
-  .Main{
-}
-}
 @media(max-width: 500px){
   .produto-ingredientes{
     overflow: scroll;

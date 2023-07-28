@@ -19,7 +19,7 @@ export default function TelaInicialCardapio(){
     const [numeroComanda, setNumeroComanda] = useState('');
     const [cnpj, setCnpj] = useState('');
     const [login, setLogin] = useState('');
-   
+
     //http://suporte.bedinfoservices.com.br:3000/?17011d0b=43595a595a5e4a5251565547555c&00061d0e2e001e020f0204=190a1e00&1a1a00041f00300c0c070b1200=46
     useEffect(()=>{
         const urlParams = new URLSearchParams(window.location.search);
@@ -79,7 +79,7 @@ export default function TelaInicialCardapio(){
 
     useEffect(()=>{
         const url = `http://suporte.bedinfoservices.com.br:99/appGarline/retornaApiRestaurante.php?cnpj=${cnpj}`;
-            api
+            axios
                 .post(url)
                 .then((response)=>{
                     setResposta(response);
@@ -88,6 +88,7 @@ export default function TelaInicialCardapio(){
                       const rotalink = parts[0].trim();
                       const rotaBase = parts[1].trim();
                       const RotaFinal = `${rotalink}:${rotaBase}`;
+                        localStorage.setItem('RotaFinal', RotaFinal)
                           iniciarRota(RotaFinal)
                           Iniciar(cnpj, tipoComanda, numeroComanda, login)
                     }
@@ -138,7 +139,7 @@ export default function TelaInicialCardapio(){
             });
             localStorage.setItem('empresa', JSON.stringify(dadosEmpresa))
             localStorage.setItem('dados', JSON.stringify(dados));
-            
+
                 OneSignal = window.OneSignal || [];
                     OneSignal.push(function() {
                     OneSignal.init({

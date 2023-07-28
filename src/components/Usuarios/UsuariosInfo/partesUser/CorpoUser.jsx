@@ -6,6 +6,7 @@ import HeaderSimplificado from '../../../header/HeaderSimplificado';
 import DadosUser from './DadosUser'
 import Endereços from './Endereços'
 import LoginGoogle from '../../LoginPage/LoginMetodos/LoginGoogle'
+import NotificationPermissionButton from '../../../Carrinho/notificações/NotificationPermissionButton'
 
 export default function Infos(){
     const [user, setUser] = useState([]);
@@ -44,6 +45,11 @@ export default function Infos(){
                     />
                 ) : null}
             </div>
+                {login === null ? (
+                    <div>
+                        <NotificationPermissionButton/>
+                    </div>
+                ) : null}
         </div>
     )
 }
