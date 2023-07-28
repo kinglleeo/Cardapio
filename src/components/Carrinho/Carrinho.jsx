@@ -14,8 +14,8 @@ export default function CarrinhoMain(){
   const [pedido, setPedido] = useState([]);
   const [tipoComanda, setTipoComanda] = useState(null);
   const [mesaSelecionada, setMesaSelecionada] = useState(null);
-  const [opçaoEscolhidaGarcom, setOpçaoEscolhidaGarcom] = useState('')
-  const [numeroComandaGarcom, setNumeroComandaGarcom] = useState('')
+  const [opçaoEscolhidaGarcom, setOpçaoEscolhidaGarcom] = useState(null)
+  const [numeroComandaGarcom, setNumeroComandaGarcom] = useState(null)
 
    
 return(

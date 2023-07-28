@@ -5,6 +5,7 @@ import { api } from '../../../../../conecções/api';
 import ModalError from '../../../../erros/ModalError'
 import axios from 'axios';
 import ImpirmirPedidos from '../../../Impressão/ImprimirPedido';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function DetalhesDoPedido({ itemPedido }){
@@ -15,6 +16,7 @@ export default function DetalhesDoPedido({ itemPedido }){
     const [modalError, setModalError] = useState(false);
     const [error, setError] = useState('');
     const tipoComanda = itemPedido.TIPOCOMANDA;  
+    const navigate = useNavigate()
     
     useEffect(()=>{
         if (tipoComanda === "DELIVERY" && itemPedido.STATUS === 6){
@@ -71,7 +73,7 @@ export default function DetalhesDoPedido({ itemPedido }){
             }
             else if (response.data === 200) {
                 sendMessageToOneSignal(novoStatus);
-                window.location.reload();
+                navigate(-1)
               }
         })
         .catch((error) => {

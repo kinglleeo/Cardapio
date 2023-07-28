@@ -16,15 +16,17 @@ export default function Endereços ({ user }){
 
     useEffect(()=>{
         const uidToken = user.uid
-            api
-                .get(`/enderecos/${uidToken}`)
-                .then((getdata)=>{
-                    setEndereco(getdata.data)
-                })
-                .catch((error) => {
-                    setError("Erro no enderecos")
-                    setModalError(true)
-                });
+            if(uidToken !== undefined){
+                api
+                    .get(`/enderecos/${uidToken}`)
+                    .then((getdata)=>{
+                        setEndereco(getdata.data)
+                    })
+                    .catch((error) => {
+                        setError("Erro no enderecos")
+                        setModalError(true)
+                    });
+            }
     }, [user]);
 
     const editarEndereco=(item)=>{

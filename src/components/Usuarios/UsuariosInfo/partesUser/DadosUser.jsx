@@ -17,15 +17,17 @@ export default function DadosUsuarios({ user }){
     
     useEffect(()=>{
         const uidToken = user.uid
-            api
-                .get(`/dadosCliente/${uidToken}`)
-                .then((getdata)=>{
-                    setDadosCliente(getdata.data)
-                })
-                .catch((error) => {
-                    setError("Erro no dadosCliente")
-                    setModalError(true)
-                });
+           if( uidToken !== undefined) {
+                api
+                    .get(`/dadosCliente/${uidToken}`)
+                    .then((getdata)=>{
+                        setDadosCliente(getdata.data)
+                    })
+                    .catch((error) => {
+                        setError("Erro no dadosCliente")
+                        setModalError(true)
+                    });
+            }
     }, [user]);
 
     const EditarDados=(item)=>{

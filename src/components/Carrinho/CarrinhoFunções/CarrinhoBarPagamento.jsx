@@ -23,7 +23,7 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
   const [desativarConfirmar, setDesativarConfirmar] = useState(false)
   const [dados, setDados] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [enderecoSelecionado, setEnderecoSelecionado] = useState('');
+  const [enderecoSelecionado, setEnderecoSelecionado] = useState(null);
   const [pagamentoSelecionado, setPagamentoSelecionado] = useState('');
   const [login, setLogin] = useState('');
   const [adm, setAdm] = useState('');
@@ -68,7 +68,7 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
       setTotalCart(total.toFixed(2));
     }
   }, [cart, taxaEntrega]);
-  
+
   const chamadaPedido=()=>{
     if (tipoComanda === "DELIVERY"){
       if(user === null){
@@ -77,38 +77,60 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
         alert('escolha um endereco')
       } else if(pagamentoSelecionado === ""){
         alert('escolha uma forma de pagamento')
-      } else if( cart.length === "0"){
+      } else if( cart.length === 0){
         alert('adicione um pedido')
       } else {
         EnviarPedidoAPI()
         dispatch(clearCart());
       }
     } 
-    else if (login === "TERMINAL" || login === "GARCOM" && idGarcom !== null){
-      if(opçaoEscolhidaGarcom === "CARTAO" && mesaSelecionada !== "" && numeroComandaGarcom !== ""){
-        EnviarPedidoAPI()
-        dispatch(clearCart());
-      } else if (opçaoEscolhidaGarcom === "MESA" && numeroComandaGarcom !== ""){
-        EnviarPedidoAPI()
-        dispatch(clearCart());
+    else if (login === "GARCOM" || login === "TERMINAL"){
+      if(idGarcom !== null || login === "TERMINAL"){
+        if(opçaoEscolhidaGarcom !== null){
+          if(opçaoEscolhidaGarcom === "CARTAO"){
+            if(mesaSelecionada === null){
+                alert('selecione uma lozalização')
+            } else if(numeroComandaGarcom === null || numeroComandaGarcom === ""){
+              alert('preencha o numero da comanda')
+            } else if (cart.length === 0){
+              alert('adicione um pedido')
+            } else {
+              EnviarPedidoAPI()
+              dispatch(clearCart());
+            }
+          } else if(opçaoEscolhidaGarcom === "MESA"){
+            if(numeroComandaGarcom === null || numeroComandaGarcom === ""){
+              alert('preencha o numero da comanda')
+            } else if (cart.length === 0){
+              alert('adicione um pedido')
+            } else {
+              EnviarPedidoAPI()
+              dispatch(clearCart());
+            }
+          }
+        } else {
+          alert('escolha uma forma de entrega')
+        }
       } else {
         alert('faça login')
       }
     }
     else if (tipoComanda === "CARTAO"){
-      if(mesaSelecionada !== "" && cart !== ""){
-        EnviarPedidoAPI()
-        dispatch(clearCart());
-      } else {
-        alert('Selecione uma localização ou adicine um pedido')
-      }
+        if(mesaSelecionada === null){
+            alert('selecione uma lozalização')
+        } else if (cart.length === 0){
+          alert('adicione um pedido')
+        } else {
+          EnviarPedidoAPI()
+          dispatch(clearCart());
+        }
     }
     else if (tipoComanda === "MESA"){
-      if(cart !== ""){
+      if (cart.length === 0){
+        alert('adicione um pedido')
+      } else {
         EnviarPedidoAPI()
         dispatch(clearCart());
-      } else {
-        alert('Selecione um Pedido')
       }
     }
   }
@@ -175,18 +197,17 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
     }
   }, [Pedido, setCompra]);
   
- 
   const EnviarPedidoAPI =()=>{
     axios
       .post(`http://192.168.0.100:9865/inserirPedido`, {
         token_notificacao: idNotificacao,
         pagamento: pagamentoSelecionado !== "" ? pagamentoSelecionado.ID : "balcão",
-        id_endereco: enderecoSelecionado !== "" ? enderecoSelecionado.ID : "",
-        id_garcom: idGarcom !==null ? idGarcom : "",
-        id_cliente: enderecoSelecionado !== "" ? enderecoSelecionado.ID_PESSOAS : "",
-        numero_comanda: numeroComanda !== null ? numeroComanda : numeroComandaGarcom !== null ? numeroComandaGarcom : "",
+        id_endereco: enderecoSelecionado !== null ? enderecoSelecionado.ID : "",
+        id_garcom: idGarcom !== null ? idGarcom : "",
+        id_cliente: enderecoSelecionado !== null ? enderecoSelecionado.ID_PESSOAS : "",
+        numero_comanda: numeroComanda !== null ? numeroComanda : numeroComandaGarcom,
         tipo_comanda: tipoComanda !== null ? tipoComanda : opçaoEscolhidaGarcom,
-        localizacao: tipoComanda === "CARTAO" || opçaoEscolhidaGarcom === "CARTAO" ? mesaSelecionada : numeroComanda !== null ? numeroComanda : "",
+        localizacao: tipoComanda === "CARTAO" || opçaoEscolhidaGarcom === "CARTAO" ? mesaSelecionada : numeroComanda,
         total: totalCart,
         taxa_entrega: taxaEntrega,
         observacoes_pedido: tipoComanda === "DELIVERY" ? observacoesCart : "",
@@ -212,7 +233,6 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
       navigate('/LoginAdm')
     }
   }
-
   const MeusPedidosMesaCartao=()=>{
     navigate('/PedidosCartaoMesa')
   }

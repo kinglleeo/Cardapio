@@ -60,7 +60,8 @@
 .box-subgrupo-icon{
     width: 20%;
     display: grid;
-    place-items: center;
+    place-items: center end;
+    margin-right: 10px;
 }
 .subgrupo-icon{
     height: 30px;
@@ -193,6 +194,10 @@
       opacity: 1;
     }
   }
+@media(min-width: 1024px){
+  .Main{
+}
+}
 @media(max-width: 500px){
   .produto-ingredientes{
     overflow: scroll;
