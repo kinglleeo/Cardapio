@@ -2,14 +2,29 @@ import React, { useRef, useEffect, useState } from 'react';
 import ReactToPrint from 'react-to-print';
 import './imprimirpedido.css'
 import { api } from '../../../conecções/api';
-
+import Decimal from 'decimal.js';
 
 const PrintableContent = React.forwardRef(({ itemPedido, dadosCompraPedido }, ref) => {
     const [dados, setDados] = useState('');
     const [empresa, setEmpresa] = useState('');
     const [dadosCliente, setDadosClientes] = useState('');
     const [endereco, setEndereco] = useState('')
-    const uidToken = "UfBsKvtaJYaI9PLgo65BfdyaVL63"
+    const [totalItems, setTotalItems] = useState('')
+    const uidToken = itemPedido.FIREBASE_TOKEN
+    const enderecoId = itemPedido.ID_ENDERECO
+  console.log(totalItems)
+
+  useEffect(() => {
+    if (dadosCompraPedido && Array.isArray(dadosCompraPedido)) {
+      let total = new Decimal(0);
+      dadosCompraPedido.forEach(item => {
+        total = total.plus(new Decimal(item.QTDE_COM || 0).times(item.TOTAL || 0));
+      });
+
+
+      setTotalItems(total);
+    }
+  }, [dadosCompraPedido]);
 
     function formataData(){
         let data = new Date(),
@@ -41,7 +56,6 @@ const PrintableContent = React.forwardRef(({ itemPedido, dadosCompraPedido }, re
         api
             .get(`/enderecos/${uidToken}`)
             .then((getdata) => {
-              const enderecoId = 15034 
               const filteredEndereco = getdata.data.find((endereco) => endereco.ID === enderecoId);
           
               if (filteredEndereco) {
@@ -55,7 +69,7 @@ const PrintableContent = React.forwardRef(({ itemPedido, dadosCompraPedido }, re
               setError("Erro ao obter enderecos");
               setModalError(true);
             });
-    }, [uidToken]);
+    }, [uidToken, enderecoId]);
 
 
   return (
@@ -111,7 +125,6 @@ const PrintableContent = React.forwardRef(({ itemPedido, dadosCompraPedido }, re
             <div className='descricaoItem'>Descrição</div>
             <div className='tamanhoItem'>Tam</div>
             <div className='qtdeItem'>Qtde</div>
-            <div className='unItem'>Un</div>
             <div className='unitItem'>Unit</div>
             <div className='totalItem'>Total</div>
         </div>
@@ -125,7 +138,6 @@ const PrintableContent = React.forwardRef(({ itemPedido, dadosCompraPedido }, re
                     <div className='descricaoItem'>{item.DESCRICAO !== null ? item.DESCRICAO.toLowerCase() : null}</div>
                     <div className='tamanhoItem'>{item.TAMANHO}</div>
                     <div className='qtdeItem'>{item.QTDE_COM}</div>
-                    <div className='unItem'>{item.UNIDADE}</div>
                     <div className='unitItem'>{formCurrency.format(item.TOTAL)}</div>
                     <div className='totalItem'>{formCurrency.format(item.TOTAL*item.QTDE_COM)}</div>
                   </div>
@@ -152,7 +164,11 @@ const PrintableContent = React.forwardRef(({ itemPedido, dadosCompraPedido }, re
         <div className='espaçoEntreLinhas'>--------------------------------------------</div>
             <div className='linhaValores'>
                 <div></div>
-                <div> Produtos: {formCurrency.format(itemPedido.TOTAL)}</div>
+                <div> Produtos: {formCurrency.format(totalItems)}</div>
+            </div>
+            <div className='linhaValores'>
+                <div></div>
+                <div> Entrega: {formCurrency.format(itemPedido.TAXA_ENTREGA)}</div>
             </div>
             <div className='linhaValores'>
                 <div></div>
@@ -163,7 +179,7 @@ const PrintableContent = React.forwardRef(({ itemPedido, dadosCompraPedido }, re
                 <div>Total: {formCurrency.format(itemPedido.TOTAL)}</div>
             </div>
         <div className='espaçoEntreLinhas'>--------------------------------------------</div>
-            <div>Colaborador: </div>
+            <div>Colaborador: App Web</div>
         </div>
         </div>
       </div>

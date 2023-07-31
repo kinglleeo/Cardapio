@@ -33,6 +33,12 @@
 .infoCliente{
     display: grid;
 }
+.linhaFormaDePagamento{
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 .descricaoTabelaPedidos{
     display: flex;
 }
@@ -40,17 +46,12 @@
     width: 10%;
 }
 .descricaoItem{
-    width: 30%;
+    width: 40%;
 }
 .tamanhoItem{
     width: 10%;
 }
 .qtdeItem{
-    display: grid;
-    place-items: center;
-    width: 10%;
-}
-.unItem{
     display: grid;
     place-items: center;
     width: 10%;
