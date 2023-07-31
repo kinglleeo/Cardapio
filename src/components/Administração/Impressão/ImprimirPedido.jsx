@@ -102,7 +102,7 @@ const PrintableContent = React.forwardRef(({ itemPedido, dadosCompraPedido }, re
                     <div className='enderecoReferencia'>Referencia: {endereco.REFERENCIA}</div>
                 </div>
                 )  
-                ) : null}
+                ) : null} 
             </div>
         <div className='espaçoEntreLinhas'>--------------------------------------------</div>
         <div className='descricaoTabelaPedidos'>
