@@ -12,7 +12,6 @@ const PrintableContent = React.forwardRef(({ itemPedido, dadosCompraPedido }, re
     const [totalItems, setTotalItems] = useState('')
     const uidToken = itemPedido.FIREBASE_TOKEN
     const enderecoId = itemPedido.ID_ENDERECO
-  console.log(totalItems)
 
   useEffect(() => {
     if (dadosCompraPedido && Array.isArray(dadosCompraPedido)) {
