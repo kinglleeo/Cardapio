@@ -1,0 +1,54 @@
+@font-face {
+    font-family: "Roboto-Light";
+    src: url('../../../../fontes/roboto/Roboto-Light.ttf');
+    font-family: "Roboto-Bold";
+    src: url('../../../../fontes/roboto/Roboto-Bold.ttf');
+}
+.PizzasInfo{
+    padding-top: 50px;
+}
+.pizzasInfoDescricao{
+    margin: 5px;
+    border: solid;
+    border-width: 0.5px;
+    border-radius: 5px;
+}
+.pizzaInfoTamanho{
+    margin: 5px;
+    font-family: "Roboto-Bold";
+}
+.pizzasInfoCaixaSabores{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.pizzasInfoSabores{
+    width: 45%;
+    margin: 5px;
+    display: flex;
+    justify-content: space-between;
+    border: solid;
+    border-width: 0.5px;
+    border-radius: 5px;
+    background-color: rgb(245, 245, 245);
+}
+.iconeInfo{
+    margin: 5px;
+    height: 25px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../../../../imagens/iconePizza.png');
+    background-size: 100% 100%;
+}
+.nomeInfo{
+    display: grid;
+    place-items: center;
+    margin-left: 5px;
+    font-family: "Roboto-Light";
+    font-size: 14px;
+}
+.InfoX{
+    display: grid;
+    place-items: center;
+    margin: 10px;
+    font-family: "Roboto-Light";
+}

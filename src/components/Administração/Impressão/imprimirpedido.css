@@ -1,0 +1,86 @@
+.corpoImprecao{
+    font-family: 'Courier New', Courier, monospace;
+}
+.papelzinho{
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 265px;
+    font-weight: 600;
+}
+.nomeRestaurante{
+    font-weight: 600;
+}
+.infoRestaurante{
+    display: grid;
+    place-items: center;
+}
+.enderecoRestaurante{
+    font-size: 14px;
+}
+.espaçoEntreLinhas{
+    font-size: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.linhaPedido{
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: space-between
+}
+.infoCliente{
+    display: grid;
+}
+.descricaoTabelaPedidos{
+    display: flex;
+}
+.idItem{
+    width: 10%;
+}
+.descricaoItem{
+    width: 30%;
+}
+.tamanhoItem{
+    width: 10%;
+}
+.qtdeItem{
+    display: grid;
+    place-items: center;
+    width: 10%;
+}
+.unItem{
+    display: grid;
+    place-items: center;
+    width: 10%;
+}
+.unitItem{
+    display: grid;
+    place-items: center;
+    width: 15%;
+}
+.totalItem{
+    margin-left: 5px;
+    display: grid;
+    place-items: center end;
+    width: 15%;
+}
+.linhaValores{
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.btnImpressão{
+    border: none;
+    background-color: transparent;
+    display: grid;
+    place-items: center;
+}
+.iconeImpressora{
+    height: 30px;
+    width: 30px;
+    background-image: url('../../../imagens/iconeImpressora.png');
+    background-size: 100% 100%;
+}

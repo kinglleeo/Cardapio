@@ -1,0 +1,110 @@
+@font-face {
+    font-family: "Roboto-Bold";
+    src: url('../fontes/roboto/Roboto-Bold.ttf');
+    font-family: "Roboto-Condensed";
+    src: url('../fontes/roboto/Roboto-Condensed.ttf');
+}
+.atalhoCarrinho{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-top: solid;
+    border-width: 0.5px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: white;
+}
+.mainPage{
+    grid-column: 1;
+    display: grid;
+    place-items: center;
+}
+.usuarioPage{
+    grid-column: 2;
+    display: grid;
+    place-items: center;
+}
+.cartPage{
+    grid-column: 3;
+    display: grid;
+    place-items: center;
+}
+.iconeMainPageApagado{
+    width: 25px;
+    height: 25px;
+    background-image: url('../imagens/iconeHomeApagado.png');
+    background-size: 100% 100%;
+}
+.iconeMainPageAcesso{
+    width: 25px;
+    height: 25px;
+    background-image: url('../imagens/iconeHome.png');
+    background-size: 100% 100%;
+}
+.centralizarIcone{
+    display: grid;
+    place-items: center;
+}
+.iconePerfilApagado{
+    width: 25px;
+    height: 25px;
+    background-image: url('../imagens/iconeUsuarioApagado.png');
+    background-size: 100% 100%;
+}
+.iconePerfil{
+    width: 25px;
+    height: 25px;
+    background-image: url('../imagens/iconeUsuario.png');
+    background-size: 100% 100%;
+}
+.totalQuantidade-cart{
+    display: grid;
+    place-items: center;
+}
+.totalQuantidade-cart-svg{
+    display: grid;
+    place-items: center;
+}
+.iconeCartAcesso{
+    width: 25px;
+    height: 25px;
+    background-image: url('../imagens/iconeCarrinhoAcesso.png');
+    background-size: 100% 100%;
+}
+.iconeCartApagado{
+    width: 25px;
+    height: 25px;
+    background-image: url('../imagens/iconeCartApagado.png');
+    background-size: 100% 100%;
+}
+.text-cart{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+.iconeDelivery{
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 34px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../imagens/iconeDelivery.png');
+    background-size: 100% 100%;
+}
+.barraEntrega{
+    font-size: 16px;
+    margin-bottom: 5px;
+    height: 50px;
+    background-color: #DBDBDB;
+    font-family: "Roboto-Bold";
+    display: flex;
+    justify-content: space-between;
+}
+.entrega{
+    display: flex;
+}
+.taxaEntrega{
+    display: grid;
+    place-items: center;
+}

@@ -1,0 +1,204 @@
+@font-face {
+  font-family: "Roboto-Light";
+  src: url('../fontes/roboto/Roboto-Light.ttf');
+  font-family: "Roboto-Bold";
+  src: url('../fontes/roboto/Roboto-Bold.ttf');
+  font-family: "Roboto-Condensed";
+  src: url('../fontes/roboto/Roboto-Condensed.ttf');
+}
+.Main{
+  min-height: 100vh;
+}
+.pagina{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.Main{
+  flex: 1;
+}
+/* Grupo List */
+.lista-Main-Page{
+  padding-bottom: 90px;
+}
+.GrupoList{
+    display: flex;
+    flex-direction: column;
+}
+.Grupo-Titulo{
+    display: grid;
+    place-items: center; 
+    font-size: 16px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 50px;
+    background-color: #DBDBDB;
+    font-family: "Roboto-Bold";
+}
+/* pizzaMista */
+.icon-grupoTamanho{
+  position: absolute;
+  right: 15px;
+  height: 30px;
+  width: 30px;
+  display: grid;
+}
+/* SubGrupo List */
+.box-subgrupos{
+    margin-bottom: 5px;
+}
+.subgrupos{
+    height: 35px;
+    display: flex;
+    background-color: #EFEFEF;
+    font-family: "Roboto-Condensed";
+}
+.subgrupo-titulo{
+    width: 80%;
+    padding-left: 10px;
+    margin: 5px;
+    display: grid;
+    place-items: center start;
+}
+.box-subgrupo-icon{
+    width: 20%;
+    display: grid;
+    place-items: center end;
+    margin-right: 10px;
+}
+.subgrupo-icon{
+    height: 30px;
+    width: 30px;
+    display: grid;
+}
+.icone-setaDown{
+  background-image: url('../imagens/down.fw.png');
+  background-size: 100% 100%;
+}
+.icone-setaUp{
+  background-image: url('../imagens/up.fw.png');
+  background-size: 100% 100%;
+}
+/* Produto List */
+.lista-produtos{
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+    font-family: "Roboto-Condensed";
+}
+.card-produtos{
+    margin: 5px;
+    border-radius: 5px;
+    border: solid;
+    border-width: 0.1px;
+}
+.limiteimg{
+  height: 90px;
+}
+.box-produtos{
+    display: flex;
+    height: auto;
+}
+.produtos-info{
+    width: 70%;
+    display: grid;
+    grid-template-rows: 1fr;
+    -webkit-animation: slide-in-left 0.5s both;
+	        animation: slide-in-left 0.5s both;
+}
+.produto-nome{
+    font-size: 15px;
+    -webkit-animation: slide-in-left 0.5s both;
+	      animation: slide-in-left 0.5s both;
+    display: grid;
+}
+.item-nome{
+    display: grid;
+    padding-left: 5px;
+    padding-top: 3px;
+    font-family: "Roboto-Bold";
+    font-size: 13px;
+}
+.item-nomeTamanhoPizza{
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.produto-ingredientes{
+    margin-left: 5px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    word-break: break-all;
+    font-size: 12px;
+    font-family: "Roboto-Condensed";
+    max-height: 28px;
+}
+.produto-valor{
+  margin-left: 5px;
+    display: grid;
+    place-items: center start;
+}
+.box-valor{
+  display: grid;
+  place-items: center; 
+  text-align: center;
+  font-family: "Roboto-Light";
+}
+.ValorTamanhoPizza{
+  margin-left: 15px;
+  margin-bottom: 10px;
+  font-family: "Roboto-Light";
+  font-size: 14px;
+}
+.produtos-img{
+    width: 30%;
+    border-radius: 0 5px 5px 0;
+    display: flex;
+    justify-content: flex-end;
+    -webkit-animation: slide-in-right 0.5s both;
+        animation: slide-in-right 0.5s both;
+}
+.img-produto{
+  border-radius: 0 4px 4px 0;
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
+}
+.pizza-img{
+  width: 30%;
+  display: flex;
+  justify-content: flex-end;
+  -webkit-animation: slide-in-right 0.5s both;
+      animation: slide-in-right 0.5s both;
+}
+.pizza-png{
+  width: 80px;
+  height: 60px;
+  border-radius: 0 4px 4px 0;
+  background-image: url('https://t3.ftcdn.net/jpg/05/60/42/26/360_F_560422609_3nv30UESgwV4988d3rnk9yMJaGXw5x4T.jpg');
+  background-size: 100% 100%;
+}
+  @keyframes slide-in-left {
+    0% {
+      transform: translateX(-1000px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slide-in-right {
+    0% {
+      transform: translateX(1000px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+@media(max-width: 500px){
+  .produto-ingredientes{
+    overflow: scroll;
+  }
+}

@@ -1,0 +1,358 @@
+@font-face {
+    font-family: "Roboto-Bold";
+    src: url('../fontes/roboto/Roboto-Bold.ttf');
+    font-family: "Roboto-Medium";
+    src: url('../fontes/roboto/Roboto-Medium.ttf');
+    font-family: "Roboto-Regular";
+    src: url('../fontes/roboto/Roboto-Regular.ttf');
+}
+/* Terminal */
+.MainTerminal{
+    background-color: white;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.CorpoTerminal{
+    flex: 1;
+}
+/* Corpo Terminal */
+.ListaPedidos{
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+}
+.TituloLista{
+    height: 40px;
+    background-color: rgb(209, 209, 209);
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-between;
+    margin-top: 50px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+.TituloLista-nome{
+    display: grid;
+    place-items: center;
+    margin-left: 10px;
+    font-size: 16px;
+    font-family: "Roboto-Medium";
+}
+.TituloLista-numero{
+    display: grid;
+    place-items: center;
+    margin-right: 10px;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    width: 50px;
+}
+.listaPedido-card{
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+    height: 100px;
+    border: solid;
+    border-bottom: none;
+    border-right: none;
+    border-color: rgb(240, 238, 238);
+    border-radius: 5px 0 0 0;
+    box-shadow: 4px 8px 6px 0px #8f8f8f;
+}
+.pedidoCard-linha{
+    height: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-between;
+}
+.linhaEsquerda{
+    margin-left: 10px;
+    display: grid;
+    place-items: center;
+    font-family: "Roboto-Medium";
+    font-size: 14px;
+}
+.linhaDireita{
+    margin-right: 10px;
+    display: grid;
+    place-items: center;
+    font-family: "Roboto-Medium";
+    font-size: 14px;
+}
+.itemSabores{
+    word-break: break-all;
+}
+.novo{
+    background-color: rgb(255, 47, 47);
+    color: white;
+}
+.aceito{
+    background-color: rgb(255, 255, 255);
+}
+.preparo{
+    background-color: rgb(251, 255, 0);
+}
+.transporte{
+    background-color: rgb(0, 204, 255);
+}
+.finalizados{
+    background-color: rgb(0, 255, 55);
+}
+.cancelado{
+    background-color: rgb(68, 68, 68);
+    color: white;
+}
+.statusPedidos{
+    border-radius: 20px;
+    height: 20px;
+    display: grid;
+    place-items: center;
+    margin-right: 5px;
+    padding: 5px;
+    margin-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: "Roboto-Medium";
+    font-size: 14px;
+}
+.barraAtalhoTerminal{
+    display: flex;
+    background-color: rgb(185, 185, 185);
+    flex-wrap: wrap;
+    padding: 5px;
+    justify-content: space-between;
+}
+.caixaAtalhoTerminal{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+.atalhoTerminalNome{
+    display: grid;
+    place-items: center;
+    font-family: "Roboto-Medium";
+    font-size: 14px;
+}
+.containerCheckTerminal input {
+    display: grid;
+    place-items: center;
+}
+.containerCheckTerminal {
+    display: grid;
+    place-items: center;
+}   
+/* Checkbox Customizada */
+.checkmark {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    border: 2px solid #2196F3;
+    border-radius: 1rem 0rem 1rem;
+    transform: rotate(45deg);
+    transition: all .5s ease-in-out;
+}
+/* Checkmark */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+/* Mostrar Checkmark marcada */
+.containerCheckTerminal input:checked ~ .checkmark:after {
+    display: block;
+}
+/* Checkmark Indicador */
+.containerCheckTerminal .checkmark:after {
+    left: 0.30em;
+    top: 0.18em;
+    width: 0.25em;
+    height: 0.5em;
+    border: solid #2196F3;
+    border-width: 0 0.15em 0.15em 0;
+    transform: rotate(-5deg);
+    animation: upAnimate 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+@keyframes upAnimate {
+    from {
+     transform: translate(-20px, -20px) rotate(-5deg);
+     opacity: 0;
+    }
+    to {
+     transform: translate(0, 0) rotate(-5deg);
+     opacity: 1;
+    }
+}
+/* Detalhes Pedido */
+.listaDetalhesPedido{
+    margin-top: 50px;
+}
+.quadroDetalhesPedido{
+    margin: 10px;
+    padding: 10px;
+    border: solid;
+    border-bottom: none;
+    border-right: none;
+    border-color: rgb(240, 238, 238);
+    border-radius: 5px 0 0 0;
+    box-shadow: 4px 8px 6px 0px #8f8f8f;
+}
+.quadroPedidoLinha{
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.textoFonte{
+    font-family: "Roboto-Medium";
+    font-size: 14px;
+}
+.localizacaoPedido{
+    margin-left: 20px;
+    font-family: "Roboto-Regular";
+    font-size: 12px;
+}
+.numeroPedido{
+    display: grid;
+    place-items: center;
+    font-family: "Roboto-Regular";
+    font-size: 14px;
+    color: #8f8f8f;
+}
+.detalhesPedidoTitulo{
+    font-family: "Roboto-Medium";
+    font-size: 13px;
+}
+.detalhesPedidoBox{
+    display: flex;
+    font-family: "Roboto-Regular";
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 3px;
+}
+.detalhesPedidoQtd{
+    width: 10%;
+    display: grid;
+    place-items: center;
+}
+.detalhesPedidoDesc{
+    width: 70%;  
+    display: grid;
+    place-items: center start;
+    margin-left: 5px;
+}
+.detalhesPedidoValor{
+    width: 20%;
+    display: grid;
+    place-items: center;
+    margin-right: 10px; 
+}
+.itemCardLinha{
+    display: flex;
+    margin-top: 5px;
+}
+.itemPedidoQTD{
+    width: 10%;
+    display: grid;
+    place-items: center;
+    font-family: "Roboto-Bold";
+    font-size: 14px;
+}
+.itemPedidoDesc{
+    width: 70%;  
+    display: grid;
+    place-items: center start;
+    font-family: "Roboto-Bold";
+    font-size: 14px;
+}
+.itemValor{
+    width: 20%;
+    font-size: 14px;
+    display: grid;
+    place-items: center;
+    font-family: "Roboto-Bold";
+}
+.itemCardIcone{
+    width: 10%;
+    height: 30px;
+    display: grid;
+    place-items: center;
+}
+.iconeItemCardIcone{
+    height: 30px;
+    width: 30px;
+    background-image: url('../imagens/iconeNota.png');
+    background-size: 100% 100%;
+}
+.itemCardOpcoes{
+    width: 90%;
+    margin-left: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.itemOpcionais{
+    display: flex;
+}
+.itemObservacoes{
+    width: 90%;
+    word-break: break-all;
+}
+.nomeOpcional{
+    width: 90%;
+}
+.quantiaOpcional{
+    width: 10%;
+}
+.textOpcional{
+    font-family: "Roboto-Regular";
+    font-size: 13px;
+    color: rgb(46, 143, 255);
+}
+.barraTotalPedido{
+    display: flex;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    font-family: "Roboto-Bold";
+    font-size: 16px;
+}
+.caixaBtnsPedidos{
+    display: flex;
+    margin: 10px;
+    align-content: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.btnAceitarPedido{
+    background-color: green;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    color: white;
+    font-family: "Roboto-Medium";
+    font-size: 16px;
+}
+.btnCancelarPedido{
+    background-color: rgb(90, 90, 90);
+    border-radius: 5px;
+    border: none;
+    padding: 15px;
+    color: white;
+    font-family: "Roboto-Medium";
+    font-size: 16px;
+}
+.textoImprimir{
+    display: grid;
+    place-items: center;
+}

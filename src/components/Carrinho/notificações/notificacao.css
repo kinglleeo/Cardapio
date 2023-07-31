@@ -1,0 +1,49 @@
+.caixabtnnotificacao{
+    border-radius: 5px;
+    border: solid;
+    border-width: 0.5px;
+    background-color: white;
+    margin: 5px;
+    display: grid;
+    place-items: center;
+}
+.btnnotificacao{
+    border: none;
+    padding: 10px;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.btnnotificacaotext{
+    margin-left: 8px;
+    display: grid;
+    place-items: center;
+    font-family: "Roboto-Bold";
+    font-size: 15px;
+    height: 100%;
+}
+.textbtnnotificacao{
+    display: grid;
+    place-items: center;
+}
+.btnnotificacaocaixaicone{
+    margin-right: 10px;
+    display: grid;
+    place-items: center;
+}
+.iconeAtivo{
+    height: 30px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../../../imagens/notificacaoAtiva.png');
+    background-size: 100% 100%;
+}
+.iconeDesativado{
+    height: 30px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../../../imagens/notificacaoDesativada.png');
+    background-size: 100% 100%;
+}

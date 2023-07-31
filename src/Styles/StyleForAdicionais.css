@@ -1,0 +1,292 @@
+@font-face {
+    font-family: "Roboto-Light";
+    src: url('../fontes/roboto/Roboto-Light.ttf');
+    font-family: "Roboto-Bold";
+    src: url('../fontes/roboto/Roboto-Bold.ttf');
+    font-family: "Roboto-Condensed";
+    src: url('../fontes/roboto/Roboto-Condensed.ttf');
+    font-family: "Roboto-Regular";
+    src: url('../fontes/roboto/Roboto-Regular.ttf');
+}
+.box-adicionais{
+    display: flex;
+    background-color: #EFEFEF;
+    height: 60px;
+    font-family: "Roboto-Condensed";
+    margin-top: 5px;
+}
+.adicionais-info{
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+}
+.adicionais-titulo{
+    height: 50%;
+    padding-left: 10px;
+    font-family: "Roboto-Condensed";
+    display: grid;
+    place-items: center start;
+}
+.icon-adicionais{
+    width: 15%;
+    display: grid;
+    place-items: center;
+}
+.box-iconAdd{
+    height: 30px;
+    width: 30px;
+    display: grid;
+}
+.informacoes-quantidade{
+    height: 50%;
+    display: flex;
+}
+.caixa-quantidades{
+    width: auto;
+    display: grid;
+    place-items: center;
+    font-family: "Roboto-Bold";
+    font-size: 14px;
+}
+.obrigatorio{
+    margin-left: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    display: grid;
+    place-items: center;
+    font-family: "Roboto-Bold";
+    font-size: 14px;
+    background-color: #ff706b;
+}
+.maximo{
+    margin-left: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    font-family: "Roboto-Light";
+    font-size: 14px;
+    background-color: #eded28;
+    display: grid;
+    place-items: center;
+    font-size: 13px;
+}
+.escolhido{
+    margin-left: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #ff706b;
+    font-family: "Roboto-Light";
+    color: white;
+    font-size: 13px;
+}
+.AdicionaisList{
+    height: auto;
+    width: auto;
+}
+.Card-Adicionais{
+    margin: 3px;
+    display: flex;
+    border: solid;
+    border-width: 0.5px;
+    border-radius: 5px;
+    background-color: white;
+    place-items: center;
+    height: 40px;
+}
+/* D7FCDB */
+.medarBordaCor{
+    background-color: #E9FEEE ;
+}
+.mudarCorCard{
+    background-color: #E9FEEE ;
+}
+.box-descricao-adicional{
+    width: 50%;
+}
+.adicional-nome{
+    font-size: 13px;
+    font-family: "Roboto-Regular";
+    margin-left: 10px;
+}
+.adicional-valor{
+    display: grid;
+    place-items: center;
+    font-family: "Roboto-Light";
+    font-size: 14px;
+}
+.box-valor-adicional{
+    width: 20%;
+}
+.box-funcao-adicional{
+    width: 30%;
+    display: grid;
+    place-items: center;
+}
+.Card-Adicionais-Botoes{
+    width: 100%;
+    display: flex;
+    place-items: center;
+}
+.quantia-adicionais{
+    width: 20%;
+    display: grid;
+    place-items: center;
+    font-family: "Roboto-Bold";
+}
+
+.btn-quantia-adicionais{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+}
+
+.arrow {
+    border: none;
+    background-color: transparent;
+}
+.iconePlus {
+    min-height: 20px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../imagens/iconeMais.png');
+    background-size: 100% 100%;
+}
+.iconeMinus {
+    min-height: 20px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../imagens/iconeMenos.png');
+    background-size: 100% 100%;
+}
+/* observacoes */
+.titulo-observacoes{
+    display: grid;
+    place-items: center;
+    font-size: 16px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 50px;
+    background-color: #DBDBDB;
+    font-family: "Roboto-Bold";
+}
+.ObservacoesAdicionais-box{
+    height: 60px;
+    margin: 5px;
+    border: solid;
+    border-width: 0.5px;
+    border-radius: 5px;
+    display: grid;
+    place-items: center;
+}
+.ObservacoesAdicionais-text{
+    font-size: 14px;
+    height: 90%;
+    width: 98%;  
+    border: none;
+    background-color: transparent;
+    color: black;
+    font-family: "Roboto-Light";
+}
+.ObservacoesAdicionais-text:focus-visible {
+    outline: none;
+}
+.btnPagarAdicionais{
+    width: 100%;
+    background-color: transparent;
+    border: none;
+}
+.barra-pagarAdicionais{
+    background-color: rgb(66 175 66);
+    color: white;
+    display: flex;
+    margin: 8px;
+    border-radius: 5px;
+    height: 50px;
+}
+.pagarAdicionais-text{
+    width: 60%;
+    display: grid;
+    place-items: center;
+}
+.btn-adicionarAdicionais{
+    border: none;
+    appearance: none;
+    background-color: transparent;
+    font-family: "Roboto-Bold";
+    font-size: 16px;
+    color: white;
+    margin-left: 10px;
+}
+.pagarAdicionais-valor{
+    width: 40%;
+    font-size: 18px;
+    display: grid;
+    place-items: center;
+    font-family: "Roboto-Bold";
+}
+input[type="checkbox" i]{
+    background-color: transparent;
+    appearance: none;
+    border: none;
+}
+
+/* TAMANHOS */
+.lista-tamanhos{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+.titulo-Tamanhos{
+    font-family: "Roboto-Bold";
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    background-color: #DBDBDB;
+    height: 50px;
+}
+.Card-tamanhos{
+    display: flex;
+    margin: 5px;
+    height: 30px;
+    place-items: center; 
+    border: solid;
+    border-radius: 5px;
+    border-width: 0.5px;
+}
+.box-tamanhos-1{
+    width: 40%;
+}
+.tamanhos-nome{
+    padding-left: 10px;
+    font-size: 14px;
+    font-family: "Roboto-Bold";
+}
+.box-tamanhos-2{
+    width: 40%;
+}
+.tamanhos-valor{
+    font-family: "Roboto-Bold";
+}
+.Card-Icon{ 
+    width: 20%;
+    display: grid;
+    place-items: center;
+}
+input[type="radio" i] {
+    background-color: transparent;
+    appearance: none;
+    border: none;
+}
+.iconePrato-apagado{
+    height: 40px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../imagens/iconePratoApagado.png');
+    background-size: 100% 100%;
+}
+.iconePrato-acesso{
+    height: 40px;
+    aspect-ratio: 1 / 1;
+    background-image: url('../imagens/iconePratoAcesso.png');
+    background-size: 100% 100%;
+}
+/* ADICIONAIS INFO */
+.adicionaisInfo{
+    margin-top: 50px;
+}

@@ -1,0 +1,52 @@
+@font-face {
+    font-family: "Roboto-Light";
+    src: url('../../fontes/roboto/Roboto-Light.ttf');
+  }
+.barradenavegacao{
+    display: flex;
+    overflow-x: auto;
+    background-color: #666666;
+    height: 50px;
+    width: auto;
+    font-family: "Roboto-Light";
+}
+.nav-top{
+    position: fixed;
+    overflow-x: auto;
+    z-index: 1;
+    top: 40px;
+    width: 100%;
+    background-color: #666666;
+    height: 50px;
+    display: flex;
+    font-family: "Roboto-Light";
+}
+.barra-nav{ 
+    display: flex;
+}
+.nav-grupos{
+    height: 100%;
+    width: auto;
+    display: flex;
+    place-items: center;
+}
+.nav-grupos:hover{
+    background-color: #FF8000;
+}
+.nav-grupos-box{
+    display: grid;
+    place-items: center;
+    color: white;
+    border-right: 1px solid black;
+}
+.name-grupo{
+    font-size: 15px;
+    margin-left: 10px;
+    margin-right: 5px;
+    padding-right: 10px;
+}
+.nav-item-grupo-name{
+    width: auto;
+    display: grid;
+    place-items: center;
+}
