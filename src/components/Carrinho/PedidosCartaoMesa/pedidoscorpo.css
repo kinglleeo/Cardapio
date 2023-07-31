@@ -1,0 +1,41 @@
+@font-face {
+    font-family: "Roboto-Bold";
+    src: url('../../../fontes/roboto/Roboto-Bold.ttf');
+    font-family: "Roboto-Light";
+    src: url('../../../fontes/roboto/Roboto-Light.ttf');
+}
+.margin{
+    margin-top: 50px;
+}
+.pedidosClienteCard{
+    margin: 15px;
+    border: solid;
+    border-bottom: none;
+    border-right: none;
+    border-color: rgb(240, 238, 238);
+    border-radius: 5px 0 0 0;
+    box-shadow: 4px 8px 6px 0px #8f8f8f;
+    display: flex;
+    flex-direction: column;
+}
+.clienteCardTipo{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    font-size: 14px;
+    font-family: "Roboto-Bold";
+}
+.TotalValorPedidos{
+    margin: 15px;
+    border: solid;
+    height: 50px;
+    border-bottom: none;
+    border-right: none;
+    border-color: rgb(240, 238, 238);
+    border-radius: 5px 0 0 0;
+    box-shadow: 4px 8px 6px 0px #8f8f8f;
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+    flex-wrap: wrap;
+}

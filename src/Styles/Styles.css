@@ -6,6 +6,9 @@
   font-family: "Roboto-Condensed";
   src: url('../fontes/roboto/Roboto-Condensed.ttf');
 }
+.Main{
+  min-height: 100vh;
+}
 .pagina{
     display: flex;
     flex-direction: column;
@@ -34,9 +37,8 @@
 }
 /* pizzaMista */
 .icon-grupoTamanho{
-  position: relative;
-  top: -45px;
-  left: 86%;
+  position: absolute;
+  right: 15px;
   height: 30px;
   width: 30px;
   display: grid;
@@ -61,7 +63,8 @@
 .box-subgrupo-icon{
     width: 20%;
     display: grid;
-    place-items: center;
+    place-items: center end;
+    margin-right: 10px;
 }
 .subgrupo-icon{
     height: 30px;
@@ -114,26 +117,25 @@
     padding-left: 5px;
     padding-top: 3px;
     font-family: "Roboto-Bold";
-    font-size: 14px;
+    font-size: 13px;
 }
 .item-nomeTamanhoPizza{
   margin-top: 10px;
   margin-left: 10px;
 }
 .produto-ingredientes{
-    margin-bottom: 5px;
     margin-left: 5px;
+    margin-bottom: 5px;
     margin-top: 5px;
-    word-break: break-word;
+    word-break: break-all;
     font-size: 12px;
-    font-family: "Roboto-Light";
-    max-height: 35px;
+    font-family: "Roboto-Condensed";
+    max-height: 28px;
 }
 .produto-valor{
-    margin: 5px;
+  margin-left: 5px;
     display: grid;
     place-items: center start;
-    font-family: "Roboto-Bold";
 }
 .box-valor{
   display: grid;

@@ -8,7 +8,6 @@ export const iniciarRota = (RotaFinal) => {
   sessionStorage.setItem('apiBaseURL', api.defaults.baseURL);
 };
 
-
 const savedBaseURL = sessionStorage.getItem('apiBaseURL');
 if (savedBaseURL) {
   api.defaults.baseURL = savedBaseURL;

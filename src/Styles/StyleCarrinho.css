@@ -29,7 +29,7 @@
     margin-right: 10px;
     height: 34px;
     aspect-ratio: 1 / 1;
-    background-image: url('../imagens/CarrinhoBlack.png');
+    background-image: url('../imagens/iconeCarrinhoAcesso.png');
     background-size: 100% 100%;
 }
 .iconeEnomeLocalizacao{
@@ -89,7 +89,7 @@
     min-height: 45px;
 }
 .cartBox-iconeLixeira{
-    width: 15%;
+    width: 10%;
     display: grid;
     place-items: center;
 }
@@ -99,32 +99,35 @@
     background-color: transparent;
 }
 .lixeira{
-    height: 35px;
+    height: 30px;
     aspect-ratio: 1 / 1;
     background-image: url('../imagens/iconeLixeira.png');
     background-size: 100% 100%;
 }
 .boxDescricao-nome{
-    width: 40%;
-    display: grid;
-    place-items: center;
+    width: 60%;
     font-family: "Roboto-Light";
     font-size: 14px;
+    display: flex;
+    align-content: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-left: 5px;
 }
 .cartBox-valor{
-    width: 45%;
+    width: 30%;
     display: flex;
 }
 .CartBox-valor{
     width: 100%;
-    display: flex;
+    display: grid;
+    place-items: center;
 }
 .cartTotal-valor{
-    width: 50%;
+    width: 100%;
     display: grid;
     font-size: 14px;
     place-items: center;
-    margin-right: 5px;
     font-family: "Roboto-Light";
 }
 .boxFuncao-cart{
@@ -145,6 +148,7 @@
     width: 20%;
     display: grid;
     place-items: center;
+    font-family: "Roboto-Bold";
 }
 .cartMinus{
     min-height: 20px;
@@ -313,4 +317,32 @@
 }
 .pesquisaMesa:focus-visible {
     outline-color: #f79a53;
+}
+.btnPedidosMesaCartao{
+    position: absolute;
+    right: 5px;
+    top: 175px;
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    display: grid;
+    place-items: center;
+}
+.textoPedidosBtn{
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+.caixaIconePedidos{
+    padding-left: 2px;
+    padding-right: 2px;
+    display: grid;
+    place-items: center;
+    border-radius: 10px 10px 0 0;
+}
+.iconePedidos{
+    height: 40px;
+    width: 40px;
+    background-image: url('../imagens/iconePedidos.png');
+    background-size: 100% 100%;
 }

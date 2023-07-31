@@ -1,11 +1,8 @@
 import { useState, useEffect } from 'react';
-import './menubar.css';
-import SubMenuBar from './subMenuBar';
+import './StyleBar.css';
 
 export default function MenuBar({ grupos }) {
   const [stickyClass, setStickyClass]= useState('barradenavegacao')
-  const [selectedGroup, setSelectedGroup] = useState(null);
-
 
   useEffect(()=>{
     window.addEventListener('scroll', stickNavbar)

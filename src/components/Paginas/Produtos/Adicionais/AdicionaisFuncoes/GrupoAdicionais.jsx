@@ -4,12 +4,15 @@ import { api } from '../../../../../conecções/api';
 import { useQueryClient } from '@tanstack/react-query';
 import ListaAdicionais from './ListaAdicionais';
 import Decimal from 'decimal.js'; 
+import ModalError from '../../../../erros/ModalError'
 
 export default function GrupoAdicionais({ setValorTotalItem, setValorTotalCusto, adicionalSelecionado, setAdicionalSelecionado,  setID_GRUPO_OPCOES }){
     const [listaGrupoOpcionais, setGruposAdicionais] = useState([]);
     const [listaAdicionais, setListaAdicionais] = useState([])
     const [listaAdicionaisAtivo, setListaAdicionaisAtivo] = useState(null);
     const [quantidadeTotalGrupos, setQuantidadeTotalGrupos] = useState({});
+    const [modalError, setModalError] = useState(false);
+    const [error, setError] = useState('');
 
     const { state } = useLocation();
     const { data } = state;
@@ -22,7 +25,11 @@ export default function GrupoAdicionais({ setValorTotalItem, setValorTotalCusto,
             .get(`/listaGrupoOpcionais/${data.ID_PRODUTO}`)
             .then((getdata) =>{
                 setGruposAdicionais(getdata.data);
-            });
+            })
+            .catch((error) => {
+              setError("Erro no listaGrupoOpcionais")
+              setModalError(true)
+          });
     }, []);
 
     const toggleListaAdicionais = (ID_GRUPO_OPCOES) => {
@@ -192,6 +199,7 @@ export default function GrupoAdicionais({ setValorTotalItem, setValorTotalCusto,
         )) : null}
                 
     </div>
+    {modalError && <ModalError setModalError={setModalError} error={error} />}
         </div>
     )
 }

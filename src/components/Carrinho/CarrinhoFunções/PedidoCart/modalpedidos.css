@@ -1,0 +1,84 @@
+@font-face {
+    font-family: "Roboto-Bold";
+    src: url('../../../../fontes/roboto/Roboto-Bold.ttf');
+}
+.darkBG {
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+} 
+.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+.modalPedidos {
+    min-width: 278px;
+    min-height: 170px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+}
+.modalPedidosContent {
+    padding: 10px;
+    display: grid;
+}
+.tituloModalPedidoCart{
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+    font-family: "Roboto-Bold";
+}
+.textoPedidoCartModal{
+    margin-top: 50px;
+    display: grid;
+    place-items: center;
+}
+.btnFecharModalPedidoCart{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 5px;
+    height: 30px;
+    border: none;
+    border-radius: 0 0 0 5px;
+    background-color: rgb(166, 175, 182);
+}
+.btnPedidoModalCArt{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 5px;
+    height: 30px;
+    border: none;
+    border-radius: 0 0 5px 0 ;
+    background-color: rgb(3, 255, 3);
+}
+.caixaIconeALerta{
+    display: grid;
+    place-items: center;
+    margin-bottom: 15px;
+}
+.iconeAlerta{
+    width: 50px;
+    height: 50px;
+    background-image: url('../../../../imagens/iconeAlert4.png');
+    background-size: 100% 100%;
+}
+.btnAlertOk{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: none;
+    height: 30px;
+    background-color: rgb(0, 255, 0);
+    border-radius: 0 0  5px 5px ;
+}

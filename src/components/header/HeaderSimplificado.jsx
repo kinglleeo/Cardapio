@@ -15,14 +15,14 @@ export default function cartHeader(){
         <div className='cartHeader'>
             <TopoHeaderBar/>
             <div className='cartHeaderBody'>
-                <div className='logo-resta'>
+            </div>
+            <div className='logo-resta'>
                 {Array.isArray(infoClientes) ?  (
-                        infoClientes.map((item)=> 
-                            <div>
-                                <img src={'data:image/png;base64,' + item.FOTO} key={item.id} alt='Restaurante' className='img-restaurante-logo' />
-                            </div>
-                    )) : null} 
-                </div>
+                    infoClientes.map((item)=> 
+                        <div key={item.NOME_FANTASIA}>
+                        <img src={'data:image/png;base64,' + item.FOTO} key={item.id} alt='Restaurante' className='img-restaurante-logo' />
+                    </div>
+                )) : null} 
             </div>
         </div>
     )

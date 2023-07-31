@@ -2,18 +2,20 @@ import { React, useEffect, useState } from 'react'
 import './StyleHeaders.css'
 import { api } from '../../conecções/api'
 import { useNavigate } from 'react-router-dom'
-import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../Usuarios/LoginPage/Firebase/firebaseConfig';
 
 export default function Header (){
     const [infoClientes, setInfoClientes] = useState([])
-    const user = auth.currentUser;
+    const [user, setUser] = useState('');
     const navigate = useNavigate()
     
     useEffect(()=>{
         const dados = localStorage.getItem('empresa')
             setInfoClientes(JSON.parse(dados))
-    }, [])
+            auth.onAuthStateChanged((user) => {
+                setUser(user)
+            });
+    }, []);
     
     const PaginaUsuario =()=>{
         navigate('/PaginaUsuario')
@@ -22,13 +24,6 @@ export default function Header (){
     return(
         <div className='paginaHeader'>
         <div className='header-header'>
-                <div className='header-login'>
-                    {user !== null ? (
-                        <div className='caixaIconeUsuario'>
-                            <button className='iconeUsuario' onClick={PaginaUsuario}></button>
-                        </div>
-                    ) : ('')}
-                </div>
                 <div className='logo-garline-header'>
                     <div className='logo-garline'></div>
                 </div>
@@ -36,9 +31,11 @@ export default function Header (){
         <div className='Main-header'>   
             {Array.isArray(infoClientes) ?  (
                 infoClientes.map((item)=>
-                <div>
+                <div key={item.NOME_FANTASIA}>
                     <div className='body-header'>
                     <div className='banner-garline'>
+                    </div>
+                        <div className='caixa-infos'>
                         <div className='banner-infos'>
                             <div className='caixa-icone'>
                                 <div className='icone-tempo'></div>
@@ -66,7 +63,7 @@ export default function Header (){
                                 <div>{item.WHATS.replace(/(\d{2})(\d{4})(\d{4})/, "($1) $2-$3")}</div>
                             </div>
                         </div>
-                    </div>
+                        </div>
                     <div className='footer-header'>
                         <div className='endereço-header'> {item.LOGRADOURO + ", " + item.BAIRRO + ", N°" + " " + item.NUMERO + ", " + item.CIDADE + " - " + item.UF} </div>
                     </div>

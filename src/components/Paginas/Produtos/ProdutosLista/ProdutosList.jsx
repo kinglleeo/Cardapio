@@ -2,6 +2,7 @@ import { React } from 'react'
 import '../../../../Styles/Styles.css'
 import { formCurrency } from '../../../AA-utilidades/numeros';
 import { useNavigate } from 'react-router-dom';
+import { capitalizeFirstLetter } from '../../../AA-utilidades/primeiraMaiuscula';
 
 export default function ProdutoList({ produto, subGrupo, grupo }){
     const navigate = useNavigate();
@@ -9,11 +10,7 @@ export default function ProdutoList({ produto, subGrupo, grupo }){
     const Adicionais = (data, subGrupo, grupo) => {
         navigate('/Adicionais', { state: { data, subGrupo, grupo } });
       };
-    
-    function capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
-    
+      
     return(
            <div className='lista-produtos'>
                 {Array.isArray(produto) ? (

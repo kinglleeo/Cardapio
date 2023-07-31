@@ -20,26 +20,9 @@
     width: 100%;
     display: flex;
     z-index: 999;
-}
-.header-login{
-    width: 40%;
-    display: flex;
-}
-.caixaIconeUsuario{
-    width: 50px;
-    height: 100%;
-    margin-left: 10px;
-}
-.iconeUsuario{
-    height: 100%;
-    aspect-ratio: 1 / 1;
-    background-color: transparent;
-    border: none;
-    background-image: url('../../imagens/iconeUsuario.png');
-    background-size: 100% 100%;
+    justify-content: flex-end;
 }
 .logo-garline-header{
-    width: 60%;
     margin-right: 10px;
     display: flex;
     justify-content: flex-end;
@@ -63,18 +46,21 @@
 .body-header{
     display: grid;
 }
-.banner-garline{
+.banner-garline {
     height: 75%;
     min-height: 150px;
     background-image: url('../../imagens/banner1.fw.webp');
     background-size: 100% 100%;
+    -webkit-box-reflect: below 0px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
+}
+.caixa-infos{
+    position: absolute;
+    top: 50px;
+    left: 15px;
 }
 .banner-infos{
-    position: relative;
-    left: 15px;
-    top: 10px;
     margin-top: 5px;
-    background-color: #EFEFEF;
+    background-color: #EFEFEF;  
     border-radius: 5px;
     width: 130px;
     height: 35px;   
@@ -150,17 +136,18 @@
     justify-content: space-between;
 }
 .logo-resta{
-    display: block;
+    position: absolute;
     height: 100px;
     width: 120px;
-    margin: auto;
-    padding-top: 50px;
+    top: 100px;
+    left: calc(50vw - (/* width */120px / 2)); 
 }
 .cartHeaderBody{
     margin-top: 40px;
     min-height: 150px;
     background-image: url('../../imagens/banner1.fw.webp');
     background-size: 100% 100%;
+    -webkit-box-reflect: below 0px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
 }
 .logo-garline-header {
     width: 60%;

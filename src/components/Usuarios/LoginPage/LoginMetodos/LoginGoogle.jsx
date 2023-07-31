@@ -4,8 +4,6 @@ import 'firebase/compat/auth';
 import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css'
 import { useNavigate } from 'react-router-dom';
-import { onAuthStateChanged } from 'firebase/auth'
-import { auth } from '../Firebase/firebaseConfig';
 
 export default function LoginSociais () {
   const navigate = useNavigate()  
@@ -25,10 +23,24 @@ export default function LoginSociais () {
   firebase.initializeApp(firebaseConfig);
     const uiConfig = {
       callbacks: {
-        signInSuccessWithAuthResult: function(authResult) {
-          
-          navigate('/Main')
-        }},
+        signInSuccessWithAuthResult: function(authResult, redirectUrl){
+            const user = authResult.user
+            api
+              .post('/insereCliente',{
+                nome: user.displayName,
+                data_nascimento: '',
+                email: user.email,
+                firebase_token: user.uid,
+                numero_telefone: user.phoneNumber
+              })
+              .then((response)=>{
+                localStorage.setItem('idCliente', response.data)
+                localStorage.setItem('uidToken', user.uid)
+              })
+              .catch((error)=>{
+                alert(error)
+              })
+          }},
       signInOptions: [
         {
           provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,

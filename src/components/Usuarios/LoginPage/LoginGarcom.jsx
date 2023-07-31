@@ -1,5 +1,5 @@
 import { React } from 'react';
-import './login.css'
+import '../../../Styles/StyleLogin.css'
 import Footer from '../../Footer/Footer'
 import LoginHeader from './LoginHeader'
 import MetodoLoginGarcom from './LoginMetodos/MetodoLoginGarcom'

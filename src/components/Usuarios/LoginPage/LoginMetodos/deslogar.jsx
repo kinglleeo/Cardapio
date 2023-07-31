@@ -9,7 +9,7 @@ export default function deslogar(){
       try {
         await logOut();
       } catch (error) {
-        console.log('error');
+        alert('error');
       }
     }
     return(
