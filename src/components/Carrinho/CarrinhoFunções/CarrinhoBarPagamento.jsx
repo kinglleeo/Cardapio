@@ -196,12 +196,13 @@ export function CarrinhoBarPagamento({ Pedido, opçaoEscolhidaGarcom, numeroComa
       setCompra(updatedCompra);
     }
   }, [Pedido, setCompra]);
-  
+  console.log(pagamentoSelecionado)
   const EnviarPedidoAPI =()=>{
     axios
       .post(`http://192.168.0.100:9865/inserirPedido`, {
         token_notificacao: idNotificacao,
         pagamento: pagamentoSelecionado !== "" ? pagamentoSelecionado.ID : "balcão",
+        pagamento_descricao: pagamentoSelecionado !== "" ? pagamentoSelecionado.DESCRICAO : "balcão",
         id_endereco: enderecoSelecionado !== null ? enderecoSelecionado.ID : "",
         id_garcom: idGarcom !== null ? idGarcom : "",
         id_cliente: enderecoSelecionado !== null ? enderecoSelecionado.ID_PESSOAS : "",

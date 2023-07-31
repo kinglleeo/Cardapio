@@ -19,7 +19,7 @@ export default function Terminal({ nomeEmpresa, adm }) {
     const [error, setError] = useState('');
     const tipoComanda = dados.tipoComanda;
     const navigate = useNavigate();
-    
+    console.log(listaPedidos)
   
     useEffect(()=>{
       const dados = localStorage.getItem('dados')
@@ -27,8 +27,8 @@ export default function Terminal({ nomeEmpresa, adm }) {
   }, [])
 
     useEffect(()=>{
-      api
-            .get('/listaPedidos')
+      axios
+            .get('http://192.168.0.100:9865/listaPedidos')
             .then((getdata)=>{
                 setListaPedidos(getdata.data);
             })

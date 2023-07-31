@@ -20,8 +20,8 @@ export default function DetalhesDoPedido({ itemPedido }){
     
     useEffect(()=>{
         if (tipoComanda === "DELIVERY" && itemPedido.STATUS === 6){
-            api
-                .get(`/listaItensCancelados/${itemPedido.ID}`)
+            axios
+                .get(`http://192.168.0.100:9865/listaItensCancelados/${itemPedido.ID}`)
                 .then((getdata)=>{
                     setDadosCompraPedido(getdata.data);
                 })  
@@ -30,8 +30,8 @@ export default function DetalhesDoPedido({ itemPedido }){
                     setModalError(true)
                 });
         } else {
-            api
-                .get(`/listaItensPedidos/${itemPedido.ID}`)
+            axios
+                .get(`http://192.168.0.100:9865/listaItensPedidos/${itemPedido.ID}`)
                 .then((getdata)=>{
                     setDadosCompraPedido(getdata.data);
                 })
@@ -175,7 +175,12 @@ export default function DetalhesDoPedido({ itemPedido }){
                     ) : null}
                 </div>
             </div>
-
+            <div className='quadroDetalhesPedido'>
+                <div className='barraTotalPedido'>
+                    <div>Taxa de Entrega:</div>
+                    <div>{formCurrency.format(itemPedido.TAXA_ENTREGA)}</div>
+                </div>
+            </div>
             <div className='quadroDetalhesPedido'>
                 <div className='barraTotalPedido'>
                     <div> Total Pedido </div>

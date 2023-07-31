@@ -87,6 +87,7 @@ const PrintableContent = React.forwardRef(({ itemPedido, dadosCompraPedido }, re
         <div className='espaçoEntreLinhas'>--------------------------------------------</div>
             <div className='linhaFormaDePagamento'>
                 <div>Pagamento </div>
+                <div>{itemPedido.DESCRICAO_PAGAMENTO}</div>
             </div>
         <div className='espaçoEntreLinhas'>--------------------------------------------</div>
             <div className='infoCliente'>
@@ -150,16 +151,8 @@ const PrintableContent = React.forwardRef(({ itemPedido, dadosCompraPedido }, re
             ) : null}
         <div className='espaçoEntreLinhas'>--------------------------------------------</div>
             <div className='linhaValores'>
-                <div> Itens: {dadosCompraPedido.length}</div>
-                <div> Produtos: {formCurrency.format(itemPedido.TOTAL)}</div>
-            </div>
-            <div className='linhaValores'>
-                <div>Qtd. Produ: </div>
-                <div>Serviços: </div>
-            </div>
-            <div className='linhaValores'>
                 <div></div>
-                <div>Descontos: </div>
+                <div> Produtos: {formCurrency.format(itemPedido.TOTAL)}</div>
             </div>
             <div className='linhaValores'>
                 <div></div>
