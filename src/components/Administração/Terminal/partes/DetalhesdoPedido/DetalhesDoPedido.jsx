@@ -17,7 +17,7 @@ export default function DetalhesDoPedido({ itemPedido }){
     const [error, setError] = useState('');
     const tipoComanda = itemPedido.TIPOCOMANDA;  
     const navigate = useNavigate()
-    
+    console.log(dadosCompraPedido)
     useEffect(()=>{
         if (tipoComanda === "DELIVERY" && itemPedido.STATUS === 6){
             axios

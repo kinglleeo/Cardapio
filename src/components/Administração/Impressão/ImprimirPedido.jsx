@@ -12,7 +12,7 @@ const PrintableContent = React.forwardRef(({ itemPedido, dadosCompraPedido }, re
     const [totalItems, setTotalItems] = useState('')
     const uidToken = itemPedido.FIREBASE_TOKEN
     const enderecoId = itemPedido.ID_ENDERECO
-
+  
   useEffect(() => {
     if (dadosCompraPedido && Array.isArray(dadosCompraPedido)) {
       let total = new Decimal(0);
@@ -133,9 +133,9 @@ const PrintableContent = React.forwardRef(({ itemPedido, dadosCompraPedido }, re
                 dadosCompraPedido.map((item)=>
                 <div>
                   <div className='descricaoTabelaPedidos'>
-                    <div className='idItem'>{item.ID}</div>
+                    <div className='idItem'>{item.ID_PRODUTO}</div>
                     <div className='descricaoItem'>{item.DESCRICAO !== null ? item.DESCRICAO.toLowerCase() : null}</div>
-                    <div className='tamanhoItem'>{item.TAMANHO}</div>
+                    <div className='tamanhoItem'>({item.TAMANHO.toLowerCase().substring(0, 3)})</div>
                     <div className='qtdeItem'>{item.QTDE_COM}</div>
                     <div className='unitItem'>{formCurrency.format(item.TOTAL)}</div>
                     <div className='totalItem'>{formCurrency.format(item.TOTAL*item.QTDE_COM)}</div>
@@ -154,12 +154,15 @@ const PrintableContent = React.forwardRef(({ itemPedido, dadosCompraPedido }, re
                 )  
                 ) : null}
             </div>
-            {itemPedido.OBSERVACOES !== "" ? (
-              <div>
-                <div className='espaçoEntreLinhas'>--------------------------------------------</div>
-                  <div>Observações: {itemPedido.OBSERVACOES}</div>
-              </div>
-            ) : null}
+            {Array.isArray(itemPedido) ? (
+                itemPedido.map((item)=>
+                  item.OBSERVACAO !== "" ? (
+                    <div>
+                    <div className='espaçoEntreLinhas'>--------------------------------------------</div>
+                    <div>Observações: {item.OBSERVACOES}</div>
+                  </div>
+                  ) : null  
+              )):null}
         <div className='espaçoEntreLinhas'>--------------------------------------------</div>
             <div className='linhaValores'>
                 <div></div>
